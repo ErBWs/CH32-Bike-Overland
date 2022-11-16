@@ -1,0 +1,676 @@
+{
+  "name": "mm32f327x_g9p",
+  "type": "ARM",
+  "dependenceList": [],
+  "srcDirs": [
+    ".eide/deps"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "user_c",
+        "files": [
+          {
+            "path": "../USER/src/main.c"
+          },
+          {
+            "path": "../user/src/isr.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "user_h",
+        "files": [
+          {
+            "path": "../user/inc/isr.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "code",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "doc",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "zf_common",
+        "files": [
+          {
+            "path": "../../libraries/zf_common/zf_common_clock.c"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_clock.h"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_debug.c"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_debug.h"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_fifo.c"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_fifo.h"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_font.c"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_font.h"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_function.c"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_function.h"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_interrupt.c"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_interrupt.h"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_headfile.h"
+          },
+          {
+            "path": "../../libraries/zf_common/zf_common_typedef.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "zf_driver",
+        "files": [
+          {
+            "path": "../../libraries/zf_driver/zf_driver_adc.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_adc.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_dac.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_dac.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_delay.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_delay.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_dma.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_dma.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_encoder.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_encoder.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_exti.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_exti.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_flash.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_flash.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_fsmc.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_fsmc.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_gpio.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_gpio.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_iic.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_iic.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_pit.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_pit.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_pwm.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_pwm.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_sdio.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_sdio.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_soft_iic.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_soft_iic.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_soft_spi.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_soft_spi.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_spi.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_spi.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_timer.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_timer.h"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_uart.c"
+          },
+          {
+            "path": "../../libraries/zf_driver/zf_driver_uart.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "zf_device",
+        "files": [
+          {
+            "path": "../../libraries/zf_device/zf_device_absolute_encoder.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_absolute_encoder.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_bluetooth_ch9141.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_bluetooth_ch9141.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_camera.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_camera.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_gps_tau1201.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_gps_tau1201.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_icm20602.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_icm20602.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_imu963ra.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_imu963ra.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_ips114.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_ips114.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_ips200.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_ips200.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_key.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_key.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_mpu6050.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_mpu6050.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_mt9v03x.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_mt9v03x.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_oled.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_oled.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_ov7725.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_ov7725.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_scc8660.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_scc8660.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_sdcard.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_sdcard.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_tft180.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_tft180.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_tsl1401.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_tsl1401.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_type.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_type.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_virtual_oscilloscope.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_virtual_oscilloscope.h"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_wireless_uart.c"
+          },
+          {
+            "path": "../../libraries/zf_device/zf_device_wireless_uart.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "sdk",
+        "files": [
+          {
+            "path": "../../libraries/sdk/hal_device_registers.h"
+          },
+          {
+            "path": "../../libraries/sdk/mm32f3277g.h"
+          },
+          {
+            "path": "../../libraries/sdk/mm32f3277g_features.h"
+          },
+          {
+            "path": "../../libraries/sdk/system_mm32f3277g.c"
+          },
+          {
+            "path": "../../libraries/sdk/system_mm32f3277g.h"
+          },
+          {
+            "path": "../../libraries/sdk/mdk/startup_mm32f3277g.s"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_adc.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_adc.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_common.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_comp.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_comp.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_dac.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_dac.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_dma.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_dma.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_dma_request.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_exti.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_exti.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_fsmc.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_fsmc.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_gpio.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_gpio.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_i2c.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_i2c.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_iwdg.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_iwdg.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_rcc.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_rcc.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_rtc.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_rtc.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_sdio.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_sdio.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_spi.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_spi.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_syscfg.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_syscfg.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_16b.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_16b.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_32b.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_32b.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_adv.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_adv.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_basic.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_tim_basic.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_uart.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_uart.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_usb.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_usb.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_usb_bdt.h"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_wwdg.c"
+          },
+          {
+            "path": "../../libraries/sdk/drivers/hal_wwdg.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "components_fatfs",
+        "files": [
+          {
+            "path": "../../libraries/components/fatfs/source/diskio.c"
+          },
+          {
+            "path": "../../libraries/components/fatfs/source/diskio.h"
+          },
+          {
+            "path": "../../libraries/components/fatfs/source/ff.c"
+          },
+          {
+            "path": "../../libraries/components/fatfs/source/ff.h"
+          },
+          {
+            "path": "../../libraries/components/fatfs/source/ffconf.h"
+          },
+          {
+            "path": "../../libraries/components/fatfs/source/ffsystem.c"
+          },
+          {
+            "path": "../../libraries/components/fatfs/source/ffunicode.c"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "432830247f30a50902cdcf24ca239c7d"
+  },
+  "targets": {
+    "mm32f327x_g9p_project": {
+      "excludeList": [],
+      "toolchain": "AC6",
+      "compileConfig": {
+        "cpuType": "Cortex-M3",
+        "floatingPointHardware": "none",
+        "useCustomScatterFile": true,
+        "scatterFilePath": "../../libraries/sdk/mdk/linker/mm32f3277g_flash.scf",
+        "storageLayout": {
+          "RAM": [
+            {
+              "tag": "RAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x20000000",
+                "size": "0x20000"
+              },
+              "isChecked": true,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            }
+          ],
+          "ROM": [
+            {
+              "tag": "ROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "IROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x8000000",
+                "size": "0x80000"
+              },
+              "isChecked": true,
+              "isStartup": true
+            },
+            {
+              "tag": "IROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            }
+          ]
+        },
+        "options": "null"
+      },
+      "uploader": "JLink",
+      "uploadConfig": {
+        "bin": "",
+        "baseAddr": "0x08000000",
+        "cpuInfo": {
+          "vendor": "ST",
+          "cpuName": "STM32F103C8"
+        },
+        "proType": 1,
+        "speed": 8000,
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "../user/inc",
+          "../code",
+          "../../libraries/zf_common",
+          "../../libraries/zf_device",
+          "../../libraries/zf_driver",
+          "../../libraries/sdk",
+          "../../libraries/sdk/CMSIS/Include",
+          "../../libraries/sdk/drivers",
+          "../../libraries/components/fatfs/source",
+          "RTE/_mm32f327x_g9p_project"
+        ],
+        "libList": [],
+        "sourceDirList": [],
+        "defineList": []
+      }
+    }
+  },
+  "version": "3.3"
+}
