@@ -4966,7 +4966,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        944         76          0          0          0       6197   isr.o
-       316        100          0          0          0       3871   main.o
+       316        100          0          0          0       3875   main.o
         36          8        400          0          0        888   startup_mm32f3277g.o
         12          4          0          0          0        448   system_mm32f3277g.o
        492         56          0          4          0       2803   zf_common_clock.o
@@ -4996,7 +4996,7 @@ Image component sizes
        492         28         40          0          0       7866   zf_driver_uart.o
 
     ----------------------------------------------------------------------
-      7268        666       2252         80      32812     150235   Object Totals
+      7268        666       2252         80      32812     150239   Object Totals
          0          0         32          0       9216          0   (incl. Generated)
          2          0          2          3          8          0   (incl. Padding)
 
@@ -5040,8 +5040,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7980        692       2252         80      32812     150439   Grand Totals
-      7980        692       2252         80      32812     150439   ELF Image Totals
+      7980        692       2252         80      32812     150443   Grand Totals
+      7980        692       2252         80      32812     150443   ELF Image Totals
       7980        692       2252         80          0          0   ROM Totals
 
 ==============================================================================

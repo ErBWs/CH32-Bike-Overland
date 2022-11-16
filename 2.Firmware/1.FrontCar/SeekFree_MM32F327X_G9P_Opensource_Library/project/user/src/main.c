@@ -62,7 +62,8 @@ int main (void)
         // Test code
 		gpio_set_level(B13,1);
 		gpio_set_level(H2,0);
-		system_delay_ms(500);
+
+			system_delay_ms(500);
 		gpio_set_level(B13,0);
 		gpio_set_level(H2,1);
 		system_delay_ms(500);
