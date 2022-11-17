@@ -892,6 +892,11 @@
     (uuid ffdafed7-8048-48b3-883c-04d78db22111)
   )
 
+  (text "Copyright (c) 2022, ErBW_s\nAll rights reserved." (at 186.69 180.34 0)
+    (effects (font (size 4.318 4.318)) (justify left bottom))
+    (uuid 83008835-4c62-4ad0-be53-eb94792d1dc1)
+  )
+
   (label "LEDK" (at 111.76 58.42 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 1a5c292a-d473-49bc-9b41-8f82179c39f6)

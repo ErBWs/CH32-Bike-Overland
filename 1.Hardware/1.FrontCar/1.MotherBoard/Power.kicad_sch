@@ -1777,6 +1777,11 @@
     (uuid ff7fd9db-94bd-4d59-bde9-ef4fa0f501f6)
   )
 
+  (text "Copyright (c) 2022, ErBW_s\nAll rights reserved." (at 186.69 180.34 0)
+    (effects (font (size 4.318 4.318)) (justify left bottom))
+    (uuid 9df2184c-061a-455b-b08c-b354adb84aaa)
+  )
+
   (symbol (lib_id "Device:C_Small") (at 160.02 36.83 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 054cd73b-d0bc-4991-9eef-8a614a9a5cc7)

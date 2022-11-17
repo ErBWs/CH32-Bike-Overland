@@ -55,6 +55,11 @@
   )
 
 
+  (text "Copyright (c) 2022, ErBW_s\nAll rights reserved." (at 185.42 180.34 0)
+    (effects (font (size 4.318 4.318)) (justify left bottom))
+    (uuid 5bfe9e35-d29c-425a-8e22-a3465e1dd2ca)
+  )
+
   (symbol (lib_id "Device:Fuse_Small") (at 115.57 73.66 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid f6b8dafe-149e-4c25-bc31-b055603ba1af)

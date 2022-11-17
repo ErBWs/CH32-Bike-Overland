@@ -265,6 +265,11 @@
     (uuid c2520a4e-5b89-422d-b266-b35327ab0d98)
   )
 
+  (text "Copyright (c) 2022, ErBW_s\nAll rights reserved." (at 186.69 180.34 0)
+    (effects (font (size 4.318 4.318)) (justify left bottom))
+    (uuid c4995cad-b22a-4b19-acd9-8579651c4594)
+  )
+
   (symbol (lib_id "power:VBUS") (at 110.49 57.15 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 66f82e7d-5f9f-4150-abec-048801e3e57a)
