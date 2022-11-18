@@ -320,6 +320,22 @@
     [
       "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
       ""
+    ],
+    [
+      "b6c42b83-27cb-41a6-82a4-0cfe59a023a6",
+      "Power"
+    ],
+    [
+      "75d4eb50-ef1d-4351-af02-572532bc48f1",
+      "Coreboard"
+    ],
+    [
+      "dfa09d98-eb24-4786-85f7-4022ee322db8",
+      "Peripheral"
+    ],
+    [
+      "d9d9f6f9-69cc-476c-8327-3871668605e9",
+      "Ports"
     ]
   ],
   "text_variables": {}
