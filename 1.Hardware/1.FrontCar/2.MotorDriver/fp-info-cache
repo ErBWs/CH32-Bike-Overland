@@ -1,4 +1,4 @@
-20649761708685841
+20653101321010432
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52308,8 +52308,8 @@ BatteryHolder_2x18650
 
 
 0
-0
-0
+3
+3
 ErBW_s
 Buzzer_9*9P5
 
@@ -52338,6 +52338,20 @@ Integrated Circuit
 0
 20
 20
+ErBW_s
+SPDT_12C01
+
+
+0
+0
+0
+ErBW_s
+SPDT_MTS_102
+
+
+0
+3
+3
 ErBW_s
 SW_5DIR
 
