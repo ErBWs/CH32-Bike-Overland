@@ -1,4 +1,4 @@
-20653101321872631
+20656439916857627
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52318,6 +52318,13 @@ Buzzer_9*9P5
 2
 2
 ErBW_s
+DirectFET_ME
+
+
+0
+10
+3
+ErBW_s
 IPS114
 
 
@@ -52331,6 +52338,13 @@ MSP-EXP432P401R
 0
 78
 78
+ErBW_s
+Maple
+
+
+0
+6
+6
 ErBW_s
 SOP65P640X120-20N
 PW_20
