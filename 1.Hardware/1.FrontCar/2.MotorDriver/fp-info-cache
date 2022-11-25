@@ -1,4 +1,4 @@
-20656440729361771
+20656442312913395
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -64887,7 +64887,7 @@ QFN-24-1EP_4x4mm_P0.5mm_EP2.65x2.65mm_ThermalVias
 QFN, 24 Pin (http://www.cypress.com/file/46236/download), generated with kicad-footprint-generator ipc_noLead_generator.py
 QFN NoLead
 0
-39
+38
 25
 Package_DFN_QFN
 QFN-24-1EP_4x5mm_P0.5mm_EP2.65x3.65mm
