@@ -1,0 +1,14 @@
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 312:Plugin executed on: 'darwin'
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 313:Plugin executed with python version: '3.8.2 (v3.8.2:7b3ab5921f, Feb 24 2020, 17:52:18) \n[Clang 6.0 (clang-600.0.57)]'
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 314:KiCad build version: (6.0.4-0)
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 315:Plugin version: 1.2.2
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 316:Frame repr: <wx._core.Frame object at 0x7f9d905809d0>
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 340:Preparing replicator with J3 as a reference
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.replicate_layout 106:getting a list of all footprints on board
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 364:source anchor footprint is 'J3'
+Located on: []
+With filenames: []
+With sheet_id:[]
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 371:Corresponding footprints are 
+[('J3', [])]
+11-25 13:12:20 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 383:Showing dialog
