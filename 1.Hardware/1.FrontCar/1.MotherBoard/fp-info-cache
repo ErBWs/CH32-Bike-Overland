@@ -1,4 +1,4 @@
-20646424195361609
+20658112439014267
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52301,8 +52301,15 @@ BUTTON_3x4
 
 
 0
+2
+2
+ErBW_s
+BatteryHolder_2x18650
+
+
 0
-0
+3
+3
 ErBW_s
 Buzzer_9*9P5
 
@@ -52310,6 +52317,13 @@ Buzzer_9*9P5
 0
 2
 2
+ErBW_s
+DirectFET_ME
+
+
+0
+10
+3
 ErBW_s
 IPS114
 
@@ -52325,6 +52339,20 @@ MSP-EXP432P401R
 78
 78
 ErBW_s
+Maple
+
+
+0
+6
+6
+ErBW_s
+SIQ-02FVS3
+SIQ-02FVS3
+Integrated Circuit
+0
+10
+5
+ErBW_s
 SOP65P640X120-20N
 PW_20
 Integrated Circuit
@@ -52332,12 +52360,33 @@ Integrated Circuit
 20
 20
 ErBW_s
+SPDT_12C01
+
+
+0
+9
+4
+ErBW_s
+SPDT_MTS_102
+
+
+0
+3
+3
+ErBW_s
 SW_5DIR
 
 
 0
 8
 7
+ErBW_s
+TPH1R403NL
+TPH1R403NL,L1Q-1
+MOSFET (N-Channel)
+0
+10
+3
 ErBW_s
 VCC_CONN
 
@@ -64845,7 +64894,7 @@ QFN-24-1EP_4x4mm_P0.5mm_EP2.65x2.65mm_ThermalVias
 QFN, 24 Pin (http://www.cypress.com/file/46236/download), generated with kicad-footprint-generator ipc_noLead_generator.py
 QFN NoLead
 0
-39
+38
 25
 Package_DFN_QFN
 QFN-24-1EP_4x5mm_P0.5mm_EP2.65x3.65mm
