@@ -1,4 +1,4 @@
-20668146494895364
+20669817165525756
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52297,6 +52297,13 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 10
 10
 ErBW_s
+BTB_Connector_02x30
+
+
+0
+62
+61
+ErBW_s
 BUTTON_3x4
 
 
@@ -52357,8 +52364,8 @@ LED_0402
 
 
 0
-0
-0
+2
+2
 ErBW_s
 MSP-EXP432P401R
 
