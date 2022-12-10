@@ -1,4 +1,4 @@
-20661463867279641
+20668146494895364
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52318,6 +52318,13 @@ Buzzer_9*9P5
 2
 2
 ErBW_s
+C_0402
+
+
+0
+2
+2
+ErBW_s
 Crystal_SMD_3213_3P
 
 
@@ -52329,8 +52336,8 @@ Crystal_SMD_3215_FC-135_2P
 
 
 0
-0
-0
+2
+2
 ErBW_s
 DirectFET_ME
 
@@ -52346,6 +52353,13 @@ IPS114
 13
 13
 ErBW_s
+LED_0402
+
+
+0
+0
+0
+ErBW_s
 MSP-EXP432P401R
 
 
@@ -52360,12 +52374,26 @@ Maple
 6
 6
 ErBW_s
+R_0402
+
+
+0
+2
+2
+ErBW_s
 SIQ-02FVS3
 SIQ-02FVS3
 Integrated Circuit
 0
 10
 5
+ErBW_s
+SOD-323
+
+
+0
+2
+2
 ErBW_s
 SOP65P640X120-20N
 PW_20
