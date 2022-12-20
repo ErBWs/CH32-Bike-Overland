@@ -1,4 +1,4 @@
-20676504102846870
+20674833579696807
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52360,14 +52360,7 @@ DirectFET_ME
 10
 3
 ErBW_s
-ErBW_s
-
-
-0
-0
-0
-ErBW_s
-ErBW_s_Binary
+ErBW_s_1x1cm
 
 
 0
