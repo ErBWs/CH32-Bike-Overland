@@ -10,7 +10,7 @@
       <TargetName>mm32f527x_e9p_project</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6180000::V6.18::ARMCLANG</pCCUsed>
+      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <DriverSelection>4103</DriverSelection>
           </Flash1>
-          <bUseTDR>1</bUseTDR>
-          <Flash2>BIN\UL2V8M.DLL</Flash2>
-          <Flash3></Flash3>
+          <bUseTDR>0</bUseTDR>
+          <Flash2>BIN\CMSIS_AGDI_V8M.DLL</Flash2>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -403,16 +403,6 @@
               <FileName>isr.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\user\inc\isr.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>code</GroupName>
-          <Files>
-            <File>
-              <FileName>本文件夹作用.txt</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\本文件夹作用.txt</FilePath>
             </File>
           </Files>
         </Group>
@@ -1253,6 +1243,56 @@
               <FileName>hal_wwdg.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\libraries\sdk\drivers\hal_wwdg.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>code</GroupName>
+          <Files>
+            <File>
+              <FileName>easy_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\easy_key.c</FilePath>
+            </File>
+            <File>
+              <FileName>easy_key.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\easy_key.h</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\easy_ui.c</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\easy_ui.h</FilePath>
+            </File>
+            <File>
+              <FileName>header.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\header.h</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\pid.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_ips114.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\user_ips114.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_ips114.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\user_ips114.h</FilePath>
             </File>
           </Files>
         </Group>

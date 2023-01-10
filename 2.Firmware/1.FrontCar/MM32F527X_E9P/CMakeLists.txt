@@ -12,6 +12,7 @@ include_directories(libraries/zf_common)
 include_directories(libraries/zf_device)
 include_directories(libraries/zf_driver)
 include_directories(project/user/inc)
+include_directories(project/code)
 
 add_executable(MM32F527X_E9P
         libraries/components/fatfs/documents/res/app1.c
@@ -218,4 +219,12 @@ add_executable(MM32F527X_E9P
         libraries/zf_driver/zf_driver_uart.h
         project/user/inc/isr.h
         project/user/src/isr.c
-        project/user/src/main.c)
+        project/user/src/main.c
+        project/code/pid.c
+        project/code/pid.h
+        project/code/easy_key.c
+        project/code/easy_key.h
+        project/code/easy_ui.c
+        project/code/easy_ui.h
+        project/code/header.h project/code/user_ips114.c project/code/user_ips114.h
+        project/code/profile_photo_erbws.c project/code/profile_photo_erbws.h project/code/menu.c project/code/menu.h)

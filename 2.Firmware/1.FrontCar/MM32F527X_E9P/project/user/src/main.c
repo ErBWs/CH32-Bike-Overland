@@ -1,38 +1,3 @@
-/*********************************************************************************************************************
-* MM32F527X-E9P Opensourec Library 即（MM32F527X-E9P 开源库）是一个基于官方 SDK 接口的第三方开源库
-* Copyright (c) 2022 SEEKFREE 逐飞科技
-* 
-* 本文件是 MM32F527X-E9P 开源库的一部分
-* 
-* MM32F527X-E9P 开源库 是免费软件
-* 您可以根据自由软件基金会发布的 GPL（GNU General Public License，即 GNU通用公共许可证）的条款
-* 即 GPL 的第3版（即 GPL3.0）或（您选择的）任何后来的版本，重新发布和/或修改它
-* 
-* 本开源库的发布是希望它能发挥作用，但并未对其作任何的保证
-* 甚至没有隐含的适销性或适合特定用途的保证
-* 更多细节请参见 GPL
-* 
-* 您应该在收到本开源库的同时收到一份 GPL 的副本
-* 如果没有，请参阅<https://www.gnu.org/licenses/>
-* 
-* 额外注明：
-* 本开源库使用 GPL3.0 开源许可证协议 以上许可申明为译文版本
-* 许可申明英文版在 libraries/doc 文件夹下的 GPL3_permission_statement.txt 文件中
-* 许可证副本在 libraries 文件夹下 即该文件夹下的 LICENSE 文件
-* 欢迎各位使用并传播本程序 但修改内容时必须保留逐飞科技的版权声明（即本声明）
-* 
-* 文件名称          main
-* 公司名称          成都逐飞科技有限公司
-* 版本信息          查看 libraries/doc 文件夹内 version 文件 版本说明
-* 开发环境          MDK 5.37
-* 适用平台          MM32F527X_E9P
-* 店铺链接          https://seekfree.taobao.com/
-* 
-* 修改记录
-* 日期              作者                备注
-* 2022-08-10        Teternal            first version
-********************************************************************************************************************/
-
 #include "zf_common_headfile.h"
 
 int main (void)
@@ -43,10 +8,106 @@ int main (void)
 
     // User initializations
     ips114_init();
-    ips114_show_string(0, 0, "Hello World!");
+    ips114_show_string(0, 0, "Hello SCEP!");
+
+    EasyKey_t keyLeft, keyRight, keyCenter;
+    EasyKeyInit(&keyLeft, C6, 20);
+    EasyKeyInit(&keyRight, C7, 20);
+    EasyKeyInit(&keyCenter, G8, 20);
+
+    mpu6050_init();
+    ips114_clear();
+
+    float w = 83, wTarget = 83;
+    float y = 0, yTarget = 0;
+    uint8_t index = 0;
+    float wL, yL;
 
     while(1)
     {
+        EasyKeyHandler();
+        system_delay_ms(10);
+        mpu6050_get_acc();
 
+        char *str[8] = {"+ 1.Start",
+        "+ 2.Config camera threshold",
+        "+ 3.Show image",
+        "- 4.MultiClick switch",
+        "- 5.Dark mode",
+        "+ 6.Servo PID param",
+        "+ 7.Speed PID param",
+        "+ 8.About"};
+
+        if (keyRight.state == press)
+        {
+            wL = wTarget;
+            yL = yTarget;
+            if (index < 7)
+                index++;
+            else
+                index = 0;
+        }
+        if (keyLeft.state == press)
+        {
+            wL = wTarget;
+            yL = yTarget;
+            if (index > 0)
+                index--;
+            else
+                index = 7;
+        }
+        wTarget = strlen(str[index]) * 6 + 5;
+        yTarget = index * 16;
+//        ips114_show_int(0, 16, mpu6050_acc_x, 5);
+//        ips114_show_int(0, 32, mpu6050_acc_y, 5);
+//        ips114_show_int(0, 48, mpu6050_acc_z, 5);
+
+//        ips114_draw_line(1, 0, 82 ,0, RGB565_WHITE);
+//        ips114_draw_line(0, 1, 0 ,15, RGB565_WHITE);
+//        ips114_draw_line(1, 15, 82 ,15, RGB565_WHITE);
+//        ips114_draw_line(82, 1, 82 ,15, RGB565_WHITE);
+        IPS114_ClearRBox(0, y, w, 16);
+        if (w < wTarget)
+        {
+            w += fabsf(wTarget - wL)/8;
+            if (w > wTarget)
+                w = wTarget;
+        }
+        if (w > wTarget)
+        {
+            w -= fabsf(wTarget - wL)/8;
+            if (w < wTarget)
+                w = wTarget;
+        }
+        if (y < yTarget)
+        {
+            y += fabsf(yTarget - yL)/8;
+            if (y > yTarget)
+                y = yTarget;
+        }
+        if (y > yTarget)
+        {
+            y -= fabsf(yTarget - yL)/8;
+            if (y < yTarget)
+                y = yTarget;
+        }
+
+        IPS114_DrawRBox(0, (int16_t)y, (int16_t)w, 16);
+//        IPS114_DrawRBox(0, 16, 167, 16);
+
+        ips114_show_string(2, 4, str[0]);
+        ips114_show_string(2, 20, str[1]);
+        ips114_show_string(2, 36, str[2]);
+        ips114_show_string(2, 52, str[3]);
+        ips114_show_string(2, 68, str[4]);
+        ips114_show_string(2, 84, str[5]);
+        ips114_show_string(2, 100, str[6]);
+        ips114_show_string(2, 116, str[7]);
+        ips114_show_string(226, 123, "12");
+        ips114_show_string(229, 114, "/");
+        ips114_show_uint(229, 106, index + 1, 1);   //232
+
+
+        uart_write_string(UART_1, "hello");
     }
 }
