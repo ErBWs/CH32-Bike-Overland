@@ -14,6 +14,7 @@ extern "C"
 #endif
 
 #include <stdint.h>
+#include <stdlib.h>
 #include "zf_common_clock.h"
 #include "zf_common_debug.h"
 #include "zf_common_font.h"
@@ -23,8 +24,28 @@ extern "C"
 #include "zf_driver_spi.h"
 #include "zf_device_ips114.h"
 
-void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height);
-void IPS114_ClearRBox(int16_t x, int16_t y, uint16_t width, uint16_t height);
+extern uint16_t IPS114_penColor;
+extern uint16_t IPS114_backgroundColor;
+
+typedef enum
+{
+    NORMAL = 1,
+    XOR
+} IPS114_ColorMode_e;
+
+void IPS114_SendBuffer();
+void IPS114_ClearBuffer();
+
+void IPS114_SetDrawColor(IPS114_ColorMode_e mode);
+void IPS114_DrawPoint (int16 x, int16 y, const uint16 color);
+void IPS114_DrawLine (int16 x_start, int16 y_start, int16 x_end, int16 y_end, const uint16 color);
+void IPS114_ShowChar(int16 x, int16 y, const char dat);
+void IPS114_ShowStr (int16 x, int16 y, const char dat[]);
+void IPS114_ShowInt(int16 x, int16 y, const int32 dat, uint8 num);
+void IPS114_ShowUint(int16 x, int16 y, const uint32 dat, uint8 num);
+void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointnum);
+void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
+void IPS114_FillBoxWithColor(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
 
 #ifdef __cplusplus
 }

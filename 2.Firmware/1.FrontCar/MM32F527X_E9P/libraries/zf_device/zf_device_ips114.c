@@ -58,8 +58,8 @@
 
 #include "zf_device_ips114.h"
 
-static uint16                   ips114_pencolor     = IPS114_DEFAULT_PENCOLOR;
-static uint16                   ips114_bgcolor      = IPS114_DEFAULT_BGCOLOR;
+static uint16                   IPS114_penColor     = IPS114_DEFAULT_PENCOLOR;
+static uint16                   IPS114_backgroundColor      = IPS114_DEFAULT_BGCOLOR;
 
 static ips114_dir_enum          ips114_display_dir  = IPS114_DEFAULT_DISPLAY_DIR;
 static ips114_font_size_enum    ips114_display_font = IPS114_DEFAULT_DISPLAY_FONT;
@@ -126,7 +126,7 @@ static void ips114_write_index (const uint8 dat)
 // 参数说明     x2              结束x轴坐标
 // 参数说明     y2              结束y轴坐标
 // 返回参数     void
-// 使用示例     ips114_set_region(0, 0, ips114_x_max - 1, ips114_y_max - 1);
+// 使用示例     IPS114_SetRegion(0, 0, ips114_x_max - 1, ips114_y_max - 1);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
 static void ips114_set_region (const uint16 x1, const uint16 y1, const uint16 x2, const uint16 y2)
@@ -232,7 +232,7 @@ void ips114_clear (void)
     ips114_set_region(0, 0, ips114_x_max - 1, ips114_y_max - 1);
     for( ; i > 0; i --)
     {
-        ips114_write_16bit_data(ips114_bgcolor);
+        ips114_write_16bit_data(IPS114_backgroundColor);
     }
     IPS114_CS(1);
 }
@@ -301,8 +301,8 @@ void ips114_set_font (ips114_font_size_enum font)
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_set_color (const uint16 pen, const uint16 bgcolor)
 {
-    ips114_pencolor = pen;
-    ips114_bgcolor = bgcolor;
+    IPS114_penColor = pen;
+    IPS114_backgroundColor = bgcolor;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -420,11 +420,11 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
                 {
                     if(temp_top & 0x01)
                     {
-                        ips114_write_16bit_data(ips114_pencolor);
+                        ips114_write_16bit_data(IPS114_penColor);
                     }
                     else
                     {
-                        ips114_write_16bit_data(ips114_bgcolor);
+                        ips114_write_16bit_data(IPS114_backgroundColor);
                     }
                     temp_top >>= 1;
                 }
@@ -441,11 +441,11 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
                 {
                     if(temp_top & 0x01)
                     {
-                        ips114_write_16bit_data(ips114_pencolor);
+                        ips114_write_16bit_data(IPS114_penColor);
                     }
                     else
                     {
-                        ips114_write_16bit_data(ips114_bgcolor);
+                        ips114_write_16bit_data(IPS114_backgroundColor);
                     }
                     temp_top >>= 1;
                 }
@@ -453,11 +453,11 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
                 {
                     if(temp_bottom & 0x01)
                     {
-                        ips114_write_16bit_data(ips114_pencolor);
+                        ips114_write_16bit_data(IPS114_penColor);
                     }
                     else
                     {
-                        ips114_write_16bit_data(ips114_bgcolor);
+                        ips114_write_16bit_data(IPS114_backgroundColor);
                     }
                     temp_bottom >>= 1;
                 }
@@ -804,7 +804,7 @@ void ips114_show_wave (uint16 x, uint16 y, const uint16 *wave, uint16 width, uin
     {
         for(j = 0; j < dis_width; j ++)
         {
-            ips114_write_16bit_data(ips114_bgcolor); 
+            ips114_write_16bit_data(IPS114_backgroundColor);
         }
     }
     IPS114_CS(1);
@@ -813,7 +813,7 @@ void ips114_show_wave (uint16 x, uint16 y, const uint16 *wave, uint16 width, uin
     {
         width_index = i * width / dis_width;
         value_max_index = *(wave + width_index) * (dis_value_max - 1) / value_max;
-        ips114_draw_point(i + x, (dis_value_max - 1) - value_max_index + y, ips114_pencolor);
+        ips114_draw_point(i + x, (dis_value_max - 1) - value_max_index + y, IPS114_penColor);
     }
 }
 
@@ -863,7 +863,7 @@ void ips114_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_b
                     }
                     else
                     {
-                        ips114_write_16bit_data(ips114_bgcolor);
+                        ips114_write_16bit_data(IPS114_backgroundColor);
                     }
                 }
                 p_data ++;
@@ -895,7 +895,7 @@ void ips114_init (void)
     gpio_init(IPS114_BLK_PIN, GPO, GPIO_HIGH, GPO_PUSH_PULL);
 
     ips114_set_dir(ips114_display_dir);
-    ips114_set_color(ips114_pencolor, ips114_bgcolor);
+    ips114_set_color(IPS114_penColor, IPS114_backgroundColor);
 
     IPS114_RST(0);
     system_delay_ms(200);

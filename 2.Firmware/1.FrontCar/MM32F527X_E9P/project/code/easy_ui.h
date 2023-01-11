@@ -15,6 +15,7 @@ extern "C"
 
 #include "easy_key.h"
 #include "zf_device_ips114.h"
+#include "user_ips114.h"
 
 #define SCREEN_WIDTH        240
 #define SCREEN_HEIGHT       135
@@ -22,6 +23,11 @@ extern "C"
 #define FONT_HEIGHT         8
 #define ITEM_HEIGHT         16
 #define ANIMATION_SPEED     80      // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
+
+#define EasyUI_DisplayStr(x, y, str)                            (IPS114_ShowStr(x, y, str))
+#define EasyUI_DrawDot(x, y, color)                             (IPS114_DrawPoint(x, y, color))
+#define EasyUI_FillWithColor(x, y, width, height, color)        (IPS114_FillBoxWithColor(x, y, width, height, color))
+#define EasyUI_DrawRBox(x, y, width, height, color)                    (IPS114_DrawRBox(x, y, width, height, color))
 
 typedef enum
 {
@@ -48,7 +54,8 @@ typedef struct EasyUI_page
     uint8_t id;
 } EasyUIPage_t;
 
-
+void EasyUITransitionAnim();
+void EasyUIDrawRBoxWithBlur();
 
 #ifdef __cplusplus
 }
