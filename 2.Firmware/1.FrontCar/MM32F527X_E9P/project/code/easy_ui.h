@@ -18,13 +18,14 @@ extern "C"
 #include "user_ips114.h"
 #include "profile_photo_erbws.h"
 #include <string.h>
+#include <stdarg.h>
 
-#define SCREEN_WIDTH        240
-#define SCREEN_HEIGHT       135
-#define FONT_WIDTH          6
-#define FONT_HEIGHT         8
-#define ITEM_HEIGHT         16
-#define ANIMATION_SPEED     80      // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
+#define SCREEN_WIDTH            240
+#define SCREEN_HEIGHT           135
+#define FONT_WIDTH              6
+#define FONT_HEIGHT             8
+#define ITEM_HEIGHT             16
+#define INDICATOR_MOVE_SPEED    80      // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
@@ -48,9 +49,10 @@ typedef struct EasyUI_item
 
     EasyUIFunc_e funcType;
     uint8_t id;
+    uint8_t position;
     char *title;
     uint8_t pageId;
-    void (* callback)();
+    void (* Function)(uint8_t cnt, ...);    // Arg "cnt" is used to define the amount of variable args
 } EasyUIItem_t;
 
 typedef struct EasyUI_page

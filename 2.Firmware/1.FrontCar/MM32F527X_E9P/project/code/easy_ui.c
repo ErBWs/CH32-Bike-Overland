@@ -41,20 +41,21 @@ void EasyUIAddPage(EasyUIPage_t *page)
  * @param   item        EasyUI item struct
  * @param   _title      String of item title
  * @param   func        CALL_FUNCTION / JUMP_PAGE
- * @param   _pageId     If CALL_FUNCTION, just fill this with 0
- * @param   _callback   If JUMP_PAGE, just fill this with
+ * @param   ...         If CALL_FUNCTION, just fill this with a function
+ *                      If JUMP_PAGE, just fill this with target page's id
  */
-void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, uint8_t _pageId,
-                   void (*_callback)())
+void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...)
 {
+    va_list variableArg;
+    va_start(variableArg, func);
     item->funcType = func;
     switch (item->funcType)
     {
         case CALL_FUNCTION:
-            item->callback = _callback;
+            item->Function = va_arg(variableArg, void (* )(uint8_t, ...));
             break;
         case JUMP_PAGE:
-            item->pageId = _pageId;
+            item->pageId = va_arg(variableArg, int);
             break;
         default:
             break;
@@ -73,6 +74,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
         page->itemTail->next = item;
         page->itemTail = page->itemTail->next;
     }
+    item->position = item->id;
 }
 
 /*!
@@ -148,6 +150,16 @@ void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heigh
     EasyUISendBuffer();
 }
 
+void EasyUIIndicatorMoveAnim(int16_t dest, int16_t src, uint8_t time)
+{
+
+}
+
+void EasyUIItemMoveAnim(int16_t dest, int16_t src, uint8_t time)
+{
+
+}
+
 /*!
  * @brief   Welcome Page with two size of photo
  *
@@ -169,18 +181,24 @@ void EasyUIInit(uint8_t mode)
 }
 
 
-void EasyUI(uint16_t time)
+void EasyUI(uint8_t time)
 {
     static uint8_t pageIndex[20] = {0};     // Page id (stack)
     static uint8_t itemIndex[20] = {0};     // Item id (stack)
     static uint8_t layer = 0;               // pageIndex[layer] / itemIndex[layer]
+    static uint8_t index = 0;
     static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2;
 
     EasyUIClearBuffer();
 
     EasyUIPage_t *page = pageHead;
     while (page->id != pageIndex[layer])
+    {
         page = page->next;
+    }
+    EasyUISetDrawColor(XOR);
+//    IPS114_DrawRBox(0, (int16_t) y, (int16_t) w, 16, IPS114_penColor);
+    EasyUISetDrawColor(NORMAL);
     for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
     {
         switch (item->funcType)
