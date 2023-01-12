@@ -25,7 +25,10 @@ extern "C"
 #define FONT_WIDTH              6
 #define FONT_HEIGHT             8
 #define ITEM_HEIGHT             16
-#define INDICATOR_MOVE_SPEED    80      // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
+
+// Represent the time it takes to play the animation, smaller the quicker. Unit: ms
+#define INDICATOR_MOVE_SPEED    80
+#define ITEM_MOVE_SPEED         30
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))

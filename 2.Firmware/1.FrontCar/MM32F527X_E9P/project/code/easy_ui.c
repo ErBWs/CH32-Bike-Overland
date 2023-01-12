@@ -34,6 +34,7 @@ void EasyUIAddPage(EasyUIPage_t *page)
     }
 }
 
+
 /*!
  * @brief   Add item to page
  *
@@ -60,6 +61,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
         default:
             break;
     }
+    va_end(variableArg);
 
     item->title = _title;
 
@@ -76,6 +78,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
     }
     item->position = item->id;
 }
+
 
 /*!
  * @brief   Blur transition animation
@@ -115,6 +118,7 @@ void EasyUITransitionAnim()
     EasyUISendBuffer();
 }
 
+
 /*!
  * @brief   Blur the background for rounded box
  *
@@ -150,15 +154,29 @@ void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heigh
     EasyUISendBuffer();
 }
 
-void EasyUIIndicatorMoveAnim(int16_t dest, int16_t src, uint8_t time)
+
+
+void EasyUIGetIndicatorPos(int16_t dest, int16_t src, uint8_t time)
 {
+    uint8_t speed = INDICATOR_MOVE_SPEED / time;
+    uint16_t step = 0, target = 0;
+    EasyUIPage_t *page = pageHead;
+    for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
+    {
+        step = strlen(item->title) * FONT_WIDTH + 5 + 2 * FONT_WIDTH;
+    }
+}
+
+
+
+void EasyUIGetItemPos(uint8_t time, EasyUIItem_t *item, uint8_t index, int16_t *pos)
+{
+    uint8_t speed = ITEM_MOVE_SPEED / time;
+    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2;
+    uint16_t step = 0, target = 0;
 
 }
 
-void EasyUIItemMoveAnim(int16_t dest, int16_t src, uint8_t time)
-{
-
-}
 
 /*!
  * @brief   Welcome Page with two size of photo
@@ -181,13 +199,13 @@ void EasyUIInit(uint8_t mode)
 }
 
 
+
 void EasyUI(uint8_t time)
 {
     static uint8_t pageIndex[20] = {0};     // Page id (stack)
     static uint8_t itemIndex[20] = {0};     // Item id (stack)
     static uint8_t layer = 0;               // pageIndex[layer] / itemIndex[layer]
     static uint8_t index = 0;
-    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2;
 
     EasyUIClearBuffer();
 
