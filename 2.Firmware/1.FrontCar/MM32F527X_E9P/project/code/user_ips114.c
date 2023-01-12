@@ -336,10 +336,49 @@ void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointn
     IPS114_ShowStr(x, y, data_buffer);
 }
 
-void IPS114_FillBoxWithColor(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
-    uint32_t s = (width) * (height);
-    IPS114_SetRegion(x, y, x + width - 1, y + height - 1);
+    if (IPS114_colorMode == XOR)
+    {
+        for (int i = x; i < x + width; i++)
+        {
+            if (IPS114_buffer[y][i] == color)
+                IPS114_DrawPoint(i, y, IPS114_backgroundColor);
+            else
+                IPS114_DrawPoint(i, y, color);
+            if (IPS114_buffer[y + height - 1][i] == color)
+                IPS114_DrawPoint(i, y + height - 1, IPS114_backgroundColor);
+            else
+                IPS114_DrawPoint(i, y + height - 1, color);
+        }
+        for (int j = y; j < y + height; j++)
+        {
+            if (IPS114_buffer[j][x] == color)
+                IPS114_DrawPoint(x, j, IPS114_backgroundColor);
+            else
+                IPS114_DrawPoint(x, j, color);
+            if (IPS114_buffer[j][x + width - 1] == color)
+                IPS114_DrawPoint(x + width - 1, j, IPS114_backgroundColor);
+            else
+                IPS114_DrawPoint(x + width - 1, j, color);
+        }
+    } else
+    {
+        for (int i = x; i < x + width; i++)
+        {
+            IPS114_DrawPoint(i, y, color);
+            IPS114_DrawPoint(i, y + height - 1, color);
+        }
+        for (int j = y; j < y + height; j++)
+        {
+            IPS114_DrawPoint(x, j, color);
+            IPS114_DrawPoint(x + width - 1, j, color);
+        }
+    }
+}
+
+void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+{
     for (int i = x; i < x + width; ++i)
     {
         for (int j = y; j < y + height; ++j)
@@ -359,7 +398,7 @@ void IPS114_FillBoxWithColor(int16_t x, int16_t y, uint16_t width, uint16_t heig
 /*!
  *
  */
-void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
     if (IPS114_colorMode == XOR)
     {
@@ -397,9 +436,55 @@ void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, cons
             IPS114_DrawPoint(x, j, color);
             IPS114_DrawPoint(x + width - 1, j, color);
         }
-//        IPS114_DrawLine(x + 1, y, x + width - 1, y, IPS114_penColor);
-//        IPS114_DrawLine(x, y + 1, x, y + height - 1, IPS114_penColor);
-//        IPS114_DrawLine(x + 1, y + height - 1, x + width - 1, y + height - 1, IPS114_penColor);
-//        IPS114_DrawLine(x + width - 1, y + 1, x + width - 1, y + height - 1, IPS114_penColor);
+    }
+}
+
+void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+{
+    IPS114_DrawRFrame(x, y, width, height, color);
+    IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, color);
+}
+
+/*!
+ * @brief   Show Binary BMP photo on screen
+ *
+ * @param   x       Starting x
+ * @param   y       Starting y
+ * @param   width   Pic width
+ * @param   height  Pic height
+ * @param   pic     The array of picture(ÒõÂë ÖðÐÐÊ½ ÄæÏò)
+ */
+void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint8_t *pic)
+{
+    uint8_t temp, j;
+    uint8_t x0 = x;
+    uint8_t *tmp = (uint8_t *)pic;
+    uint16_t i, picSize = 0;
+
+    picSize = (width / 8 + ((width % 8) ? 1 : 0)) * height;
+
+    for (i = 0; i < picSize; i++)
+    {
+        temp = tmp[i];
+        for (j = 0; j < 8; j++)
+        {
+            if (temp & 0x01)
+            {
+                IPS114_buffer[y][x] = IPS114_penColor;
+            }
+            else
+            {
+                IPS114_buffer[y][x] = IPS114_backgroundColor;
+            }
+            temp >>= 1;
+            x++;
+
+            if ((x - x0) == width)
+            {
+                x = x0;
+                y++;
+                break;
+            }
+        }
     }
 }

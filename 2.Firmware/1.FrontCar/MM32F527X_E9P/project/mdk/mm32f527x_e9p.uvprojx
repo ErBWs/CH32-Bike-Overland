@@ -1294,6 +1294,31 @@
               <FileType>5</FileType>
               <FilePath>..\code\user_ips114.h</FilePath>
             </File>
+            <File>
+              <FileName>menu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\menu.c</FilePath>
+            </File>
+            <File>
+              <FileName>menu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\menu.h</FilePath>
+            </File>
+            <File>
+              <FileName>profile_photo_erbws.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\profile_photo_erbws.c</FilePath>
+            </File>
+            <File>
+              <FileName>profile_photo_erbws.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\profile_photo_erbws.h</FilePath>
+            </File>
+            <File>
+              <FileName>本文件夹作用.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\本文件夹作用.txt</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

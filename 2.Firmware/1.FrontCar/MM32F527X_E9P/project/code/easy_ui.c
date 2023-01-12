@@ -77,6 +77,12 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
 
 /*!
  * @brief   Blur transition animation
+ *
+ * @param   void
+ * @return  void
+ *
+ * @note    Use before clearing the buffer
+ *          Also use after all the initialization is done for better experience
  */
 void EasyUITransitionAnim()
 {
@@ -84,67 +90,93 @@ void EasyUITransitionAnim()
     {
         for (int i = 0; i < SCREEN_WIDTH + 1; i += 2)
         {
-            EasyUI_DrawDot(i, j, IPS114_backgroundColor);
+            EasyUIDrawDot(i, j, IPS114_backgroundColor);
         }
     }
-    IPS114_SendBuffer();
+    EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
         for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
         {
-            EasyUI_DrawDot(i, j, IPS114_backgroundColor);
+            EasyUIDrawDot(i, j, IPS114_backgroundColor);
+            EasyUIDrawDot(i - 1, j - 1, IPS114_backgroundColor);
         }
     }
-    IPS114_SendBuffer();
-    for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
-    {
-        for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
-        {
-            EasyUI_DrawDot(i - 1, j - 1, IPS114_backgroundColor);
-        }
-    }
-    IPS114_SendBuffer();
+    EasyUISendBuffer();
     for (int j = 0; j < SCREEN_HEIGHT + 1; j += 2)
     {
         for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
         {
-            EasyUI_DrawDot(i, j, IPS114_backgroundColor);
+            EasyUIDrawDot(i, j, IPS114_backgroundColor);
         }
     }
-    IPS114_SendBuffer();
+    EasyUISendBuffer();
 }
 
 /*!
  * @brief   Blur the background for rounded box
+ *
+ * @param   x
+ * @param   y
+ * @param   width
+ * @param   height
+ * @return  void
+ *
+ * @note    Use before clearing the buffer
  */
-void EasyUIDrawRBoxWithBlur()
+void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height)
 {
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
         for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
         {
-            EasyUI_DrawDot(i, j, IPS114_backgroundColor);
+            EasyUIDrawDot(i, j, IPS114_backgroundColor);
         }
     }
-    IPS114_SendBuffer();
+    EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
         for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
         {
-            EasyUI_DrawDot(i - 1, j - 1, IPS114_backgroundColor);
+            EasyUIDrawDot(i - 1, j - 1, IPS114_backgroundColor);
         }
     }
-    IPS114_SendBuffer();
-    EasyUI_DrawRBox(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, IPS114_penColor);
-    EasyUI_FillWithColor(SCREEN_WIDTH / 4 + 1, SCREEN_HEIGHT / 4 + 1, SCREEN_WIDTH / 2 - 2, SCREEN_HEIGHT / 2 - 2, IPS114_backgroundColor);
-    IPS114_SendBuffer();
+    EasyUISendBuffer();
+    EasyUISetDrawColor(NORMAL);
+    EasyUIDrawRFrame(x, y, width, height, IPS114_penColor);
+    EasyUIDrawBox(x + 1, y + 1, width - 2, height - 2, IPS114_backgroundColor);
+    EasyUISendBuffer();
 }
+
+/*!
+ * @brief   Welcome Page with two size of photo
+ *
+ * @param   mode    choose the size of photo.(0 for smaller one and 1 for bigger one)
+ * @return  void
+ */
+void EasyUIInit(uint8_t mode)
+{
+    EasyUIScreenInit();
+    if (mode)
+        EasyUIDisplayBMP((SCREEN_WIDTH - 58) / 2, (SCREEN_HEIGHT - 56) / 2, 58, 56, ErBW_s_5856);
+    else
+        EasyUIDisplayBMP((SCREEN_WIDTH - 29) / 2, (SCREEN_HEIGHT - 28) / 2, 29, 28, ErBW_s_2928);
+    if (SCREEN_WIDTH > (25 * FONT_WIDTH + 1))
+        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "Powered by EasyUI(ErBW_s)");
+    else if (SCREEN_WIDTH > (14 * FONT_WIDTH + 1))
+        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
+    EasyUISendBuffer();
+}
+
 
 void EasyUI(uint16_t time)
 {
     static uint8_t pageIndex[20] = {0};     // Page id (stack)
     static uint8_t itemIndex[20] = {0};     // Item id (stack)
     static uint8_t layer = 0;               // pageIndex[layer] / itemIndex[layer]
+    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2;
+
+    EasyUIClearBuffer();
 
     EasyUIPage_t *page = pageHead;
     while (page->id != pageIndex[layer])
@@ -154,14 +186,14 @@ void EasyUI(uint16_t time)
         switch (item->funcType)
         {
             case CALL_FUNCTION:
-                EasyUI_DisplayStr(2, ((ITEM_HEIGHT - FONT_HEIGHT) / 2) + item->id * ITEM_HEIGHT, "- ");
+                EasyUIDisplayStr(2, itemHeightOffset + item->id * ITEM_HEIGHT, "- ");
                 break;
             case JUMP_PAGE:
-                EasyUI_DisplayStr(2, ((ITEM_HEIGHT - FONT_HEIGHT) / 2) + item->id * ITEM_HEIGHT, "+ ");
+                EasyUIDisplayStr(2, itemHeightOffset + item->id * ITEM_HEIGHT, "+ ");
                 break;
             default:
                 break;
         }
-        EasyUI_DisplayStr(2 + 2 * FONT_WIDTH, ((ITEM_HEIGHT - FONT_HEIGHT) / 2) + item->id * ITEM_HEIGHT, item->title);
+        EasyUIDisplayStr(2 + 2 * FONT_WIDTH, itemHeightOffset + item->id * ITEM_HEIGHT, item->title);
     }
 }

@@ -44,8 +44,13 @@ void IPS114_ShowStr (int16 x, int16 y, const char dat[]);
 void IPS114_ShowInt(int16 x, int16 y, const int32 dat, uint8 num);
 void IPS114_ShowUint(int16 x, int16 y, const uint32 dat, uint8 num);
 void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointnum);
+
+void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
+void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
+void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
 void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
-void IPS114_FillBoxWithColor(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
+
+void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint8_t *pic);
 
 #ifdef __cplusplus
 }

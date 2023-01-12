@@ -135,7 +135,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>CMSIS_AGDI_V8M</Key>
-          <Name>-X"SEEKFREE CMSIS-DAP V2" -USF-2666998529340 -O206 -S8 -C0 -P00000000 -N00("ARM CoreSight SW-DP") -D00(1BE12AEB) -L00(0) -TO65554 -TC10000000 -TT10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO11 -FD30000000 -FC1000 -FN1 -FF0MM32F5270_256.FLM -FS08000000 -FL040000 -FP0($$Device:MM32F5277E9PV$Flash\MM32F5270_256.FLM)</Name>
+          <Name>-X"SEEKFREE CMSIS-DAP V1" -USF-2666998529340 -O206 -S8 -C0 -P00000000 -N00("ARM CoreSight SW-DP") -D00(1BE12AEB) -L00(0) -TO65554 -TC10000000 -TT10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO11 -FD30000000 -FC1000 -FN1 -FF0MM32F5270_256.FLM -FS08000000 -FL040000 -FP0($$Device:MM32F5277E9PV$Flash\MM32F5270_256.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -2366,6 +2366,66 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\code\user_ips114.h</PathWithFileName>
       <FilenameWithoutPath>user_ips114.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>176</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\code\menu.c</PathWithFileName>
+      <FilenameWithoutPath>menu.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>177</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\code\menu.h</PathWithFileName>
+      <FilenameWithoutPath>menu.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>178</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\code\profile_photo_erbws.c</PathWithFileName>
+      <FilenameWithoutPath>profile_photo_erbws.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>179</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\code\profile_photo_erbws.h</PathWithFileName>
+      <FilenameWithoutPath>profile_photo_erbws.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>180</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\code\本文件夹作用.txt</PathWithFileName>
+      <FilenameWithoutPath>本文件夹作用.txt</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

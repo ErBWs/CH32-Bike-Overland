@@ -97,5 +97,5 @@
   ..\..\libraries\zf_device\zf_device_wifi_uart.h \
   ..\..\libraries\zf_device\zf_device_wireless_uart.h ..\code\header.h \
   ..\code\easy_key.h ..\code\easy_ui.h ..\code\user_ips114.h \
-  ..\code\pid.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
-  ..\code\profile_photo_erbws.h
+  ..\code\profile_photo_erbws.h ..\code\pid.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h

@@ -7,8 +7,7 @@ int main(void)
     debug_init();
 
     // User initializations
-    ips114_init();
-    ips114_show_string(0, 0, "Hello SCEP!");
+    EasyUIInit(1);
 
     EasyKey_t keyLeft, keyRight, keyCenter;
     EasyKeyInit(&keyLeft, C6, 20);
@@ -16,7 +15,9 @@ int main(void)
     EasyKeyInit(&keyCenter, G8, 20);
 
     mpu6050_init();
-    ips114_clear();
+
+    system_delay_ms(1000);
+    EasyUITransitionAnim();
 
     float w = 83, wTarget = 83;
     float y = 0, yTarget = 0;
@@ -94,28 +95,27 @@ int main(void)
         }
 
 
-        EasyUI_DisplayStr(2, 4, str[0]);
-        EasyUI_DisplayStr(2, 20, str[1]);
-        EasyUI_DisplayStr(2, 36, str[2]);
-        EasyUI_DisplayStr(2, 52, str[3]);
-        EasyUI_DisplayStr(2, 68, str[4]);
-        EasyUI_DisplayStr(2, 84, str[5]);
-        EasyUI_DisplayStr(2, 100, str[6]);
-        EasyUI_DisplayStr(2, 116, str[7]);
-        EasyUI_DisplayStr(2, 132, "+ I don't know what to write");
-        EasyUI_DisplayStr(226, 123, "12");
-        EasyUI_DisplayStr(229, 114, "/");
-        IPS114_ShowUint(229, 106, index + 1, 1);   //232
+        EasyUIDisplayStr(2, 4, str[0]);
+        EasyUIDisplayStr(2, 20, str[1]);
+        EasyUIDisplayStr(2, 36, str[2]);
+        EasyUIDisplayStr(2, 52, str[3]);
+        EasyUIDisplayStr(2, 68, str[4]);
+        EasyUIDisplayStr(2, 84, str[5]);
+        EasyUIDisplayStr(2, 100, str[6]);
+        EasyUIDisplayStr(2, 116, str[7]);
+        EasyUIDisplayStr(2, 132, "+ I don't know what to write");
+        EasyUIDisplayStr(226, 125, "12");
+        EasyUIDisplayStr(229, 116, "/");
+        IPS114_ShowUint(229, 108, index + 1, 1);   //232
 
         IPS114_SetDrawColor(XOR);
         IPS114_DrawRBox(0, (int16_t) y, (int16_t) w, 16, IPS114_penColor);
-        EasyUI_FillWithColor(1, (int16_t) y + 1, (int16_t) w - 2, 14, RGB565_WHITE);
         IPS114_SetDrawColor(NORMAL);
 
         if (keyCenter.state == press)
         {
-//            EasyUIDrawRBoxWithBlur();
-            EasyUITransitionAnim();
+            EasyUIDrawRBoxWithBlur(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3);
+//            EasyUITransitionAnim();
             while (1);
         }
 
