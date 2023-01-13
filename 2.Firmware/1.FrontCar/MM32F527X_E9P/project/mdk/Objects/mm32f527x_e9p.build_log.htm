@@ -27,11 +27,17 @@ Project File Date:  01/12/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'mm32f527x_e9p_project'
-compiling main.c...
-compiling isr.c...
+../code/easy_ui.c(55): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+    va_start(variableArg, func);
+                          ^
+../code/easy_ui.c(52): note: parameter of type 'EasyUIFunc_e' is declared here
+void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...)
+                                                                                      ^
+1 warning generated.
+compiling easy_ui.c...
 linking...
-Program Size: Code=27944 RO-data=13656 RW-data=116 ZI-data=74060  
-".\Objects\mm32f527x_e9p.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=27468 RO-data=13692 RW-data=116 ZI-data=74040  
+".\Objects\mm32f527x_e9p.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,7 +50,7 @@ Package Vendor: MindMotion
   C:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

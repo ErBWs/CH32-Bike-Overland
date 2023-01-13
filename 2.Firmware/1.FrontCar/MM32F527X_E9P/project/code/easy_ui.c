@@ -342,7 +342,7 @@ void EasyUI(uint8_t timer)
         EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
     }
     // Draw indicator
-    EasyUIDrawIndicator(page, index, timer);
+//    EasyUIDrawIndicator(page, index, timer);
     // Display navigation
     itemSum = page->itemTail->id + 1;
     if (itemSum > 9)

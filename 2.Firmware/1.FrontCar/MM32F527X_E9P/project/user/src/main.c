@@ -10,12 +10,11 @@ int main(void)
     EasyUIInit(1);
     MenuInit();
 
-//    pit_ms_init(TIM6_PIT, 10);
 
     mpu6050_init();
 
-    system_delay_ms(1000);
     EasyUITransitionAnim();
+    pit_ms_init(TIM6_PIT, 10);
 
     float w = 83, wTarget = 83;
     float y = 0, yTarget = 0;
@@ -24,11 +23,10 @@ int main(void)
 
     while (1)
     {
-        EasyKeyHandler(10);
-        EasyUI(10);
+//        EasyKeyHandler(10);
+//        EasyUI(10);
         mpu6050_get_acc();
-        IPS114_ClearBuffer();
-
+//        IPS114_ClearBuffer();
 //        char *str[8] = {"- Start",
 //                        "+ Servo PID param",
 //                        "+ Speed PID param",
@@ -58,15 +56,6 @@ int main(void)
 //        }
 //        wTarget = strlen(str[index]) * 6 + 5;
 //        yTarget = index * 16;
-////        ips114_show_int(0, 16, mpu6050_acc_x, 5);
-////        ips114_show_int(0, 32, mpu6050_acc_y, 5);
-////        ips114_show_int(0, 48, mpu6050_acc_z, 5);
-//
-////        ips114_draw_line(1, 0, 82 ,0, RGB565_WHITE);
-////        ips114_draw_line(0, 1, 0 ,15, RGB565_WHITE);
-////        ips114_draw_line(1, 15, 82 ,15, RGB565_WHITE);
-////        ips114_draw_line(82, 1, 82 ,15, RGB565_WHITE);
-////        IPS114_ClearRBox(0, y, w, 16);
 //        if (w < wTarget)
 //        {
 //            w += fabsf(wTarget - wL) / 5;
@@ -91,7 +80,6 @@ int main(void)
 //            if (y < yTarget)
 //                y = yTarget;
 //        }
-//
 //
 //        EasyUIDisplayStr(2, 4, str[0]);
 //        EasyUIDisplayStr(2, 20, str[1]);
@@ -124,6 +112,6 @@ int main(void)
 //
 //        IPS114_SendBuffer();
 
-        uart_write_string(UART_1, "hello");
+//        uart_write_string(UART_1, "hello");
     }
 }
