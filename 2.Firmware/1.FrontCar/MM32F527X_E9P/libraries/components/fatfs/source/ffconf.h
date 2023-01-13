@@ -14,7 +14,7 @@
 #define FFCONF_DEF	86631	/* Revision ID */
 
 /*---------------------------------------------------------------------------/
-/ Function Configurations
+/ Event Configurations
 /---------------------------------------------------------------------------*/
 
 #define FF_FS_READONLY	0

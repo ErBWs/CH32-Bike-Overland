@@ -42,13 +42,13 @@
   CMSIS violates the following MISRA-C:2004 rules:
 
    \li Required Rule 8.5, object/function definition in header file.<br>
-     Function definitions in header files are used to allow 'inlining'.
+     Event definitions in header files are used to allow 'inlining'.
 
    \li Required Rule 18.4, declaration of union type or object of union type: '{...}'.<br>
      Unions are used for effective representation of core registers.
 
-   \li Advisory Rule 19.7, Function-like macro defined.<br>
-     Function-like macros are used to allow more efficient code.
+   \li Advisory Rule 19.7, Event-like macro defined.<br>
+     Event-like macros are used to allow more efficient code.
  */
 
 
@@ -1115,67 +1115,67 @@ typedef struct
   __IM  uint32_t PCSR;                   /*!< Offset: 0x01C (R/ )  Program Counter Sample Register */
   __IOM uint32_t COMP0;                  /*!< Offset: 0x020 (R/W)  Comparator Register 0 */
         uint32_t RESERVED1[1U];
-  __IOM uint32_t FUNCTION0;              /*!< Offset: 0x028 (R/W)  Function Register 0 */
+  __IOM uint32_t FUNCTION0;              /*!< Offset: 0x028 (R/W)  Event Register 0 */
         uint32_t RESERVED2[1U];
   __IOM uint32_t COMP1;                  /*!< Offset: 0x030 (R/W)  Comparator Register 1 */
         uint32_t RESERVED3[1U];
-  __IOM uint32_t FUNCTION1;              /*!< Offset: 0x038 (R/W)  Function Register 1 */
+  __IOM uint32_t FUNCTION1;              /*!< Offset: 0x038 (R/W)  Event Register 1 */
         uint32_t RESERVED4[1U];
   __IOM uint32_t COMP2;                  /*!< Offset: 0x040 (R/W)  Comparator Register 2 */
         uint32_t RESERVED5[1U];
-  __IOM uint32_t FUNCTION2;              /*!< Offset: 0x048 (R/W)  Function Register 2 */
+  __IOM uint32_t FUNCTION2;              /*!< Offset: 0x048 (R/W)  Event Register 2 */
         uint32_t RESERVED6[1U];
   __IOM uint32_t COMP3;                  /*!< Offset: 0x050 (R/W)  Comparator Register 3 */
         uint32_t RESERVED7[1U];
-  __IOM uint32_t FUNCTION3;              /*!< Offset: 0x058 (R/W)  Function Register 3 */
+  __IOM uint32_t FUNCTION3;              /*!< Offset: 0x058 (R/W)  Event Register 3 */
         uint32_t RESERVED8[1U];
   __IOM uint32_t COMP4;                  /*!< Offset: 0x060 (R/W)  Comparator Register 4 */
         uint32_t RESERVED9[1U];
-  __IOM uint32_t FUNCTION4;              /*!< Offset: 0x068 (R/W)  Function Register 4 */
+  __IOM uint32_t FUNCTION4;              /*!< Offset: 0x068 (R/W)  Event Register 4 */
         uint32_t RESERVED10[1U];
   __IOM uint32_t COMP5;                  /*!< Offset: 0x070 (R/W)  Comparator Register 5 */
         uint32_t RESERVED11[1U];
-  __IOM uint32_t FUNCTION5;              /*!< Offset: 0x078 (R/W)  Function Register 5 */
+  __IOM uint32_t FUNCTION5;              /*!< Offset: 0x078 (R/W)  Event Register 5 */
         uint32_t RESERVED12[1U];
   __IOM uint32_t COMP6;                  /*!< Offset: 0x080 (R/W)  Comparator Register 6 */
         uint32_t RESERVED13[1U];
-  __IOM uint32_t FUNCTION6;              /*!< Offset: 0x088 (R/W)  Function Register 6 */
+  __IOM uint32_t FUNCTION6;              /*!< Offset: 0x088 (R/W)  Event Register 6 */
         uint32_t RESERVED14[1U];
   __IOM uint32_t COMP7;                  /*!< Offset: 0x090 (R/W)  Comparator Register 7 */
         uint32_t RESERVED15[1U];
-  __IOM uint32_t FUNCTION7;              /*!< Offset: 0x098 (R/W)  Function Register 7 */
+  __IOM uint32_t FUNCTION7;              /*!< Offset: 0x098 (R/W)  Event Register 7 */
         uint32_t RESERVED16[1U];
   __IOM uint32_t COMP8;                  /*!< Offset: 0x0A0 (R/W)  Comparator Register 8 */
         uint32_t RESERVED17[1U];
-  __IOM uint32_t FUNCTION8;              /*!< Offset: 0x0A8 (R/W)  Function Register 8 */
+  __IOM uint32_t FUNCTION8;              /*!< Offset: 0x0A8 (R/W)  Event Register 8 */
         uint32_t RESERVED18[1U];
   __IOM uint32_t COMP9;                  /*!< Offset: 0x0B0 (R/W)  Comparator Register 9 */
         uint32_t RESERVED19[1U];
-  __IOM uint32_t FUNCTION9;              /*!< Offset: 0x0B8 (R/W)  Function Register 9 */
+  __IOM uint32_t FUNCTION9;              /*!< Offset: 0x0B8 (R/W)  Event Register 9 */
         uint32_t RESERVED20[1U];
   __IOM uint32_t COMP10;                 /*!< Offset: 0x0C0 (R/W)  Comparator Register 10 */
         uint32_t RESERVED21[1U];
-  __IOM uint32_t FUNCTION10;             /*!< Offset: 0x0C8 (R/W)  Function Register 10 */
+  __IOM uint32_t FUNCTION10;             /*!< Offset: 0x0C8 (R/W)  Event Register 10 */
         uint32_t RESERVED22[1U];
   __IOM uint32_t COMP11;                 /*!< Offset: 0x0D0 (R/W)  Comparator Register 11 */
         uint32_t RESERVED23[1U];
-  __IOM uint32_t FUNCTION11;             /*!< Offset: 0x0D8 (R/W)  Function Register 11 */
+  __IOM uint32_t FUNCTION11;             /*!< Offset: 0x0D8 (R/W)  Event Register 11 */
         uint32_t RESERVED24[1U];
   __IOM uint32_t COMP12;                 /*!< Offset: 0x0E0 (R/W)  Comparator Register 12 */
         uint32_t RESERVED25[1U];
-  __IOM uint32_t FUNCTION12;             /*!< Offset: 0x0E8 (R/W)  Function Register 12 */
+  __IOM uint32_t FUNCTION12;             /*!< Offset: 0x0E8 (R/W)  Event Register 12 */
         uint32_t RESERVED26[1U];
   __IOM uint32_t COMP13;                 /*!< Offset: 0x0F0 (R/W)  Comparator Register 13 */
         uint32_t RESERVED27[1U];
-  __IOM uint32_t FUNCTION13;             /*!< Offset: 0x0F8 (R/W)  Function Register 13 */
+  __IOM uint32_t FUNCTION13;             /*!< Offset: 0x0F8 (R/W)  Event Register 13 */
         uint32_t RESERVED28[1U];
   __IOM uint32_t COMP14;                 /*!< Offset: 0x100 (R/W)  Comparator Register 14 */
         uint32_t RESERVED29[1U];
-  __IOM uint32_t FUNCTION14;             /*!< Offset: 0x108 (R/W)  Function Register 14 */
+  __IOM uint32_t FUNCTION14;             /*!< Offset: 0x108 (R/W)  Event Register 14 */
         uint32_t RESERVED30[1U];
   __IOM uint32_t COMP15;                 /*!< Offset: 0x110 (R/W)  Comparator Register 15 */
         uint32_t RESERVED31[1U];
-  __IOM uint32_t FUNCTION15;             /*!< Offset: 0x118 (R/W)  Function Register 15 */
+  __IOM uint32_t FUNCTION15;             /*!< Offset: 0x118 (R/W)  Event Register 15 */
         uint32_t RESERVED32[934U];
   __IM  uint32_t LSR;                    /*!< Offset: 0xFB4 (R  )  Lock Status Register */
         uint32_t RESERVED33[1U];
@@ -1260,7 +1260,7 @@ typedef struct
 #define DWT_FOLDCNT_FOLDCNT_Pos             0U                                         /*!< DWT FOLDCNT: FOLDCNT Position */
 #define DWT_FOLDCNT_FOLDCNT_Msk            (0xFFUL /*<< DWT_FOLDCNT_FOLDCNT_Pos*/)     /*!< DWT FOLDCNT: FOLDCNT Mask */
 
-/* DWT Comparator Function Register Definitions */
+/* DWT Comparator Event Register Definitions */
 #define DWT_FUNCTION_ID_Pos                27U                                         /*!< DWT FUNCTION: ID Position */
 #define DWT_FUNCTION_ID_Msk                (0x1FUL << DWT_FUNCTION_ID_Pos)             /*!< DWT FUNCTION: ID Mask */
 
@@ -2009,7 +2009,7 @@ typedef struct
 
 /*******************************************************************************
  *                Hardware Abstraction Layer
-  Core Function Interface contains:
+  Core Event Interface contains:
   - Core NVIC Functions
   - Core SysTick Functions
   - Core Debug Functions
@@ -2064,7 +2064,7 @@ typedef struct
 
 /* Special LR values for Secure/Non-Secure call handling and exception handling                                               */
 
-/* Function Return Payload (from ARMv8-M Architecture Reference Manual) LR value on entry from Secure BLXNS                   */ 
+/* Event Return Payload (from ARMv8-M Architecture Reference Manual) LR value on entry from Secure BLXNS                   */
 #define FNC_RETURN                 (0xFEFFFFFFUL)     /* bit [0] ignored when processing a branch                             */
 
 /* The following EXC_RETURN mask values are used to evaluate the LR on exception entry */
@@ -2676,7 +2676,7 @@ __STATIC_INLINE uint32_t TZ_NVIC_GetPriority_NS(IRQn_Type IRQn)
 /**
   \ingroup  CMSIS_Core_FunctionInterface
   \defgroup CMSIS_Core_FpuFunctions FPU Functions
-  \brief    Function that provides FPU type.
+  \brief    Event that provides FPU type.
   @{
  */
 
@@ -2764,8 +2764,8 @@ __STATIC_INLINE void TZ_SAU_Disable(void)
   \details Initializes the System Timer and its interrupt, and starts the System Tick Timer.
            Counter is in free running mode to generate periodic interrupts.
   \param [in]  ticks  Number of ticks between two interrupts.
-  \return          0  Function succeeded.
-  \return          1  Function failed.
+  \return          0  Event succeeded.
+  \return          1  Event failed.
   \note    When the variable <b>__Vendor_SysTickConfig</b> is set to 1, then the
            function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
            must contain a vendor-specific implementation of this function.
@@ -2783,7 +2783,7 @@ __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
   SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
                    SysTick_CTRL_TICKINT_Msk   |
                    SysTick_CTRL_ENABLE_Msk;                         /* Enable SysTick IRQ and SysTick Timer */
-  return (0UL);                                                     /* Function successful */
+  return (0UL);                                                     /* Event successful */
 }
 
 #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
@@ -2792,8 +2792,8 @@ __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
   \details Initializes the non-secure System Timer and its interrupt when in secure state, and starts the System Tick Timer.
            Counter is in free running mode to generate periodic interrupts.
   \param [in]  ticks  Number of ticks between two interrupts.
-  \return          0  Function succeeded.
-  \return          1  Function failed.
+  \return          0  Event succeeded.
+  \return          1  Event failed.
   \note    When the variable <b>__Vendor_SysTickConfig</b> is set to 1, then the
            function <b>TZ_SysTick_Config_NS</b> is not included. In this case, the file <b><i>device</i>.h</b>
            must contain a vendor-specific implementation of this function.
@@ -2812,7 +2812,7 @@ __STATIC_INLINE uint32_t TZ_SysTick_Config_NS(uint32_t ticks)
   SysTick_NS->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
                       SysTick_CTRL_TICKINT_Msk   |
                       SysTick_CTRL_ENABLE_Msk;                            /* Enable SysTick IRQ and SysTick Timer */
-  return (0UL);                                                           /* Function successful */
+  return (0UL);                                                           /* Event successful */
 }
 #endif /* defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U) */
 

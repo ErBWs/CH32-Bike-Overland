@@ -25,19 +25,27 @@ __attribute__((weak)) void SyncValue(EasyKey_t *key)
 
 __attribute__((weak)) void PressCallback(EasyKey_t *key)
 {
-    
+    key->isPressed = true;
 }
 
 
 __attribute__((weak)) void HoldCallback(EasyKey_t *key)
 {
-    
+    key->isHold = true;
 }
 
 
 __attribute__((weak)) void MultiClickCallback(EasyKey_t *key)
 {
+    key->isMultiClick = true;
+}
 
+
+__attribute__((weak)) void ReleaseCallback(EasyKey_t *key)
+{
+    key->isMultiClick = false;
+    key->isPressed = false;
+    key->isHold = false;
 }
 //--------------------------------------------------------------------------
 
@@ -52,11 +60,10 @@ EasyKey_t *head = NULL, *tail = NULL;
  * @return      void
  * @sample      key_init(&key1, 'G', 1, 10)     Init G1 as key input, 10ms scanner period
  */
-void EasyKeyInit(EasyKey_t *key, gpio_pin_enum _pin, uint8_t period)
+void EasyKeyInit(EasyKey_t *key, gpio_pin_enum _pin)
 {
     key->state = release;
     key->next = NULL;
-    key->timer = period;
     key->holdTime = 0;
     key->intervalTime = 0;
     key->pin = _pin;
@@ -87,7 +94,7 @@ uint8_t multiClickSwitch = 0;
  * @return      void
  * @note        Don't modify
  */
-void EasyKeyHandler()
+void EasyKeyHandler(uint8_t timer)
 {
     for (EasyKey_t *key = head; key != NULL; key = key->next)
     {
@@ -101,10 +108,10 @@ void EasyKeyHandler()
                 key->holdTime = 0;
         }
         if (key->value & key->preVal)
-            key->holdTime += key->timer;
+            key->holdTime += timer;
 
         if (key->state == preClick | key->state == inClick)
-            key->intervalTime += key->timer;
+            key->intervalTime += timer;
         else
             key->intervalTime = 0;
 
@@ -113,6 +120,7 @@ void EasyKeyHandler()
         {
             case release:
             {
+                ReleaseCallback(key);
                 key->clickCnt = 0;
 
                 if (key->value)

@@ -69,7 +69,7 @@ The FatFs module is a middleware written in ANSI C (C89). There is no platform d
 <h4>Required Functions</h4>
 <p>You need to provide only MAI functions required by FatFs module and nothing else. If a working device control module for the target system is available, you need to write only glue functions to attach it to the FatFs module. If not, you need to port another device control module or write it from scratch. Most of MAI functions are not that always required. For instance, the write function is not required in read-only configuration. Following table shows which function is required depends on the configuration options.</p>
 <table class="lst2">
-<tr><th>Function</th><th>Required when:</th><th>Note</th></tr>
+<tr><th>Event</th><th>Required when:</th><th>Note</th></tr>
 <tr><td>disk_status<br>disk_initialize<br>disk_read</td><td>Always</td><td rowspan="5">Disk I/O functions.<br>Samples available in ffsample.zip.<br>There are many implementations on the web.</td></tr>
 <tr><td>disk_write<br>get_fattime<br>disk_ioctl (CTRL_SYNC)</td><td><a href="config.html#fs_readonly">FF_FS_READONLY == 0</a></td></tr>
 <tr><td>disk_ioctl (GET_SECTOR_COUNT)<br>disk_ioctl (GET_BLOCK_SIZE)</td><td><a href="config.html#use_mkfs">FF_USE_MKFS == 1</a></td></tr>
@@ -125,7 +125,7 @@ And any other options are left unchanged from original setting.
 <h3>Reducing Module Size</h3>
 <p>Follwing table shows which API function is removed by configuration options to reduce the module size. To use an API function, the row of the function must be clear.</p>
 <table class="lst2">
-<tr><td rowspan="2">Function</td><td colspan="4"><a href="config.html#fs_minimize">FF_FS_<br>MINIMIZE</a></td><td colspan="2"><a href="config.html#fs_readonly">FF_FS_<br>READONLY</a></td><td colspan="2"><a href="config.html#use_strfunc">FF_USE_<br>STRFUNC</a></td><td colspan="3"><a href="config.html#fs_rpath">FF_FS_<br>RPATH</a></td><td colspan="2"><a href="config.html#use_find">FF_USE_<br>FIND</a></td><td colspan="2"><a href="config.html#use_chmod">FF_USE_<br>CHMOD</a></td><td colspan="2"><a href="config.html#use_expand">FF_USE_<br>EXPAND</a></td><td colspan="2"><a href="config.html#use_label">FF_USE_<br>LABEL</a></td><td colspan="2"><a href="config.html#use_mkfs">FF_USE_<br>MKFS</a></td><td colspan="2"><a href="config.html#use_forward">FF_USE_<br>FORWARD</a></td><td colspan="2"><a href="config.html#multi_partition">FF_MULTI_<br>PARTITION</a></td></tr>
+<tr><td rowspan="2">Event</td><td colspan="4"><a href="config.html#fs_minimize">FF_FS_<br>MINIMIZE</a></td><td colspan="2"><a href="config.html#fs_readonly">FF_FS_<br>READONLY</a></td><td colspan="2"><a href="config.html#use_strfunc">FF_USE_<br>STRFUNC</a></td><td colspan="3"><a href="config.html#fs_rpath">FF_FS_<br>RPATH</a></td><td colspan="2"><a href="config.html#use_find">FF_USE_<br>FIND</a></td><td colspan="2"><a href="config.html#use_chmod">FF_USE_<br>CHMOD</a></td><td colspan="2"><a href="config.html#use_expand">FF_USE_<br>EXPAND</a></td><td colspan="2"><a href="config.html#use_label">FF_USE_<br>LABEL</a></td><td colspan="2"><a href="config.html#use_mkfs">FF_USE_<br>MKFS</a></td><td colspan="2"><a href="config.html#use_forward">FF_USE_<br>FORWARD</a></td><td colspan="2"><a href="config.html#multi_partition">FF_MULTI_<br>PARTITION</a></td></tr>
 <tr>                    <td>0</td><td>1</td><td>2</td><td>3</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>2</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
 <tr class="lst3">
     <td>f_mount</td>    <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -209,7 +209,7 @@ And any other options are left unchanged from original setting.
 <p>There is an exception on the re-entrancy for <tt>f_mount/f_mkfs</tt> function. These volume management functions are not re-entrant to the same volume. When use these functions, other tasks need to avoid to access the volume.</p>
 <div class="rset">
 <table class="lst2">
-<tr><th><tt>Function</tt></th><th>Case 1</th><th>Case 2</th><th>Case 3</th></tr>
+<tr><th><tt>Event</tt></th><th>Case 1</th><th>Case 2</th><th>Case 3</th></tr>
 <tr><td>disk_status</td><td>Yes</td><td>Yes</td><td>Yes(*)</td></tr>
 <tr><td>disk_initialize</td><td>No</td><td>Yes</td><td>Yes(*)</td></tr>
 <tr><td>disk_read</td><td>No</td><td>Yes</td><td>Yes(*)</td></tr>

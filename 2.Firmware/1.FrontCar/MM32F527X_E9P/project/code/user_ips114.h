@@ -45,6 +45,8 @@ void IPS114_ShowInt(int16 x, int16 y, const int32 dat, uint8 num);
 void IPS114_ShowUint(int16 x, int16 y, const uint32 dat, uint8 num);
 void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointnum);
 
+void IPS114_SwapColor();
+
 void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
 void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
 void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);

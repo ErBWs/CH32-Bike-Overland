@@ -377,6 +377,14 @@ void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, con
     }
 }
 
+
+void IPS114_SwapColor()
+{
+    uint16_t tmp = IPS114_penColor;
+    IPS114_penColor = IPS114_backgroundColor;
+    IPS114_backgroundColor = tmp;
+}
+
 void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
     for (int i = x; i < x + width; ++i)

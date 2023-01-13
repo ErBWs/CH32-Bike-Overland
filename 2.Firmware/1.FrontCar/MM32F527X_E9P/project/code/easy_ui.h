@@ -19,22 +19,37 @@ extern "C"
 #include "profile_photo_erbws.h"
 #include <string.h>
 #include <stdarg.h>
+#include <stdbool.h>
+
+// Modify this to fit your EasyKeyInit
+#define KEY_UP          C7
+#define KEY_DOWN        C6
+#define KEY_FORWARD     C7
+#define KEY_BACKWARD    C6
+#define KEY_CONFIRM     G8
+
+extern EasyKey_t keyUp, keyDown;           // Used to control value up and down
+extern EasyKey_t keyForward, keyBackward;  // Used to control indicator movement
+extern EasyKey_t keyConfirm;               // Used to change page or call function
 
 #define SCREEN_WIDTH            240
 #define SCREEN_HEIGHT           135
 #define FONT_WIDTH              6
 #define FONT_HEIGHT             8
 #define ITEM_HEIGHT             16
+#define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_SPEED    80
-#define ITEM_MOVE_SPEED         30
+#define INDICATOR_MOVE_TIME     80
+#define ITEM_MOVE_TIME          30
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
+#define EasyUIDisplayUint(x, y, dat, num)                       (IPS114_ShowUint(x, y, dat, num))
 #define EasyUIDrawDot(x, y, color)                              (IPS114_DrawPoint(x, y, color))
 #define EasyUIDrawBox(x, y, width, height, color)               (IPS114_DrawBox(x, y, width, height, color))
 #define EasyUIDrawRFrame(x, y, width, height, color)            (IPS114_DrawRFrame(x, y, width, height, color))
+#define EasyUIDrawRBox(x, y, width, height, color)              (IPS114_DrawRBox(x, y, width, height, color))
 #define EasyUIClearBuffer()                                     (IPS114_ClearBuffer())
 #define EasyUISendBuffer()                                      (IPS114_SendBuffer())
 #define EasyUISetDrawColor(mode)                                (IPS114_SetDrawColor(mode))
@@ -52,10 +67,12 @@ typedef struct EasyUI_item
 
     EasyUIFunc_e funcType;
     uint8_t id;
-    uint8_t position;
-    char *title;
+    int16_t lineId;
     uint8_t pageId;
-    void (* Function)(uint8_t cnt, ...);    // Arg "cnt" is used to define the amount of variable args
+    float posForCal;
+    int16_t position;
+    char *title;
+    void (* Event)(uint8_t cnt, ...);    // Arg "cnt" is used to define the amount of variable args
 } EasyUIItem_t;
 
 typedef struct EasyUI_page
@@ -66,9 +83,12 @@ typedef struct EasyUI_page
     uint8_t id;
 } EasyUIPage_t;
 
-void EasyUIInit(uint8_t mode);
+void EasyUIAddPage(EasyUIPage_t *page);
+void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...);
 void EasyUITransitionAnim();
 void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height);
+void EasyUIInit(uint8_t mode);
+void EasyUI(uint8_t timer);
 
 #ifdef __cplusplus
 }

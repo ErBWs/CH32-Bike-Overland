@@ -1,10 +1,10 @@
 ./objects/easy_ui.o: ..\code\easy_ui.c ..\code\easy_ui.h \
   ..\code\easy_key.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   ..\..\libraries\zf_driver\zf_driver_gpio.h \
   ..\..\libraries\sdk\drivers\hal_gpio.h \
   ..\..\libraries\sdk\drivers\hal_common.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\..\libraries\sdk\hal_device_registers.h \
   ..\..\libraries\sdk\mm32f5277e.h \

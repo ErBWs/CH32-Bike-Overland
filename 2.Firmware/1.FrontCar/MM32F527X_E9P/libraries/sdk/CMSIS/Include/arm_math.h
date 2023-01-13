@@ -716,7 +716,7 @@ compiler file in Core or Core_A would not make sense.
   }
 
   /**
-   * @brief Function to Calculates 1/in (reciprocal) value of Q31 Data type.
+   * @brief Event to Calculates 1/in (reciprocal) value of Q31 Data type.
    */
   __STATIC_FORCEINLINE uint32_t arm_recip_q31(
         q31_t in,
@@ -767,7 +767,7 @@ compiler file in Core or Core_A would not make sense.
 
 
   /**
-   * @brief Function to Calculates 1/in (reciprocal) value of Q15 Data type.
+   * @brief Event to Calculates 1/in (reciprocal) value of Q15 Data type.
    */
   __STATIC_FORCEINLINE uint32_t arm_recip_q15(
         q15_t in,
@@ -5290,7 +5290,7 @@ __STATIC_FORCEINLINE void arm_inv_clarke_q31(
    * \image html parkFormula.gif
    * where <code>Ialpha</code> and <code>Ibeta</code> are the stator vector components,
    * <code>pId</code> and <code>pIq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the
-   * cosine and sine values of theta (rotor flux position).
+   * cosine and sine values of theta (rotor flux posForCal).
    * \par Fixed-Point Behavior
    * Care must be taken when using the Q31 version of the Park transform.
    * In particular, the overflow and saturation behavior of the accumulator used must be considered.
@@ -5396,7 +5396,7 @@ __STATIC_FORCEINLINE void arm_park_q31(
    * \image html parkInvFormula.gif
    * where <code>pIalpha</code> and <code>pIbeta</code> are the stator vector components,
    * <code>Id</code> and <code>Iq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the
-   * cosine and sine values of theta (rotor flux position).
+   * cosine and sine values of theta (rotor flux posForCal).
    * \par Fixed-Point Behavior
    * Care must be taken when using the Q31 version of the Park transform.
    * In particular, the overflow and saturation behavior of the accumulator used must be considered.
@@ -5527,7 +5527,7 @@ __STATIC_FORCEINLINE void arm_inv_park_q31(
    */
 
   /**
-   * @brief  Process function for the floating-point Linear Interpolation Function.
+   * @brief  Process function for the floating-point Linear Interpolation Event.
    * @param[in,out] S  is an instance of the floating-point Linear Interpolation structure
    * @param[in]     x  input sample to process
    * @return y processed output sample.
@@ -5579,7 +5579,7 @@ __STATIC_FORCEINLINE void arm_inv_park_q31(
 
    /**
    *
-   * @brief  Process function for the Q31 Linear Interpolation Function.
+   * @brief  Process function for the Q31 Linear Interpolation Event.
    * @param[in] pYData   pointer to Q31 Linear Interpolation table
    * @param[in] x        input sample to process
    * @param[in] nValues  number of table values
@@ -5637,7 +5637,7 @@ __STATIC_FORCEINLINE void arm_inv_park_q31(
 
   /**
    *
-   * @brief  Process function for the Q15 Linear Interpolation Function.
+   * @brief  Process function for the Q15 Linear Interpolation Event.
    * @param[in] pYData   pointer to Q15 Linear Interpolation table
    * @param[in] x        input sample to process
    * @param[in] nValues  number of table values
@@ -5695,7 +5695,7 @@ __STATIC_FORCEINLINE void arm_inv_park_q31(
 
   /**
    *
-   * @brief  Process function for the Q7 Linear Interpolation Function.
+   * @brief  Process function for the Q7 Linear Interpolation Event.
    * @param[in] pYData   pointer to Q7 Linear Interpolation table
    * @param[in] x        input sample to process
    * @param[in] nValues  number of table values

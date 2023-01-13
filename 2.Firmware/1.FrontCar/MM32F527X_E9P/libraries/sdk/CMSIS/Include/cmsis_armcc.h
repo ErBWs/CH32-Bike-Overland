@@ -130,7 +130,7 @@
 #define __VECTOR_TABLE_ATTRIBUTE  __attribute((used, section("RESET")))
 #endif
 
-/* ###########################  Core Function Access  ########################### */
+/* ###########################  Core Event Access  ########################### */
 /** \ingroup  CMSIS_Core_FunctionInterface
     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
   @{
@@ -616,8 +616,8 @@ __attribute__((always_inline)) __STATIC_INLINE uint32_t __RBIT(uint32_t value)
   \details Executes a exclusive STR instruction for 8 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
   #define __STREXB(value, ptr)                                                 __strex(value, ptr)
@@ -631,8 +631,8 @@ __attribute__((always_inline)) __STATIC_INLINE uint32_t __RBIT(uint32_t value)
   \details Executes a exclusive STR instruction for 16 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
   #define __STREXH(value, ptr)                                                 __strex(value, ptr)
@@ -646,8 +646,8 @@ __attribute__((always_inline)) __STATIC_INLINE uint32_t __RBIT(uint32_t value)
   \details Executes a exclusive STR instruction for 32 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
   #define __STREXW(value, ptr)                                                 __strex(value, ptr)
@@ -667,7 +667,7 @@ __attribute__((always_inline)) __STATIC_INLINE uint32_t __RBIT(uint32_t value)
   \brief   Signed Saturate
   \details Saturates a signed value.
   \param [in]  value  Value to be saturated
-  \param [in]    sat  Bit position to saturate to (1..32)
+  \param [in]    sat  Bit posForCal to saturate to (1..32)
   \return             Saturated value
  */
 #define __SSAT                            __ssat
@@ -677,7 +677,7 @@ __attribute__((always_inline)) __STATIC_INLINE uint32_t __RBIT(uint32_t value)
   \brief   Unsigned Saturate
   \details Saturates an unsigned value.
   \param [in]  value  Value to be saturated
-  \param [in]    sat  Bit position to saturate to (0..31)
+  \param [in]    sat  Bit posForCal to saturate to (0..31)
   \return             Saturated value
  */
 #define __USAT                            __usat
@@ -759,7 +759,7 @@ __attribute__((section(".rrx_text"))) __STATIC_INLINE __ASM uint32_t __RRX(uint3
   \brief   Signed Saturate
   \details Saturates a signed value.
   \param [in]  value  Value to be saturated
-  \param [in]    sat  Bit position to saturate to (1..32)
+  \param [in]    sat  Bit posForCal to saturate to (1..32)
   \return             Saturated value
  */
 __attribute__((always_inline)) __STATIC_INLINE int32_t __SSAT(int32_t val, uint32_t sat)
@@ -784,7 +784,7 @@ __attribute__((always_inline)) __STATIC_INLINE int32_t __SSAT(int32_t val, uint3
   \brief   Unsigned Saturate
   \details Saturates an unsigned value.
   \param [in]  value  Value to be saturated
-  \param [in]    sat  Bit position to saturate to (0..31)
+  \param [in]    sat  Bit posForCal to saturate to (0..31)
   \return             Saturated value
  */
 __attribute__((always_inline)) __STATIC_INLINE uint32_t __USAT(int32_t val, uint32_t sat)

@@ -13,6 +13,11 @@ extern "C"
 {
 #endif
 
+#include <stdint.h>
+#include "easy_ui.h"
+#include "easy_key.h"
+
+void MenuInit();
 
 #ifdef __cplusplus
 }

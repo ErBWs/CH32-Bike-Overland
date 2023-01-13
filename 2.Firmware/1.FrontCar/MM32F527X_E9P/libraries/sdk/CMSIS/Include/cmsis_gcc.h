@@ -182,7 +182,7 @@ __STATIC_FORCEINLINE __NO_RETURN void __cmsis_start(void)
 #define __VECTOR_TABLE_ATTRIBUTE  __attribute((used, section(".vectors")))
 #endif
 
-/* ###########################  Core Function Access  ########################### */
+/* ###########################  Core Event Access  ########################### */
 /** \ingroup  CMSIS_Core_FunctionInterface
     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
   @{
@@ -1162,8 +1162,8 @@ __STATIC_FORCEINLINE uint32_t __LDREXW(volatile uint32_t *addr)
   \details Executes a exclusive STR instruction for 8 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 __STATIC_FORCEINLINE uint32_t __STREXB(uint8_t value, volatile uint8_t *addr)
 {
@@ -1179,8 +1179,8 @@ __STATIC_FORCEINLINE uint32_t __STREXB(uint8_t value, volatile uint8_t *addr)
   \details Executes a exclusive STR instruction for 16 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 __STATIC_FORCEINLINE uint32_t __STREXH(uint16_t value, volatile uint16_t *addr)
 {
@@ -1196,8 +1196,8 @@ __STATIC_FORCEINLINE uint32_t __STREXH(uint16_t value, volatile uint16_t *addr)
   \details Executes a exclusive STR instruction for 32 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 __STATIC_FORCEINLINE uint32_t __STREXW(uint32_t value, volatile uint32_t *addr)
 {
@@ -1230,7 +1230,7 @@ __STATIC_FORCEINLINE void __CLREX(void)
   \brief   Signed Saturate
   \details Saturates a signed value.
   \param [in]  ARG1  Value to be saturated
-  \param [in]  ARG2  Bit position to saturate to (1..32)
+  \param [in]  ARG2  Bit posForCal to saturate to (1..32)
   \return             Saturated value
  */
 #define __SSAT(ARG1,ARG2) \
@@ -1246,7 +1246,7 @@ __extension__ \
   \brief   Unsigned Saturate
   \details Saturates an unsigned value.
   \param [in]  ARG1  Value to be saturated
-  \param [in]  ARG2  Bit position to saturate to (0..31)
+  \param [in]  ARG2  Bit posForCal to saturate to (0..31)
   \return             Saturated value
  */
 #define __USAT(ARG1,ARG2) \
@@ -1376,7 +1376,7 @@ __STATIC_FORCEINLINE void __STRT(uint32_t value, volatile uint32_t *ptr)
   \brief   Signed Saturate
   \details Saturates a signed value.
   \param [in]  value  Value to be saturated
-  \param [in]    sat  Bit position to saturate to (1..32)
+  \param [in]    sat  Bit posForCal to saturate to (1..32)
   \return             Saturated value
  */
 __STATIC_FORCEINLINE int32_t __SSAT(int32_t val, uint32_t sat)
@@ -1401,7 +1401,7 @@ __STATIC_FORCEINLINE int32_t __SSAT(int32_t val, uint32_t sat)
   \brief   Unsigned Saturate
   \details Saturates an unsigned value.
   \param [in]  value  Value to be saturated
-  \param [in]    sat  Bit position to saturate to (0..31)
+  \param [in]    sat  Bit posForCal to saturate to (0..31)
   \return             Saturated value
  */
 __STATIC_FORCEINLINE uint32_t __USAT(int32_t val, uint32_t sat)
@@ -1559,8 +1559,8 @@ __STATIC_FORCEINLINE uint32_t __LDAEX(volatile uint32_t *ptr)
   \details Executes a STLB exclusive instruction for 8 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 __STATIC_FORCEINLINE uint32_t __STLEXB(uint8_t value, volatile uint8_t *ptr)
 {
@@ -1576,8 +1576,8 @@ __STATIC_FORCEINLINE uint32_t __STLEXB(uint8_t value, volatile uint8_t *ptr)
   \details Executes a STLH exclusive instruction for 16 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 __STATIC_FORCEINLINE uint32_t __STLEXH(uint16_t value, volatile uint16_t *ptr)
 {
@@ -1593,8 +1593,8 @@ __STATIC_FORCEINLINE uint32_t __STLEXH(uint16_t value, volatile uint16_t *ptr)
   \details Executes a STL exclusive instruction for 32 bit values.
   \param [in]  value  Value to store
   \param [in]    ptr  Pointer to location
-  \return          0  Function succeeded
-  \return          1  Function failed
+  \return          0  Event succeeded
+  \return          1  Event failed
  */
 __STATIC_FORCEINLINE uint32_t __STLEX(uint32_t value, volatile uint32_t *ptr)
 {
