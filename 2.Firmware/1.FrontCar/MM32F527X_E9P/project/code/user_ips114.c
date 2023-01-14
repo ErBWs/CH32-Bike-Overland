@@ -9,6 +9,7 @@
 
 uint16_t IPS114_penColor = IPS114_DEFAULT_PENCOLOR;
 uint16_t IPS114_backgroundColor = IPS114_DEFAULT_BGCOLOR;
+uint8_t IPS114_colorSwap = 0;
 
 static ips114_dir_enum ips114_display_dir = IPS114_DEFAULT_DISPLAY_DIR;
 static ips114_font_size_enum ips114_display_font = IPS114_DEFAULT_DISPLAY_FONT;

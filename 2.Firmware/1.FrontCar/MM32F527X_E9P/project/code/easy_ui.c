@@ -19,7 +19,10 @@ EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
  * @param   func        CALL_FUNCTION / JUMP_PAGE
  * @param   ...         If CALL_FUNCTION, just fill this with a function
  *                      If JUMP_PAGE, just fill this with target page's id
+ *                      If PAGE_DESCRIPTION, ignore this
  * @return  void
+ *
+ * @note    Do not modify
  */
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...)
 {
@@ -138,10 +141,10 @@ void EasyUITransitionAnim()
 /*!
  * @brief   Blur the background for rounded box
  *
- * @param   x
- * @param   y
- * @param   width
- * @param   height
+ * @param   x       X of the rounded box
+ * @param   y       Y of the rounded box
+ * @param   width   Width of the rounded box
+ * @param   height  Height of the rounded box
  * @return  void
  *
  * @note    Use before clearing the buffer
@@ -174,6 +177,17 @@ void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heigh
 }
 
 
+/*!
+ * @brief   Get position of item with linear animation
+ *
+ * @param   page    Struct of page
+ * @param   item    Struct of item
+ * @param   index   Current index
+ * @param   timer   Fill this with interrupt trigger time
+ * @return  void
+ *
+ * @note    Internal call
+ */
 void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uint8_t timer)
 {
     static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2;
@@ -235,6 +249,16 @@ void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uin
 }
 
 
+/*!
+ * @brief   Get position of indicator with linear animation
+ *
+ * @param   page    Struct of page
+ * @param   index   Current index
+ * @param   timer   Fill this with interrupt trigger time
+ * @return  void
+ *
+ * @note    Internal call
+ */
 void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
 {
     static float stepLength = 0, stepY = 0, length = 0, y = 0;
@@ -282,11 +306,12 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
         y += stepY;
     }
 
+    // Draw rounded box
     EasyUISetDrawColor(XOR);
     EasyUIDrawRBox(0, (int16_t) y, (int16_t) length, ITEM_HEIGHT, IPS114_penColor);
     EasyUISetDrawColor(NORMAL);
-
     lastIndex = index;
+
     // Time counter
     if ((int) length == lengthTarget && (int) y == yTarget)
         time = 0;
@@ -328,12 +353,18 @@ void EasyUIInit(uint8_t mode)
 }
 
 
+/*!
+ * @brief   Main function of EasyUI
+ *
+ * @param   timer   Fill this with interrupt trigger time
+ * @return  void
+ */
 void EasyUI(uint8_t timer)
 {
-    static uint8_t pageIndex[20] = {0};     // Page id (stack)
-    static uint8_t itemIndex[20] = {0};     // Item id (stack)
+    static uint8_t pageIndex[10] = {0};     // Page id (stack)
+    static uint8_t itemIndex[10] = {0};     // Item id (stack)
     static uint8_t layer = 0;               // pageIndex[layer] / itemIndex[layer]
-    static uint8_t index = 0, itemSum = 0;
+    static uint8_t index = 0, indexBackup = 0, itemSum = 0;
 
     EasyUIClearBuffer();
     EasyUISetDrawColor(NORMAL);
@@ -366,24 +397,35 @@ void EasyUI(uint8_t timer)
     }
     // Draw indicator
     EasyUIDrawIndicator(page, index, timer);
+
     // Display navigation
-    itemSum = page->itemTail->id;
+    if (page->itemHead->funcType == PAGE_DESCRIPTION)
+    {
+        indexBackup = index;
+        itemSum = page->itemTail->id;
+    } else
+    {
+        indexBackup = index + 1;
+        itemSum = page->itemTail->id + 1;
+    }
     if (itemSum > 9)
     {
         EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 2);
         EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
-        if (index > 9)
-            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, index, 2);
+        if (indexBackup > 9)
+            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup, 2);
         else
-            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, index, 1);
+            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup,
+                              1);
     } else
     {
         EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 1);
         EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
-        EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, index, 1);
+        EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup, 1);
     }
 
     // Key move reaction
+    itemSum = page->itemTail->id;
     if (keyForward.isPressed)
     {
         if (index < itemSum)
@@ -400,47 +442,47 @@ void EasyUI(uint8_t timer)
     }
     if (keyConfirm.isPressed)
     {
-        if (index == 9)
-        {
-            EasyUIDrawRBoxWithBlur(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3);
-            while (1);
-        }
         for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
         {
             if (item->id == index)
             {
                 if (item->funcType == JUMP_PAGE)
                 {
-                    pageIndex[layer] = page->id;
-                    itemIndex[layer] = index;
-                    layer++;
-                    pageIndex[layer] = item->pageId;
-                    index = 0;
-                    for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+                    if (layer < 9)
                     {
-                        itemTmp->position = 0;
-                        itemTmp->posForCal = 0;
-                    }
-                    EasyUITransitionAnim();
+                        pageIndex[layer] = page->id;
+                        itemIndex[layer] = index;
+                        layer++;
+                        pageIndex[layer] = item->pageId;
+                        index = 0;
+                        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+                        {
+                            itemTmp->position = 0;
+                            itemTmp->posForCal = 0;
+                        }
+                        EasyUITransitionAnim();
+                        break;
+                    } else
+                        break;
                 }
             }
         }
-        if (index == 7)
-            EventSwapColor(0);
-
     }
     if (keyConfirm.isHold)
     {
-        pageIndex[layer] = 0;
-        itemIndex[layer] = 0;
-        layer--;
-        index = itemIndex[layer];
-        for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
+        if (layer > 0)
         {
-            item->position = 0;
-            item->posForCal = 0;
+            pageIndex[layer] = 0;
+            itemIndex[layer] = 0;
+            layer--;
+            index = itemIndex[layer];
+            for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
+            {
+                item->position = 0;
+                item->posForCal = 0;
+            }
+            EasyUITransitionAnim();
         }
-        EasyUITransitionAnim();
     }
 
     EasyUISendBuffer();

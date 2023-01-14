@@ -88,6 +88,8 @@ typedef struct EasyUI_page
     uint8_t id;
 } EasyUIPage_t;
 
+extern EasyUIPage_t *pageHead, *pageTail;
+
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...);
 void EasyUIAddPage(EasyUIPage_t *page);
 void EasyUITransitionAnim();
