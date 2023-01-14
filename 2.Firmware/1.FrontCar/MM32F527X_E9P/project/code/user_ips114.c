@@ -336,8 +336,20 @@ void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointn
     IPS114_ShowStr(x, y, data_buffer);
 }
 
+
+void IPS114_SwapColor()
+{
+    uint16_t tmp = IPS114_penColor;
+    IPS114_penColor = IPS114_backgroundColor;
+    IPS114_backgroundColor = tmp;
+}
+
+
 void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
+    if (x < 0 || y < 0 || x + width >= 239 || y + height >= 134)
+        return;
+
     if (IPS114_colorMode == XOR)
     {
         for (int i = x; i < x + width; i++)
@@ -378,15 +390,11 @@ void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, con
 }
 
 
-void IPS114_SwapColor()
-{
-    uint16_t tmp = IPS114_penColor;
-    IPS114_penColor = IPS114_backgroundColor;
-    IPS114_backgroundColor = tmp;
-}
-
 void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
+    if (x < 0 || y < 0 || x + width >= 239 || y + height >= 134)
+        return;
+
     for (int i = x; i < x + width; ++i)
     {
         for (int j = y; j < y + height; ++j)
@@ -408,6 +416,9 @@ void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const
  */
 void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
+    if (x < 0 || y < 0 || x + width >= 239 || y + height >= 134)
+        return;
+
     if (IPS114_colorMode == XOR)
     {
         for (int i = x + 1; i < x + width - 1; i++)

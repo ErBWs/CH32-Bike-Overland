@@ -1,6 +1,6 @@
 Dependencies for Project 'mm32f527x_e9p', Target 'mm32f527x_e9p_project': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (..\user\src\isr.c)(0x63C22A66)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/isr.o -MD)
+F (..\user\src\isr.c)(0x63C272EE)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/isr.o -MD)
 I (..\user\inc\isr.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_headfile.h)(0x63BB9208)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -101,13 +101,13 @@ I (..\..\libraries\zf_device\zf_device_wifi_uart.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_wireless_uart.h)(0x63A29B17)
 I (..\code\header.h)(0x63C16EED)
 I (..\code\easy_key.h)(0x63C11A4A)
-I (..\code\easy_ui.h)(0x63C2565A)
+I (..\code\easy_ui.h)(0x63C2962B)
 I (..\code\user_ips114.h)(0x63C0F374)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
-I (..\code\menu.h)(0x63C1744C)
+I (..\code\menu.h)(0x63C259AD)
 I (..\code\pid.h)(0x639B1F54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
-F (..\user\src\main.c)(0x63C22A6A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/main.o -MD)
+F (..\user\src\main.c)(0x63C27A9A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/main.o -MD)
 I (..\..\libraries\zf_common\zf_common_headfile.h)(0x63BB9208)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
@@ -207,10 +207,10 @@ I (..\..\libraries\zf_device\zf_device_wifi_uart.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_wireless_uart.h)(0x63A29B17)
 I (..\code\header.h)(0x63C16EED)
 I (..\code\easy_key.h)(0x63C11A4A)
-I (..\code\easy_ui.h)(0x63C2565A)
+I (..\code\easy_ui.h)(0x63C2962B)
 I (..\code\user_ips114.h)(0x63C0F374)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
-I (..\code\menu.h)(0x63C1744C)
+I (..\code\menu.h)(0x63C259AD)
 I (..\code\pid.h)(0x639B1F54)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
 F (..\user\inc\isr.h)(0x63A29B17)()
@@ -2057,8 +2057,8 @@ I (..\..\libraries\zf_common\zf_common_typedef.h)(0x63A29B17)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 F (..\code\easy_key.h)(0x63C11A4A)()
-F (..\code\easy_ui.c)(0x63C25777)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/easy_ui.o -MD)
-I (..\code\easy_ui.h)(0x63C2565A)
+F (..\code\easy_ui.c)(0x63C29839)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/easy_ui.o -MD)
+I (..\code\easy_ui.h)(0x63C2962B)
 I (..\code\easy_key.h)(0x63C11A4A)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -2095,7 +2095,8 @@ I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_spi.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
-F (..\code\easy_ui.h)(0x63C2565A)()
+I (..\code\menu.h)(0x63C259AD)
+F (..\code\easy_ui.h)(0x63C2962B)()
 F (..\code\header.h)(0x63C16EED)()
 F (..\code\pid.c)(0x637DC6C5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/pid.o -MD)
 I (..\code\pid.h)(0x639B1F54)
@@ -2103,7 +2104,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
 F (..\code\pid.h)(0x639B1F54)()
-F (..\code\user_ips114.c)(0x63C24D5B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/user_ips114.o -MD)
+F (..\code\user_ips114.c)(0x63C27A9A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/user_ips114.o -MD)
 I (..\code\user_ips114.h)(0x63C0F374)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
@@ -2137,10 +2138,10 @@ I (..\..\libraries\zf_driver\zf_driver_spi.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_ips114.h)(0x63C0F426)
 F (..\code\user_ips114.h)(0x63C0F374)()
-F (..\code\menu.c)(0x63C181B9)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/menu.o -MD)
-I (..\code\menu.h)(0x63C1744C)
+F (..\code\menu.c)(0x63C29657)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/menu.o -MD)
+I (..\code\menu.h)(0x63C259AD)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
-I (..\code\easy_ui.h)(0x63C2565A)
+I (..\code\easy_ui.h)(0x63C2962B)
 I (..\code\easy_key.h)(0x63C11A4A)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63884908)
@@ -2176,7 +2177,7 @@ I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_spi.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
-F (..\code\menu.h)(0x63C1744C)()
+F (..\code\menu.h)(0x63C259AD)()
 F (..\code\profile_photo_erbws.c)(0x63A05B7A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/profile_photo_erbws.o -MD)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)

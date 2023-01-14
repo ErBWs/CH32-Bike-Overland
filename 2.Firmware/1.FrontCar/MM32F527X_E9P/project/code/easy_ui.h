@@ -22,6 +22,8 @@ extern "C"
 #include <stdarg.h>
 #include <stdbool.h>
 
+#include "menu.h"
+
 // Modify this to fit your EasyKeyInit
 #define KEY_UP          C7
 #define KEY_DOWN        C6
@@ -41,8 +43,8 @@ extern EasyKey_t keyConfirm;               // Used to change page or call functi
 #define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_TIME     300
-#define ITEM_MOVE_TIME          50
+#define INDICATOR_MOVE_TIME     60
+#define ITEM_MOVE_TIME          60
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
@@ -59,7 +61,8 @@ extern EasyKey_t keyConfirm;               // Used to change page or call functi
 typedef enum
 {
     CALL_FUNCTION,
-    JUMP_PAGE
+    JUMP_PAGE,
+    PAGE_DESCRIPTION
 } EasyUIFunc_e;
 
 typedef struct EasyUI_item
@@ -85,8 +88,8 @@ typedef struct EasyUI_page
     uint8_t id;
 } EasyUIPage_t;
 
-void EasyUIAddPage(EasyUIPage_t *page);
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...);
+void EasyUIAddPage(EasyUIPage_t *page);
 void EasyUITransitionAnim();
 void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height);
 void EasyUIInit(uint8_t mode);

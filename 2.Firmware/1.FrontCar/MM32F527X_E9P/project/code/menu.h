@@ -17,6 +17,8 @@ extern "C"
 #include "easy_ui.h"
 #include "easy_key.h"
 
+void EventSwapColor(uint8_t cnt, ...);
+
 void MenuInit();
 
 #ifdef __cplusplus

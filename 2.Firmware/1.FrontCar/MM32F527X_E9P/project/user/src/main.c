@@ -9,8 +9,7 @@ int main(void)
     // User initializations
     EasyUIInit(1);
     MenuInit();
-
-
+    timer_init(TIM_1, TIMER_US);
     mpu6050_init();
 
     EasyUITransitionAnim();
@@ -24,7 +23,6 @@ int main(void)
     while (1)
     {
 //        EasyKeyHandler(10);
-//        EasyUI(10);
         mpu6050_get_acc();
 //        IPS114_ClearBuffer();
 //        char *str[8] = {"- Start",
@@ -94,9 +92,13 @@ int main(void)
 //        EasyUIDisplayStr(230, 118, "/");
 //        IPS114_ShowUint(230, 110, index + 1, 1);   //232
 //
+//        timer_start(TIM_1);
 //        IPS114_SetDrawColor(XOR);
 //        IPS114_DrawRBox(0, (int16_t) y, (int16_t) w, 16, IPS114_penColor);
 //        IPS114_SetDrawColor(NORMAL);
+//        timer_stop(TIM_1);
+//        printf("%d", timer_get(TIM_1));
+//        timer_clear(TIM_1);
 //
 //        if (keyConfirm.isPressed)
 //        {
@@ -111,7 +113,5 @@ int main(void)
 //        }
 //
 //        IPS114_SendBuffer();
-
-//        uart_write_string(UART_1, "hello");
     }
 }
