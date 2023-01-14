@@ -40,8 +40,8 @@ extern EasyKey_t keyConfirm;               // Used to change page or call functi
 #define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_TIME     80
-#define ITEM_MOVE_TIME          30
+#define INDICATOR_MOVE_TIME     300
+#define ITEM_MOVE_TIME          50
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
@@ -70,6 +70,7 @@ typedef struct EasyUI_item
     int16_t lineId;
     uint8_t pageId;
     float posForCal;
+    float step;
     int16_t position;
     char *title;
     void (* Event)(uint8_t cnt, ...);    // Arg "cnt" is used to define the amount of variable args

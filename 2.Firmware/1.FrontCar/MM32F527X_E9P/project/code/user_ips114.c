@@ -115,7 +115,7 @@ void IPS114_ClearBuffer()
 //-------------------------------------------------------------------------------------------------------------------
 void IPS114_DrawPoint(int16 x, int16 y, const uint16 color)
 {
-    if (x < 240 && y < 135)
+    if (x < 240 && y < 135 && x >= 0 && y >= 0)
     {
         IPS114_buffer[y][x] = color;
     }
@@ -193,14 +193,14 @@ void IPS114_ShowChar(int16 x, int16 y, const char dat)
         uint8 temp_top = ascii_font_6x8[dat - 32][i];
         for (j = 0; j < 8; j++)
         {
-            if (x + i < 240 && y + j < 135)
+            if (x + i < 240 && y + j < 135 && x + i >= 0 && y + j >= 0)
             {
                 if (temp_top & 0x01)
                 {
-                    IPS114_buffer[y + j][x + i] = IPS114_penColor;
-                } else
-                {
-                    IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
+                    if (IPS114_colorMode == NORMAL)
+                        IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                    else
+                        IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
                 }
                 temp_top >>= 1;
             } else

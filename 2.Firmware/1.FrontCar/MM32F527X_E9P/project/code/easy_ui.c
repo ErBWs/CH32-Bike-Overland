@@ -84,6 +84,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
 
     item->lineId = item->id;
     item->posForCal = 0;
+    item->step = 0;
     item->position = 0;
 }
 
@@ -112,7 +113,6 @@ void EasyUITransitionAnim()
         for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
         {
             EasyUIDrawDot(i, j, IPS114_backgroundColor);
-            EasyUIDrawDot(i - 1, j - 1, IPS114_backgroundColor);
         }
     }
     EasyUISendBuffer();
@@ -121,6 +121,14 @@ void EasyUITransitionAnim()
         for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
         {
             EasyUIDrawDot(i, j, IPS114_backgroundColor);
+        }
+    }
+    EasyUISendBuffer();
+    for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
+    {
+        for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
+        {
+            EasyUIDrawDot(i - 1, j - 1, IPS114_backgroundColor);
         }
     }
     EasyUISendBuffer();
@@ -168,59 +176,60 @@ void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heigh
 
 void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uint8_t timer)
 {
-    static float step = 0;
     static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2;
     static uint16_t time = 0;
-    static uint8_t moveFlag = 0;
-    static int16_t move = 0;
+    static int16_t move = 0, target;
+    static uint8_t lastIndex = 0;
     uint8_t speed = ITEM_MOVE_TIME / timer;
 
     // Item need to move or not
-    if (moveFlag == 0)
-    {
         for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
         {
             if (index == itemTmp->id && itemTmp->lineId < 0)
             {
                 move = itemTmp->lineId;
-                moveFlag = 1;
                 break;
-            } else if (index == itemTmp->id && itemTmp->lineId > ITEM_LINES)
+            } else if (index == itemTmp->id && itemTmp->lineId > ITEM_LINES - 1)
             {
-                move = itemTmp->lineId - ITEM_LINES;
-                moveFlag = 1;
+                move = itemTmp->lineId - ITEM_LINES + 1;
                 break;
             }
         }
-    }
 
     // Change the item lineId and get target position
     item->lineId -= move;
     if (item->next == NULL)
     {
         move = 0;
-        moveFlag = 0;
     }
-    uint8_t target = itemHeightOffset + item->lineId * ITEM_HEIGHT;
+    target = itemHeightOffset + item->lineId * ITEM_HEIGHT;
 
     // Calculate current position
-    if (time == 0)
+    if (time == 0 || index != lastIndex)
     {
-        step = ((float) target - (float) item->position) / (float) speed;
-    } else if (time <= ITEM_MOVE_TIME)
+        item->step = ((float) target - (float) item->position) / (float) speed;
+    }
+    if (time < ITEM_MOVE_TIME)
     {
-        item->posForCal += step;
-        if (time == ITEM_MOVE_TIME)
+        item->posForCal += item->step;
+        if (time >= ITEM_MOVE_TIME)
+        {
             item->posForCal = target;
+        }
     }
 
-    // Time counter
-    if ((int) step == 0)
-        time = 0;
-    else
-        time += timer;
 
     item->position = (int16_t) item->posForCal;
+    lastIndex = index;
+
+    // Time counter
+    if (item->next == NULL)
+    {
+        if (target == item->position)
+            time = 0;
+        else
+            time += timer;
+    }
 }
 
 
@@ -277,6 +286,7 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
 
 
 EasyKey_t keyUp, keyDown, keyForward, keyBackward, keyConfirm;
+
 /*!
  * @brief   Welcome Page with two size of photo
  *
@@ -377,11 +387,11 @@ void EasyUI(uint8_t timer)
     }
     if (keyConfirm.isPressed)
     {
-
+        EasyUIDrawRBoxWithBlur(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3);
     }
     if (keyConfirm.isHold)
     {
-
+        EasyUITransitionAnim();
     }
 
     EasyUISendBuffer();
