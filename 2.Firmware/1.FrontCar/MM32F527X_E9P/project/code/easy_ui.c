@@ -178,29 +178,35 @@ void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uin
 {
     static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2;
     static uint16_t time = 0;
-    static int16_t move = 0, target;
-    static uint8_t lastIndex = 0;
+    static int16_t move = 0, target = 0;
+    static uint8_t lastIndex = 0, moveFlag = 0;
     uint8_t speed = ITEM_MOVE_TIME / timer;
 
     // Item need to move or not
+    if (moveFlag == 0)
+    {
         for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
         {
             if (index == itemTmp->id && itemTmp->lineId < 0)
             {
                 move = itemTmp->lineId;
+                moveFlag = 1;
                 break;
             } else if (index == itemTmp->id && itemTmp->lineId > ITEM_LINES - 1)
             {
                 move = itemTmp->lineId - ITEM_LINES + 1;
+                moveFlag = 1;
                 break;
             }
         }
+    }
 
     // Change the item lineId and get target position
     item->lineId -= move;
     if (item->next == NULL)
     {
         move = 0;
+        moveFlag = 0;
     }
     target = itemHeightOffset + item->lineId * ITEM_HEIGHT;
 
@@ -209,15 +215,11 @@ void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uin
     {
         item->step = ((float) target - (float) item->position) / (float) speed;
     }
-    if (time < ITEM_MOVE_TIME)
+    if (time >= ITEM_MOVE_TIME)
     {
+        item->posForCal = target;
+    } else
         item->posForCal += item->step;
-        if (time >= ITEM_MOVE_TIME)
-        {
-            item->posForCal = target;
-        }
-    }
-
 
     item->position = (int16_t) item->posForCal;
     lastIndex = index;
@@ -230,6 +232,7 @@ void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uin
         else
             time += timer;
     }
+    printf("time:%d\n", time);
 }
 
 

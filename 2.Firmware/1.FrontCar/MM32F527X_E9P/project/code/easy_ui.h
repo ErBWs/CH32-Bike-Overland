@@ -15,6 +15,7 @@ extern "C"
 
 #include "easy_key.h"
 #include "zf_device_ips114.h"
+#include "zf_driver_uart.h"
 #include "user_ips114.h"
 #include "profile_photo_erbws.h"
 #include <string.h>
