@@ -118,7 +118,14 @@ void IPS114_DrawPoint(int16 x, int16 y, const uint16 color)
 {
     if (x < 240 && y < 135 && x >= 0 && y >= 0)
     {
-        IPS114_buffer[y][x] = color;
+        if (IPS114_colorMode == XOR)
+        {
+            if (IPS114_buffer[y][x] == color)
+                IPS114_buffer[y][x] = IPS114_backgroundColor;
+            else
+                IPS114_buffer[y][x] = color;
+        } else
+            IPS114_buffer[y][x] = color;
     }
 }
 
@@ -348,66 +355,27 @@ void IPS114_SwapColor()
 
 void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
-    if (x < 0 || y < 0 || x + width >= 239 || y + height >= 134)
-        return;
-
-    if (IPS114_colorMode == XOR)
+    for (int i = x; i < x + width; i++)
     {
-        for (int i = x; i < x + width; i++)
-        {
-            if (IPS114_buffer[y][i] == color)
-                IPS114_DrawPoint(i, y, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(i, y, color);
-            if (IPS114_buffer[y + height - 1][i] == color)
-                IPS114_DrawPoint(i, y + height - 1, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(i, y + height - 1, color);
-        }
-        for (int j = y; j < y + height; j++)
-        {
-            if (IPS114_buffer[j][x] == color)
-                IPS114_DrawPoint(x, j, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(x, j, color);
-            if (IPS114_buffer[j][x + width - 1] == color)
-                IPS114_DrawPoint(x + width - 1, j, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(x + width - 1, j, color);
-        }
-    } else
+        IPS114_DrawPoint(i, y, color);
+        IPS114_DrawPoint(i, y + height - 1, color);
+    }
+    for (int j = y; j < y + height; j++)
     {
-        for (int i = x; i < x + width; i++)
-        {
-            IPS114_DrawPoint(i, y, color);
-            IPS114_DrawPoint(i, y + height - 1, color);
-        }
-        for (int j = y; j < y + height; j++)
-        {
-            IPS114_DrawPoint(x, j, color);
-            IPS114_DrawPoint(x + width - 1, j, color);
-        }
+        IPS114_DrawPoint(x, j, color);
+        IPS114_DrawPoint(x + width - 1, j, color);
     }
 }
 
 
 void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
-    if (x < 0 || y < 0 || x + width >= 239 || y + height >= 134)
-        return;
 
     for (int i = x; i < x + width; ++i)
     {
         for (int j = y; j < y + height; ++j)
         {
-            if (IPS114_colorMode == XOR)
-            {
-                if (IPS114_buffer[j][i] == color)
-                    IPS114_buffer[j][i] = IPS114_backgroundColor;
-                else
-                    IPS114_buffer[j][i] = color;
-            } else
-                IPS114_buffer[j][i] = color;
+            IPS114_DrawPoint(i, j, color);
         }
     }
 }
@@ -417,45 +385,15 @@ void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const
  */
 void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
-    if (x < 0 || y < 0 || x + width >= 239 || y + height >= 134)
-        return;
-
-    if (IPS114_colorMode == XOR)
+    for (int i = x + 1; i < x + width - 1; i++)
     {
-        for (int i = x + 1; i < x + width - 1; i++)
-        {
-            if (IPS114_buffer[y][i] == color)
-                IPS114_DrawPoint(i, y, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(i, y, color);
-            if (IPS114_buffer[y + height - 1][i] == color)
-                IPS114_DrawPoint(i, y + height - 1, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(i, y + height - 1, color);
-        }
-        for (int j = y + 1; j < y + height - 1; j++)
-        {
-            if (IPS114_buffer[j][x] == color)
-                IPS114_DrawPoint(x, j, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(x, j, color);
-            if (IPS114_buffer[j][x + width - 1] == color)
-                IPS114_DrawPoint(x + width - 1, j, IPS114_backgroundColor);
-            else
-                IPS114_DrawPoint(x + width - 1, j, color);
-        }
-    } else
+        IPS114_DrawPoint(i, y, color);
+        IPS114_DrawPoint(i, y + height - 1, color);
+    }
+    for (int j = y + 1; j < y + height - 1; j++)
     {
-        for (int i = x + 1; i < x + width - 1; i++)
-        {
-            IPS114_DrawPoint(i, y, color);
-            IPS114_DrawPoint(i, y + height - 1, color);
-        }
-        for (int j = y + 1; j < y + height - 1; j++)
-        {
-            IPS114_DrawPoint(x, j, color);
-            IPS114_DrawPoint(x + width - 1, j, color);
-        }
+        IPS114_DrawPoint(x, j, color);
+        IPS114_DrawPoint(x + width - 1, j, color);
     }
 }
 
@@ -464,6 +402,17 @@ void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, cons
     IPS114_DrawRFrame(x, y, width, height, color);
     IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, color);
 }
+
+
+void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue)
+{
+    IPS114_DrawRFrame(x, y, size, size, IPS114_penColor);
+    if (boolValue == true)
+        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor);
+    else
+        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_backgroundColor);
+}
+
 
 /*!
  * @brief   Show Binary BMP photo on screen
@@ -478,7 +427,7 @@ void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const
 {
     uint8_t temp, j;
     uint8_t x0 = x;
-    uint8_t *tmp = (uint8_t *)pic;
+    uint8_t *tmp = (uint8_t *) pic;
     uint16_t i, picSize = 0;
 
     picSize = (width / 8 + ((width % 8) ? 1 : 0)) * height;
@@ -491,8 +440,7 @@ void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const
             if (temp & 0x01)
             {
                 IPS114_buffer[y][x] = IPS114_penColor;
-            }
-            else
+            } else
             {
                 IPS114_buffer[y][x] = IPS114_backgroundColor;
             }

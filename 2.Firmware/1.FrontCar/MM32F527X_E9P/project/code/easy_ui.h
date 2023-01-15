@@ -53,6 +53,7 @@ extern EasyKey_t keyConfirm;               // Used to change page or call functi
 #define EasyUIDrawBox(x, y, width, height, color)               (IPS114_DrawBox(x, y, width, height, color))
 #define EasyUIDrawRFrame(x, y, width, height, color)            (IPS114_DrawRFrame(x, y, width, height, color))
 #define EasyUIDrawRBox(x, y, width, height, color)              (IPS114_DrawRBox(x, y, width, height, color))
+#define EasyUIDrawCheckbox(x, y, size, offset, value)           (IPS114_DrawCheckbox(x, y, size, offset, value))
 #define EasyUIClearBuffer()                                     (IPS114_ClearBuffer())
 #define EasyUISendBuffer()                                      (IPS114_SendBuffer())
 #define EasyUISetDrawColor(mode)                                (IPS114_SetDrawColor(mode))
@@ -60,10 +61,25 @@ extern EasyKey_t keyConfirm;               // Used to change page or call functi
 
 typedef enum
 {
-    CALL_FUNCTION,
-    JUMP_PAGE,
-    PAGE_DESCRIPTION
+    ITEM_PAGE_DESCRIPTION,
+    ITEM_JUMP_PAGE,
+    ITEM_CALL_FUNCTION,
+    ITEM_SWITCH,
+    ITEM_CHANGE_VALUE,
+    ITEM_RADIO_BUTTON,
+    ITEM_CHECKBOX
 } EasyUIFunc_e;
+
+typedef enum
+{
+    FLOAT_001,
+    FLOAT_01,
+    FLOAT_1,
+
+    INT_1,
+    INT_10,
+    INT_100
+} EasyUIStep_e;
 
 typedef struct EasyUI_item
 {
@@ -72,12 +88,16 @@ typedef struct EasyUI_item
     EasyUIFunc_e funcType;
     uint8_t id;
     int16_t lineId;
-    uint8_t pageId;
     float posForCal;
     float step;
     int16_t position;
     char *title;
-    void (* Event)(uint8_t cnt, ...);    // Arg "cnt" is used to define the amount of variable args
+
+    bool flag;                          // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
+    float param;                        // ITEM_CHANGE_VALUE
+    EasyUIStep_e valueStep;             // ITEM_CHANGE_VALUE
+    uint8_t pageId;                     // ITEM_JUMP_PAGE
+    void (* Event)(uint8_t cnt, ...);   // ITEM_CALL_FUNCTION
 } EasyUIItem_t;
 
 typedef struct EasyUI_page

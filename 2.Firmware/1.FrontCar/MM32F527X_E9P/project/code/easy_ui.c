@@ -16,10 +16,10 @@ EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
  * @param   page        EasyUI page struct
  * @param   item        EasyUI item struct
  * @param   _title      String of item title
- * @param   func        CALL_FUNCTION / JUMP_PAGE
- * @param   ...         If CALL_FUNCTION, just fill this with a function
- *                      If JUMP_PAGE, just fill this with target page's id
- *                      If PAGE_DESCRIPTION, ignore this
+ * @param   func        ITEM_CALL_FUNCTION / ITEM_JUMP_PAGE
+ * @param   ...         If ITEM_CALL_FUNCTION, just fill this with a function
+ *                      If ITEM_JUMP_PAGE, just fill this with target page's id
+ *                      If ITEM_PAGE_DESCRIPTION, ignore this
  * @return  void
  *
  * @note    Do not modify
@@ -31,11 +31,16 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
     item->funcType = func;
     switch (item->funcType)
     {
-        case CALL_FUNCTION:
+        case ITEM_CALL_FUNCTION:
             item->Event = va_arg(variableArg, void (* )(uint8_t, ...));
             break;
-        case JUMP_PAGE:
+        case ITEM_JUMP_PAGE:
             item->pageId = va_arg(variableArg, int);
+            break;
+        case ITEM_CHECKBOX:
+        case ITEM_RADIO_BUTTON:
+        case ITEM_SWITCH:
+            item->flag = va_arg(variableArg, bool);
             break;
         default:
             break;
@@ -270,7 +275,7 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
     // Get Initial length
     if ((int) length == 0)
     {
-        if (page->itemHead->funcType == PAGE_DESCRIPTION)
+        if (page->itemHead->funcType == ITEM_PAGE_DESCRIPTION)
             length = (float) (strlen(page->itemHead->title)) * FONT_WIDTH + 5;
         else
             length = (float) (strlen(page->itemHead->title) + 2) * FONT_WIDTH + 5;
@@ -281,7 +286,7 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
     {
         if (index == itemTmp->id)
         {
-            if (itemTmp->funcType == PAGE_DESCRIPTION)
+            if (itemTmp->funcType == ITEM_PAGE_DESCRIPTION)
                 lengthTarget = (strlen(itemTmp->title)) * FONT_WIDTH + 5;
             else
                 lengthTarget = (strlen(itemTmp->title) + 2) * FONT_WIDTH + 5;
@@ -381,17 +386,31 @@ void EasyUI(uint8_t timer)
         EasyUIGetItemPos(page, item, index, timer);
         switch (item->funcType)
         {
-            case CALL_FUNCTION:
-                EasyUIDisplayStr(2, item->position, "- ");
-                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
-                break;
-            case JUMP_PAGE:
+            case ITEM_JUMP_PAGE:
                 EasyUIDisplayStr(2, item->position, "+ ");
                 EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
                 break;
-            case PAGE_DESCRIPTION:
+            case ITEM_PAGE_DESCRIPTION:
                 EasyUIDisplayStr(2, item->position, item->title);
+                break;
+            case ITEM_CHECKBOX:
+            case ITEM_RADIO_BUTTON:
+                EasyUIDisplayStr(2, item->position, "- ");
+                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
+                EasyUIDrawCheckbox(SCREEN_WIDTH - 1 - 5 * FONT_WIDTH / 2 - ITEM_HEIGHT,
+                                   item->position - (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1, ITEM_HEIGHT - 2, 3,
+                                   item->flag);
+                break;
+            case ITEM_SWITCH:
+                EasyUIDisplayStr(2, item->position, "- ");
+                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
+                if (item->flag == false)
+                    EasyUIDisplayStr(SCREEN_WIDTH - 1 - 6 * FONT_WIDTH, item->position, "off");
+                else
+                    EasyUIDisplayStr(SCREEN_WIDTH - 1 - 5 * FONT_WIDTH, item->position, "on");
             default:
+                EasyUIDisplayStr(2, item->position, "- ");
+                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
                 break;
         }
     }
@@ -399,7 +418,7 @@ void EasyUI(uint8_t timer)
     EasyUIDrawIndicator(page, index, timer);
 
     // Display navigation
-    if (page->itemHead->funcType == PAGE_DESCRIPTION)
+    if (page->itemHead->funcType == ITEM_PAGE_DESCRIPTION)
     {
         indexBackup = index;
         itemSum = page->itemTail->id;
@@ -446,23 +465,38 @@ void EasyUI(uint8_t timer)
         {
             if (item->id == index)
             {
-                if (item->funcType == JUMP_PAGE)
+                switch (item->funcType)
                 {
-                    if (layer < 9)
-                    {
-                        pageIndex[layer] = page->id;
-                        itemIndex[layer] = index;
-                        layer++;
-                        pageIndex[layer] = item->pageId;
-                        index = 0;
+                    case ITEM_JUMP_PAGE:
+                        if (layer < 9)
+                        {
+                            pageIndex[layer] = page->id;
+                            itemIndex[layer] = index;
+                            layer++;
+                            pageIndex[layer] = item->pageId;
+                            index = 0;
+                            for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+                            {
+                                itemTmp->position = 0;
+                                itemTmp->posForCal = 0;
+                            }
+                            EasyUITransitionAnim();
+                            break;
+                        } else
+                            break;
+                    case ITEM_CHECKBOX:
+                    case ITEM_SWITCH:
+                        item->flag = !item->flag;
+                        break;
+                    case ITEM_RADIO_BUTTON:
                         for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
                         {
-                            itemTmp->position = 0;
-                            itemTmp->posForCal = 0;
+                            if (itemTmp->funcType == ITEM_RADIO_BUTTON)
+                                itemTmp->flag = false;
                         }
-                        EasyUITransitionAnim();
+                        item->flag = !item->flag;
                         break;
-                    } else
+                    default:
                         break;
                 }
             }
