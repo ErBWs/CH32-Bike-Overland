@@ -5,8 +5,8 @@
  * @author  Baohan
  */
 
-#ifndef MM32F527X_E9P_MENU_H
-#define MM32F527X_E9P_MENU_H
+#ifndef _MENU_H
+#define _MENU_H
 
 #ifdef __cplusplus
 extern "C"
@@ -17,7 +17,7 @@ extern "C"
 #include "easy_ui.h"
 #include "easy_key.h"
 
-void EventSwapColor(uint8_t cnt, ...);
+//void EventSwapColor(EasyUIItem_t *item);
 
 void MenuInit();
 

@@ -325,7 +325,10 @@ void func_float_to_str (char *str, float number, uint8 point_bit)
         {
             *str ++ = '0';
             *str ++ = '.';
-            *str = '0';
+            for (int i = 0; i < point_bit; ++i)
+            {
+                *str ++ = '0';
+            }
             break;
         }
 
@@ -357,7 +360,10 @@ void func_float_to_str (char *str, float number, uint8 point_bit)
             *str ++ = '.';
             if(0 == data_float)
             {
-                *str = '0';
+                for (int i = 0; i < point_bit; ++i)
+                {
+                    *str ++ = '0';
+                }
             }
             else
             {

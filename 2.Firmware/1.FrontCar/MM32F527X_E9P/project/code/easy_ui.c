@@ -24,15 +24,16 @@ EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
  *
  * @note    Do not modify
  */
-void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...)
+void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...)
 {
     va_list variableArg;
     va_start(variableArg, func);
+    item->title = _title;
     item->funcType = func;
     switch (item->funcType)
     {
         case ITEM_CALL_FUNCTION:
-            item->Event = va_arg(variableArg, void (* )(uint8_t, ...));
+            item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
             break;
         case ITEM_JUMP_PAGE:
             item->pageId = va_arg(variableArg, int);
@@ -42,13 +43,16 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
         case ITEM_SWITCH:
             item->flag = va_arg(variableArg, bool);
             break;
+        case ITEM_CHANGE_VALUE:
+            item->param = va_arg(variableArg, double);
+            item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
+            break;
         default:
             break;
     }
     va_end(variableArg);
 
     item->next = NULL;
-    item->title = _title;
 
     if (page->itemHead == NULL)
     {
@@ -77,11 +81,18 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIF
  *
  * @note    Do not modify, the first page should always be the fist one to be added.
  */
-void EasyUIAddPage(EasyUIPage_t *page)
+void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...)
 {
+    va_list variableArg;
+    va_start(variableArg, func);
     page->itemHead = NULL;
     page->itemTail = NULL;
     page->next = NULL;
+
+    page->funcType = func;
+    if (page->funcType == PAGE_CUSTOM)
+        page->Event = va_arg(variableArg, void (*)(EasyUIPage_t * ));
+    va_end(variableArg);
 
     if (pageHead == NULL)
     {
@@ -326,6 +337,8 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
 
 
 EasyKey_t keyUp, keyDown, keyForward, keyBackward, keyConfirm;
+uint8_t opnForward, opnBackward;
+uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 /*!
  * @brief   Welcome Page with two size of photo
@@ -342,7 +355,9 @@ void EasyUIInit(uint8_t mode)
     EasyKeyInit(&keyDown, KEY_DOWN);
     EasyKeyInit(&keyForward, KEY_FORWARD);
     EasyKeyInit(&keyBackward, KEY_BACKWARD);
+#if KEY_NUM > 2
     EasyKeyInit(&keyConfirm, KEY_CONFIRM);
+#endif
 
     // Display the welcome photo and info
     if (mode)
@@ -358,6 +373,31 @@ void EasyUIInit(uint8_t mode)
 }
 
 
+void SyncOpnValue()
+{
+#if KEY_NUM == 2
+    opnForward = keyForward.isPressed;
+    opnBackward = keyBackward.isPressed;
+    opnEnter = keyForward.isHold;
+    opnExit = keyBackward.isHold;
+    opnUp = keyUp.isPressed;
+    opnDown = keyDown.isPressed;
+#elif KEY_NUM > 2
+    opnForward = keyForward.isPressed;
+    opnBackward = keyBackward.isPressed;
+    opnEnter = keyConfirm.isPressed;
+    opnExit = keyConfirm.isHold;
+    opnUp = keyUp.isPressed;
+    opnDown = keyDown.isPressed;
+#endif
+
+#if ROTARY == 1
+#endif
+}
+
+
+bool functionIsRunning = false;
+
 /*!
  * @brief   Main function of EasyUI
  *
@@ -371,8 +411,9 @@ void EasyUI(uint8_t timer)
     static uint8_t layer = 0;               // pageIndex[layer] / itemIndex[layer]
     static uint8_t index = 0, indexBackup = 0, itemSum = 0;
 
-    EasyUIClearBuffer();
+    SyncOpnValue();
     EasyUISetDrawColor(NORMAL);
+    EasyUIClearBuffer();
 
     // Get current page by id
     EasyUIPage_t *page = pageHead;
@@ -380,86 +421,9 @@ void EasyUI(uint8_t timer)
     {
         page = page->next;
     }
-    // Display every item in current page
-    for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
-    {
-        EasyUIGetItemPos(page, item, index, timer);
-        switch (item->funcType)
-        {
-            case ITEM_JUMP_PAGE:
-                EasyUIDisplayStr(2, item->position, "+ ");
-                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
-                break;
-            case ITEM_PAGE_DESCRIPTION:
-                EasyUIDisplayStr(2, item->position, item->title);
-                break;
-            case ITEM_CHECKBOX:
-            case ITEM_RADIO_BUTTON:
-                EasyUIDisplayStr(2, item->position, "- ");
-                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
-                EasyUIDrawCheckbox(SCREEN_WIDTH - 1 - 5 * FONT_WIDTH / 2 - ITEM_HEIGHT,
-                                   item->position - (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1, ITEM_HEIGHT - 2, 3,
-                                   item->flag);
-                break;
-            case ITEM_SWITCH:
-                EasyUIDisplayStr(2, item->position, "- ");
-                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
-                if (item->flag == false)
-                    EasyUIDisplayStr(SCREEN_WIDTH - 1 - 6 * FONT_WIDTH, item->position, "off");
-                else
-                    EasyUIDisplayStr(SCREEN_WIDTH - 1 - 5 * FONT_WIDTH, item->position, "on");
-            default:
-                EasyUIDisplayStr(2, item->position, "- ");
-                EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
-                break;
-        }
-    }
-    // Draw indicator
-    EasyUIDrawIndicator(page, index, timer);
 
-    // Display navigation
-    if (page->itemHead->funcType == ITEM_PAGE_DESCRIPTION)
-    {
-        indexBackup = index;
-        itemSum = page->itemTail->id;
-    } else
-    {
-        indexBackup = index + 1;
-        itemSum = page->itemTail->id + 1;
-    }
-    if (itemSum > 9)
-    {
-        EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 2);
-        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
-        if (indexBackup > 9)
-            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup, 2);
-        else
-            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup,
-                              1);
-    } else
-    {
-        EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 1);
-        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
-        EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup, 1);
-    }
-
-    // Key move reaction
-    itemSum = page->itemTail->id;
-    if (keyForward.isPressed)
-    {
-        if (index < itemSum)
-            index++;
-        else
-            index = 0;
-    }
-    if (keyBackward.isPressed)
-    {
-        if (index > 0)
-            index--;
-        else
-            index = itemSum;
-    }
-    if (keyConfirm.isPressed)
+    // If running function and hold the confirm button, quit the function
+    if (opnExit)
     {
         for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
         {
@@ -467,34 +431,9 @@ void EasyUI(uint8_t timer)
             {
                 switch (item->funcType)
                 {
-                    case ITEM_JUMP_PAGE:
-                        if (layer < 9)
-                        {
-                            pageIndex[layer] = page->id;
-                            itemIndex[layer] = index;
-                            layer++;
-                            pageIndex[layer] = item->pageId;
-                            index = 0;
-                            for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
-                            {
-                                itemTmp->position = 0;
-                                itemTmp->posForCal = 0;
-                            }
-                            EasyUITransitionAnim();
-                            break;
-                        } else
-                            break;
-                    case ITEM_CHECKBOX:
-                    case ITEM_SWITCH:
-                        item->flag = !item->flag;
-                        break;
-                    case ITEM_RADIO_BUTTON:
-                        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
-                        {
-                            if (itemTmp->funcType == ITEM_RADIO_BUTTON)
-                                itemTmp->flag = false;
-                        }
-                        item->flag = !item->flag;
+                    case ITEM_CALL_FUNCTION:
+                        functionIsRunning = false;
+                        EasyUITransitionAnim();
                         break;
                     default:
                         break;
@@ -502,21 +441,185 @@ void EasyUI(uint8_t timer)
             }
         }
     }
-    if (keyConfirm.isHold)
+
+    // Quit UI to run function
+    if (functionIsRunning)
     {
-        if (layer > 0)
+        for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
         {
-            pageIndex[layer] = 0;
-            itemIndex[layer] = 0;
-            layer--;
-            index = itemIndex[layer];
+            if (item->id == index)
+            {
+                item->Event(item);
+                break;
+            }
+        }
+        return;
+    }
+
+    if (page->funcType == PAGE_LIST)
+    {
+        // Display every item in current page
+        for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
+        {
+            EasyUIGetItemPos(page, item, index, timer);
+            switch (item->funcType)
+            {
+                case ITEM_JUMP_PAGE:
+                    EasyUIDisplayStr(2, item->position, "+ ");
+                    EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
+                    break;
+                case ITEM_PAGE_DESCRIPTION:
+                    EasyUIDisplayStr(2, item->position, item->title);
+                    break;
+                case ITEM_CHECKBOX:
+                case ITEM_RADIO_BUTTON:
+                    EasyUIDisplayStr(2, item->position, "- ");
+                    EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
+                    EasyUIDrawCheckbox(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH - ITEM_HEIGHT + 2,
+                                       item->position - (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1, ITEM_HEIGHT - 2, 3,
+                                       item->flag);
+                    break;
+                case ITEM_SWITCH:
+                    EasyUIDisplayStr(2, item->position, "- ");
+                    EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
+                    if (item->flag == false)
+                        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 6 * FONT_WIDTH, item->position, "off");
+                    else
+                        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 5 * FONT_WIDTH, item->position, "on");
+                    break;
+                case ITEM_CHANGE_VALUE:
+                    EasyUIDisplayStr(2, item->position, "- ");
+                    EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
+                    if (item->param < 10 && item->param >= 0)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 7 * FONT_WIDTH, item->position, item->param, 4, 2);
+                    else if (item->param < 100 && item->param > -10)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 8 * FONT_WIDTH, item->position, item->param, 4, 2);
+                    else if (item->param < 1000 && item->param > -100)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 9 * FONT_WIDTH, item->position, item->param, 4, 2);
+                    else if (item->param < 10000 && item->param > -1000)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 10 * FONT_WIDTH, item->position, item->param, 4, 2);
+                    else    // Hide because it's too long
+                        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 6 * FONT_WIDTH, item->position, "***");
+                    break;
+                default:
+                    EasyUIDisplayStr(2, item->position, "+ ");
+                    EasyUIDisplayStr(2 + 2 * FONT_WIDTH, item->position, item->title);
+                    break;
+            }
+        }
+        // Draw indicator
+        EasyUIDrawIndicator(page, index, timer);
+
+        // Display navigation
+        if (page->itemHead->funcType == ITEM_PAGE_DESCRIPTION)
+        {
+            indexBackup = index;
+            itemSum = page->itemTail->id;
+        } else
+        {
+            indexBackup = index + 1;
+            itemSum = page->itemTail->id + 1;
+        }
+        if (itemSum > 9)
+        {
+            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 2);
+            EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
+            if (indexBackup > 9)
+                EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup,
+                                  2);
+            else
+                EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT,
+                                  indexBackup,
+                                  1);
+        } else
+        {
+            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 1);
+            EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
+            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup,
+                              1);
+        }
+
+        // Key move reaction
+        itemSum = page->itemTail->id;
+        if (opnForward)
+        {
+            if (index < itemSum)
+                index++;
+            else
+                index = 0;
+        }
+        if (opnBackward)
+        {
+            if (index > 0)
+                index--;
+            else
+                index = itemSum;
+        }
+        if (opnEnter)
+        {
             for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
             {
-                item->position = 0;
-                item->posForCal = 0;
+                if (item->id == index)
+                {
+                    switch (item->funcType)
+                    {
+                        case ITEM_JUMP_PAGE:
+                            if (layer < 9)
+                            {
+                                pageIndex[layer] = page->id;
+                                itemIndex[layer] = index;
+                                layer++;
+                                pageIndex[layer] = item->pageId;
+                                index = 0;
+                                for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+                                {
+                                    itemTmp->position = 0;
+                                    itemTmp->posForCal = 0;
+                                }
+                                EasyUITransitionAnim();
+                                break;
+                            } else
+                                break;
+                        case ITEM_CHECKBOX:
+                        case ITEM_SWITCH:
+                            item->flag = !item->flag;
+                            break;
+                        case ITEM_RADIO_BUTTON:
+                            for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+                            {
+                                if (itemTmp->funcType == ITEM_RADIO_BUTTON)
+                                    itemTmp->flag = false;
+                            }
+                            item->flag = !item->flag;
+                            break;
+                        case ITEM_CALL_FUNCTION:
+                            functionIsRunning = true;
+                            EasyUITransitionAnim();
+                        default:
+                            break;
+                    }
+                }
             }
-            EasyUITransitionAnim();
         }
+        if (opnExit)
+        {
+            if (layer > 0)
+            {
+                pageIndex[layer] = 0;
+                itemIndex[layer] = 0;
+                layer--;
+                index = itemIndex[layer];
+                for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+                {
+                    itemTmp->position = 0;
+                    itemTmp->posForCal = 0;
+                }
+                EasyUITransitionAnim();
+            }
+        }
+    } else
+    {
+        page->Event(page);
     }
 
     EasyUISendBuffer();

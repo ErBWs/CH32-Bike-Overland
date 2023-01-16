@@ -35,6 +35,13 @@ extern EasyKey_t keyUp, keyDown;           // Used to control value up and down
 extern EasyKey_t keyForward, keyBackward;  // Used to control indicator movement
 extern EasyKey_t keyConfirm;               // Used to change page or call function
 
+// Operation response
+extern uint8_t opnForward, opnBackward;
+extern uint8_t opnEnter, opnExit, opnUp, opnDown;
+
+#define KEY_NUM         3
+#define ROTARY          0
+
 #define SCREEN_WIDTH            240
 #define SCREEN_HEIGHT           135
 #define FONT_WIDTH              6
@@ -49,6 +56,7 @@ extern EasyKey_t keyConfirm;               // Used to change page or call functi
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
 #define EasyUIDisplayUint(x, y, dat, num)                       (IPS114_ShowUint(x, y, dat, num))
+#define EasyUIDisplayFloat(x, y, dat, num, pointNum)            (IPS114_ShowFloat(x, y, dat, num, pointNum))
 #define EasyUIDrawDot(x, y, color)                              (IPS114_DrawPoint(x, y, color))
 #define EasyUIDrawBox(x, y, width, height, color)               (IPS114_DrawBox(x, y, width, height, color))
 #define EasyUIDrawRFrame(x, y, width, height, color)            (IPS114_DrawRFrame(x, y, width, height, color))
@@ -68,7 +76,13 @@ typedef enum
     ITEM_CHANGE_VALUE,
     ITEM_RADIO_BUTTON,
     ITEM_CHECKBOX
-} EasyUIFunc_e;
+} EasyUIItem_e;
+
+typedef enum
+{
+    PAGE_LIST,
+    PAGE_CUSTOM
+} EasyUIPage_e;
 
 typedef enum
 {
@@ -85,7 +99,7 @@ typedef struct EasyUI_item
 {
     struct EasyUI_item *next;
 
-    EasyUIFunc_e funcType;
+    EasyUIItem_e funcType;
     uint8_t id;
     int16_t lineId;
     float posForCal;
@@ -93,27 +107,33 @@ typedef struct EasyUI_item
     int16_t position;
     char *title;
 
-    bool flag;                          // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
-    float param;                        // ITEM_CHANGE_VALUE
-    EasyUIStep_e valueStep;             // ITEM_CHANGE_VALUE
-    uint8_t pageId;                     // ITEM_JUMP_PAGE
-    void (* Event)(uint8_t cnt, ...);   // ITEM_CALL_FUNCTION
+    bool flag;                                  // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
+    float param;                                // ITEM_CHANGE_VALUE
+    EasyUIStep_e valueStep;                     // ITEM_CHANGE_VALUE
+    uint8_t pageId;                             // ITEM_JUMP_PAGE
+    void (*Event)(struct EasyUI_item *item);    // ITEM_CALL_FUNCTION and ITEM_CHANGE_VALUE
 } EasyUIItem_t;
+
+extern bool functionIsRunning;
 
 typedef struct EasyUI_page
 {
     struct EasyUI_page *next;
 
+    EasyUIPage_e funcType;
     EasyUIItem_t *itemHead, *itemTail;
     uint8_t id;
+    void (*Event)(struct EasyUI_page *page);
 } EasyUIPage_t;
 
 extern EasyUIPage_t *pageHead, *pageTail;
 
-void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIFunc_e func, ...);
-void EasyUIAddPage(EasyUIPage_t *page);
+void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...);
+void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...);
 void EasyUITransitionAnim();
 void EasyUIDrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height);
+void SyncOpnValue();
+
 void EasyUIInit(uint8_t mode);
 void EasyUI(uint8_t timer);
 

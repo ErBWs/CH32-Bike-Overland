@@ -18,12 +18,6 @@ int main(void)
     while (1)
     {
         mpu6050_get_acc();
-        IPS114_ClearBuffer();
-//        IPS114_ShowStr(2, 4, "+ Checkbox1");
-//        IPS114_ShowStr(2, 20, "+ Checkbox2");
-//        IPS114_DrawCheckbox(71, 1, 14, 3, true);
-//        IPS114_DrawCheckbox(71, 17, 14, 3, false);
-        IPS114_SendBuffer();
 
     }
 }

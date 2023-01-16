@@ -14,8 +14,8 @@
 #include "zf_driver_gpio.h"
 
 #define PRESS_THRESHOLD 20      // Dithering elimination
-#define HOLD_THRESHOLD 200      // Time longer than this is considered as "hold"
-#define INTERVAL_THRESHOLD 150  // Trigger time interval less than this is considered as "multiclick"
+#define HOLD_THRESHOLD 100      // Time longer than this is considered as "hold"
+#define INTERVAL_THRESHOLD 80  // Trigger time interval less than this is considered as "multiclick"
 
 typedef struct EasyKey_typedef
 {
