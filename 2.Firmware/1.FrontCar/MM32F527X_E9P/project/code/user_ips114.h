@@ -52,6 +52,7 @@ void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, con
 void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
 void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
 void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color);
+void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height);
 void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue);
 
 void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint8_t *pic);

@@ -205,10 +205,14 @@ void IPS114_ShowChar(int16 x, int16 y, const char dat)
             {
                 if (temp_top & 0x01)
                 {
-                    if (IPS114_colorMode == NORMAL)
+                    if (IPS114_colorMode == XOR)
+                    {
+                        if (IPS114_buffer[y + j][x + i] == IPS114_penColor)
+                            IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
+                        else
+                            IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                    } else
                         IPS114_buffer[y + j][x + i] = IPS114_penColor;
-                    else
-                        IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
                 }
                 temp_top >>= 1;
             } else
@@ -401,6 +405,45 @@ void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, cons
 {
     IPS114_DrawRFrame(x, y, width, height, color);
     IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, color);
+}
+
+
+/*!
+ * @brief   Blur the background for rounded box
+ *
+ * @param   x       X of the rounded box
+ * @param   y       Y of the rounded box
+ * @param   width   Width of the rounded box
+ * @param   height  Height of the rounded box
+ * @return  void
+ *
+ * @note    Use before clearing the buffer
+ */
+void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height)
+{
+    // Background blur
+    for (int j = 1; j < 135; j += 2)
+    {
+        for (int i = 1; i < 240 + 1; i += 2)
+        {
+            IPS114_DrawPoint(i, j, IPS114_backgroundColor);
+        }
+    }
+    IPS114_SendBuffer();
+    for (int j = 1; j < 135 + 1; j += 2)
+    {
+        for (int i = 1; i < 240 + 1; i += 2)
+        {
+            IPS114_DrawPoint(i - 1, j - 1, IPS114_backgroundColor);
+        }
+    }
+    IPS114_SendBuffer();
+
+    // Draw rounded frame filled with background color
+    IPS114_SetDrawColor(NORMAL);
+    IPS114_DrawRFrame(x, y, width, height, IPS114_penColor);
+    IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, IPS114_backgroundColor);
+    IPS114_SendBuffer();
 }
 
 

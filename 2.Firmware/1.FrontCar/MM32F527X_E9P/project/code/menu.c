@@ -42,9 +42,9 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &main_itemWhat, "Switch2", ITEM_SWITCH, true);
 
     EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Speed PID]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKp, "speed Kp", ITEM_CHANGE_VALUE, (float) 0.93);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKi, "speed Ki", ITEM_CHANGE_VALUE, (float) -1.90);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKd, "speed Kd", ITEM_CHANGE_VALUE, (float) 1);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKp, "speed Kp", ITEM_CHANGE_VALUE, (float) 0.93, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKi, "speed Ki", ITEM_CHANGE_VALUE, (float) -1.90, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKd, "speed Kdgkhjgtycvklu", ITEM_CHANGE_VALUE, (float) 1, EasyUIEventChangeFloat);
 
     EasyUIAddItem(&pageServoPID, &titleServoSpd, "[Servo PID]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageServoPID, &servoPID_itemKp, "servo Kp", ITEM_CHANGE_VALUE, (float) 390.29);
