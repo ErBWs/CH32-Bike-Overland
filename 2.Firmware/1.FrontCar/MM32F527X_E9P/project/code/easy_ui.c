@@ -31,7 +31,6 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
     item->param = 0;
     item->paramDefault = 0;
     item->paramBackup = 0;
-    item->valueStep = 0;
     item->pageId = 0;
     item->Event = NULL;
 
@@ -178,6 +177,9 @@ void EasyUITransitionAnim()
  */
 void EasyUIChgValInterface(EasyUIItem_t *item)
 {
+    int16_t x, y;
+    uint16_t width, height;
+
     // Background blur
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -194,19 +196,6 @@ void EasyUIChgValInterface(EasyUIItem_t *item)
             EasyUIDrawDot(i - 1, j - 1, IPS114_backgroundColor);
         }
     }
-    EasyUISendBuffer();
-
-    int16_t x, y;
-    uint16_t width, height;
-
-    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
-//    width =
-
-    // Draw rounded frame filled with background color
-    EasyUISetDrawColor(NORMAL);
-    EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
-//    EasyUIDrawRFrame(x, y, width, height, IPS114_penColor);
-//    EasyUIDrawBox(x + 1, y + 1, width - 2, height - 2, IPS114_backgroundColor);
     EasyUISendBuffer();
 }
 
@@ -356,35 +345,388 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
 
 void EasyUIEventChangeUint(EasyUIItem_t *item)
 {
-    item->param += 0.001;
-    ips114_show_float(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, item->param, 4, 2);
+    static int16_t x, y;
+    static uint16_t width, height;
+    static uint8_t index = 1, step = 1;
+    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
+    static bool changeVal = false, changeStep = false;
+
+    EasyUISetDrawColor(NORMAL);
+
+    height = ITEM_HEIGHT * 4 + 2;
+    if (strlen(item->title) + 1 > 12)
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
+    else
+        width = 12 * FONT_WIDTH + 5;
+    if (width < 2 * SCREEN_WIDTH / 3)
+        width = 2 * SCREEN_WIDTH / 3;
+    x = (SCREEN_WIDTH - width) / 2;
+    y = (SCREEN_HEIGHT - height) / 2;
+
+    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
+    EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
+    EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
+    EasyUIDisplayStr(x + 3, y + 2 * ITEM_HEIGHT + itemHeightOffset, "Step:");
+    EasyUIDisplayStr(x + 3, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Save");
+    EasyUIDisplayStr(x + width - 6 * FONT_WIDTH - 4, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Return");
+
+    if (changeVal)
+    {
+        EasyUISetDrawColor(XOR);
+        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUISetDrawColor(NORMAL);
+        if (opnUp)
+            item->param += step;
+        if (opnDown)
+        {
+            if (item->param - step >= 0)
+                item->param -= step;
+            else
+                item->param = 0;
+        }
+    } else if (changeStep)
+    {
+        EasyUISetDrawColor(XOR);
+        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUISetDrawColor(NORMAL);
+        if (opnUp)
+        {
+            if (step == 1)
+                step = 10;
+            else if (step == 10)
+                step = 100;
+            else
+                step = 1;
+        }
+        if (opnDown)
+        {
+            if (step == 100)
+                step = 10;
+            else if (step == 10)
+                step = 1;
+            else
+                step = 100;
+        }
+    } else
+    {
+        if (opnForward)
+        {
+            if (index < 4)
+                index++;
+            else
+                index = 1;
+        }
+        if (opnBackward)
+        {
+            if (index > 1)
+                index--;
+            else
+                index = 4;
+        }
+    }
+    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, item->param, 8, 2);
+    if (step == 1)
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
+    else if (step == 10)
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+10");
+    else
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+100");
+
+    if (index == 1)
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else if (index == 2)
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else if (index == 3)
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else
+        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, 16,
+                         IPS114_penColor);
+
+    if (opnEnter)
+    {
+        if (index == 1)
+            changeVal = true;
+        else if (index == 2)
+            changeStep = true;
+        else if (index == 3)
+        {
+            item->paramBackup = item->param;
+            functionIsRunning = false;
+            index = 1;
+            step = 1;
+        } else
+        {
+            item->param = item->paramBackup;
+            functionIsRunning = false;
+            index = 1;
+            step = 1;
+        }
+    }
+    if (opnExit)
+    {
+        if (index == 1)
+            changeVal = false;
+        else if (index == 2)
+            changeStep = false;
+    }
+
     IPS114_SendBuffer();
 }
 
 
 void EasyUIEventChangeInt(EasyUIItem_t *item)
 {
-    item->param += 0.01;
-    ips114_show_float(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, item->param, 4, 2);
+    static int16_t x, y;
+    static uint16_t width, height;
+    static uint8_t index = 1, step = 1;
+    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
+    static bool changeVal = false, changeStep = false;
+
+    EasyUISetDrawColor(NORMAL);
+
+    height = ITEM_HEIGHT * 4 + 2;
+    if (strlen(item->title) + 1 > 12)
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
+    else
+        width = 12 * FONT_WIDTH + 5;
+    if (width < 2 * SCREEN_WIDTH / 3)
+        width = 2 * SCREEN_WIDTH / 3;
+    x = (SCREEN_WIDTH - width) / 2;
+    y = (SCREEN_HEIGHT - height) / 2;
+
+    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
+    EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
+    EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
+    EasyUIDisplayStr(x + 3, y + 2 * ITEM_HEIGHT + itemHeightOffset, "Step:");
+    EasyUIDisplayStr(x + 3, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Save");
+    EasyUIDisplayStr(x + width - 6 * FONT_WIDTH - 4, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Return");
+
+    if (changeVal)
+    {
+        EasyUISetDrawColor(XOR);
+        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUISetDrawColor(NORMAL);
+        if (opnUp)
+            item->param += step;
+        if (opnDown)
+            item->param -= step;
+    } else if (changeStep)
+    {
+        EasyUISetDrawColor(XOR);
+        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUISetDrawColor(NORMAL);
+        if (opnUp)
+        {
+            if (step == 1)
+                step = 10;
+            else if (step == 10)
+                step = 100;
+            else
+                step = 1;
+        }
+        if (opnDown)
+        {
+            if (step == 100)
+                step = 10;
+            else if (step == 10)
+                step = 1;
+            else
+                step = 100;
+        }
+    } else
+    {
+        if (opnForward)
+        {
+            if (index < 4)
+                index++;
+            else
+                index = 1;
+        }
+        if (opnBackward)
+        {
+            if (index > 1)
+                index--;
+            else
+                index = 4;
+        }
+    }
+    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, item->param, 8, 2);
+    if (step == 1)
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
+    else if (step == 10)
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+10");
+    else
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+100");
+
+    if (index == 1)
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else if (index == 2)
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else if (index == 3)
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else
+        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, 16,
+                         IPS114_penColor);
+
+    if (opnEnter)
+    {
+        if (index == 1)
+            changeVal = true;
+        else if (index == 2)
+            changeStep = true;
+        else if (index == 3)
+        {
+            item->paramBackup = item->param;
+            functionIsRunning = false;
+            index = 1;
+            step = 1;
+        } else
+        {
+            item->param = item->paramBackup;
+            functionIsRunning = false;
+            index = 1;
+            step = 1;
+        }
+    }
+    if (opnExit)
+    {
+        if (index == 1)
+            changeVal = false;
+        else if (index == 2)
+            changeStep = false;
+    }
+
     IPS114_SendBuffer();
 }
 
 
 void EasyUIEventChangeFloat(EasyUIItem_t *item)
 {
-    item->param += 0.01;
-    ips114_show_float(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, item->param, 4, 2);
-    IPS114_SendBuffer();
+    static int16_t x, y;
+    static uint16_t width, height;
+    static uint8_t index = 1;
+    static double step = 0.01;
+    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
+    static bool changeVal = false, changeStep = false;
+
+    EasyUISetDrawColor(NORMAL);
+
+    height = ITEM_HEIGHT * 4 + 2;
+    if (strlen(item->title) + 1 > 12)
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
+    else
+        width = 12 * FONT_WIDTH + 5;
+    if (width < 2 * SCREEN_WIDTH / 3)
+        width = 2 * SCREEN_WIDTH / 3;
+    x = (SCREEN_WIDTH - width) / 2;
+    y = (SCREEN_HEIGHT - height) / 2;
+
+    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
+    EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
+    EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
+    EasyUIDisplayStr(x + 3, y + 2 * ITEM_HEIGHT + itemHeightOffset, "Step:");
+    EasyUIDisplayStr(x + 3, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Save");
+    EasyUIDisplayStr(x + width - 6 * FONT_WIDTH - 4, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Return");
+
+    if (changeVal)
+    {
+        EasyUISetDrawColor(XOR);
+        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUISetDrawColor(NORMAL);
+        if (opnUp)
+            item->param += step;
+        if (opnDown)
+            item->param -= step;
+    } else if (changeStep)
+    {
+        EasyUISetDrawColor(XOR);
+        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUISetDrawColor(NORMAL);
+        if (opnUp)
+        {
+            if (step == 0.01)
+                step = 0.1;
+            else if (step == 0.1)
+                step = 1;
+            else
+                step = 0.01;
+        }
+        if (opnDown)
+        {
+            if (step == 0.01)
+                step = 1;
+            else if (step == 1)
+                step = 0.1;
+            else
+                step = 0.01;
+        }
+    } else
+    {
+        if (opnForward)
+        {
+            if (index < 4)
+                index++;
+            else
+                index = 1;
+        }
+        if (opnBackward)
+        {
+            if (index > 1)
+                index--;
+            else
+                index = 4;
+        }
+    }
+    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, item->param, 8, 2);
+    if (step == 0.01)
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+0.01");
+    else if (step == 0.1)
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+0.1");
+    else
+        EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
+
+    if (index == 1)
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else if (index == 2)
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else if (index == 3)
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, 16, IPS114_penColor);
+    else
+        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, 16,
+                         IPS114_penColor);
 
     if (opnEnter)
     {
-        item->paramBackup = item->param;
-        functionIsRunning = false;
-    } else if (opnExit)
-    {
-        item->param = item->paramBackup;
-        functionIsRunning = false;
+        if (index == 1)
+            changeVal = true;
+        else if (index == 2)
+            changeStep = true;
+        else if (index == 3)
+        {
+            item->paramBackup = item->param;
+            functionIsRunning = false;
+            index = 1;
+            step = 0.01;
+        } else
+        {
+            item->param = item->paramBackup;
+            functionIsRunning = false;
+            index = 1;
+            step = 0.01;
+        }
     }
+    if (opnExit)
+    {
+        if (index == 1)
+            changeVal = false;
+        else if (index == 2)
+            changeStep = false;
+    }
+
+    IPS114_SendBuffer();
 }
 
 
@@ -485,7 +827,11 @@ void EasyUI(uint8_t timer)
                 {
                     case ITEM_CALL_FUNCTION:
                         if (opnExit)
+                        {
                             functionIsRunning = false;
+                            EasyUITransitionAnim();
+                        } else
+                            item->Event(item);
                         break;
                     default:
                         item->Event(item);
@@ -636,7 +982,7 @@ void EasyUI(uint8_t timer)
                             break;
                         case ITEM_CHANGE_VALUE:
                             functionIsRunning = true;
-//                            EasyUIDrawRBoxWithBlur(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3);
+                            EasyUIChgValInterface(item);
                             break;
                         case ITEM_CALL_FUNCTION:
                             functionIsRunning = true;

@@ -84,17 +84,6 @@ typedef enum
     PAGE_CUSTOM
 } EasyUIPage_e;
 
-typedef enum
-{
-    FLOAT_001,
-    FLOAT_01,
-    FLOAT_1,
-
-    INT_1,
-    INT_10,
-    INT_100
-} EasyUIStep_e;
-
 typedef struct EasyUI_item
 {
     struct EasyUI_item *next;
@@ -112,7 +101,6 @@ typedef struct EasyUI_item
     float param;                                // ITEM_CHANGE_VALUE
     float paramDefault;                         // Factory default setting
     float paramBackup;                          // ITEM_CHANGE_VALUE
-    EasyUIStep_e valueStep;                     // ITEM_CHANGE_VALUE
     uint8_t pageId;                             // ITEM_JUMP_PAGE
     void (*Event)(struct EasyUI_item *item);    // ITEM_CALL_FUNCTION and ITEM_CHANGE_VALUE
 } EasyUIItem_t;

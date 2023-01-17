@@ -16,10 +16,7 @@ EasyUIItem_t servoPID_itemKp, servoPID_itemKi, servoPID_itemKd;
 
 void EventSwapColor(EasyUIItem_t *item)
 {
-    item->param += 0.001;
-    IPS114_ClearBuffer();
-    EasyUIDisplayFloat(0, 0, item->param, 4, 2);
-    IPS114_SendBuffer();
+    ips114_show_float(0, 0, -12345678.23, 8, 2);
 }
 
 
@@ -30,9 +27,8 @@ void MenuInit()
     EasyUIAddPage(&pageServoPID, PAGE_LIST);
 
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageMain, &main_itemRun, "Run", ITEM_CALL_FUNCTION, EventSwapColor);
-    EasyUIAddItem(&pageMain, &main_itemSpdPID, "Speed PID param", ITEM_JUMP_PAGE, 1);
-    EasyUIAddItem(&pageMain, &main_itemServoPID, "Servo PID param", ITEM_JUMP_PAGE, 2);
+//    EasyUIAddItem(&pageMain, &main_itemRun, "Run", ITEM_CALL_FUNCTION, EventSwapColor);
+    EasyUIAddItem(&pageMain, &main_itemSpdPID, "Change Value", ITEM_JUMP_PAGE, pageSpdPID.id);
     EasyUIAddItem(&pageMain, &main_itemThreshold, "Checkbox1", ITEM_CHECKBOX, false);
     EasyUIAddItem(&pageMain, &main_itemImage, "Checkbox2", ITEM_CHECKBOX, true);
     EasyUIAddItem(&pageMain, &main_itemMultiClick, "Radio button1", ITEM_RADIO_BUTTON, false);
@@ -41,13 +37,8 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &main_itemNone, "Switch1", ITEM_SWITCH, true);
     EasyUIAddItem(&pageMain, &main_itemWhat, "Switch2", ITEM_SWITCH, true);
 
-    EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Speed PID]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKp, "speed Kp", ITEM_CHANGE_VALUE, (float) 0.93, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKi, "speed Ki", ITEM_CHANGE_VALUE, (float) -1.90, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKd, "speed Kdgkhjgtycvklu", ITEM_CHANGE_VALUE, (float) 1, EasyUIEventChangeFloat);
-
-    EasyUIAddItem(&pageServoPID, &titleServoSpd, "[Servo PID]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageServoPID, &servoPID_itemKp, "servo Kp", ITEM_CHANGE_VALUE, (float) 390.29);
-    EasyUIAddItem(&pageServoPID, &servoPID_itemKi, "servo Ki", ITEM_CHANGE_VALUE, (float) 0);
-    EasyUIAddItem(&pageServoPID, &servoPID_itemKd, "servo Kd", ITEM_CHANGE_VALUE, (float) -9985.90);
+    EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Change Value]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKp, "Test float", ITEM_CHANGE_VALUE, 0.73, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKi, "Test int", ITEM_CHANGE_VALUE, 3.0, EasyUIEventChangeInt);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKd, "Test unsigned int", ITEM_CHANGE_VALUE, 14.0, EasyUIEventChangeUint);
 }

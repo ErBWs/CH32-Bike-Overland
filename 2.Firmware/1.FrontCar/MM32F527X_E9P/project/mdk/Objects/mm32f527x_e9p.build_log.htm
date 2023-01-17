@@ -27,22 +27,22 @@ Project File Date:  01/14/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'mm32f527x_e9p_project'
-../code/easy_ui.c(39): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+../code/easy_ui.c(38): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
     va_start(variableArg, func);
                           ^
 ../code/easy_ui.c(27): note: parameter of type 'EasyUIItem_e' is declared here
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...)
                                                                                       ^
-../code/easy_ui.c(101): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+../code/easy_ui.c(100): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
     va_start(variableArg, func);
                           ^
-../code/easy_ui.c(96): note: parameter of type 'EasyUIPage_e' is declared here
+../code/easy_ui.c(95): note: parameter of type 'EasyUIPage_e' is declared here
 void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...)
                                                     ^
 2 warnings generated.
 compiling easy_ui.c...
 linking...
-Program Size: Code=16872 RO-data=13480 RW-data=76 ZI-data=74648  
+Program Size: Code=18660 RO-data=13456 RW-data=96 ZI-data=74372  
 ".\Objects\mm32f527x_e9p.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
