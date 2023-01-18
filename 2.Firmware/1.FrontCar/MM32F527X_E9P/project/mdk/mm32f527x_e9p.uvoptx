@@ -2420,12 +2420,24 @@
     <File>
       <GroupNumber>8</GroupNumber>
       <FileNumber>180</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\code\user_flash.c</PathWithFileName>
+      <FilenameWithoutPath>user_flash.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>181</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\code\本文件夹作用.txt</PathWithFileName>
-      <FilenameWithoutPath>本文件夹作用.txt</FilenameWithoutPath>
+      <PathWithFileName>..\code\user_flash.h</PathWithFileName>
+      <FilenameWithoutPath>user_flash.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -16,6 +16,9 @@ extern "C"
 #include "easy_key.h"
 #include "zf_device_ips114.h"
 #include "zf_driver_uart.h"
+#include "zf_driver_flash.h"
+
+#include "user_flash.h"
 #include "user_ips114.h"
 #include "profile_photo_erbws.h"
 #include <string.h>
@@ -47,6 +50,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define FONT_WIDTH              6
 #define FONT_HEIGHT             8
 #define ITEM_HEIGHT             16
+#define SCROLL_BAR_WIDTH        4
 #define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
@@ -75,7 +79,8 @@ typedef enum
     ITEM_SWITCH,
     ITEM_CHANGE_VALUE,
     ITEM_RADIO_BUTTON,
-    ITEM_CHECKBOX
+    ITEM_CHECKBOX,
+    ITEM_MESSAGE
 } EasyUIItem_e;
 
 typedef enum
@@ -96,11 +101,12 @@ typedef struct EasyUI_item
     int16_t position;
     char *title;
 
-    bool flag;                                  // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
+    char *msg;                                  // ITEM_MESSAGE
+    bool *flag;                                 // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
     bool flagDefault;                           // Factory default setting
-    float param;                                // ITEM_CHANGE_VALUE
-    float paramDefault;                         // Factory default setting
-    float paramBackup;                          // ITEM_CHANGE_VALUE
+    double *param;                               // ITEM_CHANGE_VALUE
+    double paramDefault;                         // Factory default setting
+    double paramBackup;                          // ITEM_CHANGE_VALUE
     uint8_t pageId;                             // ITEM_JUMP_PAGE
     void (*Event)(struct EasyUI_item *item);    // ITEM_CALL_FUNCTION and ITEM_CHANGE_VALUE
 } EasyUIItem_t;
@@ -127,6 +133,8 @@ void EasyUISyncOpnValue();
 void EasyUIEventChangeUint(EasyUIItem_t *item);
 void EasyUIEventChangeInt(EasyUIItem_t *item);
 void EasyUIEventChangeFloat(EasyUIItem_t *item);
+void EasyUIEventSaveSettings(EasyUIItem_t *item);
+void EasyUIEventResetSettings(EasyUIItem_t *item);
 
 void EasyUIInit(uint8_t mode);
 void EasyUI(uint8_t timer);

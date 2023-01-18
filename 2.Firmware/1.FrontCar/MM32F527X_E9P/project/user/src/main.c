@@ -7,8 +7,8 @@ int main(void)
     debug_init();
 
     // User initializations
-    EasyUIInit(1);
     MenuInit();
+    EasyUIInit(1);
 
     mpu6050_init();
 

@@ -17,18 +17,21 @@ EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
  * @param   item        EasyUI item struct
  * @param   _title      String of item title
  * @param   func        ITEM_CALL_FUNCTION / ITEM_JUMP_PAGE
- * @param   ...         If ITEM_CALL_FUNCTION, just fill this with a function
- *                      If ITEM_JUMP_PAGE, just fill this with target page's id
- *                      If ITEM_PAGE_DESCRIPTION, ignore this
+ * @param   ...         ITEM_CALL_FUNCTION: fill with function
+ *                      ITEM_JUMP_PAGE: fill with target page id
+ *                      ITEM_CHECKBOX / ITEM_RADIO_BUTTON / ITEM_SWITCH: fill with bool value
+ *                      ITEM_CHANGE_VALUE: fill with param that need to be changed and matched function
  * @return  void
  *
  * @note    Do not modify
+ *          ITEM_CHANGE_VALUE: the incoming param should always be double *,
+ *          and cannot use casted variables(Don't know why)
  */
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...)
 {
-    item->flag = false;
+    *item->flag = false;
     item->flagDefault = false;
-    item->param = 0;
+    *item->param = 0;
     item->paramDefault = 0;
     item->paramBackup = 0;
     item->pageId = 0;
@@ -49,15 +52,18 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
         case ITEM_CHECKBOX:
         case ITEM_RADIO_BUTTON:
         case ITEM_SWITCH:
-            item->flag = va_arg(variableArg, int);
-            item->flagDefault = item->flag;
+            item->flag = va_arg(variableArg, bool *);
+            item->flagDefault = *item->flag;
             break;
         case ITEM_CHANGE_VALUE:
-            item->param = va_arg(variableArg, double);
-            item->paramBackup = item->param;
-            item->paramDefault = item->param;
+            item->param = va_arg(variableArg, double *);
+            item->paramBackup = *item->param;
+            item->paramDefault = *item->param;
             item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
             break;
+        case ITEM_MESSAGE:
+            item->msg = va_arg(variableArg, char *);
+            item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
         default:
             break;
     }
@@ -170,20 +176,16 @@ void EasyUITransitionAnim()
 /*!
  * @brief   ITEM_CHANGE_VALUE interface
  *
- * @param   item    EasyUI item struct
+ * @param   void
  * @return  void
  *
  * @note    Internal call
  */
-void EasyUIChgValInterface(EasyUIItem_t *item)
+void EasyUIBackgroundBlur()
 {
-    int16_t x, y;
-    uint16_t width, height;
-
-    // Background blur
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
-        for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
+        for (int i = 0; i < SCREEN_WIDTH + 1; i += 2)
         {
             EasyUIDrawDot(i, j, IPS114_backgroundColor);
         }
@@ -193,10 +195,34 @@ void EasyUIChgValInterface(EasyUIItem_t *item)
     {
         for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
         {
-            EasyUIDrawDot(i - 1, j - 1, IPS114_backgroundColor);
+            EasyUIDrawDot(i, j, IPS114_backgroundColor);
         }
     }
     EasyUISendBuffer();
+    for (int j = 0; j < SCREEN_HEIGHT + 1; j += 2)
+    {
+        for (int i = 1; i < SCREEN_WIDTH + 1; i += 2)
+        {
+            EasyUIDrawDot(i, j, IPS114_backgroundColor);
+        }
+    }
+    EasyUISendBuffer();
+}
+
+
+void EasyUIDrawMsgBox(char *msg)
+{
+    uint16_t width = strlen(msg) * FONT_WIDTH + 5;
+    uint16_t x, y;
+    uint8_t offset = 2;
+    x = (SCREEN_WIDTH - width) / 2;
+    y = (SCREEN_HEIGHT - ITEM_HEIGHT) / 2;
+    EasyUIBackgroundBlur();
+    EasyUIDrawRFrame(x + offset, y - offset, width, ITEM_HEIGHT, IPS114_penColor);
+    EasyUIDrawRBox(x - offset, y + offset, width, ITEM_HEIGHT, IPS114_penColor);
+    EasyUISetDrawColor(XOR);
+    EasyUIDisplayStr(x - offset + 2, y + offset + (ITEM_HEIGHT - FONT_HEIGHT) / 2, msg);
+    EasyUISetDrawColor(NORMAL);
 }
 
 
@@ -273,7 +299,7 @@ void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uin
 
 
 /*!
- * @brief   Get position of indicator with linear animation
+ * @brief   Get position of indicator and scroll bar with linear animation
  *
  * @param   page    Struct of page
  * @param   index   Current index
@@ -329,10 +355,11 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
         y += stepY;
     }
 
-    // Draw rounded box
+    // Draw rounded box and scroll bar
     EasyUISetDrawColor(XOR);
     EasyUIDrawRBox(0, (int16_t) y, (int16_t) length, ITEM_HEIGHT, IPS114_penColor);
     EasyUISetDrawColor(NORMAL);
+    EasyUIDrawRBox(SCREEN_WIDTH - SCROLL_BAR_WIDTH, y, SCROLL_BAR_WIDTH, ITEM_HEIGHT, IPS114_penColor);
     lastIndex = index;
 
     // Time counter
@@ -343,6 +370,12 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
 }
 
 
+/*!
+ * @brief   Change variable's value
+ *
+ * @param   item    EasyUI item struct
+ * @return  void
+ */
 void EasyUIEventChangeUint(EasyUIItem_t *item)
 {
     static int16_t x, y;
@@ -377,13 +410,13 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
         EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
-            item->param += step;
+            *item->param += step;
         if (opnDown)
         {
-            if (item->param - step >= 0)
-                item->param -= step;
+            if (*item->param - step >= 0)
+                *item->param -= step;
             else
-                item->param = 0;
+                *item->param = 0;
         }
     } else if (changeStep)
     {
@@ -425,7 +458,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
                 index = 4;
         }
     }
-    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, item->param, 8, 2);
+    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 8, 2);
     if (step == 1)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
     else if (step == 10)
@@ -451,14 +484,16 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
             changeStep = true;
         else if (index == 3)
         {
-            item->paramBackup = item->param;
+            item->paramBackup = *item->param;
             functionIsRunning = false;
+            EasyUIBackgroundBlur();
             index = 1;
             step = 1;
         } else
         {
-            item->param = item->paramBackup;
+            *item->param = item->paramBackup;
             functionIsRunning = false;
+            EasyUIBackgroundBlur();
             index = 1;
             step = 1;
         }
@@ -473,8 +508,6 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
 
     IPS114_SendBuffer();
 }
-
-
 void EasyUIEventChangeInt(EasyUIItem_t *item)
 {
     static int16_t x, y;
@@ -509,9 +542,9 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
         EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
-            item->param += step;
+            *item->param += step;
         if (opnDown)
-            item->param -= step;
+            *item->param -= step;
     } else if (changeStep)
     {
         EasyUISetDrawColor(XOR);
@@ -552,7 +585,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
                 index = 4;
         }
     }
-    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, item->param, 8, 2);
+    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 8, 2);
     if (step == 1)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
     else if (step == 10)
@@ -578,14 +611,16 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
             changeStep = true;
         else if (index == 3)
         {
-            item->paramBackup = item->param;
+            item->paramBackup = *item->param;
             functionIsRunning = false;
+            EasyUIBackgroundBlur();
             index = 1;
             step = 1;
         } else
         {
-            item->param = item->paramBackup;
+            *item->param = item->paramBackup;
             functionIsRunning = false;
+            EasyUIBackgroundBlur();
             index = 1;
             step = 1;
         }
@@ -600,8 +635,6 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
 
     IPS114_SendBuffer();
 }
-
-
 void EasyUIEventChangeFloat(EasyUIItem_t *item)
 {
     static int16_t x, y;
@@ -637,9 +670,9 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
         EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
-            item->param += step;
+            *item->param += step;
         if (opnDown)
-            item->param -= step;
+            *item->param -= step;
     } else if (changeStep)
     {
         EasyUISetDrawColor(XOR);
@@ -680,7 +713,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
                 index = 4;
         }
     }
-    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, item->param, 8, 2);
+    EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 8, 2);
     if (step == 0.01)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+0.01");
     else if (step == 0.1)
@@ -706,14 +739,16 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
             changeStep = true;
         else if (index == 3)
         {
-            item->paramBackup = item->param;
+            item->paramBackup = *item->param;
             functionIsRunning = false;
+            EasyUIBackgroundBlur();
             index = 1;
             step = 0.01;
         } else
         {
-            item->param = item->paramBackup;
+            *item->param = item->paramBackup;
             functionIsRunning = false;
+            EasyUIBackgroundBlur();
             index = 1;
             step = 0.01;
         }
@@ -727,6 +762,99 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
     }
 
     IPS114_SendBuffer();
+}
+
+
+void EasyUIEventSaveSettings(EasyUIItem_t *item)
+{
+    static uint16_t bufIndex = 0;      // Flash buffer array index(0-255)
+    static uint8_t secIndex = 63;     // Flash section index(63-)
+    static uint8_t pageIndex = 3;      // Flash page index(3-0)
+    uint32_t arr[2];
+
+    for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
+    {
+        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+        {
+            switch (itemTmp->funcType)
+            {
+                case ITEM_CHECKBOX:
+                case ITEM_RADIO_BUTTON:
+                case ITEM_SWITCH:
+                    if (bufIndex < 256)
+                    {
+                        flash_union_buffer[bufIndex].uint32_type = *itemTmp->flag;
+                        bufIndex++;
+                    } else if (pageIndex > 0)
+                    {
+                        // Change page automatically
+                        flash_write_page_from_buffer(secIndex, pageIndex);
+                        flash_buffer_clear();
+                        pageIndex--;
+                        bufIndex = 0;
+                    } else
+                    {
+                        // Change section automatically
+                        flash_write_page_from_buffer(secIndex, pageIndex);
+                        flash_buffer_clear();
+                        pageIndex = 3;
+                        bufIndex = 0;
+                        secIndex--;
+                    }
+                    break;
+                case ITEM_CHANGE_VALUE:
+                    if (bufIndex < 256)
+                    {
+                        DoubleToInt(*itemTmp->param, arr);
+                        flash_union_buffer[bufIndex].uint32_type = arr[0];
+                        flash_union_buffer[++bufIndex].uint32_type = arr[1];
+                        bufIndex++;
+                    } else if (pageIndex > 0)
+                    {
+                        // Change page automatically
+                        flash_write_page_from_buffer(secIndex, pageIndex);
+                        flash_buffer_clear();
+                        pageIndex--;
+                        bufIndex = 0;
+                    } else
+                    {
+                        // Change section automatically
+                        flash_write_page_from_buffer(secIndex, pageIndex);
+                        flash_buffer_clear();
+                        pageIndex = 3;
+                        bufIndex = 0;
+                        secIndex--;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    flash_write_page_from_buffer(secIndex, pageIndex);
+    functionIsRunning = false;
+    EasyUIBackgroundBlur();
+}
+void EasyUIEventResetSettings(EasyUIItem_t *item)
+{
+    for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
+    {
+        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+        {
+            switch (itemTmp->funcType)
+            {
+                case ITEM_CHECKBOX:
+                case ITEM_RADIO_BUTTON:
+                case ITEM_SWITCH:
+                    *itemTmp->flag = itemTmp->flagDefault;
+                    break;
+                case ITEM_CHANGE_VALUE:
+                    *itemTmp->param = itemTmp->paramDefault;
+            }
+        }
+    }
+    functionIsRunning = false;
+    EasyUIBackgroundBlur();
 }
 
 
@@ -745,6 +873,7 @@ void EasyUIInit(uint8_t mode)
     EasyUIScreenInit();
     EasyUIClearBuffer();
 
+    // Key init
     EasyKeyInit(&keyUp, KEY_UP);
     EasyKeyInit(&keyDown, KEY_DOWN);
     EasyKeyInit(&keyForward, KEY_FORWARD);
@@ -764,9 +893,77 @@ void EasyUIInit(uint8_t mode)
     else if (SCREEN_WIDTH > (14 * FONT_WIDTH + 1))
         EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
     EasyUISendBuffer();
+
+    // Power-off storage
+    static uint16_t bufIndex = 0;      // Flash buffer array index(0-255)
+    static uint8_t secIndex = 63;     // Flash section index(63-)
+    static uint8_t pageIndex = 3;      // Flash page index(3-0)
+    uint32_t arr[2];
+    if (flash_check(secIndex, pageIndex) == 0)
+        return;
+
+    for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
+    {
+        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+        {
+            flash_read_page_to_buffer(secIndex, pageIndex);
+            switch (itemTmp->funcType)
+            {
+                case ITEM_CHECKBOX:
+                case ITEM_RADIO_BUTTON:
+                case ITEM_SWITCH:
+                    if (bufIndex < 256)
+                    {
+                        *itemTmp->flag = flash_union_buffer[bufIndex].uint32_type;
+                        bufIndex++;
+                    } else if (pageIndex > 0)
+                    {
+                        // Change page automatically
+                        pageIndex--;
+                        bufIndex = 0;
+                    } else
+                    {
+                        // Change section automatically
+                        pageIndex = 3;
+                        bufIndex = 0;
+                        secIndex--;
+                    }
+                    break;
+                case ITEM_CHANGE_VALUE:
+                    if (bufIndex < 256)
+                    {
+                        arr[0] = flash_union_buffer[bufIndex].uint32_type;
+                        arr[1] = flash_union_buffer[++bufIndex].uint32_type;
+                        IntToDouble(itemTmp->param, arr);
+                        bufIndex++;
+                    } else if (pageIndex > 0)
+                    {
+                        // Change page automatically
+                        pageIndex--;
+                        bufIndex = 0;
+                    } else
+                    {
+                        // Change section automatically
+                        pageIndex = 3;
+                        bufIndex = 0;
+                        secIndex--;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
 }
 
 
+/*!
+ * @brief   Sync the operation bool value
+ *
+ * @param   void
+ * @return  void
+ */
 void EasyUISyncOpnValue()
 {
 #if KEY_NUM == 2
@@ -803,7 +1000,7 @@ void EasyUI(uint8_t timer)
     static uint8_t pageIndex[10] = {0};     // Page id (stack)
     static uint8_t itemIndex[10] = {0};     // Item id (stack)
     static uint8_t layer = 0;               // pageIndex[layer] / itemIndex[layer]
-    static uint8_t index = 0, indexBackup = 0, itemSum = 0;
+    static uint8_t index = 0, itemSum = 0;
 
     EasyUISyncOpnValue();
     EasyUISetDrawColor(NORMAL);
@@ -863,69 +1060,44 @@ void EasyUI(uint8_t timer)
                 case ITEM_RADIO_BUTTON:
                     EasyUIDisplayStr(2, item->position, "-");
                     EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-                    EasyUIDrawCheckbox(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH - 6 - ITEM_HEIGHT + 2,
+                    EasyUIDrawCheckbox(SCREEN_WIDTH - 7 - SCROLL_BAR_WIDTH - ITEM_HEIGHT + 2,
                                        item->position - (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1, ITEM_HEIGHT - 2, 3,
-                                       item->flag);
+                                       *item->flag);
                     break;
                 case ITEM_SWITCH:
                     EasyUIDisplayStr(2, item->position, "-");
                     EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-                    if (item->flag == false)
-                        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 5 * FONT_WIDTH - 6, item->position, "off");
+                    if (*item->flag == false)
+                        EasyUIDisplayStr(SCREEN_WIDTH - 7 - 3 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "off");
                     else
-                        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 4 * FONT_WIDTH - 6, item->position, "on");
+                        EasyUIDisplayStr(SCREEN_WIDTH - 7 - 2 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "on");
                     break;
                 case ITEM_CHANGE_VALUE:
                     EasyUIDisplayStr(2, item->position, "-");
                     EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-                    if (item->param < 10 && item->param >= 0)
-                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 6 * FONT_WIDTH - 6, item->position, item->param, 4, 2);
-                    else if (item->param < 100 && item->param > -10)
-                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 7 * FONT_WIDTH - 6, item->position, item->param, 4, 2);
-                    else if (item->param < 1000 && item->param > -100)
-                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 8 * FONT_WIDTH - 6, item->position, item->param, 4, 2);
-                    else if (item->param < 10000 && item->param > -1000)
-                        EasyUIDisplayFloat(SCREEN_WIDTH - 1 - 9 * FONT_WIDTH - 6, item->position, item->param, 4, 2);
+                    if (*item->param < 10 && *item->param >= 0)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 4 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                                           *item->param, 4, 2);
+                    else if (*item->param < 100 && *item->param > -10)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 5 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                                           *item->param, 4, 2);
+                    else if (*item->param < 1000 && *item->param > -100)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 6 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                                           *item->param, 4, 2);
+                    else if (*item->param < 10000 && *item->param > -1000)
+                        EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 7 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                                           *item->param, 4, 2);
                     else    // Hide because it's too long
-                        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 7 * FONT_WIDTH - 6, item->position, "**.**");
+                        EasyUIDisplayStr(SCREEN_WIDTH - 7 - 5 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "**.**");
                     break;
                 default:
-                    EasyUIDisplayStr(2, item->position, "+");
+                    EasyUIDisplayStr(2, item->position, "-");
                     EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
                     break;
             }
         }
-        // Draw indicator
+        // Draw indicator and scroll bar
         EasyUIDrawIndicator(page, index, timer);
-
-        // Display navigation
-        if (page->itemHead->funcType == ITEM_PAGE_DESCRIPTION)
-        {
-            indexBackup = index;
-            itemSum = page->itemTail->id;
-        } else
-        {
-            indexBackup = index + 1;
-            itemSum = page->itemTail->id + 1;
-        }
-        if (itemSum > 9)
-        {
-            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 2);
-            EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
-            if (indexBackup > 9)
-                EasyUIDisplayUint(SCREEN_WIDTH - 1 - 2 * FONT_WIDTH, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup,
-                                  2);
-            else
-                EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT,
-                                  indexBackup,
-                                  1);
-        } else
-        {
-            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - FONT_HEIGHT, itemSum, 1);
-            EasyUIDisplayStr(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 2 * FONT_HEIGHT, "/");
-            EasyUIDisplayUint(SCREEN_WIDTH - 1 - 3 * FONT_WIDTH / 2, SCREEN_HEIGHT - 1 - 3 * FONT_HEIGHT, indexBackup,
-                              1);
-        }
 
         // Key move reaction
         itemSum = page->itemTail->id;
@@ -970,23 +1142,27 @@ void EasyUI(uint8_t timer)
                                 break;
                         case ITEM_CHECKBOX:
                         case ITEM_SWITCH:
-                            item->flag = !item->flag;
+                            *item->flag = !*item->flag;
                             break;
                         case ITEM_RADIO_BUTTON:
                             for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
                             {
                                 if (itemTmp->funcType == ITEM_RADIO_BUTTON)
-                                    itemTmp->flag = false;
+                                    *itemTmp->flag = false;
                             }
-                            item->flag = !item->flag;
+                            *item->flag = !*item->flag;
                             break;
                         case ITEM_CHANGE_VALUE:
                             functionIsRunning = true;
-                            EasyUIChgValInterface(item);
+                            EasyUIBackgroundBlur();
                             break;
                         case ITEM_CALL_FUNCTION:
                             functionIsRunning = true;
                             EasyUITransitionAnim();
+                            break;
+                        case ITEM_MESSAGE:
+                            functionIsRunning = true;
+                            EasyUIDrawMsgBox(item->msg);
                             break;
                         default:
                             break;

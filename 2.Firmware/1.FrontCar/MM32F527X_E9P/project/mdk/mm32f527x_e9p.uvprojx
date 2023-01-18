@@ -1315,9 +1315,14 @@
               <FilePath>..\code\profile_photo_erbws.h</FilePath>
             </File>
             <File>
-              <FileName>本文件夹作用.txt</FileName>
+              <FileName>user_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\user_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_flash.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\code\本文件夹作用.txt</FilePath>
+              <FilePath>..\code\user_flash.h</FilePath>
             </File>
           </Files>
         </Group>

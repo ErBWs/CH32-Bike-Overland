@@ -19,6 +19,10 @@ void EventSwapColor(EasyUIItem_t *item)
     ips114_show_float(0, 0, -12345678.23, 8, 2);
 }
 
+bool a = false, b = false, c = false, d = false, e = false, f = false, g = false;
+double f1 = 0.96;
+double i1 = 3;
+double ui1 = 13;
 
 void MenuInit()
 {
@@ -27,18 +31,20 @@ void MenuInit()
     EasyUIAddPage(&pageServoPID, PAGE_LIST);
 
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
-//    EasyUIAddItem(&pageMain, &main_itemRun, "Run", ITEM_CALL_FUNCTION, EventSwapColor);
+    EasyUIAddItem(&pageMain, &main_itemRun, "Save settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
+    EasyUIAddItem(&pageMain, &servoPID_itemKd, "Reset settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
     EasyUIAddItem(&pageMain, &main_itemSpdPID, "Change Value", ITEM_JUMP_PAGE, pageSpdPID.id);
-    EasyUIAddItem(&pageMain, &main_itemThreshold, "Checkbox1", ITEM_CHECKBOX, false);
-    EasyUIAddItem(&pageMain, &main_itemImage, "Checkbox2", ITEM_CHECKBOX, true);
-    EasyUIAddItem(&pageMain, &main_itemMultiClick, "Radio button1", ITEM_RADIO_BUTTON, false);
-    EasyUIAddItem(&pageMain, &main_itemSwapColor, "Radio button2", ITEM_RADIO_BUTTON, false);
-    EasyUIAddItem(&pageMain, &main_itemAbout, "Radio button3", ITEM_RADIO_BUTTON, true);
-    EasyUIAddItem(&pageMain, &main_itemNone, "Switch1", ITEM_SWITCH, true);
-    EasyUIAddItem(&pageMain, &main_itemWhat, "Switch2", ITEM_SWITCH, true);
+    EasyUIAddItem(&pageMain, &main_itemThreshold, "Checkbox1", ITEM_CHECKBOX, &a);
+    EasyUIAddItem(&pageMain, &main_itemImage, "Checkbox2", ITEM_CHECKBOX, &b);
+    EasyUIAddItem(&pageMain, &main_itemMultiClick, "Radio button1", ITEM_RADIO_BUTTON, &c);
+    EasyUIAddItem(&pageMain, &main_itemSwapColor, "Radio button2", ITEM_RADIO_BUTTON, &d);
+    EasyUIAddItem(&pageMain, &main_itemAbout, "Radio button3", ITEM_RADIO_BUTTON, &e);
+    EasyUIAddItem(&pageMain, &main_itemNone, "Switch1", ITEM_SWITCH, &f);
+    EasyUIAddItem(&pageMain, &main_itemWhat, "Switch2", ITEM_SWITCH, &g);
 
     EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Change Value]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKp, "Test float", ITEM_CHANGE_VALUE, 0.73, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKi, "Test int", ITEM_CHANGE_VALUE, 3.0, EasyUIEventChangeInt);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKd, "Test unsigned int", ITEM_CHANGE_VALUE, 14.0, EasyUIEventChangeUint);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKp, "Test float", ITEM_CHANGE_VALUE, &f1, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKi, "Test int", ITEM_CHANGE_VALUE, &i1, EasyUIEventChangeInt);
+    EasyUIAddItem(&pageSpdPID, &spdPID_itemKd, "Test unsigned int", ITEM_CHANGE_VALUE, &ui1,
+                  EasyUIEventChangeUint);
 }

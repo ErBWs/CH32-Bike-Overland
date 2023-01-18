@@ -84,6 +84,7 @@
 ".\objects\user_ips114.o"
 ".\objects\menu.o"
 ".\objects\profile_photo_erbws.o"
+".\objects\user_flash.o"
 --library_type=microlib --strict --scatter "..\..\libraries\sdk\mdk\linker\mm32f5277e_flash.scf"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
