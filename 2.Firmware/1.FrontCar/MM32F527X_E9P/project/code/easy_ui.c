@@ -16,11 +16,13 @@ EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
  * @param   page        EasyUI page struct
  * @param   item        EasyUI item struct
  * @param   _title      String of item title
- * @param   func        ITEM_CALL_FUNCTION / ITEM_JUMP_PAGE
- * @param   ...         ITEM_CALL_FUNCTION: fill with function
+ * @param   func        See EasyUIItem_e
+ * @param   ...         ITEM_PAGE_DESCRIPTION: ignore this
+ *                      ITEM_CALL_FUNCTION: fill with function
  *                      ITEM_JUMP_PAGE: fill with target page id
  *                      ITEM_CHECKBOX / ITEM_RADIO_BUTTON / ITEM_SWITCH: fill with bool value
  *                      ITEM_CHANGE_VALUE: fill with param that need to be changed and matched function
+ *                      ITEM_MESSAGE: fill with message and matched function
  * @return  void
  *
  * @note    Do not modify
@@ -94,6 +96,9 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
  * @brief   Add page to UI
  *
  * @param   page    EasyUI page struct
+ * @param   func    See EasyUIPage_e
+ * @param   ...     PAGE_LIST: ignore this
+ *                  PAGE_CUSTOM: fill with certain function
  * @return  void
  *
  * @note    Do not modify, the first page should always be the fist one to be added.
@@ -174,12 +179,10 @@ void EasyUITransitionAnim()
 
 
 /*!
- * @brief   ITEM_CHANGE_VALUE interface
+ * @brief   Blur the background for other use
  *
  * @param   void
  * @return  void
- *
- * @note    Internal call
  */
 void EasyUIBackgroundBlur()
 {
@@ -210,6 +213,12 @@ void EasyUIBackgroundBlur()
 }
 
 
+/*!
+ * @brief   Draw message box
+ *
+ * @param   msg     The message need to be displayed
+ * @return  void
+ */
 void EasyUIDrawMsgBox(char *msg)
 {
     uint16_t width = strlen(msg) * FONT_WIDTH + 5;
@@ -371,7 +380,7 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
 
 
 /*!
- * @brief   Change variable's value
+ * @brief   Event: change variable's value
  *
  * @param   item    EasyUI item struct
  * @return  void
@@ -386,6 +395,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
 
     EasyUISetDrawColor(NORMAL);
 
+    // Display information and draw box
     height = ITEM_HEIGHT * 4 + 2;
     if (strlen(item->title) + 1 > 12)
         width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
@@ -395,7 +405,6 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - height) / 2;
-
     EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
@@ -404,6 +413,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
     EasyUIDisplayStr(x + 3, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Save");
     EasyUIDisplayStr(x + width - 6 * FONT_WIDTH - 4, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Return");
 
+    // Change value of param or step
     if (changeVal)
     {
         EasyUISetDrawColor(XOR);
@@ -458,6 +468,8 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
                 index = 4;
         }
     }
+
+    // Display step
     EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 8, 2);
     if (step == 1)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
@@ -466,6 +478,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
     else
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+100");
 
+    // Draw indicator
     if (index == 1)
         EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 2)
@@ -476,6 +489,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
         EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
                          IPS114_penColor);
 
+    // Operation move reaction
     if (opnEnter)
     {
         if (index == 1)
@@ -518,6 +532,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
 
     EasyUISetDrawColor(NORMAL);
 
+    // Display information and draw box
     height = ITEM_HEIGHT * 4 + 2;
     if (strlen(item->title) + 1 > 12)
         width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
@@ -527,7 +542,6 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - height) / 2;
-
     EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
@@ -536,6 +550,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
     EasyUIDisplayStr(x + 3, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Save");
     EasyUIDisplayStr(x + width - 6 * FONT_WIDTH - 4, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Return");
 
+    // Change value of param or step
     if (changeVal)
     {
         EasyUISetDrawColor(XOR);
@@ -585,6 +600,8 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
                 index = 4;
         }
     }
+
+    // Display step
     EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 8, 2);
     if (step == 1)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
@@ -593,6 +610,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
     else
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+100");
 
+    // Draw indicator
     if (index == 1)
         EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 2)
@@ -603,6 +621,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
         EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
                          IPS114_penColor);
 
+    // Operation move reaction
     if (opnEnter)
     {
         if (index == 1)
@@ -646,6 +665,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
 
     EasyUISetDrawColor(NORMAL);
 
+    // Display information and draw box
     height = ITEM_HEIGHT * 4 + 2;
     if (strlen(item->title) + 1 > 12)
         width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
@@ -655,7 +675,6 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - height) / 2;
-
     EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
@@ -664,6 +683,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
     EasyUIDisplayStr(x + 3, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Save");
     EasyUIDisplayStr(x + width - 6 * FONT_WIDTH - 4, y + 3 * ITEM_HEIGHT + itemHeightOffset, "Return");
 
+    // Change value of param or step
     if (changeVal)
     {
         EasyUISetDrawColor(XOR);
@@ -713,6 +733,8 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
                 index = 4;
         }
     }
+
+    // Display step
     EasyUIDisplayFloat(x + 3, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 8, 2);
     if (step == 0.01)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+0.01");
@@ -721,6 +743,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
     else
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
 
+    // Draw indicator
     if (index == 1)
         EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 2)
@@ -731,6 +754,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
         EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
                          IPS114_penColor);
 
+    // Operation move reaction
     if (opnEnter)
     {
         if (index == 1)
@@ -765,6 +789,11 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
 }
 
 
+/*!
+ * @brief   Event: Save and reset settings in flash
+ *
+ * @param   item    Useless param, just be there to meet the function requirement;
+ */
 void EasyUIEventSaveSettings(EasyUIItem_t *item)
 {
     static uint16_t bufIndex = 0;      // Flash buffer array index(0-255)
@@ -865,7 +894,7 @@ uint8_t opnForward, opnBackward;
 uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 /*!
- * @brief   Welcome Page with two size of photo
+ * @brief   Welcome Page with two size of photo, and read params from flash if not empty
  *
  * @param   mode    choose the size of photo (0 for smaller one and 1 for bigger one)
  * @return  void
@@ -1102,7 +1131,7 @@ void EasyUI(uint8_t timer)
         // Draw indicator and scroll bar
         EasyUIDrawIndicator(page, index, timer);
 
-        // Key move reaction
+        // Operation move reaction
         itemSum = page->itemTail->id;
         if (opnForward)
         {
