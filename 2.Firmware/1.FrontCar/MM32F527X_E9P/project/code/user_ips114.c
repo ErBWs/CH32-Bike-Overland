@@ -194,32 +194,82 @@ void IPS114_DrawLine(int16 x_start, int16 y_start, int16 x_end, int16 y_end, con
 void IPS114_ShowChar(int16 x, int16 y, const char dat)
 {
     uint8 i, j;
-
-    for (i = 0; i < 6; i++)
+    switch (ips114_display_font)
     {
-        // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
-        uint8 temp_top = ascii_font_6x8[dat - 32][i];
-        for (j = 0; j < 8; j++)
-        {
-            if (x + i < 240 && y + j < 135 && x + i >= 0 && y + j >= 0)
+        case IPS114_6X8_FONT:
+            for (i = 0; i < 6; i++)
             {
-                if (temp_top & 0x01)
+                // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
+                uint8 temp_top = ascii_font_6x8[dat - 32][i];
+                for (j = 0; j < 8; j++)
                 {
-                    if (IPS114_colorMode == XOR)
+                    if (x + i < 240 && y + j < 135 && x + i >= 0 && y + j >= 0)
                     {
-                        if (IPS114_buffer[y + j][x + i] == IPS114_penColor)
-                            IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
-                        else
-                            IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                        if (temp_top & 0x01)
+                        {
+                            if (IPS114_colorMode == XOR)
+                            {
+                                if (IPS114_buffer[y + j][x + i] == IPS114_penColor)
+                                    IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
+                                else
+                                    IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                            } else
+                                IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                        }
+                        temp_top >>= 1;
                     } else
-                        IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                    {
+                        break;
+                    }
                 }
-                temp_top >>= 1;
-            } else
-            {
-                break;
             }
-        }
+            break;
+        case IPS114_8X16_FONT:
+            for (i = 0; i < 8; i++)
+            {
+                // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
+                uint8 temp_top = ascii_font_8x16[dat - 32][i];
+                uint8 temp_bottom = ascii_font_8x16[dat - 32][i + 8];
+                for (j = 0; j < 8; j++)
+                {
+                    if (x + i < 240 && y + j < 135 && x + i >= 0 && y + j >= 0)
+                    {
+                        if (temp_top & 0x01)
+                        {
+                            if (IPS114_colorMode == XOR)
+                            {
+                                if (IPS114_buffer[y + j][x + i] == IPS114_penColor)
+                                    IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
+                                else
+                                    IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                            } else
+                                IPS114_buffer[y + j][x + i] = IPS114_penColor;
+                        }
+                        temp_top >>= 1;
+                    }
+                }
+                for (j = 0; j < 8; j++)
+                {
+                    if (x + i + 8 < 240 && y + j < 135 && x + i + 8 >= 0 && y + j >= 0)
+                    {
+                        if (temp_bottom & 0x01)
+                        {
+                            if (IPS114_colorMode == XOR)
+                            {
+                                if (IPS114_buffer[y + j + 8][x + i] == IPS114_penColor)
+                                    IPS114_buffer[y + j + 8][x + i] = IPS114_backgroundColor;
+                                else
+                                    IPS114_buffer[y + j + 8][x + i] = IPS114_penColor;
+                            } else
+                                IPS114_buffer[y + j + 8][x + i] = IPS114_penColor;
+                        }
+                        temp_bottom >>= 1;
+                    }
+                }
+            }
+            break;
+        default:
+            break;
     }
 }
 
@@ -237,8 +287,19 @@ void IPS114_ShowStr(int16 x, int16 y, const char dat[])
     uint16 j = 0;
     while (dat[j] != '\0')
     {
-        IPS114_ShowChar(x + 6 * j, y, dat[j]);
-        j++;
+        switch (ips114_display_font)
+        {
+            case IPS114_6X8_FONT:
+                IPS114_ShowChar(x + 6 * j, y, dat[j]);
+                j++;
+                break;
+            case IPS114_8X16_FONT:
+                IPS114_ShowChar(x + 8 * j, y, dat[j]);
+                j++;
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -252,29 +313,29 @@ void IPS114_ShowStr(int16 x, int16 y, const char dat[])
 // 使用示例     ips114_show_int(0, 0, x, 3);                    // x 可以为 int32 int16 int8 类型
 // 备注信息     负数会显示一个 ‘-’号   正数显示一个空格
 //-------------------------------------------------------------------------------------------------------------------
-void IPS114_ShowInt(int16 x, int16 y, const int32 dat, uint8 num)
-{
-    zf_assert(num > 0);
-    zf_assert(num <= 10);
-
-    int32 dat_temp = dat;
-    int32 offset = 1;
-    char data_buffer[12];
-
-    memset(data_buffer, 0, 12);
-    memset(data_buffer, ' ', num + 1);
-
-    if (num < 10)
+    void IPS114_ShowInt(int16 x, int16 y, const int32 dat, uint8 num)
     {
-        for (; num > 0; num--)
+        zf_assert(num > 0);
+        zf_assert(num <= 10);
+
+        int32 dat_temp = dat;
+        int32 offset = 1;
+        char data_buffer[12];
+
+        memset(data_buffer, 0, 12);
+        memset(data_buffer, ' ', num + 1);
+
+        if (num < 10)
         {
-            offset *= 10;
+            for (; num > 0; num--)
+            {
+                offset *= 10;
+            }
+            dat_temp %= offset;
         }
-        dat_temp %= offset;
+        func_int_to_str(data_buffer, dat_temp);
+        IPS114_ShowStr(x, y, (const char *) &data_buffer);
     }
-    func_int_to_str(data_buffer, dat_temp);
-    IPS114_ShowStr(x, y, (const char *) &data_buffer);
-}
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     IPS114 显示32位无符号 (去除整数部分无效的0)
@@ -286,28 +347,28 @@ void IPS114_ShowInt(int16 x, int16 y, const int32 dat, uint8 num)
 // 使用示例     ips114_show_uint(0, 0, x, 3);                   // x 可以为 uint32 uint16 uint8 类型
 // 备注信息     负数会显示一个 ‘-’号   正数显示一个空格
 //-------------------------------------------------------------------------------------------------------------------
-void IPS114_ShowUint(int16 x, int16 y, const uint32 dat, uint8 num)
-{
-    zf_assert(num > 0);
-    zf_assert(num <= 10);
-
-    uint32 dat_temp = dat;
-    int32 offset = 1;
-    char data_buffer[12];
-    memset(data_buffer, 0, 12);
-    memset(data_buffer, ' ', num);
-
-    if (num < 10)
+    void IPS114_ShowUint(int16 x, int16 y, const uint32 dat, uint8 num)
     {
-        for (; num > 0; num--)
+        zf_assert(num > 0);
+        zf_assert(num <= 10);
+
+        uint32 dat_temp = dat;
+        int32 offset = 1;
+        char data_buffer[12];
+        memset(data_buffer, 0, 12);
+        memset(data_buffer, ' ', num);
+
+        if (num < 10)
         {
-            offset *= 10;
+            for (; num > 0; num--)
+            {
+                offset *= 10;
+            }
+            dat_temp %= offset;
         }
-        dat_temp %= offset;
+        func_uint_to_str(data_buffer, dat_temp);
+        IPS114_ShowStr(x, y, (const char *) &data_buffer);
     }
-    func_uint_to_str(data_buffer, dat_temp);
-    IPS114_ShowStr(x, y, (const char *) &data_buffer);
-}
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     IPS114 显示浮点数 (去除整数部分无效的0)
@@ -323,96 +384,97 @@ void IPS114_ShowUint(int16 x, int16 y, const uint32 dat, uint8 num)
 //              有关问题的详情，请自行百度学习   浮点数精度丢失问题。
 //              负数会显示一个 ‘-’号   正数显示一个空格
 //-------------------------------------------------------------------------------------------------------------------
-void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointnum)
-{
-    zf_assert(num > 0);
-    zf_assert(num <= 8);
-    zf_assert(pointnum > 0);
-    zf_assert(pointnum <= 6);
-
-    float dat_temp = dat;
-    float offset = 1.0;
-    char data_buffer[17];
-    memset(data_buffer, 0, 17);
-    memset(data_buffer, ' ', num + pointnum + 2);
-
-    if (num < 10)
+    void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointnum)
     {
-        for (; num > 0; num--)
+        zf_assert(num > 0);
+        zf_assert(num <= 8);
+        zf_assert(pointnum > 0);
+        zf_assert(pointnum <= 6);
+
+        float dat_temp = dat;
+        float offset = 1.0;
+        char data_buffer[17];
+        memset(data_buffer, 0, 17);
+        memset(data_buffer, ' ', num + pointnum + 2);
+
+        if (num < 10)
         {
-            offset *= 10;
+            for (; num > 0; num--)
+            {
+                offset *= 10;
+            }
+            dat_temp = dat_temp - ((int) dat_temp / (int) offset) * offset;
         }
-        dat_temp = dat_temp - ((int) dat_temp / (int) offset) * offset;
+        func_float_to_str(data_buffer, dat_temp, pointnum);
+        IPS114_ShowStr(x, y, data_buffer);
     }
-    func_float_to_str(data_buffer, dat_temp, pointnum);
-    IPS114_ShowStr(x, y, data_buffer);
-}
 
 
-bool reversedColor = false;
-void IPS114_ModifyColor()
-{
-    if (reversedColor)
+    bool reversedColor = false;
+
+    void IPS114_ModifyColor()
     {
-        IPS114_penColor = IPS114_DEFAULT_BGCOLOR;
-        IPS114_backgroundColor = IPS114_DEFAULT_PENCOLOR;
-    } else
-    {
-        IPS114_penColor = IPS114_DEFAULT_PENCOLOR;
-        IPS114_backgroundColor = IPS114_DEFAULT_BGCOLOR;
-    }
-}
-
-
-void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
-{
-    for (int i = x; i < x + width; i++)
-    {
-        IPS114_DrawPoint(i, y, color);
-        IPS114_DrawPoint(i, y + height - 1, color);
-    }
-    for (int j = y; j < y + height; j++)
-    {
-        IPS114_DrawPoint(x, j, color);
-        IPS114_DrawPoint(x + width - 1, j, color);
-    }
-}
-
-
-void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
-{
-
-    for (int i = x; i < x + width; ++i)
-    {
-        for (int j = y; j < y + height; ++j)
+        if (reversedColor)
         {
-            IPS114_DrawPoint(i, j, color);
+            IPS114_penColor = IPS114_DEFAULT_BGCOLOR;
+            IPS114_backgroundColor = IPS114_DEFAULT_PENCOLOR;
+        } else
+        {
+            IPS114_penColor = IPS114_DEFAULT_PENCOLOR;
+            IPS114_backgroundColor = IPS114_DEFAULT_BGCOLOR;
         }
     }
-}
+
+
+    void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+    {
+        for (int i = x; i < x + width; i++)
+        {
+            IPS114_DrawPoint(i, y, color);
+            IPS114_DrawPoint(i, y + height - 1, color);
+        }
+        for (int j = y; j < y + height; j++)
+        {
+            IPS114_DrawPoint(x, j, color);
+            IPS114_DrawPoint(x + width - 1, j, color);
+        }
+    }
+
+
+    void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+    {
+
+        for (int i = x; i < x + width; ++i)
+        {
+            for (int j = y; j < y + height; ++j)
+            {
+                IPS114_DrawPoint(i, j, color);
+            }
+        }
+    }
 
 /*!
  *
  */
-void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
-{
-    for (int i = x + 1; i < x + width - 1; i++)
+    void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
     {
-        IPS114_DrawPoint(i, y, color);
-        IPS114_DrawPoint(i, y + height - 1, color);
+        for (int i = x + 1; i < x + width - 1; i++)
+        {
+            IPS114_DrawPoint(i, y, color);
+            IPS114_DrawPoint(i, y + height - 1, color);
+        }
+        for (int j = y + 1; j < y + height - 1; j++)
+        {
+            IPS114_DrawPoint(x, j, color);
+            IPS114_DrawPoint(x + width - 1, j, color);
+        }
     }
-    for (int j = y + 1; j < y + height - 1; j++)
-    {
-        IPS114_DrawPoint(x, j, color);
-        IPS114_DrawPoint(x + width - 1, j, color);
-    }
-}
 
-void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
-{
-    IPS114_DrawRFrame(x, y, width, height, color);
-    IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, color);
-}
+    void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+    {
+        IPS114_DrawRFrame(x, y, width, height, color);
+        IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, color);
+    }
 
 
 /*!
@@ -426,42 +488,42 @@ void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, cons
  *
  * @note    Use before clearing the buffer
  */
-void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height)
-{
-    // Background blur
-    for (int j = 1; j < 135; j += 2)
+    void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height)
     {
-        for (int i = 1; i < 240 + 1; i += 2)
+        // Background blur
+        for (int j = 1; j < 135; j += 2)
         {
-            IPS114_DrawPoint(i, j, IPS114_backgroundColor);
+            for (int i = 1; i < 240 + 1; i += 2)
+            {
+                IPS114_DrawPoint(i, j, IPS114_backgroundColor);
+            }
         }
+        IPS114_SendBuffer();
+        for (int j = 1; j < 135 + 1; j += 2)
+        {
+            for (int i = 1; i < 240 + 1; i += 2)
+            {
+                IPS114_DrawPoint(i - 1, j - 1, IPS114_backgroundColor);
+            }
+        }
+        IPS114_SendBuffer();
+
+        // Draw rounded frame filled with background color
+        IPS114_SetDrawColor(NORMAL);
+        IPS114_DrawRFrame(x, y, width, height, IPS114_penColor);
+        IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, IPS114_backgroundColor);
+        IPS114_SendBuffer();
     }
-    IPS114_SendBuffer();
-    for (int j = 1; j < 135 + 1; j += 2)
+
+
+    void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue)
     {
-        for (int i = 1; i < 240 + 1; i += 2)
-        {
-            IPS114_DrawPoint(i - 1, j - 1, IPS114_backgroundColor);
-        }
+        IPS114_DrawRFrame(x, y, size, size, IPS114_penColor);
+        if (boolValue == true)
+            IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor);
+        else
+            IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_backgroundColor);
     }
-    IPS114_SendBuffer();
-
-    // Draw rounded frame filled with background color
-    IPS114_SetDrawColor(NORMAL);
-    IPS114_DrawRFrame(x, y, width, height, IPS114_penColor);
-    IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, IPS114_backgroundColor);
-    IPS114_SendBuffer();
-}
-
-
-void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue)
-{
-    IPS114_DrawRFrame(x, y, size, size, IPS114_penColor);
-    if (boolValue == true)
-        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor);
-    else
-        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_backgroundColor);
-}
 
 
 /*!
@@ -473,36 +535,36 @@ void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bo
  * @param   height  Pic height
  * @param   pic     The array of picture(阴码 逐行式 逆向)
  */
-void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint8_t *pic)
-{
-    uint8_t temp, j;
-    uint8_t x0 = x;
-    uint8_t *tmp = (uint8_t *) pic;
-    uint16_t i, picSize = 0;
-
-    picSize = (width / 8 + ((width % 8) ? 1 : 0)) * height;
-
-    for (i = 0; i < picSize; i++)
+    void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint8_t *pic)
     {
-        temp = tmp[i];
-        for (j = 0; j < 8; j++)
-        {
-            if (temp & 0x01)
-            {
-                IPS114_buffer[y][x] = IPS114_penColor;
-            } else
-            {
-                IPS114_buffer[y][x] = IPS114_backgroundColor;
-            }
-            temp >>= 1;
-            x++;
+        uint8_t temp, j;
+        uint8_t x0 = x;
+        uint8_t *tmp = (uint8_t *) pic;
+        uint16_t i, picSize = 0;
 
-            if ((x - x0) == width)
+        picSize = (width / 8 + ((width % 8) ? 1 : 0)) * height;
+
+        for (i = 0; i < picSize; i++)
+        {
+            temp = tmp[i];
+            for (j = 0; j < 8; j++)
             {
-                x = x0;
-                y++;
-                break;
+                if (temp & 0x01)
+                {
+                    IPS114_buffer[y][x] = IPS114_penColor;
+                } else
+                {
+                    IPS114_buffer[y][x] = IPS114_backgroundColor;
+                }
+                temp >>= 1;
+                x++;
+
+                if ((x - x0) == width)
+                {
+                    x = x0;
+                    y++;
+                    break;
+                }
             }
         }
     }
-}

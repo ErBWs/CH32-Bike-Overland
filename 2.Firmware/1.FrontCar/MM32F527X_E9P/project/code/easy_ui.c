@@ -407,7 +407,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
     if (changeVal)
     {
         EasyUISetDrawColor(XOR);
-        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, ITEM_HEIGHT - 2, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
             *item->param += step;
@@ -421,7 +421,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
     } else if (changeStep)
     {
         EasyUISetDrawColor(XOR);
-        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, ITEM_HEIGHT - 2, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
         {
@@ -467,13 +467,13 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+100");
 
     if (index == 1)
-        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 2)
-        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 3)
-        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else
-        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, 16,
+        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
                          IPS114_penColor);
 
     if (opnEnter)
@@ -539,7 +539,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
     if (changeVal)
     {
         EasyUISetDrawColor(XOR);
-        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, ITEM_HEIGHT - 2, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
             *item->param += step;
@@ -548,7 +548,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
     } else if (changeStep)
     {
         EasyUISetDrawColor(XOR);
-        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, ITEM_HEIGHT - 2, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
         {
@@ -594,13 +594,13 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+100");
 
     if (index == 1)
-        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 2)
-        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 3)
-        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else
-        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, 16,
+        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
                          IPS114_penColor);
 
     if (opnEnter)
@@ -667,7 +667,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
     if (changeVal)
     {
         EasyUISetDrawColor(XOR);
-        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUIDrawBox(x + 2, y + 2, (strlen(item->title) + 1) * FONT_WIDTH + 3, ITEM_HEIGHT - 2, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
             *item->param += step;
@@ -676,7 +676,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
     } else if (changeStep)
     {
         EasyUISetDrawColor(XOR);
-        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, 14, IPS114_penColor);
+        EasyUIDrawBox(x + 2, y + 2 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 3, ITEM_HEIGHT - 2, IPS114_penColor);
         EasyUISetDrawColor(NORMAL);
         if (opnUp)
         {
@@ -722,13 +722,13 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
         EasyUIDisplayStr(x + 3 + 6 * FONT_WIDTH, y + 2 * ITEM_HEIGHT + itemHeightOffset, "+1");
 
     if (index == 1)
-        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 2)
-        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else if (index == 3)
-        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, 16, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
     else
-        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, 16,
+        EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
                          IPS114_penColor);
 
     if (opnEnter)
