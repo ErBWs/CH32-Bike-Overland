@@ -349,11 +349,18 @@ void IPS114_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointn
 }
 
 
-void IPS114_SwapColor()
+bool reversedColor = false;
+void IPS114_ModifyColor()
 {
-    uint16_t tmp = IPS114_penColor;
-    IPS114_penColor = IPS114_backgroundColor;
-    IPS114_backgroundColor = tmp;
+    if (reversedColor)
+    {
+        IPS114_penColor = IPS114_DEFAULT_BGCOLOR;
+        IPS114_backgroundColor = IPS114_DEFAULT_PENCOLOR;
+    } else
+    {
+        IPS114_penColor = IPS114_DEFAULT_PENCOLOR;
+        IPS114_backgroundColor = IPS114_DEFAULT_BGCOLOR;
+    }
 }
 
 

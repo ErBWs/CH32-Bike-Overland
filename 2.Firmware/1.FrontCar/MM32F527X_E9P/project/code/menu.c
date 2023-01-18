@@ -7,44 +7,64 @@
 
 #include "menu.h"
 
-EasyUIPage_t pageMain, pageSpdPID, pageServoPID;
-EasyUIItem_t titleMain, titleSpdPID, titleServoSpd;
-EasyUIItem_t main_itemRun, main_itemSpdPID, main_itemServoPID, main_itemThreshold, main_itemImage;
-EasyUIItem_t main_itemMultiClick, main_itemSwapColor, main_itemAbout, main_itemNone, main_itemWhat;
-EasyUIItem_t spdPID_itemKp, spdPID_itemKi, spdPID_itemKd;
-EasyUIItem_t servoPID_itemKp, servoPID_itemKi, servoPID_itemKd;
+// Pages
+EasyUIPage_t pageMain, pageCheckbox, pageRadButton, pageSwitch, pageChgVal;
 
-void EventSwapColor(EasyUIItem_t *item)
-{
-    ips114_show_float(0, 0, -12345678.23, 8, 2);
-}
+// Items
+EasyUIItem_t itemSave, itemReset;
+EasyUIItem_t titleMain, itemChkBox, itemRadButton, itemSw, itemVal;
+EasyUIItem_t titleCheckbox, itemCh1, itemCh2, itemCh3, itemCh4;
+EasyUIItem_t titleRadButton, itemButton1, itemButton2, itemButton3, itemButton4;
+EasyUIItem_t itemButton5, itemButton6, itemButton7, itemButton8, itemButton9;
+EasyUIItem_t titleSw, itemColor, itemSw2, itemSw3;
+EasyUIItem_t titleVal, itemFloat, itemInt, itemUint;
 
-bool a = false, b = false, c = false, d = false, e = false, f = false, g = false;
-double f1 = 0.96;
-double i1 = 3;
-double ui1 = 13;
+bool ch1 = true, ch2 = true, ch3 = false, ch4 = true;
+bool rb1 = false, rb2 = true, rb3 = false, rb4 = false, rb5 = false;
+bool rb6 = false, rb7 = false, rb8 = false, rb9 = false;
+bool sw2 = false, sw3 = true;
+double testFloat = 0.68, testInt = 5, testUint = 34;
 
 void MenuInit()
 {
     EasyUIAddPage(&pageMain, PAGE_LIST);
-    EasyUIAddPage(&pageSpdPID, PAGE_LIST);
-    EasyUIAddPage(&pageServoPID, PAGE_LIST);
+    EasyUIAddPage(&pageCheckbox, PAGE_LIST);
+    EasyUIAddPage(&pageRadButton, PAGE_LIST);
+    EasyUIAddPage(&pageSwitch, PAGE_LIST);
+    EasyUIAddPage(&pageChgVal, PAGE_LIST);
 
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageMain, &main_itemRun, "Save settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
-    EasyUIAddItem(&pageMain, &servoPID_itemKd, "Reset settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
-    EasyUIAddItem(&pageMain, &main_itemSpdPID, "Change Value", ITEM_JUMP_PAGE, pageSpdPID.id);
-    EasyUIAddItem(&pageMain, &main_itemThreshold, "Checkbox1", ITEM_CHECKBOX, &a);
-    EasyUIAddItem(&pageMain, &main_itemImage, "Checkbox2", ITEM_CHECKBOX, &b);
-    EasyUIAddItem(&pageMain, &main_itemMultiClick, "Radio button1", ITEM_RADIO_BUTTON, &c);
-    EasyUIAddItem(&pageMain, &main_itemSwapColor, "Radio button2", ITEM_RADIO_BUTTON, &d);
-    EasyUIAddItem(&pageMain, &main_itemAbout, "Radio button3", ITEM_RADIO_BUTTON, &e);
-    EasyUIAddItem(&pageMain, &main_itemNone, "Switch1", ITEM_SWITCH, &f);
-    EasyUIAddItem(&pageMain, &main_itemWhat, "Switch2", ITEM_SWITCH, &g);
+    EasyUIAddItem(&pageMain, &itemChkBox, "Test checkbox", ITEM_JUMP_PAGE, pageCheckbox.id);
+    EasyUIAddItem(&pageMain, &itemRadButton, "Test radio button", ITEM_JUMP_PAGE, pageRadButton.id);
+    EasyUIAddItem(&pageMain, &itemSw, "Test switches", ITEM_JUMP_PAGE, pageSwitch.id);
+    EasyUIAddItem(&pageMain, &itemVal, "Test change value", ITEM_JUMP_PAGE, pageChgVal.id);
+    EasyUIAddItem(&pageMain, &itemSave, "Save settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
+    EasyUIAddItem(&pageMain, &itemReset, "Reset settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
 
-    EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Change Value]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKp, "Test float", ITEM_CHANGE_VALUE, &f1, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKi, "Test int", ITEM_CHANGE_VALUE, &i1, EasyUIEventChangeInt);
-    EasyUIAddItem(&pageSpdPID, &spdPID_itemKd, "Test unsigned int", ITEM_CHANGE_VALUE, &ui1,
-                  EasyUIEventChangeUint);
+    EasyUIAddItem(&pageCheckbox, &titleCheckbox, "[Multiple selection]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageCheckbox, &itemCh1, "Checkbox 1", ITEM_CHECKBOX, &ch1);
+    EasyUIAddItem(&pageCheckbox, &itemCh2, "Checkbox 2", ITEM_CHECKBOX, &ch2);
+    EasyUIAddItem(&pageCheckbox, &itemCh3, "Checkbox 3", ITEM_CHECKBOX, &ch3);
+    EasyUIAddItem(&pageCheckbox, &itemCh4, "Checkbox 4", ITEM_CHECKBOX, &ch4);
+
+    EasyUIAddItem(&pageRadButton, &titleRadButton, "[Single selection]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageRadButton, &itemButton1, "Radio button 1", ITEM_RADIO_BUTTON, &rb1);
+    EasyUIAddItem(&pageRadButton, &itemButton2, "Radio button 2", ITEM_RADIO_BUTTON, &rb2);
+    EasyUIAddItem(&pageRadButton, &itemButton3, "Radio button 3", ITEM_RADIO_BUTTON, &rb3);
+    EasyUIAddItem(&pageRadButton, &itemButton4, "Radio button 4", ITEM_RADIO_BUTTON, &rb4);
+    EasyUIAddItem(&pageRadButton, &itemButton5, "Radio button 5", ITEM_RADIO_BUTTON, &rb5);
+    EasyUIAddItem(&pageRadButton, &itemButton6, "Radio button 6", ITEM_RADIO_BUTTON, &rb6);
+    EasyUIAddItem(&pageRadButton, &itemButton7, "Radio button 7", ITEM_RADIO_BUTTON, &rb7);
+    EasyUIAddItem(&pageRadButton, &itemButton8, "Radio button 8", ITEM_RADIO_BUTTON, &rb8);
+    EasyUIAddItem(&pageRadButton, &itemButton9, "Radio button 9", ITEM_RADIO_BUTTON, &rb9);
+
+    EasyUIAddItem(&pageSwitch, &titleSw, "[Switch]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageSwitch, &itemColor, "Reversed color", ITEM_SWITCH, &reversedColor);
+    EasyUIAddItem(&pageSwitch, &itemSw2, "Switch 2", ITEM_SWITCH, &sw2);
+    EasyUIAddItem(&pageSwitch, &itemSw3, "Switch 3", ITEM_SWITCH, &sw3);
+
+    EasyUIAddItem(&pageChgVal, &titleVal, "[Change value]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageChgVal, &itemFloat, "Test float", ITEM_CHANGE_VALUE, &testFloat, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageChgVal, &itemInt, "Test int", ITEM_CHANGE_VALUE, &testInt, EasyUIEventChangeInt);
+    EasyUIAddItem(&pageChgVal, &itemUint, "Test uint", ITEM_CHANGE_VALUE, &testUint, EasyUIEventChangeUint);
 }

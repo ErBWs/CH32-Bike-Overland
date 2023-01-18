@@ -59,7 +59,6 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
-#define EasyUIDisplayUint(x, y, dat, num)                       (IPS114_ShowUint(x, y, dat, num))
 #define EasyUIDisplayFloat(x, y, dat, num, pointNum)            (IPS114_ShowFloat(x, y, dat, num, pointNum))
 #define EasyUIDrawDot(x, y, color)                              (IPS114_DrawPoint(x, y, color))
 #define EasyUIDrawBox(x, y, width, height, color)               (IPS114_DrawBox(x, y, width, height, color))
@@ -70,6 +69,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUISendBuffer()                                      (IPS114_SendBuffer())
 #define EasyUISetDrawColor(mode)                                (IPS114_SetDrawColor(mode))
 #define EasyUIDisplayBMP(x, y, width, height, pic)              (IPS114_ShowBMP(x, y, width, height, pic))
+#define EasyUIModifyColor()                                     (IPS114_ModifyColor())
 
 typedef enum
 {

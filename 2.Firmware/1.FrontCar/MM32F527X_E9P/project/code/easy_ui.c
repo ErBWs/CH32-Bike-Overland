@@ -850,6 +850,8 @@ void EasyUIEventResetSettings(EasyUIItem_t *item)
                     break;
                 case ITEM_CHANGE_VALUE:
                     *itemTmp->param = itemTmp->paramDefault;
+                default:
+                    break;
             }
         }
     }
@@ -871,7 +873,6 @@ uint8_t opnEnter, opnExit, opnUp, opnDown;
 void EasyUIInit(uint8_t mode)
 {
     EasyUIScreenInit();
-    EasyUIClearBuffer();
 
     // Key init
     EasyKeyInit(&keyUp, KEY_UP);
@@ -882,7 +883,70 @@ void EasyUIInit(uint8_t mode)
     EasyKeyInit(&keyConfirm, KEY_CONFIRM);
 #endif
 
+    // Power-off storage
+    static uint16_t bufIndex = 0;      // Flash buffer array index(0-255)
+    static uint8_t secIndex = 63;     // Flash section index(63-)
+    static uint8_t pageIndex = 3;      // Flash page index(3-0)
+    uint32_t arr[2];
+    if (flash_check(secIndex, pageIndex))
+    {
+        for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
+        {
+            for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+            {
+                flash_read_page_to_buffer(secIndex, pageIndex);
+                switch (itemTmp->funcType)
+                {
+                    case ITEM_CHECKBOX:
+                    case ITEM_RADIO_BUTTON:
+                    case ITEM_SWITCH:
+                        if (bufIndex < 256)
+                        {
+                            *itemTmp->flag = flash_union_buffer[bufIndex].uint32_type;
+                            bufIndex++;
+                        } else if (pageIndex > 0)
+                        {
+                            // Change page automatically
+                            pageIndex--;
+                            bufIndex = 0;
+                        } else
+                        {
+                            // Change section automatically
+                            pageIndex = 3;
+                            bufIndex = 0;
+                            secIndex--;
+                        }
+                        break;
+                    case ITEM_CHANGE_VALUE:
+                        if (bufIndex < 256)
+                        {
+                            arr[0] = flash_union_buffer[bufIndex].uint32_type;
+                            arr[1] = flash_union_buffer[++bufIndex].uint32_type;
+                            IntToDouble(itemTmp->param, arr);
+                            bufIndex++;
+                        } else if (pageIndex > 0)
+                        {
+                            // Change page automatically
+                            pageIndex--;
+                            bufIndex = 0;
+                        } else
+                        {
+                            // Change section automatically
+                            pageIndex = 3;
+                            bufIndex = 0;
+                            secIndex--;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
     // Display the welcome photo and info
+    EasyUIModifyColor();
+    EasyUIClearBuffer();
     if (mode)
         EasyUIDisplayBMP((SCREEN_WIDTH - 58) / 2, (SCREEN_HEIGHT - 56) / 2, 58, 56, ErBW_s_5856);
     else
@@ -893,68 +957,6 @@ void EasyUIInit(uint8_t mode)
     else if (SCREEN_WIDTH > (14 * FONT_WIDTH + 1))
         EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
     EasyUISendBuffer();
-
-    // Power-off storage
-    static uint16_t bufIndex = 0;      // Flash buffer array index(0-255)
-    static uint8_t secIndex = 63;     // Flash section index(63-)
-    static uint8_t pageIndex = 3;      // Flash page index(3-0)
-    uint32_t arr[2];
-    if (flash_check(secIndex, pageIndex) == 0)
-        return;
-
-    for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
-    {
-        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
-        {
-            flash_read_page_to_buffer(secIndex, pageIndex);
-            switch (itemTmp->funcType)
-            {
-                case ITEM_CHECKBOX:
-                case ITEM_RADIO_BUTTON:
-                case ITEM_SWITCH:
-                    if (bufIndex < 256)
-                    {
-                        *itemTmp->flag = flash_union_buffer[bufIndex].uint32_type;
-                        bufIndex++;
-                    } else if (pageIndex > 0)
-                    {
-                        // Change page automatically
-                        pageIndex--;
-                        bufIndex = 0;
-                    } else
-                    {
-                        // Change section automatically
-                        pageIndex = 3;
-                        bufIndex = 0;
-                        secIndex--;
-                    }
-                    break;
-                case ITEM_CHANGE_VALUE:
-                    if (bufIndex < 256)
-                    {
-                        arr[0] = flash_union_buffer[bufIndex].uint32_type;
-                        arr[1] = flash_union_buffer[++bufIndex].uint32_type;
-                        IntToDouble(itemTmp->param, arr);
-                        bufIndex++;
-                    } else if (pageIndex > 0)
-                    {
-                        // Change page automatically
-                        pageIndex--;
-                        bufIndex = 0;
-                    } else
-                    {
-                        // Change section automatically
-                        pageIndex = 3;
-                        bufIndex = 0;
-                        secIndex--;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
 }
 
 
@@ -1003,6 +1005,7 @@ void EasyUI(uint8_t timer)
     static uint8_t index = 0, itemSum = 0;
 
     EasyUISyncOpnValue();
+    EasyUIModifyColor();
     EasyUISetDrawColor(NORMAL);
 
     // Get current page by id
