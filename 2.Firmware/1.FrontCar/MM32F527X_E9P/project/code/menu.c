@@ -8,11 +8,11 @@
 #include "menu.h"
 
 // Pages
-EasyUIPage_t pageMain, pageCheckbox, pageRadButton, pageSwitch, pageChgVal;
+EasyUIPage_t pageMain, pageUart, pageCheckbox, pageRadButton, pageSwitch, pageChgVal;
 
 // Items
 EasyUIItem_t itemSave, itemReset;
-EasyUIItem_t titleMain, itemChkBox, itemRadButton, itemSw, itemVal;
+EasyUIItem_t titleMain, itemChkBox, itemRadButton, itemSw, itemVal, itemUart;
 EasyUIItem_t titleCheckbox, itemCh1, itemCh2, itemCh3, itemCh4;
 EasyUIItem_t titleRadButton, itemButton1, itemButton2, itemButton3, itemButton4;
 EasyUIItem_t itemButton5, itemButton6, itemButton7, itemButton8, itemButton9;
@@ -25,15 +25,34 @@ bool rb6 = false, rb7 = false, rb8 = false, rb9 = false;
 bool sw2 = false, sw3 = true;
 double testFloat = 0.68, testInt = 5, testUint = 34;
 
+void EventTestUart(EasyUIPage_t *page)
+{
+    static int test = 0;
+    IPS114_ClearBuffer();
+    if (opnUp)
+        test += 10;
+    else if (opnDown)
+        test -= 10;
+    IPS114_ShowInt(2, 4, test, 5);
+    if (opnEnter)
+    {
+        IPS114_ShowStr(2, 20, "UART 1 Sent dat:");
+        IPS114_ShowInt(2, 36, test, 5);
+        printf("%d\n", test);
+    }
+}
+
 void MenuInit()
 {
     EasyUIAddPage(&pageMain, PAGE_LIST);
+    EasyUIAddPage(&pageUart, PAGE_CUSTOM, EventTestUart);
     EasyUIAddPage(&pageCheckbox, PAGE_LIST);
     EasyUIAddPage(&pageRadButton, PAGE_LIST);
     EasyUIAddPage(&pageSwitch, PAGE_LIST);
     EasyUIAddPage(&pageChgVal, PAGE_LIST);
 
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageMain, &itemUart, "Test USB UART", ITEM_JUMP_PAGE, pageUart.id);
     EasyUIAddItem(&pageMain, &itemChkBox, "Test checkbox", ITEM_JUMP_PAGE, pageCheckbox.id);
     EasyUIAddItem(&pageMain, &itemRadButton, "Test radio button", ITEM_JUMP_PAGE, pageRadButton.id);
     EasyUIAddItem(&pageMain, &itemSw, "Test switches", ITEM_JUMP_PAGE, pageSwitch.id);

@@ -16,6 +16,7 @@ extern "C"
 #include <stdint.h>
 #include "easy_ui.h"
 #include "easy_key.h"
+#include "zf_driver_uart.h"
 
 void MenuInit();
 

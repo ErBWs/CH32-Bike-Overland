@@ -1221,6 +1221,17 @@ void EasyUI(uint8_t timer)
     } else  // Run custom page
     {
         page->Event(page);
+        if (opnExit)
+        {
+            if (layer > 0)
+            {
+                pageIndex[layer] = 0;
+                itemIndex[layer] = 0;
+                layer--;
+                index = itemIndex[layer];
+                EasyUITransitionAnim();
+            }
+        }
     }
 
     EasyUISendBuffer();
