@@ -25,8 +25,6 @@ extern "C"
 #include <stdarg.h>
 #include <stdbool.h>
 
-#include "menu.h"
-
 // Modify this to fit your EasyKeyInit
 #define KEY_UP          C7
 #define KEY_DOWN        C6
@@ -71,6 +69,12 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUIDisplayBMP(x, y, width, height, pic)              (IPS114_ShowBMP(x, y, width, height, pic))
 #define EasyUIModifyColor()                                     (IPS114_ModifyColor())
 
+#ifdef FPU
+typedef     double      uiParamType;
+#else
+typedef     int32_t     uiParamType;
+#endif
+
 typedef enum
 {
     ITEM_PAGE_DESCRIPTION,
@@ -104,9 +108,9 @@ typedef struct EasyUI_item
     char *msg;                                  // ITEM_MESSAGE
     bool *flag;                                 // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
     bool flagDefault;                           // Factory default setting
-    double *param;                              // ITEM_CHANGE_VALUE
-    double paramDefault;                        // Factory default setting
-    double paramBackup;                         // ITEM_CHANGE_VALUE
+    uiParamType *param;                         // ITEM_CHANGE_VALUE
+    uiParamType paramDefault;                   // Factory default setting
+    uiParamType paramBackup;                    // ITEM_CHANGE_VALUE
     uint8_t pageId;                             // ITEM_JUMP_PAGE
     void (*Event)(struct EasyUI_item *item);    // ITEM_CALL_FUNCTION and ITEM_CHANGE_VALUE
 } EasyUIItem_t;

@@ -6668,6 +6668,8 @@ Removing Unused input sections from the image.
     Removing menu.o(.ARM.exidx.text.OUTLINED_FUNCTION_0), (8 bytes).
     Removing menu.o(.ARM.exidx.text.OUTLINED_FUNCTION_1), (8 bytes).
     Removing menu.o(.ARM.exidx.text.OUTLINED_FUNCTION_2), (8 bytes).
+    Removing menu.o(.data.testInt), (4 bytes).
+    Removing menu.o(.data.testUint), (4 bytes).
     Removing profile_photo_erbws.o(.text), (0 bytes).
     Removing user_flash.o(.text), (0 bytes).
     Removing user_flash.o(.ARM.exidx.text.DoubleToInt), (8 bytes).
@@ -6814,7 +6816,7 @@ Removing Unused input sections from the image.
     Removing libunwind.cpp.o(.ARM.exidx.text._ZN9libunwind13Registers_arm15getRegisterNameEi), (8 bytes).
     Removing libunwind.cpp.o(.rodata._ZTVN9libunwind12UnwindCursorINS_17LocalAddressSpaceENS_13Registers_armEEE), (72 bytes).
 
-2309 unused section(s) (total 189225 bytes) removed from the image.
+2311 unused section(s) (total 189233 bytes) removed from the image.
 
 ==============================================================================
 
@@ -7685,80 +7687,80 @@ Image Symbol Table
     IPS114_colorMode                         0x30000030   Data           1  user_ips114.o(.data..L_MergedGlobals)
     [Anonymous Symbol]                       0x30000030   Section        0  user_ips114.o(.data..L_MergedGlobals)
     [Anonymous Symbol]                       0x30000038   Section        0  menu.o(.data..L_MergedGlobals)
-    IPS114_penColor                          0x30000058   Data           2  zf_device_ips114.o(.data.IPS114_penColor)
-    [Anonymous Symbol]                       0x30000058   Section        0  zf_device_ips114.o(.data.IPS114_penColor)
-    ips114_display_dir                       0x30000080   Data           1  zf_device_ips114.o(.data.ips114_display_dir)
-    [Anonymous Symbol]                       0x30000080   Section        0  zf_device_ips114.o(.data.ips114_display_dir)
-    zf_debug_assert_enable                   0x30000088   Data           1  zf_common_debug.o(.data.zf_debug_assert_enable)
-    [Anonymous Symbol]                       0x30000088   Section        0  zf_common_debug.o(.data.zf_debug_assert_enable)
-    zf_debug_init_flag                       0x30000090   Data           1  zf_common_debug.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x30000090   Section        0  zf_common_debug.o(.bss..L_MergedGlobals)
-    debug_output_info.3                      0x30000092   Data           1  zf_common_debug.o(.bss..L_MergedGlobals)
-    debug_output_info.4                      0x30000094   Data           1  zf_common_debug.o(.bss..L_MergedGlobals)
-    debug_output_info.0                      0x30000098   Data           2  zf_common_debug.o(.bss..L_MergedGlobals)
-    debug_output_info.1                      0x3000009c   Data           2  zf_common_debug.o(.bss..L_MergedGlobals)
-    debug_output_info.5                      0x300000a0   Data           4  zf_common_debug.o(.bss..L_MergedGlobals)
-    debug_output_info.6                      0x300000a4   Data           4  zf_common_debug.o(.bss..L_MergedGlobals)
-    debug_output_info.7                      0x300000a8   Data           4  zf_common_debug.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x300000ac   Section        0  zf_driver_timer.o(.bss..L_MergedGlobals)
-    timer_mode_state                         0x300000b4   Data           8  zf_driver_timer.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x300000c0   Section        0  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
-    gps_tau1201_state                        0x300000c2   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
-    gps_tau1201_receiver_fifo                0x300000c4   Data          24  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
-    ips114_x_max                             0x30000120   Data           1  zf_device_ips114.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x30000120   Section        0  zf_device_ips114.o(.bss..L_MergedGlobals)
-    ips114_y_max                             0x30000121   Data           1  zf_device_ips114.o(.bss..L_MergedGlobals)
-    ips114_display_font                      0x30000122   Data           1  zf_device_ips114.o(.bss..L_MergedGlobals)
-    IPS114_backgroundColor                   0x30000124   Data           2  zf_device_ips114.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x30000128   Section        0  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    mpu6050_iic_struct                       0x30000134   Data          16  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x30000144   Section        0  easy_key.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x30000150   Section        0  user_ips114.o(.bss..L_MergedGlobals.1)
-    EasyUIGetItemPos.lastIndex               0x30000154   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    [Anonymous Symbol]                       0x30000154   Section        0  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.lastIndex            0x30000155   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeUint.changeVal          0x30000156   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeUint.changeStep         0x30000157   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeInt.changeVal           0x3000015f   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeInt.changeStep          0x30000160   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeFloat.changeVal         0x30000161   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeFloat.changeStep        0x30000162   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUI.layer                             0x30000163   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUI.index                             0x30000164   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIGetItemPos.time                    0x30000166   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIGetItemPos.move                    0x30000168   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.time                 0x3000016a   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.lengthTarget         0x3000016c   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.yTarget              0x3000016e   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeUint.x                  0x30000170   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeUint.width              0x30000172   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeInt.x                   0x30000174   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeInt.width               0x30000176   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeFloat.x                 0x30000178   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventChangeFloat.width             0x3000017a   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIEventSaveSettings.bufIndex         0x3000017c   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIInit.bufIndex                      0x3000017e   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.stepLength           0x30000188   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.stepY                0x3000018c   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.length               0x30000190   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUIDrawIndicator.y                    0x30000194   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUI.pageIndex                         0x30000198   Data          10  easy_ui.o(.bss..L_MergedGlobals.15)
-    EasyUI.itemIndex                         0x300001a2   Data          10  easy_ui.o(.bss..L_MergedGlobals.15)
-    [Anonymous Symbol]                       0x300001c8   Section        0  easy_ui.o(.bss..L_MergedGlobals.16)
-    [Anonymous Symbol]                       0x30000238   Section        0  menu.o(.bss..L_MergedGlobals.35)
-    [Anonymous Symbol]                       0x300002a8   Section        0  menu.o(.bss..L_MergedGlobals.36)
-    EventTestUart.test                       0x30000318   Data           4  menu.o(.bss.EventTestUart.test)
-    [Anonymous Symbol]                       0x30000318   Section        0  menu.o(.bss.EventTestUart.test)
-    IPS114_buffer                            0x3000031c   Data       64800  user_ips114.o(.bss.IPS114_buffer)
-    [Anonymous Symbol]                       0x3000031c   Section        0  user_ips114.o(.bss.IPS114_buffer)
-    debug_assert_handler.assert_nest_index   0x3001003c   Data           1  zf_common_debug.o(.bss.debug_assert_handler.assert_nest_index)
-    [Anonymous Symbol]                       0x3001003c   Section        0  zf_common_debug.o(.bss.debug_assert_handler.assert_nest_index)
-    gps_gga_buffer                           0x30010440   Data         128  zf_device_gps_tau1201.o(.bss.gps_gga_buffer)
-    [Anonymous Symbol]                       0x30010440   Section        0  zf_device_gps_tau1201.o(.bss.gps_gga_buffer)
-    gps_rmc_buffer                           0x300104c0   Data         128  zf_device_gps_tau1201.o(.bss.gps_rmc_buffer)
-    [Anonymous Symbol]                       0x300104c0   Section        0  zf_device_gps_tau1201.o(.bss.gps_rmc_buffer)
-    interrupt_nest_count                     0x30010540   Data           4  zf_common_interrupt.o(.bss.interrupt_nest_count)
-    [Anonymous Symbol]                       0x30010540   Section        0  zf_common_interrupt.o(.bss.interrupt_nest_count)
+    IPS114_penColor                          0x300000a0   Data           2  zf_device_ips114.o(.data.IPS114_penColor)
+    [Anonymous Symbol]                       0x300000a0   Section        0  zf_device_ips114.o(.data.IPS114_penColor)
+    ips114_display_dir                       0x300000c8   Data           1  zf_device_ips114.o(.data.ips114_display_dir)
+    [Anonymous Symbol]                       0x300000c8   Section        0  zf_device_ips114.o(.data.ips114_display_dir)
+    zf_debug_assert_enable                   0x300000d0   Data           1  zf_common_debug.o(.data.zf_debug_assert_enable)
+    [Anonymous Symbol]                       0x300000d0   Section        0  zf_common_debug.o(.data.zf_debug_assert_enable)
+    zf_debug_init_flag                       0x300000d8   Data           1  zf_common_debug.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x300000d8   Section        0  zf_common_debug.o(.bss..L_MergedGlobals)
+    debug_output_info.3                      0x300000da   Data           1  zf_common_debug.o(.bss..L_MergedGlobals)
+    debug_output_info.4                      0x300000dc   Data           1  zf_common_debug.o(.bss..L_MergedGlobals)
+    debug_output_info.0                      0x300000e0   Data           2  zf_common_debug.o(.bss..L_MergedGlobals)
+    debug_output_info.1                      0x300000e4   Data           2  zf_common_debug.o(.bss..L_MergedGlobals)
+    debug_output_info.5                      0x300000e8   Data           4  zf_common_debug.o(.bss..L_MergedGlobals)
+    debug_output_info.6                      0x300000ec   Data           4  zf_common_debug.o(.bss..L_MergedGlobals)
+    debug_output_info.7                      0x300000f0   Data           4  zf_common_debug.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x300000f4   Section        0  zf_driver_timer.o(.bss..L_MergedGlobals)
+    timer_mode_state                         0x300000fc   Data           8  zf_driver_timer.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x30000108   Section        0  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
+    gps_tau1201_state                        0x3000010a   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
+    gps_tau1201_receiver_fifo                0x3000010c   Data          24  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
+    ips114_x_max                             0x30000168   Data           1  zf_device_ips114.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x30000168   Section        0  zf_device_ips114.o(.bss..L_MergedGlobals)
+    ips114_y_max                             0x30000169   Data           1  zf_device_ips114.o(.bss..L_MergedGlobals)
+    ips114_display_font                      0x3000016a   Data           1  zf_device_ips114.o(.bss..L_MergedGlobals)
+    IPS114_backgroundColor                   0x3000016c   Data           2  zf_device_ips114.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x30000170   Section        0  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    mpu6050_iic_struct                       0x3000017c   Data          16  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x3000018c   Section        0  easy_key.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x30000198   Section        0  user_ips114.o(.bss..L_MergedGlobals.1)
+    EasyUIGetItemPos.lastIndex               0x3000019c   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    [Anonymous Symbol]                       0x3000019c   Section        0  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.lastIndex            0x3000019d   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeUint.changeVal          0x3000019e   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeUint.changeStep         0x3000019f   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeInt.changeVal           0x300001a7   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeInt.changeStep          0x300001a8   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeFloat.changeVal         0x300001a9   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeFloat.changeStep        0x300001aa   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUI.layer                             0x300001ab   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUI.index                             0x300001ac   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIGetItemPos.time                    0x300001ae   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIGetItemPos.move                    0x300001b0   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.time                 0x300001b2   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.lengthTarget         0x300001b4   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.yTarget              0x300001b6   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeUint.x                  0x300001b8   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeUint.width              0x300001ba   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeInt.x                   0x300001bc   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeInt.width               0x300001be   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeFloat.x                 0x300001c0   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventChangeFloat.width             0x300001c2   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIEventSaveSettings.bufIndex         0x300001c4   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIInit.bufIndex                      0x300001c6   Data           2  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.stepLength           0x300001d0   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.stepY                0x300001d4   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.length               0x300001d8   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUIDrawIndicator.y                    0x300001dc   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUI.pageIndex                         0x300001e0   Data          10  easy_ui.o(.bss..L_MergedGlobals.15)
+    EasyUI.itemIndex                         0x300001ea   Data          10  easy_ui.o(.bss..L_MergedGlobals.15)
+    [Anonymous Symbol]                       0x30000210   Section        0  easy_ui.o(.bss..L_MergedGlobals.16)
+    [Anonymous Symbol]                       0x30000280   Section        0  menu.o(.bss..L_MergedGlobals.35)
+    [Anonymous Symbol]                       0x300002f0   Section        0  menu.o(.bss..L_MergedGlobals.36)
+    EventTestUart.test                       0x30000360   Data           4  menu.o(.bss.EventTestUart.test)
+    [Anonymous Symbol]                       0x30000360   Section        0  menu.o(.bss.EventTestUart.test)
+    IPS114_buffer                            0x30000364   Data       64800  user_ips114.o(.bss.IPS114_buffer)
+    [Anonymous Symbol]                       0x30000364   Section        0  user_ips114.o(.bss.IPS114_buffer)
+    debug_assert_handler.assert_nest_index   0x30010084   Data           1  zf_common_debug.o(.bss.debug_assert_handler.assert_nest_index)
+    [Anonymous Symbol]                       0x30010084   Section        0  zf_common_debug.o(.bss.debug_assert_handler.assert_nest_index)
+    gps_gga_buffer                           0x30010488   Data         128  zf_device_gps_tau1201.o(.bss.gps_gga_buffer)
+    [Anonymous Symbol]                       0x30010488   Section        0  zf_device_gps_tau1201.o(.bss.gps_gga_buffer)
+    gps_rmc_buffer                           0x30010508   Data         128  zf_device_gps_tau1201.o(.bss.gps_rmc_buffer)
+    [Anonymous Symbol]                       0x30010508   Section        0  zf_device_gps_tau1201.o(.bss.gps_rmc_buffer)
+    interrupt_nest_count                     0x30010588   Data           4  zf_common_interrupt.o(.bss.interrupt_nest_count)
+    [Anonymous Symbol]                       0x30010588   Section        0  zf_common_interrupt.o(.bss.interrupt_nest_count)
 
     Global Symbols
 
@@ -8087,88 +8089,87 @@ Image Symbol Table
     rb2                                      0x3000003b   Data           1  menu.o(.data..L_MergedGlobals)
     sw3                                      0x3000003c   Data           1  menu.o(.data..L_MergedGlobals)
     testFloat                                0x30000040   Data           8  menu.o(.data..L_MergedGlobals)
-    testInt                                  0x30000048   Data           8  menu.o(.data..L_MergedGlobals)
-    testUint                                 0x30000050   Data           8  menu.o(.data..L_MergedGlobals)
-    gpio_group                               0x3000005c   Data          36  zf_driver_gpio.o(.data.gpio_group)
-    wireless_module_uart_handler             0x30000084   Data           4  zf_device_type.o(.data.wireless_module_uart_handler)
-    timer_function_state                     0x300000ac   Data           8  zf_driver_timer.o(.bss..L_MergedGlobals)
-    gps_rmc_state                            0x300000c0   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
-    gps_gga_state                            0x300000c1   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
-    gps_tau1201_flag                         0x300000c3   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
-    gps_tau1201                              0x300000e0   Data          64  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
-    mpu6050_gyro_x                           0x30000128   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    mpu6050_gyro_y                           0x3000012a   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    mpu6050_gyro_z                           0x3000012c   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    mpu6050_acc_x                            0x3000012e   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    mpu6050_acc_y                            0x30000130   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    mpu6050_acc_z                            0x30000132   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
-    multiClickSwitch                         0x30000144   Data           1  easy_key.o(.bss..L_MergedGlobals)
-    head                                     0x30000148   Data           4  easy_key.o(.bss..L_MergedGlobals)
-    tail                                     0x3000014c   Data           4  easy_key.o(.bss..L_MergedGlobals)
-    reversedColor                            0x30000150   Data           1  user_ips114.o(.bss..L_MergedGlobals.1)
-    IPS114_backgroundColor                   0x30000152   Data           2  user_ips114.o(.bss..L_MergedGlobals.1)
-    opnUp                                    0x30000158   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    opnDown                                  0x30000159   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    opnForward                               0x3000015a   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    opnBackward                              0x3000015b   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    opnEnter                                 0x3000015c   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    functionIsRunning                        0x3000015d   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    opnExit                                  0x3000015e   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
-    pageHead                                 0x30000180   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
-    pageTail                                 0x30000184   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
-    keyUp                                    0x300001ac   Data          28  easy_ui.o(.bss..L_MergedGlobals.15)
-    keyDown                                  0x300001c8   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
-    keyForward                               0x300001e4   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
-    keyBackward                              0x30000200   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
-    keyConfirm                               0x3000021c   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
-    ch3                                      0x30000238   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb1                                      0x30000239   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb3                                      0x3000023a   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb4                                      0x3000023b   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb5                                      0x3000023c   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb6                                      0x3000023d   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb7                                      0x3000023e   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb8                                      0x3000023f   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    rb9                                      0x30000240   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    sw2                                      0x30000241   Data           1  menu.o(.bss..L_MergedGlobals.35)
-    pageMain                                 0x30000244   Data          24  menu.o(.bss..L_MergedGlobals.35)
-    pageUart                                 0x3000025c   Data          24  menu.o(.bss..L_MergedGlobals.35)
-    pageCheckbox                             0x30000274   Data          24  menu.o(.bss..L_MergedGlobals.35)
-    pageRadButton                            0x3000028c   Data          24  menu.o(.bss..L_MergedGlobals.35)
-    pageSwitch                               0x300002a8   Data          24  menu.o(.bss..L_MergedGlobals.36)
-    pageChgVal                               0x300002c0   Data          24  menu.o(.bss..L_MergedGlobals.36)
-    titleMain                                0x300002d8   Data          64  menu.o(.bss..L_MergedGlobals.36)
-    flash_union_buffer                       0x30010040   Data        1024  zf_driver_flash.o(.bss.flash_union_buffer)
-    itemButton1                              0x30010548   Data          64  menu.o(.bss.itemButton1)
-    itemButton2                              0x30010588   Data          64  menu.o(.bss.itemButton2)
-    itemButton3                              0x300105c8   Data          64  menu.o(.bss.itemButton3)
-    itemButton4                              0x30010608   Data          64  menu.o(.bss.itemButton4)
-    itemButton5                              0x30010648   Data          64  menu.o(.bss.itemButton5)
-    itemButton6                              0x30010688   Data          64  menu.o(.bss.itemButton6)
-    itemButton7                              0x300106c8   Data          64  menu.o(.bss.itemButton7)
-    itemButton8                              0x30010708   Data          64  menu.o(.bss.itemButton8)
-    itemButton9                              0x30010748   Data          64  menu.o(.bss.itemButton9)
-    itemCh1                                  0x30010788   Data          64  menu.o(.bss.itemCh1)
-    itemCh2                                  0x300107c8   Data          64  menu.o(.bss.itemCh2)
-    itemCh3                                  0x30010808   Data          64  menu.o(.bss.itemCh3)
-    itemCh4                                  0x30010848   Data          64  menu.o(.bss.itemCh4)
-    itemChkBox                               0x30010888   Data          64  menu.o(.bss.itemChkBox)
-    itemColor                                0x300108c8   Data          64  menu.o(.bss.itemColor)
-    itemFloat                                0x30010908   Data          64  menu.o(.bss.itemFloat)
-    itemInt                                  0x30010948   Data          64  menu.o(.bss.itemInt)
-    itemRadButton                            0x30010988   Data          64  menu.o(.bss.itemRadButton)
-    itemReset                                0x300109c8   Data          64  menu.o(.bss.itemReset)
-    itemSave                                 0x30010a08   Data          64  menu.o(.bss.itemSave)
-    itemSw                                   0x30010a48   Data          64  menu.o(.bss.itemSw)
-    itemSw2                                  0x30010a88   Data          64  menu.o(.bss.itemSw2)
-    itemSw3                                  0x30010ac8   Data          64  menu.o(.bss.itemSw3)
-    itemUart                                 0x30010b08   Data          64  menu.o(.bss.itemUart)
-    itemUint                                 0x30010b48   Data          64  menu.o(.bss.itemUint)
-    itemVal                                  0x30010b88   Data          64  menu.o(.bss.itemVal)
-    titleCheckbox                            0x30010bc8   Data          64  menu.o(.bss.titleCheckbox)
-    titleRadButton                           0x30010c08   Data          64  menu.o(.bss.titleRadButton)
-    titleSw                                  0x30010c48   Data          64  menu.o(.bss.titleSw)
-    titleVal                                 0x30010c88   Data          64  menu.o(.bss.titleVal)
+    spdPID                                   0x30000048   Data          88  menu.o(.data..L_MergedGlobals)
+    gpio_group                               0x300000a4   Data          36  zf_driver_gpio.o(.data.gpio_group)
+    wireless_module_uart_handler             0x300000cc   Data           4  zf_device_type.o(.data.wireless_module_uart_handler)
+    timer_function_state                     0x300000f4   Data           8  zf_driver_timer.o(.bss..L_MergedGlobals)
+    gps_rmc_state                            0x30000108   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
+    gps_gga_state                            0x30000109   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
+    gps_tau1201_flag                         0x3000010b   Data           1  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
+    gps_tau1201                              0x30000128   Data          64  zf_device_gps_tau1201.o(.bss..L_MergedGlobals)
+    mpu6050_gyro_x                           0x30000170   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    mpu6050_gyro_y                           0x30000172   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    mpu6050_gyro_z                           0x30000174   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    mpu6050_acc_x                            0x30000176   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    mpu6050_acc_y                            0x30000178   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    mpu6050_acc_z                            0x3000017a   Data           2  zf_device_mpu6050.o(.bss..L_MergedGlobals)
+    multiClickSwitch                         0x3000018c   Data           1  easy_key.o(.bss..L_MergedGlobals)
+    head                                     0x30000190   Data           4  easy_key.o(.bss..L_MergedGlobals)
+    tail                                     0x30000194   Data           4  easy_key.o(.bss..L_MergedGlobals)
+    reversedColor                            0x30000198   Data           1  user_ips114.o(.bss..L_MergedGlobals.1)
+    IPS114_backgroundColor                   0x3000019a   Data           2  user_ips114.o(.bss..L_MergedGlobals.1)
+    opnUp                                    0x300001a0   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    opnDown                                  0x300001a1   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    opnForward                               0x300001a2   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    opnBackward                              0x300001a3   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    opnEnter                                 0x300001a4   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    functionIsRunning                        0x300001a5   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    opnExit                                  0x300001a6   Data           1  easy_ui.o(.bss..L_MergedGlobals.15)
+    pageHead                                 0x300001c8   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
+    pageTail                                 0x300001cc   Data           4  easy_ui.o(.bss..L_MergedGlobals.15)
+    keyUp                                    0x300001f4   Data          28  easy_ui.o(.bss..L_MergedGlobals.15)
+    keyDown                                  0x30000210   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
+    keyForward                               0x3000022c   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
+    keyBackward                              0x30000248   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
+    keyConfirm                               0x30000264   Data          28  easy_ui.o(.bss..L_MergedGlobals.16)
+    ch3                                      0x30000280   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb1                                      0x30000281   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb3                                      0x30000282   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb4                                      0x30000283   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb5                                      0x30000284   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb6                                      0x30000285   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb7                                      0x30000286   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb8                                      0x30000287   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    rb9                                      0x30000288   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    sw2                                      0x30000289   Data           1  menu.o(.bss..L_MergedGlobals.35)
+    pageMain                                 0x3000028c   Data          24  menu.o(.bss..L_MergedGlobals.35)
+    pageUart                                 0x300002a4   Data          24  menu.o(.bss..L_MergedGlobals.35)
+    pageCheckbox                             0x300002bc   Data          24  menu.o(.bss..L_MergedGlobals.35)
+    pageRadButton                            0x300002d4   Data          24  menu.o(.bss..L_MergedGlobals.35)
+    pageSwitch                               0x300002f0   Data          24  menu.o(.bss..L_MergedGlobals.36)
+    pageChgVal                               0x30000308   Data          24  menu.o(.bss..L_MergedGlobals.36)
+    titleMain                                0x30000320   Data          64  menu.o(.bss..L_MergedGlobals.36)
+    flash_union_buffer                       0x30010088   Data        1024  zf_driver_flash.o(.bss.flash_union_buffer)
+    itemButton1                              0x30010590   Data          64  menu.o(.bss.itemButton1)
+    itemButton2                              0x300105d0   Data          64  menu.o(.bss.itemButton2)
+    itemButton3                              0x30010610   Data          64  menu.o(.bss.itemButton3)
+    itemButton4                              0x30010650   Data          64  menu.o(.bss.itemButton4)
+    itemButton5                              0x30010690   Data          64  menu.o(.bss.itemButton5)
+    itemButton6                              0x300106d0   Data          64  menu.o(.bss.itemButton6)
+    itemButton7                              0x30010710   Data          64  menu.o(.bss.itemButton7)
+    itemButton8                              0x30010750   Data          64  menu.o(.bss.itemButton8)
+    itemButton9                              0x30010790   Data          64  menu.o(.bss.itemButton9)
+    itemCh1                                  0x300107d0   Data          64  menu.o(.bss.itemCh1)
+    itemCh2                                  0x30010810   Data          64  menu.o(.bss.itemCh2)
+    itemCh3                                  0x30010850   Data          64  menu.o(.bss.itemCh3)
+    itemCh4                                  0x30010890   Data          64  menu.o(.bss.itemCh4)
+    itemChkBox                               0x300108d0   Data          64  menu.o(.bss.itemChkBox)
+    itemColor                                0x30010910   Data          64  menu.o(.bss.itemColor)
+    itemFloat                                0x30010950   Data          64  menu.o(.bss.itemFloat)
+    itemInt                                  0x30010990   Data          64  menu.o(.bss.itemInt)
+    itemRadButton                            0x300109d0   Data          64  menu.o(.bss.itemRadButton)
+    itemReset                                0x30010a10   Data          64  menu.o(.bss.itemReset)
+    itemSave                                 0x30010a50   Data          64  menu.o(.bss.itemSave)
+    itemSw                                   0x30010a90   Data          64  menu.o(.bss.itemSw)
+    itemSw2                                  0x30010ad0   Data          64  menu.o(.bss.itemSw2)
+    itemSw3                                  0x30010b10   Data          64  menu.o(.bss.itemSw3)
+    itemUart                                 0x30010b50   Data          64  menu.o(.bss.itemUart)
+    itemUint                                 0x30010b90   Data          64  menu.o(.bss.itemUint)
+    itemVal                                  0x30010bd0   Data          64  menu.o(.bss.itemVal)
+    titleCheckbox                            0x30010c10   Data          64  menu.o(.bss.titleCheckbox)
+    titleRadButton                           0x30010c50   Data          64  menu.o(.bss.titleRadButton)
+    titleSw                                  0x30010c90   Data          64  menu.o(.bss.titleSw)
+    titleVal                                 0x30010cd0   Data          64  menu.o(.bss.titleVal)
     Image$$ARM_LIB_STACK$$ZI$$Base           0x3001b000   Number         0  anon$$obj.o ABSOLUTE
     Image$$ARM_LIB_STACK$$ZI$$Limit          0x3001c000   Number         0  anon$$obj.o ABSOLUTE
 
@@ -8180,42 +8181,42 @@ Memory Map of the image
 
   Image Entry point : 0x0800093d
 
-  Load Region LR_ROM (Base: 0x08000000, Size: 0x00008828, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_ROM (Base: 0x08000000, Size: 0x00008870, Max: 0x00040000, ABSOLUTE)
 
     Execution Region ER_ROM (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00008794, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x0000093c   Data   RO         1827    RESET               startup_mm32f5277e.o
-    0x0800093c   0x0800093c   0x00000000   Code   RO         3191  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x0800093c   0x0800093c   0x00000004   Code   RO         3616    .ARM.Collect$$$$00000003  mc_w.l(entry4.o)
-    0x08000940   0x08000940   0x00000004   Code   RO         3619    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x08000944   0x08000944   0x00000000   Code   RO         3621    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x08000944   0x08000944   0x00000000   Code   RO         3623    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x08000944   0x08000944   0x00000008   Code   RO         3624    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x0800094c   0x0800094c   0x00000000   Code   RO         3626    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x0800094c   0x0800094c   0x00000000   Code   RO         3628    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x0800094c   0x0800094c   0x00000004   Code   RO         3617    .ARM.Collect$$$$00002714  mc_w.l(entry4.o)
+    0x0800093c   0x0800093c   0x00000000   Code   RO         3193  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x0800093c   0x0800093c   0x00000004   Code   RO         3618    .ARM.Collect$$$$00000003  mc_w.l(entry4.o)
+    0x08000940   0x08000940   0x00000004   Code   RO         3621    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000944   0x08000944   0x00000000   Code   RO         3623    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000944   0x08000944   0x00000000   Code   RO         3625    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000944   0x08000944   0x00000008   Code   RO         3626    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x0800094c   0x0800094c   0x00000000   Code   RO         3628    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x0800094c   0x0800094c   0x00000000   Code   RO         3630    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x0800094c   0x0800094c   0x00000004   Code   RO         3619    .ARM.Collect$$$$00002714  mc_w.l(entry4.o)
     0x08000950   0x08000950   0x00000024   Code   RO         1826    .text               startup_mm32f5277e.o
-    0x08000974   0x08000974   0x00000024   Code   RO         3194    .text               mc_w.l(memcpya.o)
-    0x08000998   0x08000998   0x00000024   Code   RO         3196    .text               mc_w.l(memseta.o)
-    0x080009bc   0x080009bc   0x0000000e   Code   RO         3204    .text               mc_w.l(strlen.o)
-    0x080009ca   0x080009ca   0x0000001a   Code   RO         3206    .text               mc_w.l(memcmp.o)
-    0x080009e4   0x080009e4   0x0000014e   Code   RO         3473    .text               mf_w.l(dadd.o)
-    0x08000b32   0x08000b32   0x00000036   Code   RO         3479    .text               mf_w.l(dcmple.o)
-    0x08000b68   0x08000b68   0x00000036   Code   RO         3481    .text               mf_w.l(dcmplt.o)
-    0x08000b9e   0x08000b9e   0x00000036   Code   RO         3483    .text               mf_w.l(dcmpge.o)
-    0x08000bd4   0x08000bd4   0x00000038   Code   RO         3487    .text               mf_w.l(dcmpeq.o)
-    0x08000c0c   0x08000c0c   0x0000001a   Code   RO         3491    .text               mf_w.l(dfltui.o)
-    0x08000c26   0x08000c26   0x00000038   Code   RO         3497    .text               mf_w.l(d2f.o)
-    0x08000c5e   0x08000c5e   0x0000002c   Code   RO         3640    .text               mc_w.l(uidiv.o)
-    0x08000c8a   0x08000c8a   0x0000001e   Code   RO         3644    .text               mc_w.l(llshl.o)
-    0x08000ca8   0x08000ca8   0x00000020   Code   RO         3646    .text               mc_w.l(llushr.o)
-    0x08000cc8   0x08000cc8   0x00000024   Code   RO         3648    .text               mc_w.l(llsshr.o)
-    0x08000cec   0x08000cec   0x00000000   Code   RO         3659    .text               mc_w.l(iusefp.o)
-    0x08000cec   0x08000cec   0x0000006e   Code   RO         3660    .text               mf_w.l(fepilogue.o)
-    0x08000d5a   0x08000d5a   0x000000ba   Code   RO         3662    .text               mf_w.l(depilogue.o)
-    0x08000e14   0x08000e14   0x00000024   Code   RO         3675    .text               mc_w.l(init.o)
+    0x08000974   0x08000974   0x00000024   Code   RO         3196    .text               mc_w.l(memcpya.o)
+    0x08000998   0x08000998   0x00000024   Code   RO         3198    .text               mc_w.l(memseta.o)
+    0x080009bc   0x080009bc   0x0000000e   Code   RO         3206    .text               mc_w.l(strlen.o)
+    0x080009ca   0x080009ca   0x0000001a   Code   RO         3208    .text               mc_w.l(memcmp.o)
+    0x080009e4   0x080009e4   0x0000014e   Code   RO         3475    .text               mf_w.l(dadd.o)
+    0x08000b32   0x08000b32   0x00000036   Code   RO         3481    .text               mf_w.l(dcmple.o)
+    0x08000b68   0x08000b68   0x00000036   Code   RO         3483    .text               mf_w.l(dcmplt.o)
+    0x08000b9e   0x08000b9e   0x00000036   Code   RO         3485    .text               mf_w.l(dcmpge.o)
+    0x08000bd4   0x08000bd4   0x00000038   Code   RO         3489    .text               mf_w.l(dcmpeq.o)
+    0x08000c0c   0x08000c0c   0x0000001a   Code   RO         3493    .text               mf_w.l(dfltui.o)
+    0x08000c26   0x08000c26   0x00000038   Code   RO         3499    .text               mf_w.l(d2f.o)
+    0x08000c5e   0x08000c5e   0x0000002c   Code   RO         3642    .text               mc_w.l(uidiv.o)
+    0x08000c8a   0x08000c8a   0x0000001e   Code   RO         3646    .text               mc_w.l(llshl.o)
+    0x08000ca8   0x08000ca8   0x00000020   Code   RO         3648    .text               mc_w.l(llushr.o)
+    0x08000cc8   0x08000cc8   0x00000024   Code   RO         3650    .text               mc_w.l(llsshr.o)
+    0x08000cec   0x08000cec   0x00000000   Code   RO         3661    .text               mc_w.l(iusefp.o)
+    0x08000cec   0x08000cec   0x0000006e   Code   RO         3662    .text               mf_w.l(fepilogue.o)
+    0x08000d5a   0x08000d5a   0x000000ba   Code   RO         3664    .text               mf_w.l(depilogue.o)
+    0x08000e14   0x08000e14   0x00000024   Code   RO         3677    .text               mc_w.l(init.o)
     0x08000e38   0x08000e38   0x00000040   Code   RO           48    .text.DMA1_CH1_IRQHandler  isr.o
     0x08000e78   0x08000e78   0x00000040   Code   RO           50    .text.DMA1_CH2_IRQHandler  isr.o
     0x08000eb8   0x08000eb8   0x00000040   Code   RO           52    .text.DMA1_CH3_IRQHandler  isr.o
@@ -8234,7 +8235,7 @@ Memory Map of the image
     0x08001204   0x08001204   0x00000044   Code   RO           78    .text.DMA2_CH8_IRQHandler  isr.o
     0x08001248   0x08001248   0x0000000e   Code   RO         2012    .text.DMA_ClearChannelInterruptStatus  hal_dma.o
     0x08001256   0x08001256   0x0000000c   Code   RO         2010    .text.DMA_GetChannelInterruptStatus  hal_dma.o
-    0x08001262   0x08001262   0x00000012   Code   RO         3085    .text.DoubleToInt   user_flash.o
+    0x08001262   0x08001262   0x00000012   Code   RO         3087    .text.DoubleToInt   user_flash.o
     0x08001274   0x08001274   0x00000008   Code   RO           34    .text.EXTI0_IRQHandler  isr.o
     0x0800127c   0x0800127c   0x00000078   Code   RO           46    .text.EXTI15_10_IRQHandler  isr.o
     0x080012f4   0x080012f4   0x00000008   Code   RO           36    .text.EXTI1_IRQHandler  isr.o
@@ -8280,7 +8281,7 @@ Memory Map of the image
     0x08002c2c   0x08002c2c   0x000000c8   Code   RO         2987    .text.IPS114_ShowFloat  user_ips114.o
     0x08002cf4   0x08002cf4   0x00000070   Code   RO         2983    .text.IPS114_ShowInt  user_ips114.o
     0x08002d64   0x08002d64   0x00000028   Code   RO         2981    .text.IPS114_ShowStr  user_ips114.o
-    0x08002d8c   0x08002d8c   0x0000000a   Code   RO         3087    .text.IntToDouble   user_flash.o
+    0x08002d8c   0x08002d8c   0x0000000a   Code   RO         3089    .text.IntToDouble   user_flash.o
     0x08002d96   0x08002d96   0x0000002a   Code   RO         2267    .text.LPTIM_Init    hal_lptim.o
     0x08002dc0   0x08002dc0   0x00000388   Code   RO         3028    .text.MenuInit      menu.o
     0x08003148   0x08003148   0x00000006   Code   RO         2824    .text.MultiClickCallback  easy_key.o
@@ -8488,21 +8489,21 @@ Memory Map of the image
     0x08005848   0x08005848   0x00000038   Code   RO          894    .text.uart_query_byte  zf_driver_uart.o
     0x08005880   0x08005880   0x00000020   Code   RO          886    .text.uart_write_byte  zf_driver_uart.o
     0x080058a0   0x080058a0   0x0000002c   Code   RO          890    .text.uart_write_string  zf_driver_uart.o
-    0x080058cc   0x080058cc   0x00000020   Code   RO         3301    i.__0printf$3       mc_w.l(printf3.o)
-    0x080058ec   0x080058ec   0x00000028   Code   RO         3303    i.__0sprintf$3      mc_w.l(printf3.o)
-    0x08005914   0x08005914   0x0000000e   Code   RO         3679    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08005922   0x08005922   0x00000002   Code   RO         3680    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08005924   0x08005924   0x0000000e   Code   RO         3681    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080058cc   0x080058cc   0x00000020   Code   RO         3303    i.__0printf$3       mc_w.l(printf3.o)
+    0x080058ec   0x080058ec   0x00000028   Code   RO         3305    i.__0sprintf$3      mc_w.l(printf3.o)
+    0x08005914   0x08005914   0x0000000e   Code   RO         3681    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08005922   0x08005922   0x00000002   Code   RO         3682    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08005924   0x08005924   0x0000000e   Code   RO         3683    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x08005932   0x08005932   0x00000002   PAD
-    0x08005934   0x08005934   0x000001b8   Code   RO         3308    i._printf_core      mc_w.l(printf3.o)
-    0x08005aec   0x08005aec   0x0000000a   Code   RO         3310    i._sputc            mc_w.l(printf3.o)
+    0x08005934   0x08005934   0x000001b8   Code   RO         3310    i._printf_core      mc_w.l(printf3.o)
+    0x08005aec   0x08005aec   0x0000000a   Code   RO         3312    i._sputc            mc_w.l(printf3.o)
     0x08005af6   0x08005af6   0x00000002   PAD
     0x08005af8   0x08005af8   0x0000013c   Data   RO          181    .rodata..L__const.debug_protective_handler.pin_list  zf_common_debug.o
     0x08005c34   0x08005c34   0x00000024   Data   RO          480    .rodata..Lswitch.table.afio_init  zf_driver_gpio.o
     0x08005c58   0x08005c58   0x00000006   Data   RO         1199    .rodata..Lswitch.table.ips114_set_region  zf_device_ips114.o
     0x08005c5e   0x08005c5e   0x00000006   Data   RO         1200    .rodata..Lswitch.table.ips114_set_region.1  zf_device_ips114.o
-    0x08005c64   0x08005c64   0x00000658   Data   RO         3078    .rodata.ErBW_s_2928  profile_photo_erbws.o
-    0x080062bc   0x080062bc   0x00001960   Data   RO         3079    .rodata.ErBW_s_5856  profile_photo_erbws.o
+    0x08005c64   0x08005c64   0x00000658   Data   RO         3080    .rodata.ErBW_s_2928  profile_photo_erbws.o
+    0x080062bc   0x080062bc   0x00001960   Data   RO         3081    .rodata.ErBW_s_5856  profile_photo_erbws.o
     0x08007c1c   0x08007c1c   0x00000228   Data   RO          230    .rodata.ascii_font_6x8  zf_common_font.o
     0x08007e44   0x08007e44   0x000005f0   Data   RO          229    .rodata.ascii_font_8x16  zf_common_font.o
     0x08008434   0x08008434   0x0000000c   Data   RO          848    .rodata.spi_index   zf_driver_spi.o
@@ -8519,93 +8520,93 @@ Memory Map of the image
     0x080085d4   0x080085d4   0x0000002d   Data   RO         1198    .rodata.str1.1      zf_device_ips114.o
     0x08008601   0x08008601   0x00000020   Data   RO         2939    .rodata.str1.1      easy_ui.o
     0x08008621   0x08008621   0x00000016   Data   RO         3015    .rodata.str1.1      user_ips114.o
-    0x08008637   0x08008637   0x00000121   Data   RO         3038    .rodata.str1.1      menu.o
+    0x08008637   0x08008637   0x00000121   Data   RO         3040    .rodata.str1.1      menu.o
     0x08008758   0x08008758   0x0000001c   Data   RO          902    .rodata.uart_index  zf_driver_uart.o
-    0x08008774   0x08008774   0x00000020   Data   RO         3678    Region$$Table       anon$$obj.o
+    0x08008774   0x08008774   0x00000020   Data   RO         3680    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_RAM (Exec base: 0x30000000, Load base: 0x08008798, Size: 0x00010cc8, Max: 0x0001a000, ABSOLUTE)
+    Execution Region RW_RAM (Exec base: 0x30000000, Load base: 0x08008798, Size: 0x00010d10, Max: 0x0001a000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x30000000   0x08008798   0x00000004   Data   RW         3630    .data               mc_w.l(stdout.o)
+    0x30000000   0x08008798   0x00000004   Data   RW         3632    .data               mc_w.l(stdout.o)
     0x30000004   0x0800879c   0x00000008   Data   RW          138    .data..L_MergedGlobals  zf_common_clock.o
     0x3000000c   0x080087a4   0x0000000c   Data   RW         1705    .data..L_MergedGlobals  zf_device_type.o
     0x30000018   0x080087b0   0x00000018   Data   RW         2940    .data..L_MergedGlobals  easy_ui.o
     0x30000030   0x080087c8   0x00000004   Data   RW         3016    .data..L_MergedGlobals  user_ips114.o
     0x30000034   0x080087cc   0x00000004   PAD
-    0x30000038   0x080087d0   0x00000020   Data   RW         3068    .data..L_MergedGlobals  menu.o
-    0x30000058   0x080087f0   0x00000002   Data   RW         1197    .data.IPS114_penColor  zf_device_ips114.o
-    0x3000005a   0x080087f2   0x00000002   PAD
-    0x3000005c   0x080087f4   0x00000024   Data   RW          478    .data.gpio_group    zf_driver_gpio.o
-    0x30000080   0x08008818   0x00000001   Data   RW         1196    .data.ips114_display_dir  zf_device_ips114.o
-    0x30000081   0x08008819   0x00000003   PAD
-    0x30000084   0x0800881c   0x00000004   Data   RW         1704    .data.wireless_module_uart_handler  zf_device_type.o
-    0x30000088   0x08008820   0x00000001   Data   RW          179    .data.zf_debug_assert_enable  zf_common_debug.o
-    0x30000089   0x08008821   0x00000007   PAD
-    0x30000090        -       0x0000001c   Zero   RW          183    .bss..L_MergedGlobals  zf_common_debug.o
-    0x300000ac        -       0x00000010   Zero   RW          877    .bss..L_MergedGlobals  zf_driver_timer.o
-    0x300000bc   0x08008821   0x00000004   PAD
-    0x300000c0        -       0x00000060   Zero   RW         1016    .bss..L_MergedGlobals  zf_device_gps_tau1201.o
-    0x30000120        -       0x00000006   Zero   RW         1201    .bss..L_MergedGlobals  zf_device_ips114.o
-    0x30000126   0x08008821   0x00000002   PAD
-    0x30000128        -       0x0000001c   Zero   RW         1418    .bss..L_MergedGlobals  zf_device_mpu6050.o
-    0x30000144        -       0x0000000c   Zero   RW         2832    .bss..L_MergedGlobals  easy_key.o
-    0x30000150        -       0x00000004   Zero   RW         3017    .bss..L_MergedGlobals.1  user_ips114.o
-    0x30000154        -       0x00000074   Zero   RW         2941    .bss..L_MergedGlobals.15  easy_ui.o
-    0x300001c8        -       0x00000070   Zero   RW         2942    .bss..L_MergedGlobals.16  easy_ui.o
-    0x30000238        -       0x0000006c   Zero   RW         3069    .bss..L_MergedGlobals.35  menu.o
-    0x300002a4   0x08008821   0x00000004   PAD
-    0x300002a8        -       0x00000070   Zero   RW         3070    .bss..L_MergedGlobals.36  menu.o
-    0x30000318        -       0x00000004   Zero   RW         3036    .bss.EventTestUart.test  menu.o
-    0x3000031c        -       0x0000fd20   Zero   RW         3014    .bss.IPS114_buffer  user_ips114.o
-    0x3001003c        -       0x00000001   Zero   RW          180    .bss.debug_assert_handler.assert_nest_index  zf_common_debug.o
-    0x3001003d   0x08008821   0x00000003   PAD
-    0x30010040        -       0x00000400   Zero   RW          434    .bss.flash_union_buffer  zf_driver_flash.o
-    0x30010440        -       0x00000080   Zero   RW         1014    .bss.gps_gga_buffer  zf_device_gps_tau1201.o
-    0x300104c0        -       0x00000080   Zero   RW         1013    .bss.gps_rmc_buffer  zf_device_gps_tau1201.o
-    0x30010540        -       0x00000004   Zero   RW          298    .bss.interrupt_nest_count  zf_common_interrupt.o
-    0x30010544   0x08008821   0x00000004   PAD
-    0x30010548        -       0x00000040   Zero   RW         3051    .bss.itemButton1    menu.o
-    0x30010588        -       0x00000040   Zero   RW         3052    .bss.itemButton2    menu.o
-    0x300105c8        -       0x00000040   Zero   RW         3053    .bss.itemButton3    menu.o
-    0x30010608        -       0x00000040   Zero   RW         3054    .bss.itemButton4    menu.o
-    0x30010648        -       0x00000040   Zero   RW         3055    .bss.itemButton5    menu.o
-    0x30010688        -       0x00000040   Zero   RW         3056    .bss.itemButton6    menu.o
-    0x300106c8        -       0x00000040   Zero   RW         3057    .bss.itemButton7    menu.o
-    0x30010708        -       0x00000040   Zero   RW         3058    .bss.itemButton8    menu.o
-    0x30010748        -       0x00000040   Zero   RW         3059    .bss.itemButton9    menu.o
-    0x30010788        -       0x00000040   Zero   RW         3046    .bss.itemCh1        menu.o
-    0x300107c8        -       0x00000040   Zero   RW         3047    .bss.itemCh2        menu.o
-    0x30010808        -       0x00000040   Zero   RW         3048    .bss.itemCh3        menu.o
-    0x30010848        -       0x00000040   Zero   RW         3049    .bss.itemCh4        menu.o
-    0x30010888        -       0x00000040   Zero   RW         3039    .bss.itemChkBox     menu.o
-    0x300108c8        -       0x00000040   Zero   RW         3061    .bss.itemColor      menu.o
-    0x30010908        -       0x00000040   Zero   RW         3065    .bss.itemFloat      menu.o
-    0x30010948        -       0x00000040   Zero   RW         3066    .bss.itemInt        menu.o
-    0x30010988        -       0x00000040   Zero   RW         3040    .bss.itemRadButton  menu.o
-    0x300109c8        -       0x00000040   Zero   RW         3044    .bss.itemReset      menu.o
-    0x30010a08        -       0x00000040   Zero   RW         3043    .bss.itemSave       menu.o
-    0x30010a48        -       0x00000040   Zero   RW         3041    .bss.itemSw         menu.o
-    0x30010a88        -       0x00000040   Zero   RW         3062    .bss.itemSw2        menu.o
-    0x30010ac8        -       0x00000040   Zero   RW         3063    .bss.itemSw3        menu.o
-    0x30010b08        -       0x00000040   Zero   RW         3037    .bss.itemUart       menu.o
-    0x30010b48        -       0x00000040   Zero   RW         3067    .bss.itemUint       menu.o
-    0x30010b88        -       0x00000040   Zero   RW         3042    .bss.itemVal        menu.o
-    0x30010bc8        -       0x00000040   Zero   RW         3045    .bss.titleCheckbox  menu.o
-    0x30010c08        -       0x00000040   Zero   RW         3050    .bss.titleRadButton  menu.o
-    0x30010c48        -       0x00000040   Zero   RW         3060    .bss.titleSw        menu.o
-    0x30010c88        -       0x00000040   Zero   RW         3064    .bss.titleVal       menu.o
+    0x30000038   0x080087d0   0x00000068   Data   RW         3070    .data..L_MergedGlobals  menu.o
+    0x300000a0   0x08008838   0x00000002   Data   RW         1197    .data.IPS114_penColor  zf_device_ips114.o
+    0x300000a2   0x0800883a   0x00000002   PAD
+    0x300000a4   0x0800883c   0x00000024   Data   RW          478    .data.gpio_group    zf_driver_gpio.o
+    0x300000c8   0x08008860   0x00000001   Data   RW         1196    .data.ips114_display_dir  zf_device_ips114.o
+    0x300000c9   0x08008861   0x00000003   PAD
+    0x300000cc   0x08008864   0x00000004   Data   RW         1704    .data.wireless_module_uart_handler  zf_device_type.o
+    0x300000d0   0x08008868   0x00000001   Data   RW          179    .data.zf_debug_assert_enable  zf_common_debug.o
+    0x300000d1   0x08008869   0x00000007   PAD
+    0x300000d8        -       0x0000001c   Zero   RW          183    .bss..L_MergedGlobals  zf_common_debug.o
+    0x300000f4        -       0x00000010   Zero   RW          877    .bss..L_MergedGlobals  zf_driver_timer.o
+    0x30000104   0x08008869   0x00000004   PAD
+    0x30000108        -       0x00000060   Zero   RW         1016    .bss..L_MergedGlobals  zf_device_gps_tau1201.o
+    0x30000168        -       0x00000006   Zero   RW         1201    .bss..L_MergedGlobals  zf_device_ips114.o
+    0x3000016e   0x08008869   0x00000002   PAD
+    0x30000170        -       0x0000001c   Zero   RW         1418    .bss..L_MergedGlobals  zf_device_mpu6050.o
+    0x3000018c        -       0x0000000c   Zero   RW         2832    .bss..L_MergedGlobals  easy_key.o
+    0x30000198        -       0x00000004   Zero   RW         3017    .bss..L_MergedGlobals.1  user_ips114.o
+    0x3000019c        -       0x00000074   Zero   RW         2941    .bss..L_MergedGlobals.15  easy_ui.o
+    0x30000210        -       0x00000070   Zero   RW         2942    .bss..L_MergedGlobals.16  easy_ui.o
+    0x30000280        -       0x0000006c   Zero   RW         3071    .bss..L_MergedGlobals.35  menu.o
+    0x300002ec   0x08008869   0x00000004   PAD
+    0x300002f0        -       0x00000070   Zero   RW         3072    .bss..L_MergedGlobals.36  menu.o
+    0x30000360        -       0x00000004   Zero   RW         3038    .bss.EventTestUart.test  menu.o
+    0x30000364        -       0x0000fd20   Zero   RW         3014    .bss.IPS114_buffer  user_ips114.o
+    0x30010084        -       0x00000001   Zero   RW          180    .bss.debug_assert_handler.assert_nest_index  zf_common_debug.o
+    0x30010085   0x08008869   0x00000003   PAD
+    0x30010088        -       0x00000400   Zero   RW          434    .bss.flash_union_buffer  zf_driver_flash.o
+    0x30010488        -       0x00000080   Zero   RW         1014    .bss.gps_gga_buffer  zf_device_gps_tau1201.o
+    0x30010508        -       0x00000080   Zero   RW         1013    .bss.gps_rmc_buffer  zf_device_gps_tau1201.o
+    0x30010588        -       0x00000004   Zero   RW          298    .bss.interrupt_nest_count  zf_common_interrupt.o
+    0x3001058c   0x08008869   0x00000004   PAD
+    0x30010590        -       0x00000040   Zero   RW         3053    .bss.itemButton1    menu.o
+    0x300105d0        -       0x00000040   Zero   RW         3054    .bss.itemButton2    menu.o
+    0x30010610        -       0x00000040   Zero   RW         3055    .bss.itemButton3    menu.o
+    0x30010650        -       0x00000040   Zero   RW         3056    .bss.itemButton4    menu.o
+    0x30010690        -       0x00000040   Zero   RW         3057    .bss.itemButton5    menu.o
+    0x300106d0        -       0x00000040   Zero   RW         3058    .bss.itemButton6    menu.o
+    0x30010710        -       0x00000040   Zero   RW         3059    .bss.itemButton7    menu.o
+    0x30010750        -       0x00000040   Zero   RW         3060    .bss.itemButton8    menu.o
+    0x30010790        -       0x00000040   Zero   RW         3061    .bss.itemButton9    menu.o
+    0x300107d0        -       0x00000040   Zero   RW         3048    .bss.itemCh1        menu.o
+    0x30010810        -       0x00000040   Zero   RW         3049    .bss.itemCh2        menu.o
+    0x30010850        -       0x00000040   Zero   RW         3050    .bss.itemCh3        menu.o
+    0x30010890        -       0x00000040   Zero   RW         3051    .bss.itemCh4        menu.o
+    0x300108d0        -       0x00000040   Zero   RW         3041    .bss.itemChkBox     menu.o
+    0x30010910        -       0x00000040   Zero   RW         3063    .bss.itemColor      menu.o
+    0x30010950        -       0x00000040   Zero   RW         3067    .bss.itemFloat      menu.o
+    0x30010990        -       0x00000040   Zero   RW         3068    .bss.itemInt        menu.o
+    0x300109d0        -       0x00000040   Zero   RW         3042    .bss.itemRadButton  menu.o
+    0x30010a10        -       0x00000040   Zero   RW         3046    .bss.itemReset      menu.o
+    0x30010a50        -       0x00000040   Zero   RW         3045    .bss.itemSave       menu.o
+    0x30010a90        -       0x00000040   Zero   RW         3043    .bss.itemSw         menu.o
+    0x30010ad0        -       0x00000040   Zero   RW         3064    .bss.itemSw2        menu.o
+    0x30010b10        -       0x00000040   Zero   RW         3065    .bss.itemSw3        menu.o
+    0x30010b50        -       0x00000040   Zero   RW         3039    .bss.itemUart       menu.o
+    0x30010b90        -       0x00000040   Zero   RW         3069    .bss.itemUint       menu.o
+    0x30010bd0        -       0x00000040   Zero   RW         3044    .bss.itemVal        menu.o
+    0x30010c10        -       0x00000040   Zero   RW         3047    .bss.titleCheckbox  menu.o
+    0x30010c50        -       0x00000040   Zero   RW         3052    .bss.titleRadButton  menu.o
+    0x30010c90        -       0x00000040   Zero   RW         3062    .bss.titleSw        menu.o
+    0x30010cd0        -       0x00000040   Zero   RW         3066    .bss.titleVal       menu.o
 
 
-    Execution Region ARM_LIB_HEAP (Exec base: 0x30010cc8, Load base: 0x08008828, Size: 0x00001000, Max: 0x00001000, ABSOLUTE)
+    Execution Region ARM_LIB_HEAP (Exec base: 0x30010d10, Load base: 0x08008870, Size: 0x00001000, Max: 0x00001000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x30010cc8        -       0x00001000   Zero   RW            1    ARM_LIB_HEAP.bss    anon$$obj.o
+    0x30010d10        -       0x00001000   Zero   RW            1    ARM_LIB_HEAP.bss    anon$$obj.o
 
 
-    Execution Region ARM_LIB_STACK (Exec base: 0x3001b000, Load base: 0x08008828, Size: 0x00001000, Max: 0x00001000, ABSOLUTE)
+    Execution Region ARM_LIB_STACK (Exec base: 0x3001b000, Load base: 0x08008870, Size: 0x00001000, Max: 0x00001000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -8620,7 +8621,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        338         12          0          0         12       3792   easy_key.o
-      5248        400         32         24        228      15880   easy_ui.o
+      5248        400         32         24        228      15903   easy_ui.o
         26          0          0          0          0       3612   hal_dma.o
         12          0          0          0          0       2369   hal_exti.o
        234          0          0          0          0       4324   hal_gpio.o
@@ -8631,7 +8632,7 @@ Image component sizes
        136          0          0          0          0       3896   hal_uart.o
       1948         84          0          0          0       9690   isr.o
         68          8          0          0          0        889   main.o
-      1060        464        289         32       2144       4215   menu.o
+      1060        464        289        104       2144       4562   menu.o
          0          0       8120          0          0        586   profile_photo_erbws.o
         36          8       2364          0          0        494   startup_mm32f5277e.o
         80          8          0          0          0       1988   system_mm32f5277e.o
@@ -8657,7 +8658,7 @@ Image component sizes
        284         24         71          0          0       9002   zf_driver_uart.o
 
     ----------------------------------------------------------------------
-     19128       1624      13784        136      76860     232705   Object Totals
+     19128       1624      13784        208      76860     233075   Object Totals
          0          0         32          0       8192          0   (incl. Generated)
         18          4          0         12         21          0   (incl. Padding)
 
@@ -8717,15 +8718,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     20924       1660      13784        140      76860     233269   Grand Totals
-     20924       1660      13784        140      76860     233269   ELF Image Totals
-     20924       1660      13784        140          0          0   ROM Totals
+     20924       1660      13784        212      76860     233639   Grand Totals
+     20924       1660      13784        212      76860     233639   ELF Image Totals
+     20924       1660      13784        212          0          0   ROM Totals
 
 ==============================================================================
 
     Total RO  Size (Code + RO Data)                34708 (  33.89kB)
-    Total RW  Size (RW Data + ZI Data)             77000 (  75.20kB)
-    Total ROM Size (Code + RO Data + RW Data)      34848 (  34.03kB)
+    Total RW  Size (RW Data + ZI Data)             77072 (  75.27kB)
+    Total ROM Size (Code + RO Data + RW Data)      34920 (  34.10kB)
 
 ==============================================================================
 

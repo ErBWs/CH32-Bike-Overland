@@ -23,31 +23,31 @@
 #define Limitation(x, low, high) ((x) < (low) ? (low) : ((x) > (high) ? (high) : (x)))
 
 #ifdef FPU
-typedef     float       paramType;
+typedef     double      pidParamType;
 #else
-typedef     int32_t     paramType;
+typedef     int32_t     pidParamType;
 #endif
 
 
 typedef struct
 {
-    paramType kp;           // Kp
-    paramType ki;           // Ki
-    paramType kd;           // Kd
-    paramType targetVal;    // Target value
-    paramType outputLimit;  // Output limitation defined by device
-    paramType integralMax;  // Max of PID output which is used to limit integral error
-    paramType errMax;       // Error larger than this will separate the integral
-    paramType errMin;       // Error larger than this and smaller than errMax will decrease the coefficient of integral
+    pidParamType kp;           // Kp
+    pidParamType ki;           // Ki
+    pidParamType kd;           // Kd
+    pidParamType targetVal;    // Target value
+    pidParamType outputLimit;  // Output limitation defined by device
+    pidParamType integralMax;  // Max of PID output which is used to limit integral error
+    pidParamType errMax;       // Error larger than this will separate the integral
+    pidParamType errMin;       // Error larger than this and smaller than errMax will decrease the coefficient of integral
 
-    paramType lastErr;      // Last time error
-    paramType preLastErr;   // Last time error of last time
-    paramType out;          // Output
+    pidParamType lastErr;      // Last time error
+    pidParamType preLastErr;   // Last time error of last time
+    pidParamType out;          // Output
 } PidParam_t;
 
-paramType ConfigIntegral(paramType error, PidParam_t *pid);
+pidParamType ConfigIntegral(pidParamType error, PidParam_t *pid);
 
-int32_t PidIncControl(PidParam_t *pid, paramType nowData);
-int32_t PidPosControl(PidParam_t *pid, paramType nowData);
+int32_t PidIncControl(PidParam_t *pid, pidParamType nowData);
+int32_t PidPosControl(PidParam_t *pid, pidParamType nowData);
 
 #endif

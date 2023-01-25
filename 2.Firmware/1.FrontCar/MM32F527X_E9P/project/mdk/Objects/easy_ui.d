@@ -32,5 +32,4 @@
   ..\..\libraries\sdk\drivers\hal_lptim.h \
   ..\..\libraries\zf_driver\zf_driver_soft_spi.h \
   ..\..\libraries\zf_driver\zf_driver_spi.h \
-  ..\..\libraries\sdk\drivers\hal_spi.h ..\code\profile_photo_erbws.h \
-  ..\code\menu.h
+  ..\..\libraries\sdk\drivers\hal_spi.h ..\code\profile_photo_erbws.h

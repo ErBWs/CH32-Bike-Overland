@@ -58,7 +58,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
             item->flagDefault = *item->flag;
             break;
         case ITEM_CHANGE_VALUE:
-            item->param = va_arg(variableArg, double *);
+            item->param = va_arg(variableArg, uiParamType *);
             item->paramBackup = *item->param;
             item->paramDefault = *item->param;
             item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
