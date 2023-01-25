@@ -8,14 +8,45 @@
 #include "menu.h"
 
 // Pages
-EasyUIPage_t pageMain, pageSpdPID, pageDirPID, pageThreshold, pageCam, pageElement, pageSetting;
+EasyUIPage_t pageMain, pageSpdPID, pageDirPID, pageThreshold, pageCam, pageElement, pageSetting, pageAbout;
 
 // Items
 EasyUIItem_t titleMain, itemSpdPID, itemDirPID, itemThreshold, itemCam, itemEle, itemSetting;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
-EasyUIItem_t titleSetting, itemColor, itemLoop, itemBuzzer, itemSave, itemReset;
+EasyUIItem_t titleSetting, itemColor, itemLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
+void PageAbout(EasyUIItem_t *page)
+{
+    static uint8_t time = 0;
+    static float x = SCREEN_WIDTH;
+    static float step = (float) (SCREEN_WIDTH - 138) / 5;
+    IPS114_ClearBuffer();
+    IPS114_ShowStr(7, 9, "SCEP");
+    IPS114_SetDrawColor(XOR);
+    IPS114_DrawRBox(5, 5, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+    IPS114_SetDrawColor(NORMAL);
+    IPS114_DrawBox(5, 26, 2, ITEM_HEIGHT * 3, IPS114_penColor);
+    IPS114_ShowStr(36, 9, "v1.0");
+    IPS114_ShowStr(10, 30, "MCU   : MM32F5");
+    IPS114_ShowStr(10, 46, "FW    : v1.3");
+    IPS114_ShowStr(10, 62, "Flash : 256KB");
+    IPS114_ShowStr(7, 92, "Powered by:");
+    IPS114_ShowStr(7, 108, ">>ErBW_s");
+    if (time < 5)
+    {
+        x -= step;
+        time++;
+    }
+    else
+        x = 138;
+    EasyUIDisplayBMP((int16_t) x, (SCREEN_HEIGHT - 56) / 2, 58, 56, ErBW_s_5856);
+    if (opnExit)
+    {
+        time = 0;
+        x = SCREEN_WIDTH;
+    }
+}
 
 void MenuInit()
 {
@@ -26,6 +57,7 @@ void MenuInit()
     EasyUIAddPage(&pageCam, PAGE_CUSTOM);
     EasyUIAddPage(&pageElement, PAGE_LIST);
     EasyUIAddPage(&pageSetting, PAGE_LIST);
+    EasyUIAddPage(&pageAbout, PAGE_CUSTOM, PageAbout);
 
     // Page Main
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
@@ -65,5 +97,6 @@ void MenuInit()
     EasyUIAddItem(&pageSetting, &itemLoop, "List Loop", ITEM_SWITCH, &listLoop);
     EasyUIAddItem(&pageSetting, &itemBuzzer, "Buzzer Volume", ITEM_CHANGE_VALUE, &buzzerVolume, EasyUIEventChangeUint);
     EasyUIAddItem(&pageSetting, &itemSave, "Save Settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
-    EasyUIAddItem(&pageSetting, &itemReset, "Reset Settings", ITEM_MESSAGE, "Resetting...", EasyUIEventSaveSettings);
+    EasyUIAddItem(&pageSetting, &itemReset, "Reset Settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
+    EasyUIAddItem(&pageSetting, &itemAbout, "<About>", ITEM_JUMP_PAGE, pageAbout.id);
 }

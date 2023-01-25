@@ -313,17 +313,21 @@ void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uin
  * @param   page    Struct of page
  * @param   index   Current index
  * @param   timer   Fill this with interrupt trigger time
+ * @param   status  Fill this with 1 to reset height
  * @return  void
  *
  * @note    Internal call
  */
-void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
+void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8_t status)
 {
-    static float stepLength = 0, stepY = 0, length = 0, y = 0;
+    static float stepLength = 0, stepY = 0, length = 0, y = SCREEN_HEIGHT;
     static uint16_t time = 0;
     static uint8_t lastIndex = 0;
     static uint16_t lengthTarget = 0, yTarget = 0;
     uint8_t speed = INDICATOR_MOVE_TIME / timer;
+
+    if (status)
+        y = SCREEN_HEIGHT;
 
     // Get Initial length
     if ((int) length == 0)
@@ -368,7 +372,7 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer)
     EasyUISetDrawColor(XOR);
     EasyUIDrawRBox(0, (int16_t) y, (int16_t) length, ITEM_HEIGHT, IPS114_penColor);
     EasyUISetDrawColor(NORMAL);
-    EasyUIDrawRBox(SCREEN_WIDTH - SCROLL_BAR_WIDTH, y, SCROLL_BAR_WIDTH, ITEM_HEIGHT, IPS114_penColor);
+    EasyUIDrawRBox(SCREEN_WIDTH - SCROLL_BAR_WIDTH, (int16_t) y, SCROLL_BAR_WIDTH, ITEM_HEIGHT, IPS114_penColor);
     lastIndex = index;
 
     // Time counter
@@ -1129,7 +1133,7 @@ void EasyUI(uint8_t timer)
             }
         }
         // Draw indicator and scroll bar
-        EasyUIDrawIndicator(page, index, timer);
+        EasyUIDrawIndicator(page, index, timer, 0);
 
         // Operation move reaction
         itemSum = page->itemTail->id;
@@ -1230,6 +1234,7 @@ void EasyUI(uint8_t timer)
                 layer--;
                 index = itemIndex[layer];
                 EasyUITransitionAnim();
+                EasyUIDrawIndicator(page, index, timer, 1);
             }
         }
     }
