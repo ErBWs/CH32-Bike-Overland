@@ -18,6 +18,8 @@ extern "C"
 #include "easy_key.h"
 #include "zf_driver_uart.h"
 #include "pid.h"
+#include "buzzer.h"
+#include "ctrl.h"
 
 void MenuInit();
 

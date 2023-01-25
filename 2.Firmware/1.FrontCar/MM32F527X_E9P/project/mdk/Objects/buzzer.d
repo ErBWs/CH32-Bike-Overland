@@ -1,7 +1,5 @@
-./objects/pid.o: ..\code\pid.c ..\code\pid.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h ..\code\easy_ui.h \
+./objects/buzzer.o: ..\code\buzzer.c ..\code\buzzer.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h ..\code\easy_ui.h \
   ..\code\easy_key.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   ..\..\libraries\zf_driver\zf_driver_gpio.h \
@@ -21,6 +19,7 @@
   ..\..\libraries\sdk\system_mm32f5277e.h \
   ..\..\libraries\zf_common\zf_common_typedef.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   ..\..\libraries\zf_device\zf_device_ips114.h \
   ..\..\libraries\zf_driver\zf_driver_uart.h \
   ..\..\libraries\sdk\drivers\hal_uart.h \
@@ -33,4 +32,5 @@
   ..\..\libraries\sdk\drivers\hal_lptim.h \
   ..\..\libraries\zf_driver\zf_driver_soft_spi.h \
   ..\..\libraries\zf_driver\zf_driver_spi.h \
-  ..\..\libraries\sdk\drivers\hal_spi.h ..\code\profile_photo_erbws.h
+  ..\..\libraries\sdk\drivers\hal_spi.h ..\code\profile_photo_erbws.h \
+  ..\..\libraries\zf_driver\zf_driver_pwm.h

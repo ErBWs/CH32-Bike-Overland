@@ -16,18 +16,18 @@
  *
  * @note        Modify this part to implement different function
  */
-pidParamType ConfigIntegral(pidParamType error, PidParam_t *pid)
+paramType ConfigIntegral(paramType error, PidParam_t *pid)
 {
-    pidParamType coeffi;
+    paramType coeffi;
 
     // Get linear integration coefficient
 #ifdef FPU
-    if (fabsf(error) <= pid->errMin)
+    if (fabs(error) <= pid->errMin)
         coeffi = 1;
-    else if (fabsf(error) >= pid->errMax)
+    else if (fabs(error) >= pid->errMax)
         coeffi = 0;
     else
-        coeffi = (pid->errMax - fabsf(error)) / (pid->errMax - pid->errMin);
+        coeffi = (pid->errMax - fabs(error)) / (pid->errMax - pid->errMin);
 #else
     if (abs(error) <= pid->errMin)
         coeffi = 1;
@@ -48,18 +48,18 @@ pidParamType ConfigIntegral(pidParamType error, PidParam_t *pid)
  * @param       nowData         Current data
  * @return      PID output
  */
-int32_t PidIncControl(PidParam_t *pid, pidParamType nowData)
+int32_t PidIncControl(PidParam_t *pid, paramType nowData)
 {
-    static pidParamType coeffi = 0;     // Coefficient of integration
-    static pidParamType delta = 0;
-    static pidParamType pErr = 0, iErr = 0, dErr = 0;
+    static paramType coeffi = 0;     // Coefficient of integration
+    static paramType delta = 0;
+    static paramType pErr = 0, iErr = 0, dErr = 0;
 
     // Get coefficient of Integration;
-    pidParamType thisErr = pid->targetVal - nowData;
+    paramType thisErr = pid->targetVal - nowData;
     coeffi = ConfigIntegral(thisErr, pid);
 
     // Trapezoidal integration
-    pidParamType preI = (thisErr + pid->lastErr) / 2;
+    paramType preI = (thisErr + pid->lastErr) / 2;
     pErr = thisErr - pid->lastErr;
     dErr = thisErr - 2 * (pid->lastErr) + pid->preLastErr;
 
@@ -99,18 +99,18 @@ int32_t PidIncControl(PidParam_t *pid, pidParamType nowData)
  * @param       nowData         Current data
  * @return      PID output
  */
-int32_t PidPosControl(PidParam_t *pid, pidParamType nowData)
+int32_t PidPosControl(PidParam_t *pid, paramType nowData)
 {
-    static pidParamType coeffi = 0;     // Coefficient of integration
-    static pidParamType delta = 0;
-    static pidParamType pErr = 0, iErr = 0, dErr = 0;
+    static paramType coeffi = 0;     // Coefficient of integration
+    static paramType delta = 0;
+    static paramType pErr = 0, iErr = 0, dErr = 0;
 
     // Get coefficient of Integration;
-    pidParamType thisErr = pid->targetVal - nowData;
+    paramType thisErr = pid->targetVal - nowData;
     coeffi = ConfigIntegral(thisErr, pid);
 
     // Trapezoidal integration
-    pidParamType preI = (thisErr + pid->lastErr) / 2;
+    paramType preI = (thisErr + pid->lastErr) / 2;
     pErr = thisErr;
     dErr = thisErr - pid->lastErr;
 

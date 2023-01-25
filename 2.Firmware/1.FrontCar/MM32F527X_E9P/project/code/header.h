@@ -8,6 +8,8 @@
 #ifndef _HEADER_H
 #define _HEADER_H
 
+#include "buzzer.h"
+#include "ctrl.h"
 #include "easy_key.h"
 #include "easy_ui.h"
 #include "menu.h"

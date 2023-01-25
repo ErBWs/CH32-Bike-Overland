@@ -1,5 +1,6 @@
-./objects/pid.o: ..\code\pid.c ..\code\pid.h \
+./objects/ctrl.o: ..\code\ctrl.c ..\code\ctrl.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h ..\code\pid.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h ..\code\easy_ui.h \
   ..\code\easy_key.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
@@ -7,7 +8,6 @@
   ..\..\libraries\zf_driver\zf_driver_gpio.h \
   ..\..\libraries\sdk\drivers\hal_gpio.h \
   ..\..\libraries\sdk\drivers\hal_common.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\..\libraries\sdk\hal_device_registers.h \
   ..\..\libraries\sdk\mm32f5277e.h \
   ..\..\libraries\sdk\CMSIS\Include\core_star.h \
@@ -33,4 +33,8 @@
   ..\..\libraries\sdk\drivers\hal_lptim.h \
   ..\..\libraries\zf_driver\zf_driver_soft_spi.h \
   ..\..\libraries\zf_driver\zf_driver_spi.h \
-  ..\..\libraries\sdk\drivers\hal_spi.h ..\code\profile_photo_erbws.h
+  ..\..\libraries\sdk\drivers\hal_spi.h ..\code\profile_photo_erbws.h \
+  ..\..\libraries\zf_driver\zf_driver_pwm.h \
+  ..\..\libraries\zf_driver\zf_driver_encoder.h \
+  ..\..\libraries\zf_driver\zf_driver_pit.h \
+  ..\..\libraries\zf_common\zf_common_interrupt.h

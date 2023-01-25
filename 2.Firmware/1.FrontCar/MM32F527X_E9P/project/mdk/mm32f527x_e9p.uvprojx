@@ -1324,6 +1324,26 @@
               <FileType>5</FileType>
               <FilePath>..\code\user_flash.h</FilePath>
             </File>
+            <File>
+              <FileName>ctrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\ctrl.c</FilePath>
+            </File>
+            <File>
+              <FileName>ctrl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\ctrl.h</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\buzzer.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\buzzer.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

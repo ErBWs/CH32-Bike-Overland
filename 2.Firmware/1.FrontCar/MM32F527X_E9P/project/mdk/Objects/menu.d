@@ -33,4 +33,8 @@
   ..\..\libraries\zf_driver\zf_driver_soft_spi.h \
   ..\..\libraries\zf_driver\zf_driver_spi.h \
   ..\..\libraries\sdk\drivers\hal_spi.h ..\code\profile_photo_erbws.h \
-  ..\code\pid.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h
+  ..\code\pid.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  ..\code\buzzer.h ..\..\libraries\zf_driver\zf_driver_pwm.h \
+  ..\code\ctrl.h ..\..\libraries\zf_driver\zf_driver_encoder.h \
+  ..\..\libraries\zf_driver\zf_driver_pit.h \
+  ..\..\libraries\zf_common\zf_common_interrupt.h

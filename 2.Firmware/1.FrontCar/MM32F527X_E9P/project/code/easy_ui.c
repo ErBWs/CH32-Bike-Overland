@@ -58,7 +58,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
             item->flagDefault = *item->flag;
             break;
         case ITEM_CHANGE_VALUE:
-            item->param = va_arg(variableArg, uiParamType *);
+            item->param = va_arg(variableArg, paramType *);
             item->paramBackup = *item->param;
             item->paramDefault = *item->param;
             item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
@@ -1018,7 +1018,7 @@ void EasyUISyncOpnValue()
 }
 
 
-bool functionIsRunning = false;
+bool functionIsRunning = false, listLoop = true;
 
 /*!
  * @brief   Main function of EasyUI
@@ -1137,14 +1137,14 @@ void EasyUI(uint8_t timer)
         {
             if (index < itemSum)
                 index++;
-            else
+            else if (listLoop)
                 index = 0;
         }
         if (opnBackward)
         {
             if (index > 0)
                 index--;
-            else
+            else if (listLoop)
                 index = itemSum;
         }
         if (opnEnter)

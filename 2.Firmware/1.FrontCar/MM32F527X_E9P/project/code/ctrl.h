@@ -55,6 +55,8 @@
 #define ENCODER_L_TIM           TIM3_ENCOEDER                   // Timer of encoder
 #define ENCODER_R_TIM           TIM4_ENCOEDER                   // Timer of encoder
 
+extern PidParam_t spdParam;
+extern PidParam_t dirParam;
 
 void MotorInit(void);
 int16_t GetDirError(uint8_t status);

@@ -70,9 +70,9 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUIModifyColor()                                     (IPS114_ModifyColor())
 
 #ifdef FPU
-typedef     double      uiParamType;
+typedef     double      paramType;
 #else
-typedef     int32_t     uiParamType;
+typedef     int32_t     paramType;
 #endif
 
 typedef enum
@@ -108,9 +108,9 @@ typedef struct EasyUI_item
     char *msg;                                  // ITEM_MESSAGE
     bool *flag;                                 // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
     bool flagDefault;                           // Factory default setting
-    uiParamType *param;                         // ITEM_CHANGE_VALUE
-    uiParamType paramDefault;                   // Factory default setting
-    uiParamType paramBackup;                    // ITEM_CHANGE_VALUE
+    paramType *param;                         // ITEM_CHANGE_VALUE
+    paramType paramDefault;                   // Factory default setting
+    paramType paramBackup;                    // ITEM_CHANGE_VALUE
     uint8_t pageId;                             // ITEM_JUMP_PAGE
     void (*Event)(struct EasyUI_item *item);    // ITEM_CALL_FUNCTION and ITEM_CHANGE_VALUE
 } EasyUIItem_t;
@@ -126,7 +126,7 @@ typedef struct EasyUI_page
     void (*Event)(struct EasyUI_page *page);
 } EasyUIPage_t;
 
-extern bool functionIsRunning;
+extern bool functionIsRunning, listLoop;
 extern EasyUIPage_t *pageHead, *pageTail;
 
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...);

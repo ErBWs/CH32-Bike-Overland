@@ -250,7 +250,8 @@
 				214,
 				216,
 				218,
-				221
+				221,
+				222
 			]
 		}
 	],
@@ -377,7 +378,8 @@
 				214,
 				216,
 				218,
-				221
+				221,
+				222
 			]
 		},
 		{
@@ -510,7 +512,8 @@
 				215,
 				217,
 				219,
-				220
+				220,
+				223
 			]
 		}
 	],
@@ -1720,6 +1723,17 @@
 			"compileGroupIndex" : 0,
 			"path" : "project/code/ctrl.c",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "project/code/buzzer.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/buzzer.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <math.h>
+#include "easy_ui.h"
 
 /*!
  * @brief   Limit the value of 'x'
@@ -22,32 +23,26 @@
  */
 #define Limitation(x, low, high) ((x) < (low) ? (low) : ((x) > (high) ? (high) : (x)))
 
-#ifdef FPU
-typedef     double      pidParamType;
-#else
-typedef     int32_t     pidParamType;
-#endif
-
 
 typedef struct
 {
-    pidParamType kp;           // Kp
-    pidParamType ki;           // Ki
-    pidParamType kd;           // Kd
-    pidParamType targetVal;    // Target value
-    pidParamType outputLimit;  // Output limitation defined by device
-    pidParamType integralMax;  // Max of PID output which is used to limit integral error
-    pidParamType errMax;       // Error larger than this will separate the integral
-    pidParamType errMin;       // Error larger than this and smaller than errMax will decrease the coefficient of integral
+    paramType kp;           // Kp
+    paramType ki;           // Ki
+    paramType kd;           // Kd
+    paramType targetVal;    // Target value
+    paramType outputLimit;  // Output limitation defined by device
+    paramType integralMax;  // Max of PID output which is used to limit integral error
+    paramType errMax;       // Error larger than this will separate the integral
+    paramType errMin;       // Error larger than this and smaller than errMax will decrease the coefficient of integral
 
-    pidParamType lastErr;      // Last time error
-    pidParamType preLastErr;   // Last time error of last time
-    pidParamType out;          // Output
+    paramType lastErr;      // Last time error
+    paramType preLastErr;   // Last time error of last time
+    paramType out;          // Output
 } PidParam_t;
 
-pidParamType ConfigIntegral(pidParamType error, PidParam_t *pid);
+paramType ConfigIntegral(paramType error, PidParam_t *pid);
 
-int32_t PidIncControl(PidParam_t *pid, pidParamType nowData);
-int32_t PidPosControl(PidParam_t *pid, pidParamType nowData);
+int32_t PidIncControl(PidParam_t *pid, paramType nowData);
+int32_t PidPosControl(PidParam_t *pid, paramType nowData);
 
 #endif

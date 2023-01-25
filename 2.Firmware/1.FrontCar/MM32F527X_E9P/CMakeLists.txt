@@ -229,4 +229,4 @@ add_executable(MM32F527X_E9P
         project/code/header.h project/code/user_ips114.c project/code/user_ips114.h
         project/code/profile_photo_erbws.c project/code/profile_photo_erbws.h project/code/menu.c project/code/menu.h project/code/user_flash.c project/code/user_flash.h
         project/code/ctrl.h
-        project/code/ctrl.c)
+        project/code/ctrl.c project/code/buzzer.c project/code/buzzer.h)
