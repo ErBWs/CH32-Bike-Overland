@@ -8,12 +8,13 @@
 #include "easy_ui_user_app.h"
 
 // Pages
-EasyUIPage_t pageMain, pageSpdPID, pageDirPID, pageThreshold, pageCam, pageElement, pageSetting, pageAbout;
+EasyUIPage_t pageMain, pageSpdPID, pageDirPID, pageImage, pageThreshold, pageCam, pageElement, pageSetting, pageAbout;
 
 // Items
-EasyUIItem_t titleMain, itemSpdPID, itemDirPID, itemThreshold, itemCam, itemEle, itemSetting;
+EasyUIItem_t titleMain, itemSpdPID, itemDirPID, itemImage, itemThreshold, itemCam, itemEle, itemSetting;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
+EasyUIItem_t itemTh;
 EasyUIItem_t titleSetting, itemColor, itemLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
 
@@ -84,12 +85,20 @@ void PageAbout(EasyUIItem_t *page)
     }
 }
 
+
+void PageThreshold(EasyUIItem_t *page)
+{
+
+}
+
+
 void MenuInit()
 {
     EasyUIAddPage(&pageMain, PAGE_LIST);
     EasyUIAddPage(&pageSpdPID, PAGE_LIST);
     EasyUIAddPage(&pageDirPID, PAGE_LIST);
-    EasyUIAddPage(&pageThreshold, PAGE_CUSTOM);
+    EasyUIAddPage(&pageImage, PAGE_CUSTOM);
+    EasyUIAddPage(&pageThreshold, PAGE_CUSTOM, PageThreshold);
     EasyUIAddPage(&pageCam, PAGE_CUSTOM);
     EasyUIAddPage(&pageElement, PAGE_LIST);
     EasyUIAddPage(&pageSetting, PAGE_LIST);
@@ -99,6 +108,9 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageMain, &itemSpdPID, "Speed PID", ITEM_JUMP_PAGE, pageSpdPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);
+    EasyUIAddItem(&pageMain, &itemImage, "Show Image", ITEM_JUMP_PAGE, pageImage.id);
+    EasyUIAddItem(&pageMain, &itemThreshold, "Change Threshold", ITEM_JUMP_PAGE, pageThreshold.id);
+    EasyUIAddItem(&pageMain, &itemEle, "Select Elements", ITEM_JUMP_PAGE, pageElement.id);
     EasyUIAddItem(&pageMain, &itemSetting, "Settings", ITEM_JUMP_PAGE, pageSetting.id);
 
     // Page speed pid
@@ -126,6 +138,9 @@ void MenuInit()
                   EasyUIEventChangeUint);
     EasyUIAddItem(&pageDirPID, &itemDirErrMin, "Min Error", ITEM_CHANGE_VALUE, &dirParam.errMin,
                   EasyUIEventChangeUint);
+
+    // Page threshold
+    EasyUIAddItem(&pageThreshold, &itemTh, "Threshold", ITEM_CHANGE_VALUE, &threshold);
 
     // Page setting
     EasyUIAddItem(&pageSetting, &titleSetting, "[Settings]", ITEM_PAGE_DESCRIPTION);

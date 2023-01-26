@@ -13,6 +13,7 @@
 #include "easy_key.h"
 #include "easy_ui.h"
 #include "easy_ui_user_app.h"
+#include "image_process.h"
 #include "pid.h"
 #include "profile_photo_erbws.h"
 #include "user_flash.h"

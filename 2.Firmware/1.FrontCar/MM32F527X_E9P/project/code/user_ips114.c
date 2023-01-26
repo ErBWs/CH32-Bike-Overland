@@ -564,3 +564,48 @@ void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const
         }
     }
 }
+
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     IPS114 显示 8bit 灰度图像 带二值化阈值
+// 参数说明     x               坐标x方向的起点 参数范围 [0, ips114_x_max-1]
+// 参数说明     y               坐标y方向的起点 参数范围 [0, ips114_y_max-1]
+// 参数说明     *image          图像数组指针
+// 参数说明     width           图像实际宽度
+// 参数说明     height          图像实际高度
+// 参数说明     dis_width       图像显示宽度 参数范围 [0, ips114_x_max]
+// 参数说明     dis_height      图像显示高度 参数范围 [0, ips114_y_max]
+// 参数说明     threshold       二值化显示阈值 0-不开启二值化
+// 返回参数     void
+// 使用示例     ips114_show_gray_image(0, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H, MT9V03X_W, MT9V03X_H, 0);
+// 备注信息
+//-------------------------------------------------------------------------------------------------------------------
+void IPS114_ShowGrayImage(uint16_t x, uint16_t y, const uint8_t *image, uint16_t width, uint16_t height, uint16_t dis_width,
+                     uint16_t dis_height, uint8_t threshold)
+{
+    uint16_t i, j;
+    uint16_t color, temp;
+    uint32_t width_index, height_index;
+
+    IPS114_CS(0);
+    for (j = 0; j < dis_height; j++)
+    {
+        height_index = j * height / dis_height;
+        for (i = 0; i < dis_width; i++)
+        {
+            width_index = i * width / dis_width;
+            temp = *(image + height_index * width + width_index);
+            if (threshold == 0)
+            {
+                color = (0x001f & ((temp) >> 3)) << 11;
+                color = color | (((0x003f) & ((temp) >> 2)) << 5);
+                color = color | (0x001f & ((temp) >> 3));
+                IPS114_DrawPoint(x + i, y + j, color);
+            } else if (temp < threshold)
+                IPS114_DrawPoint(x + i, y + j, RGB565_BLACK);
+            else
+                IPS114_DrawPoint(x + i, y + j, RGB565_WHITE);
+        }
+    }
+    IPS114_CS(1);
+}

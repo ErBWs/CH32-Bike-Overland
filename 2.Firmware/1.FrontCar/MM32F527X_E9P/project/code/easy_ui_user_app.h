@@ -21,6 +21,7 @@ extern "C"
 #include "pid.h"
 #include "buzzer.h"
 #include "ctrl.h"
+#include "image_process.h"
 
 void MenuInit();
 

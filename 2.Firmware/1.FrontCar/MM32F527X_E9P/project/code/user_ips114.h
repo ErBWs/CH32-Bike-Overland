@@ -57,6 +57,8 @@ void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heig
 void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue);
 
 void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint8_t *pic);
+void IPS114_ShowGrayImage(uint16_t x, uint16_t y, const uint8_t *image, uint16_t width, uint16_t height, uint16_t dis_width,
+                          uint16_t dis_height, uint8_t threshold);
 
 #ifdef __cplusplus
 }
