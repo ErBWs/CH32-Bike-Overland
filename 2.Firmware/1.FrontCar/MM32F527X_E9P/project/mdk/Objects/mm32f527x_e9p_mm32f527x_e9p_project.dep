@@ -55,7 +55,7 @@ I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_fifo.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_common\zf_common_interrupt.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_adc.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_dac.h)(0x63A29B17)
@@ -99,7 +99,7 @@ I (..\..\libraries\zf_device\zf_device_type.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_virtual_oscilloscope.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_wifi_uart.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_wireless_uart.h)(0x63A29B17)
-I (..\code\header.h)(0x63D10055)
+I (..\code\header.h)(0x63D1571C)
 I (..\code\buzzer.h)(0x63D10055)
 I (..\code\easy_ui.h)(0x63D0E2BE)
 I (..\code\easy_key.h)(0x63C3F583)
@@ -109,7 +109,7 @@ I (..\code\profile_photo_erbws.h)(0x63A05B79)
 I (..\code\ctrl.h)(0x63D0D628)
 I (..\code\pid.h)(0x63D0E07E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\code\menu.h)(0x63D10055)
+I (..\code\easy_ui_user_app.h)(0x63D22159)
 F (..\user\src\main.c)(0x63C794A0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/main.o -MD)
 I (..\..\libraries\zf_common\zf_common_headfile.h)(0x63BB9208)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -164,7 +164,7 @@ I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_fifo.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_common\zf_common_interrupt.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_adc.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_dac.h)(0x63A29B17)
@@ -208,7 +208,7 @@ I (..\..\libraries\zf_device\zf_device_type.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_virtual_oscilloscope.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_wifi_uart.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_wireless_uart.h)(0x63A29B17)
-I (..\code\header.h)(0x63D10055)
+I (..\code\header.h)(0x63D1571C)
 I (..\code\buzzer.h)(0x63D10055)
 I (..\code\easy_ui.h)(0x63D0E2BE)
 I (..\code\easy_key.h)(0x63C3F583)
@@ -218,11 +218,11 @@ I (..\code\profile_photo_erbws.h)(0x63A05B79)
 I (..\code\ctrl.h)(0x63D0D628)
 I (..\code\pid.h)(0x63D0E07E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\code\menu.h)(0x63D10055)
+I (..\code\easy_ui_user_app.h)(0x63D22159)
 F (..\user\inc\isr.h)(0x63A29B17)()
 F (..\..\libraries\doc\version.txt)(0x63A29B17)()
 F (..\..\libraries\zf_common\zf_common_clock.c)(0x63A29B17)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/zf_common_clock.o -MD)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_common\zf_common_typedef.h)(0x63A29B17)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
@@ -294,7 +294,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 F (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)()
-F (..\..\libraries\zf_common\zf_common_function.c)(0x63C4036F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/zf_common_function.o -MD)
+F (..\..\libraries\zf_common\zf_common_function.c)(0x63D16B4B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/zf_common_function.o -MD)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_typedef.h)(0x63A29B17)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -303,8 +303,8 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
-F (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)()
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
+F (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)()
 F (..\..\libraries\zf_common\zf_common_headfile.h)(0x63BB9208)()
 F (..\..\libraries\zf_common\zf_common_interrupt.c)(0x63A29B17)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/zf_common_interrupt.o -MD)
 I (..\..\libraries\zf_common\zf_common_interrupt.h)(0x63A29B17)
@@ -790,7 +790,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -887,7 +887,7 @@ F (..\..\libraries\zf_device\zf_device_config.h)(0x63A29B17)()
 F (..\..\libraries\zf_device\zf_device_config.lib)(0x63A29B17)()
 F (..\..\libraries\zf_device\zf_device_gps_tau1201.c)(0x63A29B17)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/zf_device_gps_tau1201.o -MD)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_common\zf_common_typedef.h)(0x63A29B17)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
@@ -1048,7 +1048,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -1081,7 +1081,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -1114,7 +1114,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -1301,7 +1301,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -1405,7 +1405,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -1438,7 +1438,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -1491,7 +1491,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_fifo.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -2096,7 +2096,7 @@ I (..\code\user_ips114.h)(0x63D10AF5)
 I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
@@ -2104,7 +2104,7 @@ I (..\..\libraries\zf_driver\zf_driver_spi.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
 F (..\code\easy_ui.h)(0x63D0E2BE)()
-F (..\code\header.h)(0x63D10055)()
+F (..\code\header.h)(0x63D1571C)()
 F (..\code\pid.c)(0x63D0E09D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/pid.o -MD)
 I (..\code\pid.h)(0x63D0E07E)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
@@ -2140,7 +2140,7 @@ I (..\code\user_ips114.h)(0x63D10AF5)
 I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
@@ -2160,7 +2160,7 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
@@ -2182,56 +2182,6 @@ I (..\..\libraries\zf_driver\zf_driver_spi.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
 I (..\..\libraries\zf_device\zf_device_ips114.h)(0x63C8172D)
 F (..\code\user_ips114.h)(0x63D10AF5)()
-F (..\code\menu.c)(0x63D11B0D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/menu.o -MD)
-I (..\code\menu.h)(0x63D10055)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
-I (..\code\easy_ui.h)(0x63D0E2BE)
-I (..\code\easy_key.h)(0x63C3F583)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63884908)
-I (..\..\libraries\zf_driver\zf_driver_gpio.h)(0x63A29B17)
-I (..\..\libraries\sdk\drivers\hal_gpio.h)(0x63A29B17)
-I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
-I (..\..\libraries\sdk\hal_device_registers.h)(0x63A29B17)
-I (..\..\libraries\sdk\mm32f5277e.h)(0x63A29B17)
-I (..\..\libraries\sdk\CMSIS\Include\core_star.h)(0x63C0380A)
-I (..\..\libraries\sdk\CMSIS\Include\cmsis_version.h)(0x63A29B17)
-I (..\..\libraries\sdk\CMSIS\Include\cmsis_compiler.h)(0x63A29B17)
-I (..\..\libraries\sdk\CMSIS\Include\cmsis_armclang.h)(0x63C1302D)
-I (C:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x63884908)
-I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63884908)
-I (..\..\libraries\sdk\CMSIS\Include\mpu_armv8.h)(0x63A29B17)
-I (..\..\libraries\sdk\mm32f5277e_features.h)(0x63A29B17)
-I (..\..\libraries\sdk\system_mm32f5277e.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_typedef.h)(0x63A29B17)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x63884908)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
-I (..\..\libraries\zf_device\zf_device_ips114.h)(0x63C8172D)
-I (..\..\libraries\zf_driver\zf_driver_uart.h)(0x63A29B17)
-I (..\..\libraries\sdk\drivers\hal_uart.h)(0x63A29B17)
-I (..\..\libraries\zf_driver\zf_driver_flash.h)(0x63C79E58)
-I (..\code\user_flash.h)(0x63C7AF4D)
-I (..\code\user_ips114.h)(0x63D10AF5)
-I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
-I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
-I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
-I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
-I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
-I (..\..\libraries\zf_driver\zf_driver_spi.h)(0x63A29B17)
-I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
-I (..\code\profile_photo_erbws.h)(0x63A05B79)
-I (..\code\pid.h)(0x63D0E07E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\code\buzzer.h)(0x63D10055)
-I (..\..\libraries\zf_driver\zf_driver_pwm.h)(0x63A29B17)
-I (..\code\ctrl.h)(0x63D0D628)
-I (..\..\libraries\zf_driver\zf_driver_encoder.h)(0x63A29B17)
-I (..\..\libraries\zf_driver\zf_driver_pit.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_interrupt.h)(0x63A29B17)
-F (..\code\menu.h)(0x63D10055)()
 F (..\code\profile_photo_erbws.c)(0x63A05B7A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/profile_photo_erbws.o -MD)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
@@ -2294,7 +2244,7 @@ I (..\code\user_ips114.h)(0x63D10AF5)
 I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
@@ -2340,7 +2290,7 @@ I (..\code\user_ips114.h)(0x63D10AF5)
 I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
 I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
 I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
-I (..\..\libraries\zf_common\zf_common_function.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
 I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
 I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
 I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
@@ -2349,3 +2299,53 @@ I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
 I (..\code\profile_photo_erbws.h)(0x63A05B79)
 I (..\..\libraries\zf_driver\zf_driver_pwm.h)(0x63A29B17)
 F (..\code\buzzer.h)(0x63D10055)()
+F (..\code\easy_ui_user_app.c)(0x63D22758)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=star-mc1 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -c-fno-rtti -fsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -Oz -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../user/inc -I ../code -I ../../libraries/zf_common -I ../../libraries/zf_device -I ../../libraries/zf_driver -I ../../libraries/sdk -I ../../libraries/sdk/CMSIS/Include -I ../../libraries/sdk/drivers -I ../../libraries/components/fatfs/source-IC:/Users/baohan/AppData/Local/Arm/Packs/MindMotion/MM32F5277E_DFP/0.0.7/Device/MM32F5277E-D__UVISION_VERSION="538" -DMM32F5277E9PV -DDCACHE_DISABLED-o ./objects/easy_ui_user_app.o -MD)
+I (..\code\easy_ui_user_app.h)(0x63D22159)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
+I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
+I (..\code\easy_ui.h)(0x63D0E2BE)
+I (..\code\easy_key.h)(0x63C3F583)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x63884908)
+I (..\..\libraries\zf_driver\zf_driver_gpio.h)(0x63A29B17)
+I (..\..\libraries\sdk\drivers\hal_gpio.h)(0x63A29B17)
+I (..\..\libraries\sdk\drivers\hal_common.h)(0x63A29B17)
+I (..\..\libraries\sdk\hal_device_registers.h)(0x63A29B17)
+I (..\..\libraries\sdk\mm32f5277e.h)(0x63A29B17)
+I (..\..\libraries\sdk\CMSIS\Include\core_star.h)(0x63C0380A)
+I (..\..\libraries\sdk\CMSIS\Include\cmsis_version.h)(0x63A29B17)
+I (..\..\libraries\sdk\CMSIS\Include\cmsis_compiler.h)(0x63A29B17)
+I (..\..\libraries\sdk\CMSIS\Include\cmsis_armclang.h)(0x63C1302D)
+I (C:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x63884908)
+I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63884908)
+I (..\..\libraries\sdk\CMSIS\Include\mpu_armv8.h)(0x63A29B17)
+I (..\..\libraries\sdk\mm32f5277e_features.h)(0x63A29B17)
+I (..\..\libraries\sdk\system_mm32f5277e.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_typedef.h)(0x63A29B17)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdarg.h)(0x63884908)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
+I (..\..\libraries\zf_device\zf_device_ips114.h)(0x63C8172D)
+I (..\..\libraries\zf_driver\zf_driver_uart.h)(0x63A29B17)
+I (..\..\libraries\sdk\drivers\hal_uart.h)(0x63A29B17)
+I (..\..\libraries\zf_driver\zf_driver_flash.h)(0x63C79E58)
+I (..\code\user_flash.h)(0x63C7AF4D)
+I (..\code\user_ips114.h)(0x63D10AF5)
+I (..\..\libraries\zf_common\zf_common_clock.h)(0x63B1162B)
+I (..\..\libraries\zf_common\zf_common_debug.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_font.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_function.h)(0x63D16B50)
+I (..\..\libraries\zf_driver\zf_driver_delay.h)(0x63A29B17)
+I (..\..\libraries\sdk\drivers\hal_lptim.h)(0x63A29B17)
+I (..\..\libraries\zf_driver\zf_driver_soft_spi.h)(0x63A29B17)
+I (..\..\libraries\zf_driver\zf_driver_spi.h)(0x63A29B17)
+I (..\..\libraries\sdk\drivers\hal_spi.h)(0x63A29B17)
+I (..\code\profile_photo_erbws.h)(0x63A05B79)
+I (..\code\pid.h)(0x63D0E07E)
+I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
+I (..\code\buzzer.h)(0x63D10055)
+I (..\..\libraries\zf_driver\zf_driver_pwm.h)(0x63A29B17)
+I (..\code\ctrl.h)(0x63D0D628)
+I (..\..\libraries\zf_driver\zf_driver_encoder.h)(0x63A29B17)
+I (..\..\libraries\zf_driver\zf_driver_pit.h)(0x63A29B17)
+I (..\..\libraries\zf_common\zf_common_interrupt.h)(0x63A29B17)
+F (..\code\easy_ui_user_app.h)(0x63D22159)()

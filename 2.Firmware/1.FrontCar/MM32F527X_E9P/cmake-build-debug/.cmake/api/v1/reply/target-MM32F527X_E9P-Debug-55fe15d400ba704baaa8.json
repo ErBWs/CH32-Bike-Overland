@@ -1694,12 +1694,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "project/code/menu.c",
+			"path" : "project/code/easy_ui_user_app.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "project/code/menu.h",
+			"path" : "project/code/easy_ui_user_app.h",
 			"sourceGroupIndex" : 1
 		},
 		{

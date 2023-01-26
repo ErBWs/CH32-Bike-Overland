@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\mm32f527x_e9p.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\mm32f527x_e9p.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Wed Jan 25 20:05:35 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu Jan 26 15:10:19 2023
 <BR><P>
 <H3>Maximum Stack Usage =        712 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -98,12 +98,12 @@ Function Pointers
  <LI><a href="#[15]">EXTI4_IRQHandler</a> from isr.o(.text.EXTI4_IRQHandler) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[20]">EXTI9_5_IRQHandler</a> from isr.o(.text.EXTI9_5_IRQHandler) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[50]">EasyKeyInit</a> from easy_key.o(.text.EasyKeyInit) referenced from easy_ui.o(.text.EasyUIInit)
- <LI><a href="#[56]">EasyUIAddItem</a> from easy_ui.o(.text.EasyUIAddItem) referenced from menu.o(.text.MenuInit)
- <LI><a href="#[54]">EasyUIAddPage</a> from easy_ui.o(.text.EasyUIAddPage) referenced from menu.o(.text.MenuInit)
- <LI><a href="#[57]">EasyUIEventChangeFloat</a> from easy_ui.o(.text.EasyUIEventChangeFloat) referenced from menu.o(.text.MenuInit)
- <LI><a href="#[58]">EasyUIEventChangeUint</a> from easy_ui.o(.text.EasyUIEventChangeUint) referenced from menu.o(.text.MenuInit)
- <LI><a href="#[5a]">EasyUIEventResetSettings</a> from easy_ui.o(.text.EasyUIEventResetSettings) referenced from menu.o(.text.MenuInit)
- <LI><a href="#[59]">EasyUIEventSaveSettings</a> from easy_ui.o(.text.EasyUIEventSaveSettings) referenced from menu.o(.text.MenuInit)
+ <LI><a href="#[56]">EasyUIAddItem</a> from easy_ui.o(.text.EasyUIAddItem) referenced from easy_ui_user_app.o(.text.MenuInit)
+ <LI><a href="#[54]">EasyUIAddPage</a> from easy_ui.o(.text.EasyUIAddPage) referenced from easy_ui_user_app.o(.text.MenuInit)
+ <LI><a href="#[57]">EasyUIEventChangeFloat</a> from easy_ui.o(.text.EasyUIEventChangeFloat) referenced from easy_ui_user_app.o(.text.MenuInit)
+ <LI><a href="#[58]">EasyUIEventChangeUint</a> from easy_ui.o(.text.EasyUIEventChangeUint) referenced from easy_ui_user_app.o(.text.MenuInit)
+ <LI><a href="#[5a]">EasyUIEventResetSettings</a> from easy_ui.o(.text.EasyUIEventResetSettings) referenced from easy_ui_user_app.o(.text.MenuInit)
+ <LI><a href="#[59]">EasyUIEventSaveSettings</a> from easy_ui.o(.text.EasyUIEventSaveSettings) referenced from easy_ui_user_app.o(.text.MenuInit)
  <LI><a href="#[f]">FLASH_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[1f]">FlexCAN1_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[44]">FlexCAN2_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
@@ -112,13 +112,13 @@ Function Pointers
  <LI><a href="#[29]">I2C2_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[4f]">IPS114_ShowStr</a> from user_ips114.o(.text.IPS114_ShowStr) referenced from easy_ui.o(.text.EasyUIEventChangeFloat)
  <LI><a href="#[4f]">IPS114_ShowStr</a> from user_ips114.o(.text.IPS114_ShowStr) referenced from easy_ui.o(.text.EasyUIEventChangeUint)
- <LI><a href="#[4f]">IPS114_ShowStr</a> from user_ips114.o(.text.IPS114_ShowStr) referenced from menu.o(.text.PageAbout)
+ <LI><a href="#[4f]">IPS114_ShowStr</a> from user_ips114.o(.text.IPS114_ShowStr) referenced from easy_ui_user_app.o(.text.PageAbout)
  <LI><a href="#[4c]">LPTIM_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[4d]">LPUART_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[3]">MemManage_Handler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[1]">NMI_Handler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[c]">PVD_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
- <LI><a href="#[55]">PageAbout</a> from menu.o(.text.PageAbout) referenced from menu.o(.text.MenuInit)
+ <LI><a href="#[55]">PageAbout</a> from easy_ui_user_app.o(.text.PageAbout) referenced from easy_ui_user_app.o(.text.MenuInit)
  <LI><a href="#[9]">PendSV_Handler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[4b]">QSPI_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
  <LI><a href="#[10]">RCC_CRS_IRQHandler</a> from startup_mm32f5277e.o(.text) referenced from startup_mm32f5277e.o(RESET)
@@ -851,12 +851,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr8
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_30
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> menu.o(.text.MenuInit)
+<BR>[Address Reference Count : 1]<UL><LI> easy_ui_user_app.o(.text.MenuInit)
 </UL>
 <P><STRONG><a name="[54]"></a>EasyUIAddPage</STRONG> (Thumb, 72 bytes, Stack size 12 bytes, easy_ui.o(.text.EasyUIAddPage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EasyUIAddPage
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> menu.o(.text.MenuInit)
+<BR>[Address Reference Count : 1]<UL><LI> easy_ui_user_app.o(.text.MenuInit)
 </UL>
 <P><STRONG><a name="[9e]"></a>EasyUIBackgroundBlur</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, easy_ui.o(.text.EasyUIBackgroundBlur))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = EasyUIBackgroundBlur &rArr; IPS114_SendBuffer
@@ -925,7 +925,7 @@ Global Symbols
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_10
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_16
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> menu.o(.text.MenuInit)
+<BR>[Address Reference Count : 1]<UL><LI> easy_ui_user_app.o(.text.MenuInit)
 </UL>
 <P><STRONG><a name="[58]"></a>EasyUIEventChangeUint</STRONG> (Thumb, 552 bytes, Stack size 40 bytes, easy_ui.o(.text.EasyUIEventChangeUint))
 <BR><BR>[Stack]<UL><LI>Max Depth = 624<LI>Call Chain = EasyUIEventChangeUint &rArr; OUTLINED_FUNCTION_2 &rArr; IPS114_ShowFloat &rArr; func_float_to_str &rArr; debug_assert_handler &rArr;  gpio_init (Cycle)
@@ -961,14 +961,14 @@ Global Symbols
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_10
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_16
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> menu.o(.text.MenuInit)
+<BR>[Address Reference Count : 1]<UL><LI> easy_ui_user_app.o(.text.MenuInit)
 </UL>
 <P><STRONG><a name="[5a]"></a>EasyUIEventResetSettings</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, easy_ui.o(.text.EasyUIEventResetSettings))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = EasyUIEventResetSettings &rArr; EasyUIBackgroundBlur &rArr; IPS114_SendBuffer
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyUIBackgroundBlur
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> menu.o(.text.MenuInit)
+<BR>[Address Reference Count : 1]<UL><LI> easy_ui_user_app.o(.text.MenuInit)
 </UL>
 <P><STRONG><a name="[59]"></a>EasyUIEventSaveSettings</STRONG> (Thumb, 196 bytes, Stack size 48 bytes, easy_ui.o(.text.EasyUIEventSaveSettings))
 <BR><BR>[Stack]<UL><LI>Max Depth = 528<LI>Call Chain = EasyUIEventSaveSettings &rArr; flash_write_page_from_buffer &rArr; flash_erase_page &rArr; debug_assert_handler &rArr;  gpio_init (Cycle)
@@ -978,7 +978,7 @@ Global Symbols
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DoubleToInt
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyUIBackgroundBlur
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> menu.o(.text.MenuInit)
+<BR>[Address Reference Count : 1]<UL><LI> easy_ui_user_app.o(.text.MenuInit)
 </UL>
 <P><STRONG><a name="[94]"></a>EasyUIGetItemPos</STRONG> (Thumb, 188 bytes, Stack size 20 bytes, easy_ui.o(.text.EasyUIGetItemPos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = EasyUIGetItemPos
@@ -1163,6 +1163,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyUIInit
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyUI
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PageAbout
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyUIEventChangeFloat
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyUIDrawMsgBox
@@ -1171,8 +1172,8 @@ Global Symbols
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_31
 </UL>
 <BR>[Address Reference Count : 3]<UL><LI> easy_ui.o(.text.EasyUIEventChangeFloat)
+<LI> easy_ui_user_app.o(.text.PageAbout)
 <LI> easy_ui.o(.text.EasyUIEventChangeUint)
-<LI> menu.o(.text.PageAbout)
 </UL>
 <P><STRONG><a name="[ca]"></a>IntToDouble</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, user_flash.o(.text.IntToDouble))
 <BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyUIInit
@@ -1184,15 +1185,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_delay_ms
 </UL>
 
-<P><STRONG><a name="[d2]"></a>MenuInit</STRONG> (Thumb, 424 bytes, Stack size 48 bytes, menu.o(.text.MenuInit))
+<P><STRONG><a name="[d2]"></a>MenuInit</STRONG> (Thumb, 424 bytes, Stack size 48 bytes, easy_ui_user_app.o(.text.MenuInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = MenuInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
-<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_6
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_0
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_5
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_3
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_1
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_4
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OUTLINED_FUNCTION_2
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1202,16 +1203,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyKeyHandler
 </UL>
 
-<P><STRONG><a name="[55]"></a>PageAbout</STRONG> (Thumb, 192 bytes, Stack size 24 bytes, menu.o(.text.PageAbout))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = PageAbout &rArr; IPS114_DrawRBox &rArr; IPS114_DrawRFrame
+<P><STRONG><a name="[55]"></a>PageAbout</STRONG> (Thumb, 280 bytes, Stack size 56 bytes, easy_ui_user_app.o(.text.PageAbout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = PageAbout &rArr; IPS114_DrawRBox &rArr; IPS114_DrawRFrame
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IPS114_ShowBMP
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IPS114_ClearBuffer
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IPS114_DrawBox
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IPS114_SetDrawColor
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IPS114_ShowStr
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IPS114_DrawRBox
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> menu.o(.text.MenuInit)
+<BR>[Address Reference Count : 1]<UL><LI> easy_ui_user_app.o(.text.MenuInit)
 </UL>
 <P><STRONG><a name="[8a]"></a>PressCallback</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, easy_key.o(.text.PressCallback))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EasyKeyHandler
@@ -2714,31 +2716,31 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IPS114_ShowFloat
 </UL>
 
-<P><STRONG><a name="[d3]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, menu.o(.text.OUTLINED_FUNCTION_2))
+<P><STRONG><a name="[d3]"></a>OUTLINED_FUNCTION_2</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, easy_ui_user_app.o(.text.OUTLINED_FUNCTION_2))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MenuInit
 </UL>
 
-<P><STRONG><a name="[d4]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, menu.o(.text.OUTLINED_FUNCTION_6))
+<P><STRONG><a name="[d4]"></a>OUTLINED_FUNCTION_4</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, easy_ui_user_app.o(.text.OUTLINED_FUNCTION_4))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MenuInit
 </UL>
 
-<P><STRONG><a name="[d5]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, menu.o(.text.OUTLINED_FUNCTION_0))
+<P><STRONG><a name="[d5]"></a>OUTLINED_FUNCTION_1</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, easy_ui_user_app.o(.text.OUTLINED_FUNCTION_1))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MenuInit
 </UL>
 
-<P><STRONG><a name="[d6]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, menu.o(.text.OUTLINED_FUNCTION_5))
+<P><STRONG><a name="[d6]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, easy_ui_user_app.o(.text.OUTLINED_FUNCTION_3))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MenuInit
 </UL>
 
-<P><STRONG><a name="[d7]"></a>OUTLINED_FUNCTION_4</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, menu.o(.text.OUTLINED_FUNCTION_4))
+<P><STRONG><a name="[d7]"></a>OUTLINED_FUNCTION_5</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, easy_ui_user_app.o(.text.OUTLINED_FUNCTION_5))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MenuInit
 </UL>
 
-<P><STRONG><a name="[d8]"></a>OUTLINED_FUNCTION_1</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, menu.o(.text.OUTLINED_FUNCTION_1))
+<P><STRONG><a name="[d8]"></a>OUTLINED_FUNCTION_0</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, easy_ui_user_app.o(.text.OUTLINED_FUNCTION_0))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MenuInit
 </UL>
 
-<P><STRONG><a name="[d9]"></a>OUTLINED_FUNCTION_3</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, menu.o(.text.OUTLINED_FUNCTION_3))
+<P><STRONG><a name="[d9]"></a>OUTLINED_FUNCTION_6</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, easy_ui_user_app.o(.text.OUTLINED_FUNCTION_6))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MenuInit
 </UL>
 

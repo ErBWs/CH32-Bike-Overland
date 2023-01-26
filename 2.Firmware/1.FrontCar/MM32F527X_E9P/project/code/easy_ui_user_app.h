@@ -14,6 +14,7 @@ extern "C"
 #endif
 
 #include <stdint.h>
+#include <string.h>
 #include "easy_ui.h"
 #include "easy_key.h"
 #include "zf_driver_uart.h"
@@ -22,6 +23,8 @@ extern "C"
 #include "ctrl.h"
 
 void MenuInit();
+
+extern uint64_t uid;
 
 #ifdef __cplusplus
 }

@@ -1295,16 +1295,6 @@
               <FilePath>..\code\user_ips114.h</FilePath>
             </File>
             <File>
-              <FileName>menu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\menu.c</FilePath>
-            </File>
-            <File>
-              <FileName>menu.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\menu.h</FilePath>
-            </File>
-            <File>
               <FileName>profile_photo_erbws.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\code\profile_photo_erbws.c</FilePath>
@@ -1343,6 +1333,16 @@
               <FileName>buzzer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\code\buzzer.h</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui_user_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\easy_ui_user_app.c</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui_user_app.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\easy_ui_user_app.h</FilePath>
             </File>
           </Files>
         </Group>
