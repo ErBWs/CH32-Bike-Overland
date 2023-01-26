@@ -7,4 +7,4 @@
 
 #include "image_process.h"
 
-paramType threshold = 300;
+paramType threshold = 180;

@@ -39,7 +39,7 @@ void PageAbout(EasyUIItem_t *page)
     IPS114_DrawBox(5, 26, 2, ITEM_HEIGHT * 4, IPS114_penColor);
     IPS114_ShowStr(36, 9, "v1.0");
     IPS114_ShowStr(10, 30, "MCU    : MM32F5");
-    IPS114_ShowStr(10, 46, "EasyUI : v1.4");
+    IPS114_ShowStr(10, 46, "EasyUI : v1.4b");
     IPS114_ShowStr(10, 62, "Flash  : 256KB");
     IPS114_ShowStr(10, 78, "UID    : ");
     IPS114_ShowStr(7, 98, "Powered by:");
@@ -58,14 +58,14 @@ void PageAbout(EasyUIItem_t *page)
             'C', 'D', 'E', 'F'};
     int8_t data_temp[16];
     uint8_t bit = 0, i = 0;
-    while(bit < 16)
+    while (bit < 16)
     {
-        data_temp[bit ++] = (uidBackup & 0xF);
+        data_temp[bit++] = (uidBackup & 0xF);
         uidBackup >>= 4;
     }
-    for (bit = 12 ; bit > 0; bit --)
+    for (bit = 12; bit > 0; bit--)
     {
-        str[i ++] = hex_index[data_temp[bit - 1]];
+        str[i++] = hex_index[data_temp[bit - 1]];
     }
     str[i] = '\0';
     IPS114_ShowStr(10 + 9 * FONT_WIDTH, 78, str);
@@ -86,9 +86,27 @@ void PageAbout(EasyUIItem_t *page)
 }
 
 
-void PageThreshold(EasyUIItem_t *page)
+void PageThreshold(EasyUIPage_t *page)
 {
-
+    IPS114_ShowStr(2, 4, page->itemHead->title);
+    uint8_t len = strlen(page->itemHead->title);
+    IPS114_ShowFloat(2 + len, 4, (float) *page->itemHead->param, 3, 2);
+    if (opnUp)
+    {
+        if (*page->itemHead->param + 10 <= 255)
+            *page->itemHead->param += 10;
+        else
+            *page->itemHead->param = 255;
+    }
+    if (opnDown)
+    {
+        if (*page->itemHead->param - 10 >= 0)
+            *page->itemHead->param -= 10;
+        else
+            *page->itemHead->param = 0;
+    }
+    IPS114_ShowGrayImage(16, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H, MT9V03X_W, MT9V03X_H,
+                         (uint8_t) *page->itemHead->param);
 }
 
 
@@ -140,7 +158,7 @@ void MenuInit()
                   EasyUIEventChangeUint);
 
     // Page threshold
-    EasyUIAddItem(&pageThreshold, &itemTh, "Threshold", ITEM_CHANGE_VALUE, &threshold);
+    EasyUIAddItem(&pageThreshold, &itemTh, "Threshold:", ITEM_CHANGE_VALUE, &threshold);
 
     // Page setting
     EasyUIAddItem(&pageSetting, &titleSetting, "[Settings]", ITEM_PAGE_DESCRIPTION);
