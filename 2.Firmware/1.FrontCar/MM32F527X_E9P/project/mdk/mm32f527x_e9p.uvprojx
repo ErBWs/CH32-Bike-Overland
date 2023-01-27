@@ -1344,6 +1344,16 @@
               <FileType>5</FileType>
               <FilePath>..\code\easy_ui_user_app.h</FilePath>
             </File>
+            <File>
+              <FileName>image_process.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\image_process.c</FilePath>
+            </File>
+            <File>
+              <FileName>image_process.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\image_process.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

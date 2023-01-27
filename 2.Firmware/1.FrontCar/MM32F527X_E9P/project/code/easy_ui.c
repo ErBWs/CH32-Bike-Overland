@@ -45,9 +45,6 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
     item->funcType = func;
     switch (item->funcType)
     {
-        case ITEM_CALL_FUNCTION:
-            item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
-            break;
         case ITEM_JUMP_PAGE:
             item->pageId = va_arg(variableArg, int);
             break;
@@ -402,9 +399,9 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
     // Display information and draw box
     height = ITEM_HEIGHT * 4 + 2;
     if (strlen(item->title) + 1 > 12)
-        width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 7;
     else
-        width = 12 * FONT_WIDTH + 5;
+        width = 12 * FONT_WIDTH + 7;
     if (width < 2 * SCREEN_WIDTH / 3)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
@@ -539,9 +536,9 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
     // Display information and draw box
     height = ITEM_HEIGHT * 4 + 2;
     if (strlen(item->title) + 1 > 12)
-        width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 7;
     else
-        width = 12 * FONT_WIDTH + 5;
+        width = 12 * FONT_WIDTH + 7;
     if (width < 2 * SCREEN_WIDTH / 3)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
@@ -672,9 +669,9 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
     // Display information and draw box
     height = ITEM_HEIGHT * 4 + 2;
     if (strlen(item->title) + 1 > 12)
-        width = (strlen(item->title) + 1) * FONT_WIDTH + 5;
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 7;
     else
-        width = 12 * FONT_WIDTH + 5;
+        width = 12 * FONT_WIDTH + 7;
     if (width < 2 * SCREEN_WIDTH / 3)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
@@ -1056,20 +1053,8 @@ void EasyUI(uint8_t timer)
         {
             if (item->id == index)
             {
-                switch (item->funcType)
-                {
-                    case ITEM_CALL_FUNCTION:
-                        if (opnExit)
-                        {
-                            functionIsRunning = false;
-                            EasyUITransitionAnim();
-                        } else
-                            item->Event(item);
-                        break;
-                    default:
-                        item->Event(item);
-                        break;
-                }
+                item->Event(item);
+                break;
             }
         }
         return;
@@ -1183,7 +1168,7 @@ void EasyUI(uint8_t timer)
                         case ITEM_RADIO_BUTTON:
                             for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
                             {
-                                if (itemTmp->funcType == ITEM_RADIO_BUTTON)
+                                if (itemTmp->funcType == ITEM_RADIO_BUTTON && itemTmp->id != item->id)
                                     *itemTmp->flag = false;
                             }
                             *item->flag = !*item->flag;
@@ -1191,10 +1176,6 @@ void EasyUI(uint8_t timer)
                         case ITEM_CHANGE_VALUE:
                             functionIsRunning = true;
                             EasyUIBackgroundBlur();
-                            break;
-                        case ITEM_CALL_FUNCTION:
-                            functionIsRunning = true;
-                            EasyUITransitionAnim();
                             break;
                         case ITEM_MESSAGE:
                             functionIsRunning = true;

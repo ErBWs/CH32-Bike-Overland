@@ -57,6 +57,7 @@
 
 extern PidParam_t spdParam;
 extern PidParam_t dirParam;
+extern bool preset1, preset2, preset3;
 
 void MotorInit(void);
 int16_t GetDirError(uint8_t status);

@@ -18,6 +18,9 @@ extern "C"
 #include "zf_device_mt9v03x.h"
 
 extern paramType threshold;
+extern paramType runLoop;
+extern bool eleCross, eleLeftRoundabout, eleRightRoundabout;
+extern bool eleBreak, eleObstacle, eleGarage;
 
 #ifdef __cplusplus
 }

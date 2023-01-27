@@ -6,10 +6,6 @@
 
 #include "ctrl.h"
 
-// PID parameter array: *Param[5] = {kp, ki, kd, target_value, limitation}
-//float spdParam[5] = {80, 0, 15, 37.3, PWM_DUTY_MAX - 1000};
-//float dirParam[5] = {0.6, 0, 0, 0, SERVO_DUTY_MAX};       // PD control for direction, ki should be 0
-
 // PID struct define
 PidParam_t spdParam =
         {
@@ -34,6 +30,8 @@ PidParam_t dirParam =
                 300,
         };
 
+bool preset1 = false, preset2 = false, preset3 = false;
+
 /*!
  * @brief       Motor control init, including encoder init
  *
@@ -55,7 +53,7 @@ void MotorInit(void)
     encoder_dir_init(ENCODER_R_TIM, ENCODER_R_SPD_PIN, ENCODER_R_DIR_PIN);
 
     // Interrupt init
-    interrupt_set_priority(TIM7_IRQn, 1);    // Set priority to 1
+    interrupt_set_priority(TIM6_IRQn, 1);    // Set priority to 1
 }
 
 
