@@ -345,6 +345,13 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8
             else
                 lengthTarget = (strlen(itemTmp->title) + 1) * FONT_WIDTH + 8;
             yTarget = itemTmp->lineId * ITEM_HEIGHT;
+            if (index != lastIndex && abs(index - lastIndex) < page->itemTail->id)
+            {
+                if (itemTmp->position < 0)
+                    y = (float)3 * ITEM_HEIGHT / 4;
+                else if (itemTmp->position >= (ITEM_LINES) * ITEM_HEIGHT)
+                    y = (ITEM_LINES - 2) * ITEM_HEIGHT + (float)ITEM_HEIGHT / 4;
+            }
             break;
         }
     }
