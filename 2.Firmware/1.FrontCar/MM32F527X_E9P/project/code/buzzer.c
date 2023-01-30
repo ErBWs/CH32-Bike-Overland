@@ -7,16 +7,12 @@
 
 #include "buzzer.h"
 
-// Volume:0 - 10
-paramType buzzerVolume = 4;
+// Volume:0 - 100
+paramType buzzerVolume = 40;
 
 void Beep()
 {
-    if (buzzerVolume > 10)
-        buzzerVolume = 10;
-    else if (buzzerVolume < 0)
-        buzzerVolume = 0;
-    pwm_set_duty(BUZZER_PIN, (uint32_t)buzzerVolume * 1000);
+    pwm_set_duty(BUZZER_PIN, (uint32_t)buzzerVolume * 100);
 }
 
 void StopBeep()

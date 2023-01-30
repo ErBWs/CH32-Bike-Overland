@@ -21,13 +21,14 @@ EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
  *                      ITEM_CALL_FUNCTION: fill with function
  *                      ITEM_JUMP_PAGE: fill with target page id
  *                      ITEM_CHECKBOX / ITEM_RADIO_BUTTON / ITEM_SWITCH: fill with bool value
- *                      ITEM_CHANGE_VALUE: fill with param that need to be changed and matched function
+ *                      ITEM_CHANGE_VALUE / ITEM_PROGRESS_BAR: fill with param that need to be changed and matched function
  *                      ITEM_MESSAGE: fill with message and matched function
  * @return  void
  *
  * @note    Do not modify
- *          ITEM_CHANGE_VALUE: the incoming param should always be double *,
+ *          ITEM_CHANGE_VALUE: the incoming param should always be paramType *,
  *          and cannot use casted variables(Don't know why)
+ *          ITEM_PROGRESS_BAR: the incoming param should be 0 - 100
  */
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...)
 {
@@ -54,6 +55,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
             item->flag = va_arg(variableArg, bool *);
             item->flagDefault = *item->flag;
             break;
+        case ITEM_PROGRESS_BAR:
         case ITEM_CHANGE_VALUE:
             item->param = va_arg(variableArg, paramType *);
             item->paramBackup = *item->param;
@@ -384,6 +386,49 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8
         time = 0;
     else
         time += timer;
+}
+
+
+/*!
+ * @brief   Draw progress bar
+ *
+ * @param   item    EasyUI item struct
+ * @return  void
+ *
+ * @note    Internal call
+ */
+void EasyUIDrawProgressBar(EasyUIItem_t *item)
+{
+    static int16_t x, y;
+    static uint16_t width, height;
+    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
+    static uint16_t barWidth;
+
+    EasyUISetDrawColor(NORMAL);
+
+    // Display information and draw box
+    height = ITEM_HEIGHT * 2 + 2;
+    if (strlen(item->title) + 1 > 12)
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 7;
+    else
+        width = 12 * FONT_WIDTH + 7;
+    if (width < 2 * SCREEN_WIDTH / 3)
+        width = 2 * SCREEN_WIDTH / 3;
+    x = (SCREEN_WIDTH - width) / 2;
+    y = (SCREEN_HEIGHT - height) / 2;
+
+    barWidth = width - 6 * FONT_WIDTH - 8;
+
+    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
+    EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
+    EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
+    EasyUIDrawFrame(x + 2, y + ITEM_HEIGHT + itemHeightOffset, barWidth, FONT_HEIGHT, IPS114_penColor);
+    EasyUIDrawBox(x + 4, y + ITEM_HEIGHT + itemHeightOffset + 2, (float) *item->param / 100 * barWidth - 4, FONT_HEIGHT - 4, IPS114_penColor);
+    EasyUIDisplayFloat(x + width - 6 * FONT_WIDTH - 4, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 3, 2);
+
+    EasyUISendBuffer();
+
 }
 
 
@@ -839,6 +884,7 @@ void EasyUIEventSaveSettings(EasyUIItem_t *item)
                         secIndex--;
                     }
                     break;
+                case ITEM_PROGRESS_BAR:
                 case ITEM_CHANGE_VALUE:
                     if (bufIndex < 256)
                     {
@@ -885,6 +931,7 @@ void EasyUIEventResetSettings(EasyUIItem_t *item)
                 case ITEM_SWITCH:
                     *itemTmp->flag = itemTmp->flagDefault;
                     break;
+                case ITEM_PROGRESS_BAR:
                 case ITEM_CHANGE_VALUE:
                     *itemTmp->param = itemTmp->paramDefault;
                 default:
@@ -954,6 +1001,7 @@ void EasyUIInit(uint8_t mode)
                             secIndex--;
                         }
                         break;
+                    case ITEM_PROGRESS_BAR:
                     case ITEM_CHANGE_VALUE:
                         if (bufIndex < 256)
                         {
@@ -1060,7 +1108,16 @@ void EasyUI(uint8_t timer)
         {
             if (item->id == index)
             {
-                item->Event(item);
+                switch (item->funcType)
+                {
+                    case ITEM_PROGRESS_BAR:
+                        EasyUIDrawProgressBar(item);
+                        item->Event(item);
+                        break;
+                    default:
+                        item->Event(item);
+                        break;
+                }
                 break;
             }
         }
@@ -1100,6 +1157,7 @@ void EasyUI(uint8_t timer)
                     else
                         EasyUIDisplayStr(SCREEN_WIDTH - 7 - 2 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "on");
                     break;
+                case ITEM_PROGRESS_BAR:
                 case ITEM_CHANGE_VALUE:
                     EasyUIDisplayStr(2, item->position, "-");
                     EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
@@ -1180,6 +1238,7 @@ void EasyUI(uint8_t timer)
                             }
                             *item->flag = !*item->flag;
                             break;
+                        case ITEM_PROGRESS_BAR:
                         case ITEM_CHANGE_VALUE:
                             functionIsRunning = true;
                             EasyUIBackgroundBlur();

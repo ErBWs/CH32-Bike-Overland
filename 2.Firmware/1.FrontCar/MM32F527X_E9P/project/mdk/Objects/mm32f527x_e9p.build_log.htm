@@ -33,16 +33,16 @@ Build target 'mm32f527x_e9p_project'
 ../code/easy_ui.c(32): note: parameter of type 'EasyUIItem_e' is declared here
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...)
                                                                                       ^
-../code/easy_ui.c(108): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+../code/easy_ui.c(109): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
     va_start(variableArg, func);
                           ^
-../code/easy_ui.c(103): note: parameter of type 'EasyUIPage_e' is declared here
+../code/easy_ui.c(104): note: parameter of type 'EasyUIPage_e' is declared here
 void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...)
                                                     ^
 2 warnings generated.
 compiling easy_ui.c...
 linking...
-Program Size: Code=21664 RO-data=13800 RW-data=320 ZI-data=100328  
+Program Size: Code=22264 RO-data=13800 RW-data=320 ZI-data=100336  
 ".\Objects\mm32f527x_e9p.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>

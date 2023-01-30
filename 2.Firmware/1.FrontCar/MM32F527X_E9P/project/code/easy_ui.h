@@ -60,6 +60,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUIDisplayFloat(x, y, dat, num, pointNum)            (IPS114_ShowFloat(x, y, dat, num, pointNum))
 #define EasyUIDrawDot(x, y, color)                              (IPS114_DrawPoint(x, y, color))
 #define EasyUIDrawBox(x, y, width, height, color)               (IPS114_DrawBox(x, y, width, height, color))
+#define EasyUIDrawFrame(x, y, width, height, color)             (IPS114_DrawFrame(x, y, width, height, color))
 #define EasyUIDrawRFrame(x, y, width, height, color)            (IPS114_DrawRFrame(x, y, width, height, color))
 #define EasyUIDrawRBox(x, y, width, height, color)              (IPS114_DrawRBox(x, y, width, height, color))
 #define EasyUIDrawCheckbox(x, y, size, offset, value)           (IPS114_DrawCheckbox(x, y, size, offset, value))
@@ -81,6 +82,7 @@ typedef enum
     ITEM_JUMP_PAGE,
     ITEM_SWITCH,
     ITEM_CHANGE_VALUE,
+    ITEM_PROGRESS_BAR,
     ITEM_RADIO_BUTTON,
     ITEM_CHECKBOX,
     ITEM_MESSAGE
@@ -107,11 +109,11 @@ typedef struct EasyUI_item
     char *msg;                                  // ITEM_MESSAGE
     bool *flag;                                 // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
     bool flagDefault;                           // Factory default setting
-    paramType *param;                         // ITEM_CHANGE_VALUE
-    paramType paramDefault;                   // Factory default setting
-    paramType paramBackup;                    // ITEM_CHANGE_VALUE
+    paramType *param;                           // ITEM_CHANGE_VALUE and ITEM_PROGRESS_BAR
+    paramType paramDefault;                     // Factory default setting
+    paramType paramBackup;                      // ITEM_CHANGE_VALUE and ITEM_PROGRESS_BAR
     uint8_t pageId;                             // ITEM_JUMP_PAGE
-    void (*Event)(struct EasyUI_item *item);    // ITEM_CALL_FUNCTION and ITEM_CHANGE_VALUE
+    void (*Event)(struct EasyUI_item *item);    // ITEM_CHANGE_VALUE and ITEM_PROGRESS_BAR
 } EasyUIItem_t;
 
 typedef struct EasyUI_page

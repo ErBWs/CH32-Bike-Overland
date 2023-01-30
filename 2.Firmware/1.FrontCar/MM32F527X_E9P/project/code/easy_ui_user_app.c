@@ -30,6 +30,31 @@ void EventMainLoop(EasyUIItem_t *item)
 }
 
 
+void EventChangeBuzzerVolume(EasyUIItem_t *item)
+{
+    if (opnUp)
+    {
+        if (*item->param + 10 <= 100)
+            *item->param += 10;
+        else
+            *item->param = 100;
+    }
+    if (opnDown)
+    {
+        if (*item->param - 10 >= 0)
+            *item->param -= 10;
+        else
+            *item->param = 0;
+    }
+
+    if (opnExit)
+    {
+        EasyUIBackgroundBlur();
+        functionIsRunning = false;
+    }
+}
+
+
 /*!
  * @brief   Custom page of Image
  *
@@ -217,7 +242,7 @@ void MenuInit()
     EasyUIAddItem(&pageSetting, &titleSetting, "[Settings]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageSetting, &itemColor, "Reversed Color", ITEM_SWITCH, &reversedColor);
     EasyUIAddItem(&pageSetting, &itemListLoop, "List Loop", ITEM_SWITCH, &listLoop);
-    EasyUIAddItem(&pageSetting, &itemBuzzer, "Buzzer Volume", ITEM_CHANGE_VALUE, &buzzerVolume, EasyUIEventChangeUint);
+    EasyUIAddItem(&pageSetting, &itemBuzzer, "Buzzer Volume", ITEM_PROGRESS_BAR, &buzzerVolume, EventChangeBuzzerVolume);
     EasyUIAddItem(&pageSetting, &itemSave, "Save Settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
     EasyUIAddItem(&pageSetting, &itemReset, "Reset Settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
     EasyUIAddItem(&pageSetting, &itemAbout, "<About>", ITEM_JUMP_PAGE, pageAbout.id);

@@ -518,10 +518,8 @@ void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heig
 void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue)
 {
     IPS114_DrawRFrame(x, y, size, size, IPS114_penColor);
-    if (boolValue == true)
+    if (boolValue)
         IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor);
-    else
-        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_backgroundColor);
 }
 
 
