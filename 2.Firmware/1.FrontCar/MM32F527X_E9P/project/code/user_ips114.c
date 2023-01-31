@@ -644,6 +644,7 @@ void IPS114_DrawDisc(int16_t x, int16_t y, uint16_t r, const uint16_t color, uin
         IPS114_DrawLine(x - r, y, x, y, color);
         IPS114_DrawLine(x, y - r, x, y, color);
         IPS114_DrawLine(x, y + r, x, y, color);
+        IPS114_DrawPoint(x, y, color);
     }
 }
 

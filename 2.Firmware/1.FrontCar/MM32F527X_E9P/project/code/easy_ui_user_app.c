@@ -47,8 +47,15 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
             *item->param = 0;
     }
 
+    if (opnEnter)
+    {
+        item->paramBackup = *item->param;
+        EasyUIBackgroundBlur();
+        functionIsRunning = false;
+    }
     if (opnExit)
     {
+        *item->param = item->paramBackup;
         EasyUIBackgroundBlur();
         functionIsRunning = false;
     }
@@ -81,13 +88,13 @@ void PageImage(EasyUIPage_t *page)
         else
             r = 1;
     }
-//    if (r < 60)
-//        r++;
-//    else
-//        r = 1;
+    if (r < 30)
+        r++;
+    else
+        r = 1;
     IPS114_ShowUint(0, 0, r, 3);
-    IPS114_DrawRBox(0, 0, 120, 70, IPS114_penColor, r);
-//    IPS114_DrawDisc(120, 67, r, IPS114_penColor, CIRCLE_LOWER_RIGHT);
+    IPS114_DrawRBox(0, 0, 100, 70, IPS114_penColor, r);
+    IPS114_DrawDisc(120, 67, r, IPS114_penColor, CIRCLE_DRAW_ALL);
     EasyUISetDrawColor(NORMAL);
 }
 

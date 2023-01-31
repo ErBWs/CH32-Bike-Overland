@@ -417,14 +417,14 @@ void EasyUIDrawProgressBar(EasyUIItem_t *item)
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - height) / 2;
 
-    barWidth = width - 6 * FONT_WIDTH - 8;
+    barWidth = width - 6 * FONT_WIDTH - 10;
 
     EasyUIDrawFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
     EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
-    EasyUIDrawFrame(x + 2, y + ITEM_HEIGHT + itemHeightOffset, barWidth, FONT_HEIGHT, IPS114_penColor);
-    EasyUIDrawBox(x + 4, y + ITEM_HEIGHT + itemHeightOffset + 2, (float) *item->param / 100 * barWidth - 4, FONT_HEIGHT - 4, IPS114_penColor);
+    EasyUIDrawFrame(x + 3, y + ITEM_HEIGHT + itemHeightOffset, barWidth, FONT_HEIGHT, IPS114_penColor);
+    EasyUIDrawBox(x + 5, y + ITEM_HEIGHT + itemHeightOffset + 2, (float) *item->param / 100 * barWidth - 4, FONT_HEIGHT - 4, IPS114_penColor);
     EasyUIDisplayFloat(x + width - 6 * FONT_WIDTH - 4, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 3, 2);
 
     EasyUISendBuffer();
