@@ -16,6 +16,7 @@ extern "C"
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 #include "zf_common_clock.h"
 #include "zf_common_debug.h"
 #include "zf_common_font.h"
@@ -34,6 +35,12 @@ typedef enum
     XOR
 } IPS114_ColorMode_e;
 
+#define CIRCLE_UPPER_RIGHT      0x01
+#define CIRCLE_UPPER_LEFT       0x02
+#define CIRCLE_LOWER_LEFT       0x04
+#define CIRCLE_LOWER_RIGHT      0x08
+#define CIRCLE_DRAW_ALL         (CIRCLE_UPPER_RIGHT | CIRCLE_UPPER_LEFT | CIRCLE_LOWER_LEFT | CIRCLE_LOWER_RIGHT)
+
 void IPS114_SendBuffer();
 void IPS114_ClearBuffer();
 
@@ -49,10 +56,12 @@ void IPS114_ShowFloat(int16 x, int16 y, float dat, uint8 num, uint8 pointnum);
 extern bool reversedColor;
 void IPS114_ModifyColor();
 
+void IPS114_DrawCircle(int16_t x, int16_t y, uint16_t r, uint16_t color, uint8_t section);
+void IPS114_DrawDisc(int16_t x, int16_t y, uint16_t r, uint16_t color, uint8_t section);
 void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, uint16_t color);
 void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, uint16_t color);
-void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, uint16_t color);
-void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, uint16_t color);
+void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, uint16_t color, uint8_t r);
+void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, uint16_t color, uint8_t r);
 void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height);
 void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue);
 

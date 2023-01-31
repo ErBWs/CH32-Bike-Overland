@@ -63,8 +63,32 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
  */
 void PageImage(EasyUIPage_t *page)
 {
+    static uint8_t r = 1;
+    EasyUISetDrawColor(XOR);
     IPS114_ShowGrayImage(5, 5, mt9v03x_image[0], MT9V03X_W, MT9V03X_H,
                          MT9V03X_W, MT9V03X_H, 0);
+    if (opnUp)
+    {
+        if (r + 1 <= 30)
+            r += 1;
+        else
+            r = 30;
+    }
+    if (opnDown)
+    {
+        if (r - 1 >= 1)
+            r -= 1;
+        else
+            r = 1;
+    }
+//    if (r < 60)
+//        r++;
+//    else
+//        r = 1;
+    IPS114_ShowUint(0, 0, r, 3);
+    IPS114_DrawRBox(0, 0, 120, 70, IPS114_penColor, r);
+//    IPS114_DrawDisc(120, 67, r, IPS114_penColor, CIRCLE_LOWER_RIGHT);
+    EasyUISetDrawColor(NORMAL);
 }
 
 
@@ -79,7 +103,7 @@ void PageThreshold(EasyUIPage_t *page)
     IPS114_ShowStr(7, 9, page->itemHead->title);
     uint8_t len = strlen(page->itemHead->title);
     IPS114_SetDrawColor(XOR);
-    IPS114_DrawRBox(5, 5, len * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+    IPS114_DrawRBox(5, 5, len * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     IPS114_SetDrawColor(NORMAL);
     if (opnUp)
     {
@@ -117,12 +141,12 @@ void PageAbout(EasyUIItem_t *page)
     IPS114_ClearBuffer();
     IPS114_ShowStr(7, 9, "SCEP");
     IPS114_SetDrawColor(XOR);
-    IPS114_DrawRBox(5, 5, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+    IPS114_DrawRBox(5, 5, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     IPS114_SetDrawColor(NORMAL);
     IPS114_DrawBox(5, 26, 2, ITEM_HEIGHT * 4, IPS114_penColor);
     IPS114_ShowStr(36, 9, "v1.0");
     IPS114_ShowStr(10, 30, "MCU    : MM32F5");
-    IPS114_ShowStr(10, 46, "EasyUI : v1.4b");
+    IPS114_ShowStr(10, 46, "EasyUI : v1.5");
     IPS114_ShowStr(10, 62, "Flash  : 256KB");
     IPS114_ShowStr(10, 78, "UID    : ");
     IPS114_ShowStr(7, 98, "Powered by:");

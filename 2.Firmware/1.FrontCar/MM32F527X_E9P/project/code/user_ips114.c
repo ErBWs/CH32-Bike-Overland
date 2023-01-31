@@ -426,6 +426,228 @@ void IPS114_ModifyColor()
 }
 
 
+void IPS114_DrawCircle(int16_t x, int16_t y, uint16_t r, const uint16_t color, uint8_t section)
+{
+    // y = kx, k = 1
+    uint16_t x0 = (uint16_t) (r * cos(0.01745 * 45));
+    uint16_t fx;
+
+    // x^2 + y^2 = r^2, y->x / x->y
+    for (int i = -x0 + 1; i < 0; ++i)
+    {
+        fx = (uint16_t) sqrt(pow(r, 2) - pow(i, 2));
+        if (section & CIRCLE_UPPER_RIGHT)
+        {
+            IPS114_DrawPoint(x - i, y - fx, color);
+            IPS114_DrawPoint(x + fx, y + i, color);
+        }
+        if (section & CIRCLE_UPPER_LEFT)
+        {
+            IPS114_DrawPoint(x + i, y - fx, color);
+            IPS114_DrawPoint(x - fx, y + i, color);
+        }
+        if (section & CIRCLE_LOWER_LEFT)
+        {
+            IPS114_DrawPoint(x + i, y + fx, color);
+            IPS114_DrawPoint(x - fx, y - i, color);
+        }
+        if (section & CIRCLE_LOWER_RIGHT)
+        {
+            IPS114_DrawPoint(x - i, y + fx, color);
+            IPS114_DrawPoint(x + fx, y - i, color);
+        }
+    }
+
+    // Add support for XOR color mode
+    fx = (uint16_t) sqrt(pow(r, 2) - pow(x0, 2));
+    if (section & CIRCLE_UPPER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawPoint(x + r, y, color);
+            IPS114_DrawPoint(x, y - r, color);
+        }
+        if (x0 == fx)
+            IPS114_DrawPoint(x + x0, y - x0, color);
+        else
+        {
+            IPS114_DrawPoint(x + x0, y - fx, color);
+            IPS114_DrawPoint(x + fx, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_UPPER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawPoint(x - r, y, color);
+            IPS114_DrawPoint(x, y - r, color);
+        }
+        if (x0 == fx)
+            IPS114_DrawPoint(x - x0, y - x0, color);
+        else
+        {
+            IPS114_DrawPoint(x - x0, y - fx, color);
+            IPS114_DrawPoint(x - fx, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawPoint(x - r, y, color);
+            IPS114_DrawPoint(x, y + r, color);
+        }
+        if (x0 == fx)
+            IPS114_DrawPoint(x - x0, y + x0, color);
+        else
+        {
+            IPS114_DrawPoint(x - x0, y + fx, color);
+            IPS114_DrawPoint(x - fx, y + x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawPoint(x + r, y, color);
+            IPS114_DrawPoint(x, y + r, color);
+        }
+        if (x0 == fx)
+            IPS114_DrawPoint(x + x0, y + x0, color);
+        else
+        {
+            IPS114_DrawPoint(x + x0, y + fx, color);
+            IPS114_DrawPoint(x + fx, y + x0, color);
+        }
+    }
+    if (section == CIRCLE_DRAW_ALL)
+    {
+        IPS114_DrawPoint(x + r, y, color);
+        IPS114_DrawPoint(x - r, y, color);
+        IPS114_DrawPoint(x, y - r, color);
+        IPS114_DrawPoint(x, y + r, color);
+    }
+}
+void IPS114_DrawDisc(int16_t x, int16_t y, uint16_t r, const uint16_t color, uint8_t section)
+{
+    // y = kx, k = 1
+    uint16_t x0 = (uint16_t) (r * cos(0.01745 * 45));
+    uint16_t fx;
+
+    // x^2 + y^2 = r^2, y->x / x->y
+    for (int i = -x0 + 1; i < 0; ++i)
+    {
+        fx = (uint16_t) sqrt(pow(r, 2) - pow(i, 2));
+        if (section & CIRCLE_UPPER_RIGHT)
+        {
+            IPS114_DrawLine(x - i, y - fx, x - i, y + i, color);
+            IPS114_DrawLine(x + fx, y + i, x - i, y + i, color);
+        }
+        if (section & CIRCLE_UPPER_LEFT)
+        {
+            IPS114_DrawLine(x + i, y - fx, x + i, y + i, color);
+            IPS114_DrawLine(x - fx, y + i, x + i, y + i, color);
+        }
+        if (section & CIRCLE_LOWER_LEFT)
+        {
+            IPS114_DrawLine(x + i, y + fx, x + i, y - i, color);
+            IPS114_DrawLine(x - fx, y - i, x + i, y - i, color);
+        }
+        if (section & CIRCLE_LOWER_RIGHT)
+        {
+            IPS114_DrawLine(x - i, y + fx, x - i, y - i, color);
+            IPS114_DrawLine(x + fx, y - i, x - i, y - i, color);
+        }
+    }
+
+    // Add support for XOR color mode
+    IPS114_DrawPoint(x, y, color);
+    if (r != 2)
+        IPS114_DrawPoint(x, y, color);
+
+    fx = (uint16_t) sqrt(pow(r, 2) - pow(x0, 2));
+    if (section & CIRCLE_UPPER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawLine(x + r, y, x, y, color);
+            IPS114_DrawLine(x, y - r, x, y, color);
+        }
+        if (r > 2)
+            IPS114_DrawLine(x, y, x + x0, y - x0, color);
+        if (x0 == fx)
+            IPS114_DrawPoint(x + x0, y - x0, color);
+        else
+        {
+            IPS114_DrawPoint(x + x0, y - fx, color);
+            IPS114_DrawPoint(x + fx, y - x0, color);
+            IPS114_DrawPoint(x + x0, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_UPPER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawLine(x - r, y, x, y, color);
+            IPS114_DrawLine(x, y - r, x, y, color);
+        }
+        if (r > 2)
+            IPS114_DrawLine(x, y, x - x0, y - x0, color);
+        if (x0 == fx)
+            IPS114_DrawPoint(x - x0, y - x0, color);
+        else
+        {
+            IPS114_DrawPoint(x - x0, y - fx, color);
+            IPS114_DrawPoint(x - fx, y - x0, color);
+            IPS114_DrawPoint(x - x0, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawLine(x - r, y, x, y, color);
+            IPS114_DrawLine(x, y + r, x, y, color);
+        }
+        if (r > 2)
+            IPS114_DrawLine(x, y, x - x0, y + x0, color);
+        if (x0 == fx)
+            IPS114_DrawPoint(x - x0, y + x0, color);
+        else
+        {
+            IPS114_DrawPoint(x - x0, y + fx, color);
+            IPS114_DrawPoint(x - fx, y + x0, color);
+            IPS114_DrawPoint(x - x0, y + x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS114_DrawLine(x + r, y, x, y, color);
+            IPS114_DrawLine(x, y + r, x, y, color);
+        }
+        if (r > 2)
+            IPS114_DrawLine(x, y, x + x0, y + x0, color);
+        if (x0 == fx)
+            IPS114_DrawPoint(x + x0, y + x0, color);
+        else
+        {
+            IPS114_DrawPoint(x + x0, y + fx, color);
+            IPS114_DrawPoint(x + fx, y + x0, color);
+            IPS114_DrawPoint(x + x0, y + x0, color);
+        }
+    }
+    if (section == CIRCLE_DRAW_ALL)
+    {
+        IPS114_DrawLine(x + r, y, x, y, color);
+        IPS114_DrawLine(x - r, y, x, y, color);
+        IPS114_DrawLine(x, y - r, x, y, color);
+        IPS114_DrawLine(x, y + r, x, y, color);
+    }
+}
+
+
 void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
     for (int i = x; i < x + width; i++)
@@ -455,24 +677,35 @@ void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const
 /*!
  *
  */
-void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color, uint8_t r)
 {
-    for (int i = x + 1; i < x + width - 1; i++)
+    for (int i = x + r + 1; i < x + width - r - 1; i++)
     {
         IPS114_DrawPoint(i, y, color);
         IPS114_DrawPoint(i, y + height - 1, color);
     }
-    for (int j = y + 1; j < y + height - 1; j++)
+    for (int j = y + r + 1; j < y + height - r - 1; j++)
     {
         IPS114_DrawPoint(x, j, color);
         IPS114_DrawPoint(x + width - 1, j, color);
     }
+
+    IPS114_DrawCircle(x + r, y + r, r, color, CIRCLE_UPPER_LEFT);
+    IPS114_DrawCircle(x + width - 1 - r, y + r, r, color, CIRCLE_UPPER_RIGHT);
+    IPS114_DrawCircle(x + r, y + height - 1 - r, r, color, CIRCLE_LOWER_LEFT);
+    IPS114_DrawCircle(x + width - 1 - r, y + height - 1 - r, r, color, CIRCLE_LOWER_RIGHT);
 }
 
-void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color, uint8_t r)
 {
-    IPS114_DrawRFrame(x, y, width, height, color);
-    IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, color);
+    IPS114_DrawDisc(x + r, y + r, r, color, CIRCLE_UPPER_LEFT);
+    IPS114_DrawDisc(x + width - 1 - r, y + r, r, color, CIRCLE_UPPER_RIGHT);
+    IPS114_DrawDisc(x + r, y + height - 1 - r, r, color, CIRCLE_LOWER_LEFT);
+    IPS114_DrawDisc(x + width - 1 - r, y + height - 1 - r, r, color, CIRCLE_LOWER_RIGHT);
+
+    IPS114_DrawBox(x + r + 1, y, width - 2 - 2 * r, r + 1, color);
+    IPS114_DrawBox(x, y + r + 1, width, height - 2 * r - 2, color);
+    IPS114_DrawBox(x + r + 1, y + height - 1 - r, width - 2 - 2 * r, r + 1, color);
 }
 
 
@@ -509,7 +742,7 @@ void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heig
 
     // Draw rounded frame filled with background color
     IPS114_SetDrawColor(NORMAL);
-    IPS114_DrawRFrame(x, y, width, height, IPS114_penColor);
+    IPS114_DrawRFrame(x, y, width, height, IPS114_penColor, 1);
     IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, IPS114_backgroundColor);
     IPS114_SendBuffer();
 }
@@ -517,9 +750,9 @@ void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t heig
 
 void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue)
 {
-    IPS114_DrawRFrame(x, y, size, size, IPS114_penColor);
+    IPS114_DrawRFrame(x, y, size, size, IPS114_penColor, 1);
     if (boolValue)
-        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor);
+        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor, 1);
 }
 
 
@@ -578,7 +811,8 @@ void IPS114_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const
 // 使用示例     ips114_show_gray_image(0, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H, MT9V03X_W, MT9V03X_H, 0);
 // 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void IPS114_ShowGrayImage(uint16_t x, uint16_t y, const uint8_t *image, uint16_t width, uint16_t height, uint16_t dis_width,
+void
+IPS114_ShowGrayImage(uint16_t x, uint16_t y, const uint8_t *image, uint16_t width, uint16_t height, uint16_t dis_width,
                      uint16_t dis_height, uint8_t threshold)
 {
     uint16_t i, j;

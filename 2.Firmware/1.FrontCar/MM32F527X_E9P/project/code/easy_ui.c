@@ -226,8 +226,8 @@ void EasyUIDrawMsgBox(char *msg)
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - ITEM_HEIGHT) / 2;
     EasyUIBackgroundBlur();
-    EasyUIDrawRFrame(x + offset, y - offset, width, ITEM_HEIGHT, IPS114_penColor);
-    EasyUIDrawRBox(x - offset, y + offset, width, ITEM_HEIGHT, IPS114_penColor);
+    EasyUIDrawRFrame(x + offset, y - offset, width, ITEM_HEIGHT, IPS114_penColor ,1);
+    EasyUIDrawRBox(x - offset, y + offset, width, ITEM_HEIGHT, IPS114_penColor, 1);
     EasyUISetDrawColor(XOR);
     EasyUIDisplayStr(x - offset + 2, y + offset + (ITEM_HEIGHT - FONT_HEIGHT) / 2, msg);
     EasyUISetDrawColor(NORMAL);
@@ -376,9 +376,9 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8
 
     // Draw rounded box and scroll bar
     EasyUISetDrawColor(XOR);
-    EasyUIDrawRBox(0, (int16_t) y, (int16_t) length, ITEM_HEIGHT, IPS114_penColor);
+    EasyUIDrawRBox(0, (int16_t) y, (int16_t) length, ITEM_HEIGHT, IPS114_penColor, 1);
     EasyUISetDrawColor(NORMAL);
-    EasyUIDrawRBox(SCREEN_WIDTH - SCROLL_BAR_WIDTH, (int16_t) y, SCROLL_BAR_WIDTH, ITEM_HEIGHT, IPS114_penColor);
+    EasyUIDrawRBox(SCREEN_WIDTH - SCROLL_BAR_WIDTH, (int16_t) y, SCROLL_BAR_WIDTH, ITEM_HEIGHT, IPS114_penColor, 1);
     lastIndex = index;
 
     // Time counter
@@ -419,7 +419,7 @@ void EasyUIDrawProgressBar(EasyUIItem_t *item)
 
     barWidth = width - 6 * FONT_WIDTH - 8;
 
-    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
     EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
@@ -458,7 +458,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - height) / 2;
-    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
     EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
@@ -533,14 +533,14 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
 
     // Draw indicator
     if (index == 1)
-        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else if (index == 2)
-        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else if (index == 3)
-        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else
         EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
-                         IPS114_penColor);
+                         IPS114_penColor, 1);
 
     // Operation move reaction
     if (opnEnter)
@@ -595,7 +595,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - height) / 2;
-    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
     EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
@@ -665,14 +665,14 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
 
     // Draw indicator
     if (index == 1)
-        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else if (index == 2)
-        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else if (index == 3)
-        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else
         EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
-                         IPS114_penColor);
+                         IPS114_penColor, 1);
 
     // Operation move reaction
     if (opnEnter)
@@ -728,7 +728,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
         width = 2 * SCREEN_WIDTH / 3;
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - height) / 2;
-    EasyUIDrawRFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
     EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
     EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
@@ -798,14 +798,14 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
 
     // Draw indicator
     if (index == 1)
-        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1, (strlen(item->title) + 1) * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else if (index == 2)
-        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 2 * ITEM_HEIGHT, 5 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else if (index == 3)
-        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor);
+        EasyUIDrawRFrame(x + 1, y + 1 + 3 * ITEM_HEIGHT, 4 * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
     else
         EasyUIDrawRFrame(x + width - 6 * FONT_WIDTH - 6, y + 1 + 3 * ITEM_HEIGHT, 6 * FONT_WIDTH + 5, ITEM_HEIGHT,
-                         IPS114_penColor);
+                         IPS114_penColor, 1);
 
     // Operation move reaction
     if (opnEnter)

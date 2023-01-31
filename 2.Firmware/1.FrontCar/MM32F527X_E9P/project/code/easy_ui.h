@@ -52,8 +52,8 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_TIME     60
-#define ITEM_MOVE_TIME          60
+#define INDICATOR_MOVE_TIME     50
+#define ITEM_MOVE_TIME          50
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
@@ -61,8 +61,8 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUIDrawDot(x, y, color)                              (IPS114_DrawPoint(x, y, color))
 #define EasyUIDrawBox(x, y, width, height, color)               (IPS114_DrawBox(x, y, width, height, color))
 #define EasyUIDrawFrame(x, y, width, height, color)             (IPS114_DrawFrame(x, y, width, height, color))
-#define EasyUIDrawRFrame(x, y, width, height, color)            (IPS114_DrawRFrame(x, y, width, height, color))
-#define EasyUIDrawRBox(x, y, width, height, color)              (IPS114_DrawRBox(x, y, width, height, color))
+#define EasyUIDrawRFrame(x, y, width, height, color, r)         (IPS114_DrawRFrame(x, y, width, height, color, r))
+#define EasyUIDrawRBox(x, y, width, height, color, r)           (IPS114_DrawRBox(x, y, width, height, color, r))
 #define EasyUIDrawCheckbox(x, y, size, offset, value)           (IPS114_DrawCheckbox(x, y, size, offset, value))
 #define EasyUIClearBuffer()                                     (IPS114_ClearBuffer())
 #define EasyUISendBuffer()                                      (IPS114_SendBuffer())

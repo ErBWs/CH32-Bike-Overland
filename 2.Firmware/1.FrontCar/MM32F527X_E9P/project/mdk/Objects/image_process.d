@@ -25,7 +25,8 @@
   ..\..\libraries\zf_driver\zf_driver_uart.h \
   ..\..\libraries\sdk\drivers\hal_uart.h \
   ..\..\libraries\zf_driver\zf_driver_flash.h ..\code\user_flash.h \
-  ..\code\user_ips114.h ..\..\libraries\zf_common\zf_common_clock.h \
+  ..\code\user_ips114.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  ..\..\libraries\zf_common\zf_common_clock.h \
   ..\..\libraries\zf_common\zf_common_debug.h \
   ..\..\libraries\zf_common\zf_common_font.h \
   ..\..\libraries\zf_common\zf_common_function.h \

@@ -98,6 +98,6 @@
   ..\..\libraries\zf_device\zf_device_wireless_uart.h ..\code\header.h \
   ..\code\buzzer.h ..\code\easy_ui.h ..\code\easy_key.h \
   ..\code\user_flash.h ..\code\user_ips114.h \
-  ..\code\profile_photo_erbws.h ..\code\ctrl.h ..\code\pid.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  ..\code\profile_photo_erbws.h ..\code\ctrl.h ..\code\pid.h \
   ..\code\easy_ui_user_app.h ..\code\image_process.h
