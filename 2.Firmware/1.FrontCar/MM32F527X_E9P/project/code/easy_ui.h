@@ -72,7 +72,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #ifdef FPU
 typedef     double      paramType;
 #else
-typedef     int32_t     paramType;
+typedef     int64_t     paramType;
 #endif
 
 typedef enum
