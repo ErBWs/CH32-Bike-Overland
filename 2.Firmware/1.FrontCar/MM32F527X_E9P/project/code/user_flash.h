@@ -16,13 +16,11 @@ extern "C"
 #include <stdint.h>
 #include "zf_driver_flash.h"
 
-#ifdef FPU
-void DoubleToInt(double val, uint32_t *arr);
-void IntToDouble(double *val, const uint32_t *arr);
-#else
-void DoubleToInt(int64_t val, uint32_t *arr);
-void IntToDouble(int64_t *val, const uint32_t *arr);
-#endif
+void SaveToFlash(const int32_t *value);
+void SaveToFlashWithConversion(const double *value);
+void ReadFlash(int32_t *value);
+void ReadFlashWithConversion(double *value);
+void FlashOperationEnd();
 
 #ifdef __cplusplus
 }
