@@ -63,7 +63,6 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUIDrawFrame(x, y, width, height, color)             (IPS114_DrawFrame(x, y, width, height, color))
 #define EasyUIDrawRFrame(x, y, width, height, color, r)         (IPS114_DrawRFrame(x, y, width, height, color, r))
 #define EasyUIDrawRBox(x, y, width, height, color, r)           (IPS114_DrawRBox(x, y, width, height, color, r))
-#define EasyUIDrawCheckbox(x, y, size, offset, value)           (IPS114_DrawCheckbox(x, y, size, offset, value))
 #define EasyUIClearBuffer()                                     (IPS114_ClearBuffer())
 #define EasyUISendBuffer()                                      (IPS114_SendBuffer())
 #define EasyUISetDrawColor(mode)                                (IPS114_SetDrawColor(mode))
@@ -127,6 +126,7 @@ typedef struct EasyUI_page
     void (*Event)(struct EasyUI_page *page);
 } EasyUIPage_t;
 
+extern char *EasyUIVersion;
 extern bool functionIsRunning, listLoop;
 extern EasyUIPage_t *pageHead, *pageTail;
 

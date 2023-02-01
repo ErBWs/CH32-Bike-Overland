@@ -66,6 +66,9 @@ void IPS114_SetDrawColor(IPS114_ColorMode_e mode)
 
 /*!
  * @brief   Send buffer to ips114
+ *
+ * @param   void
+ * @return  void
  */
 void IPS114_SendBuffer()
 {
@@ -83,6 +86,9 @@ void IPS114_SendBuffer()
 
 /*!
  * @brief   Clear buffer array
+ *
+ * @param   void
+ * @return  void
  *
  * @note    Use black background color can easily clear the buffer by memset,
  *          but other color cannot and on board flash is not enough for another buffer
@@ -426,6 +432,16 @@ void IPS114_ModifyColor()
 }
 
 
+/*!
+ * @brief   Draw circle / disc with 5 choices of section
+ *
+ * @param   x           Center x of the circle
+ * @param   y           Center y of the circle
+ * @param   r           Radius
+ * @param   color       Color
+ * @param   section     See definition in user_ips114.h
+ * @return  void
+ */
 void IPS114_DrawCircle(int16_t x, int16_t y, uint16_t r, const uint16_t color, uint8_t section)
 {
     // y = kx, k = 1
@@ -649,6 +665,16 @@ void IPS114_DrawDisc(int16_t x, int16_t y, uint16_t r, const uint16_t color, uin
 }
 
 
+/*!
+ * @brief   Draw box / filled box
+ *
+ * @param   x       Starting x
+ * @param   y       Starting y
+ * @param   width   Box width
+ * @param   height  Box height
+ * @param   color   Color
+ * @return  void
+ */
 void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
     for (int i = x; i < x + width; i++)
@@ -662,8 +688,6 @@ void IPS114_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, con
         IPS114_DrawPoint(x + width - 1, j, color);
     }
 }
-
-
 void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
 {
     for (int i = x; i < x + width; ++i)
@@ -675,8 +699,17 @@ void IPS114_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const
     }
 }
 
+
 /*!
+ * @brief   Draw rounded box / filled box
  *
+ * @param   x       Starting x
+ * @param   y       Starting y
+ * @param   width   Box width
+ * @param   height  Box height
+ * @param   color   Color
+ * @param   r       Radius
+ * @return  void
  */
 void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color, uint8_t r)
 {
@@ -696,7 +729,6 @@ void IPS114_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, co
     IPS114_DrawCircle(x + r, y + height - 1 - r, r, color, CIRCLE_LOWER_LEFT);
     IPS114_DrawCircle(x + width - 1 - r, y + height - 1 - r, r, color, CIRCLE_LOWER_RIGHT);
 }
-
 void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color, uint8_t r)
 {
     IPS114_DrawDisc(x + r, y + r, r, color, CIRCLE_UPPER_LEFT);
@@ -707,53 +739,6 @@ void IPS114_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, cons
     IPS114_DrawBox(x + r + 1, y, width - 2 - 2 * r, r + 1, color);
     IPS114_DrawBox(x, y + r + 1, width, height - 2 * r - 2, color);
     IPS114_DrawBox(x + r + 1, y + height - 1 - r, width - 2 - 2 * r, r + 1, color);
-}
-
-
-/*!
- * @brief   Blur the background for rounded box
- *
- * @param   x       X of the rounded box
- * @param   y       Y of the rounded box
- * @param   width   Width of the rounded box
- * @param   height  Height of the rounded box
- * @return  void
- *
- * @note    Use before clearing the buffer
- */
-void IPS114_DrawRBoxWithBlur(int16_t x, int16_t y, uint16_t width, uint16_t height)
-{
-    // Background blur
-    for (int j = 1; j < 135; j += 2)
-    {
-        for (int i = 1; i < 240 + 1; i += 2)
-        {
-            IPS114_DrawPoint(i, j, IPS114_backgroundColor);
-        }
-    }
-    IPS114_SendBuffer();
-    for (int j = 1; j < 135 + 1; j += 2)
-    {
-        for (int i = 1; i < 240 + 1; i += 2)
-        {
-            IPS114_DrawPoint(i - 1, j - 1, IPS114_backgroundColor);
-        }
-    }
-    IPS114_SendBuffer();
-
-    // Draw rounded frame filled with background color
-    IPS114_SetDrawColor(NORMAL);
-    IPS114_DrawRFrame(x, y, width, height, IPS114_penColor, 1);
-    IPS114_DrawBox(x + 1, y + 1, width - 2, height - 2, IPS114_backgroundColor);
-    IPS114_SendBuffer();
-}
-
-
-void IPS114_DrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue)
-{
-    IPS114_DrawRFrame(x, y, size, size, IPS114_penColor, 1);
-    if (boolValue)
-        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor, 1);
 }
 
 

@@ -153,7 +153,8 @@ void PageAbout(EasyUIItem_t *page)
     IPS114_DrawBox(5, 26, 2, ITEM_HEIGHT * 4, IPS114_penColor);
     IPS114_ShowStr(36, 9, "v1.0");
     IPS114_ShowStr(10, 30, "MCU    : MM32F5");
-    IPS114_ShowStr(10, 46, "EasyUI : v1.5");
+    IPS114_ShowStr(10, 46, "EasyUI : ");
+    IPS114_ShowStr(10 + 9 * FONT_WIDTH, 46, EasyUIVersion);
     IPS114_ShowStr(10, 62, "Flash  : 256KB");
     IPS114_ShowStr(10, 78, "UID    : ");
     IPS114_ShowStr(7, 98, "Powered by:");

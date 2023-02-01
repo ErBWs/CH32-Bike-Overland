@@ -7,7 +7,7 @@
 
 #include "easy_ui.h"
 
-
+char *EasyUIVersion = "v1.5b";
 EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
 
 /*!
@@ -235,6 +235,68 @@ void EasyUIDrawMsgBox(char *msg)
 
 
 /*!
+ * @brief   Draw progress bar
+ *
+ * @param   item    EasyUI item struct
+ * @return  void
+ *
+ * @note    Internal call
+ */
+void EasyUIDrawProgressBar(EasyUIItem_t *item)
+{
+    static int16_t x, y;
+    static uint16_t width, height;
+    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
+    static uint16_t barWidth;
+
+    EasyUISetDrawColor(NORMAL);
+
+    // Display information and draw box
+    height = ITEM_HEIGHT * 2 + 2;
+    if (strlen(item->title) + 1 > 12)
+        width = (strlen(item->title) + 1) * FONT_WIDTH + 7;
+    else
+        width = 12 * FONT_WIDTH + 7;
+    if (width < 2 * SCREEN_WIDTH / 3)
+        width = 2 * SCREEN_WIDTH / 3;
+    x = (SCREEN_WIDTH - width) / 2;
+    y = (SCREEN_HEIGHT - height) / 2;
+
+    barWidth = width - 6 * FONT_WIDTH - 10;
+
+    EasyUIDrawFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
+    EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
+    EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
+    EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
+    EasyUIDrawFrame(x + 3, y + ITEM_HEIGHT + itemHeightOffset, barWidth, FONT_HEIGHT, IPS114_penColor);
+    EasyUIDrawBox(x + 5, y + ITEM_HEIGHT + itemHeightOffset + 2, (float) *item->param / 100 * barWidth - 4, FONT_HEIGHT - 4, IPS114_penColor);
+    EasyUIDisplayFloat(x + width - 6 * FONT_WIDTH - 4, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 3, 2);
+
+    EasyUISendBuffer();
+}
+
+
+/*!
+ * @brief   Draw check box
+ *
+ * @param   x           Check box position x
+ * @param   y           Check box position y
+ * @param   size        Size of check box
+ * @param   offset      Offset of selected rounded box
+ * @param   boolValue   True of false
+ * @return  void
+ *
+ * @note    Internal call
+ */
+void EasyUIDrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, bool boolValue, uint8_t r)
+{
+    IPS114_DrawRFrame(x, y, size, size, IPS114_penColor, r);
+    if (boolValue)
+        IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor, r);
+}
+
+
+/*!
  * @brief   Get position of item with linear animation
  *
  * @param   page    Struct of page
@@ -389,47 +451,7 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8
 }
 
 
-/*!
- * @brief   Draw progress bar
- *
- * @param   item    EasyUI item struct
- * @return  void
- *
- * @note    Internal call
- */
-void EasyUIDrawProgressBar(EasyUIItem_t *item)
-{
-    static int16_t x, y;
-    static uint16_t width, height;
-    static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
-    static uint16_t barWidth;
 
-    EasyUISetDrawColor(NORMAL);
-
-    // Display information and draw box
-    height = ITEM_HEIGHT * 2 + 2;
-    if (strlen(item->title) + 1 > 12)
-        width = (strlen(item->title) + 1) * FONT_WIDTH + 7;
-    else
-        width = 12 * FONT_WIDTH + 7;
-    if (width < 2 * SCREEN_WIDTH / 3)
-        width = 2 * SCREEN_WIDTH / 3;
-    x = (SCREEN_WIDTH - width) / 2;
-    y = (SCREEN_HEIGHT - height) / 2;
-
-    barWidth = width - 6 * FONT_WIDTH - 10;
-
-    EasyUIDrawFrame(x - 1, y - 1, width + 2, height + 2, IPS114_penColor);
-    EasyUIDrawBox(x, y, width, height, IPS114_backgroundColor);
-    EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
-    EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
-    EasyUIDrawFrame(x + 3, y + ITEM_HEIGHT + itemHeightOffset, barWidth, FONT_HEIGHT, IPS114_penColor);
-    EasyUIDrawBox(x + 5, y + ITEM_HEIGHT + itemHeightOffset + 2, (float) *item->param / 100 * barWidth - 4, FONT_HEIGHT - 4, IPS114_penColor);
-    EasyUIDisplayFloat(x + width - 6 * FONT_WIDTH - 4, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 3, 2);
-
-    EasyUISendBuffer();
-
-}
 
 
 /*!
@@ -1147,7 +1169,7 @@ void EasyUI(uint8_t timer)
                     EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
                     EasyUIDrawCheckbox(SCREEN_WIDTH - 7 - SCROLL_BAR_WIDTH - ITEM_HEIGHT + 2,
                                        item->position - (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1, ITEM_HEIGHT - 2, 3,
-                                       *item->flag);
+                                       *item->flag, 1);
                     break;
                 case ITEM_SWITCH:
                     EasyUIDisplayStr(2, item->position, "-");
