@@ -378,6 +378,13 @@ void EasyUIGetItemPos(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t index, uin
 }
 
 
+/*!
+ * @brief   Display item according to its funcType
+ * @param   item    Struct of item
+ * @return  void
+ *
+ * @note    Internal call
+ */
 void EasyUIDisplayItem(EasyUIItem_t *item)
 {
     switch (item->funcType)
@@ -515,6 +522,16 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8
 }
 
 
+/*!
+ * @brief   Different response to operation according to funcType
+ *
+ * @param   page    Struct of page
+ * @param   item    Struct of item
+ * @param   index   Current index
+ * @return  void
+ *
+ * @note    Internal call
+ */
 void EasyUIItemOperationResponse(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t *index)
 {
     switch (item->funcType)
