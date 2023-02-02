@@ -29,22 +29,21 @@ Project File Date:  01/27/2023
 Build target 'mm32f527x_e9p_project'
 compiling main.c...
 compiling isr.c...
-../code/easy_ui.c(54): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+../code/easy_ui.c(55): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
     va_start(variableArg, func);
                           ^
-../code/easy_ui.c(43): note: parameter of type 'EasyUIItem_e' is declared here
+../code/easy_ui.c(44): note: parameter of type 'EasyUIItem_e' is declared here
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...)
                                                                                       ^
-../code/easy_ui.c(120): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+../code/easy_ui.c(125): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
     va_start(variableArg, func);
                           ^
-../code/easy_ui.c(115): note: parameter of type 'EasyUIPage_e' is declared here
+../code/easy_ui.c(120): note: parameter of type 'EasyUIPage_e' is declared here
 void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...)
                                                     ^
 2 warnings generated.
 compiling easy_ui.c...
 compiling pid.c...
-compiling user_flash.c...
 ../code/ctrl.c(69): warning: non-void function does not return a value [-Wreturn-type]
 }
 ^
@@ -54,7 +53,7 @@ compiling buzzer.c...
 compiling easy_ui_user_app.c...
 compiling image_process.c...
 linking...
-Program Size: Code=25384 RO-data=13804 RW-data=328 ZI-data=100328  
+Program Size: Code=25408 RO-data=13804 RW-data=328 ZI-data=100680  
 ".\Objects\mm32f527x_e9p.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>

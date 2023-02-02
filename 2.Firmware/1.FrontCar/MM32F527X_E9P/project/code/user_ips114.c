@@ -209,24 +209,11 @@ void IPS114_ShowChar(int16 x, int16 y, const char dat)
                 uint8 temp_top = ascii_font_6x8[dat - 32][i];
                 for (j = 0; j < 8; j++)
                 {
-                    if (x + i < 240 && y + j < 135 && x + i >= 0 && y + j >= 0)
+                    if (temp_top & 0x01)
                     {
-                        if (temp_top & 0x01)
-                        {
-                            if (IPS114_colorMode == XOR)
-                            {
-                                if (IPS114_buffer[y + j][x + i] == IPS114_penColor)
-                                    IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
-                                else
-                                    IPS114_buffer[y + j][x + i] = IPS114_penColor;
-                            } else
-                                IPS114_buffer[y + j][x + i] = IPS114_penColor;
-                        }
-                        temp_top >>= 1;
-                    } else
-                    {
-                        break;
+                        IPS114_DrawPoint(x + i, y + j ,IPS114_penColor);
                     }
+                    temp_top >>= 1;
                 }
             }
             break;
@@ -238,39 +225,19 @@ void IPS114_ShowChar(int16 x, int16 y, const char dat)
                 uint8 temp_bottom = ascii_font_8x16[dat - 32][i + 8];
                 for (j = 0; j < 8; j++)
                 {
-                    if (x + i < 240 && y + j < 135 && x + i >= 0 && y + j >= 0)
+                    if (temp_top & 0x01)
                     {
-                        if (temp_top & 0x01)
-                        {
-                            if (IPS114_colorMode == XOR)
-                            {
-                                if (IPS114_buffer[y + j][x + i] == IPS114_penColor)
-                                    IPS114_buffer[y + j][x + i] = IPS114_backgroundColor;
-                                else
-                                    IPS114_buffer[y + j][x + i] = IPS114_penColor;
-                            } else
-                                IPS114_buffer[y + j][x + i] = IPS114_penColor;
-                        }
-                        temp_top >>= 1;
+                        IPS114_DrawPoint(x + i, y + j ,IPS114_penColor);
                     }
+                    temp_top >>= 1;
                 }
                 for (j = 0; j < 8; j++)
                 {
-                    if (x + i + 8 < 240 && y + j < 135 && x + i + 8 >= 0 && y + j >= 0)
+                    if (temp_bottom & 0x01)
                     {
-                        if (temp_bottom & 0x01)
-                        {
-                            if (IPS114_colorMode == XOR)
-                            {
-                                if (IPS114_buffer[y + j + 8][x + i] == IPS114_penColor)
-                                    IPS114_buffer[y + j + 8][x + i] = IPS114_backgroundColor;
-                                else
-                                    IPS114_buffer[y + j + 8][x + i] = IPS114_penColor;
-                            } else
-                                IPS114_buffer[y + j + 8][x + i] = IPS114_penColor;
-                        }
-                        temp_bottom >>= 1;
+                        IPS114_DrawPoint(x + i, y + j + 8,IPS114_penColor);
                     }
+                    temp_bottom >>= 1;
                 }
             }
             break;

@@ -39,6 +39,7 @@ bool functionIsRunning = false, listLoop = true;
  *          ITEM_CHANGE_VALUE: the incoming param should always be paramType *,
  *          and cannot use casted variables(Don't know why)
  *          ITEM_PROGRESS_BAR: the incoming param should be 0 - 100
+ *          If page type is PAGE_ICON, filled with icon array in the last variable
  */
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...)
 {
@@ -78,6 +79,10 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
         default:
             break;
     }
+
+    if (page->funcType == PAGE_ICON)
+        item->icon = va_arg(variableArg, uint8_t *);
+
     va_end(variableArg);
 
     item->next = NULL;
@@ -236,7 +241,7 @@ void EasyUIDrawMsgBox(char *msg)
     x = (SCREEN_WIDTH - width) / 2;
     y = (SCREEN_HEIGHT - ITEM_HEIGHT) / 2;
     EasyUIBackgroundBlur();
-    EasyUIDrawRFrame(x + offset, y - offset, width, ITEM_HEIGHT, IPS114_penColor ,1);
+    EasyUIDrawRFrame(x + offset, y - offset, width, ITEM_HEIGHT, IPS114_penColor, 1);
     EasyUIDrawRBox(x - offset, y + offset, width, ITEM_HEIGHT, IPS114_penColor, 1);
     EasyUISetDrawColor(XOR);
     EasyUIDisplayStr(x - offset + 2, y + offset + (ITEM_HEIGHT - FONT_HEIGHT) / 2, msg);
@@ -279,7 +284,8 @@ void EasyUIDrawProgressBar(EasyUIItem_t *item)
     EasyUIDisplayStr(x + 3, y + itemHeightOffset, item->title);
     EasyUIDisplayStr(x + 3 + strlen(item->title) * FONT_WIDTH, y + itemHeightOffset, ":");
     EasyUIDrawFrame(x + 3, y + ITEM_HEIGHT + itemHeightOffset, barWidth, FONT_HEIGHT, IPS114_penColor);
-    EasyUIDrawBox(x + 5, y + ITEM_HEIGHT + itemHeightOffset + 2, (float) *item->param / 100 * barWidth - 4, FONT_HEIGHT - 4, IPS114_penColor);
+    EasyUIDrawBox(x + 5, y + ITEM_HEIGHT + itemHeightOffset + 2, (float) *item->param / 100 * barWidth - 4,
+                  FONT_HEIGHT - 4, IPS114_penColor);
     EasyUIDisplayFloat(x + width - 6 * FONT_WIDTH - 4, y + ITEM_HEIGHT + itemHeightOffset, *item->param, 3, 2);
 
     EasyUISendBuffer();
@@ -461,6 +467,9 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8
     if (status)
         y = SCREEN_HEIGHT;
 
+    if (page->funcType != PAGE_LIST)
+        return;
+
     // Get Initial length
     if ((int) length == 0)
     {
@@ -483,9 +492,9 @@ void EasyUIDrawIndicator(EasyUIPage_t *page, uint8_t index, uint8_t timer, uint8
             if (index != lastIndex && abs(index - lastIndex) < page->itemTail->id)
             {
                 if (itemTmp->position < 0)
-                    y = (float)3 * ITEM_HEIGHT / 4;
+                    y = (float) 3 * ITEM_HEIGHT / 4;
                 else if (itemTmp->position >= (ITEM_LINES) * ITEM_HEIGHT)
-                    y = (ITEM_LINES - 2) * ITEM_HEIGHT + (float)ITEM_HEIGHT / 4;
+                    y = (ITEM_LINES - 2) * ITEM_HEIGHT + (float) ITEM_HEIGHT / 4;
             }
             break;
         }
@@ -540,13 +549,14 @@ void EasyUIItemOperationResponse(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t
             if (layer == MAX_LAYER - 1)
                 break;
 
-            pageIndex[layer] = page->id;
-            itemIndex[layer] = *index;
-            layer++;
+            itemIndex[layer++] = *index;
             pageIndex[layer] = item->pageId;
             *index = 0;
             for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
             {
+                if (itemTmp->lineId < 0)
+                    continue;
+
                 itemTmp->position = 0;
                 itemTmp->posForCal = 0;
             }
@@ -1198,8 +1208,28 @@ void EasyUI(uint8_t timer)
         if (opnExit)
         {
             pageIndex[layer] = 0;
-            itemIndex[layer] = 0;
-            layer--;
+            itemIndex[layer--] = 0;
+            index = itemIndex[layer];
+            EasyUITransitionAnim();
+            EasyUIDrawIndicator(page, index, timer, 1);
+        }
+
+        EasyUISendBuffer();
+        return;
+    }
+
+    if (page->funcType == PAGE_ICON)
+    {
+        if (layer == 0)
+        {
+            EasyUISendBuffer();
+            return;
+        }
+
+        if (opnExit)
+        {
+            pageIndex[layer] = 0;
+            itemIndex[layer--] = 0;
             index = itemIndex[layer];
             EasyUITransitionAnim();
             EasyUIDrawIndicator(page, index, timer, 1);
@@ -1256,8 +1286,7 @@ void EasyUI(uint8_t timer)
     if (opnExit)
     {
         pageIndex[layer] = 0;
-        itemIndex[layer] = 0;
-        layer--;
+        itemIndex[layer--] = 0;
         index = itemIndex[layer];
         for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
         {

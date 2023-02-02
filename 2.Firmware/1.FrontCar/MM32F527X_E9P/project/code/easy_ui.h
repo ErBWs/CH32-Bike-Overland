@@ -51,10 +51,11 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define SCROLL_BAR_WIDTH        4
 #define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 #define MAX_LAYER               10
+#define ICON_SIZE               50
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_TIME     50
-#define ITEM_MOVE_TIME          50
+#define INDICATOR_MOVE_TIME     70
+#define ITEM_MOVE_TIME          70
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))
@@ -91,6 +92,7 @@ typedef enum
 typedef enum
 {
     PAGE_LIST,
+    PAGE_ICON,
     PAGE_CUSTOM
 } EasyUIPage_e;
 
@@ -106,6 +108,7 @@ typedef struct EasyUI_item
     int16_t position;
     char *title;
 
+    uint8_t *icon;                              // PAGE_ICON
     char *msg;                                  // ITEM_MESSAGE
     bool *flag;                                 // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
     bool flagDefault;                           // Factory default setting
