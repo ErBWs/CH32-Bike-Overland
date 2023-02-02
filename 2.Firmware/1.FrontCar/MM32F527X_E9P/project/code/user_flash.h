@@ -16,6 +16,10 @@ extern "C"
 #include <stdint.h>
 #include "zf_driver_flash.h"
 
+extern uint16_t flashBufIndex;       // Flash buffer array index(0-255)
+extern uint8_t flashSecIndex;        // Flash section index(63-)
+extern uint8_t flashPageIndex;       // Flash page index(3-0)
+
 void SaveToFlash(const int32_t *value);
 void SaveToFlashWithConversion(const double *value);
 void ReadFlash(int32_t *value);
