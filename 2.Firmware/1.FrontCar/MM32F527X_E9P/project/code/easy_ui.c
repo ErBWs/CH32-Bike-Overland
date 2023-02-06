@@ -57,27 +57,27 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
     item->funcType = func;
     switch (item->funcType)
     {
-        case ITEM_JUMP_PAGE:
-            item->pageId = va_arg(variableArg, int);
-            break;
-        case ITEM_CHECKBOX:
-        case ITEM_RADIO_BUTTON:
-        case ITEM_SWITCH:
-            item->flag = va_arg(variableArg, bool *);
-            item->flagDefault = *item->flag;
-            break;
-        case ITEM_PROGRESS_BAR:
-        case ITEM_CHANGE_VALUE:
-            item->param = va_arg(variableArg, paramType *);
-            item->paramBackup = *item->param;
-            item->paramDefault = *item->param;
-            item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
-            break;
-        case ITEM_MESSAGE:
-            item->msg = va_arg(variableArg, char *);
-            item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
-        default:
-            break;
+    case ITEM_JUMP_PAGE:
+        item->pageId = va_arg(variableArg, int);
+        break;
+    case ITEM_CHECKBOX:
+    case ITEM_RADIO_BUTTON:
+    case ITEM_SWITCH:
+        item->flag = va_arg(variableArg, bool *);
+        item->flagDefault = *item->flag;
+        break;
+    case ITEM_PROGRESS_BAR:
+    case ITEM_CHANGE_VALUE:
+        item->param = va_arg(variableArg, paramType *);
+        item->paramBackup = *item->param;
+        item->paramDefault = *item->param;
+        item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
+        break;
+    case ITEM_MESSAGE:
+        item->msg = va_arg(variableArg, char *);
+        item->Event = va_arg(variableArg, void (*)(EasyUIItem_t * ));
+    default:
+        break;
     }
 
     if (page->funcType == PAGE_ICON)
@@ -395,52 +395,52 @@ void EasyUIDisplayItem(EasyUIItem_t *item)
 {
     switch (item->funcType)
     {
-        case ITEM_JUMP_PAGE:
-            EasyUIDisplayStr(2, item->position, "+");
-            EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-            break;
-        case ITEM_PAGE_DESCRIPTION:
-            EasyUIDisplayStr(2, item->position, item->title);
-            break;
-        case ITEM_CHECKBOX:
-        case ITEM_RADIO_BUTTON:
-            EasyUIDisplayStr(2, item->position, "-");
-            EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-            EasyUIDrawCheckbox(SCREEN_WIDTH - 7 - SCROLL_BAR_WIDTH - ITEM_HEIGHT + 2,
-                               item->position - (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1, ITEM_HEIGHT - 2, 3,
-                               *item->flag, 1);
-            break;
-        case ITEM_SWITCH:
-            EasyUIDisplayStr(2, item->position, "-");
-            EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-            if (*item->flag)
-                EasyUIDisplayStr(SCREEN_WIDTH - 7 - 2 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "on");
-            else
-                EasyUIDisplayStr(SCREEN_WIDTH - 7 - 3 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "off");
-            break;
-        case ITEM_PROGRESS_BAR:
-        case ITEM_CHANGE_VALUE:
-            EasyUIDisplayStr(2, item->position, "-");
-            EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-            if (*item->param < 10 && *item->param >= 0)
-                EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 4 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
-                                   *item->param, 4, 2);
-            else if (*item->param < 100 && *item->param > -10)
-                EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 5 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
-                                   *item->param, 4, 2);
-            else if (*item->param < 1000 && *item->param > -100)
-                EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 6 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
-                                   *item->param, 4, 2);
-            else if (*item->param < 10000 && *item->param > -1000)
-                EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 7 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
-                                   *item->param, 4, 2);
-            else    // Hide because it's too long
-                EasyUIDisplayStr(SCREEN_WIDTH - 7 - 5 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "**.**");
-            break;
-        default:
-            EasyUIDisplayStr(2, item->position, "-");
-            EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
-            break;
+    case ITEM_JUMP_PAGE:
+        EasyUIDisplayStr(2, item->position, "+");
+        EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
+        break;
+    case ITEM_PAGE_DESCRIPTION:
+        EasyUIDisplayStr(2, item->position, item->title);
+        break;
+    case ITEM_CHECKBOX:
+    case ITEM_RADIO_BUTTON:
+        EasyUIDisplayStr(2, item->position, "-");
+        EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
+        EasyUIDrawCheckbox(SCREEN_WIDTH - 7 - SCROLL_BAR_WIDTH - ITEM_HEIGHT + 2,
+                           item->position - (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1, ITEM_HEIGHT - 2, 3,
+                           *item->flag, 1);
+        break;
+    case ITEM_SWITCH:
+        EasyUIDisplayStr(2, item->position, "-");
+        EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
+        if (*item->flag)
+            EasyUIDisplayStr(SCREEN_WIDTH - 7 - 2 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "on");
+        else
+            EasyUIDisplayStr(SCREEN_WIDTH - 7 - 3 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "off");
+        break;
+    case ITEM_PROGRESS_BAR:
+    case ITEM_CHANGE_VALUE:
+        EasyUIDisplayStr(2, item->position, "-");
+        EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
+        if (*item->param < 10 && *item->param >= 0)
+            EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 4 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                               *item->param, 4, 2);
+        else if (*item->param < 100 && *item->param > -10)
+            EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 5 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                               *item->param, 4, 2);
+        else if (*item->param < 1000 && *item->param > -100)
+            EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 6 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                               *item->param, 4, 2);
+        else if (*item->param < 10000 && *item->param > -1000)
+            EasyUIDisplayFloat(SCREEN_WIDTH - 7 - 7 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position,
+                               *item->param, 4, 2);
+        else    // Hide because it's too long
+            EasyUIDisplayStr(SCREEN_WIDTH - 7 - 5 * FONT_WIDTH - SCROLL_BAR_WIDTH, item->position, "**.**");
+        break;
+    default:
+        EasyUIDisplayStr(2, item->position, "-");
+        EasyUIDisplayStr(5 + FONT_WIDTH, item->position, item->title);
+        break;
     }
 }
 
@@ -545,46 +545,46 @@ void EasyUIItemOperationResponse(EasyUIPage_t *page, EasyUIItem_t *item, uint8_t
 {
     switch (item->funcType)
     {
-        case ITEM_JUMP_PAGE:
-            if (layer == MAX_LAYER - 1)
-                break;
+    case ITEM_JUMP_PAGE:
+        if (layer == MAX_LAYER - 1)
+            break;
 
-            itemIndex[layer++] = *index;
-            pageIndex[layer] = item->pageId;
-            *index = 0;
-            for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
-            {
-                if (itemTmp->lineId < 0)
-                    continue;
+        itemIndex[layer++] = *index;
+        pageIndex[layer] = item->pageId;
+        *index = 0;
+        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+        {
+            if (itemTmp->lineId < 0)
+                continue;
 
-                itemTmp->position = 0;
-                itemTmp->posForCal = 0;
-            }
-            EasyUITransitionAnim();
-            break;
-        case ITEM_CHECKBOX:
-        case ITEM_SWITCH:
-            *item->flag = !*item->flag;
-            break;
-        case ITEM_RADIO_BUTTON:
-            for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
-            {
-                if (itemTmp->funcType == ITEM_RADIO_BUTTON && itemTmp->id != item->id)
-                    *itemTmp->flag = false;
-            }
-            *item->flag = !*item->flag;
-            break;
-        case ITEM_PROGRESS_BAR:
-        case ITEM_CHANGE_VALUE:
-            functionIsRunning = true;
-            EasyUIBackgroundBlur();
-            break;
-        case ITEM_MESSAGE:
-            functionIsRunning = true;
-            EasyUIDrawMsgBox(item->msg);
-            break;
-        default:
-            break;
+            itemTmp->position = 0;
+            itemTmp->posForCal = 0;
+        }
+        EasyUITransitionAnim();
+        break;
+    case ITEM_CHECKBOX:
+    case ITEM_SWITCH:
+        *item->flag = !*item->flag;
+        break;
+    case ITEM_RADIO_BUTTON:
+        for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
+        {
+            if (itemTmp->funcType == ITEM_RADIO_BUTTON && itemTmp->id != item->id)
+                *itemTmp->flag = false;
+        }
+        *item->flag = !*item->flag;
+        break;
+    case ITEM_PROGRESS_BAR:
+    case ITEM_CHANGE_VALUE:
+        functionIsRunning = true;
+        EasyUIBackgroundBlur();
+        break;
+    case ITEM_MESSAGE:
+        functionIsRunning = true;
+        EasyUIDrawMsgBox(item->msg);
+        break;
+    default:
+        break;
     }
 }
 
@@ -732,6 +732,7 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
 
     IPS114_SendBuffer();
 }
+
 void EasyUIEventChangeInt(EasyUIItem_t *item)
 {
     static int16_t x, y;
@@ -864,6 +865,7 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
 
     IPS114_SendBuffer();
 }
+
 void EasyUIEventChangeFloat(EasyUIItem_t *item)
 {
     static int16_t x, y;
@@ -1012,17 +1014,17 @@ void EasyUIEventSaveSettings(EasyUIItem_t *item)
         {
             switch (itemTmp->funcType)
             {
-                case ITEM_CHECKBOX:
-                case ITEM_RADIO_BUTTON:
-                case ITEM_SWITCH:
-                    SaveToFlash((int32_t *) itemTmp->flag);
-                    break;
-                case ITEM_PROGRESS_BAR:
-                case ITEM_CHANGE_VALUE:
-                    SaveToFlashWithConversion((double *) itemTmp->param);
-                    break;
-                default:
-                    break;
+            case ITEM_CHECKBOX:
+            case ITEM_RADIO_BUTTON:
+            case ITEM_SWITCH:
+                SaveToFlash((int32_t *) itemTmp->flag);
+                break;
+            case ITEM_PROGRESS_BAR:
+            case ITEM_CHANGE_VALUE:
+                SaveToFlashWithConversion((double *) itemTmp->param);
+                break;
+            default:
+                break;
             }
         }
     }
@@ -1030,6 +1032,7 @@ void EasyUIEventSaveSettings(EasyUIItem_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
+
 void EasyUIEventResetSettings(EasyUIItem_t *item)
 {
     for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
@@ -1038,16 +1041,16 @@ void EasyUIEventResetSettings(EasyUIItem_t *item)
         {
             switch (itemTmp->funcType)
             {
-                case ITEM_CHECKBOX:
-                case ITEM_RADIO_BUTTON:
-                case ITEM_SWITCH:
-                    *itemTmp->flag = itemTmp->flagDefault;
-                    break;
-                case ITEM_PROGRESS_BAR:
-                case ITEM_CHANGE_VALUE:
-                    *itemTmp->param = itemTmp->paramDefault;
-                default:
-                    break;
+            case ITEM_CHECKBOX:
+            case ITEM_RADIO_BUTTON:
+            case ITEM_SWITCH:
+                *itemTmp->flag = itemTmp->flagDefault;
+                break;
+            case ITEM_PROGRESS_BAR:
+            case ITEM_CHANGE_VALUE:
+                *itemTmp->param = itemTmp->paramDefault;
+            default:
+                break;
             }
         }
     }
@@ -1084,17 +1087,17 @@ void EasyUIInit(uint8_t mode)
             {
                 switch (itemTmp->funcType)
                 {
-                    case ITEM_CHECKBOX:
-                    case ITEM_RADIO_BUTTON:
-                    case ITEM_SWITCH:
-                        ReadFlash((int32_t *) itemTmp->flag);
-                        break;
-                    case ITEM_PROGRESS_BAR:
-                    case ITEM_CHANGE_VALUE:
-                        ReadFlashWithConversion((double *) itemTmp->param);
-                        break;
-                    default:
-                        break;
+                case ITEM_CHECKBOX:
+                case ITEM_RADIO_BUTTON:
+                case ITEM_SWITCH:
+                    ReadFlash((int32_t *) itemTmp->flag);
+                    break;
+                case ITEM_PROGRESS_BAR:
+                case ITEM_CHANGE_VALUE:
+                    ReadFlashWithConversion((double *) itemTmp->param);
+                    break;
+                default:
+                    break;
                 }
             }
         }
@@ -1180,13 +1183,13 @@ void EasyUI(uint8_t timer)
 
             switch (item->funcType)
             {
-                case ITEM_PROGRESS_BAR:
-                    EasyUIDrawProgressBar(item);
-                    item->Event(item);
-                    break;
-                default:
-                    item->Event(item);
-                    break;
+            case ITEM_PROGRESS_BAR:
+                EasyUIDrawProgressBar(item);
+                item->Event(item);
+                break;
+            default:
+                item->Event(item);
+                break;
             }
             break;
         }
