@@ -79,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "24"
+			"value" : "25"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -115,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/cmake/mac/bin/cmake"
+			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.6890.13/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/cmake/mac/bin/cpack"
+			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.6890.13/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -139,7 +139,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/cmake/mac/bin/ctest"
+			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.6890.13/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER",
@@ -499,7 +499,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/ninja/mac/ninja"
+			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.6890.13/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -767,7 +767,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/cmake/mac/share/cmake-3.24"
+			"value" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.6890.13/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",

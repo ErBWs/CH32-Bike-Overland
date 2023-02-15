@@ -1,4 +1,10 @@
-"/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/baohan/ErBW_s/Projects/MM32-Wireless-Charge/2.Firmware/1.FrontCar/MM32F527X_E9P -B /Users/baohan/ErBW_s/Projects/MM32-Wireless-Charge/2.Firmware/1.FrontCar/MM32F527X_E9P/cmake-build-debug
+"/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.6890.13/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.6890.13/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/baohan/ErBW_s/Projects/MM32-Wireless-Charge/2.Firmware/1.FrontCar/MM32F527X_E9P -B /Users/baohan/ErBW_s/Projects/MM32-Wireless-Charge/2.Firmware/1.FrontCar/MM32F527X_E9P/cmake-build-debug
+-- The C compiler identification is AppleClang 14.0.0.14000029
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/baohan/ErBW_s/Projects/MM32-Wireless-Charge/2.Firmware/1.FrontCar/MM32F527X_E9P/cmake-build-debug
