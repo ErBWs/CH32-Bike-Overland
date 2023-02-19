@@ -712,7 +712,7 @@
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp d418c3b3-6d46-472a-9b7e-aefb3025831a)
     )
-    (fp_text value "USB-Type-C" (at 0 6.5278 -90 unlocked) (layer "F.Fab")
+    (fp_text value "USB-Type-C" (at 0 6.5278 -90 unlocked) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp cf3d23be-5066-4ea2-b5fb-c27231dcf6cb)
     )
@@ -1958,7 +1958,7 @@
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp d7867d2c-3045-4299-85d4-2f633ee04369)
     )
-    (fp_text value "SH1.0_2P" (at 0 3.98 90) (layer "F.Fab")
+    (fp_text value "SH1.0_2P" (at 0 3.98 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 8ee8fa72-b8d2-4e80-bca3-d34750f6c70b)
     )
@@ -2788,7 +2788,7 @@
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 59e8a8a6-52c8-43df-9ea0-62c2b526baef)
     )
-    (fp_text value "SH1.0_2P" (at 0 3.98 90) (layer "F.Fab")
+    (fp_text value "SH1.0_2P" (at 0 3.98 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 244d8796-a97a-4c64-a4cc-bf434a1aec6a)
     )
@@ -3846,7 +3846,7 @@
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 9be469ff-b825-4a34-b85b-ab37cd3e4f77)
     )
-    (fp_text value "SH1.0_4P" (at 0 3.98 90) (layer "F.Fab")
+    (fp_text value "SH1.0_4P" (at 0 3.98 90) (layer "F.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp a8a1ffba-9861-4167-bfdf-d5b72e354901)
     )
@@ -4477,7 +4477,7 @@
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 440d85a3-b129-45e0-ad72-84eb661ca104)
     )
-    (fp_text value "MPU-6050" (at 0 -3.375 90) (layer "B.Fab")
+    (fp_text value "MPU-6050" (at 0 -3.375 90) (layer "B.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp b8c0f79f-6c31-4503-b33a-507630e22e18)
     )
@@ -4621,7 +4621,7 @@
     (property "Sheetname" "")
     (path "/846d3d7c-db94-4fad-aa56-6cb4eec92731")
     (attr through_hole)
-    (fp_text reference "J4" (at -5.8674 0 180) (layer "B.SilkS")
+    (fp_text reference "J4" (at -5.8674 0 180) (layer "B.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 1eb8cebb-9dcd-4128-b2ca-98d9f0d97a34)
     )
@@ -4773,7 +4773,7 @@
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 5868688f-8a63-4dbe-853b-c84bbfe65f61)
     )
-    (fp_text value "SN65HVD232" (at 0 -3.4 180) (layer "B.Fab")
+    (fp_text value "SN65HVD232" (at 0 -3.4 180) (layer "B.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 648fafb3-66d8-4a68-8698-66410cb12a19)
     )
@@ -5106,7 +5106,7 @@
     (property "Sheetname" "")
     (path "/95d0bdaf-1da1-49e6-ac2c-5fbc321d2ab9")
     (attr through_hole)
-    (fp_text reference "J3" (at -5.8674 0) (layer "B.SilkS")
+    (fp_text reference "J3" (at -5.8674 0) (layer "B.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 3fd865cb-7e6f-4bae-8ffc-3b6c017c088e)
     )
@@ -5722,7 +5722,7 @@
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 1af8bdde-a62a-415e-9608-70d68c367635)
     )
-    (fp_text value "100nF" (at 0 -1.0414 unlocked) (layer "B.Fab")
+    (fp_text value "100nF" (at 0 -1.0414 unlocked) (layer "B.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 50294590-1bee-4cf2-869b-bb2d8bd7135d)
     )
@@ -6511,7 +6511,7 @@
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp b6a8a0ac-aa02-4589-a14a-4ecd5ad4a696)
     )
-    (fp_text value "SN65HVD232" (at 0 -3.4 180) (layer "B.Fab")
+    (fp_text value "SN65HVD232" (at 0 -3.4 180) (layer "B.Fab") hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 4a7cafa1-ba67-459f-b647-cf0dd2482c49)
     )
