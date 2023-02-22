@@ -2029,31 +2029,6 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 118.11 85.09 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 46a1c1b1-5af2-44fa-8537-a986d6777828)
-    (property "Reference" "#PWR010" (at 118.11 91.44 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 118.11 88.9 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 118.11 85.09 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 118.11 85.09 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 5f2f43ef-8790-495e-a019-28a7cbb767c9))
-    (instances
-      (project "FrontCarMotherBoard"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/b6c42b83-27cb-41a6-82a4-0cfe59a023a6"
-          (reference "#PWR010") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "Device:C_Small") (at 55.88 35.56 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 46b5c948-23b1-418d-b78b-36b597a9d457)
@@ -2292,6 +2267,31 @@
     )
   )
 
+  (symbol (lib_id "power:GNDPWR") (at 118.11 85.09 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 79c1c58e-1db6-4882-826d-39b11f9f4d9d)
+    (property "Reference" "#PWR044" (at 118.11 90.17 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GNDPWR" (at 117.983 88.8191 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 118.11 86.36 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 118.11 86.36 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 72d838a0-47c0-482d-b858-f3a51acf44d4))
+    (instances
+      (project "FrontCarMotherBoard"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/b6c42b83-27cb-41a6-82a4-0cfe59a023a6"
+          (reference "#PWR044") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Device:R_Small") (at 53.34 119.38 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7ce446a7-6ee9-43d2-9c5c-9eeb31c3ab98)
@@ -2404,6 +2404,31 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 59.69 68.58 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 9f7414ab-00cf-466d-b0aa-60a2b32444e2)
+    (property "Reference" "#PWR06" (at 66.04 68.58 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 62.865 69.0138 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "" (at 59.69 68.58 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 59.69 68.58 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 89a4712a-7452-4927-b43a-793d88e754ce))
+    (instances
+      (project "FrontCarMotherBoard"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/b6c42b83-27cb-41a6-82a4-0cfe59a023a6"
+          (reference "#PWR06") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Device:R_Small") (at 59.69 115.57 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b02bc570-d697-4c7c-b529-e2da32250a55)
@@ -2459,7 +2484,7 @@
   (symbol (lib_id "Switch:SW_SPDT") (at 36.83 114.3 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b40976bc-1197-47b7-a01e-2ba749a269ce)
-    (property "Reference" "SW1" (at 36.83 108.3691 0)
+    (property "Reference" "SW3" (at 36.83 108.3691 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_SPDT" (at 36.83 110.2901 0)
@@ -2477,32 +2502,7 @@
     (instances
       (project "FrontCarMotherBoard"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/b6c42b83-27cb-41a6-82a4-0cfe59a023a6"
-          (reference "SW1") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GNDPWR") (at 59.69 68.58 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid b5d97518-f992-46cf-9567-58fa0f97b947)
-    (property "Reference" "#PWR06" (at 64.77 68.58 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GNDPWR" (at 59.055 66.04 90)
-      (effects (font (size 1.27 1.27)) (justify right))
-    )
-    (property "Footprint" "" (at 60.96 68.58 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 60.96 68.58 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid e674fca9-f2e2-4c2d-9c88-4d0c974fd3c6))
-    (instances
-      (project "FrontCarMotherBoard"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/b6c42b83-27cb-41a6-82a4-0cfe59a023a6"
-          (reference "#PWR06") (unit 1)
+          (reference "SW3") (unit 1)
         )
       )
     )
