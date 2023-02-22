@@ -1275,7 +1275,7 @@
     (property "Value" "SN74LVC244APW" (at 50.165 31.2221 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Package_SO:SOP65P640X120-20N" (at 60.325 32.385 0)
+    (property "Footprint" "ErBW_s:SOP65P640X120-20N" (at 60.325 32.385 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Datasheet" "http://componentsearchengine.com/Datasheets/1/SN74LVC244APW.pdf" (at 60.325 34.925 0)
