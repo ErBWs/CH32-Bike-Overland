@@ -58,7 +58,8 @@
       "drc_exclusions": [
         "copper_edge_clearance|108082800|106766600|4d661365-e43e-44a8-ba09-bcc5114df41a|92c88c84-37a2-46aa-b13f-6d643f6f07ad",
         "copper_edge_clearance|188182800|106766600|f41ac17d-8417-439b-8385-f2a305e7777e|aaf89e91-c91a-4432-b39f-7d4b7ace034f",
-        "copper_edge_clearance|188182800|87666600|f41ac17d-8417-439b-8385-f2a305e7777e|dc066068-72a1-4acb-883e-1b4cb7ee6ce3"
+        "copper_edge_clearance|188182800|87666600|f41ac17d-8417-439b-8385-f2a305e7777e|dc066068-72a1-4acb-883e-1b4cb7ee6ce3",
+        "solder_mask_bridge|88129233|107022523|5c7cc496-bc5e-4dcf-8e9f-abb34c7196c8|955fafb3-e673-42f4-a39a-fa30c847b09f"
       ],
       "meta": {
         "version": 2
