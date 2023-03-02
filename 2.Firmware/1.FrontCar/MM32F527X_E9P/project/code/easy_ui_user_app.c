@@ -8,7 +8,7 @@
 #include "easy_ui_user_app.h"
 
 // Pages
-EasyUIPage_t pageMain, pagePreset, pageSpdPID, pageDirPID, pageImage, pageThreshold, pageCam, pageElement, pageSetting, pageAbout;
+EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageImage, pageThreshold, pageCam, pageElement, pageSetting, pageAbout;
 
 // Items
 EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemImage, itemThreshold, itemCam, itemEle, itemSetting;
@@ -58,6 +58,35 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
         *item->param = item->paramBackup;
         EasyUIBackgroundBlur();
         functionIsRunning = false;
+    }
+}
+
+
+void PageWelcome(EasyUIPage_t *page)
+{
+    static uint8_t count = 50;
+    static float voltage = 0.0;
+    if (count++ >= 50)
+    {
+        voltage = EasyUIGetBatteryVoltage();
+        count = 0;
+    }
+    IPS114_ShowStr(143, 106, "Battery Voltage:");
+    IPS114_ShowFloat(209, 121, voltage, 1, 2);
+    IPS114_ShowStr(233, 121, "V");
+
+    IPS114_ShowStr(7, 9, page->itemHead->title);
+    uint8_t len = strlen(page->itemHead->title);
+    IPS114_SetDrawColor(XOR);
+    IPS114_DrawRBox(5, 5, len * FONT_WIDTH + 5, ITEM_HEIGHT, IPS114_penColor, 1);
+    IPS114_SetDrawColor(NORMAL);
+    IPS114_ShowStr(7, 25, "*1.Press <Center> to run");
+    IPS114_ShowStr(7, 41, " 2.Hold <Center> to enter settings");
+
+    if (opnEnter)
+    {
+        functionIsRunning = true;
+        EasyUIDrawMsgBox(page->itemHead->msg);
     }
 }
 
@@ -179,6 +208,7 @@ void PageAbout(EasyUIItem_t *page)
 
 void MenuInit()
 {
+    EasyUIAddPage(&pageWelcome, PAGE_CUSTOM, PageWelcome);
     EasyUIAddPage(&pageMain, PAGE_LIST);
     EasyUIAddPage(&pagePreset, PAGE_LIST);
     EasyUIAddPage(&pageSpdPID, PAGE_LIST);
@@ -190,9 +220,12 @@ void MenuInit()
     EasyUIAddPage(&pageSetting, PAGE_LIST);
     EasyUIAddPage(&pageAbout, PAGE_CUSTOM, PageAbout);
 
+    // Page Welcome
+    EasyUIAddItem(&pageWelcome, &itemRun, "Welcome!", ITEM_MESSAGE, "Running...", EventMainLoop);
+
     // Page Main
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageMain, &itemRun, "Run", ITEM_MESSAGE, "Running...", EventMainLoop);
+//    EasyUIAddItem(&pageMain, &itemRun, "Run", ITEM_MESSAGE, "Running...", EventMainLoop);
     EasyUIAddItem(&pageMain, &itemPreset, "Param Presets", ITEM_JUMP_PAGE, pagePreset.id);
     EasyUIAddItem(&pageMain, &itemSpdPID, "Speed PID", ITEM_JUMP_PAGE, pageSpdPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);

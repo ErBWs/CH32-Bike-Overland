@@ -9,9 +9,9 @@
 
 EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
 
-static uint8_t pageIndex[MAX_LAYER] = {0};      // Page id (stack)
-static uint8_t itemIndex[MAX_LAYER] = {0};      // Item id (stack)
-static uint8_t layer = 0;                       // flashPageIndex[layer] / itemIndex[layer]
+uint8_t pageIndex[MAX_LAYER] = {0};
+uint8_t itemIndex[MAX_LAYER] = {0};
+uint8_t layer = 0;
 
 EasyKey_t keyUp, keyDown, keyForward, keyBackward, keyConfirm;
 uint8_t opnForward, opnBackward;
@@ -1169,18 +1169,10 @@ void EasyUISyncOpnValue()
  */
 void EasyUI(uint8_t timer)
 {
-    static uint8_t index = 0, itemSum = 0;
-
     if (errorOccurred)
         return;
 
-    if (EasyUIGetBatteryVoltage() < 7.5)
-    {
-        EasyUIDrawMsgBox("Battery Low!!");
-        EasyUISendBuffer();
-        errorOccurred = true;
-        return;
-    }
+    static uint8_t index = 0, itemSum = 0;
 
     EasyUISyncOpnValue();
     EasyUIModifyColor();
@@ -1193,6 +1185,13 @@ void EasyUI(uint8_t timer)
         page = page->next;
     }
 
+    if (EasyUIGetBatteryVoltage() < 7.5)
+    {
+        EasyUIDrawMsgBox("Battery Low!!");
+        EasyUISendBuffer();
+        errorOccurred = true;
+        return;
+    }
 
     // Quit UI to run function
     // If running function and hold the confirm button, quit the function
@@ -1228,6 +1227,11 @@ void EasyUI(uint8_t timer)
 
         if (layer == 0)
         {
+            if (opnExit)
+            {
+                pageIndex[++layer] = 1;
+                EasyUITransitionAnim();
+            }
             EasyUISendBuffer();
             return;
         }
