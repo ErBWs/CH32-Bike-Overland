@@ -17,6 +17,7 @@ extern "C"
 #include "zf_device_ips114.h"
 #include "zf_driver_uart.h"
 #include "zf_driver_flash.h"
+#include "zf_driver_adc.h"
 
 #include "user_flash.h"
 #include "user_ips114.h"
@@ -42,6 +43,8 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 #define KEY_NUM         3
 #define ROTARY          0
+
+#define BATTERY_ADC_PIN         ADC1_CH12_C2
 
 #define SCREEN_WIDTH            240
 #define SCREEN_HEIGHT           135
@@ -70,6 +73,8 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUISetDrawColor(mode)                                (IPS114_SetDrawColor(mode))
 #define EasyUIDisplayBMP(x, y, width, height, pic)              (IPS114_ShowBMP(x, y, width, height, pic))
 #define EasyUIModifyColor()                                     (IPS114_ModifyColor())
+
+#define EasyUIGetAdc(pin)                                       (adc_convert(pin))
 
 #ifdef FPU
 typedef     double      paramType;
@@ -131,7 +136,7 @@ typedef struct EasyUI_page
 } EasyUIPage_t;
 
 extern char *EasyUIVersion;
-extern bool functionIsRunning, listLoop;
+extern bool functionIsRunning, listLoop, errorOccurred;
 extern EasyUIPage_t *pageHead, *pageTail;
 
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...);
@@ -139,6 +144,9 @@ void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...);
 void EasyUITransitionAnim();
 void EasyUIBackgroundBlur();
 void EasyUISyncOpnValue();
+
+void EasyUIDrawMsgBox(char *msg);
+float EasyUIGetBatteryVoltage();
 
 void EasyUIEventChangeUint(EasyUIItem_t *item);
 void EasyUIEventChangeInt(EasyUIItem_t *item);

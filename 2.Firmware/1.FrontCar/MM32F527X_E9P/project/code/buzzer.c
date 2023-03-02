@@ -10,6 +10,11 @@
 // Volume:0 - 100
 paramType buzzerVolume = 40;
 
+void BuzzerInit()
+{
+    pwm_init(BUZZER_PIN, 50, 0);
+}
+
 void Beep()
 {
     pwm_set_duty(BUZZER_PIN, (uint32_t)buzzerVolume * 100);

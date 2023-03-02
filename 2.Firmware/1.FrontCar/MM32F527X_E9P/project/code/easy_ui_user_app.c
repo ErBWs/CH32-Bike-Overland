@@ -70,32 +70,8 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
  */
 void PageImage(EasyUIPage_t *page)
 {
-    static uint8_t r = 1;
-    EasyUISetDrawColor(XOR);
     IPS114_ShowGrayImage(5, 5, mt9v03x_image[0], MT9V03X_W, MT9V03X_H,
                          MT9V03X_W, MT9V03X_H, 0);
-    if (opnUp)
-    {
-        if (r + 1 <= 30)
-            r += 1;
-        else
-            r = 30;
-    }
-    if (opnDown)
-    {
-        if (r - 1 >= 1)
-            r -= 1;
-        else
-            r = 1;
-    }
-    if (r < 30)
-        r++;
-    else
-        r = 1;
-    IPS114_ShowUint(0, 0, r, 3);
-    IPS114_DrawRBox(0, 0, 100, 70, IPS114_penColor, r);
-    IPS114_DrawDisc(120, 67, r, IPS114_penColor, CIRCLE_DRAW_ALL);
-    EasyUISetDrawColor(NORMAL);
 }
 
 

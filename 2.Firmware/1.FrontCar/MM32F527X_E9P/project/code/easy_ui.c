@@ -18,7 +18,7 @@ uint8_t opnForward, opnBackward;
 uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 char *EasyUIVersion = "v1.5b";
-bool functionIsRunning = false, listLoop = true;
+bool functionIsRunning = false, listLoop = true, errorOccurred = false;
 
 /*!
  * @brief   Add item to page
@@ -309,6 +309,18 @@ void EasyUIDrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, boo
     IPS114_DrawRFrame(x, y, size, size, IPS114_penColor, r);
     if (boolValue)
         IPS114_DrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS114_penColor, r);
+}
+
+
+float EasyUIGetBatteryVoltage()
+{
+    uint16_t batVoltageAdc;
+    float batVoltage;
+
+    batVoltageAdc = EasyUIGetAdc(BATTERY_ADC_PIN);
+    batVoltage = 28.0 * batVoltageAdc / 4096;
+    printf("%f\n", batVoltage);
+    return batVoltage;
 }
 
 
@@ -1159,6 +1171,17 @@ void EasyUI(uint8_t timer)
 {
     static uint8_t index = 0, itemSum = 0;
 
+    if (errorOccurred)
+        return;
+
+    if (EasyUIGetBatteryVoltage() < 7.5)
+    {
+        EasyUIDrawMsgBox("Battery Low!!");
+        EasyUISendBuffer();
+        errorOccurred = true;
+        return;
+    }
+
     EasyUISyncOpnValue();
     EasyUIModifyColor();
     EasyUISetDrawColor(NORMAL);
@@ -1169,6 +1192,7 @@ void EasyUI(uint8_t timer)
     {
         page = page->next;
     }
+
 
     // Quit UI to run function
     // If running function and hold the confirm button, quit the function

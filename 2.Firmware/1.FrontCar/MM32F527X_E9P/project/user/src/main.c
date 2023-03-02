@@ -10,14 +10,15 @@ int main(void)
     MenuInit();
     EasyUIInit(1);
 
-    mpu6050_init();
+    mt9v03x_init();
+    adc_init(ADC1_CH12_C2, ADC_12BIT);
 
     EasyUITransitionAnim();
     pit_ms_init(TIM6_PIT, 10);
+    interrupt_set_priority(TIM6_IRQn, 7);
 
     while (1)
     {
-        mpu6050_get_acc();
 
     }
 }

@@ -18,9 +18,10 @@ extern "C"
 #include "zf_driver_gpio.h"
 #include "zf_driver_pwm.h"
 
-#define BUZZER_PIN      TIM1_PWM_CH1_A8
+#define BUZZER_PIN      TIM2_PWM_CH4_B11
 extern paramType buzzerVolume;
 
+void BuzzerInit();
 void Beep();
 void StopBeep();
 

@@ -22,6 +22,7 @@ extern "C"
 #include "buzzer.h"
 #include "ctrl.h"
 #include "image_process.h"
+#include "zf_device_dl1a.h"
 
 void MenuInit();
 

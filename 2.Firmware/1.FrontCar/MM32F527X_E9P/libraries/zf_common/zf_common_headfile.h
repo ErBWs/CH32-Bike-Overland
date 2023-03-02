@@ -109,6 +109,8 @@
 #include "zf_device_absolute_encoder.h"
 #include "zf_device_bluetooth_ch9141.h"
 #include "zf_device_camera.h"
+#include "zf_device_dl1a.h"
+#include "zf_device_dm1xa.h"
 #include "zf_device_gps_tau1201.h"
 #include "zf_device_gt911.h"
 #include "zf_device_icm20602.h"

@@ -929,6 +929,26 @@
               <FileType>5</FileType>
               <FilePath>..\..\libraries\zf_device\zf_device_wireless_uart.h</FilePath>
             </File>
+            <File>
+              <FileName>zf_device_dl1a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dl1a.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_device_dl1a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dl1a.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_device_dm1xa.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dm1xa.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_device_dm1xa.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dm1xa.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
