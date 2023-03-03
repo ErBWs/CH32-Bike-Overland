@@ -42,7 +42,7 @@
 
 #define SPI_SPEED_PRIORITY                                                      // SPI 通信速度优先
 
-typedef enum                                                                    // 枚举串口引脚 此枚举定义不允许用户修改
+typedef enum                                                                    // 枚举 SPI SCK 引脚 此枚举定义不允许用户修改
 {
     // SPI1 引脚 SCK
     SPI1_SCK_A5         = 0x00550,                                              // 0x 005[A5]  5[AF5] 0[SPI1]
@@ -65,7 +65,7 @@ typedef enum                                                                    
     SPI3_SCK_D12        = 0x06C62,                                              // 0x 06C[D12] 6[AF6] 2[SPI3]
 }spi_sck_pin_enum;
 
-typedef enum                                                                    // 枚举串口引脚 此枚举定义不允许用户修改
+typedef enum                                                                    // 枚举 SPI MOSI 引脚 此枚举定义不允许用户修改
 {
     // SPI1 引脚 MOSI
     SPI1_MOSI_A7        = 0x00750,                                              // 0x 007[A7]  5[AF5] 0[SPI1]
@@ -87,7 +87,7 @@ typedef enum                                                                    
     SPI3_MOSI_D14       = 0x06E62,                                              // 0x 06E[D14] 6[AF6] 2[SPI3]
 }spi_mosi_pin_enum;
 
-typedef enum                                                                    // 枚举串口引脚 此枚举定义不允许用户修改
+typedef enum                                                                    // 枚举 SPI MISO 引脚 此枚举定义不允许用户修改
 {
     SPI_MISO_NULL       = 0xFFFFF,                                              // 不使用硬件 MISO 引脚就填这个
 
@@ -112,7 +112,7 @@ typedef enum                                                                    
     SPI3_MOSI_D13       = 0x06D62,                                              // 0x 06D[D13] 6[AF6] 2[SPI3]
 }spi_miso_pin_enum;
 
-typedef enum                                                                    // 枚举串口引脚 此枚举定义不允许用户修改
+typedef enum                                                                    // 枚举 SPI CS 引脚 此枚举定义不允许用户修改
 {
     SPI_CS_NULL         = 0xFFFFF,                                              // 不使用硬件 CS 引脚就填这个
 

@@ -50,7 +50,7 @@ GPIO_Type *gpio_group[9] = {GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPI
 //-------------------------------------------------------------------------------------------------------------------
 void gpio_set_level (gpio_pin_enum pin, const uint8 dat)
 {
-    ( (dat) ?
+    (   (dat) ?
         (gpio_group[((pin) >> 5)]->BSRR |= ((uint16)0x0001 << ((pin) & 0x1F))) :
         (gpio_group[((pin) >> 5)]->BRR  |= ((uint16)0x0001 << ((pin) & 0x1F))));
 }
@@ -124,20 +124,20 @@ void gpio_init (gpio_pin_enum pin, gpio_dir_enum dir, const uint8 dat, gpio_mode
     zf_assert(((GPO == dir) && (GPO == (dir & mode))) || ((GPI == dir) && (GPO != (dir & mode))));
 
     GPIO_Init_Type gpio_init;
-    uint8 io_group = (pin>> 5);                                                 // 提取IO分组
+    uint8 io_group = (pin >> 5);                                                // 提取IO分组
     uint8 io_pin = (pin & 0x1F);                                                // 提取IO引脚下标
 
     switch(io_group)
     {
-        case 0x00: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOA, true); break;
-        case 0x01: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOB, true); break;
-        case 0x02: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOC, true); break;
-        case 0x03: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOD, true); break;
-        case 0x04: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOE, true); break;
-        case 0x05: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOF, true); break;
-        case 0x06: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOG, true); break;
-        case 0x07: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOH, true); break;
-        case 0x08: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOI, true); break;
+        case 0x00:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOA, true); break;
+        case 0x01:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOB, true); break;
+        case 0x02:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOC, true); break;
+        case 0x03:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOD, true); break;
+        case 0x04:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOE, true); break;
+        case 0x05:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOF, true); break;
+        case 0x06:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOG, true); break;
+        case 0x07:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOH, true); break;
+        case 0x08:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOI, true); break;
     }
 
     gpio_init.Pins  = (GPIO_PIN_0 << io_pin);
@@ -175,20 +175,20 @@ void afio_init (gpio_pin_enum pin, gpio_dir_enum dir, gpio_af_enum af, gpio_mode
     zf_assert(((GPO == dir) && (GPO == (dir & mode))) || ((GPI == dir) && (GPO != (dir & mode))));
 
     GPIO_Init_Type gpio_init;
-    uint8 io_group = (pin>> 5);                                                 // 提取IO分组
+    uint8 io_group = (pin >> 5);                                                // 提取IO分组
     uint8 io_pin = (pin & 0x1F);                                                // 提取IO引脚下标
 
     switch(io_group)
     {
-        case 0x00: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOA, true); break;
-        case 0x01: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOB, true); break;
-        case 0x02: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOC, true); break;
-        case 0x03: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOD, true); break;
-        case 0x04: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOE, true); break;
-        case 0x05: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOF, true); break;
-        case 0x06: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOG, true); break;
-        case 0x07: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOH, true); break;
-        case 0x08: RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOI, true); break;
+        case 0x00:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOA, true); break;
+        case 0x01:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOB, true); break;
+        case 0x02:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOC, true); break;
+        case 0x03:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOD, true); break;
+        case 0x04:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOE, true); break;
+        case 0x05:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOF, true); break;
+        case 0x06:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOG, true); break;
+        case 0x07:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOH, true); break;
+        case 0x08:  RCC_EnableAHB1Periphs(RCC_AHB1_PERIPH_GPIOI, true); break;
     }
 
     gpio_init.Pins  = (GPIO_PIN_0 << io_pin);

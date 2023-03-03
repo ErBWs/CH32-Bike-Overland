@@ -94,7 +94,7 @@ uint16 adc_mean_filter_convert (adc_channel_enum ch, const uint8 count)
 //-------------------------------------------------------------------------------------------------------------------
 void adc_init (adc_channel_enum ch, adc_resolution_enum resolution)
 {
-    if(ch != ADC2_CH17_TEMP && ch != ADC2_CH18_VS)                              // 确认是引脚通道
+    if(ADC2_CH17_TEMP != ch && ADC2_CH18_VS != ch)                              // 确认是引脚通道
     {
         gpio_init((gpio_pin_enum)((ch & 0xFFF000) >> 12), GPI, GPIO_LOW, GPI_ANAOG_IN);
     }
@@ -115,11 +115,11 @@ void adc_init (adc_channel_enum ch, adc_resolution_enum resolution)
     adc_init.Align = ADC_Align_Right;                                           // 数据右对齐
     ADC_Init(adc_index[(ch & 0x0F)], &adc_init);                                // 按照上述配置初始化 ADC
 
-    if(ch == ADC2_CH17_TEMP)
+    if(ADC2_CH17_TEMP == ch)
     {
         ADC_EnableTempSensor(adc_index[(ch & 0x0F)], true);                     // 温度传感器使能
     }
-    if(ch == ADC2_CH18_VS)
+    if(ADC2_CH18_VS == ch)
     {
         ADC_EnableVoltSensor(adc_index[(ch & 0x0F)], true);                     // 内部参考电压使能
     }

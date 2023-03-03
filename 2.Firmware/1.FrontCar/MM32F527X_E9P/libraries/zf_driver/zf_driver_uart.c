@@ -41,8 +41,8 @@
 
 #include "zf_driver_uart.h"
 
-static  UART_Type *uart_index[7] = {UART1, UART2, UART3, UART4, UART5, UART6, UART7};
-static  IRQn_Type uart_irq[7] = {UART1_IRQn, UART2_IRQn, UART3_IRQn, UART4_IRQn, UART5_IRQn, UART6_IRQn, UART7_IRQn};
+static  UART_Type   *uart_index[7]          = {UART1, UART2, UART3, UART4, UART5, UART6, UART7};
+static  IRQn_Type   uart_irq[7]             = {UART1_IRQn, UART2_IRQn, UART3_IRQn, UART4_IRQn, UART5_IRQn, UART6_IRQn, UART7_IRQn};
 static  uint8       uart_interrupt_state[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ void uart_write_byte (uart_index_enum uart_n, const uint8 dat)
 //-------------------------------------------------------------------------------------------------------------------
 void uart_write_buffer (uart_index_enum uart_n, const uint8 *buff, uint32 len)
 {
-    zf_assert(buff != NULL);
+    zf_assert(NULL != buff);
     while(len)                                                                  // 循环到发送完
     {
         UART_PutData(uart_index[uart_n], *buff ++);                             // 写入发送数据
@@ -89,7 +89,7 @@ void uart_write_buffer (uart_index_enum uart_n, const uint8 *buff, uint32 len)
 //-------------------------------------------------------------------------------------------------------------------
 void uart_write_string (uart_index_enum uart_n, const char *str)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     while(*str)                                                                 // 一直循环到结尾
     {
         uart_write_byte(uart_n, *str ++);                                       // 发送数据
@@ -120,7 +120,7 @@ uint8 uart_read_byte (uart_index_enum uart_n)
 //-------------------------------------------------------------------------------------------------------------------
 uint8 uart_query_byte (uart_index_enum uart_n, uint8 *dat)
 {
-    zf_assert(dat != NULL);
+    zf_assert(NULL != dat);
     if(UART_GetStatus(uart_index[uart_n]) & UART_CSR_RXAVL(1))                  // 读取到一个数据
     {
         *dat = UART_GetData(uart_index[uart_n]);                                // 存储一个数据

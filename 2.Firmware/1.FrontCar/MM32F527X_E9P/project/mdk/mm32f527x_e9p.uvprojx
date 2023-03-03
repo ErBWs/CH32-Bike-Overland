@@ -1374,6 +1374,16 @@
               <FileType>5</FileType>
               <FilePath>..\code\image_process.h</FilePath>
             </File>
+            <File>
+              <FileName>GP2Y0A02.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\GP2Y0A02.c</FilePath>
+            </File>
+            <File>
+              <FileName>GP2Y0A02.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\GP2Y0A02.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

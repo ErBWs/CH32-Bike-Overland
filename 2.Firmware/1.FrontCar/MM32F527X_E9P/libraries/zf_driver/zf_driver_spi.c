@@ -42,7 +42,7 @@
 
 static SPI_Type *spi_index[3] = {SPI1, SPI2, SPI3};
 
-#define SPI_CTRL_CS(x, e)           ((e) ? (spi_index[x]->NSSR |= SPI_I2S_NSSR_NSS(1)) : (spi_index[x]->NSSR &= ~SPI_I2S_NSSR_NSS(1)))      // SPI 片选 ENABLE/DISABLE 控制片选 拉低/拉高
+#define SPI_CTRL_CS(x, e)           ((e) ? (spi_index[x]->NSSR &= ~SPI_I2S_NSSR_NSS(1)) : (spi_index[x]->NSSR |= SPI_I2S_NSSR_NSS(1)))      // SPI 片选 ENABLE/DISABLE 控制片选 拉低/拉高
 #define SPI_CTRL_RX(x, e)           ((e) ? (spi_index[x]->GCTL |= SPI_I2S_GCTL_RXEN(1)) : (spi_index[x]->GCTL &= ~SPI_I2S_GCTL_RXEN(1)))    // SPI RX 使能 ENABLE/DISABLE
 
 #define SPI_DATA_RX(x)              (spi_index[x]->RXREG)                       // SPI 读数据
@@ -146,7 +146,7 @@ void spi_write_8bit (spi_index_enum spi_n, const uint8 data)
 //-------------------------------------------------------------------------------------------------------------------
 void spi_write_8bit_array (spi_index_enum spi_n, const uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
 
@@ -203,7 +203,7 @@ void spi_write_16bit (spi_index_enum spi_n, const uint16 data)
 //-------------------------------------------------------------------------------------------------------------------
 void spi_write_16bit_array (spi_index_enum spi_n, const uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
 
@@ -266,7 +266,7 @@ void spi_write_8bit_register (spi_index_enum spi_n, const uint8 register_name, c
 //-------------------------------------------------------------------------------------------------------------------
 void spi_write_8bit_registers (spi_index_enum spi_n, const uint8 register_name, const uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
 
@@ -336,7 +336,7 @@ void spi_write_16bit_register (spi_index_enum spi_n, const uint16 register_name,
 //-------------------------------------------------------------------------------------------------------------------
 void spi_write_16bit_registers (spi_index_enum spi_n, const uint16 register_name, const uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
 
@@ -405,7 +405,7 @@ uint8 spi_read_8bit (spi_index_enum spi_n)
 //-------------------------------------------------------------------------------------------------------------------
 void spi_read_8bit_array (spi_index_enum spi_n, uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_RX(spi_n, ZF_ENABLE);
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
@@ -470,7 +470,7 @@ uint16 spi_read_16bit (spi_index_enum spi_n)
 //-------------------------------------------------------------------------------------------------------------------
 void spi_read_16bit_array (spi_index_enum spi_n, uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_RX(spi_n, ZF_ENABLE);
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
@@ -542,7 +542,7 @@ uint8 spi_read_8bit_register (spi_index_enum spi_n, const uint8 register_name)
 //-------------------------------------------------------------------------------------------------------------------
 void spi_read_8bit_registers (spi_index_enum spi_n, const uint8 register_name, uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
 
@@ -620,7 +620,7 @@ uint16 spi_read_16bit_register (spi_index_enum spi_n, const uint16 register_name
 //-------------------------------------------------------------------------------------------------------------------
 void spi_read_16bit_registers (spi_index_enum spi_n, const uint16 register_name, uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
 
@@ -667,7 +667,7 @@ void spi_read_16bit_registers (spi_index_enum spi_n, const uint16 register_name,
 //-------------------------------------------------------------------------------------------------------------------
 void spi_transfer_8bit (spi_index_enum spi_n, const uint8 *write_buffer, uint8 *read_buffer, uint32 len)
 {
-    zf_assert(write_buffer != NULL);
+    zf_assert(NULL != write_buffer);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_RX(spi_n, ZF_ENABLE);
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
@@ -675,7 +675,7 @@ void spi_transfer_8bit (spi_index_enum spi_n, const uint8 *write_buffer, uint8 *
     while(len --)                                                               // 判断长度
     {
         SPI_DATA_TX(spi_n, *write_buffer ++);                                   // 发送数据
-        if(read_buffer != NULL)                                                 // 接收有效
+        if(NULL != read_buffer)                                                 // 接收有效
         {
             while(!SPI_STATE_RX_AVAILABLE(spi_n));                              // 等待读取一个数据
             *read_buffer ++ = SPI_DATA_RX(spi_n);                               // 读取数据
@@ -692,7 +692,7 @@ void spi_transfer_8bit (spi_index_enum spi_n, const uint8 *write_buffer, uint8 *
 #else
     while(len --)
     {
-        if(read_buffer != NULL)
+        if(NULL != read_buffer)
         {
             *read_buffer = spi_8bit_data_handler(spi_n, *write_buffer);
             write_buffer ++;
@@ -720,14 +720,14 @@ void spi_transfer_8bit (spi_index_enum spi_n, const uint8 *write_buffer, uint8 *
 //-------------------------------------------------------------------------------------------------------------------
 void spi_transfer_16bit (spi_index_enum spi_n, const uint16 *write_buffer, uint16 *read_buffer, uint32 len)
 {
-    zf_assert(write_buffer != NULL);
+    zf_assert(NULL != write_buffer);
 #ifdef SPI_SPEED_PRIORITY
     SPI_CTRL_RX(spi_n, ZF_ENABLE);
     SPI_CTRL_CS(spi_n, ZF_ENABLE);
 
     while(len --)                                                               // 判断长度
     {
-        if(read_buffer != NULL)                                                 // 接收有效
+        if(NULL != read_buffer)                                                 // 接收有效
         {
             SPI_DATA_TX(spi_n, (*write_buffer & 0xFF00) >> 8);                  // 发送数据
             while(!SPI_STATE_RX_AVAILABLE(spi_n));                              // 等待读取一个数据
@@ -742,10 +742,10 @@ void spi_transfer_16bit (spi_index_enum spi_n, const uint16 *write_buffer, uint1
         }
         else
         {
-            SPI_DATA_TX(spi_n, (*write_buffer & 0xFF00) >> 8);                      // 发送数据
+            SPI_DATA_TX(spi_n, (*write_buffer & 0xFF00) >> 8);                  // 发送数据
             while(!SPI_STATE_TX_EMPTY(spi_n));                                  // 发送为空
 
-            SPI_DATA_TX(spi_n, (*write_buffer & 0x00FF));                           // 发送数据
+            SPI_DATA_TX(spi_n, (*write_buffer & 0x00FF));                     	// 发送数据
             while(!SPI_STATE_TX_EMPTY(spi_n));                                  // 发送为空
 
             write_buffer ++;
@@ -758,7 +758,7 @@ void spi_transfer_16bit (spi_index_enum spi_n, const uint16 *write_buffer, uint1
 #else
     while(len --)
     {
-        if(read_buffer != NULL)
+        if(NULL != read_buffer)
         {
             *read_buffer = spi_16bit_data_handler(spi_n, *write_buffer);
             write_buffer ++;
@@ -790,8 +790,8 @@ void spi_init (spi_index_enum spi_n, spi_mode_enum mode, uint32 baud, spi_sck_pi
 {
     zf_assert((sck_pin & spi_n) == spi_n);                                      // sck_pin  与 spi_n 匹配
     zf_assert((mosi_pin & spi_n) == spi_n);                                     // mosi_pin 与 spi_n 匹配
-    zf_assert(((miso_pin & spi_n) == spi_n) || (miso_pin == SPI_MISO_NULL));    // miso_pin 与 spi_n 匹配
-    zf_assert(((cs_pin & spi_n) == spi_n) || (cs_pin == SPI_CS_NULL));          // cs_pin   与 spi_n 匹配
+    zf_assert(((miso_pin & spi_n) == spi_n) || (SPI_MISO_NULL == miso_pin));    // miso_pin 与 spi_n 匹配
+    zf_assert(((cs_pin & spi_n) == spi_n) || (SPI_CS_NULL == cs_pin));          // cs_pin   与 spi_n 匹配
 
     afio_init((gpio_pin_enum)((sck_pin & 0xFFF00) >> 8), GPO, (gpio_af_enum)((sck_pin & 0xF0) >> 4), GPO_AF_PUSH_PULL);      // 提取对应IO索引 AF功能编码
     afio_init((gpio_pin_enum)((mosi_pin & 0xFFF00) >> 8), GPO, (gpio_af_enum)((mosi_pin & 0xF0) >> 4), GPO_AF_PUSH_PULL);    // 提取对应IO索引 AF功能编码
@@ -803,6 +803,7 @@ void spi_init (spi_index_enum spi_n, spi_mode_enum mode, uint32 baud, spi_sck_pi
     {
         afio_init((gpio_pin_enum)((cs_pin & 0xFFF00) >> 8), GPO, (gpio_af_enum)((cs_pin & 0xF0) >> 4), GPO_AF_PUSH_PULL);    // 提取对应IO索引 AF功能编码
     }
+
     switch(spi_n)
     {
         case SPI_1: RCC_EnableAPB2Periphs(RCC_APB2_PERIPH_SPI1, ZF_ENABLE);    break;
@@ -816,43 +817,32 @@ void spi_init (spi_index_enum spi_n, spi_mode_enum mode, uint32 baud, spi_sck_pi
     switch(mode)
     {
         default:
-        case SPI_MODE0:
-            spi_master_init.PolPha   = SPI_PolPha_Alt1;                         // SCK 空闲时低电平 第一个时钟边沿开始采样
-            break;
-        case SPI_MODE1:
-            spi_master_init.PolPha   = SPI_PolPha_Alt0;                         // SCK 空闲时低电平 第二个时钟边沿开始采样
-            break;
-        case SPI_MODE2:
-            spi_master_init.PolPha   = SPI_PolPha_Alt3;                         // SCK 空闲时高电平 第一个时钟边沿开始采样
-            break;
-        case SPI_MODE3:
-            spi_master_init.PolPha   = SPI_PolPha_Alt2;                         // SCK 空闲时高电平 第二个时钟边沿开始采样
-            break;
+        case SPI_MODE0: spi_master_init.PolPha  = SPI_PolPha_Alt1;  break;      // SCK 空闲时低电平 第一个时钟边沿开始采样
+        case SPI_MODE1: spi_master_init.PolPha  = SPI_PolPha_Alt0;  break;      // SCK 空闲时低电平 第二个时钟边沿开始采样
+        case SPI_MODE2: spi_master_init.PolPha  = SPI_PolPha_Alt3;  break;      // SCK 空闲时高电平 第一个时钟边沿开始采样
+        case SPI_MODE3: spi_master_init.PolPha  = SPI_PolPha_Alt2;  break;      // SCK 空闲时高电平 第二个时钟边沿开始采样
     }
     spi_master_init.DataWidth       = SPI_DataWidth_8b;                         // 8bits 数据
     spi_master_init.XferMode        = SPI_XferMode_TxRx;
-    if(SPI_CS_NULL != cs_pin)
-    {
-        spi_master_init.AutoCS          = true;
-    }
-    else
-    {
-        spi_master_init.AutoCS          = false;
-    }
+    spi_master_init.AutoCS          = false;
     spi_master_init.LSB             = ZF_DISABLE;
     switch(spi_n)
     {
         case SPI_1:
+        {
             SPI_InitMaster(SPI1, &spi_master_init);
-            SPI_Enable(SPI1, ZF_ENABLE);   break;
+            SPI_Enable(SPI1, ZF_ENABLE);
+        }break;
         case SPI_2:
+        {
             SPI_InitMaster(SPI2, &spi_master_init);
             SPI_Enable(SPI2, ZF_ENABLE);
-            break;
+        }break;
         case SPI_3:
+        {
             SPI_InitMaster(SPI3, &spi_master_init);
             SPI_Enable(SPI3, ZF_ENABLE);
-            break;
+        }break;
     }
 
     SPI_CTRL_RX(spi_n, ZF_DISABLE);

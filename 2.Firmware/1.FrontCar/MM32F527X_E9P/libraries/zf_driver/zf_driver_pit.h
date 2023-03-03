@@ -50,10 +50,10 @@ typedef enum                                                                    
     TIM8_PIT,
 }pit_index_enum;
 
-void pit_enable (pit_index_enum pit_n);
-void pit_disable (pit_index_enum pit_n);
+void    pit_enable      (pit_index_enum pit_n);
+void    pit_disable     (pit_index_enum pit_n);
 
-void pit_init (pit_index_enum pit_n, uint32 period);
+void    pit_init        (pit_index_enum pit_n, uint32 period);
 
 //====================================================宏定义函数区====================================================
 //-------------------------------------------------------------------------------------------------------------------

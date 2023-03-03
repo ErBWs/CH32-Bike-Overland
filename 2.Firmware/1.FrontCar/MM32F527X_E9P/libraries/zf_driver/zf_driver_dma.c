@@ -51,12 +51,8 @@ void dma_set_count (dma_channel_enum ch, const uint16 transfer_count)
 {
     switch(ch & 0xF0)
     {
-        case 0x00:
-            DMA1->CH[ch & 0x0f].CNDTR = DMA_CNDTR_NDT(transfer_count);
-            break;
-        case 0x10:
-            DMA2->CH[ch & 0x0f].CNDTR = DMA_CNDTR_NDT(transfer_count);
-            break;
+        case 0x00:  DMA1->CH[ch & 0x0f].CNDTR = DMA_CNDTR_NDT(transfer_count);  break;
+        case 0x10:  DMA2->CH[ch & 0x0f].CNDTR = DMA_CNDTR_NDT(transfer_count);  break;
     }
 }
 
@@ -72,13 +68,15 @@ void dma_enable (dma_channel_enum ch)
     switch(ch & 0xF0)
     {
         case 0x00:
+        {
             DMA_EnableBurstMode(DMA1, (ch & 0x0f), false);
             DMA_EnableChannel(DMA1, (ch & 0x0f), true);
-            break;
+        }break;
         case 0x10:
+        {
             DMA_EnableBurstMode(DMA2, (ch & 0x0f), false);
             DMA_EnableChannel(DMA2, (ch & 0x0f), true);
-            break;
+        }break;
     }
 }
 
@@ -94,13 +92,15 @@ void dma_disable (dma_channel_enum ch)
     switch(ch & 0xF0)
     {
         case 0x00:
+        {
             DMA_EnableBurstMode(DMA1, (ch & 0x0f), false);
             DMA_EnableChannel(DMA1, (ch & 0x0f), false);
-            break;
+        }break;
         case 0x10:
+        {
             DMA_EnableBurstMode(DMA2, (ch & 0x0f), false);
             DMA_EnableChannel(DMA2, (ch & 0x0f), false);
-            break;
+        }break;
     }
 }
 
@@ -136,13 +136,15 @@ void dma_camera_init (dma_channel_enum ch, const uint32 size, const uint32 perip
     switch(ch & 0xF0)
     {
         case 0x00:
+        {
             DMA_InitChannel(DMA1, (ch & 0x0f), &dma_channel_init);
             DMA_EnableChannelInterrupts(DMA1, (ch & 0x0f), DMA_CHN_INT_XFER_DONE, true);
-            break;
+        }break;
         case 0x10:
+        {
             DMA_InitChannel(DMA2, (ch & 0x0f), &dma_channel_init);
             DMA_EnableChannelInterrupts(DMA2, (ch & 0x0f), DMA_CHN_INT_XFER_DONE, true);
-            break;
+        }break;
     }
     switch(ch)
     {

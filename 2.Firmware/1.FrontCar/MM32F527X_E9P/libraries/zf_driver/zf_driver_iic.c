@@ -39,8 +39,8 @@
 
 #include "zf_driver_iic.h"
 
-static  I2C_Type *iic_index[2]      = {I2C1, I2C2};
-static  uint16 iic_speed_count[2];
+static  I2C_Type    *iic_index[2]      = {I2C1, I2C2};
+static  uint16      iic_speed_count[2];
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     IIC 延时
@@ -51,7 +51,7 @@ static  uint16 iic_speed_count[2];
 //-------------------------------------------------------------------------------------------------------------------
 static void iic_delay (iic_index_enum iic_n)
 {
-    volatile uint32 i = iic_speed_count[iic_n]*2;
+    volatile uint32 i = iic_speed_count[iic_n] * 2;
     while(i --)
     {
         __NOP();
@@ -92,7 +92,7 @@ void iic_write_8bit (iic_index_enum iic_n, uint8 target_addr, const uint8 data)
 //-------------------------------------------------------------------------------------------------------------------
 void iic_write_8bit_array (iic_index_enum iic_n, uint8 target_addr, const uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -143,13 +143,13 @@ void iic_write_16bit (iic_index_enum iic_n, uint8 target_addr, const uint16 data
 //-------------------------------------------------------------------------------------------------------------------
 void iic_write_16bit_array (iic_index_enum iic_n, uint8 target_addr, const uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
     iic_index[iic_n]->ENR |= I2C_ENR_ENABLE(1);                                 // IIC 使能
 
-    while(len--)
+    while(len --)
     {
         iic_index[iic_n]->DR = (uint8)((*data & 0xFF00) >> 8);
         while(!(iic_index[iic_n]->SR & I2C_SR_TFE(1)));                         // 发送缓冲为空
@@ -199,7 +199,7 @@ void iic_write_8bit_register (iic_index_enum iic_n, uint8 target_addr, const uin
 //-------------------------------------------------------------------------------------------------------------------
 void iic_write_8bit_registers (iic_index_enum iic_n, uint8 target_addr, const uint8 register_name, const uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -260,7 +260,7 @@ void iic_write_16bit_register (iic_index_enum iic_n, uint8 target_addr, const ui
 //-------------------------------------------------------------------------------------------------------------------
 void iic_write_16bit_registers (iic_index_enum iic_n, uint8 target_addr, const uint16 register_name, const uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -319,7 +319,7 @@ uint8 iic_read_8bit (iic_index_enum iic_n, uint8 target_addr)
 //-------------------------------------------------------------------------------------------------------------------
 void iic_read_8bit_array (iic_index_enum iic_n, uint8 target_addr, uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -375,7 +375,7 @@ uint16 iic_read_16bit (iic_index_enum iic_n, uint8 target_addr)
 //-------------------------------------------------------------------------------------------------------------------
 void iic_read_16bit_array (iic_index_enum iic_n, uint8 target_addr, uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -436,7 +436,7 @@ uint8 iic_read_8bit_register (iic_index_enum iic_n, uint8 target_addr, const uin
 //-------------------------------------------------------------------------------------------------------------------
 void iic_read_8bit_registers (iic_index_enum iic_n, uint8 target_addr, const uint8 register_name, uint8 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -501,7 +501,7 @@ uint16 iic_read_16bit_register (iic_index_enum iic_n, uint8 target_addr, const u
 //-------------------------------------------------------------------------------------------------------------------
 void iic_read_16bit_registers (iic_index_enum iic_n, uint8 target_addr, const uint16 register_name, uint16 *data, uint32 len)
 {
-    zf_assert(data != NULL);
+    zf_assert(NULL != data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -540,8 +540,8 @@ void iic_read_16bit_registers (iic_index_enum iic_n, uint8 target_addr, const ui
 //-------------------------------------------------------------------------------------------------------------------
 void iic_transfer_8bit_array (iic_index_enum iic_n, uint8 target_addr, const uint8 *write_data, uint32 write_len, uint8 *read_data, uint32 read_len)
 {
-    zf_assert(write_data != NULL);
-    zf_assert(read_data != NULL);
+    zf_assert(NULL != write_data);
+    zf_assert(NULL != read_data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -577,8 +577,8 @@ void iic_transfer_8bit_array (iic_index_enum iic_n, uint8 target_addr, const uin
 //-------------------------------------------------------------------------------------------------------------------
 void iic_transfer_16bit_array (iic_index_enum iic_n, uint8 target_addr, const uint16 *write_data, uint32 write_len, uint16 *read_data, uint32 read_len)
 {
-    zf_assert(write_data != NULL);
-    zf_assert(read_data != NULL);
+    zf_assert(NULL != write_data);
+    zf_assert(NULL != read_data);
     iic_index[iic_n]->ENR &= I2C_ENR_ENABLE(0);                                 // IIC 关闭
     iic_index[iic_n]->TAR = I2C_DR_DAT(target_addr);
     iic_delay(iic_n);
@@ -682,8 +682,8 @@ uint8 iic_sccb_read_register (iic_index_enum iic_n, uint8 target_addr, const uin
 //-------------------------------------------------------------------------------------------------------------------
 void iic_init(iic_index_enum iic_n, uint8 addr, uint32 speed, iic_scl_pin_enum scl_pin, iic_sda_pin_enum sda_pin)
 {
-    zf_assert((speed >= 1000)&&(speed <= 1000000));                             // 至少 1KHz 至多 1MHz 速率
-    zf_assert((iic_n == (scl_pin & 0x0F)) && (iic_n == (sda_pin & 0x0F)));      // scl_pin 与 sda_pin 必须与 iic_n 匹配
+    zf_assert((1000 <= speed)&&(1000000 >= speed));                             // 至少 1KHz 至多 1MHz 速率
+    zf_assert(((scl_pin & 0x0F) == iic_n) && ((sda_pin & 0x0F) == iic_n));      // scl_pin 与 sda_pin 必须与 iic_n 匹配
     uint16 temp = bus_clock / speed / 2;
 
     afio_init((gpio_pin_enum)((scl_pin & 0xFFF00) >> 8), GPO, (gpio_af_enum)((scl_pin & 0xF0) >> 4), GPO_AF_PUSH_PULL); // 提取对应IO索引 AF功能编码

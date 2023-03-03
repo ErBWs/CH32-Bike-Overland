@@ -22,6 +22,10 @@ extern paramType runLoop;
 extern bool eleCross, eleLeftRoundabout, eleRightRoundabout;
 extern bool eleBreak, eleObstacle, eleGarage;
 
+extern uint8_t sideLines[120][2];
+
+void GetSideLines();
+
 #ifdef __cplusplus
 }
 #endif

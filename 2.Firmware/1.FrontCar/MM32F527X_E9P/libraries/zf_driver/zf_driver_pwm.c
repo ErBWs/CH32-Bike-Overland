@@ -62,29 +62,23 @@ void pwm_set_duty (pwm_channel_enum pin, const uint32 duty)
         case 3: tim_index = (TIM_Type *) TIM4;   break;
         case 4: tim_index = (TIM_Type *) TIM5;   break;
         case 7: tim_index = (TIM_Type *) TIM8;   break;
-        default: return;
     }
     uint16 period_temp = tim_index->ARR;                                        // 获取自动重装载值
     uint16 match_temp = (uint16)(period_temp * ((float)duty / PWM_DUTY_MAX));   // 计算占空比
-    if(match_temp == period_temp)   match_temp +=1;
+    if(match_temp == period_temp)
+    {
+        match_temp +=1;
+    }
     switch(pin & 0xF0)
     {
         case 0x10:
-        case 0x50:
-            TIM_PutChannelValue(tim_index, TIM_CHN_1, match_temp);
-            break;
+        case 0x50:  TIM_PutChannelValue(tim_index, TIM_CHN_1, match_temp);    break;
         case 0x20:
-        case 0x60:
-            TIM_PutChannelValue(tim_index, TIM_CHN_2, match_temp);
-            break;
+        case 0x60:  TIM_PutChannelValue(tim_index, TIM_CHN_2, match_temp);    break;
         case 0x30:
-        case 0x70:
-            TIM_PutChannelValue(tim_index, TIM_CHN_3, match_temp);
-            break;
+        case 0x70:  TIM_PutChannelValue(tim_index, TIM_CHN_3, match_temp);    break;
         case 0x40:
-        case 0x80:
-            TIM_PutChannelValue(tim_index, TIM_CHN_4, match_temp);
-            break;
+        case 0x80:  TIM_PutChannelValue(tim_index, TIM_CHN_4, match_temp);    break;
     }
 }
 
@@ -142,49 +136,57 @@ void pwm_init (pwm_channel_enum pin, const uint32 freq, const uint32 duty)
     switch(pin & 0xF0)
     {
         case 0x10:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_1, &tim_outcomp_conf);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
         case 0x20:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_2, &tim_outcomp_conf);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
         case 0x30:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_3, &tim_outcomp_conf);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
         case 0x40:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_4, &tim_outcomp_conf);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
         case 0x50:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_1, &tim_outcomp_conf);
             TIM_EnableCompOutput(tim_index, TIM_CHN_1, true);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
         case 0x60:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_2, &tim_outcomp_conf);
             TIM_EnableCompOutput(tim_index, TIM_CHN_2, true);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
         case 0x70:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_3, &tim_outcomp_conf);
             TIM_EnableCompOutput(tim_index, TIM_CHN_3, true);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
         case 0x80:
+        {
             TIM_Init(tim_index, &tim_init);
             TIM_EnableOutputCompare(tim_index, TIM_CHN_4, &tim_outcomp_conf);
             TIM_EnableCompOutput(tim_index, TIM_CHN_4, true);
             TIM_EnableOutputCompareSwitch(tim_index, true);
-            break;
+        }break;
     }
     pwm_set_duty(pin, duty);
     TIM_Start(tim_index);

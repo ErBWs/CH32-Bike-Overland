@@ -38,8 +38,8 @@
 
 #include "hal_fsmc.h"
 
-void fsmc_ips200_init (void);
-void fsmc_ips350_init (void);
-void fsmc_is66wv51216_init (void);
+void    fsmc_ips200_init        (void);
+void    fsmc_ips350_init        (void);
+void    fsmc_is66wv51216_init   (void);
 
 #endif

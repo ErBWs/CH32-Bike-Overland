@@ -23,6 +23,7 @@ extern "C"
 #include "ctrl.h"
 #include "image_process.h"
 #include "zf_device_dl1a.h"
+#include "GP2Y0A02.h"
 
 void MenuInit();
 

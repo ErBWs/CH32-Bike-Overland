@@ -81,7 +81,7 @@ static uint8 soft_spi_8bit_data_handler (soft_spi_info_struct *soft_spi_obj, con
 
     if(0 == soft_spi_obj->config.mode % 2)                                      // CPHA = 0 第一个边沿采样
     {
-        for(temp = 8; temp > 0; temp --)
+        for(temp = 8; 0 < temp; temp --)
         {
             if(0x80 & write_data)
             {
@@ -229,7 +229,7 @@ static uint16 soft_spi_16bit_data_handler (soft_spi_info_struct *soft_spi_obj, c
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_8bit (soft_spi_info_struct *soft_spi_obj, const uint8 data)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     soft_spi_8bit_data_handler(soft_spi_obj, data);
 }
 
@@ -244,8 +244,8 @@ void soft_spi_write_8bit (soft_spi_info_struct *soft_spi_obj, const uint8 data)
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_8bit_array (soft_spi_info_struct *soft_spi_obj, const uint8 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     while(len --)
     {
         soft_spi_8bit_data_handler(soft_spi_obj, *data ++);
@@ -262,7 +262,7 @@ void soft_spi_write_8bit_array (soft_spi_info_struct *soft_spi_obj, const uint8 
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_16bit (soft_spi_info_struct *soft_spi_obj, uint16 data)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     soft_spi_16bit_data_handler(soft_spi_obj, data);
 }
 
@@ -277,8 +277,8 @@ void soft_spi_write_16bit (soft_spi_info_struct *soft_spi_obj, uint16 data)
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_16bit_array (soft_spi_info_struct *soft_spi_obj, const uint16 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     while(len --)
     {
         soft_spi_16bit_data_handler(soft_spi_obj, *data ++);
@@ -296,7 +296,7 @@ void soft_spi_write_16bit_array (soft_spi_info_struct *soft_spi_obj, const uint1
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_8bit_register (soft_spi_info_struct *soft_spi_obj, const uint8 register_name, const uint8 data)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     soft_spi_8bit_data_handler(soft_spi_obj, register_name);
     soft_spi_8bit_data_handler(soft_spi_obj, data);
 }
@@ -312,8 +312,8 @@ void soft_spi_write_8bit_register (soft_spi_info_struct *soft_spi_obj, const uin
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_8bit_registers (soft_spi_info_struct *soft_spi_obj, const uint8 register_name, const uint8 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     soft_spi_8bit_data_handler(soft_spi_obj, register_name);
     while(len --)
     {
@@ -332,7 +332,7 @@ void soft_spi_write_8bit_registers (soft_spi_info_struct *soft_spi_obj, const ui
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_16bit_register (soft_spi_info_struct *soft_spi_obj, const uint16 register_name, uint16 data)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     soft_spi_16bit_data_handler(soft_spi_obj, register_name);
     soft_spi_16bit_data_handler(soft_spi_obj, data);
 }
@@ -349,8 +349,8 @@ void soft_spi_write_16bit_register (soft_spi_info_struct *soft_spi_obj, const ui
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_write_16bit_registers (soft_spi_info_struct *soft_spi_obj, const uint16 register_name, const uint16 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     soft_spi_16bit_data_handler(soft_spi_obj, register_name);
     while(len --)
     {
@@ -368,7 +368,7 @@ void soft_spi_write_16bit_registers (soft_spi_info_struct *soft_spi_obj, const u
 //-------------------------------------------------------------------------------------------------------------------
 uint8 soft_spi_read_8bit (soft_spi_info_struct *soft_spi_obj)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     return soft_spi_8bit_data_handler(soft_spi_obj, 0);
 }
 
@@ -383,8 +383,8 @@ uint8 soft_spi_read_8bit (soft_spi_info_struct *soft_spi_obj)
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_read_8bit_array (soft_spi_info_struct *soft_spi_obj, uint8 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     while(len --)
     {
         *data ++ = soft_spi_8bit_data_handler(soft_spi_obj, 0);
@@ -401,7 +401,7 @@ void soft_spi_read_8bit_array (soft_spi_info_struct *soft_spi_obj, uint8 *data, 
 //-------------------------------------------------------------------------------------------------------------------
 uint16 soft_spi_read_16bit (soft_spi_info_struct *soft_spi_obj)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     return soft_spi_16bit_data_handler(soft_spi_obj, 0);
 }
 
@@ -416,8 +416,8 @@ uint16 soft_spi_read_16bit (soft_spi_info_struct *soft_spi_obj)
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_read_16bit_array (soft_spi_info_struct *soft_spi_obj, uint16 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     while(len --)
     {
         *data ++ = soft_spi_16bit_data_handler(soft_spi_obj, 0);
@@ -435,7 +435,7 @@ void soft_spi_read_16bit_array (soft_spi_info_struct *soft_spi_obj, uint16 *data
 //-------------------------------------------------------------------------------------------------------------------
 uint8 soft_spi_read_8bit_register (soft_spi_info_struct *soft_spi_obj, const uint8 register_name)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     soft_spi_8bit_data_handler(soft_spi_obj, register_name);
     return soft_spi_8bit_data_handler(soft_spi_obj, 0);
 }
@@ -452,8 +452,8 @@ uint8 soft_spi_read_8bit_register (soft_spi_info_struct *soft_spi_obj, const uin
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_read_8bit_registers (soft_spi_info_struct *soft_spi_obj, const uint8 register_name, uint8 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     soft_spi_8bit_data_handler(soft_spi_obj, register_name);
     while(len --)
     {
@@ -472,7 +472,7 @@ void soft_spi_read_8bit_registers (soft_spi_info_struct *soft_spi_obj, const uin
 //-------------------------------------------------------------------------------------------------------------------
 uint16 soft_spi_read_16bit_register (soft_spi_info_struct *soft_spi_obj, const uint16 register_name)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     soft_spi_16bit_data_handler(soft_spi_obj, register_name);
     return soft_spi_16bit_data_handler(soft_spi_obj, 0);
 }
@@ -489,8 +489,8 @@ uint16 soft_spi_read_16bit_register (soft_spi_info_struct *soft_spi_obj, const u
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_read_16bit_registers (soft_spi_info_struct *soft_spi_obj, const uint16 register_name, uint16 *data, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(data != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != data);
     soft_spi_16bit_data_handler(soft_spi_obj, register_name);
     while(len --)
     {
@@ -510,11 +510,11 @@ void soft_spi_read_16bit_registers (soft_spi_info_struct *soft_spi_obj, const ui
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_transfer_8bit (soft_spi_info_struct *soft_spi_obj, const uint8 *write_buffer, uint8 *read_buffer, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(write_buffer != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != write_buffer);
     while(len --)
     {
-        if(read_buffer != NULL)
+        if(NULL != read_buffer)
         {
             *read_buffer = soft_spi_8bit_data_handler(soft_spi_obj, *write_buffer);
             write_buffer ++;
@@ -540,11 +540,11 @@ void soft_spi_transfer_8bit (soft_spi_info_struct *soft_spi_obj, const uint8 *wr
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_transfer_16bit (soft_spi_info_struct *soft_spi_obj, const uint16 *write_buffer, uint16 *read_buffer, uint32 len)
 {
-    zf_assert(soft_spi_obj != NULL);
-    zf_assert(write_buffer != NULL);
+    zf_assert(NULL != soft_spi_obj);
+    zf_assert(NULL != write_buffer);
     while(len --)
     {
-        if(read_buffer != NULL)
+        if(NULL != read_buffer)
         {
             *read_buffer = soft_spi_16bit_data_handler(soft_spi_obj, *write_buffer);
             write_buffer ++;
@@ -573,7 +573,7 @@ void soft_spi_transfer_16bit (soft_spi_info_struct *soft_spi_obj, const uint16 *
 //-------------------------------------------------------------------------------------------------------------------
 void soft_spi_init (soft_spi_info_struct *soft_spi_obj, uint8 mode, uint32 delay, gpio_pin_enum sck_pin, gpio_pin_enum mosi_pin, uint32 miso_pin, uint32 cs_pin)
 {
-    zf_assert(soft_spi_obj != NULL);
+    zf_assert(NULL != soft_spi_obj);
     zf_assert(sck_pin != mosi_pin);                                             // sck_pin  与 mosi_pin 怎么能填同一个引脚？
     zf_assert(sck_pin != miso_pin);                                             // sck_pin  与 miso_pin 怎么能填同一个引脚？
     zf_assert(sck_pin != cs_pin);                                               // sck_pin  与 cs_pin   怎么能填同一个引脚？

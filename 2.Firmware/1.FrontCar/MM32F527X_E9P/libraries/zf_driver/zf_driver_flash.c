@@ -51,15 +51,15 @@ flash_data_union flash_union_buffer[FLASH_DATA_BUFFER_SIZE];                    
 //-------------------------------------------------------------------------------------------------------------------
 uint8 flash_check (uint32 sector_num, uint32 page_num)
 {
-    zf_assert(sector_num < FLASH_MAX_SECTION_INDEX);                            // 参数范围 0-63
-    zf_assert(page_num < FLASH_MAX_PAGE_INDEX);                                 // 参数范围 0-3
+    zf_assert(FLASH_MAX_SECTION_INDEX > sector_num);                            // 参数范围 0-63
+    zf_assert(FLASH_MAX_PAGE_INDEX > page_num);                                 // 参数范围 0-3
     uint8 return_state = 0;
     uint16 temp_loop = 0;
     uint32 flash_addr = ((FLASH_BASE_ADDR + FLASH_SECTION_SIZE * sector_num + FLASH_PAGE_SIZE * page_num)); // 提取当前 Flash 地址
 
     for(temp_loop = 0; FLASH_PAGE_SIZE > temp_loop; temp_loop += 4)             // 循环读取 Flash 的值
     {
-        if( 0xffffffff != (*(__IO uint32*) (flash_addr + temp_loop)) )          // 如果不是 0xffffffff 那就是有值
+        if(0xffffffff != (*(__IO uint32*) (flash_addr + temp_loop)))            // 如果不是 0xffffffff 那就是有值
         {
             return_state = 1;
             break;
@@ -78,8 +78,8 @@ uint8 flash_check (uint32 sector_num, uint32 page_num)
 //-------------------------------------------------------------------------------------------------------------------
 uint8 flash_erase_page (uint32 sector_num, uint32 page_num)
 {
-    zf_assert(sector_num < FLASH_MAX_SECTION_INDEX);                            // 参数范围 0-63
-    zf_assert(page_num < FLASH_MAX_PAGE_INDEX);                                 // 参数范围 0-3
+    zf_assert(FLASH_MAX_SECTION_INDEX > sector_num);                            // 参数范围 0-63
+    zf_assert(FLASH_MAX_PAGE_INDEX > page_num);                                 // 参数范围 0-3
     volatile uint32 time_out = FLASH_OPERATION_TIME_OUT;
     uint32 flash_addr = ((FLASH_BASE_ADDR + FLASH_SECTION_SIZE * sector_num + FLASH_PAGE_SIZE * page_num)); // 提取当前 Flash 地址
 
@@ -95,8 +95,8 @@ uint8 flash_erase_page (uint32 sector_num, uint32 page_num)
     do
     {
         time_out--;
-    } while ((0x00000001 == FLASH->SR) && (0x00 != time_out));                  // 等待超时或者完成
-    if(FLASH->SR&0x00000015)                                                    // 如果不是操作完成 例如超时或出错
+    }while((0x00000001 == FLASH->SR) && (0x00 != time_out));                    // 等待超时或者完成
+    if(0x00000015 & FLASH->SR)                                                  // 如果不是操作完成 例如超时或出错
     {
         time_out = 0;
     }
@@ -123,10 +123,10 @@ uint8 flash_erase_page (uint32 sector_num, uint32 page_num)
 //-------------------------------------------------------------------------------------------------------------------
 void flash_read_page (uint32 sector_num, uint32 page_num, uint32 *buf, uint16 len)
 {
-    zf_assert(sector_num < FLASH_MAX_SECTION_INDEX);                            // 参数范围 0-63
-    zf_assert(page_num < FLASH_MAX_PAGE_INDEX);                                 // 参数范围 0-3
-    zf_assert(len <= FLASH_DATA_BUFFER_SIZE);                                   // 参数范围 1-256
-    zf_assert(buf != NULL);
+    zf_assert(FLASH_MAX_SECTION_INDEX > sector_num);                            // 参数范围 0-63
+    zf_assert(FLASH_MAX_PAGE_INDEX > page_num);                                 // 参数范围 0-3
+    zf_assert(FLASH_DATA_BUFFER_SIZE >= len);                                   // 参数范围 1-256
+    zf_assert(NULL != buf);
     uint16 temp_loop = 0;
     uint32 flash_addr = ((FLASH_BASE_ADDR + FLASH_SECTION_SIZE * sector_num + FLASH_PAGE_SIZE * page_num)); // 提取当前 Flash 地址
 
@@ -148,10 +148,10 @@ void flash_read_page (uint32 sector_num, uint32 page_num, uint32 *buf, uint16 le
 //-------------------------------------------------------------------------------------------------------------------
 uint8 flash_write_page (uint32 sector_num, uint32 page_num, const uint32 *buf, uint16 len)
 {
-    zf_assert(sector_num < FLASH_MAX_SECTION_INDEX);                            // 参数范围 0-63
-    zf_assert(page_num < FLASH_MAX_PAGE_INDEX);                                 // 参数范围 0-3
-    zf_assert(len <= FLASH_DATA_BUFFER_SIZE);                                   // 参数范围 1-256
-    zf_assert(buf != NULL);
+    zf_assert(FLASH_MAX_SECTION_INDEX > sector_num);                            // 参数范围 0-63
+    zf_assert(FLASH_MAX_PAGE_INDEX > page_num);                                 // 参数范围 0-3
+    zf_assert(FLASH_DATA_BUFFER_SIZE >= len);                                   // 参数范围 1-256
+    zf_assert(NULL != buf);
     uint8 return_state = 0;
     volatile uint32 time_out = FLASH_OPERATION_TIME_OUT;
     uint16 *data_pointer = (uint16 *)buf;
@@ -171,10 +171,11 @@ uint8 flash_write_page (uint32 sector_num, uint32 page_num, const uint32 *buf, u
         FLASH->CR |= 0x00000001;
         *(volatile uint16*)flash_addr = (*data_pointer ++);
         time_out = FLASH_OPERATION_TIME_OUT;
-        do {
+        do
+        {
             time_out --;
-        } while ((0x00000001 == FLASH->SR) && (0x00 != time_out));              // 等待超时或者完成
-        if(FLASH->SR&0x00000015 || 0 == time_out)                               // 如果不是操作完成 例如超时或出错
+        }while((0x00000001 == FLASH->SR) && (0x00 != time_out));                // 等待超时或者完成
+        if((0x00000015 & FLASH->SR) || (0 == time_out))                         // 如果不是操作完成 例如超时或出错
         {
             return_state = 1;
             break;
@@ -196,8 +197,8 @@ uint8 flash_write_page (uint32 sector_num, uint32 page_num, const uint32 *buf, u
 //-------------------------------------------------------------------------------------------------------------------
 void flash_read_page_to_buffer (uint32 sector_num, uint32 page_num)
 {
-    zf_assert(sector_num < FLASH_MAX_SECTION_INDEX);                            // 参数范围 0-63
-    zf_assert(page_num < FLASH_MAX_PAGE_INDEX);                                 // 参数范围 0-3
+    zf_assert(FLASH_MAX_SECTION_INDEX > sector_num);                            // 参数范围 0-63
+    zf_assert(FLASH_MAX_PAGE_INDEX > page_num);                                 // 参数范围 0-3
     uint16 temp_loop = 0;
     uint32 flash_addr = ((FLASH_BASE_ADDR + FLASH_SECTION_SIZE * sector_num + FLASH_PAGE_SIZE * page_num)); // 提取当前 Flash 地址
 
@@ -217,8 +218,8 @@ void flash_read_page_to_buffer (uint32 sector_num, uint32 page_num)
 //-------------------------------------------------------------------------------------------------------------------
 uint8 flash_write_page_from_buffer (uint32 sector_num, uint32 page_num)
 {
-    zf_assert(sector_num < FLASH_MAX_SECTION_INDEX);                            // 参数范围 0-63
-    zf_assert(page_num < FLASH_MAX_PAGE_INDEX);                                 // 参数范围 0-3
+    zf_assert(FLASH_MAX_SECTION_INDEX > sector_num);                            // 参数范围 0-63
+    zf_assert(FLASH_MAX_PAGE_INDEX > page_num);                                 // 参数范围 0-3
     uint8 return_state = 0;
     volatile uint32 time_out = FLASH_OPERATION_TIME_OUT;
     uint32 flash_addr = ((FLASH_BASE_ADDR + FLASH_SECTION_SIZE * sector_num + FLASH_PAGE_SIZE * page_num)); // 提取当前 Flash 地址
@@ -239,10 +240,11 @@ uint8 flash_write_page_from_buffer (uint32 sector_num, uint32 page_num)
         FLASH->CR |= 0x00000001;
         *(volatile uint16*)flash_addr = (*data_pointer ++);
         time_out = FLASH_OPERATION_TIME_OUT;
-        do {
+        do
+        {
             time_out --;
-        } while ((0x00000001 == FLASH->SR) && (0x00 != time_out));              // 等待超时或者完成
-        if(FLASH->SR&0x00000015 || 0 == time_out)                               // 如果不是操作完成 例如超时或出错
+        }while((0x00000001 == FLASH->SR) && (0x00 != time_out));                // 等待超时或者完成
+        if((0x00000015 & FLASH->SR) || (0 == time_out))                         // 如果不是操作完成 例如超时或出错
         {
             return_state = 1;
             break;

@@ -40,7 +40,7 @@
 
 #include "zf_common_typedef.h"
 
-typedef enum                                                                    // 枚举串口引脚 此枚举定义不允许用户修改
+typedef enum                                                                    // 枚举 IIC 引脚 此枚举定义不允许用户修改
 {
     // IIC 1 引脚 SCL
     IIC1_SCL_A8         = 0x00840,                                              // 0x 008[A8]  4[AF4] 0[IIC1]
@@ -60,7 +60,7 @@ typedef enum                                                                    
     IIC2_SCL_F1         = 0x0A141,                                              // 0x 0A1[F1]  4[AF4] 1[IIC2]
 }iic_scl_pin_enum;
 
-typedef enum                                                                    // 枚举串口引脚 此枚举定义不允许用户修改
+typedef enum                                                                    // 枚举 IIC 引脚 此枚举定义不允许用户修改
 {
     // IIC 1 引脚 SDA
     IIC1_SDA_A10        = 0x00A40,                                              // 0x 00A[A10] 4[AF4] 0[IIC1]

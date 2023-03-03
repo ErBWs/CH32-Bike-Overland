@@ -42,14 +42,14 @@
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     system 延时函数 ms 级别
-// 参数说明     time			需要延时的时间 ms 级别
+// 参数说明     time        需要延时的时间 ms 级别
 // 返回参数     void
 // 使用示例     system_delay_ms(100);
 // 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 void system_delay_ms (uint32 time)
 {
-    zf_assert(time <= 36000000);
+    zf_assert(36000000 >= time);
     RCC_EnableAPB2Periphs(RCC_APB2_PERIPH_LPTIM, ZF_ENABLE);
     RCC_ResetAPB2Periphs(RCC_APB2_PERIPH_LPTIM);
 
@@ -73,14 +73,14 @@ void system_delay_ms (uint32 time)
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     system 延时函数 us 级别
-// 参数说明     time			需要延时的时间 us 级别
+// 参数说明     time        需要延时的时间 us 级别
 // 返回参数     void
 // 使用示例     system_delay_us(100);
 // 备注信息     受限于程序运行跳转 此延时会比输入值高出一些
 //-------------------------------------------------------------------------------------------------------------------
 void system_delay_us (uint32 time)
 {
-    zf_assert(time <= 5000);
+    zf_assert(5000 >= time);
     RCC_EnableAPB2Periphs(RCC_APB2_PERIPH_LPTIM, ZF_ENABLE);
     RCC_ResetAPB2Periphs(RCC_APB2_PERIPH_LPTIM);
 

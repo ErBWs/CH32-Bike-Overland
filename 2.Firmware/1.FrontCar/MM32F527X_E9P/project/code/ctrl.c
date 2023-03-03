@@ -12,7 +12,7 @@ PidParam_t spdParam =
                 80,
                 0,
                 -10,
-                300,
+                80,
                 PWM_DUTY_MAX - SERVO_DUTY_MAX,
                 3000,
                 900,
@@ -51,9 +51,6 @@ void MotorInit(void)
 
     encoder_dir_init(ENCODER_L_TIM, ENCODER_L_SPD_PIN, ENCODER_L_DIR_PIN);
     encoder_dir_init(ENCODER_R_TIM, ENCODER_R_SPD_PIN, ENCODER_R_DIR_PIN);
-
-    // Interrupt init
-    interrupt_set_priority(TIM6_IRQn, 1);    // Set priority to 1
 }
 
 
@@ -97,19 +94,26 @@ void SpeedControl(void)
 {
     static int32_t leftSpeed = 0, rightSpeed = 0, speedInput = 0;
     static int32_t averageSpdOut = 0, leftSpdOut = 0, rightSpdOut = 0;
-
+    static uint8_t time = 0;
 
     // Get encoder speed data
-    leftSpeed = encoder_get_count(ENCODER_L_TIM);
-    encoder_clear_count(ENCODER_L_TIM);
-    rightSpeed = -encoder_get_count(ENCODER_R_TIM);
-    encoder_clear_count(ENCODER_R_TIM);
-    speedInput = (leftSpeed + rightSpeed) / 2;
+    if (time == 9)
+    {
+        leftSpeed = encoder_get_count(ENCODER_L_TIM);
+        encoder_clear_count(ENCODER_L_TIM);
+        rightSpeed = -encoder_get_count(ENCODER_R_TIM);
+        encoder_clear_count(ENCODER_R_TIM);
+        speedInput = (leftSpeed + rightSpeed) / 2;
+        time = 0;
+    } else
+    {
+        time += 1;
+    }
 
     // PID calculate
-    averageSpdOut = PidIncControl(&spdParam, speedInput);
-    leftSpdOut = averageSpdOut + (int32_t) spdParam.out;
-    rightSpdOut = averageSpdOut - (int32_t) spdParam.out;
+//    averageSpdOut = PidIncControl(&spdParam, speedInput);
+//    leftSpdOut = averageSpdOut + (int32_t) spdParam.out;
+//    rightSpdOut = averageSpdOut - (int32_t) spdParam.out;
 
 
     if (leftSpdOut >= 0)

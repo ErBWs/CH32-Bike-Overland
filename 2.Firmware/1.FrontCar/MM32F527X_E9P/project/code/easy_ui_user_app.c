@@ -22,8 +22,13 @@ EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemRe
 
 void EventMainLoop(EasyUIItem_t *item)
 {
+    printf("%f\n", Gp2yGetDistance());
+
+    SpeedControl();
     if (opnExit)
     {
+        pwm_set_duty(MOTOR_L_PIN, 0);
+        pwm_set_duty(MOTOR_R_PIN, 0);
         functionIsRunning = false;
         EasyUIBackgroundBlur();
     }
@@ -99,8 +104,17 @@ void PageWelcome(EasyUIPage_t *page)
  */
 void PageImage(EasyUIPage_t *page)
 {
-    IPS114_ShowGrayImage(5, 5, mt9v03x_image[0], MT9V03X_W, MT9V03X_H,
+    IPS114_ShowGrayImage(0, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H,
                          MT9V03X_W, MT9V03X_H, 0);
+
+//        GetSideLines();
+
+    for (int i = 0; i < MT9V03X_H; ++i)
+    {
+            IPS114_DrawPoint(sideLines[i][0], i, RGB565_RED);
+            IPS114_DrawPoint(sideLines[i][1], i, RGB565_GREEN);
+    }
+    memset(sideLines, 0, sizeof(sideLines));
 }
 
 

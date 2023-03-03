@@ -51,14 +51,46 @@ void pit_enable (pit_index_enum pit_n)
 {
     switch(pit_n)
     {
-        case TIM1_PIT:  TIM_Start((TIM_Type *) TIM1);   TIM_ClearCounterValue((TIM_Type *) TIM1);   break;
-        case TIM2_PIT:  TIM_Start((TIM_Type *) TIM2);   TIM_ClearCounterValue((TIM_Type *) TIM2);   break;
-        case TIM3_PIT:  TIM_Start((TIM_Type *) TIM3);   TIM_ClearCounterValue((TIM_Type *) TIM3);   break;
-        case TIM4_PIT:  TIM_Start((TIM_Type *) TIM4);   TIM_ClearCounterValue((TIM_Type *) TIM4);   break;
-        case TIM5_PIT:  TIM_Start((TIM_Type *) TIM5);   TIM_ClearCounterValue((TIM_Type *) TIM5);   break;
-        case TIM6_PIT:  TIM_Start((TIM_Type *) TIM6);   TIM_ClearCounterValue((TIM_Type *) TIM6);   break;
-        case TIM7_PIT:  TIM_Start((TIM_Type *) TIM7);   TIM_ClearCounterValue((TIM_Type *) TIM7);   break;
-        case TIM8_PIT:  TIM_Start((TIM_Type *) TIM8);   TIM_ClearCounterValue((TIM_Type *) TIM8);   break;
+        case TIM1_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM1);
+            TIM_ClearCounterValue((TIM_Type *) TIM1);
+        }break;
+        case TIM2_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM2);
+            TIM_ClearCounterValue((TIM_Type *) TIM2);
+        }break;
+        case TIM3_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM3);
+            TIM_ClearCounterValue((TIM_Type *) TIM3);
+        }break;
+        case TIM4_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM4);
+            TIM_ClearCounterValue((TIM_Type *) TIM4);
+        }break;
+        case TIM5_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM5);
+            TIM_ClearCounterValue((TIM_Type *) TIM5);
+        }break;
+        case TIM6_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM6);
+            TIM_ClearCounterValue((TIM_Type *) TIM6);
+        }break;
+        case TIM7_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM7);
+            TIM_ClearCounterValue((TIM_Type *) TIM7);
+        }break;
+        case TIM8_PIT:
+        {
+            TIM_Start((TIM_Type *) TIM8);
+            TIM_ClearCounterValue((TIM_Type *) TIM8);
+        }break;
     }
 }
 
@@ -100,7 +132,7 @@ void pit_init (pit_index_enum pit_n, uint32 period)
     // 比如初始化了 TIM1_PWM 然后又初始化成 TIM1_PIT 这种用法是不允许的
     zf_assert(timer_funciton_check((timer_index_enum)pit_n, TIMER_FUNCTION_TIMER));
     // 如果是这一行报错 那我就得问问你为什么周期写的是 0
-    zf_assert(period != 0);
+    zf_assert(0 != period);
 
     uint16 freq_div = (period >> 15);                                           // 计算预分频
     uint16 period_temp = (period / (freq_div + 1));                             // 计算自动重装载值
@@ -116,39 +148,48 @@ void pit_init (pit_index_enum pit_n, uint32 period)
     switch(pit_n)
     {
         case TIM1_PIT:
+        {
             TIM_Init((TIM_Type *) TIM1, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM1, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         case TIM2_PIT:
+        {
             TIM_Init((TIM_Type *) TIM2, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM2, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         case TIM3_PIT:
+        {
             TIM_Init((TIM_Type *) TIM3, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM3, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         case TIM4_PIT:
+        {
             TIM_Init((TIM_Type *) TIM4, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM4, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         case TIM5_PIT:
+        {
             TIM_Init((TIM_Type *) TIM5, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM5, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         case TIM6_PIT:
+        {
             TIM_Init((TIM_Type *) TIM6, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM6, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         case TIM7_PIT:
+        {
             TIM_Init((TIM_Type *) TIM7, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM7, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         case TIM8_PIT:
+        {
             TIM_Init((TIM_Type *) TIM8, &tim_init);
             TIM_EnableInterrupts((TIM_Type *) TIM8, TIM_INT_UPDATE_PERIOD, true);
-            break;
+        }break;
         default:
-            break;
+        {
+        }break;
     }
 
     IRQn_Type irq_index[8] = {

@@ -319,7 +319,6 @@ float EasyUIGetBatteryVoltage()
 
     batVoltageAdc = EasyUIGetAdc(BATTERY_ADC_PIN);
     batVoltage = 28.0 * batVoltageAdc / 4096;
-    printf("%f\n", batVoltage);
     return batVoltage;
 }
 
@@ -1185,7 +1184,7 @@ void EasyUI(uint8_t timer)
         page = page->next;
     }
 
-    if (EasyUIGetBatteryVoltage() < 7.5)
+    if (EasyUIGetBatteryVoltage() < 7.2)
     {
         EasyUIDrawMsgBox("Battery Low!!");
         EasyUISendBuffer();

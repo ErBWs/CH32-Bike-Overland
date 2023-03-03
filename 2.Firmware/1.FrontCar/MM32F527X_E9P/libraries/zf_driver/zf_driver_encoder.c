@@ -46,7 +46,7 @@ static uint8 encoder_dir_pin[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF
 // 函数简介     ENCODER 接口获取编码器计数
 // 参数说明     encoder_n       ENCODER 模块号 参照 zf_driver_encoder.h 内 encoder_index_enum 枚举体定义
 // 返回参数     int16           编码器数值
-// 使用示例     encoder_get_count(TIM3_ENCOEDER);
+// 使用示例     encoder_get_count(TIM3_ENCODER);
 // 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 int16 encoder_get_count (encoder_index_enum encoder_n)
@@ -55,17 +55,17 @@ int16 encoder_get_count (encoder_index_enum encoder_n)
     int16 return_value = 0;
     switch(encoder_n)
     {
-        case TIM1_ENCOEDER: result = TIM_GetCounterValue((TIM_Type *) TIM1);   break;
-        case TIM2_ENCOEDER: result = TIM_GetCounterValue((TIM_Type *) TIM2);   break;
-        case TIM3_ENCOEDER: result = TIM_GetCounterValue((TIM_Type *) TIM3);   break;
-        case TIM4_ENCOEDER: result = TIM_GetCounterValue((TIM_Type *) TIM4);   break;
-        case TIM5_ENCOEDER: result = TIM_GetCounterValue((TIM_Type *) TIM5);   break;
-        case TIM8_ENCOEDER: result = TIM_GetCounterValue((TIM_Type *) TIM8);   break;
+        case TIM1_ENCODER:  result = TIM_GetCounterValue((TIM_Type *) TIM1);   break;
+        case TIM2_ENCODER:  result = TIM_GetCounterValue((TIM_Type *) TIM2);   break;
+        case TIM3_ENCODER:  result = TIM_GetCounterValue((TIM_Type *) TIM3);   break;
+        case TIM4_ENCODER:  result = TIM_GetCounterValue((TIM_Type *) TIM4);   break;
+        case TIM5_ENCODER:  result = TIM_GetCounterValue((TIM_Type *) TIM5);   break;
+        case TIM8_ENCODER:  result = TIM_GetCounterValue((TIM_Type *) TIM8);   break;
         default: break;
     }
     if(0xFF == encoder_dir_pin[encoder_n])
     {
-        return_value = (int16)result/4;
+        return_value = (int16)result / 4;
     }
     else
     {
@@ -82,19 +82,19 @@ int16 encoder_get_count (encoder_index_enum encoder_n)
 // 函数简介     ENCODER 清空编码器计数
 // 参数说明     encoder_n       ENCODER 模块号 参照 zf_driver_encoder.h 内 encoder_index_enum 枚举体定义
 // 返回参数     void
-// 使用示例     encoder_clear_count(TIM3_ENCOEDER);
+// 使用示例     encoder_clear_count(TIM3_ENCODER);
 // 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 void encoder_clear_count (encoder_index_enum encoder_n)
 {
     switch(encoder_n)
     {
-        case TIM1_ENCOEDER: TIM_DoSwTrigger((TIM_Type *) TIM1, TIM_SWTRG_UPDATE_PERIOD);  break;
-        case TIM2_ENCOEDER: TIM_DoSwTrigger((TIM_Type *) TIM2, TIM_SWTRG_UPDATE_PERIOD);  break;
-        case TIM3_ENCOEDER: TIM_DoSwTrigger((TIM_Type *) TIM3, TIM_SWTRG_UPDATE_PERIOD);  break;
-        case TIM4_ENCOEDER: TIM_DoSwTrigger((TIM_Type *) TIM4, TIM_SWTRG_UPDATE_PERIOD);  break;
-        case TIM5_ENCOEDER: TIM_DoSwTrigger((TIM_Type *) TIM5, TIM_SWTRG_UPDATE_PERIOD);  break;
-        case TIM8_ENCOEDER: TIM_DoSwTrigger((TIM_Type *) TIM8, TIM_SWTRG_UPDATE_PERIOD);  break;
+        case TIM1_ENCODER:  TIM_DoSwTrigger((TIM_Type *) TIM1, TIM_SWTRG_UPDATE_PERIOD);  break;
+        case TIM2_ENCODER:  TIM_DoSwTrigger((TIM_Type *) TIM2, TIM_SWTRG_UPDATE_PERIOD);  break;
+        case TIM3_ENCODER:  TIM_DoSwTrigger((TIM_Type *) TIM3, TIM_SWTRG_UPDATE_PERIOD);  break;
+        case TIM4_ENCODER:  TIM_DoSwTrigger((TIM_Type *) TIM4, TIM_SWTRG_UPDATE_PERIOD);  break;
+        case TIM5_ENCODER:  TIM_DoSwTrigger((TIM_Type *) TIM5, TIM_SWTRG_UPDATE_PERIOD);  break;
+        case TIM8_ENCODER:  TIM_DoSwTrigger((TIM_Type *) TIM8, TIM_SWTRG_UPDATE_PERIOD);  break;
         default:    break;
     }
 }
@@ -105,7 +105,7 @@ void encoder_clear_count (encoder_index_enum encoder_n)
 // 参数说明     ch1_pin         ENCODER 通道 1 参照 zf_driver_encoder.h 内 encoder_channel1_enum 枚举体定义
 // 参数说明     ch2_pin         ENCODER 通道 2 参照 zf_driver_encoder.h 内 encoder_channel2_enum 枚举体定义
 // 返回参数     void
-// 使用示例     encoder_quad_init(TIM3_ENCOEDER, TIM3_ENCOEDER_CH1_B4, TIM3_ENCOEDER_CH2_B5);
+// 使用示例     encoder_quad_init(TIM3_ENCODER, TIM3_ENCODER_CH1_B4, TIM3_ENCODER_CH2_B5);
 // 备注信息     使用的编码器是正交编码器才可以使用此函数接口
 //              如果是所谓的 “兼容正交编码器” 的编码器 麻烦先确定它到底是不是输出的正交编码器
 //              这个接口只能给输出正交编码信号的编码器用
@@ -144,49 +144,57 @@ void encoder_quad_init (encoder_index_enum encoder_n, encoder_channel1_enum ch1_
 
     switch(encoder_n)
     {
-        case TIM1_ENCOEDER: 
+        case TIM1_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM1, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM1, TIM_CHN_1, &tim_input_conf);
             TIM_EnableInputCapture((TIM_Type *) TIM1, TIM_CHN_2, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM1, &tim_slave);
             TIM_Start((TIM_Type *) TIM1);
-            break;
-        case TIM2_ENCOEDER: 
+        }break;
+        case TIM2_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM2, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM2, TIM_CHN_1, &tim_input_conf);
             TIM_EnableInputCapture((TIM_Type *) TIM2, TIM_CHN_2, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM2, &tim_slave);
             TIM_Start((TIM_Type *) TIM2);
-            break;
-        case TIM3_ENCOEDER: 
+        }break;
+        case TIM3_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM3, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM3, TIM_CHN_1, &tim_input_conf);
             TIM_EnableInputCapture((TIM_Type *) TIM3, TIM_CHN_2, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM3, &tim_slave);
             TIM_Start((TIM_Type *) TIM3);
-            break;
-        case TIM4_ENCOEDER: 
+        }break;
+        case TIM4_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM4, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM4, TIM_CHN_1, &tim_input_conf);
             TIM_EnableInputCapture((TIM_Type *) TIM4, TIM_CHN_2, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM4, &tim_slave);
             TIM_Start((TIM_Type *) TIM4);
-            break;
-        case TIM5_ENCOEDER: 
+        }break;
+        case TIM5_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM5, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM5, TIM_CHN_1, &tim_input_conf);
             TIM_EnableInputCapture((TIM_Type *) TIM5, TIM_CHN_2, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM5, &tim_slave);
             TIM_Start((TIM_Type *) TIM5);
-            break;
-        case TIM8_ENCOEDER: 
+        }break;
+        case TIM8_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM8, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM8, TIM_CHN_1, &tim_input_conf);
             TIM_EnableInputCapture((TIM_Type *) TIM8, TIM_CHN_2, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM8, &tim_slave);
             TIM_Start((TIM_Type *) TIM8);
-            break;
-        default:    break;
+        }break;
+        default:
+        {
+        }break;
     }
 }
 
@@ -196,7 +204,7 @@ void encoder_quad_init (encoder_index_enum encoder_n, encoder_channel1_enum ch1_
 // 参数说明     ch1_pin         ENCODER 通道 1 参照 zf_driver_encoder.h 内 encoder_channel1_enum 枚举体定义
 // 参数说明     ch2_pin         ENCODER 通道 2 参照 zf_driver_encoder.h 内 encoder_channel2_enum 枚举体定义
 // 返回参数     void
-// 使用示例     encoder_dir_init(TIM3_ENCOEDER, TIM3_ENCOEDER_CH1_B4, TIM3_ENCOEDER_CH2_B5);
+// 使用示例     encoder_dir_init(TIM3_ENCODER, TIM3_ENCODER_CH1_B4, TIM3_ENCODER_CH2_B5);
 // 备注信息     使用的编码器是带方向输出的增量式编码器才可以使用此函数接口
 //              ch1_pin 将作为脉冲输入计数 ch2_pin 将作为计数方向控制引脚
 //              此方式下 在出现反复正反转的情况下 计数方向将不是完全可靠的
@@ -238,42 +246,50 @@ void encoder_dir_init (encoder_index_enum encoder_n, encoder_channel1_enum ch1_p
 
     switch(encoder_n)
     {
-        case TIM1_ENCOEDER: 
+        case TIM1_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM1, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM1, TIM_CHN_1, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM1, &tim_slave);
             TIM_Start((TIM_Type *) TIM1);
-            break;
-        case TIM2_ENCOEDER: 
+        }break;
+        case TIM2_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM2, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM2, TIM_CHN_1, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM2, &tim_slave);
             TIM_Start((TIM_Type *) TIM2);
-            break;
-        case TIM3_ENCOEDER: 
+        }break;
+        case TIM3_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM3, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM3, TIM_CHN_1, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM3, &tim_slave);
             TIM_Start((TIM_Type *) TIM3);
-            break;
-        case TIM4_ENCOEDER: 
+        }break;
+        case TIM4_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM4, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM4, TIM_CHN_1, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM4, &tim_slave);
             TIM_Start((TIM_Type *) TIM4);
-            break;
-        case TIM5_ENCOEDER: 
+        }break;
+        case TIM5_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM5, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM5, TIM_CHN_1, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM5, &tim_slave);
             TIM_Start((TIM_Type *) TIM5);
-            break;
-        case TIM8_ENCOEDER: 
+        }break;
+        case TIM8_ENCODER:
+        {
             TIM_Init((TIM_Type *) TIM8, &tim_init);
             TIM_EnableInputCapture((TIM_Type *) TIM8, TIM_CHN_1, &tim_input_conf);
             TIM_EnableSlaveMode((TIM_Type *) TIM8, &tim_slave);
             TIM_Start((TIM_Type *) TIM8);
-            break;
-        default:    break;
+        }break;
+        default:
+        {
+        }break;
     }
 }

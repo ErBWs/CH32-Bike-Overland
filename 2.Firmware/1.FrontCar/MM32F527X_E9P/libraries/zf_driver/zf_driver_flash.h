@@ -41,14 +41,14 @@
 #include "zf_common_typedef.h"
 
 // 以下宏定义为芯片固定设置 不允许用户修改
-#define FLASH_BASE_ADDR             (0x08000000)
-#define FLASH_MAX_PAGE_INDEX        (4)
-#define FLASH_MAX_SECTION_INDEX     (64)
-#define FLASH_PAGE_SIZE             (0x00000400)                                // 1K byte
-#define FLASH_SECTION_SIZE          (FLASH_PAGE_SIZE * FLASH_MAX_PAGE_INDEX)    // 4K byte
-#define FLASH_OPERATION_TIME_OUT    (0x0FFF)
+#define FLASH_BASE_ADDR             ( 0x08000000 )
+#define FLASH_MAX_PAGE_INDEX        ( 4 )
+#define FLASH_MAX_SECTION_INDEX     ( 64 )
+#define FLASH_PAGE_SIZE             ( 0x00000400 )                              // 1K byte
+#define FLASH_SECTION_SIZE          ( FLASH_PAGE_SIZE * FLASH_MAX_PAGE_INDEX )  // 4K byte
+#define FLASH_OPERATION_TIME_OUT    ( 0x0FFF )
 
-#define FLASH_DATA_BUFFER_SIZE      (FLASH_PAGE_SIZE / sizeof(flash_data_union))// 自动计算每个页能够存下多少个数据
+#define FLASH_DATA_BUFFER_SIZE      ( FLASH_PAGE_SIZE / sizeof(flash_data_union) )// 自动计算每个页能够存下多少个数据
 
 typedef union                                                                   // 固定的数据缓冲单元格式
 {
@@ -68,8 +68,8 @@ uint8       flash_erase_page                (uint32 sector_num, uint32 page_num)
 void        flash_read_page                 (uint32 sector_num, uint32 page_num, uint32 *buf, uint16 len);
 uint8       flash_write_page                (uint32 sector_num, uint32 page_num, const uint32 *buf, uint16 len);
 
-void        flash_read_page_to_buffer      (uint32 sector_num, uint32 page_num);
-uint8       flash_write_page_from_buffer   (uint32 sector_num, uint32 page_num);
-void        flash_buffer_clear             (void);
+void        flash_read_page_to_buffer       (uint32 sector_num, uint32 page_num);
+uint8       flash_write_page_from_buffer    (uint32 sector_num, uint32 page_num);
+void        flash_buffer_clear              (void);
 
 #endif

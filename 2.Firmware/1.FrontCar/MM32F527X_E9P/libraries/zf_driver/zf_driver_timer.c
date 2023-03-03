@@ -222,15 +222,9 @@ void timer_init (timer_index_enum index, timer_mode_enum mode)
     tim_init.ClockFreqHz = bus_clock;
     switch(mode)
     {
-        case TIMER_US:
-            tim_init.StepFreqHz = 1000000;
-            break;
-        case TIMER_MS:
-            tim_init.StepFreqHz = 2000;
-            break;
-        default:
-            tim_init.StepFreqHz = bus_clock;
-            break;
+        case TIMER_US:  tim_init.StepFreqHz = 1000000;      break;
+        case TIMER_MS:  tim_init.StepFreqHz = 2000;         break;
+        default:        tim_init.StepFreqHz = bus_clock;    break;
     }
     tim_init.Period = 0x0000FFFF;
     tim_init.EnablePreloadPeriod = false;
@@ -280,63 +274,80 @@ void timer_etr_init (timer_etr_pin_emun pin, timer_etr_mode_emun sign)
 
     TIM_SlaveModeConf_Type tim_slave;
     if(0x50 == (pin & 0xF0))
+    {
         tim_slave.In = TIM_SlaveIn_Alt7;
+    }
     else
+    {
         tim_slave.In = TIM_SlaveIn_Alt5;
+    }
     tim_slave.Resp = TIM_SlaveResp_Alt4;
 
     TIM_ExtTriggerInConf_Type tim_trigger;
     tim_trigger.InDiv = TIM_ExtTriggerInDiv_OnEach1Capture;
     tim_trigger.InFilter = TIM_ExtTriggerInFilter_Alt0;
     if(TIM_ETR_FALLING == sign)
+    {
         tim_trigger.PinPolarity = TIM_ExtTriggerPinPolarity_Falling;
+    }
     else
+    {
         tim_trigger.PinPolarity = TIM_ExtTriggerPinPolarity_Rising;
+    }
 
     switch(index)
     {
         case TIM_1:
+        {
             TIM_Init((TIM_Type *) TIM1, &tim_init);
             timer_stop(index);
             timer_clear(index);
             TIM_EnableSlaveMode((TIM_Type *) TIM1, &tim_slave);
             TIM_EnableExtTriggerIn((TIM_Type *) TIM1, &tim_trigger);
             TIM_EnableDMA((TIM_Type *) TIM1, TIM_DMA_TRGOUT_EVENT, ZF_ENABLE);
-            break;
+        }break;
         case TIM_2:
-            break;
+        {
+        }break;
         case TIM_3:
+        {
             TIM_Init((TIM_Type *) TIM3, &tim_init);
             timer_stop(index);
             timer_clear(index);
             TIM_EnableSlaveMode((TIM_Type *) TIM3, &tim_slave);
             TIM_EnableExtTriggerIn((TIM_Type *) TIM3, &tim_trigger);
             TIM_EnableDMA((TIM_Type *) TIM3, TIM_DMA_TRGOUT_EVENT, ZF_ENABLE);
-            break;
+        }break;
         case TIM_4:
-            break;
+        {
+        }break;
         case TIM_5:
+        {
             TIM_Init((TIM_Type *) TIM5, &tim_init);
             timer_stop(index);
             timer_clear(index);
             TIM_EnableSlaveMode((TIM_Type *) TIM5, &tim_slave);
             TIM_EnableExtTriggerIn((TIM_Type *) TIM5, &tim_trigger);
             TIM_EnableDMA((TIM_Type *) TIM5, TIM_DMA_TRGOUT_EVENT, ZF_ENABLE);
-            break;
+        }break;
         case TIM_6:
-            break;
+        {
+        }break;
         case TIM_7:
-            break;
+        {
+        }break;
         case TIM_8:
+        {
             TIM_Init((TIM_Type *) TIM8, &tim_init);
             timer_stop(index);
             timer_clear(index);
             TIM_EnableSlaveMode((TIM_Type *) TIM8, &tim_slave);
             TIM_EnableExtTriggerIn((TIM_Type *) TIM8, &tim_trigger);
             TIM_EnableDMA((TIM_Type *) TIM8, TIM_DMA_TRGOUT_EVENT, ZF_ENABLE);
-            break;
+        }break;
         default:
-            break;
+        {
+        }break;
     }
     timer_start(index);
 }

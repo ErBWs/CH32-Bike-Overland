@@ -12,6 +12,8 @@ int main(void)
 
     mt9v03x_init();
     adc_init(ADC1_CH12_C2, ADC_12BIT);
+    Gp2yInit();
+    MotorInit();
 
     EasyUITransitionAnim();
     pit_ms_init(TIM6_PIT, 10);
@@ -19,6 +21,11 @@ int main(void)
 
     while (1)
     {
-
+        if (mt9v03x_finish_flag)
+        {
+            GetSideLines();
+            mt9v03x_finish_flag = 0;
+        }
+        system_delay_ms(10);
     }
 }

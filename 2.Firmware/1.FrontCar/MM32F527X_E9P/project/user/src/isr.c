@@ -115,7 +115,12 @@ void TIM6_IRQHandler (void)
 void TIM7_IRQHandler (void)
 {
     // 此处编写用户代码
-
+    static uint16 pit_ms_count = 0;
+    if(0 == pit_ms_count % 40)                                                  // 每 40ms 获取一次测距信息 周期 40 ms 频率 25Hz
+    {
+        dl1a_get_distance();                                                    // 测距调用频率不应高于 30Hz 周期不应低于 33.33ms
+    }
+    pit_ms_count = (pit_ms_count == 995) ? (0) : (pit_ms_count + 5);            // 1000ms 周期计数
     // 此处编写用户代码
     TIM_ClearInterruptStatus((TIM_Type *)TIM7, TIM_GetInterruptStatus((TIM_Type *)TIM7));
 }
