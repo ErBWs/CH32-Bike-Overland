@@ -20,8 +20,8 @@ extern "C"
 
 extern float vofaData[CHANNEL_NUM];
 
-void VofaBigEndianSendFrame();
 void VofaLittleEndianSendFrame();
+void VofaBigEndianSendFrame();
 
 #ifdef __cplusplus
 }

@@ -7566,7 +7566,7 @@ Image Symbol Table
     UART_GetStatus                           0x08009a4d   Thumb Code    12  hal_uart.o(.text.UART_GetStatus)
     UART_Init                                0x08009a59   Thumb Code   224  hal_uart.o(.text.UART_Init)
     UART_PutData                             0x08009b39   Thumb Code    20  hal_uart.o(.text.UART_PutData)
-    VofaBigEndianSendFrame                   0x08009b4d   Thumb Code    42  vofa.o(.text.VofaBigEndianSendFrame)
+    VofaBigEndianSendFrame                   0x08009b4d   Thumb Code    42  vofa.o(.text.VofaLittleEndianSendFrame)
     adc_convert                              0x08009ce1   Thumb Code   172  zf_driver_adc.o(.text.adc_convert)
     adc_init                                 0x08009d8d   Thumb Code   286  zf_driver_adc.o(.text.adc_init)
     afio_init                                0x08009ead   Thumb Code   326  zf_driver_gpio.o(.text.afio_init)

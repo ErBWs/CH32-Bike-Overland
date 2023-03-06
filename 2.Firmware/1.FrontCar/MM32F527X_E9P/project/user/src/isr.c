@@ -116,7 +116,7 @@ void TIM7_IRQHandler (void)
 {
     // 此处编写用户代码
     SpeedControl();
-    VofaBigEndianSendFrame();
+    VofaLittleEndianSendFrame();
     // 此处编写用户代码
     TIM_ClearInterruptStatus((TIM_Type *)TIM7, TIM_GetInterruptStatus((TIM_Type *)TIM7));
 }
