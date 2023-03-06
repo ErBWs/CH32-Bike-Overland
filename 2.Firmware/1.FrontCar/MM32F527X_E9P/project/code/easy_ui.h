@@ -57,8 +57,8 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define ICON_SIZE               50
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_TIME     70
-#define ITEM_MOVE_TIME          70
+#define INDICATOR_MOVE_TIME     50
+#define ITEM_MOVE_TIME          50
 
 #define EasyUIScreenInit()                                      (ips114_init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS114_ShowStr(x, y, str))

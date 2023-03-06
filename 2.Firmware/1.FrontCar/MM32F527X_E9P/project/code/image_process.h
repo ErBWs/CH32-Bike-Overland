@@ -17,14 +17,20 @@ extern "C"
 #include "easy_ui.h"
 #include "zf_device_mt9v03x.h"
 
-extern paramType threshold;
+#define START_LINE      (MT9V03X_H - 11)
+#define END_LINE        9
+
+extern paramType threshold, exposure;
 extern paramType runLoop;
 extern bool eleCross, eleLeftRoundabout, eleRightRoundabout;
 extern bool eleBreak, eleObstacle, eleGarage;
 
-extern uint8_t sideLines[120][2];
+extern uint8_t sideEdges[MT9V03X_H][2];
+extern uint8_t upDownEdges[2][MT9V03X_W];
+extern uint8_t stopFlag;
 
 void GetSideLines();
+void EightNeighborSearch(uint8_t image[MT9V03X_H][MT9V03X_W]);
 
 #ifdef __cplusplus
 }

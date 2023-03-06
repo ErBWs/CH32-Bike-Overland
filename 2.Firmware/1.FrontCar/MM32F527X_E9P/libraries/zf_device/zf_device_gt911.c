@@ -109,9 +109,9 @@ static void gt911_write_registers (uint16 register_addr, uint8 *data, uint32 len
     data_buffer[1] = (register_addr & 0x00FF);
     memcpy(&data_buffer[2], data, len);
 #if GT911_USE_SOFT_IIC
-    soft_iic_write_8bit_array(&gt911_iic_struct, data_buffer, len+2);
+    soft_iic_write_8bit_array(&gt911_iic_struct, data_buffer, len + 2);
 #else
-    iic_write_8bit_array(GT911_IIC, GT911_IIC_ADDR, data_buffer, len+2);
+    iic_write_8bit_array(GT911_IIC, GT911_IIC_ADDR, data_buffer, len + 2);
 #endif
 }
 
@@ -142,13 +142,13 @@ uint8 gt911_scanner (void)
     uint8 data_buffer[4] = {0, 0, 0, 0};
 
     gt911_read_registers(GT911_READ_ADDR, data_buffer, 1);
-    if((data_buffer[0] & 0x80) && ((data_buffer[0] & 0x0F) < 6))
+    if((data_buffer[0] & 0x80) && (6 > (data_buffer[0] & 0x0F)))
     {
-        gt911_write_registers(GT911_READ_ADDR, data_buffer+1, 1);
+        gt911_write_registers(GT911_READ_ADDR, data_buffer + 1, 1);
     }
-    if((data_buffer[0] & 0x0F) && ((data_buffer[0] & 0x0F) < 6))
+    if((data_buffer[0] & 0x0F) && (6 > (data_buffer[0] & 0x0F)))
     {
-        for(loop_temp = ((data_buffer[0] & 0x0F)); loop_temp > 0; loop_temp --)
+        for(loop_temp = ((data_buffer[0] & 0x0F)); 0 < loop_temp; loop_temp --)
         {
             gt911_read_registers(addr_temp, data_buffer, 4);
             addr_temp += 8;
@@ -160,21 +160,25 @@ uint8 gt911_scanner (void)
                 switch(gt911_dir)
                 {
                     case GT911_PORTAIT:
+                    {
                         gt911_contact_state[contact_index].x_axis = x_temp;
                         gt911_contact_state[contact_index].y_axis = y_temp;
-                        break;
+                    }break;
                     case GT911_PORTAIT_180:
+                    {
                         gt911_contact_state[contact_index].x_axis = gt911_x_max - x_temp;
                         gt911_contact_state[contact_index].y_axis = gt911_y_max - y_temp;
-                        break;
+                    }break;
                     case GT911_CROSSWISE:
+                    {
                         gt911_contact_state[contact_index].x_axis = gt911_y_max - y_temp;
                         gt911_contact_state[contact_index].y_axis = x_temp;
-                        break;
+                    }break;
                     case GT911_CROSSWISE_180:
+                    {
                         gt911_contact_state[contact_index].x_axis = y_temp;
                         gt911_contact_state[contact_index].y_axis = gt911_x_max - x_temp;
-                        break;
+                    }break;
                 }
                 contact_index ++;
             }
@@ -182,7 +186,7 @@ uint8 gt911_scanner (void)
     }
     if(0x80 == (data_buffer[0] & 0x8F))
     {
-        for(loop_temp = 0; loop_temp < 5; loop_temp ++)
+        for(loop_temp = 0; 5 > loop_temp; loop_temp ++)
         {
             gt911_contact_state[loop_temp].x_axis = 0;
             gt911_contact_state[loop_temp].y_axis = 0;

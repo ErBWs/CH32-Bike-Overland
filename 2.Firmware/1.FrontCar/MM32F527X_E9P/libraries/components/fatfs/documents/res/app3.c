@@ -93,7 +93,7 @@ int main (void)
     /  If not, a contiguous area will be re-allocated to the file. */
     org = allocate_contiguous_clusters(&fil, 0x10000000);
     if (!org) {
-        printf("Event failed due to any error or insufficient contiguous area.\n");
+        printf("Function failed due to any error or insufficient contiguous area.\n");
         f_close(&fil);
         return 1;
     }

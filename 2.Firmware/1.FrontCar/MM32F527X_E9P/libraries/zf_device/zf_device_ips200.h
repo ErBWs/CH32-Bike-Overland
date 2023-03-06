@@ -63,51 +63,51 @@
 
 #include "zf_common_typedef.h"
 
-#define IPS200_USE_SOFT_SPI             (0 )                                    // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
+#define IPS200_USE_SOFT_SPI             ( 0 )                                   // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
 #if IPS200_USE_SOFT_SPI                                                         // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 SPI 驱动====================================================
 // 如果使用的是单排排针的两寸屏幕 SPI 驱动控制引脚 可以修改
-#define IPS200_SOFT_SPI_DELAY           (1 )                                    // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
-#define IPS200_SCL_PIN                  (D4)                                    // 软件 SPI SCK 引脚
-#define IPS200_SDA_PIN                  (D6)                                    // 软件 SPI MOSI 引脚
+#define IPS200_SOFT_SPI_DELAY           ( 1  )                                  // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
+#define IPS200_SCL_PIN                  ( D4 )                                  // 软件 SPI SCK 引脚
+#define IPS200_SDA_PIN                  ( D6 )                                  // 软件 SPI MOSI 引脚
 //====================================================软件 SPI 驱动====================================================
 #else
 //====================================================硬件 SPI 驱动====================================================
 // 如果使用的是单排排针的两寸屏幕 SPI 驱动控制引脚 可以修改
-#define IPS200_SPI_SPEED                (60 * 1000 * 1000)                      // 硬件 SPI 速率 这里设置为系统时钟二分频
-#define IPS200_SPI                      (SPI_3           )                      // 硬件 SPI 号
-#define IPS200_SCL_PIN_SPI              (SPI3_SCK_D4     )                      // 硬件 SPI SCK 引脚
-#define IPS200_SDA_PIN_SPI              (SPI3_MOSI_D6    )                      // 硬件 SPI MOSI 引脚
+#define IPS200_SPI_SPEED                ( 60 * 1000 * 1000 )                    // 硬件 SPI 速率 这里设置为系统时钟二分频
+#define IPS200_SPI                      ( SPI_3            )                    // 硬件 SPI 号
+#define IPS200_SCL_PIN_SPI              ( SPI3_SCK_D4      )                    // 硬件 SPI SCK 引脚
+#define IPS200_SDA_PIN_SPI              ( SPI3_MOSI_D6     )                    // 硬件 SPI MOSI 引脚
 //====================================================硬件 SPI 驱动====================================================
 #endif
 // 如果使用的是单排排针的两寸屏幕 SPI 驱动控制引脚 可以修改
-#define IPS200_RST_PIN_SPI              (D14)                                   // 液晶复位引脚定义
-#define IPS200_DC_PIN_SPI               (D5 )                                   // 液晶命令位引脚定义
-#define IPS200_CS_PIN_SPI               (D7 )
-#define IPS200_BLk_PIN_SPI              (D15)
+#define IPS200_RST_PIN_SPI              ( D14 )                                 // 液晶复位引脚定义
+#define IPS200_DC_PIN_SPI               ( D5  )                                 // 液晶命令位引脚定义
+#define IPS200_CS_PIN_SPI               ( D7  )
+#define IPS200_BLk_PIN_SPI              ( D15 )
 
 // 如果使用的是双排排针的两寸屏幕 并口驱动控制引脚 可以修改
-#define IPS200_RD_PIN_PARALLEL8         (D4 )
-#define IPS200_WR_PIN_PARALLEL8         (D6 )
-#define IPS200_RS_PIN_PARALLEL8         (D14)
-#define IPS200_RST_PIN_PARALLEL8        (D5 )
-#define IPS200_CS_PIN_PARALLEL8         (D7 )
-#define IPS200_BL_PIN_PARALLEL8         (D15)
+#define IPS200_RD_PIN_PARALLEL8         ( D4  )
+#define IPS200_WR_PIN_PARALLEL8         ( D6  )
+#define IPS200_RS_PIN_PARALLEL8         ( D14 )
+#define IPS200_RST_PIN_PARALLEL8        ( D5  )
+#define IPS200_CS_PIN_PARALLEL8         ( D7  )
+#define IPS200_BL_PIN_PARALLEL8         ( D15 )
 
 // 并口驱动数据引脚 可以修改 如果你的屏幕是双排排针 这里的引脚用得到 必须要连续八个引脚
-#define IPS200_D0_PIN_PARALLEL8         (G8 )
-#define IPS200_D1_PIN_PARALLEL8         (G9 )
-#define IPS200_D2_PIN_PARALLEL8         (G10)
-#define IPS200_D3_PIN_PARALLEL8         (G11)
-#define IPS200_D4_PIN_PARALLEL8         (G12)
-#define IPS200_D5_PIN_PARALLEL8         (G13)
-#define IPS200_D6_PIN_PARALLEL8         (G14)
-#define IPS200_D7_PIN_PARALLEL8         (G15)
+#define IPS200_D0_PIN_PARALLEL8         ( G8  )
+#define IPS200_D1_PIN_PARALLEL8         ( G9  )
+#define IPS200_D2_PIN_PARALLEL8         ( G10 )
+#define IPS200_D3_PIN_PARALLEL8         ( G11 )
+#define IPS200_D4_PIN_PARALLEL8         ( G12 )
+#define IPS200_D5_PIN_PARALLEL8         ( G13 )
+#define IPS200_D6_PIN_PARALLEL8         ( G14 )
+#define IPS200_D7_PIN_PARALLEL8         ( G15 )
 
-#define IPS200_DEFAULT_DISPLAY_DIR      (IPS200_PORTAIT)                        // 默认的显示方向
-#define IPS200_DEFAULT_PENCOLOR         (RGB565_RED    )                        // 默认的画笔颜色
-#define IPS200_DEFAULT_BGCOLOR          (RGB565_WHITE  )                        // 默认的背景颜色
-#define IPS200_DEFAULT_DISPLAY_FONT     (IPS200_8X16_FONT)                      // 默认的字体模式
+#define IPS200_DEFAULT_DISPLAY_DIR      ( IPS200_PORTAIT   )                    // 默认的显示方向
+#define IPS200_DEFAULT_PENCOLOR         ( RGB565_RED       )                    // 默认的画笔颜色
+#define IPS200_DEFAULT_BGCOLOR          ( RGB565_WHITE     )                    // 默认的背景颜色
+#define IPS200_DEFAULT_DISPLAY_FONT     ( IPS200_8X16_FONT )                    // 默认的字体模式
 
 // 数据对应地址 不可更改
 #define IPS200_DATA_ADD                 gpio_odr_addr(IPS200_D0_PIN_PARALLEL8)

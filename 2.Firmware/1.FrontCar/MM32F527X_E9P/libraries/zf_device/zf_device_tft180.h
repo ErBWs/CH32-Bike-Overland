@@ -53,31 +53,31 @@
 
 #include "zf_common_typedef.h"
 
-#define TFT180_USE_SOFT_SPI             (0)                                     // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
+#define TFT180_USE_SOFT_SPI             ( 0 )                                   // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
 #if TFT180_USE_SOFT_SPI                                                         // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 SPI 驱动====================================================
-#define TFT180_SOFT_SPI_DELAY           (1 )                                    // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
-#define TFT180_SCL_PIN                  (D4)                                    // 软件 SPI SCK 引脚
-#define TFT180_SDA_PIN                  (D6)                                    // 软件 SPI MOSI 引脚
+#define TFT180_SOFT_SPI_DELAY           ( 1  )                                  // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
+#define TFT180_SCL_PIN                  ( D4 )                                  // 软件 SPI SCK 引脚
+#define TFT180_SDA_PIN                  ( D6 )                                  // 软件 SPI MOSI 引脚
 //====================================================软件 SPI 驱动====================================================
 #else
 //====================================================硬件 SPI 驱动====================================================
-#define TFT180_SPI_SPEED                (40 * 1000 * 1000)                      // 硬件 SPI 速率
-#define TFT180_SPI                      (SPI_3)                                 // 硬件 SPI 号
-#define TFT180_SCL_PIN                  (SPI3_SCK_D4)                           // 硬件 SPI SCK 引脚
-#define TFT180_SDA_PIN                  (SPI3_MOSI_D6)                          // 硬件 SPI MOSI 引脚
+#define TFT180_SPI_SPEED                ( 40 * 1000 * 1000 )                    // 硬件 SPI 速率
+#define TFT180_SPI                      ( SPI_3            )                    // 硬件 SPI 号
+#define TFT180_SCL_PIN                  ( SPI3_SCK_D4      )                    // 硬件 SPI SCK 引脚
+#define TFT180_SDA_PIN                  ( SPI3_MOSI_D6     )                    // 硬件 SPI MOSI 引脚
 //====================================================硬件 SPI 驱动====================================================
 #endif
 
-#define TFT180_RES_PIN                  (D14)                                   // 液晶复位引脚定义
-#define TFT180_DC_PIN                   (D5 )                                   // 液晶命令位引脚定义
-#define TFT180_CS_PIN                   (D7 )                                   // CS 片选引脚
-#define TFT180_BL_PIN                   (D15)                                   // 液晶背光引脚定义
+#define TFT180_RES_PIN                  ( D14 )                                 // 液晶复位引脚定义
+#define TFT180_DC_PIN                   ( D5  )                                 // 液晶命令位引脚定义
+#define TFT180_CS_PIN                   ( D7  )                                 // CS 片选引脚
+#define TFT180_BL_PIN                   ( D15 )                                 // 液晶背光引脚定义
 
-#define TFT180_DEFAULT_DISPLAY_DIR      (TFT180_PORTAIT)                        // 默认的显示方向
-#define TFT180_DEFAULT_PENCOLOR         (RGB565_RED)                            // 默认的画笔颜色
-#define TFT180_DEFAULT_BGCOLOR          (RGB565_WHITE)                          // 默认的背景颜色
-#define TFT180_DEFAULT_DISPLAY_FONT     (TFT180_8X16_FONT)                      // 默认的字体模式
+#define TFT180_DEFAULT_DISPLAY_DIR      ( TFT180_PORTAIT   )                    // 默认的显示方向
+#define TFT180_DEFAULT_PENCOLOR         ( RGB565_RED       )                    // 默认的画笔颜色
+#define TFT180_DEFAULT_BGCOLOR          ( RGB565_WHITE     )                    // 默认的背景颜色
+#define TFT180_DEFAULT_DISPLAY_FONT     ( TFT180_8X16_FONT )                    // 默认的字体模式
 
 #define TFT180_DC(x)                    ((x) ? (gpio_high(TFT180_DC_PIN)) : (gpio_low(TFT180_DC_PIN)))
 #define TFT180_RST(x)                   ((x) ? (gpio_high(TFT180_RES_PIN)) : (gpio_low(TFT180_RES_PIN)))

@@ -49,14 +49,14 @@
 
 #include "zf_common_typedef.h"
 
-#define BLUETOOTH_CH9141_INDEX                  (UART_6)                        // 蓝牙模块对应使用的串口号
-#define BLUETOOTH_CH9141_BUAD_RATE              (115200)                        // 蓝牙模块对应使用的串口波特率
-#define BLUETOOTH_CH9141_TX_PIN                 (UART6_RX_C7)                   // 蓝牙模块对应模块的 TX 要接到单片机的 RX
-#define BLUETOOTH_CH9141_RX_PIN                 (UART6_TX_C6)                   // 蓝牙模块对应模块的 RX 要接到单片机的 TX
-#define BLUETOOTH_CH9141_RTS_PIN                (C5 )                           // 蓝牙模块对应模块的 RTS 引脚
+#define BLUETOOTH_CH9141_INDEX                  ( UART_6 )                      // 蓝牙模块对应使用的串口号
+#define BLUETOOTH_CH9141_BUAD_RATE              ( 115200 )                      // 蓝牙模块对应使用的串口波特率
+#define BLUETOOTH_CH9141_TX_PIN                 ( UART6_RX_C7 )                 // 蓝牙模块对应模块的 TX 要接到单片机的 RX
+#define BLUETOOTH_CH9141_RX_PIN                 ( UART6_TX_C6 )                 // 蓝牙模块对应模块的 RX 要接到单片机的 TX
+#define BLUETOOTH_CH9141_RTS_PIN                ( C5 )                          // 蓝牙模块对应模块的 RTS 引脚
 
-#define BLUETOOTH_CH9141_BUFFER_SIZE            (64)                            // 默认的蓝牙模块使用的接收缓冲区大小
-#define BLUETOOTH_CH9141_TIMEOUT_COUNT          (500)
+#define BLUETOOTH_CH9141_BUFFER_SIZE            ( 64 )                          // 默认的蓝牙模块使用的接收缓冲区大小
+#define BLUETOOTH_CH9141_TIMEOUT_COUNT          ( 500 )
 
 uint32      bluetooth_ch9141_send_byte          (const uint8 data);
 uint32      bluetooth_ch9141_send_buff          (const uint8 *buff, uint32 len);

@@ -52,17 +52,17 @@
 
 #include "zf_device_gps_tau1201.h"
 
-#define GPS_TAU1201_BUFFER_SIZE     (128)
+#define GPS_TAU1201_BUFFER_SIZE     ( 128 )
 
-uint8                       gps_tau1201_flag;                                       // 1：采集完成等待处理数据 0：没有采集完成
+uint8                       gps_tau1201_flag = 0;                                   // 1：采集完成等待处理数据 0：没有采集完成
 gps_info_struct             gps_tau1201;                                            // GPS解析之后的数据
 
 static  uint8               gps_tau1201_state = 0;                                  // 1：GPS初始化完成
 static  fifo_struct         gps_tau1201_receiver_fifo;                              // 
 static  uint8               gps_tau1201_receiver_buffer[GPS_TAU1201_BUFFER_SIZE];   // 数据存放数组
 
-gps_state_enum              gps_gga_state;                                          // gga语句状态
-gps_state_enum              gps_rmc_state;                                          // rmc语句状态
+gps_state_enum              gps_gga_state = GPS_STATE_RECEIVING;                    // gga 语句状态
+gps_state_enum              gps_rmc_state = GPS_STATE_RECEIVING;                    // rmc 语句状态
 
 static  uint8               gps_gga_buffer[GPS_TAU1201_BUFFER_SIZE];
 static  uint8               gps_rmc_buffer[GPS_TAU1201_BUFFER_SIZE];
@@ -77,11 +77,10 @@ static  uint8               gps_rmc_buffer[GPS_TAU1201_BUFFER_SIZE];
 //-------------------------------------------------------------------------------------------------------------------
 static uint8 get_parameter_index (uint8 num, char *str)
 {
-    uint8 i, j = 0;
-    char *temp;
-    uint8 len = 0, len1;
-    
-    temp = strchr(str, '\n');
+    uint8 i = 0, j = 0;
+    char *temp = strchr(str, '\n');
+    uint8 len = 0, len1 = 0;
+
     if(NULL != temp)
     {
         len = (uint8)((uint32)temp - (uint32)str + 1);
@@ -89,7 +88,7 @@ static uint8 get_parameter_index (uint8 num, char *str)
 
     for(i = 0; i < len; i ++)
     {
-        if(str[i] == ',')
+        if(',' == str[i])
         {
             j ++;
         }
@@ -113,8 +112,8 @@ static uint8 get_parameter_index (uint8 num, char *str)
 static int get_int_number (char *s)
 {
     char buf[10];
-    uint8 i;
-    int return_value;
+    uint8 i = 0;
+    int return_value = 0;
     i = get_parameter_index(1, s);
     i = i - 1;
     strncpy(buf, s, i);
@@ -132,9 +131,9 @@ static int get_int_number (char *s)
 //-------------------------------------------------------------------------------------------------------------------
 static float get_float_number (char *s)
 {
-    uint8 i;
+    uint8 i = 0;
     char buf[15];
-    float return_value;
+    float return_value = 0;
     
     i = get_parameter_index(1, s);
     i = i - 1;
@@ -153,9 +152,9 @@ static float get_float_number (char *s)
 //-------------------------------------------------------------------------------------------------------------------
 static double get_double_number (char *s)
 {
-    uint8 i;
+    uint8 i = 0;
     char buf[15];
-    double return_value;
+    double return_value = 0;
     
     i = get_parameter_index(1, s);
     i = i - 1;
@@ -174,10 +173,10 @@ static double get_double_number (char *s)
 //-------------------------------------------------------------------------------------------------------------------
 static void utc_to_btc (gps_time_struct *time)
 {
-    uint8 day_num;
+    uint8 day_num = 0;
     
     time->hour = time->hour + 8;
-    if(time->hour > 23)
+    if(23 < time->hour)
     {
         time->hour -= 24;
         time->day += 1;
@@ -185,7 +184,7 @@ static void utc_to_btc (gps_time_struct *time)
         if(2 == time->month)
         {
             day_num = 28;
-            if((time->year % 4 == 0 && time->year % 100 != 0) || time->year % 400 == 0) // 判断是否为闰年 
+            if((0 == time->year % 4 && 0 != time->year % 100) || 0 == time->year % 400) // 判断是否为闰年 
             {
                 day_num ++;                                                     // 闰月 2月为29天
             }
@@ -203,7 +202,7 @@ static void utc_to_btc (gps_time_struct *time)
         {
             time->day = 1;
             time->month ++;
-            if(time->month > 12)
+            if(12 < time->month)
             {
                 time->month -= 12;
                 time->year ++;
@@ -222,21 +221,21 @@ static void utc_to_btc (gps_time_struct *time)
 //-------------------------------------------------------------------------------------------------------------------
 static uint8 gps_gnrmc_parse (char *line, gps_info_struct *gps)
 {
-    uint8 state, temp;
+    uint8 state = 0, temp = 0;
     
-    double  latitude;                                                           // 纬度
-    double  longitude;                                                          // 经度
+    double  latitude = 0;                                                       // 纬度
+    double  longitude = 0;                                                      // 经度
     
-    float lati_cent_tmp, lati_second_tmp;
-    float long_cent_tmp, long_second_tmp;
-    float speed_tmp;
+    float lati_cent_tmp = 0, lati_second_tmp = 0;
+    float long_cent_tmp = 0, long_second_tmp = 0;
+    float speed_tmp = 0;
     char *buf = line;
     uint8 return_state = 0;
 
     state = buf[get_parameter_index(2, buf)];
 
     gps->state = 0;
-    if (state == 'A')                                                           // 如果数据有效 则解析数据
+    if('A' == state)                                                            // 如果数据有效 则解析数据
     {
         return_state = 1;
         gps->state = 1;
@@ -290,13 +289,13 @@ static uint8 gps_gnrmc_parse (char *line, gps_info_struct *gps)
 //-------------------------------------------------------------------------------------------------------------------
 static uint8 gps_gngga_parse (char *line, gps_info_struct *gps)
 {
-    uint8 state;
+    uint8 state = 0;
     char *buf = line;
     uint8 return_state = 0;
 
     state = buf[get_parameter_index(2, buf)];
 
-    if (state != ',')
+    if(',' != state)
     {
         gps->satellite_used = (uint8)get_int_number(&buf[get_parameter_index(7, buf)]);
         gps->height         = get_float_number(&buf[get_parameter_index(9, buf)]) + get_float_number(&buf[get_parameter_index(11, buf)]);  // 高度 = 海拔高度 + 地球椭球面相对大地水准面的高度 
@@ -319,13 +318,13 @@ static uint8 gps_gngga_parse (char *line, gps_info_struct *gps)
 double get_two_points_distance (double latitude1, double longitude1, double latitude2, double longitude2)
 {  
     const double EARTH_RADIUS = 6378137;                                        // 地球半径(单位：m)
-    double rad_latitude1;
-    double rad_latitude2;
-    double rad_longitude1;
-    double rad_longitude2;
-    double distance;
-    double a;
-    double b;
+    double rad_latitude1 = 0;
+    double rad_latitude2 = 0;
+    double rad_longitude1 = 0;
+    double rad_longitude2 = 0;
+    double distance = 0;
+    double a = 0;
+    double b = 0;
     
     rad_latitude1 = ANGLE_TO_RAD(latitude1);                                    // 根据角度计算弧度
     rad_latitude2 = ANGLE_TO_RAD(latitude2);
@@ -361,7 +360,7 @@ double get_two_points_azimuth (double latitude1, double longitude1, double latit
     double x = sin(longitude2 - longitude1) * cos(latitude2);
     double y = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(longitude2 - longitude1);
     double angle = RAD_TO_ANGLE(atan2(x, y));
-    return ((angle > 0) ? angle : (angle + 360));
+    return ((0 < angle) ? angle : (angle + 360));
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -377,16 +376,16 @@ uint8 gps_data_parse (void)
     uint8 check_buffer[5] = {'0', 'x', 0x00, 0x00, 0x00};
     uint8 bbc_xor_origin = 0;
     uint8 bbc_xor_calculation = 0;
-    uint32 data_len;
+    uint32 data_len = 0;
 
     do
     {
         if(GPS_STATE_RECEIVED == gps_rmc_state)
         {
             gps_rmc_state = GPS_STATE_PARSING;
-            strncpy((char *)&check_buffer[2], strchr((const char *)gps_rmc_buffer, '*')+1, 2);
+            strncpy((char *)&check_buffer[2], strchr((const char *)gps_rmc_buffer, '*') + 1, 2);
             bbc_xor_origin = (uint8)func_str_to_hex((char *)check_buffer);
-            for(bbc_xor_calculation = gps_rmc_buffer[1], data_len = 2; gps_rmc_buffer[data_len] != '*'; data_len ++)
+            for(bbc_xor_calculation = gps_rmc_buffer[1], data_len = 2; '*' != gps_rmc_buffer[data_len]; data_len ++)
             {
                 bbc_xor_calculation ^= gps_rmc_buffer[data_len];
             }
@@ -404,10 +403,10 @@ uint8 gps_data_parse (void)
         if(GPS_STATE_RECEIVED == gps_gga_state)
         {
             gps_gga_state = GPS_STATE_PARSING;
-            strncpy((char *)&check_buffer[2], strchr((const char *)gps_gga_buffer, '*')+1, 2);
+            strncpy((char *)&check_buffer[2], strchr((const char *)gps_gga_buffer, '*') + 1, 2);
             bbc_xor_origin = (uint8)func_str_to_hex((char *)check_buffer);
             
-            for(bbc_xor_calculation = gps_gga_buffer[1], data_len = 2; gps_gga_buffer[data_len] != '*'; data_len ++)
+            for(bbc_xor_calculation = gps_gga_buffer[1], data_len = 2; '*' != gps_gga_buffer[data_len]; data_len ++)
             {
                 bbc_xor_calculation ^= gps_gga_buffer[data_len];
             }
@@ -437,7 +436,7 @@ uint8 gps_data_parse (void)
 void gps_uart_callback (void)
 {
     uint8 temp_gps[6];
-    uint32 temp_length;
+    uint32 temp_length = 0;
 
     if(gps_tau1201_state)
     {

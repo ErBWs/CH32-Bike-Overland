@@ -55,46 +55,46 @@
 //--------------------------------------------------------------------------------------------------
 // 引脚配置
 //--------------------------------------------------------------------------------------------------
-#define MT9V03X_COF_UART        (UART_5)                                        // 配置摄像头所使用到的串口
-#define MT9V03X_COF_BAUR        (9600)                                          // 总钻风配置串口波特率
-#define MT9V03X_COF_UART_TX     (UART5_RX_D2)                                   // 总钻风 UART-TX 引脚 要接在单片机 RX 上
-#define MT9V03X_COF_UART_RX     (UART5_TX_C12)                                  // 总钻风 UART-RX 引脚 要接在单片机 TX 上
+#define MT9V03X_COF_UART        ( UART_5       )                                // 配置摄像头所使用到的串口
+#define MT9V03X_COF_BAUR        ( 9600         )                                // 总钻风配置串口波特率
+#define MT9V03X_COF_UART_TX     ( UART5_RX_D2  )                                // 总钻风 UART-TX 引脚 要接在单片机 RX 上
+#define MT9V03X_COF_UART_RX     ( UART5_TX_C12 )                                // 总钻风 UART-RX 引脚 要接在单片机 TX 上
 
-#define MT9V03X_COF_IIC_DELAY   (150)                                           // 总钻风 IIC 延时
-#define MT9V03X_COF_IIC_SCL     (D2 )                                           // 总钻风 IIC-SCL 引脚
-#define MT9V03X_COF_IIC_SDA     (C12)                                           // 总钻风 IIC-SDA 引脚
+#define MT9V03X_COF_IIC_DELAY   ( 150 )                                         // 总钻风 IIC 延时
+#define MT9V03X_COF_IIC_SCL     ( D2  )                                         // 总钻风 IIC-SCL 引脚
+#define MT9V03X_COF_IIC_SDA     ( C12 )                                         // 总钻风 IIC-SDA 引脚
 
-#define MT9V03X_DMA_CH          (DMA1_CHANNEL4)
-#define MT9V03X_DMA_IRQN        (DMA1_CH4_IRQn)
+#define MT9V03X_DMA_CH          ( DMA1_CHANNEL4 )
+#define MT9V03X_DMA_IRQN        ( DMA1_CH4_IRQn )
 
-#define MT9V03X_PCLK_PIN        (TIM1_ETR_E7)                                   // PCLK 触发信号 TIM_ETR 引脚禁止随意修改
+#define MT9V03X_PCLK_PIN        ( TIM1_ETR_E7 )                                 // PCLK 触发信号 TIM_ETR 引脚禁止随意修改
 
-#define MT9V03X_VSYNC_PIN       (E8 )                                           // 场中断引脚
-#define MT9V03X_VSYNC_IRQN      (EXTI9_5_IRQn)                                  // 中断号
+#define MT9V03X_VSYNC_PIN       ( E8           )                                // 场中断引脚
+#define MT9V03X_VSYNC_IRQN      ( EXTI9_5_IRQn )                                // 中断号
 
-#define MT9V03X_DATA_PIN        (G0)                                            // 数据引脚 这里是 只能是 GPIOx0 或者 GPIOx8 开始 连续八个引脚例如 F0-F7
+#define MT9V03X_DATA_PIN        ( G0 )                                          // 数据引脚 这里是 只能是 GPIOx0 或者 GPIOx8 开始 连续八个引脚例如 F0-F7
 #define MT9V03X_DATA_ADD        (gpio_idr_addr(MT9V03X_DATA_PIN))
 
-#define MT9V03X_INIT_TIMEOUT    (0x0080)                                        // 默认的摄像头初始化超时时间 毫秒为单位
+#define MT9V03X_INIT_TIMEOUT    ( 0x0080 )                                      // 默认的摄像头初始化超时时间 毫秒为单位
 
 //--------------------------------------------------------------------------------------------------
 // 摄像头默认参数配置 在此修改摄像头配置
 //--------------------------------------------------------------------------------------------------
-#define MT9V03X_W               (188)                                           // 图像宽度     范围 [1-752]
-#define MT9V03X_H               (120)                                           // 图像高度     范围 [1-480]
-#define MT9V03X_IMAGE_SIZE      (MT9V03X_W * MT9V03X_H)                         // 整体图像大小不能超过 65535
+#define MT9V03X_W               ( 188 )                                         // 图像宽度     范围 [1-752]
+#define MT9V03X_H               ( 120 )                                         // 图像高度     范围 [1-480]
+#define MT9V03X_IMAGE_SIZE      ( MT9V03X_W * MT9V03X_H )                       // 整体图像大小不能超过 65535
 
-#define MT9V03X_AUTO_EXP_DEF    (0  )                                           // 自动曝光设置     默认不开启自动曝光设置  范围 [0-63] 0为关闭
+#define MT9V03X_AUTO_EXP_DEF    ( 0   )                                         // 自动曝光设置     默认不开启自动曝光设置  范围 [0-63] 0为关闭
                                                                                 //                  如果自动曝光开启  EXP_TIME命令设置自动曝光时间的上限
                                                                                 //                  一般情况是不需要开启自动曝光设置 如果遇到光线非常不均匀的情况可以尝试设置自动曝光，增加图像稳定性
-#define MT9V03X_EXP_TIME_DEF    (512)                                           // 曝光时间         摄像头收到后会自动计算出最大曝光时间，如果设置过大则设置为计算出来的最大曝光值
-#define MT9V03X_FPS_DEF         (50 )                                           // 图像帧率         摄像头收到后会自动计算出最大FPS，如果过大则设置为计算出来的最大FPS
-#define MT9V03X_LR_OFFSET_DEF   (0  )                                           // 图像左右偏移量   正值 右偏移   负值 左偏移  列为188 376 752时无法设置偏移
+#define MT9V03X_EXP_TIME_DEF    ( 300 )                                         // 曝光时间         摄像头收到后会自动计算出最大曝光时间，如果设置过大则设置为计算出来的最大曝光值
+#define MT9V03X_FPS_DEF         ( 50  )                                         // 图像帧率         摄像头收到后会自动计算出最大FPS，如果过大则设置为计算出来的最大FPS
+#define MT9V03X_LR_OFFSET_DEF   ( 0   )                                         // 图像左右偏移量   正值 右偏移   负值 左偏移  列为188 376 752时无法设置偏移
                                                                                 //                  摄像头收偏移数据后会自动计算最大偏移，如果超出则设置计算出来的最大偏移
-#define MT9V03X_UD_OFFSET_DEF   (0  )                                           // 图像上下偏移量   正值 上偏移   负值 下偏移  行为120 240 480时无法设置偏移
+#define MT9V03X_UD_OFFSET_DEF   ( 0   )                                         // 图像上下偏移量   正值 上偏移   负值 下偏移  行为120 240 480时无法设置偏移
                                                                                 //                  摄像头收偏移数据后会自动计算最大偏移，如果超出则设置计算出来的最大偏移
-#define MT9V03X_GAIN_DEF        (32 )                                           // 图像增益         范围 [16-64]  增益可以在曝光时间固定的情况下改变图像亮暗程度
-#define MT9V03X_PCLK_MODE_DEF   (0  )                                           // 像素时钟模式     范围 [0-1]    默认：0 可选参数为：[0：不输出消隐信号,1：输出消隐信号]
+#define MT9V03X_GAIN_DEF        ( 32  )                                         // 图像增益         范围 [16-64]  增益可以在曝光时间固定的情况下改变图像亮暗程度
+#define MT9V03X_PCLK_MODE_DEF   ( 0   )                                         // 像素时钟模式     范围 [0-1]    默认：0 可选参数为：[0：不输出消隐信号,1：输出消隐信号]
                                                                                 //                  通常都设置为0，如果使用CH32V307的DVP接口或STM32的DCMI接口采集需要设置为1
                                                                                 //                  仅总钻风 MT9V034 V1.5 以及以上版本支持该命令
 

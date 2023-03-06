@@ -52,13 +52,13 @@
 //--------------------------------------------------------------------------------------------------
 //引脚配置
 //--------------------------------------------------------------------------------------------------
-#define GPS_TAU1201_UART    (UART_4)
-#define GPS_TAU1201_RX      (UART4_TX_C10)                                      // GPS RX引脚连接到单片机此
-#define GPS_TAU1201_TX      (UART4_RX_C11)                                      // GPS TX串口引脚
+#define GPS_TAU1201_UART    ( UART_4 )
+#define GPS_TAU1201_RX      ( UART4_TX_C10 )                                    // GPS RX引脚连接到单片机此
+#define GPS_TAU1201_TX      ( UART4_RX_C11 )                                    // GPS TX串口引脚
 
-#define ANGLE_TO_RAD(x)     ((x) * PI / 180.0)                                  // 角度转换为弧度
-#define RAD_TO_ANGLE(x)     ((x) * 180.0 / PI)                                  // 弧度转换为角度
-#define PI                  (3.1415926535898)
+#define ANGLE_TO_RAD(x)     ( (x) * PI / 180.0 )                                // 角度转换为弧度
+#define RAD_TO_ANGLE(x)     ( (x) * 180.0 / PI )                                // 弧度转换为角度
+#define PI                  ( 3.1415926535898 )
 
 typedef struct
 {
@@ -99,9 +99,9 @@ typedef struct
 
 typedef enum
 {
-    GPS_STATE_RECEIVING,    // 正在接收数据
-    GPS_STATE_RECEIVED,     // 数据接收完成
-    GPS_STATE_PARSING,      // 正在解析
+    GPS_STATE_RECEIVING,                                                        // 正在接收数据
+    GPS_STATE_RECEIVED,                                                         // 数据接收完成
+    GPS_STATE_PARSING,                                                          // 正在解析
 }gps_state_enum;
 
 extern gps_info_struct  gps_tau1201;

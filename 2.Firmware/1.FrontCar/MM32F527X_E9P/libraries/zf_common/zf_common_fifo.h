@@ -74,7 +74,7 @@ typedef struct
 {
     uint8               execution;                                              // 执行步骤
     fifo_data_type_enum type;                                                   // 数据类型
-    void               *buffer;                                                 // 缓存指针
+    void                *buffer;                                                // 缓存指针
     uint32              head;                                                   // 缓存头指针 总是指向空的缓存
     uint32              end;                                                    // 缓存尾指针 总是指向非空缓存（缓存全空除外）
     uint32              size;                                                   // 缓存剩余大小

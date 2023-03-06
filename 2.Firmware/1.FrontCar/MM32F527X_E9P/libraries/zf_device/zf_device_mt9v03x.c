@@ -106,7 +106,7 @@ static uint8 mt9v03x_set_config (int16 buff[MT9V03X_CONFIG_FINISH][2])
 {
     uint8 return_state = 1;
     uint8  uart_buffer[4];
-    uint16 temp;
+    uint16 temp = 0;
     uint16 timeout_count = 0;
     uint32 loop_count = 0;
     uint32 uart_buffer_index = 0;
@@ -118,7 +118,7 @@ static uint8 mt9v03x_set_config (int16 buff[MT9V03X_CONFIG_FINISH][2])
     }
     // 设置参数  具体请参看问题锦集手册
     // 开始配置摄像头并重新初始化
-    for(; loop_count < MT9V03X_SET_DATA; loop_count --)
+    for(; MT9V03X_SET_DATA > loop_count; loop_count --)
     {
         uart_buffer[0] = 0xA5;
         uart_buffer[1] = buff[loop_count][0];
@@ -160,7 +160,7 @@ static uint8 mt9v03x_get_config (int16 buff[MT9V03X_CONFIG_FINISH - 1][2])
 {
     uint8 return_state = 0;
     uint8  uart_buffer[4];
-    uint16 temp;
+    uint16 temp = 0;
     uint16 timeout_count = 0;
     uint32 loop_count = 0;
     uint32 uart_buffer_index = 0;
@@ -171,9 +171,9 @@ static uint8 mt9v03x_get_config (int16 buff[MT9V03X_CONFIG_FINISH - 1][2])
         default:        loop_count = MT9V03X_GAIN;       break;
     }
 
-    for(loop_count = loop_count - 1; loop_count >= 1; loop_count --)
+    for(loop_count = loop_count - 1; 1 <= loop_count; loop_count --)
     {
-        if(mt9v03x_version < 0x0230 && buff[loop_count][0] == MT9V03X_PCLK_MODE)
+        if((0x0230 > mt9v03x_version) && (MT9V03X_PCLK_MODE == buff[loop_count][0]))
         {
             continue;
         }
@@ -196,7 +196,7 @@ static uint8 mt9v03x_get_config (int16 buff[MT9V03X_CONFIG_FINISH - 1][2])
             }
             system_delay_ms(1);
         }while(MT9V03X_INIT_TIMEOUT > timeout_count ++);
-        if(timeout_count > MT9V03X_INIT_TIMEOUT)                                // 超时
+        if(MT9V03X_INIT_TIMEOUT < timeout_count)                                // 超时
         {
             return_state = 1;
             break;
@@ -262,7 +262,7 @@ static void mt9v03x_dma_handler (void)
 //-------------------------------------------------------------------------------------------------------------------
 uint16 mt9v03x_get_version (void)
 {
-    uint16 temp;
+    uint16 temp = 0;
     uint8  uart_buffer[4];
     uint16 timeout_count = 0;
     uint16 return_value = 0;
@@ -305,7 +305,7 @@ uint8 mt9v03x_set_exposure_time (uint16 light)
     {
         set_camera_type(CAMERA_GRAYSCALE, mt9v03x_vsync_handler, mt9v03x_dma_handler, mt9v03x_uart_handler);
         uint8  uart_buffer[4];
-        uint16 temp;
+        uint16 temp = 0;
         uint16 timeout_count = 0;
         uint32 uart_buffer_index = 0;
 
@@ -355,7 +355,7 @@ uint8 mt9v03x_set_reg (uint8 addr, uint16 data)
     {
         set_camera_type(CAMERA_GRAYSCALE, mt9v03x_vsync_handler, mt9v03x_dma_handler, mt9v03x_uart_handler);
         uint8  uart_buffer[4];
-        uint16 temp;
+        uint16 temp = 0;
         uint16 timeout_count = 0;
         uint32 uart_buffer_index = 0;
 
@@ -413,7 +413,7 @@ uint8 mt9v03x_init (void)
 
     do
     {
-        for(num = 0; num < 8; num ++)
+        for(num = 0; 8 > num; num ++)
         {
             gpio_init((gpio_pin_enum)(MT9V03X_DATA_PIN + num), GPI, GPIO_LOW, GPI_FLOATING_IN);
         }

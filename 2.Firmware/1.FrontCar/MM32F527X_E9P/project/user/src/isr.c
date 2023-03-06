@@ -115,12 +115,8 @@ void TIM6_IRQHandler (void)
 void TIM7_IRQHandler (void)
 {
     // 此处编写用户代码
-    static uint16 pit_ms_count = 0;
-    if(0 == pit_ms_count % 40)                                                  // 每 40ms 获取一次测距信息 周期 40 ms 频率 25Hz
-    {
-        dl1a_get_distance();                                                    // 测距调用频率不应高于 30Hz 周期不应低于 33.33ms
-    }
-    pit_ms_count = (pit_ms_count == 995) ? (0) : (pit_ms_count + 5);            // 1000ms 周期计数
+    SpeedControl();
+    VofaBigEndianSendFrame();
     // 此处编写用户代码
     TIM_ClearInterruptStatus((TIM_Type *)TIM7, TIM_GetInterruptStatus((TIM_Type *)TIM7));
 }
@@ -433,6 +429,9 @@ void EXTI15_10_IRQHandler (void)
 {
     if(EXTI_LINE_10 & EXTI_GetLineStatus(EXTI))                                 // line10 触发
     {
+        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
+        dm1xa_sound_callback();
+        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
         // 此处编写用户代码 (A10/B10..G10) 引脚触发
 
         // 此处编写用户代码 (A10/B10..G10) 引脚触发
@@ -440,6 +439,9 @@ void EXTI15_10_IRQHandler (void)
     }
     if(EXTI_LINE_11 & EXTI_GetLineStatus(EXTI))                                 // line11 触发
     {
+        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
+        dm1xa_light_callback();
+        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
         // 此处编写用户代码 (A11/B11..G11) 引脚触发
 
         // 此处编写用户代码 (A11/B11..G11) 引脚触发

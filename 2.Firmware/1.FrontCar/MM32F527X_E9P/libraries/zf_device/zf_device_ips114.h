@@ -53,31 +53,31 @@
 
 #include "zf_common_typedef.h"
 
-#define IPS114_USE_SOFT_SPI             (0)                                     // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
+#define IPS114_USE_SOFT_SPI             ( 0 )                                   // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
 #if IPS114_USE_SOFT_SPI                                                         // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 SPI 驱动====================================================
-#define IPS114_SOFT_SPI_DELAY           (1 )                                    // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
-#define IPS114_SCL_PIN                  (D4)                                    // 软件 SPI SCK 引脚
-#define IPS114_SDA_PIN                  (D6)                                    // 软件 SPI MOSI 引脚
+#define IPS114_SOFT_SPI_DELAY           ( 1  )                                  // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
+#define IPS114_SCL_PIN                  ( D4 )                                  // 软件 SPI SCK 引脚
+#define IPS114_SDA_PIN                  ( D6 )                                  // 软件 SPI MOSI 引脚
 //====================================================软件 SPI 驱动====================================================
 #else
 //====================================================硬件 SPI 驱动====================================================
-#define IPS114_SPI_SPEED                (60 * 1000 * 1000)                      // 硬件 SPI 速率 这里设置为系统时钟二分频
-#define IPS114_SPI                      (SPI_3)                                 // 硬件 SPI 号
-#define IPS114_SCL_PIN                  (SPI3_SCK_D4)                           // 硬件 SPI SCK 引脚
-#define IPS114_SDA_PIN                  (SPI3_MOSI_D6)                          // 硬件 SPI MOSI 引脚
+#define IPS114_SPI_SPEED                ( 60 * 1000 * 1000 )                    // 硬件 SPI 速率 这里设置为系统时钟二分频
+#define IPS114_SPI                      ( SPI_3            )                    // 硬件 SPI 号
+#define IPS114_SCL_PIN                  ( SPI3_SCK_D4      )                    // 硬件 SPI SCK 引脚
+#define IPS114_SDA_PIN                  ( SPI3_MOSI_D6     )                    // 硬件 SPI MOSI 引脚
 //====================================================硬件 SPI 驱动====================================================
 #endif
 
-#define IPS114_RST_PIN                  (D14)                                   // 液晶复位引脚定义
-#define IPS114_DC_PIN                   (D5 )                                   // 液晶命令位引脚定义
-#define IPS114_CS_PIN                   (D7 )                                   // CS 片选引脚
-#define IPS114_BLK_PIN                  (D15)                                   // 液晶背光引脚定义
+#define IPS114_RST_PIN                  ( D14 )                                 // 液晶复位引脚定义
+#define IPS114_DC_PIN                   ( D5  )                                 // 液晶命令位引脚定义
+#define IPS114_CS_PIN                   ( D7  )                                 // CS 片选引脚
+#define IPS114_BLK_PIN                  ( D15 )                                 // 液晶背光引脚定义
 
-#define IPS114_DEFAULT_DISPLAY_DIR      (IPS114_CROSSWISE)                  // 默认的显示方向
-#define IPS114_DEFAULT_PENCOLOR         (RGB565_WHITE)                          // 默认的画笔颜色
-#define IPS114_DEFAULT_BGCOLOR          (RGB565_BLACK)                          // 默认的背景颜色
-#define IPS114_DEFAULT_DISPLAY_FONT     (IPS114_6X8_FONT)                      // 默认的字体模式
+#define IPS114_DEFAULT_DISPLAY_DIR      ( IPS114_CROSSWISE      )               // 默认的显示方向
+#define IPS114_DEFAULT_PENCOLOR         ( RGB565_WHITE          )               // 默认的画笔颜色
+#define IPS114_DEFAULT_BGCOLOR          ( RGB565_BLACK          )               // 默认的背景颜色
+#define IPS114_DEFAULT_DISPLAY_FONT     ( IPS114_6X8_FONT       )               // 默认的字体模式
 
 #define IPS114_DC(x)                    ((x) ? (gpio_high(IPS114_DC_PIN)) : (gpio_low(IPS114_DC_PIN)))
 #define IPS114_RST(x)                   ((x) ? (gpio_high(IPS114_RST_PIN)) : (gpio_low(IPS114_RST_PIN)))

@@ -318,7 +318,7 @@ float EasyUIGetBatteryVoltage()
     float batVoltage;
 
     batVoltageAdc = EasyUIGetAdc(BATTERY_ADC_PIN);
-    batVoltage = 28.0 * batVoltageAdc / 4096;
+    batVoltage = 26.4 * batVoltageAdc / 4096;
     return batVoltage;
 }
 
@@ -1184,13 +1184,13 @@ void EasyUI(uint8_t timer)
         page = page->next;
     }
 
-    if (EasyUIGetBatteryVoltage() < 7.2)
-    {
-        EasyUIDrawMsgBox("Battery Low!!");
-        EasyUISendBuffer();
-        errorOccurred = true;
-        return;
-    }
+//    if (EasyUIGetBatteryVoltage() < 7.2)
+//    {
+//        EasyUIDrawMsgBox("Battery Low!!");
+//        EasyUISendBuffer();
+//        errorOccurred = true;
+//        return;
+//    }
 
     // Quit UI to run function
     // If running function and hold the confirm button, quit the function

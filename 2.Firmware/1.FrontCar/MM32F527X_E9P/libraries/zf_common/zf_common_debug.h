@@ -41,12 +41,12 @@
 // 如果修改串口并开启了 debug UART 的中断接收 需要同步更换 debug_interrupr_handler 函数到对应的中断服务函数
 // 如果修改串口并开启了 debug UART 的中断接收 需要同步更换 debug_interrupr_handler 函数到对应的中断服务函数
 // 如果修改串口并开启了 debug UART 的中断接收 需要同步更换 debug_interrupr_handler 函数到对应的中断服务函数
-#define DEBUG_UART_INDEX            (UART_1)                                    // 指定 debug uart 所使用的的串口
-#define DEBUG_UART_BAUDRATE         (115200)                                    // 指定 debug uart 所使用的的串口波特率
-#define DEBUG_UART_TX_PIN           (UART1_TX_B6 )                              // 指定 debug uart 所使用的的串口引脚
-#define DEBUG_UART_RX_PIN           (UART1_RX_B7 )                              // 指定 debug uart 所使用的的串口引脚
+#define DEBUG_UART_INDEX            ( UART_1 )                                  // 指定 debug uart 所使用的的串口
+#define DEBUG_UART_BAUDRATE         ( 115200 )                                  // 指定 debug uart 所使用的的串口波特率
+#define DEBUG_UART_TX_PIN           ( UART1_TX_B6 )                             // 指定 debug uart 所使用的的串口引脚
+#define DEBUG_UART_RX_PIN           ( UART1_RX_B7 )                             // 指定 debug uart 所使用的的串口引脚
 
-#define DEBUG_UART_USE_INTERRUPT    (0)                                         // 是否启用 debug uart 接收中断
+#define DEBUG_UART_USE_INTERRUPT    ( 0 )                                       // 是否启用 debug uart 接收中断
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     断言
@@ -57,7 +57,7 @@
 //              默认情况下会在 Debug UART 输出
 //              但如果使用开源库内屏幕接口初始化了屏幕 则会在屏幕上显示
 //-------------------------------------------------------------------------------------------------------------------
-#define zf_assert(x)                (debug_assert_handler((x), __FILE__, __LINE__))
+#define zf_assert(x)                ( debug_assert_handler((x), __FILE__, __LINE__) )
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     Log 信息输出
@@ -69,27 +69,27 @@
 //              默认情况下会在 Debug UART 输出
 //              但如果使用开源库内屏幕接口初始化了屏幕 则会在屏幕上显示
 //-------------------------------------------------------------------------------------------------------------------
-#define zf_log(x, str)              (debug_log_handler((x), (str), __FILE__, __LINE__))
+#define zf_log(x, str)              ( debug_log_handler((x), (str), __FILE__, __LINE__) )
 
 typedef struct
 {
-    uint16 type_index;
+    uint16 type_index;                                                          // 显示类型 0-串口 1-屏幕
 
-    uint16 display_x_max;
-    uint16 display_y_max;
+    uint16 display_x_max;                                                       // 屏幕显示范围
+    uint16 display_y_max;                                                       // 屏幕显示范围
 
-    uint8 font_x_size;
-    uint8 font_y_size;
+    uint8 font_x_size;                                                          // 屏幕显示字体大小
+    uint8 font_y_size;                                                          // 屏幕显示字体大小
 
-    void (*output_uart)             (const char *str);
-    void (*output_screen)           (uint16 x, uint16 y, const char *str);
-    void (*output_screen_clear)     (void);
+    void (*output_uart)             (const char *str);                          // 串口显示函数指针
+    void (*output_screen)           (uint16 x, uint16 y, const char *str);      // 屏幕字符串显示函数指针
+    void (*output_screen_clear)     (void);                                     // 屏幕清屏函数指针
 }debug_output_struct;
 
 #if DEBUG_UART_USE_INTERRUPT                                                    // 如果启用 debug uart 接收中断
-#define     DEBUG_RING_BUFFER_LEN   (64)                                        // 定义环形缓冲区大小 默认 64byte
-void        debug_interrupr_handler (void);
-uint32      debug_read_ring_buffer  (uint8 *data);
+#define     DEBUG_RING_BUFFER_LEN       ( 64 )                                  // 定义环形缓冲区大小 默认 64byte
+void        debug_interrupr_handler     (void);
+uint32      debug_read_ring_buffer      (uint8 *data);
 #endif
 
 void        debug_assert_enable         (void);

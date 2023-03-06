@@ -24,7 +24,7 @@
 * 文件名称          zf_device_imu660ra
 * 公司名称          成都逐飞科技有限公司
 * 版本信息          查看 libraries/doc 文件夹内 version 文件 版本说明
-* 开发环境          IAR 8.32.4 or MDK 5.37
+* 开发环境          MDK 5.37
 * 适用平台          MM32F527X_E9P
 * 店铺链接          https://seekfree.taobao.com/
 * 
@@ -61,52 +61,52 @@
 
 // IMU660RA_USE_SOFT_IIC定义为0表示使用硬件SPI驱动 定义为1表示使用软件IIC驱动
 // 当更改IMU660RA_USE_SOFT_IIC定义后，需要先编译并下载程序，单片机与模块需要断电重启才能正常通讯
-#define IMU660RA_USE_SOFT_IIC       (0)                                         // 默认使用硬件 SPI 方式驱动
+#define IMU660RA_USE_SOFT_IIC       ( 0 )                                       // 默认使用硬件 SPI 方式驱动
 #if IMU660RA_USE_SOFT_IIC                                                       // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 IIC 驱动====================================================
-#define IMU660RA_SOFT_IIC_DELAY     (10 )                                       // 软件 IIC 的时钟延时周期 数值越小 IIC 通信速率越快
-#define IMU660RA_SCL_PIN            (B13)                                       // 软件 IIC SCL 引脚 连接 IMU660RA 的 SCL 引脚
-#define IMU660RA_SDA_PIN            (B15)                                       // 软件 IIC SDA 引脚 连接 IMU660RA 的 SDA 引脚
+#define IMU660RA_SOFT_IIC_DELAY     ( 10  )                                     // 软件 IIC 的时钟延时周期 数值越小 IIC 通信速率越快
+#define IMU660RA_SCL_PIN            ( B13 )                                     // 软件 IIC SCL 引脚 连接 IMU660RA 的 SCL 引脚
+#define IMU660RA_SDA_PIN            ( B15 )                                     // 软件 IIC SDA 引脚 连接 IMU660RA 的 SDA 引脚
 //====================================================软件 IIC 驱动====================================================
 #else
 
 //====================================================硬件 SPI 驱动====================================================
-#define IMU660RA_SPI_SPEED          (10 * 1000 * 1000)                          // 硬件 SPI 速率
-#define IMU660RA_SPI                (SPI_2)                                     // 硬件 SPI 号
-#define IMU660RA_SPC_PIN            (SPI2_SCK_B13)                              // 硬件 SPI SCK 引脚
-#define IMU660RA_SDI_PIN            (SPI2_MOSI_B15)                             // 硬件 SPI MOSI 引脚
-#define IMU660RA_SDO_PIN            (SPI2_MISO_B14)                             // 硬件 SPI MISO 引脚
+#define IMU660RA_SPI_SPEED          ( 10 * 1000 * 1000 )                        // 硬件 SPI 速率
+#define IMU660RA_SPI                ( SPI_2 )                                   // 硬件 SPI 号
+#define IMU660RA_SPC_PIN            ( SPI2_SCK_B13 )                            // 硬件 SPI SCK 引脚
+#define IMU660RA_SDI_PIN            ( SPI2_MOSI_B15 )                           // 硬件 SPI MOSI 引脚
+#define IMU660RA_SDO_PIN            ( SPI2_MISO_B14 )                           // 硬件 SPI MISO 引脚
 //====================================================硬件 SPI 驱动====================================================
 #endif
-#define IMU660RA_CS_PIN             (B12)                                       // CS 片选引脚
+#define IMU660RA_CS_PIN             ( B12 )                                     // CS 片选引脚
 #define IMU660RA_CS(x)              ((x) ? (gpio_high(IMU660RA_CS_PIN)) : (gpio_low(IMU660RA_CS_PIN)))
 
-#define IMU660RA_TIMEOUT_COUNT      (0x00FF)                                    // IMU660RA 超时计数
+#define IMU660RA_TIMEOUT_COUNT      ( 0x00FF )                                  // IMU660RA 超时计数
 
-#define IMU660RA_DEV_ADDR           (0x69)                                      // SA0接地：0x68 SA0上拉：0x69 模块默认上拉
-#define IMU660RA_SPI_W              (0x00)
-#define IMU660RA_SPI_R              (0x80)
+#define IMU660RA_DEV_ADDR           ( 0x69 )                                    // SA0接地：0x68 SA0上拉：0x69 模块默认上拉
+#define IMU660RA_SPI_W              ( 0x00 )
+#define IMU660RA_SPI_R              ( 0x80 )
 
-#define IMU660RA_CHIP_ID            (0x00)
-#define IMU660RA_PWR_CONF           (0x7C)
-#define IMU660RA_PWR_CTRL           (0x7D)
-#define IMU660RA_INIT_CTRL          (0x59)
-#define IMU660RA_INIT_DATA          (0x5E)
-#define IMU660RA_INT_STA            (0x21)
-#define IMU660RA_ACC_ADDRESS        (0x0C)
-#define IMU660RA_GYRO_ADDRESS       (0x12)
-#define IMU660RA_ACC_CONF           (0x40)
-#define IMU660RA_ACC_RANGE          (0x41)
-#define IMU660RA_GYR_CONF           (0x42)
-#define IMU660RA_GYR_RANGE          (0x43)
+#define IMU660RA_CHIP_ID            ( 0x00 )
+#define IMU660RA_PWR_CONF           ( 0x7C )
+#define IMU660RA_PWR_CTRL           ( 0x7D )
+#define IMU660RA_INIT_CTRL          ( 0x59 )
+#define IMU660RA_INIT_DATA          ( 0x5E )
+#define IMU660RA_INT_STA            ( 0x21 )
+#define IMU660RA_ACC_ADDRESS        ( 0x0C )
+#define IMU660RA_GYRO_ADDRESS       ( 0x12 )
+#define IMU660RA_ACC_CONF           ( 0x40 )
+#define IMU660RA_ACC_RANGE          ( 0x41 )
+#define IMU660RA_GYR_CONF           ( 0x42 )
+#define IMU660RA_GYR_RANGE          ( 0x43 )
 
-#define IMU660RA_ACC_SAMPLE         (0x02)                                      // 加速度计量程
+#define IMU660RA_ACC_SAMPLE         ( 0x02 )                                    // 加速度计量程
 // 设置为:0x00 加速度计量程为:±2g         获取到的加速度计数据 除以 16384   可以转化为带物理单位的数据 单位：g(m/s^2)
 // 设置为:0x01 加速度计量程为:±4g         获取到的加速度计数据 除以 8192    可以转化为带物理单位的数据 单位：g(m/s^2)
 // 设置为:0x02 加速度计量程为:±8g         获取到的加速度计数据 除以 4096    可以转化为带物理单位的数据 单位：g(m/s^2)
 // 设置为:0x03 加速度计量程为:±16g        获取到的加速度计数据 除以 2048    可以转化为带物理单位的数据 单位：g(m/s^2)
 
-#define IMU660RA_GYR_SAMPLE         (0x00)                                      // 陀螺仪量程
+#define IMU660RA_GYR_SAMPLE         ( 0x00 )                                    // 陀螺仪量程
 // 设置为:0x00 陀螺仪量程为:±2000dps     获取到的陀螺仪数据 除以 16.4       可以转化为带物理单位的数据 单位为：°/s
 // 设置为:0x01 陀螺仪量程为:±1000dps     获取到的陀螺仪数据 除以 32.8       可以转化为带物理单位的数据 单位为：°/s
 // 设置为:0x02 陀螺仪量程为:±500 dps     获取到的陀螺仪数据 除以 65.6       可以转化为带物理单位的数据 单位为：°/s

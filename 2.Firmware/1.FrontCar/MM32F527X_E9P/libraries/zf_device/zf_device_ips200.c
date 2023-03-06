@@ -71,18 +71,18 @@
 
 #include "zf_device_ips200.h"
 
-static uint16 ips200_pencolor = IPS200_DEFAULT_PENCOLOR;
-static uint16 ips200_bgcolor = IPS200_DEFAULT_BGCOLOR;
+static uint16                   ips200_pencolor         = IPS200_DEFAULT_PENCOLOR;
+static uint16                   ips200_bgcolor          = IPS200_DEFAULT_BGCOLOR;
 
-static ips200_type_enum         ips200_display_type = IPS200_TYPE_SPI;
-static ips200_dir_enum          ips200_display_dir  = IPS200_DEFAULT_DISPLAY_DIR;
-static ips200_font_size_enum    ips200_display_font = IPS200_DEFAULT_DISPLAY_FONT;
+static ips200_type_enum         ips200_display_type     = IPS200_TYPE_SPI;
+static ips200_dir_enum          ips200_display_dir      = IPS200_DEFAULT_DISPLAY_DIR;
+static ips200_font_size_enum    ips200_display_font     = IPS200_DEFAULT_DISPLAY_FONT;
 
-static uint16 ips200_x_max = 240;
-static uint16 ips200_y_max = 320;
+static uint16                   ips200_x_max            = 240;
+static uint16                   ips200_y_max            = 320;
 
-static gpio_pin_enum ips_rst_pin = IPS200_RST_PIN_SPI;
-static gpio_pin_enum ips_bl_pin = IPS200_BLk_PIN_SPI;
+static gpio_pin_enum            ips_rst_pin             = IPS200_RST_PIN_SPI;
+static gpio_pin_enum            ips_bl_pin              = IPS200_BLk_PIN_SPI;
 
 #if IPS200_USE_SOFT_SPI
 static soft_spi_info_struct                 ips200_spi;
@@ -252,16 +252,19 @@ static void ips200_debug_init (void)
     switch(ips200_display_font)
     {
         case IPS200_6X8_FONT:
+        {
             info.font_x_size = 6;
             info.font_y_size = 8;
-            break;
+        }break;
         case IPS200_8X16_FONT:
+        {
             info.font_x_size = 8;
             info.font_y_size = 16;
-            break;
+        }break;
         case IPS200_16X16_FONT:
+        {
             // 暂不支持
-            break;
+        }break;
     }
     info.output_screen = ips200_show_string;
     info.output_screen_clear = ips200_clear;
@@ -277,8 +280,8 @@ static void ips200_debug_init (void)
 // 备注信息     将屏幕清空成背景颜色
 //-------------------------------------------------------------------------------------------------------------------
 void ips200_clear (void)
-{ 
-    uint16 i, j;
+{
+    uint16 i = 0, j = 0;
     if(IPS200_TYPE_SPI == ips200_display_type)
     {
         IPS200_CS(0);
@@ -305,8 +308,8 @@ void ips200_clear (void)
 // 备注信息     将屏幕填充成指定颜色
 //-------------------------------------------------------------------------------------------------------------------
 void ips200_full (const uint16 color)
-{ 
-    uint16 i, j;
+{
+    uint16 i = 0, j = 0;
     if(IPS200_TYPE_SPI == ips200_display_type)
     {
         IPS200_CS(0);
@@ -335,15 +338,20 @@ void ips200_full (const uint16 color)
 void ips200_set_dir (ips200_dir_enum dir)
 {
     ips200_display_dir = dir;
-    if(dir < 2)
+    switch(ips200_display_dir)
     {
-        ips200_x_max = 240;
-        ips200_y_max = 320;
-    }
-    else
-    {
-        ips200_x_max = 320;
-        ips200_y_max = 240;
+        case IPS200_PORTAIT:
+        case IPS200_PORTAIT_180:
+        {
+            ips200_x_max = 240;
+            ips200_y_max = 320;
+        }break;
+        case IPS200_CROSSWISE:
+        case IPS200_CROSSWISE_180:
+        {
+            ips200_x_max = 320;
+            ips200_y_max = 240;
+        }break;
     }
 }
 
@@ -479,7 +487,7 @@ void ips200_show_char (uint16 x, uint16 y, const char dat)
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
 
-    uint8 i, j;
+    uint8 i = 0, j = 0;
 
     if(IPS200_TYPE_SPI == ips200_display_type)
     {
@@ -488,12 +496,13 @@ void ips200_show_char (uint16 x, uint16 y, const char dat)
     switch(ips200_display_font)
     {
         case IPS200_6X8_FONT:
-            for(i = 0; i < 6; i ++)
+        {
+            for(i = 0; 6 > i; i ++)
             {
                 ips200_set_region(x + i, y, x + i, y + 8);
                 // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
                 uint8 temp_top = ascii_font_6x8[dat - 32][i];
-                for(j = 0; j < 8; j ++)
+                for(j = 0; 8 > j; j ++)
                 {
                     if(temp_top & 0x01)
                     {
@@ -506,15 +515,16 @@ void ips200_show_char (uint16 x, uint16 y, const char dat)
                     temp_top >>= 1;
                 }
             }
-            break;
+        }break;
         case IPS200_8X16_FONT:
-            for(i = 0; i < 8; i ++)
+        {
+            for(i = 0; 8 > i; i ++)
             {
                 ips200_set_region(x + i, y, x + i, y + 15);
                 // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
                 uint8 temp_top = ascii_font_8x16[dat - 32][i];
                 uint8 temp_bottom = ascii_font_8x16[dat - 32][i + 8];
-                for(j = 0; j < 8; j ++)
+                for(j = 0; 8 > j; j ++)
                 {
                     if(temp_top & 0x01)
                     {
@@ -526,7 +536,7 @@ void ips200_show_char (uint16 x, uint16 y, const char dat)
                     }
                     temp_top >>= 1;
                 }
-                for(j = 0; j < 8; j ++)
+                for(j = 0; 8 > j; j ++)
                 {
                     if(temp_bottom & 0x01)
                     {
@@ -539,10 +549,11 @@ void ips200_show_char (uint16 x, uint16 y, const char dat)
                     temp_bottom >>= 1;
                 }
             }
-            break;
+        }break;
         case IPS200_16X16_FONT:
+        {
             // 暂不支持
-            break;
+        }break;
     }
     if(IPS200_TYPE_SPI == ips200_display_type)
     {
@@ -567,22 +578,15 @@ void ips200_show_string (uint16 x, uint16 y, const char dat[])
     zf_assert(y < ips200_y_max);
     
     uint16 j = 0;
-    while(dat[j] != '\0')
+    while('\0' != dat[j])
     {
         switch(ips200_display_font)
         {
-            case IPS200_6X8_FONT:
-                ips200_show_char(x + 6 * j, y, dat[j]);
-                j ++;
-                break;
-            case IPS200_8X16_FONT:
-                ips200_show_char(x + 8 * j, y, dat[j]);
-                j ++;
-                break;
-            case IPS200_16X16_FONT:
-                // 暂不支持
-                break;
+            case IPS200_6X8_FONT:   ips200_show_char(x + 6 * j, y, dat[j]); break;
+            case IPS200_8X16_FONT:  ips200_show_char(x + 8 * j, y, dat[j]); break;
+            case IPS200_16X16_FONT: break;                                      // 暂不支持
         }
+        j ++;
     }
 }
 
@@ -594,7 +598,7 @@ void ips200_show_string (uint16 x, uint16 y, const char dat[])
 // 参数说明     num             需要显示的位数 最高10位  不包含正负号
 // 返回参数     void
 // 使用示例     ips200_show_int(0, 0, x, 3);                    // x 可以为 int32 int16 int8 类型
-// 备注信息     负数会显示一个 ‘-’号   正数显示一个空格
+// 备注信息     负数会显示一个 ‘-’号
 //-------------------------------------------------------------------------------------------------------------------
 void ips200_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
 {
@@ -602,8 +606,8 @@ void ips200_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(num > 0);
-    zf_assert(num <= 10);
+    zf_assert(0 < num);
+    zf_assert(10 >= num);
 
     int32 dat_temp = dat;
     int32 offset = 1;
@@ -612,9 +616,10 @@ void ips200_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
     memset(data_buffer, 0, 12);
     memset(data_buffer, ' ', num+1);
 
-    if(num < 10)
+    // 用来计算余数显示 123 显示 2 位则应该显示 23
+    if(10 > num)
     {
-        for(; num > 0; num --)
+        for(; 0 < num; num --)
         {
             offset *= 10;
         }
@@ -640,8 +645,8 @@ void ips200_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(num > 0);
-    zf_assert(num <= 10);
+    zf_assert(0 < num);
+    zf_assert(10 >= num);
 
     uint32 dat_temp = dat;
     int32 offset = 1;
@@ -649,9 +654,10 @@ void ips200_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
     memset(data_buffer, 0, 12);
     memset(data_buffer, ' ', num);
 
-    if(num < 10)
+    // 用来计算余数显示 123 显示 2 位则应该显示 23
+    if(10 > num)
     {
-        for(; num > 0; num --)
+        for(; 0 < num; num --)
         {
             offset *= 10;
         }
@@ -665,7 +671,7 @@ void ips200_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
 // 函数简介     IPS200 显示浮点数(去除整数部分无效的0)
 // 参数说明     x               坐标x方向的起点 参数范围 [0, ips200_x_max-1]
 // 参数说明     y               坐标y方向的起点 参数范围 [0, ips200_y_max-1]
-// 参数说明     dat             需要显示的变量，数据类型float或double
+// 参数说明     dat             需要显示的变量 数据类型 float
 // 参数说明     num             整数位显示长度   最高8位  
 // 参数说明     pointnum        小数位显示长度   最高6位
 // 返回参数     void
@@ -673,7 +679,7 @@ void ips200_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
 // 备注信息     特别注意当发现小数部分显示的值与你写入的值不一样的时候，
 //              可能是由于浮点数精度丢失问题导致的，这并不是显示函数的问题，
 //              有关问题的详情，请自行百度学习   浮点数精度丢失问题。
-//              负数会显示一个 ‘-’号   正数显示一个空格
+//              负数会显示一个 ‘-’号
 //-------------------------------------------------------------------------------------------------------------------
 void ips200_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 pointnum)
 {
@@ -681,10 +687,10 @@ void ips200_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 po
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(num > 0);
-    zf_assert(num <= 8);
-    zf_assert(pointnum > 0);
-    zf_assert(pointnum <= 6);
+    zf_assert(0 < num);
+    zf_assert(8 >= num);
+    zf_assert(0 < pointnum);
+    zf_assert(6 >= pointnum);
 
     float dat_temp = dat;
     float offset = 1.0;
@@ -692,14 +698,12 @@ void ips200_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 po
     memset(data_buffer, 0, 17);
     memset(data_buffer, ' ', num+pointnum+2);
 
-    if(num < 10)
+    // 用来计算余数显示 123 显示 2 位则应该显示 23
+    for(; 0 < num; num --)
     {
-        for(; num > 0; num --)
-        {
-            offset *= 10;
-        }
-        dat_temp = dat_temp - ((int)dat_temp / (int)offset) * offset;
+        offset *= 10;
     }
+    dat_temp = dat_temp - ((int)dat_temp / (int)offset) * offset;
     func_float_to_str(data_buffer, dat_temp, pointnum);
     ips200_show_string(x, y, data_buffer);
 }
@@ -715,7 +719,10 @@ void ips200_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 po
 // 参数说明     dis_height      图像显示高度 参数范围 [0, ips200_y_max]
 // 返回参数     void
 // 使用示例     ips200_show_binary_image(0, 0, ov7725_image_binary[0], OV7725_W, OV7725_H, OV7725_W, OV7725_H);
-// 备注信息     
+// 备注信息     用于显示小钻风的未解压的压缩二值化图像
+//              这个函数不可以用来直接显示总钻风的未压缩的二值化图像
+//              这个函数不可以用来直接显示总钻风的未压缩的二值化图像
+//              这个函数不可以用来直接显示总钻风的未压缩的二值化图像
 //-------------------------------------------------------------------------------------------------------------------
 void ips200_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height)
 {
@@ -723,7 +730,7 @@ void ips200_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 wi
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(image != NULL);
+    zf_assert(NULL != image);
 
     uint32 i = 0, j = 0;
     uint8 temp = 0;
@@ -770,7 +777,10 @@ void ips200_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 wi
 // 参数说明     threshold       二值化显示阈值 0-不开启二值化
 // 返回参数     void
 // 使用示例     ips200_show_gray_image(0, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H, MT9V03X_W, MT9V03X_H, 0);
-// 备注信息     最后一个参数可以选填一个二值化阈值 把图像显示为二值化图像
+// 备注信息     用于显示总钻风的图像
+//              如果要显示二值化图像 直接修改最后一个参数为需要的二值化阈值即可
+//              如果要显示二值化图像 直接修改最后一个参数为需要的二值化阈值即可
+//              如果要显示二值化图像 直接修改最后一个参数为需要的二值化阈值即可
 //-------------------------------------------------------------------------------------------------------------------
 void ips200_show_gray_image (uint16 x, uint16 y, const uint8 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height, uint8 threshold)
 {
@@ -778,7 +788,7 @@ void ips200_show_gray_image (uint16 x, uint16 y, const uint8 *image, uint16 widt
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(image != NULL);
+    zf_assert(NULL != image);
 
     uint32 i = 0, j = 0;
     uint16 color = 0,temp = 0;
@@ -832,7 +842,10 @@ void ips200_show_gray_image (uint16 x, uint16 y, const uint8 *image, uint16 widt
 // 参数说明     color_mode      色彩模式 0-低位在前 1-高位在前
 // 返回参数     void
 // 使用示例     ips200_show_rgb565_image(0, 0, scc8660_image[0], SCC8660_W, SCC8660_H, SCC8660_W, SCC8660_H, 1);
-// 备注信息     
+// 备注信息     用于显示凌瞳的 RGB565 的图像
+//              如果要显示低位在前的其他 RGB565 图像 修改最后一个参数即可
+//              如果要显示低位在前的其他 RGB565 图像 修改最后一个参数即可
+//              如果要显示低位在前的其他 RGB565 图像 修改最后一个参数即可
 //-------------------------------------------------------------------------------------------------------------------
 void ips200_show_rgb565_image (uint16 x, uint16 y, const uint16 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height, uint8 color_mode)
 {
@@ -840,7 +853,7 @@ void ips200_show_rgb565_image (uint16 x, uint16 y, const uint16 *image, uint16 w
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(image != NULL);
+    zf_assert(NULL != image);
 
     uint32 i = 0, j = 0;
     uint16 color = 0;
@@ -891,7 +904,7 @@ void ips200_show_wave (uint16 x, uint16 y, const uint16 *wave, uint16 width, uin
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(wave != NULL);
+    zf_assert(NULL != wave);
 
     uint32 i = 0, j = 0;
     uint32 width_index = 0, value_max_index = 0;
@@ -939,11 +952,11 @@ void ips200_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_b
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips200_x_max);
     zf_assert(y < ips200_y_max);
-    zf_assert(chinese_buffer != NULL);
+    zf_assert(NULL != chinese_buffer);
 
-    int i, j, k; 
-    uint8 temp, temp1, temp2;
-    const uint8 *p_data;
+    int i = 0, j = 0, k = 0; 
+    uint8 temp = 0, temp1 = 0, temp2 = 0;
+    const uint8 *p_data = chinese_buffer;
     
     temp2 = size / 8;
     
@@ -961,7 +974,7 @@ void ips200_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_b
         {
             for(k = 0; k < temp2; k ++)
             {
-                for(j = 8; j > 0; j --)
+                for(j = 8; 0 < j; j --)
                 {
                     temp = (*p_data >> (j - 1)) & 0x01;
                     if(temp)
@@ -1052,23 +1065,14 @@ void ips200_init (ips200_type_enum type_select)
     }
     ips200_write_command(0x11);
     system_delay_ms(120);
-    
-    ips200_write_command(0x36);    
-    if(ips200_display_dir == 0)
+
+    ips200_write_command(0x36);
+    switch(ips200_display_dir)
     {
-        ips200_write_8bit_data(0x00);
-    }
-    else if(ips200_display_dir == 1)
-    {
-        ips200_write_8bit_data(0xC0);
-    }
-    else if(ips200_display_dir == 2)
-    {
-        ips200_write_8bit_data(0x70);
-    }
-    else
-    {
-        ips200_write_8bit_data(0xA0);
+        case IPS200_PORTAIT:        ips200_write_8bit_data(0x00);   break;
+        case IPS200_PORTAIT_180:    ips200_write_8bit_data(0xC0);   break;
+        case IPS200_CROSSWISE:      ips200_write_8bit_data(0x70);   break;
+        case IPS200_CROSSWISE_180:  ips200_write_8bit_data(0xA0);   break;
     }
 
     ips200_write_command(0x3A);            

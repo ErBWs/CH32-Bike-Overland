@@ -81,7 +81,7 @@ static uint8 soft_spi_8bit_data_handler (soft_spi_info_struct *soft_spi_obj, con
 
     if(0 == soft_spi_obj->config.mode % 2)                                      // CPHA = 0 第一个边沿采样
     {
-        for(temp = 8; 0 < temp; temp --)
+        for(temp = 8; temp > 0; temp --)
         {
             if(0x80 & write_data)
             {

@@ -106,7 +106,7 @@ static soft_iic_info_struct icm20602_iic_struct;
 // 使用示例     icm20602_write_register(ICM20602_PWR_MGMT_1, 0x80);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static void icm20602_write_register(uint8 reg, uint8 data)
+static void icm20602_write_register (uint8 reg, uint8 data)
 {
     ICM20602_CS(0);
     spi_write_8bit_register(ICM20602_SPI, reg | ICM20602_SPI_W, data);
@@ -120,7 +120,7 @@ static void icm20602_write_register(uint8 reg, uint8 data)
 // 使用示例     icm20602_read_register(ICM20602_WHO_AM_I);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static uint8 icm20602_read_register(uint8 reg)
+static uint8 icm20602_read_register (uint8 reg)
 {
     uint8 data = 0;
     ICM20602_CS(0);
@@ -138,7 +138,7 @@ static uint8 icm20602_read_register(uint8 reg)
 // 使用示例     icm20602_read_registers(ICM20602_ACCEL_XOUT_H, dat, 6);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static void icm20602_read_registers(uint8 reg, uint8 *data, uint32 len)
+static void icm20602_read_registers (uint8 reg, uint8 *data, uint32 len)
 {
     ICM20602_CS(0);
     spi_read_8bit_registers(ICM20602_SPI, reg | ICM20602_SPI_R, data, len);
@@ -160,7 +160,7 @@ static uint8 icm20602_self_check (void)
 
     while(0x12 != dat)                                                          // 判断 ID 是否正确
     {
-        if(timeout_count ++ > ICM20602_TIMEOUT_COUNT)
+        if(ICM20602_TIMEOUT_COUNT < timeout_count ++)
         {
             return_state =  1;
             break;
@@ -286,7 +286,7 @@ uint8 icm20602_init (void)
         do
         {                                                                       // 等待复位成功
             val = icm20602_read_register(ICM20602_PWR_MGMT_1);
-            if(timeout_count ++ > ICM20602_TIMEOUT_COUNT)
+            if(ICM20602_TIMEOUT_COUNT < timeout_count ++)
             {
                 // 如果程序在输出了断言信息 并且提示出错位置在这里
                 // 那么就是 ICM20602 自检出错并超时退出了

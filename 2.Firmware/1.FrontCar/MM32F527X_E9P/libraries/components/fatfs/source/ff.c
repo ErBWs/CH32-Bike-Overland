@@ -1151,7 +1151,7 @@ static DWORD get_fat (		/* 0xFFFFFFFF:Disk error, 1:Internal error, 2..0x7FFFFFF
 			wc = fs->win[bc++ % SS(fs)];		/* Get 1st byte of the entry */
 			if (move_window(fs, fs->fatbase + (bc / SS(fs))) != FR_OK) break;
 			wc |= fs->win[bc % SS(fs)] << 8;	/* Merge 2nd byte of the entry */
-			val = (clst & 1) ? (wc >> 4) : (wc & 0xFFF);	/* Adjust bit posForCal */
+			val = (clst & 1) ? (wc >> 4) : (wc & 0xFFF);	/* Adjust bit position */
 			break;
 
 		case FS_FAT16 :
@@ -3058,7 +3058,7 @@ static FRESULT follow_path (	/* FR_OK(0): successful, !=0: error code */
 				}
 				break;
 			}
-			if (ns & NS_LAST) break;		/* Last segment matched. Event completed. */
+			if (ns & NS_LAST) break;		/* Last segment matched. Function completed. */
 			/* Get into the sub-directory */
 			if (!(dp->obj.attr & AM_DIR)) {	/* It is not a sub-directory and cannot follow */
 				res = FR_NO_PATH; break;

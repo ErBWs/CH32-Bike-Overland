@@ -54,30 +54,30 @@
 
 #include "zf_common_typedef.h"
 
-#define K24C02_USE_SOFT_IIC        (0)                                          // 默认使用软件 IIC 方式驱动 建议使用软件 IIC 方式
+#define K24C02_USE_SOFT_IIC         ( 0 )                                       // 默认使用软件 IIC 方式驱动 建议使用软件 IIC 方式
 #if K24C02_USE_SOFT_IIC                                                         // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 IIC 驱动====================================================
-#define K24C02_SOFT_IIC_DELAY      (10 )                                        // 软件 IIC 的时钟延时周期 数值越小 IIC 通信速率越快
-#define K24C02_SCL_PIN             (C6 )                                        // 软件 IIC SCL 引脚 连接 K24C02 的 SCL 引脚
-#define K24C02_SDA_PIN             (C7 )                                        // 软件 IIC SDA 引脚 连接 K24C02 的 SDA 引脚
+#define K24C02_SOFT_IIC_DELAY       ( 10 )                                      // 软件 IIC 的时钟延时周期 数值越小 IIC 通信速率越快
+#define K24C02_SCL_PIN              ( C6 )                                      // 软件 IIC SCL 引脚 连接 K24C02 的 SCL 引脚
+#define K24C02_SDA_PIN              ( C7 )                                      // 软件 IIC SDA 引脚 连接 K24C02 的 SDA 引脚
 //====================================================软件 IIC 驱动====================================================
 #else
 //====================================================硬件 IIC 驱动====================================================
-#define K24C02_IIC_SPEED           (400000     )                                // 硬件 IIC 通信速率 最高 400KHz 不建议低于 40KHz
-#define K24C02_IIC                 (IIC_1      )                                // 硬件 IIC
-#define K24C02_SCL_PIN             (IIC1_SCL_C6)                                // 硬件 IIC SCL 引脚 连接 K24C02 的 SCL 引脚
-#define K24C02_SDA_PIN             (IIC1_SDA_C7)                                // 硬件 IIC SDA 引脚 连接 K24C02 的 SDA 引脚
+#define K24C02_IIC_SPEED            ( 400 * 1000  )                             // 硬件 IIC 通信速率 最高 400KHz 不建议低于 40KHz
+#define K24C02_IIC                  ( IIC_1       )                             // 硬件 IIC
+#define K24C02_SCL_PIN              ( IIC1_SCL_C6 )                             // 硬件 IIC SCL 引脚 连接 K24C02 的 SCL 引脚
+#define K24C02_SDA_PIN              ( IIC1_SDA_C7 )                             // 硬件 IIC SDA 引脚 连接 K24C02 的 SDA 引脚
 //====================================================硬件 IIC 驱动====================================================
 #endif
 
-#define K24C02_TIMEOUT_COUNT       (0x00FF)                                     // K24C02 超时计数
+#define K24C02_TIMEOUT_COUNT        ( 0x00FF )                                  // K24C02 超时计数
 
 //================================================定义 K24C02 内部地址================================================
-#define K24C02_DEV_ADDR            (0xA0>>1)                                    // IIC写入时的地址字节数据 +1为读取
+#define K24C02_DEV_ADDR             ( 0xA0 >> 1 )                               // IIC写入时的地址字节数据 +1为读取
 //================================================定义 K24C02 内部地址================================================
 
-#define K24C02_SIZE                 (256)                                       // 256 byte
-#define K24C02_PAGE_SIZE            (8)                                         // 8 byte
+#define K24C02_SIZE                 ( 256 )                                     // 256 byte
+#define K24C02_PAGE_SIZE            ( 8 )                                       // 8 byte
 #define K24C02_DATA_BUFFER_SIZE     (K24C02_PAGE_SIZE / sizeof(k24c02_data_union))// 自动计算每个页能够存下多少个数据
 
 typedef enum                                                                    // 枚举 K24C02 页索引 此枚举定义不允许用户修改

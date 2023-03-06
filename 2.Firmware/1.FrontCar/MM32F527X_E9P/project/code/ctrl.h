@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "pid.h"
+#include "vofa.h"
 #include "zf_driver_flash.h"
 #include "zf_driver_gpio.h"
 #include "zf_driver_pwm.h"
@@ -41,7 +42,7 @@
 #define SERVO_MID           GetServoDuty(0)                     // Middle duty of servo motor
 #define SERVO_DUTY_MAX      (GetServoDuty(14) - SERVO_MID)      // Maximum turning angle of servo motor
 #define SERVO_PIN           TIM2_PWM_CH1_A15                    // Servo pwm output pin
-#define MOTOR_FREQ          10000                               // Motor frequency
+#define MOTOR_FREQ          13000                               // Motor frequency
 #define MOTOR_L_PIN         TIM2_PWM_CH2_A1                     // Left motor pwm output pin
 #define MOTOR_L_DIR_PIN     A0                                  // Left motor direction output pin
 #define MOTOR_R_PIN         TIM2_PWM_CH4_A3                     // Right motor pwm output pin

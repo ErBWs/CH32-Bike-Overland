@@ -50,11 +50,11 @@
 
 #include "zf_common_typedef.h"
 
-#define WIRELESS_UART_INDEX         (UART_6)                                    // 无线串口对应使用的串口号
-#define WIRELESS_UART_BUAD_RATE     (115200)                                    // 无线串口对应使用的串口波特率
-#define WIRELESS_UART_TX_PIN        (UART6_RX_C7)                               // 无线串口对应模块的 TX 要接到单片机的 RX
-#define WIRELESS_UART_RX_PIN        (UART6_TX_C6)                               // 无线串口对应模块的 RX 要接到单片机的 TX
-#define WIRELESS_UART_RTS_PIN       (C5 )                                       // 无线串口对应模块的 RTS 引脚
+#define WIRELESS_UART_INDEX         ( UART_6      )                             // 无线串口对应使用的串口号
+#define WIRELESS_UART_BUAD_RATE     ( 115200      )                             // 无线串口对应使用的串口波特率
+#define WIRELESS_UART_TX_PIN        ( UART6_RX_C7 )                             // 无线串口对应模块的 TX 要接到单片机的 RX
+#define WIRELESS_UART_RX_PIN        ( UART6_TX_C6 )                             // 无线串口对应模块的 RX 要接到单片机的 TX
+#define WIRELESS_UART_RTS_PIN       ( C5          )                             // 无线串口对应模块的 RTS 引脚
 
 // ------------------------------------ 自动波特率 ------------------------------------
 // 注意事项1：无线转串口模块版本是V2.0以下的是无法开启自动波特率的。
@@ -68,11 +68,21 @@
 // 0：关闭自动波特率  
 // 1：开启自动波特率 自动波特率的作用是修改 WIRELESS_UART_BAUD 之后不需要对模块进行配置 模块会自动设置为对应的波特率
 
-#define WIRELESS_UART_AUTO_BAUD_RATE    (0)
+#define WIRELESS_UART_AUTO_BAUD_RATE    ( 0 )
+
+#if (1 == WIRELESS_UART_AUTO_BAUD_RATE)
+typedef enum
+{
+    WIRELESS_UART_AUTO_BAUD_RATE_SUCCESS,
+    WIRELESS_UART_AUTO_BAUD_RATE_INIT,
+    WIRELESS_UART_AUTO_BAUD_RATE_START,
+    WIRELESS_UART_AUTO_BAUD_RATE_GET_ACK,
+}wireless_uart_auto_baudrate_state_enum;
+#endif
 // ------------------------------------ 自动波特率 ------------------------------------
 
-#define WIRELESS_UART_BUFFER_SIZE       (64  )
-#define WIRELESS_UART_TIMEOUT_COUNT     (0x64)
+#define WIRELESS_UART_BUFFER_SIZE       ( 64   )
+#define WIRELESS_UART_TIMEOUT_COUNT     ( 0x64 )
 
 uint32      wireless_uart_send_byte         (const uint8 data);
 uint32      wireless_uart_send_buff         (const uint8 *buff, uint32 len);

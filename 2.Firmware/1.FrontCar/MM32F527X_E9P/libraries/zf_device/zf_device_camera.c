@@ -61,8 +61,8 @@ uint8 camera_send_image_frame_header[4] = {0x00, 0xFF, 0x01, 0x01};
 //-------------------------------------------------------------------------------------------------------------------
 void camera_binary_image_decompression (const uint8 *data1, uint8 *data2, uint32 image_size)
 {
-    zf_assert(data1 != NULL);
-    zf_assert(data2 != NULL);
+    zf_assert(NULL != data1);
+    zf_assert(NULL != data2);
     uint8  i = 8;
 
     while(image_size --)
@@ -87,7 +87,7 @@ void camera_binary_image_decompression (const uint8 *data1, uint8 *data2, uint32
 //-------------------------------------------------------------------------------------------------------------------
 void camera_send_image (uart_index_enum uartn, const uint8 *image_addr, uint32 image_size)
 {
-    zf_assert(image_addr != NULL);
+    zf_assert(NULL != image_addr);
     // 发送命令
     uart_write_buffer(uartn, camera_send_image_frame_header, 4);
 
@@ -124,6 +124,7 @@ void camera_init (const uint32 image_size, uint32 data_addr, uint32 buffer_addr)
     {
         case CAMERA_BIN_IIC:                                                    // IIC 小钻风
         case CAMERA_BIN_UART:                                                   // UART 小钻风
+        {
             interrupt_set_priority(OV7725_VSYNC_IRQN, 0x01);                    // 设置 VSY 场中断优先级
             interrupt_set_priority(OV7725_DMA_IRQN, 0x02);                      // 设置 DMA 完成中断优先级
 
@@ -134,8 +135,9 @@ void camera_init (const uint32 image_size, uint32 data_addr, uint32 buffer_addr)
                 buffer_addr);                                                   // 指定数据存放首地址
             timer_etr_init(OV7725_PCLK_PIN, TIM_ETR_FALLING);                   // 初始化对应的触发定时器
             exti_init(OV7725_VSYNC_PIN, EXTI_TRIGGER_FALLING);                  // 初始化场中断对应的外部中断
-            break;
+        }break;
         case CAMERA_GRAYSCALE:                                                  // 总钻风
+        {
             interrupt_set_priority(MT9V03X_VSYNC_IRQN, 0x01);                   // 设置 VSY 场中断优先级
             interrupt_set_priority(MT9V03X_DMA_IRQN, 0x02);                     // 设置 DMA 完成中断优先级
 
@@ -153,8 +155,9 @@ void camera_init (const uint32 image_size, uint32 data_addr, uint32 buffer_addr)
                 timer_etr_init(MT9V03X_PCLK_PIN, TIM_ETR_RISING);               // 初始化对应的触发定时器
             }
             exti_init(MT9V03X_VSYNC_PIN, EXTI_TRIGGER_FALLING);                 // 初始化场中断对应的外部中断
-            break;
+        }break;
         case CAMERA_COLOR:                                                      // 凌瞳
+        {
             interrupt_set_priority(SCC8660_VSYNC_IRQN, 0x01);                   // 设置 VSY 场中断优先级
             interrupt_set_priority(SCC8660_DMA_IRQN, 0x02);                     // 设置 DMA 完成中断优先级
 
@@ -165,8 +168,9 @@ void camera_init (const uint32 image_size, uint32 data_addr, uint32 buffer_addr)
                 buffer_addr);                                                   // 指定数据存放首地址
             timer_etr_init(SCC8660_PCLK_PIN, TIM_ETR_FALLING);                  // 初始化对应的触发定时器
             exti_init(SCC8660_VSYNC_PIN, EXTI_TRIGGER_FALLING);                 // 初始化场中断对应的外部中断
-            break;
+        }break;
         default:
-            break;
+        {
+        }break;
     }
 }

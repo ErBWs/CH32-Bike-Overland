@@ -58,7 +58,7 @@
 static  fifo_struct     bluetooth_ch9141_fifo;
 static  uint8           bluetooth_ch9141_buffer[BLUETOOTH_CH9141_BUFFER_SIZE];  // 数据存放数组
 
-static  uint8           bluetooth_ch9141_data;
+static  uint8           bluetooth_ch9141_data = 0;
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     蓝牙转串口模块 发送数据
@@ -93,7 +93,7 @@ uint32 bluetooth_ch9141_send_byte (const uint8 data)
 //-------------------------------------------------------------------------------------------------------------------
 uint32 bluetooth_ch9141_send_buff (const uint8 *buff, uint32 len)
 {
-    zf_assert(buff != NULL);
+    zf_assert(NULL != buff);
     uint16 time_count = 0;
     while(0 != len)
     {
@@ -134,7 +134,7 @@ uint32 bluetooth_ch9141_send_buff (const uint8 *buff, uint32 len)
 //-------------------------------------------------------------------------------------------------------------------
 uint32 bluetooth_ch9141_send_string (const char *str)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     uint16 time_count = 0;
     uint32 len = strlen(str);
     while(0 != len)
@@ -177,7 +177,7 @@ uint32 bluetooth_ch9141_send_string (const char *str)
 //-------------------------------------------------------------------------------------------------------------------
 void bluetooth_ch9141_send_image (const uint8 *image_addr, uint32 image_size)
 {
-    zf_assert(image_addr != NULL);
+    zf_assert(NULL != image_addr);
 
     extern uint8 camera_send_image_frame_header[4];
     bluetooth_ch9141_send_buff(camera_send_image_frame_header, 4);
@@ -194,7 +194,7 @@ void bluetooth_ch9141_send_image (const uint8 *image_addr, uint32 image_size)
 //-------------------------------------------------------------------------------------------------------------------
 uint32 bluetooth_ch9141_read_buff (uint8 *buff, uint32 len)
 {
-    zf_assert(buff != NULL);
+    zf_assert(NULL != buff);
     uint32 data_len = len;
     fifo_read_buffer(&bluetooth_ch9141_fifo, buff, &data_len, FIFO_READ_AND_CLEAN);
     return data_len;

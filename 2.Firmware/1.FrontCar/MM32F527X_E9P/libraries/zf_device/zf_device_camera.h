@@ -39,7 +39,7 @@
 #include "zf_common_fifo.h"
 #include "zf_driver_uart.h"
 
-#define CAMERA_RECEIVER_BUFFER_SIZE         (8)
+#define CAMERA_RECEIVER_BUFFER_SIZE         ( 8 )
 extern fifo_struct camera_receiver_fifo;
 extern uint8 camera_receiver_buffer[CAMERA_RECEIVER_BUFFER_SIZE];
 

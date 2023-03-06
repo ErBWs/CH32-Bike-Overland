@@ -50,20 +50,20 @@
 
 #include "zf_common_typedef.h"
 
-#define WIFI_UART_INDEX         (UART_6)                                        // WIFI 模块 所使用到的串口
-#define WIFI_UART_RX_PIN        (UART6_TX_C6)                                   // 连接 WIFI 模块 RX
-#define WIFI_UART_TX_PIN        (UART6_RX_C7)                                   // 连接 WIFI 模块 TX
-#define WIFI_UART_BAUD          (115200)                                        // 模块工作波特率
+#define WIFI_UART_INDEX         ( UART_6      )                                 // WIFI 模块 所使用到的串口
+#define WIFI_UART_RX_PIN        ( UART6_TX_C6 )                                 // 连接 WIFI 模块 RX
+#define WIFI_UART_TX_PIN        ( UART6_RX_C7 )                                 // 连接 WIFI 模块 TX
+#define WIFI_UART_BAUD          ( 115200      )                                 // 模块工作波特率
   
-#define WIFI_UART_RTS_PIN       (C5 )                                           // 定义流控位引脚  指示当前模块是否可以接受数据  0-可以继续接收  1-不可以继续接收
-#define WIFI_UART_HARDWARE_RST  (1)                                             // 定义是否使用硬件复位引脚 0-使用软件复位 1-使用硬件 RST
+#define WIFI_UART_RTS_PIN       ( C5 )                                          // 定义流控位引脚  指示当前模块是否可以接受数据  0-可以继续接收  1-不可以继续接收
+#define WIFI_UART_HARDWARE_RST  ( 1 )                                           // 定义是否使用硬件复位引脚 0-使用软件复位 1-使用硬件 RST
 #if WIFI_UART_HARDWARE_RST                                                      // 建议使用硬件复位引脚 否则容易出现单片机复位后无法正常初始化模块
-#define WIFI_UART_RST_PIN       (C8)                                            // 定义硬件复位引脚
+#define WIFI_UART_RST_PIN       ( C8 )                                          // 定义硬件复位引脚
 #endif
 
-#define WIFI_UART_BUFFER_SIZE   (256)                                           // 定义接收缓存区大小
+#define WIFI_UART_BUFFER_SIZE   ( 256 )                                         // 定义接收缓存区大小
 
-#define WIFI_UART_AUTO_CONNECT  (0)                                             // 定义是否初始化时建立TCP或者UDP连接    0-不连接  1-自动连接TCP服务器  2-自动连接UDP服务器  3：自动建立TCP服务器
+#define WIFI_UART_AUTO_CONNECT  ( 0 )                                           // 定义是否初始化时建立TCP或者UDP连接    0-不连接  1-自动连接TCP服务器  2-自动连接UDP服务器  3：自动建立TCP服务器
 
 #if     (WIFI_UART_AUTO_CONNECT > 3)
 #error "WIFI_UART_AUTO_CONNECT 的值只能为 [0,1,2,3]"

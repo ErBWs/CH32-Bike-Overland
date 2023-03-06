@@ -55,41 +55,41 @@
 #include "zf_common_typedef.h"
 
 // 如果使用的是双排排针的两寸屏幕 并口驱动控制引脚 可以修改
-#define IPS350_RST_PIN_PARALLEL8        (G11)
-#define IPS350_BL_PIN_PARALLEL8         (E3 )
+#define IPS350_RST_PIN_PARALLEL8        ( G11 )
+#define IPS350_BL_PIN_PARALLEL8         ( E3  )
 
 // 如果使用的是双排排针的两寸屏幕 并口驱动控制引脚 FSMC固定引脚 不可更改
-#define IPS350_RD_PIN_PARALLEL8         (D4 )
-#define IPS350_WR_PIN_PARALLEL8         (D5 )
-#define IPS350_RS_PIN_PARALLEL8         (E2 ) 
-#define IPS350_CS_PIN_PARALLEL8         (G12)
+#define IPS350_RD_PIN_PARALLEL8         ( D4  )
+#define IPS350_WR_PIN_PARALLEL8         ( D5  )
+#define IPS350_RS_PIN_PARALLEL8         ( E2  ) 
+#define IPS350_CS_PIN_PARALLEL8         ( G12 )
 
 // 如果使用的是双排排针的两寸屏幕 并口驱动数据引脚 FSMC固定引脚 不可更改
-#define IPS350_D0_PIN_PARALLEL8         (D14)
-#define IPS350_D1_PIN_PARALLEL8         (D15)
-#define IPS350_D2_PIN_PARALLEL8         (D0 )
-#define IPS350_D3_PIN_PARALLEL8         (D1 )
-#define IPS350_D4_PIN_PARALLEL8         (E7 )
-#define IPS350_D5_PIN_PARALLEL8         (E8 )
-#define IPS350_D6_PIN_PARALLEL8         (E9 )
-#define IPS350_D7_PIN_PARALLEL8         (E10)
-#define IPS350_D8_PIN_PARALLEL8         (E11)
-#define IPS350_D9_PIN_PARALLEL8         (E12)
-#define IPS350_D10_PIN_PARALLEL8        (E13)
-#define IPS350_D11_PIN_PARALLEL8        (E14)
-#define IPS350_D12_PIN_PARALLEL8        (E15)
-#define IPS350_D13_PIN_PARALLEL8        (D8 )
-#define IPS350_D14_PIN_PARALLEL8        (D9 )
-#define IPS350_D15_PIN_PARALLEL8        (D10)
+#define IPS350_D0_PIN_PARALLEL8         ( D14 )
+#define IPS350_D1_PIN_PARALLEL8         ( D15 )
+#define IPS350_D2_PIN_PARALLEL8         ( D0  )
+#define IPS350_D3_PIN_PARALLEL8         ( D1  )
+#define IPS350_D4_PIN_PARALLEL8         ( E7  )
+#define IPS350_D5_PIN_PARALLEL8         ( E8  )
+#define IPS350_D6_PIN_PARALLEL8         ( E9  )
+#define IPS350_D7_PIN_PARALLEL8         ( E10 )
+#define IPS350_D8_PIN_PARALLEL8         ( E11 )
+#define IPS350_D9_PIN_PARALLEL8         ( E12 )
+#define IPS350_D10_PIN_PARALLEL8        ( E13 )
+#define IPS350_D11_PIN_PARALLEL8        ( E14 )
+#define IPS350_D12_PIN_PARALLEL8        ( E15 )
+#define IPS350_D13_PIN_PARALLEL8        ( D8  )
+#define IPS350_D14_PIN_PARALLEL8        ( D9  )
+#define IPS350_D15_PIN_PARALLEL8        ( D10 )
 
-#define IPS350_DEFAULT_DISPLAY_DIR      (IPS350_PORTAIT)                        // 默认的显示方向
-#define IPS350_DEFAULT_PENCOLOR         (RGB565_RED    )                        // 默认的画笔颜色
-#define IPS350_DEFAULT_BGCOLOR          (RGB565_WHITE  )                        // 默认的背景颜色
-#define IPS350_DEFAULT_DISPLAY_FONT     (IPS350_8X16_FONT)                      // 默认的字体模式
+#define IPS350_DEFAULT_DISPLAY_DIR      ( IPS350_PORTAIT   )                    // 默认的显示方向
+#define IPS350_DEFAULT_PENCOLOR         ( RGB565_RED       )                    // 默认的画笔颜色
+#define IPS350_DEFAULT_BGCOLOR          ( RGB565_WHITE     )                    // 默认的背景颜色
+#define IPS350_DEFAULT_DISPLAY_FONT     ( IPS350_8X16_FONT )                    // 默认的字体模式
 
 // 数据对应地址 不可更改
-#define IPS350_DATA_ADD                 (0x6D000000)
-#define IPS350_CMD_ADD                  (0x6C000000)
+#define IPS350_DATA_ADD                 ( 0x6D000000 )
+#define IPS350_CMD_ADD                  ( 0x6C000000 )
 
 // 控制语句
 #define IPS350_RD(x)        ((x) ? (gpio_high(IPS350_RD_PIN_PARALLEL8)) : (gpio_low(IPS350_RD_PIN_PARALLEL8)))

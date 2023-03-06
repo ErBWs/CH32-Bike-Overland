@@ -42,13 +42,13 @@
   CMSIS violates the following MISRA-C:2004 rules:
 
    \li Required Rule 8.5, object/function definition in header file.<br>
-     Event definitions in header files are used to allow 'inlining'.
+     Function definitions in header files are used to allow 'inlining'.
 
    \li Required Rule 18.4, declaration of union type or object of union type: '{...}'.<br>
      Unions are used for effective representation of core registers.
 
-   \li Advisory Rule 19.7, Event-like macro defined.<br>
-     Event-like macros are used to allow more efficient code.
+   \li Advisory Rule 19.7, Function-like macro defined.<br>
+     Function-like macros are used to allow more efficient code.
  */
 
 
@@ -547,7 +547,7 @@ typedef struct
 
 /*******************************************************************************
  *                Hardware Abstraction Layer
-  Core Event Interface contains:
+  Core Function Interface contains:
   - Core NVIC Functions
   - Core SysTick Functions
   - Core Register Access Functions
@@ -877,7 +877,7 @@ __NO_RETURN __STATIC_INLINE void __NVIC_SystemReset(void)
 /**
   \ingroup  CMSIS_Core_FunctionInterface
   \defgroup CMSIS_Core_FpuFunctions FPU Functions
-  \brief    Event that provides FPU type.
+  \brief    Function that provides FPU type.
   @{
  */
 
@@ -914,8 +914,8 @@ __STATIC_INLINE uint32_t SCB_GetFPUType(void)
   \details Initializes the System Timer and its interrupt, and starts the System Tick Timer.
            Counter is in free running mode to generate periodic interrupts.
   \param [in]  ticks  Number of ticks between two interrupts.
-  \return          0  Event succeeded.
-  \return          1  Event failed.
+  \return          0  Function succeeded.
+  \return          1  Function failed.
   \note    When the variable <b>__Vendor_SysTickConfig</b> is set to 1, then the
            function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
            must contain a vendor-specific implementation of this function.
@@ -933,7 +933,7 @@ __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
   SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
                    SysTick_CTRL_TICKINT_Msk   |
                    SysTick_CTRL_ENABLE_Msk;                         /* Enable SysTick IRQ and SysTick Timer */
-  return (0UL);                                                     /* Event successful */
+  return (0UL);                                                     /* Function successful */
 }
 
 #endif

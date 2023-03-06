@@ -57,9 +57,9 @@
 
 #if SDCARD_USER_SOFT_SPI
 soft_spi_info_struct sdcard_spi_struct;
-#define sdcard_spi_mosi(a,b,c,d)        soft_spi_transfer_8bit(&sdcard_spi_struct,b,c,d)
+#define sdcard_spi_mosi(a, b, c)        soft_spi_transfer_8bit(&sdcard_spi_struct, (a), (b), (c))
 #else
-#define sdcard_spi_mosi(a,b,c,d)        spi_transfer_8bit(a,b,c,d)
+#define sdcard_spi_mosi(a, b, c)        spi_transfer_8bit(SDCARD_SPI, (a), (b), (c))
 #endif
 
 static volatile uint8 stat = STA_NOINIT;                                                // 卡状态
@@ -76,39 +76,53 @@ static uint8 power_flag = 0;                                                    
 //-------------------------------------------------------------------------------------------------------------------
 static uint8 sd_send_cmd (uint8 cmd, uint32 arg)
 {
+    uint8 return_state = 0;
     uint8 n = 10;
     uint8 args[6];
 
-    /* wait SD ready */
-    memset(args, 0xff, 6);
-    sdcard_spi_mosi(SDCARD_SPI, &args[0], &args[1], 1);                                 // 查看状态
-    if (args[1] != 0xFF)                                                                // SD-card 不在 Ready
-        return 0xFF;
-
-    args[0] = cmd;
-    args[1] = (uint8_t)(arg >> 24);
-    args[2] = (uint8_t)(arg >> 16);
-    args[3] = (uint8_t)(arg >> 8);
-    args[4] = (uint8_t)arg;
-    if(cmd == CMD0)
-        args[5] = 0x95;                                                                 // CRC for CMD0(0)
-    else if(cmd == CMD8)
-        args[5] = 0x87;                                                                 // CRC for CMD8(0x1AA)
-    else
-        args[5] = 1;
-    sdcard_spi_mosi(SDCARD_SPI, args, NULL, 6);                                         // 发送命令
-
-    memset(args, 0xff, 6);
-    if (cmd == CMD12)                                                                   // 当 STOP_TRANSMISSION 时跳过一个 stuff 字节
+    do
     {
-        sdcard_spi_mosi(SDCARD_SPI, args, NULL, 1);
-    }
+        memset(args, 0xff, 6);
+        sdcard_spi_mosi(&args[0], &args[1], 1);                                         // 查看状态
+        if(0xFF != args[1])                                                             // SD-card 不在 Ready
+        {
+            return_state = 0xFF;
+            break;
+        }
 
-    do {
-        sdcard_spi_mosi(SDCARD_SPI, &args[0], &args[1], 1);                             // 获取响应
-    } while ((args[1] & 0x80) && --n);
+        args[0] = cmd;
+        args[1] = (uint8_t)(arg >> 24);
+        args[2] = (uint8_t)(arg >> 16);
+        args[3] = (uint8_t)(arg >> 8);
+        args[4] = (uint8_t)arg;
+        if(CMD0 == cmd)
+        {
+            args[5] = 0x95;                                                             // CRC for CMD0(0)
+        }
+        else if(CMD8 == cmd)
+        {
+            args[5] = 0x87;                                                             // CRC for CMD8(0x1AA)
+        }
+        else
+        {
+            args[5] = 1;
+        }
+        sdcard_spi_mosi(args, NULL, 6);                                                 // 发送命令
 
-    return args[1];
+        memset(args, 0xff, 6);
+        if(CMD12 == cmd)                                                                // 当 STOP_TRANSMISSION 时跳过一个 stuff 字节
+        {
+            sdcard_spi_mosi(args, NULL, 1);
+        }
+
+        do
+        {
+            sdcard_spi_mosi(&args[0], &args[1], 1);                                     // 获取响应
+        }while((args[1] & 0x80) && -- n);
+        return_state = args[1];
+    }while(0);
+
+    return return_state;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -126,7 +140,7 @@ static void sd_power_on (void)
 
     sd_power_on();
     SDCARD_CS(1);
-    sdcard_spi_mosi(SDCARD_SPI, args, NULL, 10);                                        // 唤醒
+    sdcard_spi_mosi(args, NULL, 10);                                                    // 唤醒
 
     args[0] = CMD0;                                                                     // CMD0:GO_IDLE_STATE
     args[1] = 0;
@@ -136,17 +150,17 @@ static void sd_power_on (void)
     args[5] = 0x95;                                                                     // CRC
 
     SDCARD_CS(0);
-    sdcard_spi_mosi(SDCARD_SPI, args, NULL, 6);
+    sdcard_spi_mosi(args, NULL, 6);
 
     args[0] = 0xff;
-    while ((args[1] != 0x01) && cnt)                                                    // 等待响应
+    while((0x01 != args[1]) && cnt)                                                     // 等待响应
     {
-        sdcard_spi_mosi(SDCARD_SPI, &args[0], &args[1], 1);                             // 读取
-        cnt--;
+        sdcard_spi_mosi(&args[0], &args[1], 1);                                         // 读取
+        cnt --;
     }
 
     SDCARD_CS(1);
-    sdcard_spi_mosi(SDCARD_SPI, args, NULL, 1);                                         // 空闲
+    sdcard_spi_mosi(args, NULL, 1);                                                     // 空闲
 
     power_flag = 1;
 }
@@ -185,7 +199,7 @@ static uint8 sd_check_power(void)
 uint8 sdcard_spi_init (void)
 {
     uint32 timer1 = 0;
-    uint8 n, type, ocr[4];
+    uint8 n = 0, type = 0, ocr[4];
 
     system_delay_ms(100);                                                               //上电延时
 
@@ -201,77 +215,81 @@ uint8 sdcard_spi_init (void)
     type = 0;                                                                           // 未获取卡类型
     SDCARD_CS(0);                                                                       // 片选使能 选中卡
 
-    if (sd_send_cmd(CMD0, 0) == 1)                                                      // 进入空闲模式
+    if(1 == sd_send_cmd(CMD0, 0))                                                       // 进入空闲模式
     {
         timer1 = 1000;                                                                  // 一秒左右的初始化时间
 
-        if (sd_send_cmd(CMD8, 0x1AA) == 1)                                              // SDC V2+ 接受 CMD8 命令 http://elm-chan.org/docs/mmc/mmc_e.html
+        if(1 == sd_send_cmd(CMD8, 0x1AA))                                               // SDC V2+ 接受 CMD8 命令 http://elm-chan.org/docs/mmc/mmc_e.html
         {
             memset(ocr, 0xff, 4);
-            sdcard_spi_mosi(SDCARD_SPI, ocr, ocr, 4);                                   // 操作条件寄存器
+            sdcard_spi_mosi(ocr, ocr, 4);                                               // 操作条件寄存器
 
-            if (ocr[2] == 0x01 && ocr[3] == 0xAA)                                       // 电压等级 2.7-3.6V
+            if((0x01 == ocr[2]) && (0xAA == ocr[3]))                                    // 电压等级 2.7-3.6V
             {
-                do {
-                    if (sd_send_cmd(CMD55, 0) <= 1 &&
-                        sd_send_cmd(CMD41, 1UL << 30) == 0)                             // 带有 HCS 位的 ACMD41
+                do
+                {
+                    if( (1 >= sd_send_cmd(CMD55, 0)) &&
+                        (0 == sd_send_cmd(CMD41, 1UL << 30)))                           // 带有 HCS 位的 ACMD41
+                    {
                         break;
+                    }
                     system_delay_ms(1);
-                } while (timer1--);
+                }while(timer1 --);
 
-                if (timer1-- && sd_send_cmd(CMD58, 0) == 0)
+                if((timer1 --) && (0 == sd_send_cmd(CMD58, 0)))
                 {
                     memset(ocr, 0xff, 4);
-                    sdcard_spi_mosi(SDCARD_SPI, ocr, ocr, 4);                           // 读取 CCS
+                    sdcard_spi_mosi(ocr, ocr, 4);                                       // 读取 CCS
 
-                    type = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;                // 判断类型 SDv2 (HC or SC)
+                    type = (0x40 & ocr[0]) ? (CT_SD2 | CT_BLOCK) : CT_SD2;              // 判断类型 SDv2 (HC or SC)
                     system_delay_ms(1);
                 }
             }
         }
         else
         {
-            type = (sd_send_cmd(CMD55, 0) <= 1 && sd_send_cmd(CMD41, 0) <= 1) ? CT_SD1 : CT_MMC; // 判断类型 SDC V1 or MMC
+            type = ((1 >= sd_send_cmd(CMD55, 0)) && (1 >= sd_send_cmd(CMD41, 0))) ?
+                CT_SD1 : CT_MMC;                                                        // 判断类型 SDC V1 or MMC
 
             do
             {
-                if (type == CT_SD1)
+                if(CT_SD1 == type)
                 {
-                    if (sd_send_cmd(CMD55, 0) <= 1 && sd_send_cmd(CMD41, 0) == 0)       // 等待响应 ACMD41
+                    if((1 >= sd_send_cmd(CMD55, 0)) && (0 == sd_send_cmd(CMD41, 0)))    // 等待响应 ACMD41
+                    {
                         break;
+                    }
                 }
                 else
                 {
-                    if (sd_send_cmd(CMD1, 0) == 0)                                      // 等待响应 CMD1
+                    if(0 == sd_send_cmd(CMD1, 0))                                       // 等待响应 CMD1
+                    {
                         break;
+                    }
                 }
 
-            } while (timer1--);
+            }while(timer1 --);
 
-            if (!timer1 || sd_send_cmd(CMD16, 512) != 0)                                // 如果没识别出来什么卡 或者获取到扇区信息
+            if((!timer1) || (0 != sd_send_cmd(CMD16, 512)))                             // 如果没识别出来什么卡 或者获取到扇区信息
+            {
                 type = 0;
+            }
         }
     }
     card_type = type;
 
-    /* Idle */
     SDCARD_CS(1);
     memset(ocr, 0xff, 4);
-    sdcard_spi_mosi(SDCARD_SPI, ocr, NULL, 1);                                          // 空字节读取
+    sdcard_spi_mosi(ocr, NULL, 1);                                                      // 空字节读取
 
     if (type)
+    {
         stat &= ~STA_NOINIT;                                                            // 初始化成功 清空状态
+    }
     else
+    {
         sd_power_off();                                                                 // 初始化失败 取消上电状态
+    }
 
     return stat;
 }
-
-
-
-
-
-
-
-
-

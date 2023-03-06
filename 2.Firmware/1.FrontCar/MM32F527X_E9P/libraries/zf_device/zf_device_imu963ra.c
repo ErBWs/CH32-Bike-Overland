@@ -107,7 +107,7 @@ static soft_iic_info_struct imu963ra_iic_struct;
 // 使用示例     imu963ra_write_acc_gyro_register(IMU963RA_SLV0_CONFIG, 0x00);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static void imu963ra_write_acc_gyro_register(uint8 reg, uint8 data)
+static void imu963ra_write_acc_gyro_register (uint8 reg, uint8 data)
 {
     IMU963RA_CS(0);
     spi_write_8bit_register(IMU963RA_SPI, reg | IMU963RA_SPI_W, data);
@@ -122,7 +122,7 @@ static void imu963ra_write_acc_gyro_register(uint8 reg, uint8 data)
 // 使用示例     imu963ra_read_acc_gyro_register(IMU963RA_STATUS_MASTER);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static uint8 imu963ra_read_acc_gyro_register(uint8 reg)
+static uint8 imu963ra_read_acc_gyro_register (uint8 reg)
 {
     uint8 data = 0;
     IMU963RA_CS(0);
@@ -141,7 +141,7 @@ static uint8 imu963ra_read_acc_gyro_register(uint8 reg)
 // 使用示例     imu963ra_read_acc_gyro_registers(IMU963RA_OUTX_L_A, dat, 6);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static void imu963ra_read_acc_gyro_registers(uint8 reg, uint8 *data, uint32 len)
+static void imu963ra_read_acc_gyro_registers (uint8 reg, uint8 *data, uint32 len)
 {
     IMU963RA_CS(0);
     spi_read_8bit_registers(IMU963RA_SPI, reg | IMU963RA_SPI_R, data, len);
@@ -174,7 +174,7 @@ static uint8 imu963ra_write_mag_register (uint8 addr, uint8 reg, uint8 data)
     // 等待通讯成功
     while(0 == (0x80 & imu963ra_read_acc_gyro_register(IMU963RA_STATUS_MASTER)))
     {
-        if(timeout_count ++ > IMU963RA_TIMEOUT_COUNT)
+        if(IMU963RA_TIMEOUT_COUNT < timeout_count ++)
         {
             return_state = 1;
             break;
@@ -205,7 +205,7 @@ static uint8 imu963ra_read_mag_register (uint8 addr, uint8 reg)
     // 等待通讯成功
     while(0 == (0x01 & imu963ra_read_acc_gyro_register(IMU963RA_STATUS_MASTER)))
     {
-        if(timeout_count ++ > IMU963RA_TIMEOUT_COUNT)
+        if(IMU963RA_TIMEOUT_COUNT < timeout_count ++)
         {
             break;
         }
@@ -249,7 +249,7 @@ static uint8 imu963ra_acc_gyro_self_check (void)
 
     while(0x6B != dat)                                                          // 判断 ID 是否正确
     {
-        if(timeout_count++ > IMU963RA_TIMEOUT_COUNT)
+        if(IMU963RA_TIMEOUT_COUNT < timeout_count ++)
         {
             return_state = 1;
             break;
@@ -275,7 +275,7 @@ static uint8 imu963ra_mag_self_check (void)
 
     while(0xff != dat)                                                          // 判断 ID 是否正确
     {
-        if(timeout_count++ > IMU963RA_TIMEOUT_COUNT)
+        if(IMU963RA_TIMEOUT_COUNT < timeout_count ++)
         {
             return_state = 1;
             break;
@@ -298,9 +298,9 @@ void imu963ra_get_acc (void)
     uint8 dat[6];
 
     imu963ra_read_acc_gyro_registers(IMU963RA_OUTX_L_A, dat, 6);
-    imu963ra_acc_x = (int16)(((uint16)dat[1]<<8 | dat[0]));
-    imu963ra_acc_y = (int16)(((uint16)dat[3]<<8 | dat[2]));
-    imu963ra_acc_z = (int16)(((uint16)dat[5]<<8 | dat[4]));
+    imu963ra_acc_x = (int16)(((uint16)dat[1] << 8 | dat[0]));
+    imu963ra_acc_y = (int16)(((uint16)dat[3] << 8 | dat[2]));
+    imu963ra_acc_z = (int16)(((uint16)dat[5] << 8 | dat[4]));
 }
 
 
@@ -316,9 +316,9 @@ void imu963ra_get_gyro (void)
     uint8 dat[6];
 
     imu963ra_read_acc_gyro_registers(IMU963RA_OUTX_L_G, dat, 6);
-    imu963ra_gyro_x = (int16)(((uint16)dat[1]<<8 | dat[0]));
-    imu963ra_gyro_y = (int16)(((uint16)dat[3]<<8 | dat[2]));
-    imu963ra_gyro_z = (int16)(((uint16)dat[5]<<8 | dat[4]));
+    imu963ra_gyro_x = (int16)(((uint16)dat[1] << 8 | dat[0]));
+    imu963ra_gyro_y = (int16)(((uint16)dat[3] << 8 | dat[2]));
+    imu963ra_gyro_z = (int16)(((uint16)dat[5] << 8 | dat[4]));
 }
 
 
@@ -339,9 +339,9 @@ void imu963ra_get_mag (void)
     if(0x01 & temp_status)
     {
         imu963ra_read_acc_gyro_registers(IMU963RA_SENSOR_HUB_1, dat, 6);
-        imu963ra_mag_x = (int16)(((uint16)dat[1]<<8 | dat[0]));
-        imu963ra_mag_y = (int16)(((uint16)dat[3]<<8 | dat[2]));
-        imu963ra_mag_z = (int16)(((uint16)dat[5]<<8 | dat[4]));
+        imu963ra_mag_x = (int16)(((uint16)dat[1] << 8 | dat[0]));
+        imu963ra_mag_y = (int16)(((uint16)dat[3] << 8 | dat[2]));
+        imu963ra_mag_z = (int16)(((uint16)dat[5] << 8 | dat[4]));
     }
     imu963ra_write_acc_gyro_register(IMU963RA_FUNC_CFG_ACCESS, 0x00);
 }

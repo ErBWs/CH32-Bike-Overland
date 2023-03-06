@@ -55,42 +55,42 @@
 //--------------------------------------------------------------------------------------------------
 // 引脚配置
 //--------------------------------------------------------------------------------------------------
-#define SCC8660_COF_UART        (UART_5)                                        // 配置摄像头所使用到的串口
-#define SCC8660_COF_BAUR        (9600  )                                        // 凌瞳配置串口波特率
-#define SCC8660_COF_UART_TX     (UART5_RX_D2)                                   // 凌瞳 UART-TX 引脚 要接在单片机 RX 上
-#define SCC8660_COF_UART_RX     (UART5_TX_C12)                                  // 凌瞳 UART-RX 引脚 要接在单片机 TX 上
+#define SCC8660_COF_UART        ( UART_5       )                                // 配置摄像头所使用到的串口
+#define SCC8660_COF_BAUR        ( 9600         )                                // 凌瞳配置串口波特率
+#define SCC8660_COF_UART_TX     ( UART5_RX_D2  )                                // 凌瞳 UART-TX 引脚 要接在单片机 RX 上
+#define SCC8660_COF_UART_RX     ( UART5_TX_C12 )                                // 凌瞳 UART-RX 引脚 要接在单片机 TX 上
 
-#define SCC8660_DMA_CH          (DMA1_CHANNEL4)
-#define SCC8660_DMA_IRQN        (DMA1_CH4_IRQn)
+#define SCC8660_DMA_CH          ( DMA1_CHANNEL4 )
+#define SCC8660_DMA_IRQN        ( DMA1_CH4_IRQn )
 
-#define SCC8660_PCLK_PIN        (TIM1_ETR_E7)                                   // PCLK 触发信号 TIM_ETR 引脚禁止随意修改
+#define SCC8660_PCLK_PIN        ( TIM1_ETR_E7 )                                 // PCLK 触发信号 TIM_ETR 引脚禁止随意修改
 
-#define SCC8660_VSYNC_PIN       (E8 )                                           // 场中断引脚
-#define SCC8660_VSYNC_IRQN      (EXTI9_5_IRQn)                                  // 中断号
+#define SCC8660_VSYNC_PIN       ( E8 )                                          // 场中断引脚
+#define SCC8660_VSYNC_IRQN      ( EXTI9_5_IRQn )                                // 中断号
 
-#define SCC8660_DATA_PIN        (G0 )                                           // 数据引脚 这里是 只能是 GPIOx0 或者 GPIOx8 开始 连续八个引脚例如 F0-F7
+#define SCC8660_DATA_PIN        ( G0 )                                          // 数据引脚 这里是 只能是 GPIOx0 或者 GPIOx8 开始 连续八个引脚例如 F0-F7
 #define SCC8660_DATA_ADD        (gpio_idr_addr(SCC8660_DATA_PIN))
 
-#define SCC8660_INIT_TIMEOUT    (0x0080)                                        // 默认的摄像头初始化超时时间 毫秒为单位
+#define SCC8660_INIT_TIMEOUT    ( 0x0080 )                                      // 默认的摄像头初始化超时时间 毫秒为单位
 
 //--------------------------------------------------------------------------------------------------
 // 摄像头默认参数配置 在此修改摄像头配置
 //--------------------------------------------------------------------------------------------------
-#define SCC8660_W               (160)                                           // 实际图像分辨率宽度 可选参数为：160 180
-#define SCC8660_H               (120)                                           // 实际图像分辨率高度 可选参数为：120 160
-#define SCC8660_IMAGE_SIZE      (SCC8660_W * 2 * SCC8660_H)                     // 整体图像大小 SCC8660_W*2*SCC8660_H 不能超过 65535
+#define SCC8660_W               ( 160 )                                         // 实际图像分辨率宽度 可选参数为：160 180
+#define SCC8660_H               ( 120 )                                         // 实际图像分辨率高度 可选参数为：120 160
+#define SCC8660_IMAGE_SIZE      ( SCC8660_W * 2 * SCC8660_H )                   // 整体图像大小 SCC8660_W*2*SCC8660_H 不能超过 65535
 
-#define SCC8660_AUTO_EXP_DEF    (0  )                                           // 自动曝光     默认不开启自动曝光设置  范围 [0-1] 0为关闭
-#define SCC8660_BRIGHT_DEF      (200)                                           // 亮度设置     手动曝光默认：200   手动曝光时：参数范围0-65535   自动曝光推荐值：100 自动曝光时参数设置范围0-255
-#define SCC8660_FPS_DEF         (60 )                                           // 图像帧率     默认：60        可选参数为：60 50 30 25。 实际帧率还需要看SCC8660_PCLK_DIV参数的设置
-#define SCC8660_PCLK_DIV_DEF    (3  )                                           // PCLK分频系数 默认：3         可选参数为：<0:1/1> <1:2/3> <2:1/2> <3:1/3> <4:1/4> <5:1/8>
+#define SCC8660_AUTO_EXP_DEF    ( 0   )                                         // 自动曝光     默认不开启自动曝光设置  范围 [0-1] 0为关闭
+#define SCC8660_BRIGHT_DEF      ( 200 )                                         // 亮度设置     手动曝光默认：200   手动曝光时：参数范围0-65535   自动曝光推荐值：100 自动曝光时参数设置范围0-255
+#define SCC8660_FPS_DEF         ( 60  )                                         // 图像帧率     默认：60        可选参数为：60 50 30 25。 实际帧率还需要看SCC8660_PCLK_DIV参数的设置
+#define SCC8660_PCLK_DIV_DEF    ( 3   )                                         // PCLK分频系数 默认：3         可选参数为：<0:1/1> <1:2/3> <2:1/2> <3:1/3> <4:1/4> <5:1/8>
                                                                                 //              分频系数越大，PCLK频率越低，降低PCLK可以减轻DVP接口的干扰，但降低PCLK频率则会影响帧率。若无特殊需求请保持默认。
                                                                                 //              例如设置FPS为50帧，但是pclk分频系数选择的为5，则摄像头输出的帧率为50*（1/8）=6.25帧
                                                                                 //              其他参数不变的情况下，SCC8660_PCLK_DIV参数越大图像会越亮
-#define SCC8660_PCLK_MODE_DEF   (0  )                                           // PCLK模式     默认：0         可选参数为：[0,1] 0：不输出消隐信号 1：输出消隐信号 <通常都设置为0，如果使用STM32的DCMI接口采集需要设置为1>
-#define SCC8660_COLOR_MODE_DEF  (0  )                                           // 图像色彩模式 默认：0         可选参数为：[0,1] 0：正常彩色模式   1：鲜艳模式（色彩饱和度提高）
-#define SCC8660_DATA_FORMAT_DEF (0  )                                           // 输出数据格式 默认：0         可选参数为：[0-3] 0：RGB565 1：RGB565(字节交换) 2：YUV422(YUYV) 3：YUV422(UYVY)
-#define SCC8660_MANUAL_WB_DEF   (0  )                                           // 手动白平衡   默认：0         可选参数为：[0,0x65-0xa0] 0：关闭手动白平衡，启用自动白平衡    其他：手动白平衡 手动白平衡时 参数范围0x65-0xa0
+#define SCC8660_PCLK_MODE_DEF   ( 0   )                                         // PCLK模式     默认：0         可选参数为：[0,1] 0：不输出消隐信号 1：输出消隐信号 <通常都设置为0，如果使用STM32的DCMI接口采集需要设置为1>
+#define SCC8660_COLOR_MODE_DEF  ( 0   )                                         // 图像色彩模式 默认：0         可选参数为：[0,1] 0：正常彩色模式   1：鲜艳模式（色彩饱和度提高）
+#define SCC8660_DATA_FORMAT_DEF ( 0   )                                         // 输出数据格式 默认：0         可选参数为：[0-3] 0：RGB565 1：RGB565(字节交换) 2：YUV422(YUYV) 3：YUV422(UYVY)
+#define SCC8660_MANUAL_WB_DEF   ( 0   )                                         // 手动白平衡   默认：0         可选参数为：[0,0x65-0xa0] 0：关闭手动白平衡，启用自动白平衡    其他：手动白平衡 手动白平衡时 参数范围0x65-0xa0
 
 // 摄像头命令枚举
 typedef enum

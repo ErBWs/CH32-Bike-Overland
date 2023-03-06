@@ -24,7 +24,7 @@
 * 文件名称          zf_device_imu660ra
 * 公司名称          成都逐飞科技有限公司
 * 版本信息          查看 libraries/doc 文件夹内 version 文件 版本说明
-* 开发环境          IAR 8.32.4 or MDK 5.37
+* 开发环境          MDK 5.37
 * 适用平台          MM32F527X_E9P
 * 店铺链接          https://seekfree.taobao.com/
 * 
@@ -82,7 +82,7 @@ static soft_iic_info_struct imu660ra_iic_struct;
 // 使用示例     imu660ra_write_register(IMU660RA_PWR_CONF, 0x00);                   // 关闭高级省电模式
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static void imu660ra_write_register(uint8 reg, uint8 data)
+static void imu660ra_write_register (uint8 reg, uint8 data)
 {
     IMU660RA_CS(0);
     spi_write_8bit_register(IMU660RA_SPI, reg | IMU660RA_SPI_W, data);
@@ -97,7 +97,7 @@ static void imu660ra_write_register(uint8 reg, uint8 data)
 // 使用示例     imu660ra_write_registers(IMU660RA_INIT_DATA, imu660ra_config_file, sizeof(imu660ra_config_file));
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static void imu660ra_write_registers(uint8 reg, const uint8 *data, uint32 len)
+static void imu660ra_write_registers (uint8 reg, const uint8 *data, uint32 len)
 {
     IMU660RA_CS(0);
     spi_write_8bit_registers(IMU660RA_SPI, reg | IMU660RA_SPI_W, data, len);
@@ -111,7 +111,7 @@ static void imu660ra_write_registers(uint8 reg, const uint8 *data, uint32 len)
 // 使用示例     imu660ra_read_register(IMU660RA_CHIP_ID);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static uint8 imu660ra_read_register(uint8 reg)
+static uint8 imu660ra_read_register (uint8 reg)
 {
     uint8 data[2];
     IMU660RA_CS(0);
@@ -129,7 +129,7 @@ static uint8 imu660ra_read_register(uint8 reg)
 // 使用示例     imu660ra_read_registers(IMU660RA_ACC_ADDRESS, dat, 6);
 // 备注信息     内部调用
 //-------------------------------------------------------------------------------------------------------------------
-static void imu660ra_read_registers(uint8 reg, uint8 *data, uint32 len)
+static void imu660ra_read_registers (uint8 reg, uint8 *data, uint32 len)
 {
     uint8 temp_data[8];
     IMU660RA_CS(0);
@@ -155,7 +155,7 @@ static uint8 imu660ra_self_check (void)
     uint16 timeout_count = 0;
     do
     {
-        if(timeout_count ++ > IMU660RA_TIMEOUT_COUNT)
+        if(IMU660RA_TIMEOUT_COUNT < timeout_count ++)
         {
             return_state =  1;
             break;
@@ -179,9 +179,9 @@ void imu660ra_get_acc (void)
     uint8 dat[6];
 
     imu660ra_read_registers(IMU660RA_ACC_ADDRESS, dat, 6);
-    imu660ra_acc_x = (int16)(((uint16)dat[1]<<8 | dat[0]));
-    imu660ra_acc_y = (int16)(((uint16)dat[3]<<8 | dat[2]));
-    imu660ra_acc_z = (int16)(((uint16)dat[5]<<8 | dat[4]));
+    imu660ra_acc_x = (int16)(((uint16)dat[1] << 8 | dat[0]));
+    imu660ra_acc_y = (int16)(((uint16)dat[3] << 8 | dat[2]));
+    imu660ra_acc_z = (int16)(((uint16)dat[5] << 8 | dat[4]));
 }
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     获取 IMU660RA 陀螺仪数据
@@ -196,9 +196,9 @@ void imu660ra_get_gyro (void)
     uint8 dat[6];
 
     imu660ra_read_registers(IMU660RA_GYRO_ADDRESS, dat, 6);
-    imu660ra_gyro_x = (int16)(((uint16)dat[1]<<8 | dat[0]));
-    imu660ra_gyro_y = (int16)(((uint16)dat[3]<<8 | dat[2]));
-    imu660ra_gyro_z = (int16)(((uint16)dat[5]<<8 | dat[4]));
+    imu660ra_gyro_x = (int16)(((uint16)dat[1] << 8 | dat[0]));
+    imu660ra_gyro_y = (int16)(((uint16)dat[3] << 8 | dat[2]));
+    imu660ra_gyro_z = (int16)(((uint16)dat[5] << 8 | dat[4]));
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -278,7 +278,7 @@ uint8 imu660ra_init (void)
         imu660ra_write_registers(IMU660RA_INIT_DATA, imu660ra_config_file, sizeof(imu660ra_config_file));   // 输出配置文件
         imu660ra_write_register(IMU660RA_INIT_CTRL, 0x01);                      // 初始化配置结束
         system_delay_ms(20);
-        if(imu660ra_read_register(IMU660RA_INT_STA) == 0)                       // 检查是否配置完成
+        if(0 == imu660ra_read_register(IMU660RA_INT_STA))                       // 检查是否配置完成
         {
             // 如果程序在输出了断言信息 并且提示出错位置在这里
             // 那么就是 IMU660RA 配置初始化文件出错了

@@ -103,14 +103,14 @@ static uint8 scc8660_set_config (int16 buff[SCC8660_CONFIG_FINISH][2])
 {
     uint8 return_state = 1;
     uint8  uart_buffer[4];
-    uint16 temp;
+    uint16 temp = 0;
     uint16 timeout_count = 0;
     uint32 loop_count = 0;
     uint32 uart_buffer_index = 0;
 
     // 设置参数  具体请参看问题锦集手册
     // 开始配置摄像头并重新初始化
-    for(loop_count = SCC8660_MANUAL_WB; loop_count < SCC8660_SET_REG_DATA; loop_count --)
+    for(loop_count = SCC8660_MANUAL_WB; SCC8660_SET_REG_DATA > loop_count; loop_count --)
     {
         uart_buffer[0] = 0xA5;
         uart_buffer[1] = buff[loop_count][0];
@@ -153,12 +153,12 @@ static uint8 scc8660_get_config (int16 buff[SCC8660_CONFIG_FINISH-1][2])
 {
     uint8 return_state = 0;
     uint8  uart_buffer[4];
-    uint16 temp;
+    uint16 temp = 0;
     uint16 timeout_count = 0;
     uint32 loop_count = 0;
     uint32 uart_buffer_index = 0;
 
-    for(loop_count = SCC8660_MANUAL_WB - 1; loop_count >= 1; loop_count --)
+    for(loop_count = SCC8660_MANUAL_WB - 1; 1 <= loop_count; loop_count --)
     {
         uart_buffer[0] = 0xA5;
         uart_buffer[1] = SCC8660_GET_STATUS;
@@ -179,7 +179,7 @@ static uint8 scc8660_get_config (int16 buff[SCC8660_CONFIG_FINISH-1][2])
             }
             system_delay_ms(1);
         }while(SCC8660_INIT_TIMEOUT > timeout_count ++);
-        if(timeout_count > SCC8660_INIT_TIMEOUT)                                // 超时
+        if(SCC8660_INIT_TIMEOUT < timeout_count)                                // 超时
         {
             return_state = 1;
             break;
@@ -245,7 +245,7 @@ static void scc8660_dma_handler (void)
 //-------------------------------------------------------------------------------------------------------------------
 uint16 scc8660_get_id (void)
 {
-    uint16 temp;
+    uint16 temp = 0;
     uint8  uart_buffer[4];
     uint16 timeout_count = 0;
     uint16 return_value = 0;
@@ -315,7 +315,7 @@ uint16 scc8660_get_parameter (uint16 config)
 //-------------------------------------------------------------------------------------------------------------------
 uint16 scc8660_get_version (void)
 {
-    uint16 temp;
+    uint16 temp = 0;
     uint8  uart_buffer[4];
     uint16 timeout_count = 0;
     uint16 return_value = 0;
@@ -354,7 +354,7 @@ uint8 scc8660_set_bright (uint16 data)
 {
     uint8 return_state = 0;
     uint8  uart_buffer[4];
-    uint16 temp;
+    uint16 temp = 0;
     uint16 timeout_count = 0;
     uint32 uart_buffer_index = 0;
 
@@ -394,7 +394,7 @@ uint8 scc8660_set_white_balance (uint16 data)
 {
     uint8 return_state = 0;
     uint8  uart_buffer[4];
-    uint16 temp;
+    uint16 temp = 0;
     uint16 timeout_count = 0;
     uint32 uart_buffer_index = 0;
 
@@ -435,7 +435,7 @@ uint8 scc8660_set_reg (uint8 addr, uint16 data)
 {
     uint8 return_state = 0;
     uint8  uart_buffer[4];
-    uint16 temp;
+    uint16 temp = 0;
     uint16 timeout_count = 0;
     uint32 uart_buffer_index = 0;
 
@@ -480,10 +480,10 @@ uint8 scc8660_set_reg (uint8 addr, uint16 data)
 //-------------------------------------------------------------------------------------------------------------------
 uint8 scc8660_init (void)
 {
-    uint8 num;
+    uint8 num = 0;
     uint8 return_state = 0;
 
-    for(num=0; num<8; num++)
+    for(num = 0; 8 > num; num ++)
     {
         gpio_init((gpio_pin_enum)(SCC8660_DATA_PIN + num), GPI, GPIO_LOW, GPI_FLOATING_IN);
     }

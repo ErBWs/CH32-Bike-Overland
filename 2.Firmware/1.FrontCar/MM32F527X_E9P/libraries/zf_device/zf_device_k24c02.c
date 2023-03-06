@@ -116,7 +116,7 @@ k24c02_data_union k24c02_union_buffer[K24C02_DATA_BUFFER_SIZE];
 //-------------------------------------------------------------------------------------------------------------------
 void k24c02_read_page_to_buffer (k24c02_page_enum page_num)
 {
-    k24c02_read_registers(page_num*8, (uint8 *)&k24c02_union_buffer[0], K24C02_PAGE_SIZE);
+    k24c02_read_registers(page_num * 8, (uint8 *)&k24c02_union_buffer[0], K24C02_PAGE_SIZE);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ void k24c02_read_page_to_buffer (k24c02_page_enum page_num)
 uint8 k24c02_write_page_from_buffer (k24c02_page_enum page_num)
 {
     uint8 return_state = 0;
-    k24c02_write_registers(page_num*8, (uint8 *)&k24c02_union_buffer[0], K24C02_PAGE_SIZE);
+    k24c02_write_registers(page_num * 8, (uint8 *)&k24c02_union_buffer[0], K24C02_PAGE_SIZE);
     return return_state;
 }
 

@@ -15,16 +15,15 @@ EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemImage, 
 EasyUIItem_t titlePreset, itemPr1, itemPr2, itemPr3;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
-EasyUIItem_t itemTh;
+EasyUIItem_t itemExp, itemTh;
 EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, itemObstacle, itemGarage;
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
 
 void EventMainLoop(EasyUIItem_t *item)
 {
-    printf("%f\n", Gp2yGetDistance());
+//    printf("%f\n", Gp2yGetDistance());
 
-    SpeedControl();
     if (opnExit)
     {
         pwm_set_duty(MOTOR_L_PIN, 0);
@@ -106,15 +105,38 @@ void PageImage(EasyUIPage_t *page)
 {
     IPS114_ShowGrayImage(0, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H,
                          MT9V03X_W, MT9V03X_H, 0);
+    IPS114_ShowStr(202, 4, "Exp:");
+    IPS114_ShowUint(202, 20, (uint16_t)*page->itemHead->param, 3);
+    IPS114_ShowStr(202, 36, "Dis:");
+    IPS114_ShowFloat(202, 52, Gp2yGetDistance(), 2, 1);
 
-//        GetSideLines();
-
-    for (int i = 0; i < MT9V03X_H; ++i)
+    if (opnUp)
     {
-            IPS114_DrawPoint(sideLines[i][0], i, RGB565_RED);
-            IPS114_DrawPoint(sideLines[i][1], i, RGB565_GREEN);
+        if (*page->itemHead->param + 10 <= 500)
+            *page->itemHead->param += 10;
+        else
+            *page->itemHead->param = 500;
     }
-    memset(sideLines, 0, sizeof(sideLines));
+    if (opnDown)
+    {
+        if (*page->itemHead->param - 10 >= 100)
+            *page->itemHead->param -= 10;
+        else
+            *page->itemHead->param = 0;
+    }
+    if (opnEnter)
+        mt9v03x_set_exposure_time((uint16_t)*page->itemHead->param);
+
+    for (int16_t i = 0; i < MT9V03X_H; ++i)
+    {
+        IPS114_DrawPoint(sideEdges[i][0], i, RGB565_RED);
+        IPS114_DrawPoint(sideEdges[i][1], i, RGB565_BLUE);
+    }
+    for (int16_t i = 0; i < MT9V03X_W; ++i)
+    {
+        IPS114_DrawPoint(i, upDownEdges[0][i], RGB565_GREEN);
+        IPS114_DrawPoint(i, upDownEdges[1][i], RGB565_YELLOW);
+    }
 }
 
 
@@ -279,6 +301,9 @@ void MenuInit()
                   EasyUIEventChangeUint);
     EasyUIAddItem(&pageDirPID, &itemDirErrMin, "Min Error", ITEM_CHANGE_VALUE, &dirParam.errMin,
                   EasyUIEventChangeUint);
+
+    // Page image
+    EasyUIAddItem(&pageImage, &itemExp, "Exposure", ITEM_CHANGE_VALUE, &exposure);
 
     // Page threshold
     EasyUIAddItem(&pageThreshold, &itemTh, "Threshold", ITEM_CHANGE_VALUE, &threshold);

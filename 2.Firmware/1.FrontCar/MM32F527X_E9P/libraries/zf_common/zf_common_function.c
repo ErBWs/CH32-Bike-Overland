@@ -81,7 +81,7 @@ void func_soft_delay (volatile long t)
 //-------------------------------------------------------------------------------------------------------------------
 int32 func_str_to_int (char *str)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     uint8 sign = 0;                                                             // 标记符号 0-正数 1-负数
     int32 temp = 0;                                                             // 临时计算变量
     do
@@ -125,7 +125,7 @@ int32 func_str_to_int (char *str)
 //-------------------------------------------------------------------------------------------------------------------
 void func_int_to_str (char *str, int32 number)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     uint8 data_temp[16];                                                        // 缓冲区
     uint8 bit = 0;                                                              // 数字位数
     int32 number_temp = 0;
@@ -171,7 +171,7 @@ void func_int_to_str (char *str, int32 number)
 //-------------------------------------------------------------------------------------------------------------------
 uint32 func_str_to_uint (char *str)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     uint32 temp = 0;                                                            // 临时计算变量
 
     do
@@ -201,7 +201,7 @@ uint32 func_str_to_uint (char *str)
 //-------------------------------------------------------------------------------------------------------------------
 void func_uint_to_str (char *str, uint32 number)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     int8 data_temp[16];                                                         // 缓冲区
     uint8 bit = 0;                                                              // 数字位数
 
@@ -240,7 +240,7 @@ void func_uint_to_str (char *str, uint32 number)
 //-------------------------------------------------------------------------------------------------------------------
 float func_str_to_float (char *str)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     uint8 sign = 0;                                                             // 标记符号 0-正数 1-负数
     float temp = 0.0;                                                           // 临时计算变量 整数部分
     float temp_point = 0.0;                                                     // 临时计算变量 小数部分
@@ -272,7 +272,7 @@ float func_str_to_float (char *str)
         if('.' == *str)
         {
             str ++;
-            while(('0' <= *str) && ('9' >= *str) && point_bit < 1000000.0)      // 确认这是个数字 并且精度控制还没到六位
+            while(('0' <= *str) && ('9' >= *str) && 1000000.0 > point_bit)      // 确认这是个数字 并且精度控制还没到六位
             {
                 temp_point = temp_point * 10 + ((uint8)(*str) - 0x30);          // 提取小数部分数值
                 point_bit *= 10;                                                // 计算这部分小数的除数
@@ -301,7 +301,7 @@ float func_str_to_float (char *str)
 //-------------------------------------------------------------------------------------------------------------------
 void func_float_to_str (char *str, float number, uint8 point_bit)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     int data_int = 0;                                                           // 整数部分
     int data_float = 0.0;                                                       // 小数部分
     int data_temp[8];                                                           // 整数字符缓冲
@@ -325,10 +325,7 @@ void func_float_to_str (char *str, float number, uint8 point_bit)
         {
             *str ++ = '0';
             *str ++ = '.';
-            for (int i = 0; i < point_bit; ++i)
-            {
-                *str ++ = '0';
-            }
+            *str = '0';
             break;
         }
 
@@ -354,16 +351,13 @@ void func_float_to_str (char *str, float number, uint8 point_bit)
         }
 
         // 小数部分转为字符串
-        if(point_bit != 0)
+        if(0 != point_bit)
         {
             bit = 0;
             *str ++ = '.';
             if(0 == data_float)
             {
-                for (int i = 0; i < point_bit; ++i)
-                {
-                    *str ++ = '0';
-                }
+                *str = '0';
             }
             else
             {
@@ -392,7 +386,7 @@ void func_float_to_str (char *str, float number, uint8 point_bit)
 //-------------------------------------------------------------------------------------------------------------------
 double func_str_to_double (char *str)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     uint8 sign = 0;                                                             // 标记符号 0-正数 1-负数
     double temp = 0.0;                                                          // 临时计算变量 整数部分
     double temp_point = 0.0;                                                    // 临时计算变量 小数部分
@@ -424,7 +418,7 @@ double func_str_to_double (char *str)
         if('.' == *str)
         {
             str ++;
-            while(('0' <= *str) && ('9' >= *str) && point_bit < 1000000000.0)   // 确认这是个数字 并且精度控制还没到九位
+            while(('0' <= *str) && ('9' >= *str) && 1000000000.0 > point_bit)   // 确认这是个数字 并且精度控制还没到九位
             {
                 temp_point = temp_point * 10 + ((uint8)(*str) - 0x30);          // 提取小数部分数值
                 point_bit *= 10;                                                // 计算这部分小数的除数
@@ -454,7 +448,7 @@ double func_str_to_double (char *str)
 //-------------------------------------------------------------------------------------------------------------------
 void func_double_to_str (char *str, double number, uint8 point_bit)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     int data_int = 0;                                                           // 整数部分
     int data_float = 0.0;                                                       // 小数部分
     int data_temp[12];                                                          // 整数字符缓冲
@@ -504,12 +498,14 @@ void func_double_to_str (char *str, double number, uint8 point_bit)
         }
 
         // 小数部分转为字符串
-        if(point_bit != 0)
+        if(0 != point_bit)
         {
             bit = 0;
             *str ++ = '.';
             if(0 == data_float)
+            {
                 *str = '0';
+            }
             else
             {
                 while(0 != point_bit)                                           // 判断有效位数
@@ -537,7 +533,7 @@ void func_double_to_str (char *str, double number, uint8 point_bit)
 //-------------------------------------------------------------------------------------------------------------------
 uint32 func_str_to_hex (char *str)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     uint32 str_len = strlen(str);                                               // 字符串长
     uint32 result_data = 0;                                                     // 结果缓存
     uint8 temp = 0;                                                             // 计算变量
@@ -573,7 +569,7 @@ uint32 func_str_to_hex (char *str)
         else
         {
 //            if(strncmp("0x", str, 2))
-            if((*str == '0') && (*(str + 1) == 'x'))
+            if(('0' == *str) && ('x' == *(str + 1)))
             {
                 str ++;
                 flag = 1;
@@ -595,7 +591,7 @@ uint32 func_str_to_hex (char *str)
 //-------------------------------------------------------------------------------------------------------------------
 void func_hex_to_str (char *str, uint32 number)
 {
-    zf_assert(str != NULL);
+    zf_assert(NULL != str);
     const char hex_index[16] = {
         '0', '1', '2', '3',
         '4', '5', '6', '7',
@@ -604,8 +600,8 @@ void func_hex_to_str (char *str, uint32 number)
     int8 data_temp[12];                                                         // 缓冲区
     uint8 bit = 0;                                                              // 数字位数
 
-    *str++ = '0';
-    *str++ = 'x';
+    *str ++ = '0';
+    *str ++ = 'x';
     do
     {
         if(NULL == str)
@@ -644,8 +640,8 @@ void func_hex_to_str (char *str, uint32 number)
 //-------------------------------------------------------------------------------------------------------------------
 static uint8 number_conversion_ascii (uint32 dat, int8 *p, uint8 neg_type, uint8 radix)
 {
-    int32   neg_dat;
-    uint32  pos_dat;
+    int32   neg_dat = 0;
+    uint32  pos_dat = 0;
     uint8   temp_data = 0;
     uint8   valid_num = 0;
 
@@ -658,8 +654,8 @@ static uint8 number_conversion_ascii (uint32 dat, int8 *p, uint8 neg_type, uint8
         }
         while(1)
         {
-            *p = neg_dat%radix + '0';
-            neg_dat = neg_dat/radix;
+            *p = neg_dat % radix + '0';
+            neg_dat = neg_dat / radix;
             valid_num ++;
 
             if(!neg_dat)
@@ -674,10 +670,10 @@ static uint8 number_conversion_ascii (uint32 dat, int8 *p, uint8 neg_type, uint8
         pos_dat = dat;
         while(1)
         {
-            temp_data = pos_dat%radix;
+            temp_data = pos_dat % radix;
             if(10 <= temp_data)
             {
-                temp_data += 'A'-10;
+                temp_data += 'A' - 10;
             }
             else
             {
@@ -686,7 +682,7 @@ static uint8 number_conversion_ascii (uint32 dat, int8 *p, uint8 neg_type, uint8
 
             *p = temp_data;
 
-            pos_dat = pos_dat/radix;
+            pos_dat = pos_dat / radix;
             valid_num ++;
 
             if(!pos_dat)
@@ -709,12 +705,12 @@ static uint8 number_conversion_ascii (uint32 dat, int8 *p, uint8 neg_type, uint8
 //-------------------------------------------------------------------------------------------------------------------
 static void printf_reverse_order (int8 *d_buff, uint32 len)
 {
-    uint32 i;
-    int8  temp_data;
+    uint32 i = 0;
+    int8  temp_data = 0;
     for(i = 0; len / 2 > i; i ++)
     {
         temp_data = d_buff[len - 1 - i];
-        d_buff[len - 1 -i ] = d_buff[i];
+        d_buff[len - 1 - i] = d_buff[i];
         d_buff[i] = temp_data; 
     }
 }
@@ -742,37 +738,34 @@ uint32 zf_sprintf (int8 *buff, const int8 *format, ...)
             switch (*++ format)
             {
                 case 'a':// 十六进制p计数法输出浮点数 暂未实现
-                    {
-                    }
-                    break;
+                {
+                }break;
 
                 case 'c':// 一个字符
-                    {
-                        int8 ch = (int8)va_arg(arg, uint32);
-                        *buff = ch;
-                        buff ++;
-                        buff_len ++;
-                    }
-                    break;
+                {
+                    int8 ch = (int8)va_arg(arg, uint32);
+                    *buff = ch;
+                    buff ++;
+                    buff_len ++;
+                }break;
 
                 case 'd':
                 case 'i':// 有符号十进制整数
-                    {
-                        int8 vstr[33];
-                        int32 ival = (int32)va_arg(arg, int32);
-                        uint8 vlen = number_conversion_ascii((uint32)ival, vstr, 1, 10);
+                {
+                    int8 vstr[33];
+                    int32 ival = (int32)va_arg(arg, int32);
+                    uint8 vlen = number_conversion_ascii((uint32)ival, vstr, 1, 10);
 
-                        if(0 > ival)  
-                        {
-                            vstr[vlen] = '-';
-                            vlen ++;
-                        }
-                        printf_reverse_order(vstr, vlen);
-                        memcpy(buff, vstr, vlen);
-                        buff += vlen;
-                        buff_len += vlen;
+                    if(0 > ival)  
+                    {
+                        vstr[vlen] = '-';
+                        vlen ++;
                     }
-                    break;
+                    printf_reverse_order(vstr, vlen);
+                    memcpy(buff, vstr, vlen);
+                    buff += vlen;
+                    buff_len += vlen;
+                }break;
 
                 case 'f':// 浮点数，输出小数点后六位  不能指定输出精度
                 case 'F':// 浮点数，输出小数点后六位  不能指定输出精度
@@ -791,7 +784,7 @@ uint32 zf_sprintf (int8 *buff, const int8 *format, ...)
                     buff += vlen;
                     buff_len += vlen;
 
-                    ival = ((double)ival - (int32)ival)*1000000;
+                    ival = ((double)ival - (int32)ival) * 1000000;
                     if(ival)
                     {
                         vlen = number_conversion_ascii((uint32)(int32)ival, vstr, 1, 10);
@@ -814,86 +807,80 @@ uint32 zf_sprintf (int8 *buff, const int8 *format, ...)
                     printf_reverse_order(vstr, vlen);
                     memcpy(buff, vstr, vlen);
                     buff_len += vlen;
-                }
-                break;
+                }break;
 
                 case 'u':// 无符号十进制整数
-                    {
-                        int8 vstr[33];
-                        uint32 ival = (uint32)va_arg(arg, uint32);
-                        uint8 vlen = number_conversion_ascii(ival, vstr, 0, 10);
+                {
+                    int8 vstr[33];
+                    uint32 ival = (uint32)va_arg(arg, uint32);
+                    uint8 vlen = number_conversion_ascii(ival, vstr, 0, 10);
 
-                        printf_reverse_order(vstr, vlen);
-                        memcpy(buff, vstr, vlen);
-                        buff += vlen;
-                        buff_len += vlen;
-                    }
-                    break;
+                    printf_reverse_order(vstr, vlen);
+                    memcpy(buff, vstr, vlen);
+                    buff += vlen;
+                    buff_len += vlen;
+                }break;
 
                 case 'o':// 无符号八进制整数 
-                    {
-                        int8 vstr[33];
-                        uint32 ival = (uint32)va_arg(arg, uint32);
-                        uint8 vlen = number_conversion_ascii(ival, vstr, 0, 8);
+                {
+                    int8 vstr[33];
+                    uint32 ival = (uint32)va_arg(arg, uint32);
+                    uint8 vlen = number_conversion_ascii(ival, vstr, 0, 8);
 
-                        printf_reverse_order(vstr, vlen);
-                        memcpy(buff, vstr, vlen);
-                        buff += vlen;
-                        buff_len += vlen;
+                    printf_reverse_order(vstr, vlen);
+                    memcpy(buff, vstr, vlen);
+                    buff += vlen;
+                    buff_len += vlen;
 
-                    }
-                    break;
+                }break;
 
                 case 'x':// 无符号十六进制整数
                 case 'X':// 无符号十六进制整数
-                    {
-                        int8 vstr[33];
-                        uint32 ival = (uint32)va_arg(arg, uint32);
-                        uint8 vlen = number_conversion_ascii(ival, vstr, 0, 16);
+                {
+                    int8 vstr[33];
+                    uint32 ival = (uint32)va_arg(arg, uint32);
+                    uint8 vlen = number_conversion_ascii(ival, vstr, 0, 16);
 
-                        printf_reverse_order(vstr, vlen);
-                        memcpy(buff, vstr, vlen);
-                        buff += vlen;
-                        buff_len += vlen;
-                    }
-                    break;
+                    printf_reverse_order(vstr, vlen);
+                    memcpy(buff, vstr, vlen);
+                    buff += vlen;
+                    buff_len += vlen;
+                }break;
 
                 case 's':// 字符串
+                {
+                    int8 *pc = va_arg(arg, int8 *);
+                    while (*pc)
                     {
-                        int8 *pc = va_arg(arg, int8 *);
-                        while (*pc)
-                        {
-                            *buff = *pc;
-                            buff ++;
-                            buff_len ++;
-                            pc ++;
-                        }
-                    }
-                    break;
-
-                case 'p':// 以16进制形式输出指针
-                    {
-                        int8 vstr[33];
-                        uint32 ival = (uint32)va_arg(arg, uint32);
-                        uint8 vlen = number_conversion_ascii(ival, vstr, 0, 16);
-
-                        printf_reverse_order(vstr, 8);
-                        memcpy(buff, vstr, 8);
-                        buff += 8;
-                        buff_len += 8;
-                    }
-                    break;
-
-                case '%':// 输出字符% 
-                    {
-                        *buff = '%';
+                        *buff = *pc;
                         buff ++;
                         buff_len ++;
+                        pc ++;
                     }
-                    break;
+                }break;
+
+                case 'p':// 以16进制形式输出指针
+                {
+                    int8 vstr[33];
+                    uint32 ival = (uint32)va_arg(arg, uint32);
+                    uint8 vlen = number_conversion_ascii(ival, vstr, 0, 16);
+
+                    printf_reverse_order(vstr, 8);
+                    memcpy(buff, vstr, 8);
+                    buff += 8;
+                    buff_len += 8;
+                }break;
+
+                case '%':// 输出字符% 
+                {
+                    *buff = '%';
+                    buff ++;
+                    buff_len ++;
+                }break;
 
                 default:
-                    break;
+                {
+                }break;
             }
         }
         else

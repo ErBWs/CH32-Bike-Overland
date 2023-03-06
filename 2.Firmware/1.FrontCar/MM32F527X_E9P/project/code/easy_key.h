@@ -13,7 +13,7 @@
 #include <stdbool.h>
 #include "zf_driver_gpio.h"
 
-#define PRESS_THRESHOLD 20      // Dithering elimination
+#define PRESS_THRESHOLD 10      // Dithering elimination
 #define HOLD_THRESHOLD 100      // Time longer than this is considered as "hold"
 #define INTERVAL_THRESHOLD 80  // Trigger time interval less than this is considered as "multiclick"
 

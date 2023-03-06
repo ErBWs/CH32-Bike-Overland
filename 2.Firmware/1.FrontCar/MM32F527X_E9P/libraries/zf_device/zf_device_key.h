@@ -54,11 +54,11 @@
 // 定义按键引脚 用户可以新增可以修改 默认定义四个按键
 // 定义按键顺序对应下方 key_index_enum 枚举体中定义的顺序
 // 如果用户可以新增按键 那么需要同步在下方 key_index_enum 枚举体中新增按键
-#define KEY_LIST                    {E0 , E1 , E2 , E3 }
+#define KEY_LIST                    { E0 , E1 , E2 , E3 }
 
-#define KEY_RELEASE_LEVEL           (GPIO_HIGH)                                 // 按键的默认状态 也就是按键释放状态的电平
-#define KEY_MAX_SHOCK_PERIOD        (10       )                                 // 按键消抖检测时长 单位毫秒 低于这个时长的信号会被认为是杂波抖动
-#define KEY_LONG_PRESS_PERIOD       (1000     )                                 // 最小长按时长 单位毫秒
+#define KEY_RELEASE_LEVEL           ( GPIO_HIGH )                               // 按键的默认状态 也就是按键释放状态的电平
+#define KEY_MAX_SHOCK_PERIOD        ( 10        )                               // 按键消抖检测时长 单位毫秒 低于这个时长的信号会被认为是杂波抖动
+#define KEY_LONG_PRESS_PERIOD       ( 1000      )                               // 最小长按时长 单位毫秒 高于这个时长的信号会被认为是长按动作
 
 typedef enum
 {
@@ -72,13 +72,14 @@ typedef enum
 typedef enum
 {
     KEY_RELEASE,                                                                // 按键释放状态
-    KEY_CHECK_SHOCK,                                                            // 按键消抖状态
     KEY_SHORT_PRESS,                                                            // 按键短按状态
     KEY_LONG_PRESS,                                                             // 按键长按状态
 }key_state_enum;
 
-void            key_scanner     (void);
-key_state_enum  key_get_state   (key_index_enum key_n);
-void            key_init        (uint32 period);
+void            key_scanner             (void);
+key_state_enum  key_get_state           (key_index_enum key_n);
+void            key_clear_state         (key_index_enum key_n);
+void            key_clear_all_state     (void);
+void            key_init                (uint32 period);
 
 #endif

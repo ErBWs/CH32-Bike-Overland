@@ -50,52 +50,52 @@
 #include "zf_common_typedef.h"
 
 //-----------------引脚定义------------------------------
-#define SDCARD_USER_SOFT_SPI        (0)
-#if SDCARD_USER_SOFT_SPI
-#define SDCARD_SCK_PIN      (C12)                                               // 接模块 SPC
-#define SDCARD_MOSI_PIN     (D2 )                                               // 接模块 SDI
-#define SDCARD_MISO_PIN     (C8 )                                               // 接模块 SDO
-#define SDCARD_CS_PIN       (C11)                                               // 接模块 CS
+#define SDCARD_USER_SOFT_SPI        ( 0 )                                       // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
+#if SDCARD_USER_SOFT_SPI                                                        // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
+#define SDCARD_SCK_PIN      ( C12 )                                             // 接模块 SPC
+#define SDCARD_MOSI_PIN     ( D2  )                                             // 接模块 SDI
+#define SDCARD_MISO_PIN     ( C8  )                                             // 接模块 SDO
+#define SDCARD_CS_PIN       ( C11 )                                             // 接模块 CS
 #else
-#define SDCARD_SPI          (SPI_3)
-#define SDCARD_BAUDRATE     (30000000)
-#define SDCARD_SCK_PIN      (SPI3_SCK_C10 )                                     // 接模块 SPC
-#define SDCARD_MOSI_PIN     (SPI3_MOSI_C12)                                     // 接模块 SDI
-#define SDCARD_MISO_PIN     (SPI3_MOSI_C11)                                     // 接模块 SDO
-#define SDCARD_CS_PIN       (A15          )                                     // 接模块 CS
+#define SDCARD_SPI          ( SPI_3            )
+#define SDCARD_BAUDRATE     ( 30 * 1000 * 1000 )
+#define SDCARD_SCK_PIN      ( SPI3_SCK_C10     )                                // 接模块 SPC
+#define SDCARD_MOSI_PIN     ( SPI3_MOSI_C12    )                                // 接模块 SDI
+#define SDCARD_MISO_PIN     ( SPI3_MOSI_C11    )                                // 接模块 SDO
+#define SDCARD_CS_PIN       ( A15              )                                // 接模块 CS
 #endif
 
 #define SDCARD_CS(x)        (x? (gpio_high(SDCARD_CS_PIN)): (gpio_low(SDCARD_CS_PIN)))
 //-----------------引脚定义------------------------------
 
 // Definitions for MMC/SDC command
-#define CMD0                (0x40 + 0)                                          // GO_IDLE_STATE
-#define CMD1                (0x40 + 1)                                          // SEND_OP_COND
-#define CMD8                (0x40 + 8)                                          // SEND_IF_COND
-#define CMD9                (0x40 + 9)                                          // SEND_CSD
-#define CMD10               (0x40 + 10)                                         // SEND_CID
-#define CMD12               (0x40 + 12)                                         // STOP_TRANSMISSION
-#define CMD16               (0x40 + 16)                                         // SET_BLOCKLEN
-#define CMD17               (0x40 + 17)                                         // READ_SINGLE_BLOCK
-#define CMD18               (0x40 + 18)                                         // READ_MULTIPLE_BLOCK
-#define CMD23               (0x40 + 23)                                         // SET_BLOCK_COUNT
-#define CMD24               (0x40 + 24)                                         // WRITE_BLOCK
-#define CMD25               (0x40 + 25)                                         // WRITE_MULTIPLE_BLOCK
-#define CMD41               (0x40 + 41)                                         // SEND_OP_COND (ACMD)
-#define CMD55               (0x40 + 55)                                         // APP_CMD
-#define CMD58               (0x40 + 58)                                         // READ_OCR
+#define CMD0                ( 0x40 + 0  )                                       // GO_IDLE_STATE
+#define CMD1                ( 0x40 + 1  )                                       // SEND_OP_COND
+#define CMD8                ( 0x40 + 8  )                                       // SEND_IF_COND
+#define CMD9                ( 0x40 + 9  )                                       // SEND_CSD
+#define CMD10               ( 0x40 + 10 )                                       // SEND_CID
+#define CMD12               ( 0x40 + 12 )                                       // STOP_TRANSMISSION
+#define CMD16               ( 0x40 + 16 )                                       // SET_BLOCKLEN
+#define CMD17               ( 0x40 + 17 )                                       // READ_SINGLE_BLOCK
+#define CMD18               ( 0x40 + 18 )                                       // READ_MULTIPLE_BLOCK
+#define CMD23               ( 0x40 + 23 )                                       // SET_BLOCK_COUNT
+#define CMD24               ( 0x40 + 24 )                                       // WRITE_BLOCK
+#define CMD25               ( 0x40 + 25 )                                       // WRITE_MULTIPLE_BLOCK
+#define CMD41               ( 0x40 + 41 )                                       // SEND_OP_COND (ACMD)
+#define CMD55               ( 0x40 + 55 )                                       // APP_CMD
+#define CMD58               ( 0x40 + 58 )                                       // READ_OCR
 
 // MMC card type flags (MMC_GET_TYPE)
-#define CT_MMC              (0x01)                                              // MMC ver 3
-#define CT_SD1              (0x02)                                              // SD ver 1
-#define CT_SD2              (0x04)                                              // SD ver 2
-#define CT_SDC              (0x06)                                              // SD
-#define CT_BLOCK            (0x08)                                              // Block addressing
+#define CT_MMC              ( 0x01 )                                            // MMC ver 3
+#define CT_SD1              ( 0x02 )                                            // SD ver 1
+#define CT_SD2              ( 0x04 )                                            // SD ver 2
+#define CT_SDC              ( 0x06 )                                            // SD
+#define CT_BLOCK            ( 0x08 )                                            // Block addressing
 
 // Disk Status Bits         (DSTATUS)
-#define STA_NOINIT          (0x01)                                              // Drive not initialized
-#define STA_NODISK          (0x02)                                              // No medium in the drive
-#define STA_PROTECT         (0x04)                                              // Write protected
+#define STA_NOINIT          ( 0x01 )                                            // Drive not initialized
+#define STA_NODISK          ( 0x02 )                                            // No medium in the drive
+#define STA_PROTECT         ( 0x04 )                                            // Write protected
 
 
 

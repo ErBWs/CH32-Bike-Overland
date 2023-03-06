@@ -745,7 +745,7 @@ void spi_transfer_16bit (spi_index_enum spi_n, const uint16 *write_buffer, uint1
             SPI_DATA_TX(spi_n, (*write_buffer & 0xFF00) >> 8);                  // 发送数据
             while(!SPI_STATE_TX_EMPTY(spi_n));                                  // 发送为空
 
-            SPI_DATA_TX(spi_n, (*write_buffer & 0x00FF));                     	// 发送数据
+            SPI_DATA_TX(spi_n, (*write_buffer & 0x00FF));                           // 发送数据
             while(!SPI_STATE_TX_EMPTY(spi_n));                                  // 发送为空
 
             write_buffer ++;

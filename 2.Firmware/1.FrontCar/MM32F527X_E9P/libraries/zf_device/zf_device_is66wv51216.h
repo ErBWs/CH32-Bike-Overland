@@ -84,7 +84,7 @@
 
 #include "zf_common_typedef.h"
 
-#define IS66WV51216_SRAM_ADDR           (0x68000000)
+#define IS66WV51216_SRAM_ADDR           ( 0x68000000 )
 
 uint8 is66wv51216_init (void);
 

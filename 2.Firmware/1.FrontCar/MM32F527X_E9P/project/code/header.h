@@ -19,5 +19,6 @@
 #include "profile_photo_erbws.h"
 #include "user_flash.h"
 #include "user_ips114.h"
+#include "vofa.h"
 
 #endif

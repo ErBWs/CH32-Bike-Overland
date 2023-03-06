@@ -43,7 +43,7 @@
 
 #if DEBUG_UART_USE_INTERRUPT                                                    // 如果启用 debug uart 接收中断
 uint8                       debug_uart_buffer[DEBUG_RING_BUFFER_LEN];           // 数据存放数组
-uint8                       debug_uart_data;
+uint8                       debug_uart_data = 0;
 fifo_struct                 debug_uart_fifo;
 #endif
 
@@ -61,9 +61,9 @@ static volatile uint8       zf_debug_assert_enable = 1;
 static void debug_delay (void)
 {
     vuint32 loop_1 = 0, loop_2 = 0;
-    for(loop_1 = 0; loop_1 <= 0xFF; loop_1 ++)
+    for(loop_1 = 0; 0xFF >= loop_1; loop_1 ++)
     {
-        for(loop_2 = 0; loop_2 <= 0xFFFF; loop_2 ++)
+        for(loop_2 = 0; 0xFFFF >= loop_2; loop_2 ++)
         {
             __NOP();
         }
@@ -105,7 +105,7 @@ static void debug_protective_handler (void)
 
     uint32 loop_temp = 0;
 
-    for(loop_temp = 0; loop_temp < 79; loop_temp ++)
+    for(loop_temp = 0; 79 > loop_temp; loop_temp ++)
     {
         uint8 gpio_group_index = (((pin_list[loop_temp] & 0xFE0000) >> 17));
         uint8 gpio_bit_index = ((pin_list[loop_temp] & 0x01F000) >> 12);
@@ -181,20 +181,20 @@ static void debug_output (char *type, char *file, int line, char *str)
             len_origin = strlen(file);
             show_len = (debug_output_info.display_x_max / debug_output_info.font_x_size);
 
-            while(*file_str++ != '\0');
+            while('\0' != *file_str ++);
 
             // 只取一级目录 如果文件放在盘符根目录 或者 MDK 的工程根目录 就会直接输出当前目录
-            for(j = 0; (j < 2) && (len_origin >= 0); len_origin --)             // 查找两个 '/'
+            for(j = 0; (2 > j) && (0 <= len_origin); len_origin --)             // 查找两个 '/'
             {
                 file_str --;
-                if((*file_str == '/') || (*file_str == 0x5C))
+                if(('/' == *file_str) || (0x5C == *file_str))
                 {
                     j ++;
                 }
             }
 
             // 文件路径保存到数组中
-            if(len_origin >= 0)
+            if(0 <= len_origin)
             {
                 file_str ++;
                 sprintf(output_buffer, "file: %s", file_str);

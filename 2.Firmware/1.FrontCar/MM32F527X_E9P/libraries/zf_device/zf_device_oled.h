@@ -51,29 +51,29 @@
 
 #include "zf_common_typedef.h"
 
-#define OLED_USE_SOFT_SPI               (0 )                                    // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
+#define OLED_USE_SOFT_SPI               ( 0 )                                   // 默认使用硬件 SPI 方式驱动 建议使用硬件 SPI 方式驱动
 #if OLED_USE_SOFT_SPI                                                           // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 SPI 驱动====================================================
-#define OLED_SOFT_SPI_DELAY             (1 )                                    // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
-#define OLED_D0_PIN                     (D4)                                    // 软件 SPI SCK 引脚
-#define OLED_D1_PIN                     (D6)                                    // 软件 SPI MOSI 引脚
+#define OLED_SOFT_SPI_DELAY             ( 1  )                                  // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
+#define OLED_D0_PIN                     ( D4 )                                  // 软件 SPI SCK 引脚
+#define OLED_D1_PIN                     ( D6 )                                  // 软件 SPI MOSI 引脚
 //====================================================软件 SPI 驱动====================================================
 #else
 //====================================================硬件 SPI 驱动====================================================
-#define OLED_SPI_SPEED                  (40 * 1000 * 1000)                      // 硬件 SPI 速率
-#define OLED_SPI                        (SPI_3)                                 // 硬件 SPI 号
-#define OLED_D0_PIN                     (SPI3_SCK_D4 )                          // 硬件 SPI SCK 引脚
-#define OLED_D1_PIN                     (SPI3_MOSI_D6)                          // 硬件 SPI MOSI 引脚
+#define OLED_SPI_SPEED                  ( 40 * 1000 * 1000 )                    // 硬件 SPI 速率
+#define OLED_SPI                        ( SPI_3        )                        // 硬件 SPI 号
+#define OLED_D0_PIN                     ( SPI3_SCK_D4  )                        // 硬件 SPI SCK 引脚
+#define OLED_D1_PIN                     ( SPI3_MOSI_D6 )                        // 硬件 SPI MOSI 引脚
 //====================================================硬件 SPI 驱动====================================================
 #endif
 
-#define OLED_RES_PIN                    (D14)                                   // 液晶复位引脚定义
-#define OLED_DC_PIN                     (D5 )                                   // 液晶命令位引脚定义
-#define OLED_CS_PIN                     (D7 )                                   // CS 片选引脚
+#define OLED_RES_PIN                    ( D14 )                                 // 液晶复位引脚定义
+#define OLED_DC_PIN                     ( D5  )                                 // 液晶命令位引脚定义
+#define OLED_CS_PIN                     ( D7  )                                 // CS 片选引脚
 
-#define OLED_BRIGHTNESS                 (0x7f)                                  // 设置OLED亮度 越大越亮 范围0-0XFF
-#define OLED_DEFAULT_DISPLAY_DIR        (OLED_CROSSWISE)                        // 默认的显示方向
-#define OLED_DEFAULT_DISPLAY_FONT       (OLED_6X8_FONT )                        // 默认的字体模式
+#define OLED_BRIGHTNESS                 ( 0x7f )                                // 设置OLED亮度 越大越亮 范围0-0XFF
+#define OLED_DEFAULT_DISPLAY_DIR        ( OLED_CROSSWISE )                      // 默认的显示方向
+#define OLED_DEFAULT_DISPLAY_FONT       ( OLED_6X8_FONT  )                      // 默认的字体模式
 
 #define OLED_RES(x)                     ((x) ? (gpio_high(OLED_RES_PIN)) : (gpio_low(OLED_RES_PIN)))
 #define OLED_DC(x)                      ((x) ? (gpio_high(OLED_DC_PIN)) : (gpio_low(OLED_DC_PIN)))
@@ -92,8 +92,8 @@ typedef enum
     OLED_16X16_FONT                     = 2,                                    // 16x16    字体 目前不支持
 }oled_font_size_enum;
 
-#define OLED_X_MAX                      (128)
-#define OLED_Y_MAX                      (64 )
+#define OLED_X_MAX                      ( 128 )
+#define OLED_Y_MAX                      ( 64  )
 
 void    oled_clear                      (void);
 void    oled_full                       (const uint8 color);

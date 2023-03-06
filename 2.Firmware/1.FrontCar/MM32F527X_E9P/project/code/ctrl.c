@@ -9,10 +9,10 @@
 // PID struct define
 PidParam_t spdParam =
         {
-                80,
+                10,
                 0,
-                -10,
-                80,
+                0,
+                50,
                 PWM_DUTY_MAX - SERVO_DUTY_MAX,
                 3000,
                 900,
@@ -43,11 +43,11 @@ void MotorInit(void)
     pwm_init(SERVO_PIN, SERVO_FREQ, SERVO_MID);
 
     // Motor and encoder init
-    pwm_init(MOTOR_L_PIN, MOTOR_FREQ, 0);
-    pwm_init(MOTOR_R_PIN, MOTOR_FREQ, 0);
+    pwm_init(MOTOR_L_PIN, MOTOR_FREQ, 2000);
+    pwm_init(MOTOR_R_PIN, MOTOR_FREQ, 2000);
 
     gpio_init(MOTOR_L_DIR_PIN, GPO, GPIO_HIGH, GPO_PUSH_PULL);
-    gpio_init(MOTOR_R_DIR_PIN, GPO, GPIO_HIGH, GPO_PUSH_PULL);
+    gpio_init(MOTOR_R_DIR_PIN, GPO, GPIO_LOW, GPO_PUSH_PULL);
 
     encoder_dir_init(ENCODER_L_TIM, ENCODER_L_SPD_PIN, ENCODER_L_DIR_PIN);
     encoder_dir_init(ENCODER_R_TIM, ENCODER_R_SPD_PIN, ENCODER_R_DIR_PIN);
@@ -97,41 +97,46 @@ void SpeedControl(void)
     static uint8_t time = 0;
 
     // Get encoder speed data
-    if (time == 9)
+    if (time == 19)
     {
         leftSpeed = encoder_get_count(ENCODER_L_TIM);
         encoder_clear_count(ENCODER_L_TIM);
         rightSpeed = -encoder_get_count(ENCODER_R_TIM);
         encoder_clear_count(ENCODER_R_TIM);
         speedInput = (leftSpeed + rightSpeed) / 2;
+        vofaData[0] = speedInput;
+        // PID calculate
+        averageSpdOut = PidIncControl(&spdParam, speedInput);
+        leftSpdOut += averageSpdOut + (int32_t) spdParam.out;
+        rightSpdOut += averageSpdOut - (int32_t) spdParam.out;
         time = 0;
     } else
     {
         time += 1;
     }
 
-    // PID calculate
-//    averageSpdOut = PidIncControl(&spdParam, speedInput);
-//    leftSpdOut = averageSpdOut + (int32_t) spdParam.out;
-//    rightSpdOut = averageSpdOut - (int32_t) spdParam.out;
+    leftSpdOut = Limitation(leftSpdOut, -10000, 10000);
+    vofaData[1] = leftSpdOut;
+    rightSpdOut = Limitation(rightSpdOut, -10000, 10000);
+    vofaData[2] = rightSpdOut;
 
 
-    if (leftSpdOut >= 0)
-    {
-        pwm_set_duty(MOTOR_L_PIN, leftSpdOut);
-        gpio_set_level(MOTOR_L_DIR_PIN, 0);
-    } else
-    {
-        pwm_set_duty(MOTOR_L_PIN, -leftSpdOut);
-        gpio_set_level(MOTOR_L_DIR_PIN, 1);
-    }
-    if (rightSpdOut >= 0)
-    {
-        pwm_set_duty(MOTOR_R_PIN, rightSpdOut);
-        gpio_set_level(MOTOR_R_DIR_PIN, 0);
-    } else
-    {
-        pwm_set_duty(MOTOR_R_PIN, -rightSpdOut);
-        gpio_set_level(MOTOR_R_DIR_PIN, 1);
-    }
+//    if (leftSpdOut >= 0)
+//    {
+//        pwm_set_duty(MOTOR_L_PIN, leftSpdOut);
+//        gpio_set_level(MOTOR_L_DIR_PIN, 0);
+//    } else
+//    {
+//        pwm_set_duty(MOTOR_L_PIN, -leftSpdOut);
+//        gpio_set_level(MOTOR_L_DIR_PIN, 1);
+//    }
+//    if (rightSpdOut >= 0)
+//    {
+//        pwm_set_duty(MOTOR_R_PIN, rightSpdOut);
+//        gpio_set_level(MOTOR_R_DIR_PIN, 1);
+//    } else
+//    {
+//        pwm_set_duty(MOTOR_R_PIN, -rightSpdOut);
+//        gpio_set_level(MOTOR_R_DIR_PIN, 0);
+//    }
 }

@@ -51,37 +51,37 @@
 
 #include "zf_common_typedef.h"
 
-#define ABSOLUTE_ENCODER_USE_SOFT_SPI       (0)                                 // 默认使用硬件 SPI 方式驱动
+#define ABSOLUTE_ENCODER_USE_SOFT_SPI       ( 0 )                               // 默认使用硬件 SPI 方式驱动
 #if ABSOLUTE_ENCODER_USE_SOFT_SPI                                               // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 SPI 驱动====================================================
-#define ABSOLUTE_ENCODER_SOFT_SPI_DELAY     (1)                                 // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
-#define ABSOLUTE_ENCODER_SCLK_PIN           (B13)                               // 硬件 SPI SCK 引脚
-#define ABSOLUTE_ENCODER_MOSI_PIN           (B15)                               // 硬件 SPI MOSI 引脚
-#define ABSOLUTE_ENCODER_MISO_PIN           (B14)                               // 硬件 SPI MISO 引脚
+#define ABSOLUTE_ENCODER_SOFT_SPI_DELAY     ( 1 )                               // 软件 SPI 的时钟延时周期 数值越小 SPI 通信速率越快
+#define ABSOLUTE_ENCODER_SCLK_PIN           ( B13 )                             // 硬件 SPI SCK 引脚
+#define ABSOLUTE_ENCODER_MOSI_PIN           ( B15 )                             // 硬件 SPI MOSI 引脚
+#define ABSOLUTE_ENCODER_MISO_PIN           ( B14 )                             // 硬件 SPI MISO 引脚
 //====================================================软件 SPI 驱动====================================================
 #else
 //====================================================硬件 SPI 驱动====================================================
-#define ABSOLUTE_ENCODER_SPI_SPEED          (10 * 1000 * 1000)                  // 硬件 SPI 速率
-#define ABSOLUTE_ENCODER_SPI                (SPI_2)                             // 硬件 SPI 号
-#define ABSOLUTE_ENCODER_SCLK_PIN           (SPI2_SCK_B13)                      // 硬件 SPI SCK 引脚
-#define ABSOLUTE_ENCODER_MOSI_PIN           (SPI2_MOSI_B15)                     // 硬件 SPI MOSI 引脚
-#define ABSOLUTE_ENCODER_MISO_PIN           (SPI2_MISO_B14)                     // 硬件 SPI MISO 引脚
+#define ABSOLUTE_ENCODER_SPI_SPEED          ( 10 * 1000 * 1000 )                // 硬件 SPI 速率
+#define ABSOLUTE_ENCODER_SPI                ( SPI_2 )                           // 硬件 SPI 号
+#define ABSOLUTE_ENCODER_SCLK_PIN           ( SPI2_SCK_B13 )                    // 硬件 SPI SCK 引脚
+#define ABSOLUTE_ENCODER_MOSI_PIN           ( SPI2_MOSI_B15 )                   // 硬件 SPI MOSI 引脚
+#define ABSOLUTE_ENCODER_MISO_PIN           ( SPI2_MISO_B14 )                   // 硬件 SPI MISO 引脚
 //====================================================硬件 SPI 驱动====================================================
 #endif
 
-#define ABSOLUTE_ENCODER_CS_PIN             (B12)
+#define ABSOLUTE_ENCODER_CS_PIN             ( B12 )
 #define ABSOLUTE_ENCODER_CSN(x)             ((x) ? (gpio_high(ABSOLUTE_ENCODER_CS_PIN)): (gpio_low(ABSOLUTE_ENCODER_CS_PIN)))
 
-#define ABSOLUTE_ENCODER_TIMEOUT_COUNT      (100)
-#define ABSOLUTE_ENCODER_DEFAULT_ZERO       (0)
+#define ABSOLUTE_ENCODER_TIMEOUT_COUNT      ( 100 )
+#define ABSOLUTE_ENCODER_DEFAULT_ZERO       ( 0 )
 
 //====================================================角度传感器参数====================================================
-#define ABSOLUTE_ENCODER_SPI_W              (0x80)
-#define ABSOLUTE_ENCODER_SPI_R              (0x40)
+#define ABSOLUTE_ENCODER_SPI_W              ( 0x80 )
+#define ABSOLUTE_ENCODER_SPI_R              ( 0x40 )
 
-#define ABSOLUTE_ENCODER_ZERO_L_REG         (0x00)
-#define ABSOLUTE_ENCODER_ZERO_H_REG         (0x01)
-#define ABSOLUTE_ENCODER_DIR_REG            (0X09)
+#define ABSOLUTE_ENCODER_ZERO_L_REG         ( 0x00 )
+#define ABSOLUTE_ENCODER_ZERO_H_REG         ( 0x01 )
+#define ABSOLUTE_ENCODER_DIR_REG            ( 0X09 )
 //====================================================角度传感器参数====================================================
 
 int16       absolute_encoder_get_location   (void);

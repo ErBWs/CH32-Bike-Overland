@@ -84,11 +84,11 @@ static void clock_set_freq (uint32 clock)
 
     // ============================ PWR CORE POWER INIT  ============================
     RCC->APB1ENR |= RCC_APB1ENR_PWRDBG(1);                                      // 使能 PWR/DBG 时钟
-    if(clock > SYSTEM_CLOCK_96M)
+    if(SYSTEM_CLOCK_96M < clock)
     {
         PWR->CR1 = (PWR->CR1 & ~PWR_CR1_VOS_MASK) | PWR_CR1_VOS(3u);            // 1.7V
     }
-    else if(clock > SYSTEM_CLOCK_72M)
+    else if(SYSTEM_CLOCK_72M < clock)
     {
         PWR->CR1 = (PWR->CR1 & ~PWR_CR1_VOS_MASK) | PWR_CR1_VOS(2u);            // 1.65V
     }
@@ -100,12 +100,13 @@ static void clock_set_freq (uint32 clock)
 
     // ================================== HSE INIT ==================================
     RCC->CR |= RCC_CR_HSEON(1);                                                 // 设置 HSEON[16] = 1 使能高速外部晶体振荡器
-    do{
+    do
+    {
         hse_status = RCC_CR_HSERDY_MASK & (RCC->CR & RCC_CR_HSERDY_MASK);       // 获取高速外部晶体振荡器状态
         temp_value ++;                                                          // 超时计数
     }while((!hse_status) && (XTAL_STARTUP_TIMEOUT != temp_value));              // 高速外部晶体振荡器已稳定或者超时退出
 
-    if (!(RCC->CR & RCC_CR_HSERDY_MASK))                                        // 外部晶振不稳定或缺失 时钟设置失败
+    if(!(RCC->CR & RCC_CR_HSERDY_MASK))                                         // 外部晶振不稳定或缺失 时钟设置失败
     {
         while(1);
     }
@@ -134,7 +135,8 @@ static void clock_set_freq (uint32 clock)
 
     RCC->CR |= RCC_CR_PLL2ON(1);                                                // 使能 PLL2 倍频
     temp_value = 0;
-    do{
+    do
+    {
         hse_status = RCC->CR & RCC_CR_PLL2RDY_MASK;
         temp_value ++;                                                          // 超时计数
     }while((!hse_status) && (XTAL_STARTUP_TIMEOUT != temp_value));              // 等待 PLL2 稳定或者超时退出
@@ -167,7 +169,8 @@ static void clock_set_freq (uint32 clock)
 
     RCC->CR |= RCC_CR_PLL1ON(1);                                                // 使能 PLL1 倍频
     temp_value = 0;
-    do{
+    do
+    {
         hse_status = RCC->CR & RCC_CR_PLL1RDY_MASK;
         temp_value ++;                                                          // 超时计数
     }while((!hse_status) && (XTAL_STARTUP_TIMEOUT != temp_value));              // 等待 PLL1 稳定或者超时退出
@@ -176,7 +179,7 @@ static void clock_set_freq (uint32 clock)
         while(1);                                                               // PLL1 不稳定 时钟设置失败
     }
     register_value = RCC->CFGR;
-    if(clock > SYSTEM_CLOCK_120M)                                               // 如果时钟频率超过 120Mhz 就需要分频
+    if(SYSTEM_CLOCK_120M < clock)                                               // 如果时钟频率超过 120Mhz 就需要分频
     {
         register_value &= ~(RCC_CFGR_HPRE_MASK);
         register_value |= RCC_CFGR_HPRE(8);                                     // AHB 2 分频 AHB_CLK = SYSTEM_CLK / 2

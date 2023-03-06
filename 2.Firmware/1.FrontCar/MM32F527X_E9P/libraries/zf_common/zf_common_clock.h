@@ -38,8 +38,8 @@
 
 #include "zf_common_typedef.h"
 
-#define BOARD_XTAL_FREQ         (8000000)                                      // 晶振频率 如果自己用的不是这个频率就修改这里 UM 定义范围为 4-24Mhz
-#define XTAL_STARTUP_TIMEOUT    (0x0F00)                                        // 晶振就绪等待超时时长
+#define BOARD_XTAL_FREQ         ( 8000000 )                                    // 晶振频率 如果自己用的不是这个频率就修改这里 UM 定义范围为 4-24Mhz
+#define XTAL_STARTUP_TIMEOUT    ( 0x0F00 )                                      // 晶振就绪等待超时时长
 
 // 推荐最高使用到 120MHz
 // 虽然内核超频过 120MHz

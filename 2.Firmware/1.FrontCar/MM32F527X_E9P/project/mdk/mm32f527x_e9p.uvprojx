@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4103</DriverSelection>
+            <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
-          <Flash2>BIN\CMSIS_AGDI_V8M.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash2>BIN\UL2V8M.DLL</Flash2>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -314,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>7</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -403,6 +403,141 @@
               <FileName>isr.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\user\inc\isr.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>code</GroupName>
+          <Files>
+            <File>
+              <FileName>本文件夹作用.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\本文件夹作用.txt</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\buzzer.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\buzzer.h</FilePath>
+            </File>
+            <File>
+              <FileName>ctrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\ctrl.c</FilePath>
+            </File>
+            <File>
+              <FileName>ctrl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\ctrl.h</FilePath>
+            </File>
+            <File>
+              <FileName>easy_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\easy_key.c</FilePath>
+            </File>
+            <File>
+              <FileName>easy_key.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\easy_key.h</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\easy_ui.c</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\easy_ui.h</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui_user_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\easy_ui_user_app.c</FilePath>
+            </File>
+            <File>
+              <FileName>easy_ui_user_app.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\easy_ui_user_app.h</FilePath>
+            </File>
+            <File>
+              <FileName>GP2Y0A02.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\GP2Y0A02.c</FilePath>
+            </File>
+            <File>
+              <FileName>GP2Y0A02.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\GP2Y0A02.h</FilePath>
+            </File>
+            <File>
+              <FileName>header.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\header.h</FilePath>
+            </File>
+            <File>
+              <FileName>image_process.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\image_process.c</FilePath>
+            </File>
+            <File>
+              <FileName>image_process.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\image_process.h</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\pid.h</FilePath>
+            </File>
+            <File>
+              <FileName>profile_photo_erbws.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\profile_photo_erbws.c</FilePath>
+            </File>
+            <File>
+              <FileName>profile_photo_erbws.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\profile_photo_erbws.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\user_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_flash.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\user_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_ips114.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\user_ips114.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_ips114.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\user_ips114.h</FilePath>
+            </File>
+            <File>
+              <FileName>vofa.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\vofa.c</FilePath>
+            </File>
+            <File>
+              <FileName>vofa.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\vofa.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -710,6 +845,26 @@
               <FilePath>..\..\libraries\zf_device\zf_device_config.lib</FilePath>
             </File>
             <File>
+              <FileName>zf_device_dl1a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dl1a.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_device_dl1a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dl1a.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_device_dm1xa.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dm1xa.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_device_dm1xa.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\libraries\zf_device\zf_device_dm1xa.h</FilePath>
+            </File>
+            <File>
               <FileName>zf_device_gps_tau1201.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\libraries\zf_device\zf_device_gps_tau1201.c</FilePath>
@@ -928,26 +1083,6 @@
               <FileName>zf_device_wireless_uart.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\libraries\zf_device\zf_device_wireless_uart.h</FilePath>
-            </File>
-            <File>
-              <FileName>zf_device_dl1a.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\zf_device\zf_device_dl1a.c</FilePath>
-            </File>
-            <File>
-              <FileName>zf_device_dl1a.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\libraries\zf_device\zf_device_dl1a.h</FilePath>
-            </File>
-            <File>
-              <FileName>zf_device_dm1xa.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\zf_device\zf_device_dm1xa.c</FilePath>
-            </File>
-            <File>
-              <FileName>zf_device_dm1xa.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\libraries\zf_device\zf_device_dm1xa.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1263,126 +1398,6 @@
               <FileName>hal_wwdg.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\libraries\sdk\drivers\hal_wwdg.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>code</GroupName>
-          <Files>
-            <File>
-              <FileName>easy_key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\easy_key.c</FilePath>
-            </File>
-            <File>
-              <FileName>easy_key.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\easy_key.h</FilePath>
-            </File>
-            <File>
-              <FileName>easy_ui.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\easy_ui.c</FilePath>
-            </File>
-            <File>
-              <FileName>easy_ui.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\easy_ui.h</FilePath>
-            </File>
-            <File>
-              <FileName>header.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\header.h</FilePath>
-            </File>
-            <File>
-              <FileName>pid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\pid.c</FilePath>
-            </File>
-            <File>
-              <FileName>pid.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\pid.h</FilePath>
-            </File>
-            <File>
-              <FileName>user_ips114.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\user_ips114.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_ips114.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\user_ips114.h</FilePath>
-            </File>
-            <File>
-              <FileName>profile_photo_erbws.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\profile_photo_erbws.c</FilePath>
-            </File>
-            <File>
-              <FileName>profile_photo_erbws.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\profile_photo_erbws.h</FilePath>
-            </File>
-            <File>
-              <FileName>user_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\user_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\user_flash.h</FilePath>
-            </File>
-            <File>
-              <FileName>ctrl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\ctrl.c</FilePath>
-            </File>
-            <File>
-              <FileName>ctrl.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\ctrl.h</FilePath>
-            </File>
-            <File>
-              <FileName>buzzer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\buzzer.c</FilePath>
-            </File>
-            <File>
-              <FileName>buzzer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\buzzer.h</FilePath>
-            </File>
-            <File>
-              <FileName>easy_ui_user_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\easy_ui_user_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>easy_ui_user_app.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\easy_ui_user_app.h</FilePath>
-            </File>
-            <File>
-              <FileName>image_process.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\image_process.c</FilePath>
-            </File>
-            <File>
-              <FileName>image_process.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\image_process.h</FilePath>
-            </File>
-            <File>
-              <FileName>GP2Y0A02.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\GP2Y0A02.c</FilePath>
-            </File>
-            <File>
-              <FileName>GP2Y0A02.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\GP2Y0A02.h</FilePath>
             </File>
           </Files>
         </Group>
