@@ -1,4 +1,4 @@
-21500762272826836
+21504127019398190
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -53305,6 +53305,13 @@ Resistor
 3
 3
 ErBW_s
+BTB_Connector_02x18
+
+
+0
+38
+37
+ErBW_s
 BTB_Connector_02x30
 
 
@@ -53396,12 +53403,19 @@ Flange_Plate_D27
 4
 1
 ErBW_s
+IPS096
+
+
+0
+13
+13
+ErBW_s
 IPS114
 
 
 0
-15
-14
+13
+13
 ErBW_s
 LED_0402
 
