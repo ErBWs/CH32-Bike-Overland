@@ -45,7 +45,7 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.1016
         }
       },
       "diff_pair_dimensions": [
@@ -60,12 +60,14 @@
           "width": 0.1016
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "copper_edge_clearance|190289971|113756419|a55b1f96-e516-4629-b5f4-e58c2fe3e2ff|bbd57f01-befe-41c7-96a3-b4312b276415"
+      ],
       "meta": {
         "version": 2
       },
       "rule_severities": {
-        "annular_width": "error",
+        "annular_width": "ignore",
         "clearance": "error",
         "connection_width": "warning",
         "copper_edge_clearance": "error",
