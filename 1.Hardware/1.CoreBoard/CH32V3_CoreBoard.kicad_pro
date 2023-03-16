@@ -61,7 +61,9 @@
         }
       ],
       "drc_exclusions": [
-        "copper_edge_clearance|190289971|113756419|a55b1f96-e516-4629-b5f4-e58c2fe3e2ff|bbd57f01-befe-41c7-96a3-b4312b276415"
+        "copper_edge_clearance|190003000|113411000|a55b1f96-e516-4629-b5f4-e58c2fe3e2ff|bbd57f01-befe-41c7-96a3-b4312b276415",
+        "copper_edge_clearance|190289971|113756419|a55b1f96-e516-4629-b5f4-e58c2fe3e2ff|bbd57f01-befe-41c7-96a3-b4312b276415",
+        "copper_edge_clearance|190434200|107308600|eee4c07d-3b98-4934-82d5-e374ecddd4c4|f3e59fd3-6e80-4af2-9cd3-f6d6faf34705"
       ],
       "meta": {
         "version": 2
@@ -120,7 +122,7 @@
         "max_error": 0.005,
         "min_clearance": 0.1016,
         "min_connection": 0.0,
-        "min_copper_edge_clearance": 0.0,
+        "min_copper_edge_clearance": 0.3,
         "min_hole_clearance": 0.1016,
         "min_hole_to_hole": 0.1016,
         "min_microvia_diameter": 0.19999999999999998,
