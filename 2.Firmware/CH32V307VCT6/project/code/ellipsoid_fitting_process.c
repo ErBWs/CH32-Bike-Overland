@@ -15,12 +15,61 @@
 
 #include "ellipsoid_fitting_process.h"
 
+
 #define MATRIX_SIZE 6
 float m_matrix[MATRIX_SIZE][MATRIX_SIZE + 1];//系数矩阵
-float solve[MATRIX_SIZE] = { 0 };//方程组的解对应最小二乘椭球拟合中的，a，b，c，d，e，f，
+float solve[MATRIX_SIZE] = { 0 };//方程组的解对应最小二乘椭球拟合中的，a，b，c，d，e，f
 
 float m_result[MATRIX_SIZE];
 int N = 0;//计算累计的采样点次数的
+
+_xyz_mag_f_st mag_Offset;
+_xyz_mag_s16_ary_st mag_origin_data;
+_xyz_mag_s16_st mag_data;
+
+_xyz_mag_s16_ary_st mag_origin_data_test = {{87, 301, 274, 312, -3805, 4389, 261, 327, -1963, 3024},
+                                       {-52, -45, 4088, -4109, -24, 6, 2106, -2047, -13, 18},
+                                       {-4454, 3859, -303, -305, -390, -228, -3848, -3880, -3797, -3449}
+                                        };
+
+
+char Offset_Mag_OK = 0;
+
+//读取磁力计数据
+void imuGetMagData(_xyz_mag_s16_st *mag_data)
+{
+    imu963ra_get_mag();
+    if (Offset_Mag_OK)
+        {
+        mag_data->mx = (imu963ra_mag_x - mag_Offset.X0) / mag_Offset.A;  //获取磁力计拟合数据
+        mag_data->my = (imu963ra_mag_y - mag_Offset.Y0) / mag_Offset.B;
+        mag_data->mz = (imu963ra_mag_z - mag_Offset.Z0) / mag_Offset.C;
+        }
+     else
+        {
+         mag_data->mx = imu963ra_mag_x;  //获取磁力计原始数据
+         mag_data->my = imu963ra_mag_y;
+         mag_data->mz = imu963ra_mag_z;
+        }
+}
+
+void imuMagOffset()
+{
+    int i;
+    for (i = 0; i < MAG_SAMPLE; ++i)
+    {
+        imuGetMagData(&mag_data);
+        system_delay_ms(2);
+        if ((mag_data.mx != 0) || (mag_data.my != 0) || (mag_data.mz != 0) )
+        {
+            mag_origin_data.mx_o[i] = mag_data.mx;
+            mag_origin_data.my_o[i] = mag_data.my;
+            mag_origin_data.mz_o[i] = mag_data.mz;
+        }
+
+    }
+    Offset_Mag_OK = 1;
+}
 
 //取绝对值
 float Abs(float a)
@@ -39,7 +88,7 @@ void ResetMatrix(void)
 }
 
 //把输入的数据先生成矩阵的元素的总和
-void CalcData_Input(float x, float y, float z)
+void CalcData_Input(int16 x, int16 y, int16 z)//原来是float
 {
     float V[MATRIX_SIZE + 1];
     N++;
@@ -59,6 +108,21 @@ void CalcData_Input(float x, float y, float z)
         }
     }
     //b向量是m_matrix[row][6]
+}
+
+//把所有的数据先生成矩阵的元素的总和
+void CalcData_Input_sum(_xyz_mag_s16_ary_st *mag_origin_data)
+{
+    int i;
+    for (i = 0; i < MAG_SAMPLE; ++i)
+    {
+        if ((mag_origin_data->mx_o[i] != 0) || (mag_origin_data->my_o[i] != 0) || (mag_origin_data->mz_o[i] != 0) )
+        {
+            CalcData_Input(mag_origin_data->mx_o[i], mag_origin_data->my_o[i], mag_origin_data->mz_o[i]);
+        }
+
+    }
+
 }
 
 //化简系数矩阵，把除以N带上
@@ -116,7 +180,7 @@ void Row2_add_kRow1(float k, int row1, int row2)
 //列主元，第k次消元之前，把k行到MATRIX_SIZE的所有行进行冒泡排出最大，排序的依据是k列的元素的大小
 void MoveBiggestElement_to_Top(int k)
 {
-    int row = 0, column = 0;
+    int row = 0;//, column = 0;
 
     for (row = k + 1; row < MATRIX_SIZE; row++)
     {
@@ -180,19 +244,19 @@ void Ellipsoid_fitting_Process(void)
     ResetMatrix();
 
     //这里输入任意个点加速度参数，尽量在球面上均匀分布
-    CalcData_Input(87, -52, -4454);
-    CalcData_Input(301, -45, 3859);
-    CalcData_Input(274, 4088, -303);
-    CalcData_Input(312, -4109, -305);
-    CalcData_Input(-3805, -24, -390);
-    CalcData_Input(4389, 6, -228);
-    CalcData_Input(261, 2106, -3848);
-    CalcData_Input(327, -2047, -3880);
-    CalcData_Input(-1963, -13, -3797);
-    CalcData_Input(3024, 18, -3449);
-
+//    CalcData_Input(87, -52, -4454);
+//    CalcData_Input(301, -45, 3859);
+//    CalcData_Input(274, 4088, -303);
+//    CalcData_Input(312, -4109, -305);
+//    CalcData_Input(-3805, -24, -390);
+//    CalcData_Input(4389, 6, -228);
+//    CalcData_Input(261, 2106, -3848);
+//    CalcData_Input(327, -2047, -3880);
+//    CalcData_Input(-1963, -13, -3797);
+//    CalcData_Input(3024, 18, -3449);
+    CalcData_Input_sum(&mag_origin_data_test);
     CalcData_Input_average();//对输入的数据到矩阵元素进行归一化
-    DispMatrix();//显示原始的增广矩阵
+//    DispMatrix();//显示原始的增广矩阵
     if (Matrix_GaussElimination())  //求得行阶梯形矩阵
         printf("the marix could not be solved\r\n");
     else
@@ -200,24 +264,24 @@ void Ellipsoid_fitting_Process(void)
         Matrix_RowSimplify();//化行最简形态
         Matrix_Solve(solve);//求解a,b,c,d,e,f
 
-        float a = 0, b = 0, c = 0, d = 0, e = 0, f = 0;
-        a = solve[0];
-        b = solve[1];
-        c = solve[2];
-        d = solve[3];
-        e = solve[4];
-        f = solve[5];
+//        float a = 0, b = 0, c = 0, d = 0, e = 0, f = 0;
+//        a = solve[0];
+//        b = solve[1];
+//        c = solve[2];
+//        d = solve[3];
+//        e = solve[4];
+//        f = solve[5];
 
-        float X0 = 0, Y0 = 0, Z0 = 0, A = 0, B = 0, C = 0;
-        X0 = -c / 2;
-        Y0 = -d / (2 * a);
-        Z0 = -e / (2 * b);
-        A = sqrt(X0*X0 + a*Y0*Y0 + b*Z0*Z0 - f);
-        B = A / sqrt(a);
-        C = A / sqrt(b);
+//        float X0 = 0, Y0 = 0, Z0 = 0, A = 0, B = 0, C = 0;
+        mag_Offset.X0 = -solve[2] / 2;
+        mag_Offset.Y0 = -solve[3] / (2 * solve[0]);
+        mag_Offset.Z0 = -solve[4] / (2 * solve[1]);
+        mag_Offset.A = sqrt(mag_Offset.X0*mag_Offset.X0 + solve[0]*mag_Offset.Y0*mag_Offset.Y0 + solve[1]*mag_Offset.Z0*mag_Offset.Z0 - solve[5]);
+        mag_Offset.B = mag_Offset.A / sqrt(solve[0]);
+        mag_Offset.C = mag_Offset.A / sqrt(solve[1]);
         printf("  ((x - x0) / A) ^ 2 + ((y - y0) / B) ^ 2 + ((z - z0) / C) ^ 2 = 1 Ellipsoid result as below：\r\n");
         printf("\r\n");
-        printf("  X0 = %f| Y0 = %f| Z0 = %f| A = %f| B = %f| C = %f \r\n", X0, Y0, Z0, A, B, C);
+        printf("  X0 = %f| Y0 = %f| Z0 = %f| A = %f| B = %f| C = %f \r\n", mag_Offset.X0, mag_Offset.Y0, mag_Offset.Z0, mag_Offset.A, mag_Offset.B, mag_Offset.C);
     }
     while (1);
 }
