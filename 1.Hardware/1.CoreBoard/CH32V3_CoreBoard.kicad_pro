@@ -458,7 +458,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "CH32V3_CoreBoard.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""

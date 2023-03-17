@@ -3940,6 +3940,10 @@
     (uuid ff3a9757-98f2-41d8-9e86-ee37b37694f0)
   )
 
+  (text "Copyright (c) 2023, ErBW_s\nAll rights reserved." (at 311.15 266.7 0)
+    (effects (font (size 4.318 4.318)) (justify left bottom))
+    (uuid 26dd15eb-39e2-4f9a-8cbb-8cd7da869b10)
+  )
   (text "PWR" (at 19.05 22.86 0)
     (effects (font (size 2.54 2.54)) (justify left bottom))
     (uuid 4f434856-9045-4bd9-9b00-7645bd0853df)

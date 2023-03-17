@@ -1,0 +1,15 @@
+# ninja log v5
+2	41	1678977416291796827	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.o	7eb527188d253ac0
+2	43	1678977416292916620	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.o	2565f6aa8b11374f
+2	46	1678977416295070913	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.o	9fdcd24ecf50c48d
+2	48	1678977416295098830	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.o	bfcc7e8310974444
+2	49	1678977416294852871	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.o	ff5490f2cfc4948a
+1	50	1678977416299469000	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.o	c2580ffbd5ba4cbb
+2	51	1678977416299954500	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.o	aa68b17169acb7fe
+42	75	1678977416322536185	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.o	d80d0efcd8d3a664
+47	79	1678977416329781858	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.o	37df5befabbe912b
+50	81	1678977416331830109	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.o	389b2d5855b297ef
+51	82	1678977416333326111	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.o	c6342b490548771f
+52	85	1678977416337472697	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.o	90898fa483686cc
+49	86	1678977416339067782	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.o	d89ab4b74d79bc76
+46	92	1678977416344666203	CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.o	91ccbd9994622f61

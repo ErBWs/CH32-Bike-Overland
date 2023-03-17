@@ -1,4 +1,4 @@
-21593000401390653
+21505808127384523
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -53102,13 +53102,6 @@ http://www.display-elektronik.de/filter/DE122-RS-20_635.pdf
 50
 50
 Display_7Segment
-DE152-XX-XX
-https://tft-module.de/filter/DE152-RS-20_75.pdf
-4 digit 7 segment LCD 
-0
-40
-40
-Display_7Segment
 DE170-XX-XX
 http://www.display-elektronik.de/filter/DE170-RS-20_75.pdf
 3 1/5 digit reflective arrow bat + 7 segment LCD 
@@ -53312,6 +53305,13 @@ Resistor
 3
 3
 ErBW_s
+BTB_Connector_02x18
+
+
+0
+38
+37
+ErBW_s
 BTB_Connector_02x30
 
 
@@ -53403,12 +53403,19 @@ Flange_Plate_D27
 4
 1
 ErBW_s
+IPS096
+
+
+0
+13
+13
+ErBW_s
 IPS114
 
 
 0
-15
-14
+13
+13
 ErBW_s
 LED_0402
 
@@ -53438,7 +53445,14 @@ R_0402
 2
 2
 ErBW_s
-SCEP
+SCEP_CH32V3
+
+
+0
+76
+73
+ErBW_s
+SCEP_MM32F5
 
 
 0
@@ -55041,202 +55055,6 @@ Bourns SRR1260 SMD inductor
 2
 2
 Inductor_SMD
-L_Changjiang_FNR3010S
-Inductor, Changjiang, FNR3010S, 3.0x3.0x1.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR3012S
-Inductor, Changjiang, FNR3012S, 3.0x3.0x1.2mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR3015S
-Inductor, Changjiang, FNR3015S, 3.0x3.0x1.5mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR3021S
-Inductor, Changjiang, FNR3021S, 3.0x3.0x2.35mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR4010S
-Inductor, Changjiang, FNR4010S, 4.0x4.0x1.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR4012S
-Inductor, Changjiang, FNR4012S, 4.0x4.0x1.2mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR4015S
-Inductor, Changjiang, FNR4015S, 4.0x4.0x1.65mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR4018S
-Inductor, Changjiang, FNR4018S, 4.0x4.0x1.8mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR4020S
-Inductor, Changjiang, FNR4020S, 4.0x4.0x2.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR4026S
-Inductor, Changjiang, FNR4026S, 4.0x4.0x2.6mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR4030S
-Inductor, Changjiang, FNR4030S, 4.0x4.0x3.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR5012S
-Inductor, Changjiang, FNR5012S, 5.0x5.0x1.2mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR5015S
-Inductor, Changjiang, FNR5015S, 5.0x5.0x1.5mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR5020S
-Inductor, Changjiang, FNR5020S, 5.0x5.0x2.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR5030S
-Inductor, Changjiang, FNR5030S, 5.0x5.0x3.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR5040S
-Inductor, Changjiang, FNR5040S, 5.0x5.0x4.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR5045S
-Inductor, Changjiang, FNR5045S, 5.0x5.0x4.5mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR6020S
-Inductor, Changjiang, FNR6020S, 6.0x6.0x2.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR6028S
-Inductor, Changjiang, FNR6028S, 6.0x6.0x2.8mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR6040S
-Inductor, Changjiang, FNR6040S, 6.0x6.0x4.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR6045S
-Inductor, Changjiang, FNR6045S, 6.0x6.0x4.5mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR8040S
-Inductor, Changjiang, FNR8040S, 8.0x8.0x4.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR8050S
-Inductor, Changjiang, FNR8050S, 8.0x8.0x5.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR8065S
-Inductor, Changjiang, FNR8065S, 8.0x8.0x6.5mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR252010S
-Inductor, Changjiang, FNR252010S, 2.5x2.0x1.0mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Changjiang_FNR252012S
-Inductor, Changjiang, FNR252012S, 2.5x2.0x1.2mm, https://datasheet.lcsc.com/lcsc/1806131217_cjiang-Changjiang-Microelectronics-Tech-FNR5040S3R3NT_C167960.pdf
-Inductor wirewound power shielded
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRA00040415
-Inductor, Chilisin, BMRA00040415, 4.6x4.1x1.5mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRA00040420
-Inductor, Chilisin, BMRA00040420, 4.6x4.1x2.0mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
 L_Chilisin_BMRA00050520
 Inductor, Chilisin, BMRA00050520, 5.7x5.4x1.8mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
 Inductor bmrx mchi
@@ -55246,27 +55064,6 @@ Inductor bmrx mchi
 Inductor_SMD
 L_Chilisin_BMRA00050530
 Inductor, Chilisin, BMRA00050530, 5.7x5.4x3.0mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRB00050512
-Inductor, Chilisin, BMRB00050512, 5.7x5.4x1.2mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRB00050518
-Inductor, Chilisin, BMRB00050518, 5.7x5.4x1.8mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRB00050518-B
-Inductor, Chilisin, BMRB00050518-B, 5.4x5.2x1.6mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
 Inductor bmrx mchi
 0
 2
@@ -55337,27 +55134,6 @@ Inductor bmrx mchi
 Inductor_SMD
 L_Chilisin_BMRG00131360
 Inductor, Chilisin, BMRG00131360, 13.8x12.6x6.0mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRx00040412
-Inductor, Chilisin, BMRx00040412, 4.6x4.1x1.2mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRx00050512-B
-Inductor, Chilisin, BMRx00050512-B, 5.4x5.2x1.2mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
-Inductor bmrx mchi
-0
-2
-2
-Inductor_SMD
-L_Chilisin_BMRx00050515
-Inductor, Chilisin, BMRx00050515, 5.7x5.4x1.5mm, https://www.chilisin.com/upload/media/product/power/file/BMRx_Series.pdf
 Inductor bmrx mchi
 0
 2
@@ -55867,13 +55643,6 @@ Wuerth WE-SL2
 4
 4
 Inductor_SMD
-L_Eaton_MCL2012V1
-Inductor, Eaton, MCL2012V1, 2.0x1.2x0.9mm, https://eu.mouser.com/datasheet/2/87/eaton-mcl2012v1-multilayer-chip-inductor-data-shee-1622891.pdf
-Inductor ferrite multilayer power
-0
-2
-2
-Inductor_SMD
 L_Fastron_PISN
 Choke, Drossel, PISN, SMD, Fastron,
 Choke Drossel PISN SMD Fastron 
@@ -55954,13 +55723,6 @@ Inductor_SMD
 L_Murata_DEM35xxC
 https://www.murata.com/~/media/webrenewal/products/inductor/chip/tokoproducts/wirewoundferritetypeforpl/m_dem3518c.ashx
 Inductor SMD DEM35xxC
-0
-2
-2
-Inductor_SMD
-L_Murata_DFE201610P
-Inductor, Murata, DFE201610P, 2.0x1.6x1.0mm, https://www.murata.com/~/media/webrenewal/products/inductor/chip/tokoproducts/wirewoundmetalalloychiptype/m_dfe201610p.ashx
-Inductor power chip flatwire
 0
 2
 2
@@ -56918,43 +56680,22 @@ Inductor swpa
 2
 Inductor_SMD
 L_Sunlord_SWRB1204S
-Inductor, Sunlord, SWRB1204S, 12.5x12.5x5.0mm, https://www.sunlordinc.com/Download.aspx?file=L1VwbG9hZEZpbGVzL1BERl9DYXQvMjAyMTA2MTAxMTMyMzc4MTEucGRm&lan=en
+Inductor, Sunlord, SWRB1204S, 12.5x12.5x5.0mm, https://www.sunlordinc.com/Download.aspx?file=L1VwbG9hZEZpbGVzL1BERl9DYXQvMjAyMTA2MTAxMTMyMzc4MTEucGRm&lan=
 Inductor swrb
 0
 2
 2
 Inductor_SMD
 L_Sunlord_SWRB1205S
-Inductor, Sunlord, SWRB1205S, 12.5x12.5x6.0mm, https://www.sunlordinc.com/Download.aspx?file=L1VwbG9hZEZpbGVzL1BERl9DYXQvMjAyMTA2MTAxMTMyMzc4MTEucGRm&lan=en
+Inductor, Sunlord, SWRB1205S, 12.5x12.5x6.0mm, https://www.sunlordinc.com/Download.aspx?file=L1VwbG9hZEZpbGVzL1BERl9DYXQvMjAyMTA2MTAxMTMyMzc4MTEucGRm&lan=
 Inductor swrb
 0
 2
 2
 Inductor_SMD
 L_Sunlord_SWRB1207S
-Inductor, Sunlord, SWRB1207S, 12.5x12.5x8.0mm, https://www.sunlordinc.com/Download.aspx?file=L1VwbG9hZEZpbGVzL1BERl9DYXQvMjAyMTA2MTAxMTMyMzc4MTEucGRm&lan=en
+Inductor, Sunlord, SWRB1207S, 12.5x12.5x8.0mm, https://www.sunlordinc.com/Download.aspx?file=L1VwbG9hZEZpbGVzL1BERl9DYXQvMjAyMTA2MTAxMTMyMzc4MTEucGRm&lan=
 Inductor swrb
-0
-2
-2
-Inductor_SMD
-L_TDK_MLZ1608
-Inductor, TDK, MLZ1608, 1.6x0.8x0.8mm,  "https://product.tdk.com/system/files/dam/doc/product/inductor/inductor/smd/catalog/inductor_commercial_decoupling_mlz1608_en.pdf"
-Inductor MLZ
-0
-2
-2
-Inductor_SMD
-L_TDK_MLZ2012_h0.85mm
-Inductor, TDK, MLZ2012_h0.85mm, 2.0x1.25x0.85mm,  "https://product.tdk.com/system/files/dam/doc/product/inductor/inductor/smd/catalog/inductor_commercial_decoupling_mlz2012_en.pdf"
-Inductor MLZ
-0
-2
-2
-Inductor_SMD
-L_TDK_MLZ2012_h1.25mm
-Inductor, TDK, MLZ2012_h1.25mm, 2.0x1.25x1.25mm,  "https://product.tdk.com/system/files/dam/doc/product/inductor/inductor/smd/catalog/inductor_commercial_decoupling_mlz2012_en.pdf"
-Inductor MLZ
 0
 2
 2
@@ -57326,27 +57067,6 @@ Inductor_SMD
 L_Vishay_IHSM-7832
 Inductor, Vishay, Vishay_IHSM-7832, http://www.vishay.com/docs/34021/ihsm7832.pdf, 19.8mmx8.1mm
 inductor vishay icsm smd
-0
-2
-2
-Inductor_SMD
-L_Walsin_WLFM201209x
-Inductor, Walsin, WLFM201209x, 2.0x1.25x0.9mm, http://www.passivecomponent.com/wp-content/uploads/inductor/WLFM_C_series.pdf
-Inductor ferrite multilayer power
-0
-2
-2
-Inductor_SMD
-L_Walsin_WLFM201609x
-Inductor, Walsin, WLFM201609x, 2.0x1.6x0.9mm, http://www.passivecomponent.com/wp-content/uploads/inductor/WLFM_C_series.pdf
-Inductor ferrite multilayer power
-0
-2
-2
-Inductor_SMD
-L_Walsin_WLFM252009x
-Inductor, Walsin, WLFM252009x, 2.5x2.0x0.9mm, http://www.passivecomponent.com/wp-content/uploads/inductor/WLFM_C_series.pdf
-Inductor ferrite multilayer power
 0
 2
 2
@@ -64519,13 +64239,6 @@ SMD SMT crystal oscillator hand-soldering
 4
 4
 Oscillator
-Oscillator_SMD_SiTime_PQFD-6L_3.2x2.5mm
-3.2x2.5mm, 6-pin QFN (https://www.sitime.com/datasheet/SiT9365 page 13)
-SMD SMT mems oscillator
-0
-6
-6
-Oscillator
 Oscillator_SMD_SiTime_SiT9121-6Pin_3.2x2.5mm
 3.2x2.5mm, 1-220MHz High Performance Differential Oscillator SiTime SiT9121 https://www.sitime.com/datasheet/SiT9121
 SMD SMT crystal oscillator
@@ -64588,13 +64301,6 @@ BGA 49 0.8
 0
 49
 49
-Package_BGA
-Analog_BGA-209_9.5x16mm_Layout11x19_P0.8mm_Ball0.5mm_Pad0.4mm
-Analog BGA-209 (Reference LTC DWG#05-08-1561 Rev B), 9.5x16.0mm, 209 Ball, 11x19 Layout, 0.8mm Pitch, https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/ltc-legacy-bga/05081561_bga209.pdf
-BGA 209 0.8
-0
-209
-209
 Package_BGA
 BGA-9_1.6x1.6mm_Layout3x3_P0.5mm
 BGA-9, http://www.ti.com/lit/ds/symlink/bq27421-g1.pdf
@@ -65715,20 +65421,6 @@ LFCSP 8 0.5
 0
 12
 5
-Package_CSP
-Analog_LFCSP-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm
-Analog  LFCSP, 16 Pin (https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/lfcspcp/cp_16_23.pdf, CP-16-23), generated with kicad-footprint-generator ipc_noLead_generator.py
-Analog LFCSP NoLead
-0
-21
-17
-Package_CSP
-Analog_LFCSP-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm_ThermalVias
-Analog  LFCSP, 16 Pin (https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/lfcspcp/cp_16_23.pdf, CP-16-23), generated with kicad-footprint-generator ipc_noLead_generator.py
-Analog LFCSP NoLead
-0
-31
-17
 Package_CSP
 Analog_LFCSP-16-1EP_4x4mm_P0.65mm_EP2.35x2.35mm
 Analog  LFCSP, 16 Pin (https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/lfcspcp/cp_16_20.pdf, CP-16-20), generated with kicad-footprint-generator ipc_noLead_generator.py
@@ -69272,20 +68964,6 @@ TQFN NoLead
 31
 17
 Package_DFN_QFN
-TQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm
-TQFN, 20 Pin (https://pdfserv.maximintegrated.com/package_dwgs/21-0139.PDF (T2044-5C)), generated with kicad-footprint-generator ipc_noLead_generator.py
-TQFN NoLead
-0
-25
-21
-Package_DFN_QFN
-TQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm_ThermalVias
-TQFN, 20 Pin (https://pdfserv.maximintegrated.com/package_dwgs/21-0139.PDF (T2044-5C)), generated with kicad-footprint-generator ipc_noLead_generator.py
-TQFN NoLead
-0
-35
-21
-Package_DFN_QFN
 TQFN-20-1EP_4x4mm_P0.5mm_EP2.9x2.9mm
 TQFN, 20 Pin (https://pdfserv.maximintegrated.com/package_dwgs/21-100172.PDF), generated with kicad-footprint-generator ipc_noLead_generator.py
 TQFN NoLead
@@ -69936,13 +69614,6 @@ Texas VSON-HR NoLead
 0
 8
 8
-Package_DFN_QFN
-Texas_WQFN-10_2x2mm_P0.5mm
-Texas  WQFN, 10 Pin (https://www.ti.com/lit/ds/symlink/tmp461.pdf#page=35 (RUN0010A)), generated with kicad-footprint-generator ipc_noLead_generator.py
-Texas WQFN NoLead
-0
-10
-10
 Package_DFN_QFN
 Texas_WQFN-MR-100_3x3-DapStencil
 http://www.ti.com/general/docs/lit/getliterature.tsp?baseLiteratureNumber=szza059&fileType=pdf,http://www.ti.com/general/docs/lit/getliterature.tsp?baseLiteratureNumber=mpqf258&fileType=pdf,http://www.ti.com/general/docs/lit/getliterature.tsp?baseLiteratureNumber=LPPD235&fileType=pdf
