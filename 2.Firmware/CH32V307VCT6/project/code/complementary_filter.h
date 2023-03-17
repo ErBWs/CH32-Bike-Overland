@@ -8,8 +8,9 @@
 #ifndef COMPLEMENTARY_FILTER_H_
 #define COMPLEMENTARY_FILTER_H_
 
-#include "inc_all.h"
 #include "zf_common_headfile.h"
+#include "inc_all.h"
+
 
 extern double Cal_Angle(int16 gyro_x, int16 acc_y, int16 acc_z, int16 offset);
 

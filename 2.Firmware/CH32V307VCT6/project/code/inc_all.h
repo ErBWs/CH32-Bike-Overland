@@ -17,5 +17,7 @@
 #include "my_math.h"
 #include "sendware.h"
 #include "vofa.h"
+#include "ellipsoid_fitting_process.h"
+
 
 #endif /* INC_ALL_H_ */
