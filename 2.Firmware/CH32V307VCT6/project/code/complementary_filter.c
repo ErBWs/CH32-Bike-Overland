@@ -7,7 +7,7 @@
 
 #include "complementary_filter.h"
 
-#define  VAL  57.2957795f;
+
 /*
  * 一阶互补滤波
  * gyro_x,acc_y, acc_z：x轴陀螺仪采集数据, y、z轴加速度采集数据

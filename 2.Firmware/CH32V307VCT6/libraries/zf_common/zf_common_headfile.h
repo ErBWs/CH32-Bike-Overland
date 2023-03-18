@@ -124,6 +124,9 @@
 #include "zf_device_imu660ra.h"
 #include "zf_device_imu963ra.h"
 #include "zf_device_key.h"
+#include "zf_device_gps_tau1201.h"
+#include "zf_device_dl1a.h"
+#include "zf_device_dm1xa.h"
 //===================================================外接设备驱动层===================================================
 
 

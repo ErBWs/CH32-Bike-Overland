@@ -55,6 +55,6 @@ extern void ImuGetMagData(_xyz_mag_s16_ary_st *mag_origin_data, _xyz_mag_s16_st 
 extern void imuMagOffset();
 extern void imuGetMagData(_xyz_mag_s16_st *mag_data);
 extern void CalcData_Input_sum(_xyz_mag_s16_ary_st *mag_origin_data);
-extern void Ellipsoid_fitting_Process(void);
-
+extern void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data);
+extern void Inclination_compensation(_xyz_mag_s16_st *mag_data);
 #endif

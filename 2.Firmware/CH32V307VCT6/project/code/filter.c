@@ -142,7 +142,7 @@ void set_cutoff_frequency(float sample_frequent, float cutoff_frequent,Butter_Pa
     LPF->b[0] = ohm * ohm / c;
     LPF->b[1] = 2.0f * LPF->b[0];
     LPF->b[2] = LPF->b[0];
-        LPF->a[0]=1.0f;
+    LPF->a[0]=1.0f;
     LPF->a[1] = 2.0f * (ohm * ohm - 1.0f) / c;
     LPF->a[2] = (1.0f - 2.0f * cosf(M_PI_F / 4.0f) * ohm + ohm * ohm) / c;
 }

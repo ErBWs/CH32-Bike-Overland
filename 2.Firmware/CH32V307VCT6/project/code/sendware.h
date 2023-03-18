@@ -8,8 +8,9 @@
 #ifndef CODE_SENDWARE_H_
 #define CODE_SENDWARE_H_
 
-#include "inc_all.h"
 #include "zf_common_headfile.h"
+#include "inc_all.h"
+
 
 //#define BYTE0(x)   (*(char*)(&x))
 //#define BYTE1(x)   (*((char*)(&x) + 1))

@@ -8,8 +8,8 @@
 #ifndef CODE_FILTER_H_
 #define CODE_FILTER_H_
 
-#include "inc_all.h"
 #include "zf_common_headfile.h"
+#include "inc_all.h"
 
 #define M_PI_F 3.141592653589793f
 #define LPF_1_(hz,t,in,out) ((out) += ( 1 / ( 1 + 1 / ( (hz) *6.28f *(t) ) ) ) *( (in) - (out) ))
