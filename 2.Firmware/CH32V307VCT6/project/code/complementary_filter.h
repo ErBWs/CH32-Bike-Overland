@@ -11,6 +11,8 @@
 #include "zf_common_headfile.h"
 #include "inc_all.h"
 
+#define  VAL  57.2957795f;
+#define  INVVAL  0.0174533f
 
 extern double Cal_Angle(int16 gyro_x, int16 acc_y, int16 acc_z, int16 offset);
 

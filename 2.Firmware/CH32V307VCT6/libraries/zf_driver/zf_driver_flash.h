@@ -70,12 +70,12 @@ typedef union                                                                   
 extern flash_data_union flash_union_buffer[FLASH_DATA_BUFFER_SIZE];
 
 uint8   flash_check                         (uint32 sector_num, uint32 page_num);
-uint8   flash_erase_page                    (uint32 sector_num, uint32 page_num);
+uint8   flash_erase_sector                  (uint32 sector_num, uint32 page_num);
 void    flash_read_page                     (uint32 sector_num, uint32 page_num, uint32 *buf, uint16 len);
 uint8   flash_write_page                    (uint32 sector_num, uint32 page_num, const uint32 *buf, uint16 len);
 
-void    flash_read_page_to_buffer      (uint32 sector_num, uint32 page_num);
-uint8   flash_write_page_from_buffer     (uint32 sector_num, uint32 page_num);
-void    flash_buffer_clear             (void);
+void    flash_read_page_to_buffer           (uint32 sector_num, uint32 page_num);
+uint8   flash_write_page_from_buffer        (uint32 sector_num, uint32 page_num);
+void    flash_buffer_clear                  (void);
 
 #endif
