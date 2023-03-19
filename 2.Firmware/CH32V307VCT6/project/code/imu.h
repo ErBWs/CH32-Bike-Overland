@@ -49,9 +49,11 @@ typedef struct
     float rol;
     float pit;
     float yaw;
+
     float inter_rol;
     float inter_pit;
     float inter_yaw;
+    float mag_yaw;
 } _imu_st ;
 
 extern _imu_st imu_data;

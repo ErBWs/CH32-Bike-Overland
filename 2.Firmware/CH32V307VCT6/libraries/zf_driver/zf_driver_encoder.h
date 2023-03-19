@@ -144,14 +144,14 @@ typedef enum    // TIMER引脚枚举
     TIM10_ENCOEDER_MAP0_CH2_B9 = 0x9000 | B9,        	// 0x 9[TIM10] 0[MAP0] 29[B9]
 
     // 以下为TIM10编码器的一组通道，不允许映射引脚混用。
-    // 部分映射                                    	                 
-    TIM10_ENCOEDER_MAP1_CH1_D1 = 0x9100 | D1,        	// 0x 9[TIM10] 1[MAP1] 41[D1]
-    TIM10_ENCOEDER_MAP1_CH2_D3 = 0x9100 | D3,        	// 0x 9[TIM10] 1[MAP1] 43[D3]
+    // 部分映射
+    TIM10_ENCOEDER_MAP1_CH1_B3 = 0x9100 | B3,           // 0x 9[TIM10] 1[MAP1] 23[B3]
+    TIM10_ENCOEDER_MAP1_CH2_B4 = 0x9100 | B4,           // 0x 9[TIM10] 1[MAP1] 24[B4]
 
     // 以下为TIM10编码器的一组通道，不允许映射引脚混用。
-    // 完全映射                                    	                 
-    TIM10_ENCOEDER_MAP3_CH1_B3 = 0x9300 | B3,        	// 0x 9[TIM10] 3[MAP3] 23[B3]
-    TIM10_ENCOEDER_MAP3_CH2_B4 = 0x9300 | B4,        	// 0x 9[TIM10] 3[MAP3] 24[B4]
+    // 完全映射
+    TIM10_ENCOEDER_MAP3_CH1_D1 = 0x9300 | D1,           // 0x 9[TIM10] 3[MAP3] 41[D1]
+    TIM10_ENCOEDER_MAP3_CH2_D3 = 0x9300 | D3,           // 0x 9[TIM10] 3[MAP3] 43[D3]
 
 }encoder_channel_enum;
 

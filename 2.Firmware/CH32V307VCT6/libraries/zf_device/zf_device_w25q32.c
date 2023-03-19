@@ -370,11 +370,11 @@ static uint8 w25q32_self_check(void)
 
     if(timeout_count < 0)
     {
-        ret = 0;
+        ret = 1;
     }
     else
     {
-        ret = 1;
+        ret = 0;
     }
 
     return ret;

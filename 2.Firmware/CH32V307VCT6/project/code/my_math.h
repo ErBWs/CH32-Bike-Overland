@@ -8,8 +8,9 @@
 #ifndef CODE_MY_MATH_H_
 #define CODE_MY_MATH_H_
 
-#include "inc_all.h"
 #include "zf_common_headfile.h"
+#include "inc_all.h"
+
 
 #define REAL   float
 #define TAN_MAP_RES     0.003921569f     /* (smallest non-zero value in table) */

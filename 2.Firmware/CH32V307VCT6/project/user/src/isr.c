@@ -256,13 +256,17 @@ void EXTI15_10_IRQHandler(void)
     }
     if(SET == EXTI_GetITStatus(EXTI_Line14))
     {
+        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
+        dm1xa_light_callback();
+        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
         EXTI_ClearITPendingBit(EXTI_Line14);
-
     }
     if(SET == EXTI_GetITStatus(EXTI_Line15))
     {
+        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
+        dm1xa_sound_callback();
+        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
         EXTI_ClearITPendingBit(EXTI_Line15);
-
     }
 }
 

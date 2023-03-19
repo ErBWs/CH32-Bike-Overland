@@ -55,7 +55,7 @@ uint8 flash_check (uint32 sector_num, uint32 page_num)
     zf_assert(sector_num <= FLASH_MAX_SECTION_INDEX);                                                   // 参数范围 0-63
     zf_assert(page_num <= FLASH_MAX_PAGE_INDEX);                                                        // 参数范围 0-3
 
-    uint8 return_state = 0;
+    uint8  return_state = 0;
     uint16 temp_loop;
     uint32 flash_addr = ((FLASH_BASE_ADDR+FLASH_SECTION_SIZE*sector_num+FLASH_PAGE_SIZE*page_num));     // 提取当前 Flash 地址
 
@@ -71,14 +71,15 @@ uint8 flash_check (uint32 sector_num, uint32 page_num)
 }
 
 //-------------------------------------------------------------------------------------------------------------------
-// 函数简介     擦除扇区
+// 函数简介     擦除一个扇区数据(4KB)
 // 参数说明     sector_num      需要写入的扇区编号 参数范围 <0 - 63>
 // 参数说明     page_num        当前扇区页的编号   参数范围 <0 - 3>
 // 返回参数     uint8           1-表示失败 0-表示成功
 // 使用示例     flash_erase_page(63, 3);
 // 备注信息
+//          标准擦除只能是擦一个扇区的数据，4KB字节长度
 //-------------------------------------------------------------------------------------------------------------------
-uint8 flash_erase_page (uint32 sector_num, uint32 page_num)
+uint8 flash_erase_sector (uint32 sector_num, uint32 page_num)
 {
     zf_assert(sector_num <= FLASH_MAX_SECTION_INDEX);                                                   // 参数范围 0-63
     zf_assert(page_num <= FLASH_MAX_PAGE_INDEX);                                                        // 参数范围 0-3
@@ -148,7 +149,7 @@ uint8 flash_write_page (uint32 sector_num, uint32 page_num, const uint32 *buf, u
 
     if(flash_check(sector_num, page_num))                                                               // 判断是否有数据 这里是冗余的保护 防止有人没擦除就写入
     {
-        flash_erase_page(sector_num, page_num);                                                         // 擦除这一页
+        flash_erase_sector(sector_num, page_num);                                                       // 擦除这一扇区
     }
 
     uint32 primask = interrupt_global_disable();
@@ -187,7 +188,7 @@ void flash_read_page_to_buffer (uint32 sector_num, uint32 page_num)
 
     for(temp_loop = 0; temp_loop < FLASH_DATA_BUFFER_SIZE; temp_loop++)                                 // 根据指定长度读取
     {
-        flash_union_buffer[temp_loop].uint32_type = *(__IO uint32*)(flash_addr+temp_loop*4);       // 循环读取 Flash 的值
+        flash_union_buffer[temp_loop].uint32_type = *(__IO uint32*)(flash_addr+temp_loop*4);            // 循环读取 Flash 的值
     }
 }
 
@@ -211,12 +212,12 @@ uint8 flash_write_page_from_buffer (uint32 sector_num, uint32 page_num)
     flash_addr = ((FLASH_BASE_ADDR+FLASH_SECTION_SIZE*sector_num+FLASH_PAGE_SIZE*page_num));            // 提取当前 Flash 地址
 
     if(flash_check(sector_num, page_num))                                                               // 判断是否有数据 这里是冗余的保护 防止有人没擦除就写入
-        flash_erase_page(sector_num, page_num);                                                         // 擦除这一页
+        flash_erase_sector(sector_num, page_num);                                                       // 擦除这一页
 
     FLASH_Unlock();                                                                                     // 解锁 Flash
     while(len < FLASH_DATA_BUFFER_SIZE)                                                                 // 根据长度
     {
-        gFlashStatus = FLASH_ProgramWord(flash_addr, flash_union_buffer[len].uint32_type);         // 按字 32bit 写入数据
+        gFlashStatus = FLASH_ProgramWord(flash_addr, flash_union_buffer[len].uint32_type);              // 按字 32bit 写入数据
         if(gFlashStatus != FLASH_COMPLETE)                                                              // 反复确认操作是否成功
         {
             return_state = 1;

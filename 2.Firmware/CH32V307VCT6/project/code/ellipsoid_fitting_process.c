@@ -27,10 +27,11 @@ _xyz_mag_f_st mag_Offset;
 _xyz_mag_s16_ary_st mag_origin_data;
 _xyz_mag_s16_st mag_data;
 
-_xyz_mag_s16_ary_st mag_origin_data_test = {{87, 301, 274, 312, -3805, 4389, 261, 327, -1963, 3024},
-                                       {-52, -45, 4088, -4109, -24, 6, 2106, -2047, -13, 18},
-                                       {-4454, 3859, -303, -305, -390, -228, -3848, -3880, -3797, -3449}
-                                        };
+//测试数组
+//_xyz_mag_s16_ary_st mag_origin_data_test = {{87, 301, 274, 312, -3805, 4389, 261, 327, -1963, 3024},
+//                                       {-52, -45, 4088, -4109, -24, 6, 2106, -2047, -13, 18},
+//                                       {-4454, 3859, -303, -305, -390, -228, -3848, -3880, -3797, -3449}
+//                                        };
 
 
 char Offset_Mag_OK = 0;
@@ -59,7 +60,7 @@ void imuMagOffset()
     for (i = 0; i < MAG_SAMPLE; ++i)
     {
         imuGetMagData(&mag_data);
-        system_delay_ms(2);
+        system_delay_ms(10);
         if ((mag_data.mx != 0) || (mag_data.my != 0) || (mag_data.mz != 0) )
         {
             mag_origin_data.mx_o[i] = mag_data.mx;
@@ -113,12 +114,16 @@ void CalcData_Input(int16 x, int16 y, int16 z)//原来是float
 //把所有的数据先生成矩阵的元素的总和
 void CalcData_Input_sum(_xyz_mag_s16_ary_st *mag_origin_data)
 {
-    int i;
+    int i, count = 0;
     for (i = 0; i < MAG_SAMPLE; ++i)
     {
         if ((mag_origin_data->mx_o[i] != 0) || (mag_origin_data->my_o[i] != 0) || (mag_origin_data->mz_o[i] != 0) )
         {
-            CalcData_Input(mag_origin_data->mx_o[i], mag_origin_data->my_o[i], mag_origin_data->mz_o[i]);
+            CalcData_Input(mag_origin_data->mx_o[i - count], mag_origin_data->my_o[i - count], mag_origin_data->mz_o[i - count]);
+        }
+        else //有空余数据
+        {
+            count++;
         }
 
     }
@@ -207,7 +212,6 @@ uint8 Matrix_GaussElimination(void)
             k = -m_matrix[row][cnt] / m_matrix[cnt][cnt];
             Row2_add_kRow1(k, cnt, row);
         }
-        DispMatrix();
     }
     return 0;
 }
@@ -221,7 +225,6 @@ void Matrix_RowSimplify(void)
         k = 1 / m_matrix[row][row];
         k_muiltply_Row(k, row);
     }
-    DispMatrix();
 }
 
 //求非齐次线性方程组的解
@@ -233,28 +236,15 @@ void Matrix_Solve(float* solve)
         for (uint8 column = MATRIX_SIZE - 1; column >= row + 1; column--)
             solve[row] -= m_matrix[row][column] * solve[column];
     }
-    printf("  a = %f| b = %f| c = %f| d = %f| e = %f| f = %f ", solve[0], solve[1], solve[2], solve[3], solve[4], solve[5]);
-    printf("\r\n");
-    printf("\r\n");
 }
 
 //整个椭球校准的过程
-void Ellipsoid_fitting_Process(void)
+void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data)
 {
-    ResetMatrix();
 
+    ResetMatrix();
     //这里输入任意个点加速度参数，尽量在球面上均匀分布
-//    CalcData_Input(87, -52, -4454);
-//    CalcData_Input(301, -45, 3859);
-//    CalcData_Input(274, 4088, -303);
-//    CalcData_Input(312, -4109, -305);
-//    CalcData_Input(-3805, -24, -390);
-//    CalcData_Input(4389, 6, -228);
-//    CalcData_Input(261, 2106, -3848);
-//    CalcData_Input(327, -2047, -3880);
-//    CalcData_Input(-1963, -13, -3797);
-//    CalcData_Input(3024, 18, -3449);
-    CalcData_Input_sum(&mag_origin_data_test);
+    CalcData_Input_sum(mag_origin_data);//这里语法有待商榷//验证没有问题
     CalcData_Input_average();//对输入的数据到矩阵元素进行归一化
 //    DispMatrix();//显示原始的增广矩阵
     if (Matrix_GaussElimination())  //求得行阶梯形矩阵
@@ -264,24 +254,38 @@ void Ellipsoid_fitting_Process(void)
         Matrix_RowSimplify();//化行最简形态
         Matrix_Solve(solve);//求解a,b,c,d,e,f
 
-//        float a = 0, b = 0, c = 0, d = 0, e = 0, f = 0;
-//        a = solve[0];
-//        b = solve[1];
-//        c = solve[2];
-//        d = solve[3];
-//        e = solve[4];
-//        f = solve[5];
-
-//        float X0 = 0, Y0 = 0, Z0 = 0, A = 0, B = 0, C = 0;
         mag_Offset.X0 = -solve[2] / 2;
         mag_Offset.Y0 = -solve[3] / (2 * solve[0]);
         mag_Offset.Z0 = -solve[4] / (2 * solve[1]);
         mag_Offset.A = sqrt(mag_Offset.X0*mag_Offset.X0 + solve[0]*mag_Offset.Y0*mag_Offset.Y0 + solve[1]*mag_Offset.Z0*mag_Offset.Z0 - solve[5]);
         mag_Offset.B = mag_Offset.A / sqrt(solve[0]);
         mag_Offset.C = mag_Offset.A / sqrt(solve[1]);
-        printf("  ((x - x0) / A) ^ 2 + ((y - y0) / B) ^ 2 + ((z - z0) / C) ^ 2 = 1 Ellipsoid result as below：\r\n");
-        printf("\r\n");
-        printf("  X0 = %f| Y0 = %f| Z0 = %f| A = %f| B = %f| C = %f \r\n", mag_Offset.X0, mag_Offset.Y0, mag_Offset.Z0, mag_Offset.A, mag_Offset.B, mag_Offset.C);
-    }
-    while (1);
+//        printf("  ((x - x0) / A) ^ 2 + ((y - y0) / B) ^ 2 + ((z - z0) / C) ^ 2 = 1 Ellipsoid result as below：\r\n");
+//        printf("\r\n");
+     }
+    //用于串口复制数据
+//    int32 i = 0;
+//    for (i = 0; i < N; ++i) {
+//        printf("%d %d %d\t\n",mag_origin_data->mx_o[i],mag_origin_data->my_o[i],mag_origin_data->mz_o[i]);
+//        if (i % 500 == 0  )
+//        {
+//            system_delay_ms(10000);
+//        }
+//    }
+    printf("  X0 = %f| Y0 = %f| Z0 = %f| A = %f| B = %f| C = %f \r\n", mag_Offset.X0, mag_Offset.Y0, mag_Offset.Z0, mag_Offset.A, mag_Offset.B, mag_Offset.C);
 }
+
+//倾角补偿 + 偏航角解算
+void Inclination_compensation(_xyz_mag_s16_st *mag_data)
+{
+    float Hx = 0,Hy = 0;
+    Hx = mag_data->mx * cosf(imu_data.rol * INVVAL) + mag_data->mz * sinf(imu_data.rol * INVVAL);
+    Hy = mag_data->mx * sinf(imu_data.pit * INVVAL) * sinf(imu_data.rol * INVVAL) + mag_data->my * cosf(imu_data.pit * INVVAL) - mag_data->mz * sinf(imu_data.pit * INVVAL) * cosf(imu_data.rol * INVVAL);
+    imu_data.mag_yaw = atan2f(Hx,Hy) * VAL;
+
+    if (imu_data.mag_yaw < 0)
+    {
+        imu_data.mag_yaw += 360;
+    }
+}
+
