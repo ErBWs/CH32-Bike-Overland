@@ -14,7 +14,6 @@ extern "C"
 #endif
 
 #include <stdint.h>
-#include "inc_all.h"
 #include "zf_driver_uart.h"
 
 #define CHANNEL_NUM     3
