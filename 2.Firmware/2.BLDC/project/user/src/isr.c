@@ -276,6 +276,9 @@ void TIM1_UP_IRQHandler(void)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
 
+        vofaData[0] = encoder_get_count(TIM2_ENCOEDER);
+        VofaLittleEndianSendFrame();
+        encoder_clear_count(TIM2_ENCOEDER);
     }
 }
 
@@ -284,7 +287,7 @@ void TIM2_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
     {
-       TIM_ClearITPendingBit(TIM2, TIM_IT_Update );
+        TIM_ClearITPendingBit(TIM2, TIM_IT_Update );
 
 
     }

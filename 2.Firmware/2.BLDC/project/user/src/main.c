@@ -34,20 +34,24 @@
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
 
-
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
 
     // 此处编写用户代码 例如外设初始化代码等
-
+    encoder_dir_init(TIM2_ENCOEDER, TIM2_ENCOEDER_MAP0_CH1_A0, TIM2_ENCOEDER_MAP0_CH2_A1);
+    pwm_init(TIM9_PWM_MAP3_CH3_D13, 1000, 4000);
+    gpio_init(D12, GPO, GPIO_LOW, GPO_PUSH_PULL);
+    gpio_init(D8, GPI, GPIO_LOW, GPI_PULL_UP);
+    pit_ms_init(TIM1_PIT, 100);
     // 此处编写用户代码 例如外设初始化代码等
 
     while(1)
     {
         // 此处编写需要循环执行的代码
-
+        if (gpio_get_level(D8) == 0)
+            pwm_set_duty(TIM9_PWM_MAP3_CH3_D13, 0);
         // 此处编写需要循环执行的代码
     }
 }
