@@ -34,6 +34,10 @@
 ********************************************************************************************************************/
 
 #include "zf_common_headfile.h"
+#include "inc_all.h"
+
+
+
 void NMI_Handler(void)       __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
@@ -156,6 +160,7 @@ void DVP_IRQHandler(void)
         DVP->IFR &= ~RB_DVP_IF_FRM_DONE;
     }
 }
+extern int64 encoder_val_sum;
 void EXTI0_IRQHandler(void)
 {
     if(SET == EXTI_GetITStatus(EXTI_Line0))
@@ -256,17 +261,13 @@ void EXTI15_10_IRQHandler(void)
     }
     if(SET == EXTI_GetITStatus(EXTI_Line14))
     {
-        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
-        dm1xa_light_callback();
-        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
         EXTI_ClearITPendingBit(EXTI_Line14);
+
     }
     if(SET == EXTI_GetITStatus(EXTI_Line15))
     {
-        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
-        dm1xa_sound_callback();
-        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
         EXTI_ClearITPendingBit(EXTI_Line15);
+
     }
 }
 
@@ -275,7 +276,7 @@ void TIM1_UP_IRQHandler(void)
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-
+        IMUGetCalFun();
     }
 }
 
@@ -295,8 +296,8 @@ void TIM3_IRQHandler(void)
     if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM3, TIM_IT_Update );
-
-
+       ServoControl();
+       FlyWheelControl();
     }
 }
 
@@ -315,8 +316,6 @@ void TIM5_IRQHandler(void)
     if(TIM_GetITStatus(TIM5, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM5, TIM_IT_Update );
-
-
     }
 }
 
@@ -334,7 +333,6 @@ void TIM7_IRQHandler(void)
     if(TIM_GetITStatus(TIM7, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM7, TIM_IT_Update );
-
 
     }
 }
