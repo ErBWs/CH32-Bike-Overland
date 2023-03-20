@@ -33,22 +33,38 @@
 * 2022-09-15        大W            first version
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
-
+#include "inc_all.h"
 
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
-
     // 此处编写用户代码 例如外设初始化代码等
+    encoderInit();
+    motoInit();
 
+    icm20602_init();
+    IMU_Offset();
+    pidAllInit();
+    Butterworth_Parameter_Init();
+//    motoDutySet(MOTOR_FLY_PIN,2000);
+//    system_delay_ms(1000);
+//    pwm_set_duty(SERVO_PIN,GetServoDuty(0));
+//    system_delay_ms(1000);
+//    pwm_set_duty(SERVO_PIN,GetServoDuty(45));
+//    system_delay_ms(1000);
+//    pwm_set_duty(SERVO_PIN,GetServoDuty(-45));
+//    system_delay_ms(1000);
+//    pwm_set_duty(SERVO_PIN,GetServoDuty(0));
     // 此处编写用户代码 例如外设初始化代码等
-
+    taskTimAllInit();
+//    int16_t fly_wheel_encode=0;
     while(1)
     {
         // 此处编写需要循环执行的代码
-
-        // 此处编写需要循环执行的代码
+//        system_delay_ms(50);
+//        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
+//        printf("A%d\r\n",fly_wheel_encode);
     }
 }
 

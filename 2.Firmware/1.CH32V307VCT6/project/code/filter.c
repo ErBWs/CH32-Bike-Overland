@@ -55,7 +55,7 @@ void Kalman_Filter(float Accel,float Gyro)
 }
 
 
-#define ABS(x) ( (x)>0?(x):-(x) )
+//#define ABS(x) ( (x)>0?(x):-(x) )
 #define LIMIT( x,min,max ) ( (x) < (min)  ? (min) : ( (x) > (max) ? (max) : (x) ) )
 //-----Butterworth±‰¡ø-----//
 Butter_Parameter Butter_80HZ_Parameter_Acce,Butter_60HZ_Parameter_Acce,Butter_51HZ_Parameter_Acce,

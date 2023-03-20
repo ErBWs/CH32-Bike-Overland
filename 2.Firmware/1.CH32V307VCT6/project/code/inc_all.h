@@ -19,5 +19,9 @@
 #include "vofa.h"
 #include "ellipsoid_fitting_process.h"
 
+#include "encoder.h"
+#include "moto.h"
+#include "pid.h"
+#include "ctrl.h"
 
 #endif /* INC_ALL_H_ */

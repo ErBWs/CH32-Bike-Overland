@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <projectDescription>
 	<name>Seekfree_CH32V307VCT6_Opensource_Library</name>
-	<comment></comment>
+	<comment/>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -68,7 +68,7 @@
 	<filteredResources>
 		<filter>
 			<id>1638236749989</id>
-			<name></name>
+			<name/>
 			<type>22</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
