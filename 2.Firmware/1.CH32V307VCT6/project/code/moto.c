@@ -7,9 +7,11 @@
 
 void motoInit(void)
 {
-//    pwm_init(SERVO_PIN, SERVO_FREQ, SERVO_MID);
-    pwm_init(MOTOR_FLY_PIN, 1000, 2000);
+    pwm_init(SERVO_PIN, SERVO_FREQ, SERVO_MID);
+    pwm_init(MOTOR_FLY_PIN, 1000, 0);
     gpio_init(MOTOR_FLY_DIR_PIN, GPO, GPIO_LOW, GPO_PUSH_PULL);
+    pwm_init(MOTOR_BACK_PIN, 1000, 0);
+    gpio_init(MOTOR_BACK_DIR_PIN, GPO, GPIO_LOW, GPO_PUSH_PULL);
 }
 
 
