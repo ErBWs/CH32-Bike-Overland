@@ -3932,8 +3932,8 @@
     (uuid 947cc854-56b1-4dbd-bbba-ac4f45456f04)
   )
 
-  (text_box "ENCODER:D3&D1-TIM10 / D11&D9-TIM9\n\nBLDC:D12~D15-TIM4\n\nSERVO:A15-TIM2\n\nBUZZER:C13-TIM8"
-    (at 299.72 34.29 0) (size 100.33 39.37)
+  (text_box "ENCODER:\n	BLDC: D3&D1-TIM10\n	WHEEL: D11&D9-TIM9\n\nBLDC:PWM:D14 / DIR:D15 -TIM4\nWHEEL:PWM:D12 / DIR:D13 -TIM4\n\nSERVO:A15-TIM2\n\nBUZZER:C13-TIM8"
+    (at 299.72 25.4 0) (size 100.33 53.34)
     (stroke (width 0.127) (type dash_dot) (color 255 0 0 1))
     (fill (type color) (color 194 194 0 1))
     (effects (font (size 3.048 3.048) (thickness 0.6096) bold) (justify left top))
