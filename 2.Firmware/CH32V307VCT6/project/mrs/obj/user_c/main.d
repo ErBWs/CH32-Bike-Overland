@@ -76,7 +76,16 @@ user_c/main.o: \
  S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_device/zf_device_key.h \
  S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_device/zf_device_gps_tau1201.h \
  S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_device/zf_device_dl1a.h \
- S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_device/zf_device_dm1xa.h
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_device/zf_device_dm1xa.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/inc_all.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/complementary_filter.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/inc_all.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/filter.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/imu.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/my_math.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/sendware.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/vofa.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/ellipsoid_fitting_process.h
 
 S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_common/zf_common_headfile.h:
 
@@ -231,3 +240,21 @@ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libra
 S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_device/zf_device_dl1a.h:
 
 S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\libraries\zf_device/zf_device_dm1xa.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/inc_all.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/complementary_filter.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/inc_all.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/filter.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/imu.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/my_math.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/sendware.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/vofa.h:
+
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\CH32V307VCT6\project\code/ellipsoid_fitting_process.h:

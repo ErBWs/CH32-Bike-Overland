@@ -5295,7 +5295,7 @@ END GROUP
                 0x0000000020010000                . = (. + __stack_size)
  *fill*         0x000000002000f800      0x800 
                 0x0000000020010000                PROVIDE (_eusrstack = .)
-OUTPUT(Seekfree_CH32V307VCT6_Opensource_Library1.elf elf32-littleriscv)
+OUTPUT(Seekfree_CH32V307VCT6_Opensource_Library.elf elf32-littleriscv)
 
 .debug_info     0x0000000000000000    0x1c668
  .debug_info    0x0000000000000000      0xa11 ./zf_driver/zf_driver_delay.o
