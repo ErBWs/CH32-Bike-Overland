@@ -202,7 +202,10 @@
 				150,
 				153,
 				154,
-				156
+				156,
+				157,
+				159,
+				161
 			]
 		}
 	],
@@ -311,7 +314,10 @@
 				150,
 				153,
 				154,
-				156
+				156,
+				157,
+				159,
+				161
 			]
 		},
 		{
@@ -397,7 +403,10 @@
 				149,
 				151,
 				152,
-				155
+				155,
+				158,
+				160,
+				162
 			]
 		}
 	],
@@ -1264,6 +1273,39 @@
 			"compileGroupIndex" : 0,
 			"path" : "project/code/vofa.c",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "project/code/ips096.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/ips096.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "project/code/user_spi.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/user_spi.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "project/code/ips096_dma.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/ips096_dma.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
