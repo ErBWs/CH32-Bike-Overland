@@ -124,8 +124,8 @@
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.3,
         "min_track_width": 0.15239999999999998,
-        "min_via_annular_width": 0.0,
-        "min_via_diameter": 0.0,
+        "min_via_annular_width": 0.5,
+        "min_via_diameter": 0.5,
         "solder_mask_clearance": 0.0,
         "solder_mask_min_width": 0.0,
         "solder_mask_to_copper_clearance": 0.0,
@@ -454,7 +454,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "MotherBoard.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
