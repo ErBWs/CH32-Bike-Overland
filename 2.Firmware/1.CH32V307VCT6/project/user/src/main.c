@@ -45,7 +45,6 @@ int main (void)
 
     icm20602_init();
     IMU_Offset();
-    system_delay_ms(2000);
     pidAllInit();
     Butterworth_Parameter_Init();
 //    motoDutySet(MOTOR_FLY_PIN,2000);

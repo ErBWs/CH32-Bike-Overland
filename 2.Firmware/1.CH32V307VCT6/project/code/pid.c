@@ -114,7 +114,7 @@ float PID_Calculate(PID_TypeDef *pid, float target, float feedback)
 //    return pid->pid_mode==POSITION_PID ? (fabs(target)<=0.1? 0 : pid->pos_out) : pid->delta_out;
 	return pid->pid_mode==POSITION_PID ?  pid->pos_out : pid->delta_out;
 }
-
+//void pidInterDiv(PID_TypeDef *pid,)
 void pidAllInit(void)
 {
 	/**
@@ -130,8 +130,8 @@ void pidAllInit(void)
   * @retval None
   */
 	PID_Init(&dirPid,POSITION_PID,15,1000,-2,0,0);//舵机PD
-	PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,0,0.35,0,0);//飞轮速度环纯P
-	PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-10,0,15,0,0);//飞轮角度环PD
-	PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-10,4000,-30,-0.45,0);//飞轮角速度环PI
-	PID_Init(&backSpdPid,POSITION_PID,PWM_DUTY_MAX-10,2000,-150,0,0);//后轮速度环纯P
+	PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,0,0.52,0,0);//飞轮速度环纯P
+	PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-10,0,8,0,0);//飞轮角度环PD
+	PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-10,7000,-30,-0.65,0);//飞轮角速度环PI
+//	PID_Init(&backSpdPid,POSITION_PID,PWM_DUTY_MAX-10,2000,-150,0,0);//后轮速度环纯P
 }
