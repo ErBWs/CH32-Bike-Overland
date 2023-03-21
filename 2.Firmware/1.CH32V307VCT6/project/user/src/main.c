@@ -45,6 +45,7 @@ int main (void)
 
     icm20602_init();
     IMU_Offset();
+    system_delay_ms(2000);
     pidAllInit();
     Butterworth_Parameter_Init();
 //    motoDutySet(MOTOR_FLY_PIN,2000);
@@ -58,11 +59,13 @@ int main (void)
 //    pwm_set_duty(SERVO_PIN,GetServoDuty(0));
     // 此处编写用户代码 例如外设初始化代码等
     taskTimAllInit();
+    backSpdPid.target[NOW]=5;
 //    int16_t fly_wheel_encode=0;
     while(1)
     {
         // 此处编写需要循环执行的代码
 //        system_delay_ms(50);
+//        printf("A%d\r\n",encoder_get_count(ENCODER_BACK_WHEEL_TIM));
 //        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
 //        printf("A%d\r\n",fly_wheel_encode);
     }

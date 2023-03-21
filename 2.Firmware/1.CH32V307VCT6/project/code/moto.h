@@ -25,13 +25,13 @@
 
 #define SERVO_MID           GetServoDuty(0)                     // Middle duty of servo motor
 #define SERVO_DUTY_MAX      (GetServoDuty(14) - SERVO_MID)      // Maximum turning angle of servo motor
-#define SERVO_PIN           TIM8_PWM_MAP0_CH1_C6                    // Servo pwm output pin
+#define SERVO_PIN           TIM10_PWM_MAP3_CH1_D1                    // Servo pwm output pin
 
 #define MOTOR_FREQ            10000                               // Motor frequency
-#define MOTOR_BACK_PIN        TIM5_PWM_MAP0_CH1_A0                     // Left motor pwm output pin
-#define MOTOR_BACK_DIR_PIN    A1                                  // Left motor direction output pin
+#define MOTOR_BACK_PIN        TIM5_PWM_MAP0_CH4_A3                     // Left motor pwm output pin
+#define MOTOR_BACK_DIR_PIN    C7                                  // Left motor direction output pin
 #define MOTOR_FLY_PIN         TIM5_PWM_MAP0_CH3_A2                     // Right motor pwm output pin
-#define MOTOR_FLY_DIR_PIN     A3                                  // Right motor direction output pin
+#define MOTOR_FLY_DIR_PIN     C6                                  // Right motor direction output pin
 
 void motoInit(void);
 void motoDutySet(pwm_channel_enum pin,int32_t duty);

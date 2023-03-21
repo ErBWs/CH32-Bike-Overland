@@ -25,8 +25,8 @@ void BackMotoControl(void)
 {
     int16_t back_wheel_encode=0;
 
-    back_wheel_encode = -encoder_get_count(ENCODER_BACK_WHEEL_TIM);
-
+    back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
+    printf("A%d\r\n",back_wheel_encode);
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
@@ -45,8 +45,8 @@ void FlyWheelControl(void)
     encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
     PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
 
-    PID_Calculate(&flyAnglePid,flySpdPid.pos_out+0.6,imu_data.rol);//角度环PD
-//    printf("A%f\r\n",imu_data.rol);
+    PID_Calculate(&flyAnglePid,flySpdPid.pos_out+2.5,imu_data.rol);//角度环PD
+    printf("A%f\r\n",imu_data.rol);
 //    printf("B%f\r\n",temp_x);
     PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI
 
