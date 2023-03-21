@@ -276,7 +276,6 @@ void TIM1_UP_IRQHandler(void)
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-        IMUGetCalFun();
     }
 }
 
@@ -296,6 +295,7 @@ void TIM3_IRQHandler(void)
     if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM3, TIM_IT_Update );
+       IMUGetCalFun();
 //       ServoControl();
        FlyWheelControl();
        BackMotoControl();

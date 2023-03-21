@@ -1,11 +1,11 @@
 #include "ctrl.h"
 
 #define MAIN_PIT   TIM3_PIT
-#define IMU_PIT    TIM1_PIT
+//#define IMU_PIT    TIM1_PIT
 void taskTimAllInit(void)
 {
-    pit_ms_init(MAIN_PIT, 5);
-    pit_ms_init(IMU_PIT,5);
+    pit_ms_init(MAIN_PIT, 2);
+//    pit_ms_init(IMU_PIT,2);
     //interrupt_set_priority(TIM6_IRQn, 1);
 }
 void IMUGetCalFun(void)
@@ -23,10 +23,14 @@ void ServoControl(void)
 uint32_t back_inter_distance=0;
 void BackMotoControl(void)
 {
+    static uint8 counts=0;
+    if(++counts<5)return;
+    counts=0;
+
     int16_t back_wheel_encode=0;
 
     back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
-    printf("A%d\r\n",back_wheel_encode);
+//    printf("A%d\r\n",back_wheel_encode);
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
@@ -38,17 +42,38 @@ void FlyWheelControl(void)
     extern Butter_Parameter Butter_10HZ_Parameter_Acce;
     extern Butter_BufferData Butter_Buffer;
     int16_t fly_wheel_encode=0;
+    static uint8 counts=0;
+    static uint8 stagger_flag=1;
+    static uint16 imu_update_counts=0;
+    if(imu_update_counts<1500)
+        imu_update_counts++;
+//    static uint8 delay_2ms=0;
     float temp_x;
     temp_x = LPButterworth(sensor.Gyro_deg.x,&Butter_Buffer,&Butter_10HZ_Parameter_Acce);
-    fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
-//    printf("A%d\r\n",fly_wheel_encode);
-    encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
-    PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
-
-    PID_Calculate(&flyAnglePid,flySpdPid.pos_out+2.5,imu_data.rol);//角度环PD
-    printf("A%f\r\n",imu_data.rol);
-//    printf("B%f\r\n",temp_x);
-    PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI
-
-    motoDutySet(MOTOR_FLY_PIN,(int32_t)flyAngleSpdPid.pos_out);
+    if(++counts>2)
+    {
+        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//    printf("A%d\r\n",fly_wheel_encode);
+        encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
+        PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
+        counts=0;
+    }
+    PID_Calculate(&flyAnglePid,flySpdPid.pos_out+3.2,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
+    PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
+//    if(++delay_2ms>5)
+//    {
+//        //printf("A%f\r\n",flyAnglePid.pos_out);
+//        printf("A%f\r\n",flyAngleSpdPid.pos_out);
+//        delay_2ms=0;
+//    }
+    if(abs(imu_data.rol)>30)
+    {
+        stagger_flag=1;
+        flyAngleSpdPid.iout=0;
+        motoDutySet(MOTOR_FLY_PIN,0);
+        return;
+    }
+    if(stagger_flag==1&&abs(imu_data.rol)<2&&imu_update_counts==1500)
+        stagger_flag=0;
+    if(stagger_flag==0)
+        motoDutySet(MOTOR_FLY_PIN,(int32_t)flyAngleSpdPid.pos_out);
 }
