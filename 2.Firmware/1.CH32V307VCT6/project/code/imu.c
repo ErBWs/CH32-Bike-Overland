@@ -61,30 +61,32 @@ _sensor_st sensor;
 //获取陀螺仪数据
 void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc)
 {
-    icm20602_get_acc();
-    icm20602_get_gyro();
+//    icm20602_get_acc();
+//    icm20602_get_gyro();
+    imu963ra_get_acc();
+    imu963ra_get_gyro();
 //    imu660ra_get_acc();
 //    imu660ra_get_gyro();
 
     if (Offset_OK)
         {
-            acc->x = icm20602_acc_x;  //获取加速度原始数据
-            acc->y = icm20602_acc_y;
-            acc->z = icm20602_acc_z;
+            acc->x = imu963ra_acc_x;  //获取加速度原始数据
+            acc->y = imu963ra_acc_y;
+            acc->z = imu963ra_acc_z;
 
-            gyro->x = icm20602_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
-            gyro->y = icm20602_gyro_y - gyro_offset.y;
-            gyro->z = icm20602_gyro_z - gyro_offset.z;
+            gyro->x = imu963ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
+            gyro->y = imu963ra_gyro_y - gyro_offset.y;
+            gyro->z = imu963ra_gyro_z - gyro_offset.z;
         }
      else
         {
-            acc->x = icm20602_acc_x;  //获取加速度计原始数据
-            acc->y = icm20602_acc_y;
-            acc->z = icm20602_acc_z;
+            acc->x = imu963ra_acc_x;  //获取加速度计原始数据
+            acc->y = imu963ra_acc_y;
+            acc->z = imu963ra_acc_z;
 
-            gyro->x = icm20602_gyro_x;  //获取陀螺仪原始数据
-            gyro->y = icm20602_gyro_y;
-            gyro->z = icm20602_gyro_z;
+            gyro->x = imu963ra_gyro_x;  //获取陀螺仪原始数据
+            gyro->y = imu963ra_gyro_y;
+            gyro->z = imu963ra_gyro_z;
         }
 }
 
@@ -241,6 +243,18 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc,_imu_st *imu)
     imu->pit = asin(2*q1q3 - 2*q0q2)*57.30f;
     imu->rol = fast_atan2(2*q2q3 + 2*q0q1, -2*q1q1-2*q2q2 + 1)*57.30f;
     imu->yaw = -fast_atan2(2*q1q2 + 2*q0q3, -2*q2q2-2*q3q3 + 1)*57.30f;
+}
+extern float num_float[8];
+void imuinit(void)
+{
+    imu963ra_init();
+    IMU_Offset();
+    num_float[5] = (float)Offset_OK;
+    vcan_sendware(num_float, sizeof(num_float));
+    system_delay_ms(2000);
+    num_float[5] = 0;
+    imuMagOffset();
+    Ellipsoid_fitting_Process(&mag_origin_data);
+
 
 }
-

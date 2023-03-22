@@ -77,9 +77,9 @@ typedef struct
 }_sensor_st;//__attribute__((packed))
 
 extern _sensor_st sensor;
-void Data_steepest(void);
-void IMU_Offset(void);
-void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc,_imu_st *imu);
-void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc);
-
+extern void Data_steepest(void);
+extern void IMU_Offset(void);
+extern void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc,_imu_st *imu);
+extern void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc);
+extern void imuinit(void);
 #endif /* CODE_IMU_H_ */
