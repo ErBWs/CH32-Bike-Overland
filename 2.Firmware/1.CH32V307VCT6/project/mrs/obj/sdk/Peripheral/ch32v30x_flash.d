@@ -1,11 +1,11 @@
 sdk/Peripheral/ch32v30x_flash.o: \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.c \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.h \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x.h \
- F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core/core_riscv.h
+ S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.c \
+ S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.h \
+ S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x.h \
+ S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core/core_riscv.h
 
-F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.h:
+S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.h:
 
-F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x.h:
+S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x.h:
 
-F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core/core_riscv.h:
+S:\WorkSpace\bicycle\ motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core/core_riscv.h:

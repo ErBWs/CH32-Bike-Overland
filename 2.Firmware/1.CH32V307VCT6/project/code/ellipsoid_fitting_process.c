@@ -27,6 +27,11 @@ _xyz_mag_f_st mag_Offset;
 _xyz_mag_s16_ary_st mag_origin_data;
 _xyz_mag_s16_st mag_data;
 
+
+_lf_t magmx = {1,0};
+_lf_t magmy = {1,0};
+_lf_t magmz = {1,0};
+
 //测试数组
 //_xyz_mag_s16_ary_st mag_origin_data_test = {{87, 301, 274, 312, -3805, 4389, 261, 327, -1963, 3024},
 //                                       {-52, -45, 4088, -4109, -24, 6, 2106, -2047, -13, 18},
@@ -45,6 +50,15 @@ void imuGetMagData(_xyz_mag_s16_st *mag_data)
         mag_data->mx = ((float)imu963ra_mag_x - (float)mag_Offset.X0) / (float)mag_Offset.A;  //获取磁力计拟合数据
         mag_data->my = ((float)imu963ra_mag_y - (float)mag_Offset.Y0) / (float)mag_Offset.B;
         mag_data->mz = ((float)imu963ra_mag_z - (float)mag_Offset.Z0) / (float)mag_Offset.C;
+//        magmx.out = mag_data->mx;
+//        magmy.out = mag_data->my;
+//        magmz.out = mag_data->mz;
+//        limit_filter(0.002, 500, &magmx, mag_data->mx);
+//        limit_filter(0.002, 500, &magmy, mag_data->my);
+//        limit_filter(0.002, 500, &magmz, mag_data->mz);
+//        mag_data->mx = magmx.out;
+//        mag_data->my = magmy.out;
+//        mag_data->mz = magmz.out;
         }
      else
         {
@@ -260,8 +274,6 @@ void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data)
         mag_Offset.A = sqrt(mag_Offset.X0*mag_Offset.X0 + solve[0]*mag_Offset.Y0*mag_Offset.Y0 + solve[1]*mag_Offset.Z0*mag_Offset.Z0 - solve[5]);
         mag_Offset.B = mag_Offset.A / sqrt(solve[0]);
         mag_Offset.C = mag_Offset.A / sqrt(solve[1]);
-//        printf("  ((x - x0) / A) ^ 2 + ((y - y0) / B) ^ 2 + ((z - z0) / C) ^ 2 = 1 Ellipsoid result as below：\r\n");
-//        printf("\r\n");
      }
     //用于串口复制数据
 //    int32 i = 0;
@@ -274,34 +286,26 @@ void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data)
 //    }
 //    printf("  X0 = %f| Y0 = %f| Z0 = %f| A = %d| B = %d| C = %d \r\n", mag_Offset.X0, mag_Offset.Y0, mag_Offset.Z0, mag_Offset.A, mag_Offset.B, mag_Offset.C);
 }
-extern float num_float[8];
+//extern float num_float[8];
 //倾角补偿 + 偏航角解算
 void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
 {
 //    imu_data.pit; y   θ
-//    imu_data.rol; x   fa
+//    imu_data.rol; x   Φ
     float Hx = 0,Hy = 0;
     if (mode == ICO)
     {
-//        num_float[5] = mag_data->mx;
-//        num_float[6] = mag_data->my;
-//        num_float[4] = -atan2f(mag_data->my,mag_data->mx) * VAL;
-//       Hx = mag_data->mx * cosf(imu_data.rol * INVVAL) + mag_data->mz * sinf(imu_data.rol * INVVAL);
-//       Hy = mag_data->mx * sinf(imu_data.pit * INVVAL) * sinf(imu_data.rol * INVVAL) + mag_data->my * cosf(imu_data.pit * INVVAL) - mag_data->mz * sinf(imu_data.pit * INVVAL) * cosf(imu_data.rol * INVVAL);
        Hx = mag_data->mx * cosf(imu_data.pit * INVVAL) - mag_data->my * sinf(imu_data.pit * INVVAL) * sinf(imu_data.rol * INVVAL) - mag_data->mz * cosf(imu_data.rol * INVVAL) * sinf(imu_data.pit * INVVAL);
        Hy = mag_data->my * cosf(imu_data.rol * INVVAL) - mag_data->mz * sinf(imu_data.rol * INVVAL);
-//       num_float[3] = Hx;
-//       num_float[4] = Hy;
-        imu_data.mag_yaw = atan2f(-Hy,Hx) * VAL;
-//        num_float[4] =
+        imu_data.mag_yaw = atan2f(-Hy,Hx) * VAL - 11;
     }
     if(mode == NO_ICO)
     {
         imu_data.mag_yaw = atan2f(mag_data->mx,mag_data->my) * VAL;
     }
-//    if (imu_data.mag_yaw < 0)
-//    {
-//        imu_data.mag_yaw += 360;
-//    }
+    if (imu_data.mag_yaw < 0)
+    {
+        imu_data.mag_yaw += 360;
+    }
 }
 
