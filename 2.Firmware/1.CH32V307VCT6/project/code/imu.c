@@ -255,6 +255,4 @@ void imuinit(void)
     num_float[5] = 0;
     imuMagOffset();
     Ellipsoid_fitting_Process(&mag_origin_data);
-
-
 }
