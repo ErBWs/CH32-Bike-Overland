@@ -34,7 +34,8 @@
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
 #include "inc_all.h"
-
+#include "user_flash.h"
+//extern double flashBuf[2000];
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
@@ -43,8 +44,9 @@ int main (void)
     encoderInit();
     motoInit();
 
-    icm20602_init();
-    IMU_Offset();
+    imuinit(IMU_ICM);
+//    icm20602_init();
+//    IMU_Offset();
     pidAllInit();
     Butterworth_Parameter_Init();
 //    motoDutySet(MOTOR_FLY_PIN,2000);
@@ -62,6 +64,7 @@ int main (void)
 //    int16_t fly_wheel_encode=0;
     while(1)
     {
+//        flashBuf[0] = 0;
         // 此处编写需要循环执行的代码
 //        system_delay_ms(50);
 //        printf("A%d\r\n",encoder_get_count(ENCODER_BACK_WHEEL_TIM));

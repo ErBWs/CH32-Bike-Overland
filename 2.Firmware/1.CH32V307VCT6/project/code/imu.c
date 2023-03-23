@@ -57,18 +57,42 @@ int32 steepest_gy_arr[MPU_WINDOW_NUM ];
 int32 steepest_gz_arr[MPU_WINDOW_NUM ];
 _sensor_st sensor;
 //*********************Data_steepest's param************************//
-
+char imumode;
 //获取陀螺仪数据
-void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc)
+void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode)
 {
-//    icm20602_get_acc();
-//    icm20602_get_gyro();
-    imu963ra_get_acc();
-    imu963ra_get_gyro();
-//    imu660ra_get_acc();
-//    imu660ra_get_gyro();
+    if (imumode == IMU_ALL)
+    {
+        imu660ra_get_acc();
+        imu660ra_get_gyro();
+        if (Offset_OK)
+        {
+            acc->x = imu660ra_acc_x;  //获取加速度原始数据
+            acc->y = imu660ra_acc_y;
+            acc->z = imu660ra_acc_z;
 
-    if (Offset_OK)
+            gyro->x = imu660ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
+            gyro->y = imu660ra_gyro_y - gyro_offset.y;
+            gyro->z = imu660ra_gyro_z - gyro_offset.z;
+        }
+        else
+        {
+            acc->x = imu660ra_acc_x;  //获取加速度计原始数据
+            acc->y = imu660ra_acc_y;
+            acc->z = imu660ra_acc_z;
+
+            gyro->x = imu660ra_gyro_x;  //获取陀螺仪原始数据
+            gyro->y = imu660ra_gyro_y;
+            gyro->z = imu660ra_gyro_z;
+        }
+
+
+    }
+    else if (imumode == IMU_963RA)
+    {
+        imu963ra_get_acc();
+        imu963ra_get_gyro();
+        if (Offset_OK)
         {
             acc->x = imu963ra_acc_x;  //获取加速度原始数据
             acc->y = imu963ra_acc_y;
@@ -78,7 +102,7 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc)
             gyro->y = imu963ra_gyro_y - gyro_offset.y;
             gyro->z = imu963ra_gyro_z - gyro_offset.z;
         }
-     else
+        else
         {
             acc->x = imu963ra_acc_x;  //获取加速度计原始数据
             acc->y = imu963ra_acc_y;
@@ -88,10 +112,38 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc)
             gyro->y = imu963ra_gyro_y;
             gyro->z = imu963ra_gyro_z;
         }
+    }
+    else if (imumode == IMU_ICM)
+    {
+        icm20602_get_acc();
+        icm20602_get_gyro();
+        if (Offset_OK)
+        {
+            acc->x = icm20602_acc_x;  //获取加速度原始数据
+            acc->y = icm20602_acc_y;
+            acc->z = icm20602_acc_z;
+
+            gyro->x = icm20602_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
+            gyro->y = icm20602_gyro_y - gyro_offset.y;
+            gyro->z = icm20602_gyro_z - gyro_offset.z;
+        }
+        else
+        {
+            acc->x = icm20602_acc_x;  //获取加速度计原始数据
+            acc->y = icm20602_acc_y;
+            acc->z = icm20602_acc_z;
+
+            gyro->x = icm20602_gyro_x;  //获取陀螺仪原始数据
+            gyro->y = icm20602_gyro_y;
+            gyro->z = icm20602_gyro_z;
+        }
+    }
+
+
 }
 
 //计算陀螺仪零偏
-void IMU_Offset()
+void IMU_Offset(char imumode)
 {
     uint8 i, Count = 100;
     int64 temp[6] = {0};
@@ -105,7 +157,7 @@ void IMU_Offset()
 
     for (i = 0; i < Count; i++)
     {
-        IMU_Getdata(&gyro, &acc);   //读取陀螺仪数据
+        IMU_Getdata(&gyro, &acc, imumode);   //读取陀螺仪数据
         system_delay_ms(2);
 
         temp[0] += acc.x;
@@ -244,15 +296,35 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc,_imu_st *imu)
     imu->rol = fast_atan2(2*q2q3 + 2*q0q1, -2*q1q1-2*q2q2 + 1)*57.30f;
     imu->yaw = -fast_atan2(2*q1q2 + 2*q0q3, -2*q2q2-2*q3q3 + 1)*57.30f;
 }
-extern float num_float[8];
-void imuinit(void)
+//extern float num_float[8];
+
+void imuinit(char imumode)
 {
-    imu963ra_init();
-    IMU_Offset();
-    num_float[5] = (float)Offset_OK;
-    vcan_sendware(num_float, sizeof(num_float));
-    system_delay_ms(2000);
-    num_float[5] = 0;
-    imuMagOffset();
-    Ellipsoid_fitting_Process(&mag_origin_data);
+    if (imumode == IMU_ALL)
+    {
+        imu963ra_init();
+        icm20602_init();
+        IMU_Offset(imumode);
+//        num_float[5] = (float)Offset_OK;
+//        vcan_sendware(num_float, sizeof(num_float));
+        system_delay_ms(2000);
+//        num_float[5] = 0;
+        imuMagOffset();
+        Ellipsoid_fitting_Process(&mag_origin_data);
+    }
+    if (imumode == IMU_ICM)
+    {
+        icm20602_init();
+        IMU_Offset(imumode);
+    }
+    if (imumode == IMU_963RA)
+    {
+        imu963ra_init();
+        IMU_Offset(imumode);
+        system_delay_ms(2000);
+        imuMagOffset();
+        Ellipsoid_fitting_Process(&mag_origin_data);
+    }
+
+
 }

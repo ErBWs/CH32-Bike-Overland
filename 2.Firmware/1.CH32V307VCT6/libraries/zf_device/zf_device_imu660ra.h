@@ -58,7 +58,7 @@
 
 #include "zf_common_typedef.h"
 
-#define IMU660RA_USE_SOFT_IIC       (0)                                         // 默认使用硬件 SPI 方式驱动
+#define IMU660RA_USE_SOFT_IIC       (1)                                         // 默认使用硬件 SPI 方式驱动
 #if IMU660RA_USE_SOFT_IIC                                                       // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 IIC 驱动====================================================
 #define IMU660RA_SOFT_IIC_DELAY     (10 )                                       // 软件 IIC 的时钟延时周期 数值越小 IIC 通信速率越快

@@ -10,7 +10,7 @@ void taskTimAllInit(void)
 }
 void IMUGetCalFun(void)
 {
-    IMU_Getdata(&gyro,&acc);
+    IMU_Getdata(&gyro,&acc, IMU_ICM);
     Data_steepest();
     IMU_update(0.005, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
 }
