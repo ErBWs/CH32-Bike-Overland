@@ -271,12 +271,31 @@ void EXTI15_10_IRQHandler(void)
 
     }
 }
-
+uint64 beep_time=0;
+static uint8 beep_state=0;
 void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
+        switch(beep_state)
+       {
+           case 0:
+               if(beep_time!=0)
+               {
+                   beep_state = 1;
+                   gpio_set_level(C13, 1);
+               }
+           break;
+           case 1:
+               if(--beep_time==0)
+               {
+                   gpio_set_level(C13, 0);
+                   beep_state = 0;
+               }
+           break;
+       }
+
     }
 }
 
@@ -296,7 +315,6 @@ void TIM3_IRQHandler(void)
     if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM3, TIM_IT_Update );
-
        UpdateControl();
        ServoControl();
        FlyWheelControl();
@@ -309,7 +327,7 @@ void TIM4_IRQHandler(void)
     if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM4, TIM_IT_Update );
-
+       IMUGetCalFun();
 
     }
 }

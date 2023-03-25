@@ -24,4 +24,6 @@
 #include "pid.h"
 #include "ctrl.h"
 #include "jdy34.h"
+
+extern uint64 beep_time;
 #endif /* INC_ALL_H_ */

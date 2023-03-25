@@ -41,17 +41,17 @@ int main (void)
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
     // 此处编写用户代码 例如外设初始化代码等
-    encoderInit();
+    encoderInit();printf("OK\r\n");
     motoInit();
-
-    imuinit(IMU_ICM);
-//    icm20602_init();
-//    IMU_Offset();
+    pit_ms_init(TIM1_PIT,100);
+    gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
+    imuinit(IMU_ALL);
     pidAllInit();
     BlueToothInit();
 //    gps_init();
     Butterworth_Parameter_Init();
 //    motoDutySet(MOTOR_FLY_PIN,2000);
+
 
     // 此处编写用户代码 例如外设初始化代码等
     taskTimAllInit();
@@ -60,7 +60,7 @@ int main (void)
 //    int16_t fly_wheel_encode=0;
     while(1)
     {
-        IMUGetCalFun();
+
 //        if(gps_tau1201_flag==1)
 //        {
 //            uint8 state = gps_data_parse();
@@ -72,7 +72,7 @@ int main (void)
 //        }
         // 此处编写需要循环执行的代码
 //        system_delay_ms(100);
-//        printf("%f",imu_data.rol);
+//        printf("%f\r\n",imu_data.rol);
 //        printf("A%d\r\n",encoder_get_count(ENCODER_BACK_WHEEL_TIM));
 //        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
 //        printf("A%d\r\n",fly_wheel_encode);

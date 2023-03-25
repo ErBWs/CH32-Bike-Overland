@@ -46,7 +46,7 @@ void BlueToothInit(void)
 {
     uart_init(BLUE_TOOTH_JDY34_UART,BLUE_TOOTH_JDY34_BAUD,BLUE_TOOTH_JDY34_TX_PIN,BLUE_TOOTH_JDY34_RX_PIN);
     uart_rx_interrupt(BLUE_TOOTH_JDY34_UART, 1);
-//    interrupt_set_priority(UART7_IRQn,(1<<5) | 2);
+    interrupt_set_priority(UART7_IRQn,(1<<5) | 1);
 //    BlueToothUpdate();
 }
 static void DataResolve(void)
