@@ -48,25 +48,31 @@ int main (void)
 //    icm20602_init();
 //    IMU_Offset();
     pidAllInit();
+    BlueToothInit();
+//    gps_init();
     Butterworth_Parameter_Init();
 //    motoDutySet(MOTOR_FLY_PIN,2000);
-//    system_delay_ms(1000);
-//    pwm_set_duty(SERVO_PIN,GetServoDuty(0));
-//    system_delay_ms(1000);
-//    pwm_set_duty(SERVO_PIN,GetServoDuty(45));
-//    system_delay_ms(1000);
-//    pwm_set_duty(SERVO_PIN,GetServoDuty(-45));
-//    system_delay_ms(1000);
-//    pwm_set_duty(SERVO_PIN,GetServoDuty(0));
+
     // 此处编写用户代码 例如外设初始化代码等
     taskTimAllInit();
-    backSpdPid.target[NOW]=5;
+
+//    backSpdPid.target[NOW]=5;
 //    int16_t fly_wheel_encode=0;
     while(1)
     {
-//        flashBuf[0] = 0;
+        IMUGetCalFun();
+//        if(gps_tau1201_flag==1)
+//        {
+//            uint8 state = gps_data_parse();
+//            if(state==0)
+//            {
+//                printf("A%.8f\r\n\rB%.8f\r\n",gps_tau1201.longitude,gps_tau1201.latitude);
+//            }
+//            gps_tau1201_flag=0;
+//        }
         // 此处编写需要循环执行的代码
-//        system_delay_ms(50);
+//        system_delay_ms(100);
+//        printf("%f",imu_data.rol);
 //        printf("A%d\r\n",encoder_get_count(ENCODER_BACK_WHEEL_TIM));
 //        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
 //        printf("A%d\r\n",fly_wheel_encode);

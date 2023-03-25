@@ -88,7 +88,8 @@ code/sendware.o: \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/encoder.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/moto.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/pid.h \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.h
+ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.h \
+ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.h
 
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/sendware.h:
 
@@ -267,3 +268,5 @@ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/moto.h:
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/pid.h:
 
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.h:
+
+F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.h:

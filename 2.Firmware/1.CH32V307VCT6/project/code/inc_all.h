@@ -23,5 +23,5 @@
 #include "moto.h"
 #include "pid.h"
 #include "ctrl.h"
-
+#include "jdy34.h"
 #endif /* INC_ALL_H_ */
