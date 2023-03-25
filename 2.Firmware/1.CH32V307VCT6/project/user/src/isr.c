@@ -136,7 +136,8 @@ void UART7_IRQHandler (void)
 {
     if(USART_GetITStatus(UART7, USART_IT_RXNE) != RESET)
     {
-        wireless_module_uart_handler();
+        //wireless_module_uart_handler();
+        BlueToothInterupt_Handler();
         USART_ClearITPendingBit(UART7, USART_IT_RXNE);
     }
 }
@@ -295,8 +296,9 @@ void TIM3_IRQHandler(void)
     if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM3, TIM_IT_Update );
-       IMUGetCalFun();
-//       ServoControl();
+
+       UpdateControl();
+       ServoControl();
        FlyWheelControl();
        BackMotoControl();
     }

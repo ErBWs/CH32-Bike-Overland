@@ -1,6 +1,6 @@
-code/filter.o: \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.c \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.h \
+code/jdy34.o: \
+ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.c \
+ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common/zf_common_headfile.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral/ch32v30x_adc.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral/ch32v30x.h \
@@ -80,6 +80,7 @@ code/filter.o: \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device/zf_device_dm1xa.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/inc_all.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/complementary_filter.h \
+ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/imu.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/my_math.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/sendware.h \
@@ -88,10 +89,9 @@ code/filter.o: \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/encoder.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/moto.h \
  F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/pid.h \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.h \
- F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.h
+ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.h
 
-F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.h:
+F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.h:
 
 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common/zf_common_headfile.h:
 
@@ -251,6 +251,8 @@ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/inc_all.h:
 
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/complementary_filter.h:
 
+F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.h:
+
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/imu.h:
 
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/my_math.h:
@@ -268,5 +270,3 @@ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/moto.h:
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/pid.h:
 
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.h:
-
-F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.h:

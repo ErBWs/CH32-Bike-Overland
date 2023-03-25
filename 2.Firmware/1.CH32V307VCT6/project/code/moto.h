@@ -21,7 +21,7 @@
  *              1000 / freq
  * 
  */
-#define GetServoDuty(x)    ((float)(PWM_DUTY_MAX * (1.42 + (float)x / 90.0)) / (1000.0 / (float)SERVO_FREQ))
+#define GetServoDuty(x)    ((float)(PWM_DUTY_MAX * (1.45 + (float)x / 90.0)) / (1000.0 / (float)SERVO_FREQ))
 
 #define SERVO_MID           GetServoDuty(0)                     // Middle duty of servo motor
 #define SERVO_DUTY_MAX      (GetServoDuty(14) - SERVO_MID)      // Maximum turning angle of servo motor
