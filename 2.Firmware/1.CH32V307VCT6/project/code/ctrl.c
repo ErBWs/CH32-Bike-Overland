@@ -1,5 +1,5 @@
 #include "ctrl.h"
-#define ANGLE_STATIC_BIAS 4
+#define ANGLE_STATIC_BIAS 3.5
 
 //2,9,10,5,1
 #define MAIN_PIT   TIM3_PIT
@@ -20,7 +20,7 @@ void IMUGetCalFun(void)
     IMU_Getdata(&gyro,&acc, IMU_ICM);
     imuGetMagData(&mag_data);
     Data_steepest();
-    IMU_update(0.005, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
+    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
     Inclination_compensation(&mag_data, ICO);
     Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
 }
@@ -54,39 +54,49 @@ void FlyWheelControl(void)
     extern Butter_BufferData Butter_Buffer;
     int16_t fly_wheel_encode=0;
     static uint8 counts=0;
-
     static uint8 delay_2ms=0;
+    if(imu_update_counts!=1500)return;
+//    if(++delay_2ms>5)
+//    {
+////            printf("A%f\r\n",imu_data.mag_yaw);
+//        printf("A%f\r\n",flyAngleSpdPid.delta_out);
+//        delay_2ms=0;
+//    }
+
+    counts++;
     float temp_x;
     temp_x = LPButterworth(sensor.Gyro_deg.x,&Butter_Buffer,&Butter_10HZ_Parameter_Acce);
-    if(++counts>2)
+    if(counts>=5)
     {
         fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//    printf("A%d\r\n",fly_wheel_encode);
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
         counts=0;
     }
-    PID_Calculate(&flyAnglePid,flySpdPid.pos_out+ANGLE_STATIC_BIAS+dynamic_zero*0,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
-    PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
-    if(++delay_2ms>5)
+    else if(counts==2)
     {
-        printf("A%f\r\n",imu_data.mag_yaw);
-//        printf("A%f\r\n",flyAngleSpdPid.pos_out);
-        delay_2ms=0;
+        PID_Calculate(&flyAnglePid,flySpdPid.pos_out+ANGLE_STATIC_BIAS+dynamic_zero*0,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
     }
+        PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
+
+
     if(abs(imu_data.rol)>35)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);
-        flyAngleSpdPid.iout=0;
         return;
     }
-    if(stagger_flag==1&&abs(imu_data.rol)<2&&imu_update_counts==1500)
+    if(stagger_flag==1&&abs(imu_data.rol)<1)
     {
+        pidClear(&flySpdPid);
+        pidClear(&flyAngleSpdPid);
         stagger_flag=0;
-        flyAngleSpdPid.iout=0;
+        counts=0;
     }
     if(stagger_flag==0)
-        motoDutySet(MOTOR_FLY_PIN,(int32_t)flyAngleSpdPid.pos_out);
+    {
+        motoDutySet(MOTOR_FLY_PIN,(int32_t)flyAngleSpdPid.delta_out);
+    }
 }
 void UpdateControl(void)
 {

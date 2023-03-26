@@ -74,7 +74,7 @@ void imuMagOffset(void)
     for (i = 0; i < MAG_SAMPLE; ++i)
     {
         imuGetMagData(&mag_data);
-        system_delay_ms(2);
+        system_delay_ms(1);
         if ((mag_data.mx != 0) || (mag_data.my != 0) || (mag_data.mz != 0) )
         {
             mag_origin_data.mx_o[i] = mag_data.mx;
@@ -297,7 +297,7 @@ void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
     {
        Hx = mag_data->mx * cosf(imu_data.pit * INVVAL) - mag_data->my * sinf(imu_data.pit * INVVAL) * sinf(imu_data.rol * INVVAL) - mag_data->mz * cosf(imu_data.rol * INVVAL) * sinf(imu_data.pit * INVVAL);
        Hy = mag_data->my * cosf(imu_data.rol * INVVAL) - mag_data->mz * sinf(imu_data.rol * INVVAL);
-        imu_data.mag_yaw = atan2f(-Hy,Hx) * VAL - 11;
+       imu_data.mag_yaw = atan2f(-Hy,Hx) * VAL - 11;
     }
     if(mode == NO_ICO)
     {
