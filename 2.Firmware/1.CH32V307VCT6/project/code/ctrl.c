@@ -102,7 +102,7 @@ void UpdateControl(void)
 {
     if(BlueToothData.VelocityVal>10)
     {
-        backSpdPid.target[NOW]=5;
+        backSpdPid.target[NOW]=10;
     }
     else {
         backSpdPid.target[NOW]=0;

@@ -34,7 +34,9 @@
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
 #include "inc_all.h"
-#include "user_flash.h"
+
+
+
 //extern double flashBuf[2000];
 int main (void)
 {
@@ -43,12 +45,13 @@ int main (void)
     // 此处编写用户代码 例如外设初始化代码等
     encoderInit();printf("OK\r\n");
     motoInit();
-    pit_ms_init(TIM1_PIT,100);
+    pit_ms_init(TIM1_PIT,10);
     gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
     imuinit(IMU_ALL);
+
     pidAllInit();
     BlueToothInit();
-//    gps_init();
+//    GPS_init();
     Butterworth_Parameter_Init();
 //    motoDutySet(MOTOR_FLY_PIN,2000);
 
@@ -60,13 +63,14 @@ int main (void)
 //    int16_t fly_wheel_encode=0;
     while(1)
     {
-
 //        if(gps_tau1201_flag==1)
 //        {
 //            uint8 state = gps_data_parse();
 //            if(state==0)
 //            {
-//                printf("A%.8f\r\n\rB%.8f\r\n",gps_tau1201.longitude,gps_tau1201.latitude);
+//                 two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data);
+//                 gps_use.delta = yaw_gps_delta(gps_data.points_azimuth, imu_data.mag_yaw);
+//                 change_point(gps_data);
 //            }
 //            gps_tau1201_flag=0;
 //        }

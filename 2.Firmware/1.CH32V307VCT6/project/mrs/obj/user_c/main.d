@@ -86,12 +86,14 @@ user_c/main.o: \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/sendware.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/vofa.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/ellipsoid_fitting_process.h \
+ F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/inertial_navigation.h \
+ F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/user_flash.h \
+ F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/easy_key.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/encoder.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/moto.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/pid.h \
  F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/ctrl.h \
- F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/jdy34.h \
- F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/user_flash.h
+ F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/jdy34.h
 
 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common/zf_common_headfile.h:
 
@@ -265,6 +267,12 @@ F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/vofa.h:
 
 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/ellipsoid_fitting_process.h:
 
+F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/inertial_navigation.h:
+
+F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/user_flash.h:
+
+F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/easy_key.h:
+
 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/encoder.h:
 
 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/moto.h:
@@ -274,5 +282,3 @@ F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/pid.h:
 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/ctrl.h:
 
 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/jdy34.h:
-
-F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code/user_flash.h:

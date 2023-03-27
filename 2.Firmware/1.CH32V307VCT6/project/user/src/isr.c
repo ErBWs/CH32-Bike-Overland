@@ -295,7 +295,7 @@ void TIM1_UP_IRQHandler(void)
                }
            break;
        }
-
+        EasyKeyHandler(10);
     }
 }
 

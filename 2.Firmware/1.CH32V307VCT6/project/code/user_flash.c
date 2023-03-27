@@ -7,7 +7,6 @@
 
 #include "user_flash.h"
 
-double flashBuf[2000] __attribute__((section(".rodata.flash")));
 
 uint16_t flashBufIndex = 0;
 uint8_t flashSecIndex = 63;
@@ -137,7 +136,6 @@ void ReadFlashWithConversion(double *value)
 
     if (flashBufIndex + 1 >= 256)
     {
-        flash_write_page_from_buffer(flashSecIndex, flashPageIndex);
         flash_buffer_clear();
         if (flashPageIndex > 0)
         {
@@ -152,7 +150,6 @@ void ReadFlashWithConversion(double *value)
             flashSecIndex--;
         }
     }
-
     flash_read_page_to_buffer(flashSecIndex, flashPageIndex);
 
     arr[0] = flash_union_buffer[flashBufIndex].uint32_type;

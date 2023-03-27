@@ -18,6 +18,9 @@
 #include "sendware.h"
 #include "vofa.h"
 #include "ellipsoid_fitting_process.h"
+#include "inertial_navigation.h"
+#include "user_flash.h"
+#include "easy_key.h"
 
 #include "encoder.h"
 #include "moto.h"
