@@ -29,12 +29,12 @@ endif()
 
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
-  set(CMAKE_CROSSCOMPILING "FALSE")
+  set(CMAKE_CROSSCOMPILING "TRUE")
 endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/Library/Developer/CommandLineTools/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-objdump")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
