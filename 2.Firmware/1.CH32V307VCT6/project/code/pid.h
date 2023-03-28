@@ -67,6 +67,7 @@ void PID_Init(
 void PID_Reset(PID_TypeDef	*pid, float kp, float ki, float kd);
 float PID_Calculate(PID_TypeDef *pid, float target, float feedback);
 void pidAllInit(void);
+void pidClear(PID_TypeDef *pid);
 #endif
 
 

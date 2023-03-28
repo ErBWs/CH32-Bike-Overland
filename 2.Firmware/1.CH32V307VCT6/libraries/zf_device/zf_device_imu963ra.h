@@ -59,12 +59,12 @@
 
 #include "zf_common_typedef.h"
 
-#define IMU963RA_USE_SOFT_IIC                       (0)                         // 默认使用硬件 SPI 方式驱动
+#define IMU963RA_USE_SOFT_IIC                       (1)                         // 默认使用硬件 SPI 方式驱动
 #if IMU963RA_USE_SOFT_IIC                                                       // 这两段 颜色正常的才是正确的 颜色灰的就是没有用的
 //====================================================软件 IIC 驱动====================================================
-#define IMU963RA_SOFT_IIC_DELAY                     (10 )                       // 软件 IIC 的时钟延时周期 数值越小 IIC 通信速率越快
-#define IMU963RA_SCL_PIN                            (B3)                       // 软件 IIC SCL 引脚 连接 IMU963RA 的 SCL 引脚
-#define IMU963RA_SDA_PIN                            (B5)                       // 软件 IIC SDA 引脚 连接 IMU963RA 的 SDA 引脚
+#define IMU963RA_SOFT_IIC_DELAY                     (10)                       // 软件 IIC 的时钟延时周期 数值越小 IIC 通信速率越快
+#define IMU963RA_SCL_PIN                            (E11)                       // 软件 IIC SCL 引脚 连接 IMU963RA 的 SCL 引脚
+#define IMU963RA_SDA_PIN                            (E9)                       // 软件 IIC SDA 引脚 连接 IMU963RA 的 SDA 引脚
 //====================================================软件 IIC 驱动====================================================
 #else
 //====================================================硬件 SPI 驱动====================================================

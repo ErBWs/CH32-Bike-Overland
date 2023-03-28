@@ -38,7 +38,6 @@ double Cal_Angle(int16 gyro_x, int16 acc_y, int16 acc_z, int16 offset)
  * dt：计算周期（s）
  * return：滤波后角度
  */
-extern float num_float[8];
 void Cal_YawAngle(float mag_gyro_z, float *yaw )
 {
     float weight_mag=0.05, weight_gyro = 0.95, dt = 0.0023f;
@@ -48,6 +47,5 @@ void Cal_YawAngle(float mag_gyro_z, float *yaw )
 
    //一阶互补滤波
     (*yaw) = weight_mag * (*yaw) + weight_gyro * (yaw_last + d_gyro_angle);
-    num_float[2] = yaw_last + d_gyro_angle;
     yaw_last = (*yaw);
 }
