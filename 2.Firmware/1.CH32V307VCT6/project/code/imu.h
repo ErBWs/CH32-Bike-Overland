@@ -78,9 +78,9 @@ typedef struct
 
 
 enum {
-
     IMU_ALL,
     IMU_963RA,
+    IMU_660RA,
     IMU_ICM,
 };
 

@@ -71,7 +71,7 @@ void EasyKeyInit(EasyKey_t *key, gpio_pin_enum _pin)
 // Modify this part --------------------------------------------------------
 
     // Type your 3rd party driver here
-    gpio_init(_pin, GPI, 0,GPI_PULL_UP);
+    gpio_init(_pin, GPI, 1,GPI_PULL_UP);
 
 //--------------------------------------------------------------------------
 

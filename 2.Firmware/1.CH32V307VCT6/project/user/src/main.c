@@ -36,50 +36,61 @@
 #include "inc_all.h"
 
 
-
+#define USE_GPS 0
 //extern double flashBuf[2000];
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
     // 此处编写用户代码 例如外设初始化代码等
+    ips114_init();
+    ips114_show_string(0, 0, "he");
     encoderInit();printf("OK\r\n");
     motoInit();
     pit_ms_init(TIM1_PIT,10);
     gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
-    imuinit(IMU_ALL);
+    imuinit(IMU_660RA);
 
     pidAllInit();
     BlueToothInit();
-//    GPS_init();
     Butterworth_Parameter_Init();
-//    motoDutySet(MOTOR_FLY_PIN,2000);
-
+#if USE_GPS==1
+    GPS_init();
+#endif
 
     // 此处编写用户代码 例如外设初始化代码等
-    taskTimAllInit();
+//    taskTimAllInit();
 
-//    backSpdPid.target[NOW]=5;
-//    int16_t fly_wheel_encode=0;
+    static uint8 toggle=0;
     while(1)
     {
-//        if(gps_tau1201_flag==1)
-//        {
-//            uint8 state = gps_data_parse();
-//            if(state==0)
-//            {
-//                 two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data);
-//                 gps_use.delta = yaw_gps_delta(gps_data.points_azimuth, imu_data.mag_yaw);
-//                 change_point(gps_data);
-//            }
-//            gps_tau1201_flag=0;
-//        }
-        // 此处编写需要循环执行的代码
 //        system_delay_ms(100);
-//        printf("%f\r\n",imu_data.rol);
-//        printf("A%d\r\n",encoder_get_count(ENCODER_BACK_WHEEL_TIM));
-//        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
-//        printf("A%d\r\n",fly_wheel_encode);
+//        imu660ra_get_gyro();
+//        ips114_show_int(0, 16, imu660ra_gyro_x, 5);
+#if USE_GPS==1
+        if(read_key_flag==1)
+        {
+            toggle ^=toggle;
+            if(toggle==0)
+            {
+                FlashOperationEnd();
+            }
+            read_key_flag = 0;
+        }
+        if(gps_tau1201_flag==1&&toggle==1)
+        {
+            uint8 state = gps_data_parse();
+            if(state==0)
+            {
+                 two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data_array[use_point_count]);
+                 gps_use.delta = yaw_gps_delta(gps_data.points_azimuth, imu_data.mag_yaw);
+                 change_point(&gps_data);
+                 printf("delta:%f\n",gps_use.delta);
+            }
+            gps_tau1201_flag=0;
+        }
+#endif
+        // 此处编写需要循环执行的代码
     }
 }
 

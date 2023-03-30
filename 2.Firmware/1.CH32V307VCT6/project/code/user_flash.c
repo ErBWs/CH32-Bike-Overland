@@ -151,7 +151,6 @@ void ReadFlashWithConversion(double *value)
         }
     }
     flash_read_page_to_buffer(flashSecIndex, flashPageIndex);
-
     arr[0] = flash_union_buffer[flashBufIndex].uint32_type;
     arr[1] = flash_union_buffer[++flashBufIndex].uint32_type;
     IntToDouble(value, arr);
