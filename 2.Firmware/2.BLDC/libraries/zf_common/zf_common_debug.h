@@ -42,10 +42,10 @@
 // 如果修改串口并开启了 debug UART 的中断接收 需要同步更换 debug_interrupr_handler 函数到对应的中断服务函数
 // 如果修改串口并开启了 debug UART 的中断接收 需要同步更换 debug_interrupr_handler 函数到对应的中断服务函数
 // 如果修改串口并开启了 debug UART 的中断接收 需要同步更换 debug_interrupr_handler 函数到对应的中断服务函数
-#define DEBUG_UART_INDEX            (UART_3)                                    // 指定 debug uart 所使用的的串口
+#define DEBUG_UART_INDEX            (UART_1)                                    // 指定 debug uart 所使用的的串口
 #define DEBUG_UART_BAUDRATE         (115200)                                    // 指定 debug uart 所使用的的串口波特率
-#define DEBUG_UART_TX_PIN           (UART3_MAP0_TX_B10 )                        // 指定 debug uart 所使用的的串口引脚
-#define DEBUG_UART_RX_PIN           (UART3_MAP0_RX_B11 )                        // 指定 debug uart 所使用的的串口引脚
+#define DEBUG_UART_TX_PIN           (UART1_MAP0_TX_A9 )                        // 指定 debug uart 所使用的的串口引脚
+#define DEBUG_UART_RX_PIN           (UART1_MAP0_RX_A10 )                        // 指定 debug uart 所使用的的串口引脚
 
 #define DEBUG_UART_USE_INTERRUPT    (0)                                         // 是否启用 debug uart 接收中断
 

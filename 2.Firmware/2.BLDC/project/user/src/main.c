@@ -46,32 +46,24 @@ int main (void)
     EasyKeyInit(&keyC, E3);
     EasyKeyInit(&keyR, E4);
     printf("success/n");
-//    imu660ra_init();
     ips114_init();
-    ips114_show_string(0, 0, "hello");
-    int16_t count = 0;
+//    imu660ra_init();
 //    pit_init(TIM1_PIT, 10);
+    timer_init(TIM_2, TIMER_US);
     // 此处编写用户代码 例如外设初始化代码等
 
     while(1)
     {
         // 此处编写需要循环执行的代码
-//        imu660ra_get_gyro();
-//        ips114_show_int(0, 16, imu660ra_gyro_x, 5);
-//        system_delay_ms(1000);
-        EasyKeyHandler(10);
-        if (keyL.isPressed)
-        {
-            ips114_show_string(0, 0, "L presses");
-        }
-        if (keyC.isPressed)
-        {
-            ips114_show_string(0, 0, "C presses");
-        }
-        if (keyR.isPressed)
-        {
-            ips114_show_string(0, 0, "R presses");
-        }
+//        timer_start(TIM_2);
+//        DebounceFilter(100);
+//        timer_stop(TIM_2);
+//        ips114_show_int(0, 0, timer_get(TIM_2), 5);
+//        timer_clear(TIM_2);
+        imu660ra_get_gyro();
+//        printf("%f\n", (float)imu660ra_gyro_x);
+        ips114_show_int(0, 16, imu660ra_gyro_x, 5);
+//        system_delay_ms(10);
 //        ips114_show_int(0, 0, count++, 5);
         // 此处编写需要循环执行的代码
     }

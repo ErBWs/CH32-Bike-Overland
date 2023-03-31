@@ -77,7 +77,7 @@
 #define IPS114_DEFAULT_DISPLAY_DIR      (IPS114_CROSSWISE_180)                  // 默认的显示方向
 #define IPS114_DEFAULT_PENCOLOR         (RGB565_RED)                            // 默认的画笔颜色
 #define IPS114_DEFAULT_BGCOLOR          (RGB565_WHITE)                          // 默认的背景颜色
-#define IPS114_DEFAULT_DISPLAY_FONT     (IPS114_8X16_FONT)                      // 默认的字体模式
+#define IPS114_DEFAULT_DISPLAY_FONT     (IPS114_6X8_FONT)                      // 默认的字体模式
 
 #define IPS114_DC(x)                    ((x) ? (gpio_high(IPS114_DC_PIN)) : (gpio_low(IPS114_DC_PIN)))
 #define IPS114_RST(x)                   ((x) ? (gpio_high(IPS114_RST_PIN)) : (gpio_low(IPS114_RST_PIN)))
