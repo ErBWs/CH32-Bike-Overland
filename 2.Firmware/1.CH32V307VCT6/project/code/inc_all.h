@@ -21,7 +21,7 @@
 #include "inertial_navigation.h"
 #include "user_flash.h"
 #include "easy_key.h"
-
+#include "ips096.h"
 #include "encoder.h"
 #include "moto.h"
 #include "pid.h"

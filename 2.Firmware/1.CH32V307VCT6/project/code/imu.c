@@ -326,6 +326,10 @@ void imuinit(char imumode)
         imuMagOffset();
         Ellipsoid_fitting_Process(&mag_origin_data);
     }
+    if(imumode == IMU_660RA)
+    {
+        imu660ra_init();
+    }
 
 
 }

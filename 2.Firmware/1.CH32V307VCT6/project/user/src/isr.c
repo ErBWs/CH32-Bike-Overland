@@ -36,7 +36,7 @@
 #include "zf_common_headfile.h"
 #include "inc_all.h"
 
-
+uint32 now_tick=0;
 
 void NMI_Handler(void)       __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
@@ -161,13 +161,33 @@ void DVP_IRQHandler(void)
         DVP->IFR &= ~RB_DVP_IF_FRM_DONE;
     }
 }
-extern int64 encoder_val_sum;
+
 void EXTI0_IRQHandler(void)
 {
+    static uint32 last=0;
     if(SET == EXTI_GetITStatus(EXTI_Line0))
     {
         EXTI_ClearITPendingBit(EXTI_Line0);
-
+        static uint32 last=0;
+        static uint32 press_beg=0;
+        static uint8 is_press=0;
+        if(gpio_get_level(B0)==0&&now_tick-last>20&&is_press==0)
+        {
+            is_press = 1;
+            press_beg = last = now_tick;
+        }
+        else if(gpio_get_level(B0)==1&&now_tick-last>20&&is_press==1)
+        {
+            is_press = 0;
+            if (now_tick-press_beg>100) {
+                beep_time = 100;
+                read_key_flag = 2;
+            }
+            else {
+                beep_time = 20;
+                read_key_flag = 1;
+            }
+        }
     }
 }
 
@@ -228,7 +248,27 @@ void EXTI9_5_IRQHandler(void)
     if(SET == EXTI_GetITStatus(EXTI_Line8))
     {
         EXTI_ClearITPendingBit(EXTI_Line8);
+        static uint32 last=0;
+        static uint32 press_beg=0;
+        static uint8 is_press=0;
 
+        if(gpio_get_level(D8)==0&&now_tick-last>20&&is_press==0)
+        {
+            is_press = 1;
+            press_beg = last = now_tick;
+        }
+        else if(gpio_get_level(D8)==1&&now_tick-last>20&&is_press==1)
+        {
+            is_press = 0;
+            if (now_tick-press_beg>100) {
+                beep_time = 100;
+                write_key_flag = 2;
+            }
+            else {
+                beep_time = 20;
+                write_key_flag = 1;
+            }
+        }
     }
     if(SET == EXTI_GetITStatus(EXTI_Line9))
     {
@@ -254,6 +294,7 @@ void EXTI15_10_IRQHandler(void)
     {
         EXTI_ClearITPendingBit(EXTI_Line12);
 
+
     }
     if(SET == EXTI_GetITStatus(EXTI_Line13))
     {
@@ -273,11 +314,13 @@ void EXTI15_10_IRQHandler(void)
 }
 uint64 beep_time=0;
 static uint8 beep_state=0;
+extern EasyKey_t key_read;
 void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
+        now_tick++;
         switch(beep_state)
        {
            case 0:
@@ -295,7 +338,11 @@ void TIM1_UP_IRQHandler(void)
                }
            break;
        }
-        EasyKeyHandler(10);
+//        EasyKeyHandler(10);
+//        if(key_read.isPressed)
+//        {
+//            printf("ok\n");
+//        }
     }
 }
 
