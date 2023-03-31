@@ -1,3 +1,3 @@
-/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/rtthread.elf.dir
+/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/2_BLDC.dir
 /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/rebuild_cache.dir

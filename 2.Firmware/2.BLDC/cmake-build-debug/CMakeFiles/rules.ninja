@@ -6,36 +6,26 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: rtthread
+# Project: 2_BLDC
 # Configurations: Debug
 # =============================================================================
 # =============================================================================
 
 #############################################
-# Rule for compiling ASM files.
-
-rule ASM_COMPILER__rtthread.2eelf_Debug
-  depfile = $DEP_FILE
-  deps = gcc
-  command = /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
-  description = Building ASM object $out
-
-
-#############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__rtthread.2eelf_Debug
+rule C_COMPILER__2_BLDC_Debug
   depfile = $DEP_FILE
   deps = gcc
-  command = /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /Library/Developer/CommandLineTools/usr/bin/cc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
 #############################################
 # Rule for linking C executable.
 
-rule C_EXECUTABLE_LINKER__rtthread.2eelf_Debug
-  command = $PRE_LINK && /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
+rule C_EXECUTABLE_LINKER__2_BLDC_Debug
+  command = $PRE_LINK && /Library/Developer/CommandLineTools/usr/bin/cc $FLAGS -Wl,-search_paths_first -Wl,-headerpad_max_install_names $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking C executable $TARGET_FILE
   restat = $RESTAT
 

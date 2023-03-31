@@ -1,0 +1,75 @@
+蓝牙模块x1		
+UART7_TX		PE12(需要接模块的RX)
+UART7_RX		PE13(需要接模块的TX)
+RTS				自己选一个引脚
+		
+蓝牙模块x2		
+USART2_TX		PD5(需要接模块的RX)
+USART2_RX		PD6(需要接模块的TX)
+RTS				自己选一个引脚
+
+
+摄像头DVP	
+DVP_D0			PA9	
+DVP_D1			PA10
+DVP_D2			PC8
+DVP_D3			PC9
+DVP-D4			PC11
+DVP-D5			PB6
+DVP-D6			PB8
+DVP_D7			PB9
+
+DVP_VSYNC		PA5
+DVP_PCLK		PA6
+DVP_HERF		PA4
+UART5_TX		PC12(需要接模块的RX)
+UART5_RX		PD2	(需要接模块的TX)
+
+
+电机两个		
+TIM4_CH4		PD15
+TIM4_CH3		PD14
+TIM4_CH2		PD13
+TIM4_CH1		PD12
+
+舵机	
+TIM2_CH1		PA15
+
+
+运放接口		
+ADC_IN12		PC2
+ADC_IN13		PC3
+ADC_IN14		PC4
+ADC_IN15		PC5
+
+
+有来有去		
+发送端 
+使能引脚		自己选一个引脚
+
+接收端	
+UART8_TX		E14(需要接模块的RX)
+UART8_RX		E15(需要接模块的TX)
+
+两个编码器		
+TIM1_CH2		PE11
+TIM1_CH1		PE9
+TIM8_CH2		PC7
+TIM8_CH1		PC6
+
+2寸屏幕：			
+D7				PE7	
+D6				PE6	
+D5				PE5	
+D4				PE4	
+D3				PE3	
+D2				PE2	
+D1				PE1	
+D0				PE0	
+SPI2_SCK		PB13	
+SPI2_MOSI		PB15	
+SPI2_RST		自己选一个引脚
+SPI2_DC			自己选一个引脚
+SPI2_CS			自己选一个引脚
+SPI2_BL			自己选一个引脚
+

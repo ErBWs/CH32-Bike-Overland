@@ -1,390 +1,126 @@
-The target system is: Generic -  - WCH
-The host system is: Darwin - 22.4.0 - arm64
+The system is: Darwin - 22.5.0 - arm64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc 
-Build flags: ;-mcmodel=medany;-march=rv32imc;-mabi=ilp32;-msave-restore;-D_USE_LONG_TIME_T;-O0
-Id flags: -c 
+Compiler: /Library/Developer/CommandLineTools/usr/bin/cc 
+Build flags: 
+Id flags:  
 
 The output was:
 0
 
 
-Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/CMakeCCompilerId.o"
-
-Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-g++ 
-Build flags: ;-mcmodel=medany;-march=rv32imc;-mabi=ilp32;-msave-restore;-D_USE_LONG_TIME_T;-O0
-Id flags: -c 
-
-The output was:
-0
-
-
-Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
-
-The CXX compiler identification is GNU, found in "/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/CMakeCXXCompilerId.o"
-
-Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
-riscv-none-embed-gcc (xPack GNU RISC-V Embedded GCC x86_64) 8.2.0
-Copyright (C) 2018 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+The C compiler identification is AppleClang, found in "/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/a.out"
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-e2zAAL
+Change Dir: /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ZPBtVa
 
-Run Build Command(s):/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja cmTC_a3590 && [1/2] Building C object CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj
-Using built-in specs.
-COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc
-Target: riscv-none-embed
-Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib
-Thread model: single
-gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) 
-COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-o' 'CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj' '-c'
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/cc1 -quiet -v -imultilib rv32im/ilp32 -iprefix /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/ -isysroot /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -D _USE_LONG_TIME_T /Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mcmodel=medany -march=rv32imc -mabi=ilp32 -msave-restore -auxbase-strip CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj -O0 -version -fdiagnostics-color=always -o /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccSRwdTG.s
-GNU C17 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)
-	compiled by GNU C version 11.2.0, GMP version 6.1.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
-
-GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include"
-ignoring nonexistent directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/usr/local/include"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include-fixed"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/include"
+Run Build Command(s):/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja cmTC_97a70 && [1/2] Building C object CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o
+Apple clang version 14.0.3 (clang-1403.0.22.14.1)
+Target: arm64-apple-darwin22.5.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ZPBtVa -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ZPBtVa -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -no-opaque-pointers -fmax-type-align=16 -fcommon -fcolor-diagnostics -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o -x c "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCCompilerABI.c"
+clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin22.5.0
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include"
+ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/Library/Frameworks"
 #include "..." search starts here:
 #include <...> search starts here:
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include
+ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include
+ /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include
+ /Library/Developer/CommandLineTools/usr/include
+ /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks (framework directory)
 End of search list.
-GNU C17 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)
-	compiled by GNU C version 11.2.0, GMP version 6.1.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
-
-GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
-Compiler executable checksum: 84a0b05cdca3216107ef4153f306c7b3
-COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-o' 'CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj' '-c'
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/as -v --traditional-format -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccSRwdTG.s
-GNU assembler version 2.32 (riscv-none-embed) using BFD version (xPack GNU RISC-V Embedded GCC x86_64) 2.32
-COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/
-LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/
-COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-o' 'CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj' '-c'
-[2/2] Linking C executable cmTC_a3590
-Using built-in specs.
-COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc
-COLLECT_LTO_WRAPPER=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper
-Target: riscv-none-embed
-Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib
-Thread model: single
-gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) 
-COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/
-LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/
-COLLECT_GCC_OPTIONS='-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-D' '_USE_LONG_TIME_T' '-O0' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-nostartfiles' '-T' '/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds' '-v' '-o' 'cmTC_a3590'
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/collect2 -plugin /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/liblto_plugin.so -plugin-opt=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//cciabeEd.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lg -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc --sysroot=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -melf32lriscv -o cmTC_a3590 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib --gc-sections -Map=rtthread.map -cref -u _start CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj -lgcc --start-group -lgcc -lg -lc --end-group -lgcc -T /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds
-/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000000000
-COLLECT_GCC_OPTIONS='-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-D' '_USE_LONG_TIME_T' '-O0' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-nostartfiles' '-T' '/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds' '-v' '-o' 'cmTC_a3590'
+[2/2] Linking C executable cmTC_97a70
+Apple clang version 14.0.3 (clang-1403.0.22.14.1)
+Target: arm64-apple-darwin22.5.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.0.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o cmTC_97a70 -L/opt/homebrew/Cellar/qt/6.4.2_2/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-857.1
+BUILD 16:59:58 Feb 24 2023
+configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+ld: warning: directory not found for option '-L/opt/homebrew/Cellar/qt/6.4.2_2/lib'
+Library search paths:
+	/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/lib
+Framework search paths:
+	/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/
 
 
 
 Parsed C implicit include dir info from above output: rv=done
   found start of include info
   found start of implicit include info
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include]
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed]
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include]
+    add: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include]
+    add: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include]
+    add: [/Library/Developer/CommandLineTools/usr/include]
   end of search list found
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include]
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include-fixed]
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include]
-  implicit include dirs: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include-fixed;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include]
+  collapse include dir [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include] ==> [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include]
+  collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include]
+  collapse include dir [/Library/Developer/CommandLineTools/usr/include] ==> [/Library/Developer/CommandLineTools/usr/include]
+  implicit include dirs: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include;/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include]
 
 
 Parsed C implicit link information from above output:
-  link line regex: [^( *|.*[/\])(riscv-none-embed-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-e2zAAL]
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ZPBtVa]
   ignore line: []
-  ignore line: [Run Build Command(s):/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja cmTC_a3590 && [1/2] Building C object CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc]
-  ignore line: [Target: riscv-none-embed]
-  ignore line: [Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib]
-  ignore line: [Thread model: single]
-  ignore line: [gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-o' 'CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj' '-c']
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/cc1 -quiet -v -imultilib rv32im/ilp32 -iprefix /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/ -isysroot /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -D _USE_LONG_TIME_T /Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mcmodel=medany -march=rv32imc -mabi=ilp32 -msave-restore -auxbase-strip CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj -O0 -version -fdiagnostics-color=always -o /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccSRwdTG.s]
-  ignore line: [GNU C17 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)]
-  ignore line: [	compiled by GNU C version 11.2.0  GMP version 6.1.2  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
-  ignore line: []
-  ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include"]
-  ignore line: [ignoring nonexistent directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/usr/local/include"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include-fixed"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/include"]
+  ignore line: [Run Build Command(s):/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja cmTC_97a70 && [1/2] Building C object CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o]
+  ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
+  ignore line: [Target: arm64-apple-darwin22.5.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+  ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+  ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ZPBtVa -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ZPBtVa -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -no-opaque-pointers -fmax-type-align=16 -fcommon -fcolor-diagnostics -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o -x c "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCCompilerABI.c"]
+  ignore line: [clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin22.5.0]
+  ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include"]
+  ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/Library/Frameworks"]
   ignore line: [#include "..." search starts here:]
   ignore line: [#include <...> search starts here:]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include]
+  ignore line: [ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include]
+  ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include]
+  ignore line: [ /Library/Developer/CommandLineTools/usr/include]
+  ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks (framework directory)]
   ignore line: [End of search list.]
-  ignore line: [GNU C17 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)]
-  ignore line: [	compiled by GNU C version 11.2.0  GMP version 6.1.2  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
-  ignore line: []
-  ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
-  ignore line: [Compiler executable checksum: 84a0b05cdca3216107ef4153f306c7b3]
-  ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-o' 'CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj' '-c']
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/as -v --traditional-format -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccSRwdTG.s]
-  ignore line: [GNU assembler version 2.32 (riscv-none-embed) using BFD version (xPack GNU RISC-V Embedded GCC x86_64) 2.32]
-  ignore line: [COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/]
-  ignore line: [LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-o' 'CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj' '-c']
-  ignore line: [[2/2] Linking C executable cmTC_a3590]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-gcc]
-  ignore line: [COLLECT_LTO_WRAPPER=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper]
-  ignore line: [Target: riscv-none-embed]
-  ignore line: [Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib]
-  ignore line: [Thread model: single]
-  ignore line: [gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) ]
-  ignore line: [COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/]
-  ignore line: [LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-D' '_USE_LONG_TIME_T' '-O0' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-nostartfiles' '-T' '/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds' '-v' '-o' 'cmTC_a3590']
-  link line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/collect2 -plugin /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/liblto_plugin.so -plugin-opt=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//cciabeEd.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lg -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc --sysroot=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -melf32lriscv -o cmTC_a3590 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib --gc-sections -Map=rtthread.map -cref -u _start CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj -lgcc --start-group -lgcc -lg -lc --end-group -lgcc -T /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds]
-    arg [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/collect2] ==> ignore
-    arg [-plugin] ==> ignore
-    arg [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/liblto_plugin.so] ==> ignore
-    arg [-plugin-opt=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//cciabeEd.res] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lg] ==> ignore
-    arg [-plugin-opt=-pass-through=-lc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [--sysroot=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed] ==> ignore
-    arg [-melf32lriscv] ==> ignore
+  ignore line: [[2/2] Linking C executable cmTC_97a70]
+  ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
+  ignore line: [Target: arm64-apple-darwin22.5.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.0.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o cmTC_97a70 -L/opt/homebrew/Cellar/qt/6.4.2_2/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
+    arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-lto_library] ==> ignore, skip following value
+    arg [/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [arm64] ==> ignore
+    arg [-platform_version] ==> ignore
+    arg [macos] ==> ignore
+    arg [13.0.0] ==> ignore
+    arg [13.3] ==> ignore
+    arg [-syslibroot] ==> ignore
+    arg [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_a3590] ==> ignore
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib]
-    arg [--gc-sections] ==> ignore
-    arg [-Map=rtthread.map] ==> ignore
-    arg [-cref] ==> ignore
-    arg [-u] ==> ignore
-    arg [_start] ==> ignore
-    arg [CMakeFiles/cmTC_a3590.dir/CMakeCCompilerABI.c.obj] ==> ignore
-    arg [-lgcc] ==> lib [gcc]
-    arg [--start-group] ==> ignore
-    arg [-lgcc] ==> lib [gcc]
-    arg [-lg] ==> lib [g]
-    arg [-lc] ==> lib [c]
-    arg [--end-group] ==> ignore
-    arg [-lgcc] ==> lib [gcc]
-    arg [-T] ==> ignore
-    arg [/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds] ==> ignore
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib/rv32im/ilp32]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib/rv32im/ilp32]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib]
-  implicit libs: [gcc;gcc;g;c;gcc]
+    arg [cmTC_97a70] ==> ignore
+    arg [-L/opt/homebrew/Cellar/qt/6.4.2_2/lib] ==> dir [/opt/homebrew/Cellar/qt/6.4.2_2/lib]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_97a70.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/lib]
+  Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/opt/homebrew/Cellar/qt/6.4.2_2/lib] ==> [/opt/homebrew/Cellar/qt/6.4.2_2/lib]
+  collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/lib]
+  collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks]
+  implicit libs: []
   implicit objs: []
-  implicit dirs: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib/rv32im/ilp32;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib]
-  implicit fwks: []
-
-
-Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-MjmO3q
-
-Run Build Command(s):/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja cmTC_0fa03 && [1/2] Building CXX object CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj
-Using built-in specs.
-COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-g++
-Target: riscv-none-embed
-Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib
-Thread model: single
-gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) 
-COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-std=gnu++14' '-o' 'CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj' '-c'
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/cc1plus -quiet -v -imultilib rv32im/ilp32 -iprefix /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/ -isysroot /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -D _USE_LONG_TIME_T /Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mcmodel=medany -march=rv32imc -mabi=ilp32 -msave-restore -auxbase-strip CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj -O0 -std=gnu++14 -version -fdiagnostics-color=always -o /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccVhrNDb.s
-GNU C++14 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)
-	compiled by GNU C version 11.2.0, GMP version 6.1.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
-
-GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/backward"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include"
-ignoring nonexistent directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/usr/local/include"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include-fixed"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include"
-ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/include"
-#include "..." search starts here:
-#include <...> search starts here:
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/backward
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include
-End of search list.
-GNU C++14 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)
-	compiled by GNU C version 11.2.0, GMP version 6.1.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
-
-GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
-Compiler executable checksum: 7096d90dd74158ad423ad54d7b76246a
-COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-std=gnu++14' '-o' 'CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj' '-c'
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/as -v --traditional-format -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccVhrNDb.s
-GNU assembler version 2.32 (riscv-none-embed) using BFD version (xPack GNU RISC-V Embedded GCC x86_64) 2.32
-COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/
-LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/
-COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-std=gnu++14' '-o' 'CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj' '-c'
-[2/2] Linking CXX executable cmTC_0fa03
-Using built-in specs.
-COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-g++
-COLLECT_LTO_WRAPPER=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper
-Target: riscv-none-embed
-Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib
-Thread model: single
-gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) 
-COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/
-LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/
-COLLECT_GCC_OPTIONS='-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-D' '_USE_LONG_TIME_T' '-O0' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-nostartfiles' '-T' '/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds' '-v' '-o' 'cmTC_0fa03'
- /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/collect2 -plugin /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/liblto_plugin.so -plugin-opt=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//cc9ichyH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lg -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc --sysroot=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -melf32lriscv -o cmTC_0fa03 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib --gc-sections -Map=rtthread.map -cref -u _start CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc --start-group -lgcc -lg -lc --end-group -lgcc -T /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds
-/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000000000
-COLLECT_GCC_OPTIONS='-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-D' '_USE_LONG_TIME_T' '-O0' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-nostartfiles' '-T' '/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds' '-v' '-o' 'cmTC_0fa03'
-
-
-
-Parsed CXX implicit include dir info from above output: rv=done
-  found start of include info
-  found start of implicit include info
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0]
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32]
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/backward]
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include]
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed]
-    add: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include]
-  end of search list found
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include/c++/8.2.0]
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32]
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/backward] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include/c++/8.2.0/backward]
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include]
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include-fixed]
-  collapse include dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include]
-  implicit include dirs: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include/c++/8.2.0;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include/c++/8.2.0/backward;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/include-fixed;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/include]
-
-
-Parsed CXX implicit link information from above output:
-  link line regex: [^( *|.*[/\])(riscv-none-embed-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-MjmO3q]
-  ignore line: []
-  ignore line: [Run Build Command(s):/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja cmTC_0fa03 && [1/2] Building CXX object CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-g++]
-  ignore line: [Target: riscv-none-embed]
-  ignore line: [Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib]
-  ignore line: [Thread model: single]
-  ignore line: [gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-std=gnu++14' '-o' 'CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj' '-c']
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/cc1plus -quiet -v -imultilib rv32im/ilp32 -iprefix /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/ -isysroot /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -D _USE_LONG_TIME_T /Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mcmodel=medany -march=rv32imc -mabi=ilp32 -msave-restore -auxbase-strip CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj -O0 -std=gnu++14 -version -fdiagnostics-color=always -o /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccVhrNDb.s]
-  ignore line: [GNU C++14 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)]
-  ignore line: [	compiled by GNU C version 11.2.0  GMP version 6.1.2  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
-  ignore line: []
-  ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/backward"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include"]
-  ignore line: [ignoring nonexistent directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/usr/local/include"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/include-fixed"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/../../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include"]
-  ignore line: [ignoring duplicate directory "/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/include"]
-  ignore line: [#include "..." search starts here:]
-  ignore line: [#include <...> search starts here:]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/riscv-none-embed/rv32im/ilp32]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include/c++/8.2.0/backward]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/include-fixed]
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/include]
-  ignore line: [End of search list.]
-  ignore line: [GNU C++14 (xPack GNU RISC-V Embedded GCC x86_64) version 8.2.0 (riscv-none-embed)]
-  ignore line: [	compiled by GNU C version 11.2.0  GMP version 6.1.2  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
-  ignore line: []
-  ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
-  ignore line: [Compiler executable checksum: 7096d90dd74158ad423ad54d7b76246a]
-  ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-std=gnu++14' '-o' 'CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj' '-c']
-  ignore line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/as -v --traditional-format -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj /var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//ccVhrNDb.s]
-  ignore line: [GNU assembler version 2.32 (riscv-none-embed) using BFD version (xPack GNU RISC-V Embedded GCC x86_64) 2.32]
-  ignore line: [COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/]
-  ignore line: [LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-D' '_USE_LONG_TIME_T' '-O0' '-v' '-std=gnu++14' '-o' 'CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj' '-c']
-  ignore line: [[2/2] Linking CXX executable cmTC_0fa03]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/riscv-none-embed-g++]
-  ignore line: [COLLECT_LTO_WRAPPER=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper]
-  ignore line: [Target: riscv-none-embed]
-  ignore line: [Configured with: /Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/sources/riscv-gcc-10.2.0-1.1/configure --prefix=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc --infodir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/info --mandir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/man --htmldir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/html --pdfdir=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/share/doc/pdf --build=x86_64-apple-darwin17.7.0 --host=x86_64-apple-darwin17.7.0 --target=riscv-none-embed --with-pkgversion='xPack GNU RISC-V Embedded GCC x86_64' --with-bugurl=https://github.com/sifive/freedom-tools/issues/ --enable-languages=c,c++ --disable-mingw-wildcard --enable-plugins --enable-lto --enable-checking=yes --disable-tls --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-threads --with-gnu-as --with-gnu-ld --with-newlib --with-headers=yes --with-python-dir=share/gcc-riscv-none-embed --with-sysroot=/Users/wch/Work/riscv-none-embed-gcc-10.2.0-1.2/darwin-x64/install/riscv-none-embed-gcc/riscv-none-embed --with-native-system-header-dir=/include --with-abi=ilp32 --with-arch=rv32imac --disable-build-format-warnings --with-system-zlib]
-  ignore line: [Thread model: single]
-  ignore line: [gcc version 8.2.0 (xPack GNU RISC-V Embedded GCC x86_64) ]
-  ignore line: [COMPILER_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/bin/]
-  ignore line: [LIBRARY_PATH=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/:/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-D' '_USE_LONG_TIME_T' '-O0' '-mcmodel=medany' '-march=rv32imc' '-mabi=ilp32' '-msave-restore' '-nostartfiles' '-T' '/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds' '-v' '-o' 'cmTC_0fa03']
-  link line: [ /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/collect2 -plugin /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/liblto_plugin.so -plugin-opt=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//cc9ichyH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lg -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc --sysroot=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed -melf32lriscv -o cmTC_0fa03 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0 -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib -L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib --gc-sections -Map=rtthread.map -cref -u _start CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc --start-group -lgcc -lg -lc --end-group -lgcc -T /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds]
-    arg [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/collect2] ==> ignore
-    arg [-plugin] ==> ignore
-    arg [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/liblto_plugin.so] ==> ignore
-    arg [-plugin-opt=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../libexec/gcc/riscv-none-embed/8.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/var/folders/8b/ck38908s4pq3gnj871z1n0sr0000gn/T//cc9ichyH.res] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lg] ==> ignore
-    arg [-plugin-opt=-pass-through=-lc] ==> ignore
-    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
-    arg [--sysroot=/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed] ==> ignore
-    arg [-melf32lriscv] ==> ignore
-    arg [-o] ==> ignore
-    arg [cmTC_0fa03] ==> ignore
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib]
-    arg [-L/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib] ==> dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib]
-    arg [--gc-sections] ==> ignore
-    arg [-Map=rtthread.map] ==> ignore
-    arg [-cref] ==> ignore
-    arg [-u] ==> ignore
-    arg [_start] ==> ignore
-    arg [CMakeFiles/cmTC_0fa03.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
-    arg [-lstdc++] ==> lib [stdc++]
-    arg [-lm] ==> lib [m]
-    arg [-lgcc] ==> lib [gcc]
-    arg [--start-group] ==> ignore
-    arg [-lgcc] ==> lib [gcc]
-    arg [-lg] ==> lib [g]
-    arg [-lc] ==> lib [c]
-    arg [--end-group] ==> ignore
-    arg [-lgcc] ==> lib [gcc]
-    arg [-T] ==> ignore
-    arg [/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/link.lds] ==> ignore
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32im/ilp32] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib/rv32im/ilp32]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib/rv32im/ilp32] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib/rv32im/ilp32]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib]
-  collapse library dir [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../riscv-none-embed/lib] ==> [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib]
-  implicit libs: [stdc++;m;gcc;gcc;g;c;gcc]
-  implicit objs: []
-  implicit dirs: [/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0/rv32im/ilp32;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib/rv32im/ilp32;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc/riscv-none-embed/8.2.0;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/lib/gcc;/Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/riscv-none-embed/lib]
-  implicit fwks: []
+  implicit dirs: [/opt/homebrew/Cellar/qt/6.4.2_2/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/lib]
+  implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks]
 
 
