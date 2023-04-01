@@ -85,12 +85,12 @@ void gps_handler(void)
                          printf("gps_point : %d\r\n",gps_use.point_count);
                          printf("latitude:%.9f\r\n",gps_tau1201.latitude);
                          printf("longitude:%.9f\r\n",gps_tau1201.longitude);
-                         gps_data_array[gps_use.point_count] = gps_data;
+                         gps_data_array[gps_use.point_count] = gps_data;//?
                          gps_use.point_count++;
                      }
                      else
                      {
-                         printf("gps_state error");
+                         printf("satellite£º%d",gps_tau1201.satellite_used);
                      }
                      write_key_flag = 0;
                 }
@@ -161,17 +161,73 @@ void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_
     }
 }
 
-double yaw_gps_delta( double azimuth, double yaw)
+double yaw_gps_delta( double azimuth, float yaw)
 {
     double delta;
-    if (azimuth <= (yaw + 180))
+//0<azimut<90
+if (azimuth>0&&azimuth<90)
+{
+    if (yaw>0&&yaw<azimuth)
     {
         delta = azimuth - yaw;
     }
-    else if (azimuth > (yaw + 180))
+    else if (yaw>(azimuth+180)&&yaw<360)
     {
-        delta = -(-azimuth + yaw + 360);
+        delta = 360 - yaw + azimuth;
     }
+    else
+    {
+        delta = yaw - azimuth;
+    }
+}
+//90<azimut<180
+if (azimuth>90&&azimuth<180)
+{
+   if (yaw>0 && yaw<azimuth)
+   {
+       delta = azimuth - yaw;
+   }
+   else if(yaw>(azimuth+180)&&yaw<360)
+   {
+       delta = 360-yaw+azimuth;
+   }
+   else
+   {
+       delta = yaw - azimuth;
+   }
+}
+//180<azimut<270
+if (azimuth>180&&azimuth<270)
+{
+    if (yaw>(azimuth-180)&&yaw<azimuth)
+    {
+        delta = azimuth - yaw;
+    }
+    else if (yaw>0 && yaw<(azimuth-180))
+    {
+        delta = 360 - azimuth + yaw;
+    }
+    else if(yaw>azimuth && yaw<360)
+    {
+        delta = yaw - azimuth;
+    }
+}
+//270<azimut<360
+if (azimuth>270&&azimuth<360)
+{
+    if (yaw>(azimuth-180)&&yaw<azimuth)
+    {
+        delta = azimuth - yaw;
+    }
+    else if (yaw>azimuth&&yaw<360)
+    {
+        delta = yaw - azimuth;
+    }
+    else
+    {
+        delta = 360 - azimuth + yaw;
+    }
+}
     return delta;
 }
 
