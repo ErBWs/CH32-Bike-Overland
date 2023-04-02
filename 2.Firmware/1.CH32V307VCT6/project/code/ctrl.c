@@ -85,6 +85,7 @@ void FlyWheelControl(void)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);
+        Bike_Start = 0;//倒下以后停止循迹，需要再次按发车按钮
         return;
     }
     if(stagger_flag==1&&abs(imu_data.rol)<1)

@@ -35,7 +35,7 @@ void GPS_init(void)
 //            write_key_flag = 0;
 //        }
 //   }
-    gps_handler();
+//    gps_handler();
 }
 
 void gps_handler(void)
@@ -127,7 +127,9 @@ void gps_handler(void)
             ReadFlashWithConversion(&gps_data_array[k].latitude);
             ReadFlashWithConversion(&gps_data_array[k].longitude);
         }
+        gps_data_array[0].is_used = 1;//设为已用状态
         gps_data = gps_data_array[0];//获得第一个目标点
+        gps_use.use_point_count=1;
         read_key_flag = 0;
     }
     else if (read_key_flag==2) {//发车
@@ -139,10 +141,10 @@ void gps_handler(void)
 }
 
 
-void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data)
+void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_use_st *gps_result)
 {
     double gps_distance,gps_azimuth;
-    if (gps_use.use_point_count > GPS_MAX_POINT)
+    if (gps_result->use_point_count > GPS_MAX_POINT)
     {
         printf("no_other_gps_points\r\n");
     }
@@ -152,12 +154,12 @@ void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_
         gps_distance = get_two_points_distance(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
         gps_azimuth = get_two_points_azimuth(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
 
-        gps_use.points_distance = gps_distance;
-        gps_use.points_azimuth = gps_azimuth;
+        gps_result->points_distance = gps_distance;
+        gps_result->points_azimuth = gps_azimuth;
 //        printf("%f\n",gps_data->latitude);
 //        printf("%f\n",gps_data->longitude);
-        printf("%.9f\n",gps_use.points_distance);
-        printf("%.9f\n",gps_use.points_azimuth);
+//        printf("%.9f\n",gps_result->points_distance);
+//        printf("%.9f\n",gps_result->points_azimuth);
     }
 }
 
@@ -231,16 +233,54 @@ if (azimuth>270&&azimuth<360)
     return delta;
 }
 
-void change_point(void)
+#define EXTRA_FORECAST_POINT 2
+#define DISTANCE_LIMITATION 1
+uint8 get_point(double latitude_now, double longitude_now,_gps_st *gps_data)//只能在解析完数据后才能调用此函数
 {
-    if (gps_use.points_distance < 2)
+    double min_distance;
+    double min_azimuth;
+    uint8 state = 0;
+    uint8 i,k;
+    uint8 min_index = gps_use.use_point_count;
+    uint8 forecase_depth = EXTRA_FORECAST_POINT;
+    _gps_use_st gps_result;
+    while(1)
     {
-        //更新下一个目标点
-//        ReadFlashWithConversion(&gps_data->latitude);
-//        ReadFlashWithConversion(&gps_data->longitude);
-        printf("CHANGE-POINT\n");
-        gps_use.use_point_count++;
+        if(gps_use.use_point_count>=gps_use.point_count)
+        {
+            state = 1;
+            break;
+        }
+        two_points_message(latitude_now,longitude_now,&gps_data_array[min_index],&gps_result);
+        min_distance = gps_result.points_distance;//假设最小距离为列表里第一个导航点
+        if(gps_use.use_point_count+EXTRA_FORECAST_POINT>=gps_use.point_count)
+        {
+            forecase_depth=gps_use.point_count-gps_use.use_point_count;//动态深度更新
+            forecase_depth = forecase_depth<0?0:forecase_depth;//防止最后一个点depth为负数
+        }
+        for(i=gps_use.use_point_count;i<gps_use.use_point_count+forecase_depth;i++)//筛选出指顶前瞻区间内的距离最短且满足给定距离的导航点
+        {
+            two_points_message(latitude_now,longitude_now,&gps_data_array[i],&gps_result);
+            if(gps_result.points_distance<min_distance)
+            {
+                min_index = i;
+                min_distance = gps_result.points_distance;
+                min_azimuth = gps_result.points_azimuth;
+            }
+        }
+        if(min_distance<DISTANCE_LIMITATION)
+        {
+            for(k=min_index;k--;k>=gps_use.use_point_count)//禁用下一个目标点以及前面可能已经略过的导航节点
+            {
+                gps_data_array[k].is_used = 1;
+                gps_use.use_point_count++;
+            }
+            *gps_data = gps_data_array[k];//赋予新的目标点
+            printf("CHANGE-POINT\n");
+        }
+        break;
     }
+    return state;
 }
 
 
