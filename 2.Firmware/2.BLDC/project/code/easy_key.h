@@ -16,8 +16,8 @@
 
 #define FILTER_TIME_US          100     // Dithering elimination
 #define UPDATE_KEY_STATE_MS     1       // Update key state once per (x) ms
-#define HOLD_THRESHOLD_MS       300     // Time longer than this is considered as "hold"
-#define INTERVAL_THRESHOLD_MS   80      // Trigger time interval less than this is considered as "multiclick"
+#define HOLD_THRESHOLD_MS       500     // Time longer than this is considered as "hold"
+#define INTERVAL_THRESHOLD_MS   240      // Trigger time interval less than this is considered as "multiclick"
 
 typedef struct EasyKey_typedef
 {
@@ -40,6 +40,7 @@ typedef struct EasyKey_typedef
     bool isPressed;
     bool isHold;
     bool isMultiClick;
+    uint8_t clickState;
 } EasyKey_t;
 
 void EasyKeyInit(EasyKey_t *key, gpio_pin_enum _pin);

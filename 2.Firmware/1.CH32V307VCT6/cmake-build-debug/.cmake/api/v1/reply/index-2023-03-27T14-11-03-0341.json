@@ -1,0 +1,108 @@
+{
+	"cmake" : 
+	{
+		"generator" : 
+		{
+			"multiConfig" : false,
+			"name" : "Ninja"
+		},
+		"paths" : 
+		{
+			"cmake" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cmake",
+			"cpack" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cpack",
+			"ctest" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/ctest",
+			"root" : "/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.141/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/share/cmake-3.25"
+		},
+		"version" : 
+		{
+			"isDirty" : false,
+			"major" : 3,
+			"minor" : 25,
+			"patch" : 2,
+			"string" : "3.25.2",
+			"suffix" : ""
+		}
+	},
+	"objects" : 
+	[
+		{
+			"jsonFile" : "codemodel-v2-354bf810192fd723ff41.json",
+			"kind" : "codemodel",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 4
+			}
+		},
+		{
+			"jsonFile" : "cache-v2-eb14fba7bc8e94386059.json",
+			"kind" : "cache",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		{
+			"jsonFile" : "cmakeFiles-v1-3b7fe0ffdf64d10230c2.json",
+			"kind" : "cmakeFiles",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		},
+		{
+			"jsonFile" : "toolchains-v1-99aa2fc8808fe4e0a38a.json",
+			"kind" : "toolchains",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		}
+	],
+	"reply" : 
+	{
+		"cache-v2" : 
+		{
+			"jsonFile" : "cache-v2-eb14fba7bc8e94386059.json",
+			"kind" : "cache",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		"cmakeFiles-v1" : 
+		{
+			"jsonFile" : "cmakeFiles-v1-3b7fe0ffdf64d10230c2.json",
+			"kind" : "cmakeFiles",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		},
+		"codemodel-v2" : 
+		{
+			"jsonFile" : "codemodel-v2-354bf810192fd723ff41.json",
+			"kind" : "codemodel",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 4
+			}
+		},
+		"toolchains-v1" : 
+		{
+			"jsonFile" : "toolchains-v1-99aa2fc8808fe4e0a38a.json",
+			"kind" : "toolchains",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		}
+	}
+}

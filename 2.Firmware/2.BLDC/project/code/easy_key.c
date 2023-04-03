@@ -34,18 +34,24 @@ void DebounceFilter(uint8_t timeUs)
 void PressCallback(EasyKey_t *key)
 {
     key->isPressed = true;
+    key->isMultiClick = false;
+    key->isHold = false;
 }
 
 
 void HoldCallback(EasyKey_t *key)
 {
     key->isHold = true;
+    key->isMultiClick = false;
+    key->isPressed = false;
 }
 
 
 void MultiClickCallback(EasyKey_t *key)
 {
     key->isMultiClick = true;
+    key->isPressed = false;
+    key->isHold = false;
 }
 
 
@@ -145,52 +151,40 @@ void EasyKeyUserApp()
         ReleaseCallback(key);
 
         // Press and Hold callback
-        if (key->state == up && key->holdTime > HOLD_THRESHOLD_MS)
+        if (key->state == up && key->holdTime >= HOLD_THRESHOLD_MS)
             HoldCallback(key);
         if (key->state == up && key->holdTime < HOLD_THRESHOLD_MS)
-            PressCallback(key);
+        {
+            if (multiClickSwitch == false)
+            {
+                PressCallback(key);
+                continue;
+            }
+            if (key->clickState == 0)
+                key->clickState = 1;
+        }
 
-        // Multiple clicks callback
-        if (multiClickSwitch == false)
-            continue;
-        if (key->state == down && key->intervalTime < INTERVAL_THRESHOLD_MS)
+        /*
+         * clickState = 0: Normal statement
+         * clickState = 1: Waiting for multiple click
+         * clickState = 2: Interval time meet multiple click requirement, and need to judge hold time
+         */
+        if (key->clickState == 1 && key->state == down && key->intervalTime < INTERVAL_THRESHOLD_MS)
+        {
+            // Enter click state 2
+            key->clickState = 2;
+        }
+        if (key->clickState == 1 && key->intervalTime > INTERVAL_THRESHOLD_MS)
+        {
+            // Interval time too long, trigger PressCallBack
+            PressCallback(key);
+            key->clickState = 0;
+        }
+        if (key->clickState == 2 && key->state == up && key->holdTime < HOLD_THRESHOLD_MS)
+        {
+            // Meet all requirements, trigger MultiClickCallBack
             MultiClickCallback(key);
+            key->clickState = 0;
+        }
     }
-//        // Key is pressed
-//        if (key->value == 0)
-//        {
-//            // Press time counter
-//            key->holdTime++;
-//            continue;
-//        }
-//
-//        // Key is released
-//        // Trigger hold or release callback according to hold time
-//        if (key->holdTime >= HOLD_THRESHOLD_MS)
-//        {
-//            HoldCallback(key);
-//            continue;
-//        }
-//        else if (key->holdTime > 0 && multiClickSwitch == false)
-//        {
-//            PressCallback(key);
-//            continue;
-//        }
-//
-//        if (multiClickSwitch)
-//        {
-//            // Time counter for multiple clicks
-//            key->intervalTime++;
-//        }
-//
-//        //
-//        if (key->intervalTime > 0 && key->intervalTime < INTERVAL_THRESHOLD_MS)
-//            key->clickCnt++;
-//        if (key->clickCnt > 0)
-//            MultiClickCallback(key);
-//
-//        // Interval time is too long, trigger press callback
-//        if (key->intervalTime >= INTERVAL_THRESHOLD_MS)
-//            PressCallback(key);
-//
 }
