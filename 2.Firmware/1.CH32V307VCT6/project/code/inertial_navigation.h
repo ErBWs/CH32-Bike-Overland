@@ -40,9 +40,9 @@ extern uint8 read_key_flag;
 extern uint8 Bike_Start;
 void GPS_init(void);
 void gps_handler(void);
-void two_points_message(double latitude_1, double longitude_1, _gps_st *gps_data);
+void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_use_st *gps_use);
 double yaw_gps_delta( double azimuth, float yaw);
-void change_point(_gps_st *gps_data);
+uint8 get_point(double latitude_now, double longitude_now,_gps_st *gps_data);
 //double yaw_gps_delta( _gps_st gps_data, _imu_st imu_data);
 
 #endif /* INERTIAL_NAVIGATION_H_ */

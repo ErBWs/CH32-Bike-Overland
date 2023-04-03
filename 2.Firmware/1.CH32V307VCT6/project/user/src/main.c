@@ -35,7 +35,6 @@
 #include "zf_common_headfile.h"
 #include "inc_all.h"
 
-//extern float num_float[8];
 #define USE_GPS 1
 //extern double flashBuf[2000];
 int main (void)
@@ -62,7 +61,6 @@ int main (void)
     // 此处编写用户代码 例如外设初始化代码等
     taskTimAllInit();
 
-    static uint8 toggle=0;
     while(1)
     {
 
@@ -71,30 +69,26 @@ int main (void)
 //        vcan_sendware(num_float, sizeof(num_float));
 //        system_delay_ms(20);
 #if USE_GPS==1
-//        if(read_key_flag==1)
-//        {
-//            toggle ^=toggle;
-//            if(toggle==0)
-//            {
-//                FlashOperationEnd();
-//            }
-//            read_key_flag = 0;
-//        }
-        if(gps_tau1201_flag==1)//&&toggle==1
+        if(gps_tau1201_flag==1&&Bike_Start==1)
         {
             uint8 state = gps_data_parse();
             if(state==0)
             {
-                 two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data_array[gps_use.use_point_count]);
-                 gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
-                 change_point(&gps_data);
-                 ips114_show_float(10, 0, gps_use.delta, 3, 6);
-                 ips114_show_float(10, 16, gps_use.points_distance, 3, 6);
-                 ips114_show_float(10, 32, imu_data.mag_yaw, 3, 6);
-
-//                 printf("delta:%f\n",gps_use.delta);
+                uint8 is_finish;
+                is_finish = get_point(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
+                two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data,&gps_use);//根据当前经纬以及得到的目标点解算，放到gps_use里
+                gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+                printf("delta:%f\n",gps_use.delta);
+                if(is_finish)
+                {
+                    //........//
+                }
             }
             gps_tau1201_flag=0;
+        }
+        if(Bike_Start==0)
+        {
+            gps_handler();
         }
 #endif
         // 此处编写需要循环执行的代码

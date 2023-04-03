@@ -35,7 +35,7 @@ void GPS_init(void)
 //            write_key_flag = 0;
 //        }
 //   }
-    gps_handler();
+//    gps_handler();
 }
 
 void gps_handler(void)
@@ -43,14 +43,14 @@ void gps_handler(void)
     static uint8 write_keep_flag=0;
     if(write_keep_flag==0)
     {
-        /*0…60‹10‡80†40†30…4buff0‰00†00ˆ90Š5*/
+        /*ï¿½0ï¿½6ï¿½0ï¿½1ï¿½0ï¿½8ï¿½0ï¿½4ï¿½0ï¿½3ï¿½0ï¿½4buffï¿½0ï¿½0ï¿½0ï¿½0ï¿½0ï¿½9ï¿½0ï¿½5*/
         flashBufIndex = 0;
         flashSecIndex = 63;
         flashPageIndex = 3;
 
         flash_buffer_clear();
-        memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//0‡50Š20†70ˆ90‡80‹5¡Á¨¦¡Á0†4¡À0†00‡00†40‡60Š50ˆ40‡00…80‡20‡80‹50†60‰6
-        memset(&gps_use,0,sizeof(_gps_use_st));//0‡50Š20†70ˆ90†40‡50‡00†40ˆ40‡30ˆ30„4¡Á0†4¡À0†00‡00†40‡60Š50ˆ40‡00…80‡20‡80‹50†60‰6
+        memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//ï¿½0ï¿½5ï¿½0ï¿½2ï¿½0ï¿½7ï¿½0ï¿½9ï¿½0ï¿½8ï¿½0ï¿½5Ã—Ã©Ã—ï¿½0ï¿½4Â±ï¿½0ï¿½0ï¿½0ï¿½0ï¿½0ï¿½4ï¿½0ï¿½6ï¿½0ï¿½5ï¿½0ï¿½4ï¿½0ï¿½0ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½6ï¿½0ï¿½6
+        memset(&gps_use,0,sizeof(_gps_use_st));//ï¿½0ï¿½5ï¿½0ï¿½2ï¿½0ï¿½7ï¿½0ï¿½9ï¿½0ï¿½4ï¿½0ï¿½5ï¿½0ï¿½0ï¿½0ï¿½4ï¿½0ï¿½4ï¿½0ï¿½3ï¿½0ï¿½3ï¿½0ï¿½4Ã—ï¿½0ï¿½4Â±ï¿½0ï¿½0ï¿½0ï¿½0ï¿½0ï¿½4ï¿½0ï¿½6ï¿½0ï¿½5ï¿½0ï¿½4ï¿½0ï¿½0ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½6ï¿½0ï¿½6
         write_keep_flag = 1;
         write_key_flag = 0;
     }
@@ -64,7 +64,7 @@ void gps_handler(void)
                 if(write_key_flag==2)
                 {
                      write_key_flag = 0;
-                     write_keep_flag = 0;//0ˆ40…70ˆ1¨º0…80Š00†2¨®0‡60„30ˆ30‹40…90†90…80Š00‡20„50‡80†50„50…10ˆ60ˆ8¡À0Š00ˆ30‡00ˆ60†30…70ˆ20‡90Š30‡8¡À0†50‹30‡60Š50ˆ40…70…80Š00‡20„50‡80†50„30„5
+                     write_keep_flag = 0;//ï¿½0ï¿½4ï¿½0ï¿½7ï¿½0ï¿½1Ãªï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½2Ã³ï¿½0ï¿½6ï¿½0ï¿½3ï¿½0ï¿½3ï¿½0ï¿½4ï¿½0ï¿½9ï¿½0ï¿½9ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½2ï¿½0ï¿½5ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½5ï¿½0ï¿½1ï¿½0ï¿½6ï¿½0ï¿½8Â±ï¿½0ï¿½0ï¿½0ï¿½3ï¿½0ï¿½0ï¿½0ï¿½6ï¿½0ï¿½3ï¿½0ï¿½7ï¿½0ï¿½2ï¿½0ï¿½9ï¿½0ï¿½3ï¿½0ï¿½8Â±ï¿½0ï¿½5ï¿½0ï¿½3ï¿½0ï¿½6ï¿½0ï¿½5ï¿½0ï¿½4ï¿½0ï¿½7ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½2ï¿½0ï¿½5ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½3ï¿½0ï¿½5
                      double count = gps_use.point_count;
                      SaveToFlashWithConversion(&count);
                      for(uint32 k=0;k<gps_use.point_count;k++)
@@ -95,7 +95,7 @@ void gps_handler(void)
                      }
                      else
                      {
-                         printf("satellite0„50†2%d",gps_tau1201.satellite_used);
+                         printf("satelliteï¿½0ï¿½5ï¿½0ï¿½2%d",gps_tau1201.satellite_used);
                      }
                      write_key_flag = 0;
                 }
@@ -103,7 +103,7 @@ void gps_handler(void)
             gps_tau1201_flag=0;
         }
      }
-    if(write_keep_flag == 1&&gps_use.point_count==GPS_MAX_POINT)//0…8¡À0…90†90…80Š00…70Š70…80†50‡70ˆ30ˆ30‰70…80‡20‡8¡À0†2¨°0‡50Š20…60‹50…90†90…80Š00‡20„50‡80†50…50„40ˆ40…70‡60Š5Flash
+    if(write_keep_flag == 1&&gps_use.point_count==GPS_MAX_POINT)//ï¿½0ï¿½8Â±ï¿½0ï¿½9ï¿½0ï¿½9ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½7ï¿½0ï¿½7ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½7ï¿½0ï¿½3ï¿½0ï¿½3ï¿½0ï¿½7ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½8Â±ï¿½0ï¿½2Ã²ï¿½0ï¿½5ï¿½0ï¿½2ï¿½0ï¿½6ï¿½0ï¿½5ï¿½0ï¿½9ï¿½0ï¿½9ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½2ï¿½0ï¿½5ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½5ï¿½0ï¿½4ï¿½0ï¿½4ï¿½0ï¿½7ï¿½0ï¿½6ï¿½0ï¿½5Flash
     {
         write_keep_flag = 0;
         double count = gps_use.point_count;
@@ -115,27 +115,29 @@ void gps_handler(void)
         }
         FlashOperationEnd();
     }
-    if(read_key_flag==1)//0…70ˆ7Flash0…90†90…80Š00„50…10ˆ1¡§0…60„50ˆ80‰30…50†30ˆ40…70…80Š00…80‡20‡8¡À0†2¨°0‡40Š8¡Á¡Â0ˆ70‡10„30„50ˆ40…70…80Š00ˆ1¨º0…60‡70†2¨®0ˆ20‰70ˆ40Š5read0„30„5
+    if(read_key_flag==1)//ï¿½0ï¿½7ï¿½0ï¿½7Flashï¿½0ï¿½9ï¿½0ï¿½9ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½5ï¿½0ï¿½1ï¿½0ï¿½1Â¨ï¿½0ï¿½6ï¿½0ï¿½5ï¿½0ï¿½8ï¿½0ï¿½3ï¿½0ï¿½5ï¿½0ï¿½3ï¿½0ï¿½4ï¿½0ï¿½7ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½8Â±ï¿½0ï¿½2Ã²ï¿½0ï¿½4ï¿½0ï¿½8Ã—Ã·ï¿½0ï¿½7ï¿½0ï¿½1ï¿½0ï¿½3ï¿½0ï¿½5ï¿½0ï¿½4ï¿½0ï¿½7ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½1Ãªï¿½0ï¿½6ï¿½0ï¿½7ï¿½0ï¿½2Ã³ï¿½0ï¿½2ï¿½0ï¿½7ï¿½0ï¿½4ï¿½0ï¿½5readï¿½0ï¿½3ï¿½0ï¿½5
     {
-        /*0…60‹10‡80†40†30…4buff0‰00†00ˆ90Š5*/
+        /*ï¿½0ï¿½6ï¿½0ï¿½1ï¿½0ï¿½8ï¿½0ï¿½4ï¿½0ï¿½3ï¿½0ï¿½4buffï¿½0ï¿½0ï¿½0ï¿½0ï¿½0ï¿½9ï¿½0ï¿½5*/
         flashBufIndex = 0;
         flashSecIndex = 63;
         flashPageIndex = 3;
         flash_buffer_clear();
-        memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//0‡50Š20†70ˆ90‡80‹5¡Á¨¦¡Á0†4¡À0†00‡00†40‡60Š50ˆ40‡00…80‡20‡80‹50†60‰6
-        memset(&gps_use,0,sizeof(_gps_use_st));//0‡50Š20†70ˆ90†40‡50‡00†40ˆ40‡30ˆ30„4¡Á0†4¡À0†00‡00†40‡60Š50ˆ40‡00…80‡20‡80‹50†60‰6
+        memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//ï¿½0ï¿½5ï¿½0ï¿½2ï¿½0ï¿½7ï¿½0ï¿½9ï¿½0ï¿½8ï¿½0ï¿½5Ã—Ã©Ã—ï¿½0ï¿½4Â±ï¿½0ï¿½0ï¿½0ï¿½0ï¿½0ï¿½4ï¿½0ï¿½6ï¿½0ï¿½5ï¿½0ï¿½4ï¿½0ï¿½0ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½6ï¿½0ï¿½6
+        memset(&gps_use,0,sizeof(_gps_use_st));//ï¿½0ï¿½5ï¿½0ï¿½2ï¿½0ï¿½7ï¿½0ï¿½9ï¿½0ï¿½4ï¿½0ï¿½5ï¿½0ï¿½0ï¿½0ï¿½4ï¿½0ï¿½4ï¿½0ï¿½3ï¿½0ï¿½3ï¿½0ï¿½4Ã—ï¿½0ï¿½4Â±ï¿½0ï¿½0ï¿½0ï¿½0ï¿½0ï¿½4ï¿½0ï¿½6ï¿½0ï¿½5ï¿½0ï¿½4ï¿½0ï¿½0ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½8ï¿½0ï¿½5ï¿½0ï¿½6ï¿½0ï¿½6
         double count;
-        ReadFlashWithConversion(&count);//0†30Š90‡60„30ˆ80…20ˆ30‡60…80‡20…80Š00‡80‹5
+        ReadFlashWithConversion(&count);//ï¿½0ï¿½3ï¿½0ï¿½9ï¿½0ï¿½6ï¿½0ï¿½3ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½3ï¿½0ï¿½6ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½8ï¿½0ï¿½0ï¿½0ï¿½8ï¿½0ï¿½5
         gps_use.point_count=count;
         for(uint16 k=0;k<gps_use.point_count;k++)
         {
             ReadFlashWithConversion(&gps_data_array[k].latitude);
             ReadFlashWithConversion(&gps_data_array[k].longitude);
         }
-        gps_data = gps_data_array[0];//0†30Š90…80‡10…80‰30ˆ60†30†00‹20‡20†7¡À¨º0…80Š0
+        gps_data_array[0].is_used = 1;//è®¾ä¸ºå·²ç”¨çŠ¶æ€
+        gps_data = gps_data_array[0];//èŽ·å¾—ç¬¬ä¸€ä¸ªç›®æ ‡ç‚¹
+        gps_use.use_point_count=1;
         read_key_flag = 0;
     }
-    else if (read_key_flag==2) {//¡¤0„40…60…8
+    else if (read_key_flag==2) {//Â·ï¿½0ï¿½4ï¿½0ï¿½6ï¿½0ï¿½8
         if(gps_use.point_count!=0)
         {
             Bike_Start = 1;
@@ -144,25 +146,26 @@ void gps_handler(void)
 }
 
 
-void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data)
+void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_use_st *gps_result)
 {
     double gps_distance,gps_azimuth;
-    if (gps_use.use_point_count > GPS_MAX_POINT)
+    if (gps_result->use_point_count > GPS_MAX_POINT)
     {
         printf("no_other_gps_points\r\n");
     }
     else
     {
-        //0†0¨¹0ˆ40‡00…8¡À0‡5¡ã0…80‡20ˆ20†30‰00‡1¡Á0‡90ˆ00…1
+        //ï¿½0ï¿½0Ã¼ï¿½0ï¿½4ï¿½0ï¿½0ï¿½0ï¿½8Â±ï¿½0ï¿½5Â°ï¿½0ï¿½8ï¿½0ï¿½2ï¿½0ï¿½2ï¿½0ï¿½3ï¿½0ï¿½0ï¿½0ï¿½1Ã—ï¿½0ï¿½9ï¿½0ï¿½0ï¿½0ï¿½1
         gps_distance = get_two_points_distance(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
         gps_azimuth = get_two_points_azimuth(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
 
-        gps_use.points_distance = gps_distance;
-        gps_use.points_azimuth = gps_azimuth;
+        gps_result->points_distance = gps_distance;
+        gps_result->points_azimuth = gps_azimuth;
 //        printf("%f\n",gps_data->latitude);
 //        printf("%f\n",gps_data->longitude);
-//        printf("%.9f\n",gps_use.points_distance);
-//        printf("%.9f\n",gps_use.points_azimuth);
+//        printf("%.9f\n",gps_result->points_distance);
+//        printf("%.9f\n",gps_result->points_azimuth);
+
     }
 }
 
@@ -170,7 +173,7 @@ double yaw_gps_delta( double azimuth, float yaw)
 {
     double delta;
 //0<azimut<90
-if (azimuth>0&&azimuth<90)
+if(azimuth>0&&azimuth<90)
 {
     if (yaw>0&&yaw<azimuth)
     {
@@ -236,16 +239,55 @@ if (azimuth>270&&azimuth<360)
     return delta;
 }
 
-void change_point(_gps_st *gps_data)
+
+#define EXTRA_FORECAST_POINT 2
+#define DISTANCE_LIMITATION 1
+uint8 get_point(double latitude_now, double longitude_now,_gps_st *gps_data)//åªèƒ½åœ¨è§£æžå®Œæ•°æ®åŽæ‰èƒ½è°ƒç”¨æ­¤å‡½æ•°
 {
-    if (gps_use.points_distance < 2)
+    double min_distance;
+    double min_azimuth;
+    uint8 state = 0;
+    uint8 i,k;
+    uint8 min_index = gps_use.use_point_count;
+    uint8 forecase_depth = EXTRA_FORECAST_POINT;
+    _gps_use_st gps_result;
+    while(1)
     {
-        //0†0¨¹0ˆ40‡00ˆ30‡00ˆ60†30†00‹20‡20†7¡À¨º0…80Š0
-//        ReadFlashWithConversion(&gps_data->latitude);
-//        ReadFlashWithConversion(&gps_data->longitude);
-//        printf("CHANGE-POINT\n");
-        gps_use.use_point_count++;
+        if(gps_use.use_point_count>=gps_use.point_count)
+        {
+            state = 1;
+            break;
+        }
+        two_points_message(latitude_now,longitude_now,&gps_data_array[min_index],&gps_result);
+        min_distance = gps_result.points_distance;//å‡è®¾æœ€å°è·ç¦»ä¸ºåˆ—è¡¨é‡Œç¬¬ä¸€ä¸ªå¯¼èˆªç‚¹
+        if(gps_use.use_point_count+EXTRA_FORECAST_POINT>=gps_use.point_count)
+        {
+            forecase_depth=gps_use.point_count-gps_use.use_point_count;//åŠ¨æ€æ·±åº¦æ›´æ–°
+            forecase_depth = forecase_depth<0?0:forecase_depth;//é˜²æ­¢æœ€åŽä¸€ä¸ªç‚¹depthä¸ºè´Ÿæ•°
+        }
+        for(i=gps_use.use_point_count;i<gps_use.use_point_count+forecase_depth;i++)//ç­›é€‰å‡ºæŒ‡é¡¶å‰çž»åŒºé—´å†…çš„è·ç¦»æœ€çŸ­ä¸”æ»¡è¶³ç»™å®šè·ç¦»çš„å¯¼èˆªç‚¹
+        {
+            two_points_message(latitude_now,longitude_now,&gps_data_array[i],&gps_result);
+            if(gps_result.points_distance<min_distance)
+            {
+                min_index = i;
+                min_distance = gps_result.points_distance;
+                min_azimuth = gps_result.points_azimuth;
+            }
+        }
+        if(min_distance<DISTANCE_LIMITATION)
+        {
+            for(k=min_index;k--;k>=gps_use.use_point_count)//ç¦ç”¨ä¸‹ä¸€ä¸ªç›®æ ‡ç‚¹ä»¥åŠå‰é¢å¯èƒ½å·²ç»ç•¥è¿‡çš„å¯¼èˆªèŠ‚ç‚¹
+            {
+                gps_data_array[k].is_used = 1;
+                gps_use.use_point_count++;
+            }
+            *gps_data = gps_data_array[k];//èµ‹äºˆæ–°çš„ç›®æ ‡ç‚¹
+            printf("CHANGE-POINT\n");
+        }
+        break;
     }
+    return state;
 }
 
 
