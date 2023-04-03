@@ -5,23 +5,23 @@
  *      Author: sorrymaker
  */
 
-//椭球校准
-//最小二乘的椭球拟合
-//((x-x0)/A)^2 + ((y-y0)/B)^2 + ((z-z0)/C)^2 = 1 的空间任意椭球方程式
-//x^2 + a*y^2 + b*z^2 + c*x + d*y + e*z + f = 0  简化后的方程
-//问题转换为由a,b,c,d,e,f,来求解x0，y0，z0 以及 A,B,C
-//作者：袁玉斌
-//知乎ID：袁玉斌  转载请注明出处 尊重劳动者成果
+//脥脰脟貌脨拢脳录
+//脳卯脨隆露镁鲁脣碌脛脥脰脟貌脛芒潞脧
+//((x-x0)/A)^2 + ((y-y0)/B)^2 + ((z-z0)/C)^2 = 1 碌脛驴脮录盲脠脦脪芒脥脰脟貌路陆鲁脤脢陆
+//x^2 + a*y^2 + b*z^2 + c*x + d*y + e*z + f = 0  录貌禄炉潞贸碌脛路陆鲁脤
+//脦脢脤芒脳陋禄禄脦陋脫脡a,b,c,d,e,f,脌麓脟贸陆芒x0拢卢y0拢卢z0 脪脭录掳 A,B,C
+//脳梅脮脽拢潞脭卢脫帽卤贸
+//脰陋潞玫ID拢潞脭卢脫帽卤贸  脳陋脭脴脟毛脳垄脙梅鲁枚麓娄 脳冒脰脴脌脥露炉脮脽鲁脡鹿没
 
 #include "ellipsoid_fitting_process.h"
 
 
 #define MATRIX_SIZE 6
-float m_matrix[MATRIX_SIZE][MATRIX_SIZE + 1];//系数矩阵
-float solve[MATRIX_SIZE] = { 0 };//方程组的解对应最小二乘椭球拟合中的，a，b，c，d，e，f
+float m_matrix[MATRIX_SIZE][MATRIX_SIZE + 1];//脧碌脢媒戮脴脮贸
+float solve[MATRIX_SIZE] = { 0 };//路陆鲁脤脳茅碌脛陆芒露脭脫娄脳卯脨隆露镁鲁脣脥脰脟貌脛芒潞脧脰脨碌脛拢卢a拢卢b拢卢c拢卢d拢卢e拢卢f
 
 float m_result[MATRIX_SIZE];
-int N = 0;//计算累计的采样点次数的
+int N = 0;//录脝脣茫脌脹录脝碌脛虏脡脩霉碌茫麓脦脢媒碌脛
 
 _xyz_mag_f_st mag_Offset;
 _xyz_mag_s16_ary_st mag_origin_data;
@@ -32,7 +32,7 @@ _lf_t magmx = {1,0};
 _lf_t magmy = {1,0};
 _lf_t magmz = {1,0};
 
-//测试数组
+//虏芒脢脭脢媒脳茅
 //_xyz_mag_s16_ary_st mag_origin_data_test = {{87, 301, 274, 312, -3805, 4389, 261, 327, -1963, 3024},
 //                                       {-52, -45, 4088, -4109, -24, 6, 2106, -2047, -13, 18},
 //                                       {-4454, 3859, -303, -305, -390, -228, -3848, -3880, -3797, -3449}
@@ -41,13 +41,13 @@ _lf_t magmz = {1,0};
 
 char Offset_Mag_OK = 0;
 
-//读取磁力计数据
+//露脕脠隆麓脜脕娄录脝脢媒戮脻
 void imuGetMagData(_xyz_mag_s16_st *mag_data)
 {
     imu963ra_get_mag();
-    if (Offset_Mag_OK)
+    if (0)
         {
-        mag_data->mx = ((float)imu963ra_mag_x - (float)mag_Offset.X0) / (float)mag_Offset.A;  //获取磁力计拟合数据
+        mag_data->mx = ((float)imu963ra_mag_x - (float)mag_Offset.X0) / (float)mag_Offset.A;  //禄帽脠隆麓脜脕娄录脝脛芒潞脧脢媒戮脻
         mag_data->my = ((float)imu963ra_mag_y - (float)mag_Offset.Y0) / (float)mag_Offset.B;
         mag_data->mz = ((float)imu963ra_mag_z - (float)mag_Offset.Z0) / (float)mag_Offset.C;
 //        magmx.out = mag_data->mx;
@@ -62,7 +62,7 @@ void imuGetMagData(_xyz_mag_s16_st *mag_data)
         }
      else
         {
-         mag_data->mx = imu963ra_mag_x;  //获取磁力计原始数据
+         mag_data->mx = imu963ra_mag_x;  //禄帽脠隆麓脜脕娄录脝脭颅脢录脢媒戮脻
          mag_data->my = imu963ra_mag_y;
          mag_data->mz = imu963ra_mag_z;
         }
@@ -86,13 +86,13 @@ void imuMagOffset(void)
     Offset_Mag_OK = 1;
 }
 
-//取绝对值
+//脠隆戮酶露脭脰碌
 float Abs(float a)
 {
     return a < 0 ? -a : a;
 }
 
-//把矩阵系数全部清除为0
+//掳脩戮脴脮贸脧碌脢媒脠芦虏驴脟氓鲁媒脦陋0
 void ResetMatrix(void)
 {
     for (uint8 row = 0; row < MATRIX_SIZE; row++)
@@ -102,8 +102,8 @@ void ResetMatrix(void)
     }
 }
 
-//把输入的数据先生成矩阵的元素的总和
-void CalcData_Input(int16 x, int16 y, int16 z)//原来是float
+//掳脩脢盲脠毛碌脛脢媒戮脻脧脠脡煤鲁脡戮脴脮贸碌脛脭陋脣脴碌脛脳脺潞脥
+void CalcData_Input(int16 x, int16 y, int16 z)//脭颅脌麓脢脟float
 {
     float V[MATRIX_SIZE + 1];
     N++;
@@ -114,7 +114,7 @@ void CalcData_Input(int16 x, int16 y, int16 z)//原来是float
     V[4] = z;
     V[5] = 1.0;
     V[6] = -x*x;
-    //构建系数矩阵，并进行累加
+    //鹿鹿陆篓脧碌脢媒戮脴脮贸拢卢虏垄陆酶脨脨脌脹录脫
     for (uint8 row = 0; row < MATRIX_SIZE; row++)
     {
         for (uint8 column = 0; column < MATRIX_SIZE + 1; column++)
@@ -122,10 +122,10 @@ void CalcData_Input(int16 x, int16 y, int16 z)//原来是float
             m_matrix[row][column] += V[row] * V[column];
         }
     }
-    //b向量是m_matrix[row][6]
+    //b脧貌脕驴脢脟m_matrix[row][6]
 }
 
-//把所有的数据先生成矩阵的元素的总和
+//掳脩脣霉脫脨碌脛脢媒戮脻脧脠脡煤鲁脡戮脴脮贸碌脛脭陋脣脴碌脛脳脺潞脥
 void CalcData_Input_sum(_xyz_mag_s16_ary_st *mag_origin_data)
 {
     int i, count = 0;
@@ -135,7 +135,7 @@ void CalcData_Input_sum(_xyz_mag_s16_ary_st *mag_origin_data)
         {
             CalcData_Input(mag_origin_data->mx_o[i - count], mag_origin_data->my_o[i - count], mag_origin_data->mz_o[i - count]);
         }
-        else //有空余数据
+        else //脫脨驴脮脫脿脢媒戮脻
         {
             count++;
         }
@@ -144,16 +144,16 @@ void CalcData_Input_sum(_xyz_mag_s16_ary_st *mag_origin_data)
 
 }
 
-//化简系数矩阵，把除以N带上
+//禄炉录貌脧碌脢媒戮脴脮贸拢卢掳脩鲁媒脪脭N麓酶脡脧
 void CalcData_Input_average()
 {
     for (uint8 row = 0; row < MATRIX_SIZE; row++)
     for (uint8 column = 0; column < MATRIX_SIZE + 1; column++)
         m_matrix[row][column] /= N;
-    //b向量是m_matrix[row][6]
+    //b脧貌脕驴脢脟m_matrix[row][6]
 }
 
-//显示出来系数矩阵和增广矩阵[A|b]
+//脧脭脢戮鲁枚脌麓脧碌脢媒戮脴脮贸潞脥脭枚鹿茫戮脴脮贸[A|b]
 void DispMatrix(void)
 {
     for (uint8 row = 0; row < MATRIX_SIZE; row++)
@@ -169,7 +169,7 @@ void DispMatrix(void)
     printf("\r\n\r\n");
 }
 
-//交换两行元素位置
+//陆禄禄禄脕陆脨脨脭陋脣脴脦禄脰脙
 void Row2_swop_Row1(int row1, int row2)
 {
     float tmp = 0;
@@ -181,14 +181,14 @@ void Row2_swop_Row1(int row1, int row2)
     }
 }
 
-//用把row行的元素乘以一个系数k
+//脫脙掳脩row脨脨碌脛脭陋脣脴鲁脣脪脭脪禄赂枚脧碌脢媒k
 void k_muiltply_Row(float k, int row)
 {
     for (uint8 column = 0; column < MATRIX_SIZE + 1; column++)
         m_matrix[row][column] *= k;
 }
 
-//用一个数乘以row1行加到row2行上去
+//脫脙脪禄赂枚脢媒鲁脣脪脭row1脨脨录脫碌陆row2脨脨脡脧脠楼
 void Row2_add_kRow1(float k, int row1, int row2)
 {
     for (uint8 column = 0; column < MATRIX_SIZE + 1; column++)
@@ -196,7 +196,7 @@ void Row2_add_kRow1(float k, int row1, int row2)
 }
 
 
-//列主元，第k次消元之前，把k行到MATRIX_SIZE的所有行进行冒泡排出最大，排序的依据是k列的元素的大小
+//脕脨脰梅脭陋拢卢碌脷k麓脦脧没脭陋脰庐脟掳拢卢掳脩k脨脨碌陆MATRIX_SIZE碌脛脣霉脫脨脨脨陆酶脨脨脙掳脜脻脜脜鲁枚脳卯麓贸拢卢脜脜脨貌碌脛脪脌戮脻脢脟k脕脨碌脛脭陋脣脴碌脛麓贸脨隆
 void MoveBiggestElement_to_Top(int k)
 {
     int row = 0;//, column = 0;
@@ -210,17 +210,17 @@ void MoveBiggestElement_to_Top(int k)
     }
 }
 
-//高斯消元法，求行阶梯型矩阵
+//赂脽脣鹿脧没脭陋路篓拢卢脟贸脨脨陆脳脤脻脨脥戮脴脮贸
 uint8 Matrix_GaussElimination(void)
 {
     float k = 0;
-    for (uint8 cnt = 0; cnt < MATRIX_SIZE; cnt++)//进行第k次的运算，主要是针对k行以下的行数把k列的元素都变成0
+    for (uint8 cnt = 0; cnt < MATRIX_SIZE; cnt++)//陆酶脨脨碌脷k麓脦碌脛脭脣脣茫拢卢脰梅脪陋脢脟脮毛露脭k脨脨脪脭脧脗碌脛脨脨脢媒掳脩k脕脨碌脛脭陋脣脴露录卤盲鲁脡0
     {
-        //把k行依据k列的元素大小，进行排序
+        //掳脩k脨脨脪脌戮脻k脕脨碌脛脭陋脣脴麓贸脨隆拢卢陆酶脨脨脜脜脨貌
         MoveBiggestElement_to_Top(cnt);
         if (m_matrix[cnt][cnt] == 0)
-            return(1);//返回值表示错误
-        //把k行下面的行元素全部消成0，整行变化
+            return(1);//路碌禄脴脰碌卤铆脢戮麓铆脦贸
+        //掳脩k脨脨脧脗脙忙碌脛脨脨脭陋脣脴脠芦虏驴脧没鲁脡0拢卢脮没脨脨卤盲禄炉
         for (uint8 row = cnt + 1; row < MATRIX_SIZE; row++)
         {
             k = -m_matrix[row][cnt] / m_matrix[cnt][cnt];
@@ -230,7 +230,7 @@ uint8 Matrix_GaussElimination(void)
     return 0;
 }
 
-//求行最简型矩阵，即把对角线的元素全部化成1
+//脟贸脨脨脳卯录貌脨脥戮脴脮贸拢卢录麓掳脩露脭陆脟脧脽碌脛脭陋脣脴脠芦虏驴禄炉鲁脡1
 void Matrix_RowSimplify(void)
 {
     float k = 0;
@@ -241,7 +241,7 @@ void Matrix_RowSimplify(void)
     }
 }
 
-//求非齐次线性方程组的解
+//脟贸路脟脝毛麓脦脧脽脨脭路陆鲁脤脳茅碌脛陆芒
 void Matrix_Solve(float* solve)
 {
     for (short row = MATRIX_SIZE - 1; row >= 0; row--)
@@ -252,21 +252,21 @@ void Matrix_Solve(float* solve)
     }
 }
 
-//整个椭球校准的过程
+//脮没赂枚脥脰脟貌脨拢脳录碌脛鹿媒鲁脤
 void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data)
 {
 
     ResetMatrix();
-    //这里输入任意个点加速度参数，尽量在球面上均匀分布
-    CalcData_Input_sum(mag_origin_data);//这里语法有待商榷//验证没有问题
-    CalcData_Input_average();//对输入的数据到矩阵元素进行归一化
-//    DispMatrix();//显示原始的增广矩阵
-    if (Matrix_GaussElimination())  //求得行阶梯形矩阵
+    //脮芒脌茂脢盲脠毛脠脦脪芒赂枚碌茫录脫脣脵露脠虏脦脢媒拢卢戮隆脕驴脭脷脟貌脙忙脡脧戮霉脭脠路脰虏录
+    CalcData_Input_sum(mag_origin_data);//脮芒脌茂脫茂路篓脫脨麓媒脡脤脠露//脩茅脰陇脙禄脫脨脦脢脤芒
+    CalcData_Input_average();//露脭脢盲脠毛碌脛脢媒戮脻碌陆戮脴脮贸脭陋脣脴陆酶脨脨鹿茅脪禄禄炉
+//    DispMatrix();//脧脭脢戮脭颅脢录碌脛脭枚鹿茫戮脴脮贸
+    if (Matrix_GaussElimination())  //脟贸碌脙脨脨陆脳脤脻脨脦戮脴脮贸
         printf("the marix could not be solved\r\n");
     else
     {
-        Matrix_RowSimplify();//化行最简形态
-        Matrix_Solve(solve);//求解a,b,c,d,e,f
+        Matrix_RowSimplify();//禄炉脨脨脳卯录貌脨脦脤卢
+        Matrix_Solve(solve);//脟贸陆芒a,b,c,d,e,f
 
         mag_Offset.X0 = -solve[2] / 2;
         mag_Offset.Y0 = -solve[3] / (2 * solve[0]);
@@ -275,7 +275,7 @@ void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data)
         mag_Offset.B = mag_Offset.A / sqrt(solve[0]);
         mag_Offset.C = mag_Offset.A / sqrt(solve[1]);
      }
-    //用于串口复制数据
+    //脫脙脫脷麓庐驴脷赂麓脰脝脢媒戮脻
 //    int32 i = 0;
 //    for (i = 0; i < N; ++i) {
 //        printf("%d %d %d\t\n",mag_origin_data->mx_o[i],mag_origin_data->my_o[i],mag_origin_data->mz_o[i]);
@@ -286,18 +286,28 @@ void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data)
 //    }
 //    printf("  X0 = %f| Y0 = %f| Z0 = %f| A = %d| B = %d| C = %d \r\n", mag_Offset.X0, mag_Offset.Y0, mag_Offset.Z0, mag_Offset.A, mag_Offset.B, mag_Offset.C);
 }
-//extern float num_float[8];
-//倾角补偿 + 偏航角解算
+extern float num_float[8];
+//脟茫陆脟虏鹿鲁楼 + 脝芦潞陆陆脟陆芒脣茫
 void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
 {
-//    imu_data.pit; y   θ
-//    imu_data.rol; x   Φ
+//    imu_data.pit; y   娄脠
+//    imu_data.rol; x   娄碌
     float Hx = 0,Hy = 0;
+    float temp;
     if (mode == ICO)
     {
-       Hx = mag_data->mx * cosf(imu_data.pit * INVVAL) - mag_data->my * sinf(imu_data.pit * INVVAL) * sinf(imu_data.rol * INVVAL) - mag_data->mz * cosf(imu_data.rol * INVVAL) * sinf(imu_data.pit * INVVAL);
-       Hy = mag_data->my * cosf(imu_data.rol * INVVAL) - mag_data->mz * sinf(imu_data.rol * INVVAL);
-       imu_data.mag_yaw = atan2f(-Hy,Hx) * VAL - 11;
+//        temp = atan2f(mag_data->mx,mag_data->my) * VAL;
+       Hx = mag_data->mx * cosf(ANGLE_TO_RAD(imu_data.pit)) - mag_data->my * sinf(ANGLE_TO_RAD(imu_data.pit)) * sinf(ANGLE_TO_RAD(imu_data.rol)) - mag_data->mz * cosf(ANGLE_TO_RAD(imu_data.rol)) * sinf(ANGLE_TO_RAD(imu_data.pit));
+       Hy = mag_data->my * cosf(ANGLE_TO_RAD(imu_data.rol)) - mag_data->mz * sinf(ANGLE_TO_RAD(imu_data.rol));
+//       printf("%f,",Hx);
+//       printf("%f,",Hy);
+//       printf("%f,",mag_data->mx);
+//       printf("%f,",mag_data->my);
+//       printf("%f\n",mag_data->mz);
+
+       imu_data.mag_yaw = atan2f(-Hy,Hx) * VAL;
+//       printf("%f,",imu_data.mag_yaw);
+//       printf("%f\n",temp);
     }
     if(mode == NO_ICO)
     {
