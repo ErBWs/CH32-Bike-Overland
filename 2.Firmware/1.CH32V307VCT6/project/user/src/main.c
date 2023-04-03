@@ -35,8 +35,7 @@
 #include "zf_common_headfile.h"
 #include "inc_all.h"
 
-
-#define USE_GPS 0
+#define USE_GPS 1
 //extern double flashBuf[2000];
 int main (void)
 {
@@ -44,50 +43,52 @@ int main (void)
     debug_init();                                                               // 初始化默认 Debug UART
     // 此处编写用户代码 例如外设初始化代码等
     ips114_init();
-    ips114_show_string(0, 0, "he");
-    encoderInit();printf("OK\r\n");
+//    ips114_show_string(0, 0, "he");
+    encoderInit();
+//    printf("OK\r\n");
     motoInit();
     pit_ms_init(TIM1_PIT,10);
     gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
-    imuinit(IMU_660RA);
-
-    pidAllInit();
-    BlueToothInit();
-    Butterworth_Parameter_Init();
+    imuinit(IMU_ALL);
 #if USE_GPS==1
     GPS_init();
 #endif
+    pidAllInit();
+    BlueToothInit();
+    Butterworth_Parameter_Init();
+
 
     // 此处编写用户代码 例如外设初始化代码等
-//    taskTimAllInit();
+    taskTimAllInit();
 
-    static uint8 toggle=0;
     while(1)
     {
-//        system_delay_ms(100);
+
 //        imu660ra_get_gyro();
 //        ips114_show_int(0, 16, imu660ra_gyro_x, 5);
+//        vcan_sendware(num_float, sizeof(num_float));
+//        system_delay_ms(20);
 #if USE_GPS==1
-        if(read_key_flag==1)
-        {
-            toggle ^=toggle;
-            if(toggle==0)
-            {
-                FlashOperationEnd();
-            }
-            read_key_flag = 0;
-        }
-        if(gps_tau1201_flag==1&&toggle==1)
+        if(gps_tau1201_flag==1&&Bike_Start==1)
         {
             uint8 state = gps_data_parse();
             if(state==0)
             {
-                 two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data_array[use_point_count]);
-                 gps_use.delta = yaw_gps_delta(gps_data.points_azimuth, imu_data.mag_yaw);
-                 change_point(&gps_data);
-                 printf("delta:%f\n",gps_use.delta);
+                uint8 is_finish;
+                is_finish = get_point(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
+                two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data,&gps_use);//根据当前经纬以及得到的目标点解算，放到gps_use里
+                gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+                printf("delta:%f\n",gps_use.delta);
+                if(is_finish)
+                {
+                    //........//
+                }
             }
             gps_tau1201_flag=0;
+        }
+        if(Bike_Start==0)
+        {
+            gps_handler();
         }
 #endif
         // 此处编写需要循环执行的代码

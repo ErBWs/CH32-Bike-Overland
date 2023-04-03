@@ -49,3 +49,31 @@ void Cal_YawAngle(float mag_gyro_z, float *yaw )
     (*yaw) = weight_mag * (*yaw) + weight_gyro * (yaw_last + d_gyro_angle);
     yaw_last = (*yaw);
 }
+
+void gpsFusionyaw(float gpsangle, float *yaw)
+{
+    //运动时相信gps航向角
+    float weight_gps = 0.8, weight_yaw = 0.2;
+    static char count = 0;
+    count++;
+    //角度在正北附近变换，相信磁偏角
+    if (Abs(*yaw) < 5)
+    {
+        count = 0;
+    }
+    //当车体速度稳定且行进方向稳定时，进行融合  之后改为当运动到第三个点时开始相信gps，初始运用偏航角循迹
+    else if ((count >= 3) && (gps_tau1201.speed > 4.3))//when(count>=3 and reach third_point) begin fusion
+    {
+        (*yaw) = weight_gps * gpsangle + weight_yaw * (*yaw);
+        count = 3;
+    }
+    //换向或者车体数据不稳定时，相信磁力计方向角
+    else
+    {
+        *yaw = atan2f(mag_data.my,mag_data.mx) * VAL;
+        if (*yaw < 0)
+        {
+            *yaw += 360;
+        }
+    }
+}

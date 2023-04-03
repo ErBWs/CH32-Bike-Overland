@@ -13,16 +13,19 @@ void taskTimAllInit(void)
     interrupt_set_priority(TIM3_IRQn, (2<<5) | 2);
     interrupt_set_priority(TIM4_IRQn, (2<<5) | 1);
 }
+float num_float[8];
 void IMUGetCalFun(void)
 {
     if(imu_update_counts<1500)
             imu_update_counts++;
-    IMU_Getdata(&gyro,&acc, IMU_ICM);
-//    imuGetMagData(&mag_data);
+    IMU_Getdata(&gyro,&acc, IMU_ALL);
+    imuGetMagData(&mag_data);
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
-//    Inclination_compensation(&mag_data, ICO);
-//    Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
+    Inclination_compensation(&mag_data, NO_ICO);
+    Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
+//    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
+
 }
 void ServoControl(void)
 {
@@ -85,6 +88,7 @@ void FlyWheelControl(void)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);
+        Bike_Start = 0;//倒下以后停止循迹，需要再次按发车按钮
         return;
     }
     if(stagger_flag==1&&abs(imu_data.rol)<1)

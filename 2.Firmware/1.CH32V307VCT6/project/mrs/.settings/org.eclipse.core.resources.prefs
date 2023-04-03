@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//code/inertial_navigation.c=UTF-8
 encoding//zf_device/zf_device_gps_tau1201.c=UTF-8
 encoding//zf_device/zf_device_gps_tau1201.h=UTF-8
 encoding//zf_device/zf_device_imu660ra.c=UTF-8
