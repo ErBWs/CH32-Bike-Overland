@@ -12,4 +12,6 @@ Series=CH32V307
 Description=ROM(byte): 192K, SRAM(byte): 128K, CHIP PINS: 100, GPIO PORTS: 80./nWCH CH32V3 series of mainstream MCUs covers the needs of a large variety of applications in the industrial,medical and consumer markets. High performance with first-class peripherals and low-power,low-voltage operation is paired with a high level of integration at accessible prices with a simple architecture and easy-to-use tools.
 
 PeripheralVersion=1.5
-Target Path=obj/Seekfree_CH32V307VCT6_Opensource_Library.hex
+Target Path=obj\Seekfree_CH32V307VCT6_Opensource_Library.hex
+
+CLKSpeed=1

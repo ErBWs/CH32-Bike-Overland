@@ -271,30 +271,18 @@ void EXTI15_10_IRQHandler(void)
     }
 }
 
-int16_t count = 0;
 void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-        EasyKeyHandler(10);
-        if (keyL.isPressed)
-        {
-            ips114_show_string(0, 0, "L presses");
-        }
-        if (keyC.isPressed)
-        {
-            ips114_show_string(0, 0, "C presses");
-        }
-        if (keyR.isPressed)
-        {
-            ips114_show_string(0, 0, "R presses");
-        }
-
-//        ips114_show_int(0, 0, count++, 5);
+        EasyKeyScanKeyState();
+        EasyKeyUserApp();
+//        printf("Press:%d\n", keyL.isPressed);
+//        printf("Hold:%d\n", keyL.isHold);
+        printf("MultiClick:%d\n", keyL.isMultiClick);
     }
 }
-
 
 void TIM2_IRQHandler(void)
 {

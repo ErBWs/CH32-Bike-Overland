@@ -15,28 +15,25 @@
 #include "zf_driver_delay.h"
 
 #define FILTER_TIME_US          100     // Dithering elimination
-#define HOLD_THRESHOLD_MS       100     // Time longer than this is considered as "hold"
+#define UPDATE_KEY_STATE_MS     1       // Update key state once per (x) ms
+#define HOLD_THRESHOLD_MS       300     // Time longer than this is considered as "hold"
 #define INTERVAL_THRESHOLD_MS   80      // Trigger time interval less than this is considered as "multiclick"
 
 typedef struct EasyKey_typedef
 {
     // Internal call
-    uint8_t value, preVal;      // Press:0  Not press:1
-    uint16_t id;
-    uint32_t intervalTime;
+    uint8_t value, cacheValue;      // Press:0  Not press:1
+    uint8_t preValue;
     struct EasyKey_typedef *next;
     gpio_pin_enum pin;
-    uint32_t holdTime;
-    uint32_t clickCnt;
+    uint32_t holdTime, intervalTime;
+
     enum
     {
-        release,
-        dither,
-        preClick,
-        inClick,
-        press,
-        hold,
-        multiClick
+        down,
+        up,
+        pressed,
+        released
     } state;
 
     // User call
@@ -45,16 +42,11 @@ typedef struct EasyKey_typedef
     bool isMultiClick;
 } EasyKey_t;
 
-extern bool multiClickSwitch;
-
-void DebounceFilter(uint8_t timeUs);
 void EasyKeyInit(EasyKey_t *key, gpio_pin_enum _pin);
-void EasyKeyHandler(uint8_t timer);
+void EasyKeyScanKeyState();
 
-void PressCallback(EasyKey_t *key);
-void HoldCallback(EasyKey_t *key);
-void MultiClickCallback(EasyKey_t *key);
-void ReleaseCallback(EasyKey_t *key);
+extern bool multiClickSwitch;
+void EasyKeyUserApp();
 
 extern EasyKey_t keyL, keyC, keyR;
 #endif
