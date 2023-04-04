@@ -35,6 +35,7 @@
 
 #include "zf_common_headfile.h"
 #include "easy_key.h"
+#include "ips096.h"
 void NMI_Handler(void)       __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
@@ -287,7 +288,7 @@ void TIM1_UP_IRQHandler(void)
             count+=2;
         if (keyR.isPressed)
             count++;
-        ips114_show_int(0, 0, count, 3);
+        ips096_show_int(0, 0, count, 3);
     }
 }
 

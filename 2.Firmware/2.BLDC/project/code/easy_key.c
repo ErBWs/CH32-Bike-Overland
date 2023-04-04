@@ -8,53 +8,35 @@
 #include "easy_key.h"
 
 EasyKey_t keyL, keyC, keyR;
-bool multiClickSwitch = true;
+bool multiClickSwitch = false;
 EasyKey_t *head = NULL, *tail = NULL;
 
-
-void DebounceFilter(uint8_t timeUs)
-{
-    for (EasyKey_t *key = head; key != NULL; key = key->next)
-    {
-        key->cacheValue = gpio_get_level(key->pin);
-    }
-
-    system_delay_us(timeUs);
-
-    uint8_t mask;
-    for (EasyKey_t *key = head; key != NULL; key = key->next)
-    {
-        key->value = gpio_get_level(key->pin);
-        mask = key->value ^ key->cacheValue;
-        key->value |= mask;
-    }
-}
-
-
+/*!
+ * @brief   Callbacks
+ *
+ * @param   key         Key linked list
+ * @return  void
+ *
+ * @note    Modify this part
+ */
 void PressCallback(EasyKey_t *key)
 {
-    key->isPressed = true;
     key->isMultiClick = false;
+    key->isPressed = true;
     key->isHold = false;
 }
-
-
 void HoldCallback(EasyKey_t *key)
 {
-    key->isHold = true;
     key->isMultiClick = false;
     key->isPressed = false;
+    key->isHold = true;
 }
-
-
 void MultiClickCallback(EasyKey_t *key)
 {
     key->isMultiClick = true;
     key->isPressed = false;
     key->isHold = false;
 }
-
-
 void ReleaseCallback(EasyKey_t *key)
 {
     key->isMultiClick = false;
@@ -64,13 +46,71 @@ void ReleaseCallback(EasyKey_t *key)
 
 
 /*!
+ * @brief   EasyKey user app
+ *
+ * @param   void
+ * @return  void
+ *
+ * @note    Modify this part
+ */
+void EasyKeyUserApp()
+{
+    for (EasyKey_t *key = head; key != NULL; key = key->next)
+    {
+        ReleaseCallback(key);
+
+        // Press and hold callback
+        if (key->state == up && key->holdTime >= HOLD_THRESHOLD_MS)
+            HoldCallback(key);
+        if (key->state == up && key->holdTime < HOLD_THRESHOLD_MS)
+        {
+            if (multiClickSwitch == false)
+            {
+                PressCallback(key);
+                continue;
+            }
+            if (key->clickState == 0)
+                key->clickState = 1;
+        }
+
+        // Skip multiple click judgement
+        if (multiClickSwitch == false)
+        {
+            continue;
+        }
+
+        /*
+         * clickState = 0: Normal state
+         * clickState = 1: Waiting for multiple click
+         * clickState = 2: Interval time meet multiple click requirement, and need to judge hold time
+         */
+        if (key->clickState == 1 && key->state == down && key->intervalTime < INTERVAL_THRESHOLD_MS)
+        {
+            // Enter click state 2
+            key->clickState = 2;
+        }
+        if (key->clickState == 1 && key->intervalTime > INTERVAL_THRESHOLD_MS)
+        {
+            // Interval time too long, trigger PressCallBack
+            PressCallback(key);
+            key->clickState = 0;
+        }
+        if (key->clickState == 2 && key->state == up && key->holdTime < HOLD_THRESHOLD_MS)
+        {
+            // Meet all requirements, trigger MultiClickCallBack
+            MultiClickCallback(key);
+            key->clickState = 0;
+        }
+    }
+}
+
+
+/*!
  * @brief       Key linked list init
+ *
  * @param       key         Linked list's node
- * @param       pin         Gpio pin
- * @param       num         Gpio num
- * @param       period      Scanner period(ms), should be the same as the Timer period
+ * @param       _pin        Gpio pin
  * @return      void
- * @sample      key_init(&key1, 'G', 1, 10)     Init G1 as key input, 10ms scanner period
  */
 void EasyKeyInit(EasyKey_t *key, gpio_pin_enum _pin)
 {
@@ -97,10 +137,35 @@ void EasyKeyInit(EasyKey_t *key, gpio_pin_enum _pin)
 
 
 /*!
- * @brief       Key interrupt handler
+ * @brief   Dither elimination
+ *
+ * @param   timeUs      Delay time(us)
+ * @return  void
+ */
+void DebounceFilter(uint8_t timeUs)
+{
+    for (EasyKey_t *key = head; key != NULL; key = key->next)
+    {
+        key->cacheValue = gpio_get_level(key->pin);
+    }
+
+    system_delay_us(timeUs);
+
+    uint8_t mask;
+    for (EasyKey_t *key = head; key != NULL; key = key->next)
+    {
+        key->value = gpio_get_level(key->pin);
+        mask = key->value ^ key->cacheValue;
+        key->value |= mask;
+    }
+}
+
+
+/*!
+ * @brief       Update key state
+ *
  * @param       void
  * @return      void
- * @note        Don't modify
  */
 void EasyKeyScanKeyState()
 {
@@ -140,51 +205,5 @@ void EasyKeyScanKeyState()
 
         // Store key value
         key->preValue = key->value;
-    }
-}
-
-
-void EasyKeyUserApp()
-{
-    for (EasyKey_t *key = head; key != NULL; key = key->next)
-    {
-        ReleaseCallback(key);
-
-        // Press and Hold callback
-        if (key->state == up && key->holdTime >= HOLD_THRESHOLD_MS)
-            HoldCallback(key);
-        if (key->state == up && key->holdTime < HOLD_THRESHOLD_MS)
-        {
-            if (multiClickSwitch == false)
-            {
-                PressCallback(key);
-                continue;
-            }
-            if (key->clickState == 0)
-                key->clickState = 1;
-        }
-
-        /*
-         * clickState = 0: Normal statement
-         * clickState = 1: Waiting for multiple click
-         * clickState = 2: Interval time meet multiple click requirement, and need to judge hold time
-         */
-        if (key->clickState == 1 && key->state == down && key->intervalTime < INTERVAL_THRESHOLD_MS)
-        {
-            // Enter click state 2
-            key->clickState = 2;
-        }
-        if (key->clickState == 1 && key->intervalTime > INTERVAL_THRESHOLD_MS)
-        {
-            // Interval time too long, trigger PressCallBack
-            PressCallback(key);
-            key->clickState = 0;
-        }
-        if (key->clickState == 2 && key->state == up && key->holdTime < HOLD_THRESHOLD_MS)
-        {
-            // Meet all requirements, trigger MultiClickCallBack
-            MultiClickCallback(key);
-            key->clickState = 0;
-        }
     }
 }

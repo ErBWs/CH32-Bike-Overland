@@ -47,7 +47,8 @@ int main (void)
     EasyKeyInit(&keyC, E3);
     EasyKeyInit(&keyR, E4);
 //    printf("uart3 success\n");
-    ips114_init();
+    ips096_init();
+//    ips096_full(RGB565_CYAN);
 //    imu660ra_init();
     pit_init(TIM1_PIT, 1);
 //    pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer

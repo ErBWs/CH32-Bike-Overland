@@ -17,7 +17,7 @@
 #define FILTER_TIME_US          100     // Dithering elimination
 #define UPDATE_KEY_STATE_MS     1       // Update key state once per (x) ms
 #define HOLD_THRESHOLD_MS       500     // Time longer than this is considered as "hold"
-#define INTERVAL_THRESHOLD_MS   240      // Trigger time interval less than this is considered as "multiclick"
+#define INTERVAL_THRESHOLD_MS   240     // Trigger time interval less than this is considered as "multiClick"
 
 typedef struct EasyKey_typedef
 {
