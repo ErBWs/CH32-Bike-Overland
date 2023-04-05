@@ -1,5 +1,5 @@
 #include "ctrl.h"
-#define ANGLE_STATIC_BIAS 4.5
+#define ANGLE_STATIC_BIAS 4
 
 //2,9,10,5,1
 #define MAIN_PIT   TIM3_PIT

@@ -35,7 +35,12 @@
 #include "zf_common_headfile.h"
 #include "inc_all.h"
 
+<<<<<<< Updated upstream
 #define USE_GPS 1
+=======
+extern uint8 gps_state;
+#define USE_GPS 0
+>>>>>>> Stashed changes
 //extern double flashBuf[2000];
 int main (void)
 {
@@ -47,9 +52,33 @@ int main (void)
     encoderInit();
 //    printf("OK\r\n");
     motoInit();
+<<<<<<< Updated upstream
     pit_ms_init(TIM1_PIT,10);
     gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
     imuinit(IMU_ALL);
+=======
+//    pwm_set_duty(MOTOR_FLY_PIN,8000);
+//    while(1)
+//    {
+//        system_delay_ms(50);
+//        printf("A%d\r\n", encoder_get_count(ENCODER_BACK_WHEEL_TIM));
+//        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
+//    }
+//    pit_ms_init(TIM1_PIT,10);
+//    gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
+    imuinit(IMU_660RA);
+    while(1)
+    {
+//        imu963ra_get_mag();
+        imu660ra_get_acc();
+        system_delay_ms(50);
+        printf("A%d\r\n",imu660ra_acc_z);
+    }
+//    pidAllInit();
+//    BlueToothInit();
+//    Butterworth_Parameter_Init();
+
+>>>>>>> Stashed changes
 #if USE_GPS==1
     GPS_init();
 #endif
@@ -71,19 +100,26 @@ int main (void)
 #if USE_GPS==1
         if(gps_tau1201_flag==1&&Bike_Start==1)
         {
-            uint8 state = gps_data_parse();
-            if(state==0)
+            uint8 gps_state = gps_data_parse();
+            if(gps_state==0)
             {
                 uint8 is_finish;
                 is_finish = get_point(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
                 two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data,&gps_use);//根据当前经纬以及得到的目标点解算，放到gps_use里
                 gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
                 printf("delta:%f\n",gps_use.delta);
+                printf("dis:%f\n",gps_use.points_distance);
                 if(is_finish)
                 {
+                    while(1)
+                    {
+                        printf("Complete!!\n");
+                        system_delay_ms(500);
+                    }
                     //........//
                 }
             }
+//            gps_state=1;
             gps_tau1201_flag=0;
         }
         if(Bike_Start==0)

@@ -37,7 +37,7 @@
 #include "inc_all.h"
 
 uint32 now_tick=0;
-
+//uint8 gps_state=1;
 void NMI_Handler(void)       __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
@@ -146,6 +146,9 @@ void UART8_IRQHandler (void)
     if(USART_GetITStatus(UART8, USART_IT_RXNE) != RESET)
     {
         gps_uart_callback();
+//        if (gps_tau1201_flag == 1) {
+//            gps_state = gps_data_parse();
+//        }
         USART_ClearITPendingBit(UART8, USART_IT_RXNE);
     }
 
@@ -164,7 +167,6 @@ void DVP_IRQHandler(void)
 
 void EXTI0_IRQHandler(void)
 {
-    static uint32 last=0;
     if(SET == EXTI_GetITStatus(EXTI_Line0))
     {
         EXTI_ClearITPendingBit(EXTI_Line0);
@@ -252,15 +254,15 @@ void EXTI9_5_IRQHandler(void)
         static uint32 press_beg=0;
         static uint8 is_press=0;
 
-        if(gpio_get_level(D8)==0&&now_tick-last>20&&is_press==0)
+        if(gpio_get_level(D8)==0&&now_tick-last>10&&is_press==0)
         {
             is_press = 1;
             press_beg = last = now_tick;
         }
-        else if(gpio_get_level(D8)==1&&now_tick-last>20&&is_press==1)
+        else if(gpio_get_level(D8)==1&&now_tick-last>10&&is_press==1)
         {
             is_press = 0;
-            if (now_tick-press_beg>100) {
+            if (now_tick-press_beg>80) {
                 beep_time = 100;
                 write_key_flag = 2;
             }
