@@ -34,69 +34,44 @@
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
 #include "inc_all.h"
-
-<<<<<<< Updated upstream
-#define USE_GPS 1
-=======
+/*
+ * TIM2 Servo
+ * TIM4 FLY_WHEEL AND BACK WHELL
+ * TIM8 BEEP
+ * TIM9 FLY_ENCODER
+ * TIM10 BACK_MOTO_ENCODER
+ *
+ *
+ */
 extern uint8 gps_state;
+#define BEEP_AND_KEY_PIT   TIM3_PIT
 #define USE_GPS 0
->>>>>>> Stashed changes
 //extern double flashBuf[2000];
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
     // 此处编写用户代码 例如外设初始化代码等
-    ips114_init();
-//    ips114_show_string(0, 0, "he");
+    EasyKeyInit(&keyL,E2);
+    EasyKeyInit(&keyC,E3);
+    EasyKeyInit(&keyR,E4);
+    pit_ms_init(BEEP_AND_KEY_PIT, 10);
+    ips096_init();
     encoderInit();
-//    printf("OK\r\n");
     motoInit();
-<<<<<<< Updated upstream
-    pit_ms_init(TIM1_PIT,10);
-    gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
     imuinit(IMU_ALL);
-=======
-//    pwm_set_duty(MOTOR_FLY_PIN,8000);
-//    while(1)
-//    {
-//        system_delay_ms(50);
-//        printf("A%d\r\n", encoder_get_count(ENCODER_BACK_WHEEL_TIM));
-//        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
-//    }
-//    pit_ms_init(TIM1_PIT,10);
-//    gpio_init(C13, GPO, 0, GPO_PUSH_PULL);//BEEP
-    imuinit(IMU_660RA);
-    while(1)
-    {
-//        imu963ra_get_mag();
-        imu660ra_get_acc();
-        system_delay_ms(50);
-        printf("A%d\r\n",imu660ra_acc_z);
-    }
-//    pidAllInit();
-//    BlueToothInit();
-//    Butterworth_Parameter_Init();
-
->>>>>>> Stashed changes
-#if USE_GPS==1
-    GPS_init();
-#endif
     pidAllInit();
     BlueToothInit();
     Butterworth_Parameter_Init();
-
-
+//    pwm_set_duty(BEEP_PWM_PIN,500);
+#if USE_GPS==1
+    GPS_init();
+#endif
     // 此处编写用户代码 例如外设初始化代码等
     taskTimAllInit();
 
     while(1)
     {
-
-//        imu660ra_get_gyro();
-//        ips114_show_int(0, 16, imu660ra_gyro_x, 5);
-//        vcan_sendware(num_float, sizeof(num_float));
-//        system_delay_ms(20);
 #if USE_GPS==1
         if(gps_tau1201_flag==1&&Bike_Start==1)
         {

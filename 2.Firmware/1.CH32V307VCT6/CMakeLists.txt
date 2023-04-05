@@ -177,4 +177,11 @@ add_executable(CH32V307VCT6
         project/code/vofa.h
         project/user/inc/isr.h
         project/user/src/isr.c
-        project/user/src/main.c)
+        project/user/src/main.c
+        project/code/jdy34.c
+        project/code/ctrl.c
+        project/code/ips096.c
+        project/code/easy_key.c
+        project/code/inertial_navigation.c
+        project/code/encoder.c
+        project/code/pid.c)

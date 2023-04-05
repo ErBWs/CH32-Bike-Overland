@@ -22,11 +22,13 @@
 #include "user_flash.h"
 #include "easy_key.h"
 #include "ips096.h"
-#include "encoder.h"
 #include "moto.h"
+#include "encoder.h"
 #include "pid.h"
 #include "ctrl.h"
 #include "jdy34.h"
 
-extern uint64 beep_time;
+extern uint16 beep_time;
+extern uint16 beep_feq;
+#define BEEP_PWM_PIN TIM8_PWM_MAP1_CH4_C13
 #endif /* INC_ALL_H_ */

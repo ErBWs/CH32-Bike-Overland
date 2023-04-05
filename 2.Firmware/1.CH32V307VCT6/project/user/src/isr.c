@@ -250,32 +250,31 @@ void EXTI9_5_IRQHandler(void)
     if(SET == EXTI_GetITStatus(EXTI_Line8))
     {
         EXTI_ClearITPendingBit(EXTI_Line8);
-        static uint32 last=0;
-        static uint32 press_beg=0;
-        static uint8 is_press=0;
-
-        if(gpio_get_level(D8)==0&&now_tick-last>10&&is_press==0)
-        {
-            is_press = 1;
-            press_beg = last = now_tick;
-        }
-        else if(gpio_get_level(D8)==1&&now_tick-last>10&&is_press==1)
-        {
-            is_press = 0;
-            if (now_tick-press_beg>80) {
-                beep_time = 100;
-                write_key_flag = 2;
-            }
-            else {
-                beep_time = 20;
-                write_key_flag = 1;
-            }
-        }
+//        static uint32 last=0;
+//        static uint32 press_beg=0;
+//        static uint8 is_press=0;
+//
+//        if(gpio_get_level(D8)==0&&now_tick-last>10&&is_press==0)
+//        {
+//            is_press = 1;
+//            press_beg = last = now_tick;
+//        }
+//        else if(gpio_get_level(D8)==1&&now_tick-last>10&&is_press==1)
+//        {
+//            is_press = 0;
+//            if (now_tick-press_beg>80) {
+//                beep_time = 100;
+//                write_key_flag = 2;
+//            }
+//            else {
+//                beep_time = 20;
+//                write_key_flag = 1;
+//            }
+//        }
     }
     if(SET == EXTI_GetITStatus(EXTI_Line9))
     {
         EXTI_ClearITPendingBit(EXTI_Line9);
-
     }
 
 }
@@ -314,37 +313,19 @@ void EXTI15_10_IRQHandler(void)
 
     }
 }
-uint64 beep_time=0;
+uint16 beep_time=0;
+uint16 beep_feq = 1000;
 static uint8 beep_state=0;
-extern EasyKey_t key_read;
 void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-        now_tick++;
-        switch(beep_state)
-       {
-           case 0:
-               if(beep_time!=0)
-               {
-                   beep_state = 1;
-                   gpio_set_level(C13, 1);
-               }
-           break;
-           case 1:
-               if(--beep_time==0)
-               {
-                   gpio_set_level(C13, 0);
-                   beep_state = 0;
-               }
-           break;
-       }
-//        EasyKeyHandler(10);
-//        if(key_read.isPressed)
-//        {
-//            printf("ok\n");
-//        }
+        IMUGetCalFun();
+        UpdateControl();
+        ServoControl();
+        FlyWheelControl();
+        BackMotoControl();
     }
 }
 
@@ -358,16 +339,71 @@ void TIM2_IRQHandler(void)
 
     }
 }
-
+static uint8 count = 0;
 void TIM3_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM3, TIM_IT_Update );
-       UpdateControl();
-       ServoControl();
-       FlyWheelControl();
-       BackMotoControl();
+        now_tick++;
+        switch(beep_state)
+        {
+            case 0:
+                if(beep_time!=0)
+                {
+                    beep_state = 1;
+                    pwm_init(BEEP_PWM_PIN,beep_feq,500);
+                }
+                break;
+            case 1:
+                if(--beep_time==0)
+                {
+                    pwm_init(BEEP_PWM_PIN,beep_feq,0);
+                    beep_state = 0;
+                }
+                break;
+        }
+        EasyKeyScanKeyState();
+        EasyKeyUserApp();
+        if(keyL.isHold)
+        {
+            beep_time = 100;
+            write_key_flag = 2;
+        }
+        else if(keyL.isPressed)
+        {
+            beep_time = 20;
+            write_key_flag = 1;
+        }
+
+        if(keyR.isHold)
+        {
+            beep_time = 100;
+            read_key_flag = 2;
+        }
+        else if(keyR.isPressed)
+        {
+            beep_time = 20;
+            read_key_flag = 1;
+        }
+
+        if(keyC.isHold)
+        {
+            beep_time = 100;
+            main_key_flag = 2;
+        }
+        else if(keyC.isPressed)
+        {
+            beep_time = 20;
+            main_key_flag = 1;
+        }
+//        if (keyL.isPressed)
+//            count--;
+//        if (keyR.isMultiClick)
+//            count+=2;
+//        if (keyR.isPressed)
+//            count++;
+//        ips096_show_int(8,8,count,3);
     }
 }
 
@@ -376,7 +412,7 @@ void TIM4_IRQHandler(void)
     if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM4, TIM_IT_Update );
-       IMUGetCalFun();
+
 
     }
 }
