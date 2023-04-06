@@ -44,11 +44,11 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 #define BATTERY_ADC_PIN         ADC1_IN9_B1
 
-#define SCREEN_WIDTH            240
-#define SCREEN_HEIGHT           135
+#define SCREEN_WIDTH            160
+#define SCREEN_HEIGHT           80
 #define FONT_WIDTH              6
 #define FONT_HEIGHT             8
-#define ITEM_HEIGHT             16
+#define ITEM_HEIGHT             12
 #define SCROLL_BAR_WIDTH        4
 #define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 #define MAX_LAYER               10

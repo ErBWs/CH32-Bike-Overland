@@ -39,20 +39,15 @@ int main (void)
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
 
-    // 此处编写用户代码 例如外设初始化代码等
-    EasyKeyInit(&keyForward, KEY_FORWARD);
-    EasyKeyInit(&keyConfirm, KEY_CONFIRM);
-    EasyKeyInit(&keyBackward, KEY_BACKWARD);
-//    printf("uart3 success\n");
-    IPS096_Init();
+    EasyUIInit(1);
+    MenuInit();
 //    gps_init();
-//    ips096_full(RGB565_CYAN);
 //    imu660ra_init();
     pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer
     timer_init(TIM_2, TIMER_US);
-    pit_ms_init(TIM1_PIT, 1);
+    pit_ms_init(TIM1_PIT, 20);
 //    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
-    // 此处编写用户代码 例如外设初始化代码等
+    EasyUITransitionAnim();
 
     while(1)
     {
@@ -68,11 +63,16 @@ int main (void)
 //            gps_tau1201_flag = 0;
 //        }
 //        GetEasingCurves(0, 1, 4, 10, IN_BOUNCE);
-        IPS096_ClearBuffer();
+//        IPS096_ClearBuffer();
 //        IPS096_ShowBMP(0, 0, 58 ,56 ,ErBW_s_5856);
 //        EasyUITransitionAnim();
-        IPS096_ShowInt(0, 60, time, 5);
-        IPS096_SendBuffer();
+//        IPS096_ShowInt(0, 60, time, 5);
+        timer_start(TIM_2);
+        EasyUI(20);
+        timer_stop(TIM_2);
+//        IPS096_ShowInt(0, 0, timer_get(TIM_2), 5);
+        timer_clear(TIM_2);
+//        IPS096_SendBuffer();
     }
 }
 
