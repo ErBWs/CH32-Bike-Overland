@@ -77,10 +77,10 @@ secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_LIST) $(SECONDARY_SIZE)
 
 -include ../makefile.targets
 
-CFG_PATH := /Users/baohan/ErBW_s/Code/Toolchains/openocd_arm64/bin/wch-riscv.cfg
-ELF_FILE    := Seekfree_CH32V307VCT6_Opensource_Library.elf
-
-flash:
-	openocd -f $(CFG_PATH)  -c page_erase  -c init -c halt  -c "flash write_image $(ELF_FILE) " -c exit
-verify:
-	openocd -f $(CFG_PATH) -c init -c halt -c "verify_image $(ELF_FILE)" -c exit
+#CFG_PATH := /Users/baohan/ErBW_s/Code/Toolchains/openocd_arm64/bin/wch-riscv.cfg
+#ELF_FILE    := Seekfree_CH32V307VCT6_Opensource_Library.elf
+#
+#flash:
+#	openocd -f $(CFG_PATH)  -c page_erase  -c init -c halt  -c "flash write_image $(ELF_FILE) " -c exit
+#verify:
+#	openocd -f $(CFG_PATH) -c init -c halt -c "verify_image $(ELF_FILE)" -c exit

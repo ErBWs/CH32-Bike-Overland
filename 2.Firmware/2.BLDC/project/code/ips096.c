@@ -1,117 +1,26 @@
-/*********************************************************************************************************************
-* CH32V307VCT6 Opensourec Library 即（CH32V307VCT6 开源库）是一个基于官方 SDK 接口的第三方开源库
-* Copyright (c) 2022 SEEKFREE 逐飞科技
-*
-* 本文件是CH32V307VCT6 开源库的一部分
-*
-* CH32V307VCT6 开源库 是免费软件
-* 您可以根据自由软件基金会发布的 GPL（GNU General Public License，即 GNU通用公共许可证）的条款
-* 即 GPL 的第3版（即 GPL3.0）或（您选择的）任何后来的版本，重新发布和/或修改它
-*
-* 本开源库的发布是希望它能发挥作用，但并未对其作任何的保证
-* 甚至没有隐含的适销性或适合特定用途的保证
-* 更多细节请参见 GPL
-*
-* 您应该在收到本开源库的同时收到一份 GPL 的副本
-* 如果没有，请参阅<https://www.gnu.org/licenses/>
-*
-* 额外注明：
-* 本开源库使用 GPL3.0 开源许可证协议 以上许可申明为译文版本
-* 许可申明英文版在 libraries/doc 文件夹下的 GPL3_permission_statement.txt 文件中
-* 许可证副本在 libraries 文件夹下 即该文件夹下的 LICENSE 文件
-* 欢迎各位使用并传播本程序 但修改内容时必须保留逐飞科技的版权声明（即本声明）
-*
-* 文件名称          zf_device_ips096
-* 公司名称          成都逐飞科技有限公司
-* 版本信息          查看 libraries/doc 文件夹内 version 文件 版本说明
-* 开发环境          MounRiver Studio V1.8.1
-* 适用平台          CH32V307VCT6
-* 店铺链接          https://seekfree.taobao.com/
-*
-* 修改记录
-* 日期                                      作者                             备注
-* 2022-09-15        大W            first version
-********************************************************************************************************************/
-/*********************************************************************************************************************
-* 接线定义：
-*                   ------------------------------------
-*                   模块管脚             单片机管脚
-*                   SCL                  查看 zf_device_ips096.h 中 IPS096_SCL_PIN 宏定义
-*                   SDA                  查看 zf_device_ips096.h 中 IPS096_SDA_PIN 宏定义
-*                   RST                  查看 zf_device_ips096.h 中 IPS096_RST_PIN 宏定义
-*                   DC                   查看 zf_device_ips096.h 中 IPS096_DC_PIN 宏定义
-*                   CS                   查看 zf_device_ips096.h 中 IPS096_CS_PIN 宏定义
-*                   BLK                  查看 zf_device_ips096.h 中 IPS096_BLK_PIN 宏定义
-*                   VCC                 3.3V电源
-*                   GND                 电源地
-*                   最大分辨率 135 * 240
-*                   ------------------------------------
-********************************************************************************************************************/
-
-#include "zf_common_clock.h"
-#include "zf_common_debug.h"
-#include "zf_common_font.h"
-#include "zf_common_function.h"
-#include "zf_driver_delay.h"
-#include "zf_driver_soft_spi.h"
-#include "zf_driver_spi.h"
+/*!
+ * Copyright (c) 2023, ErBW_s
+ * All rights reserved.
+ *
+ * @author  Baohan
+ */
 
 #include "ips096.h"
 
-static uint16                   ips096_pencolor     = IPS096_DEFAULT_PENCOLOR;
-static uint16                   ips096_bgcolor      = IPS096_DEFAULT_BGCOLOR;
+uint16                   IPS096_penColor     = IPS096_DEFAULT_PENCOLOR;
+uint16                   IPS096_backgroundColor      = IPS096_DEFAULT_BGCOLOR;
 
 static ips096_dir_enum          ips096_display_dir  = IPS096_DEFAULT_DISPLAY_DIR;
 static ips096_font_size_enum    ips096_display_font = IPS096_DEFAULT_DISPLAY_FONT;
 static uint8                    ips096_x_max        = 160;
 static uint8                    ips096_y_max        = 80;
+static uint8_t IPS096_colorMode = NORMAL;
+static uint16_t IPS096_buffer[80][160] = {0};
 
-#if IPS096_USE_SOFT_SPI
-static soft_spi_info_struct             ips096_spi;
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 SPI 写 8bit 数据
-// 参数说明     data            数据
-// 返回参数     void
-// 使用示例     ips096_write_8bit_data(dat);
-// 备注信息     内部调用
-//-------------------------------------------------------------------------------------------------------------------
-#define ips096_write_8bit_data(data)    (soft_spi_write_8bit(&ips096_spi, (data)))
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 SPI 写 16bit 数据
-// 参数说明     data            数据
-// 返回参数     void
-// 使用示例     ips096_write_16bit_data(x1 + 52);
-// 备注信息     内部调用
-//-------------------------------------------------------------------------------------------------------------------
-#define ips096_write_16bit_data(data)   (soft_spi_write_16bit(&ips096_spi, (data)))
-#else
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 SPI 写 8bit 数据
-// 参数说明     data            数据
-// 返回参数     void
-// 使用示例     ips096_write_8bit_data(dat);
-// 备注信息     内部调用
-//-------------------------------------------------------------------------------------------------------------------
 #define ips096_write_8bit_data(data)    (spi_write_8bit(IPS096_SPI, (data)))
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 SPI 写 16bit 数据
-// 参数说明     data            数据
-// 返回参数     void
-// 使用示例     ips096_write_16bit_data(x1 + 52);
-// 备注信息     内部调用
-//-------------------------------------------------------------------------------------------------------------------
 #define ips096_write_16bit_data(data)   (spi_write_16bit(IPS096_SPI, (data)))
-#endif
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     写命令
-// 参数说明     dat             数据
-// 返回参数     void
-// 使用示例     ips096_write_index(0x2a);
-// 备注信息     内部调用
-//-------------------------------------------------------------------------------------------------------------------
 static void ips096_write_index (const uint8 dat)
 {
     IPS096_DC(0);
@@ -119,26 +28,9 @@ static void ips096_write_index (const uint8 dat)
     IPS096_DC(1);
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     设置显示区域
-// 参数说明     x1              起始x轴坐标
-// 参数说明     y1              起始y轴坐标
-// 参数说明     x2              结束x轴坐标
-// 参数说明     y2              结束y轴坐标
-// 返回参数     void
-// 使用示例     ips096_set_region(0, 0, ips096_x_max - 1, ips096_y_max - 1);
-// 备注信息     内部调用
-//-------------------------------------------------------------------------------------------------------------------
-static void ips096_set_region (const uint16 x1, const uint16 y1, const uint16 x2, const uint16 y2)
-{
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    // 检查一下你的显示调用的函数 自己计算一下哪里超过了屏幕显示范围
-    zf_assert(x1 < ips096_x_max);
-    zf_assert(y1 < ips096_y_max);
-    zf_assert(x2 < ips096_x_max);
-    zf_assert(y2 < ips096_y_max);
 
+void IPS096_SetRegion (const uint16 x1, const uint16 y1, const uint16 x2, const uint16 y2)
+{
     if(ips096_display_dir == IPS096_PORTAIT)
     {
         ips096_write_index(0x2a);                                               // 列地址设置
@@ -181,128 +73,59 @@ static void ips096_set_region (const uint16 x1, const uint16 y1, const uint16 x2
     }
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     1.14寸 IPS 液晶显示DEBUG信息初始化
-// 参数说明     void
-// 返回参数     void
-// 使用示例     ips096_debug_init();
-// 备注信息     内部使用
-//-------------------------------------------------------------------------------------------------------------------
-static void ips096_debug_init (void)
+
+void IPS096_SetDrawColor(IPS096_ColorMode_e mode)
 {
-    debug_output_struct info;
-    debug_output_struct_init(&info);
-
-    info.type_index = 1;
-    info.display_x_max = ips096_x_max;
-    info.display_y_max = ips096_y_max;
-
-    switch(ips096_display_font)
-    {
-    case IPS096_6X8_FONT:
-        info.font_x_size = 6;
-        info.font_y_size = 8;
-        break;
-    case IPS096_8X16_FONT:
-        info.font_x_size = 8;
-        info.font_y_size = 16;
-        break;
-    case IPS096_16X16_FONT:
-        // 暂不支持
-        break;
-    }
-    info.output_screen = ips096_show_string;
-    info.output_screen_clear = ips096_clear;
-
-    debug_output_init(&info);
+    IPS096_colorMode = mode;
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 清屏函数
-// 参数说明     void
-// 返回参数     void
-// 使用示例     ips096_clear();
-// 备注信息     将屏幕清空成背景颜色
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_clear (void)
-{
-    uint32 i = ips096_x_max * ips096_y_max;
 
+/*!
+ * @brief   Send buffer to ips096
+ *
+ * @param   void
+ * @return  void
+ */
+void IPS096_SendBuffer()
+{
     IPS096_CS(0);
-    ips096_set_region(0, 0, ips096_x_max - 1, ips096_y_max - 1);
-    for( ; i > 0; i --)
+    IPS096_SetRegion(0, 0, 159, 79);
+
+    for (int i = 0; i < 80; i++)
     {
-        ips096_write_16bit_data(ips096_bgcolor);
+        for (int j = 0; j < 160; j++)
+        {
+            ips096_write_16bit_data(IPS096_buffer[i][j]);
+        }
     }
     IPS096_CS(1);
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 屏幕填充函数
-// 参数说明     color           颜色格式 RGB565 或者可以使用 zf_common_font.h 内 rgb565_color_enum 枚举值或者自行写入
-// 返回参数     void
-// 使用示例     ips096_full(RGB565_BLACK);
-// 备注信息
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_full (const uint16 color)
+/*!
+ * @brief   Clear buffer array
+ *
+ * @param   void
+ * @return  void
+ *
+ * @note    Use black background color can easily clear the buffer by memset,
+ *          but other color cannot and on board flash is not enough for another buffer
+ *          to use memcpy, so using color other than black will slower this function.
+ */
+void IPS096_ClearBuffer()
 {
-    uint32 i = ips096_x_max * ips096_y_max;
-
-    IPS096_CS(0);
-    ips096_set_region(0, 0, ips096_x_max - 1, ips096_y_max - 1);
-    for( ; i > 0; i --)
+    if (IPS096_backgroundColor == RGB565_BLACK)
     {
-        ips096_write_16bit_data(color);
-    }
-    IPS096_CS(1);
-}
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     设置显示方向
-// 参数说明     dir             显示方向  参照 zf_device_ips096.h 内 ips096_dir_enum 枚举体定义
-// 返回参数     void
-// 使用示例     ips096_set_dir(IPS096_CROSSWISE);
-// 备注信息     这个函数只有在初始化屏幕之前调用才生效
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_set_dir (ips096_dir_enum dir)
-{
-    ips096_display_dir = dir;
-    if(dir < 2)
+        memset(IPS096_buffer, 0, 80 * 160 * sizeof(uint16_t));
+    } else
     {
-        ips096_x_max = 80;
-        ips096_y_max = 160;
+        for (int i = 0; i < 80; i++)
+        {
+            for (int j = 0; j < 160; j++)
+            {
+                IPS096_buffer[i][j] = IPS096_backgroundColor;
+            }
+        }
     }
-    else
-    {
-        ips096_x_max = 160;
-        ips096_y_max = 80;
-    }
-}
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     设置显示字体
-// 参数说明     dir             显示方向  参照 zf_device_ips096.h 内 ips096_font_size_enum 枚举体定义
-// 返回参数     void
-// 使用示例     ips096_set_font(IPS096_8x16_FONT);
-// 备注信息     字体可以随时自由设置 设置后生效 后续显示就是新的字体大小
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_set_font (ips096_font_size_enum font)
-{
-    ips096_display_font = font;
-}
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     设置显示颜色
-// 参数说明     pen             颜色格式 RGB565 或者可以使用 zf_common_font.h 内 rgb565_color_enum 枚举值或者自行写入
-// 参数说明     bgcolor         颜色格式 RGB565 或者可以使用 zf_common_font.h 内 rgb565_color_enum 枚举值或者自行写入
-// 返回参数     void
-// 使用示例     ips096_set_color(RGB565_WHITE, RGB565_BLACK);
-// 备注信息     字体颜色和背景颜色也可以随时自由设置 设置后生效
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_set_color (const uint16 pen, const uint16 bgcolor)
-{
-    ips096_pencolor = pen;
-    ips096_bgcolor = bgcolor;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -314,17 +137,19 @@ void ips096_set_color (const uint16 pen, const uint16 bgcolor)
 // 使用示例     ips096_draw_point(0, 0, RGB565_RED);            // 坐标 0,0 画一个红色的点
 // 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_draw_point (uint16 x, uint16 y, const uint16 color)
+void IPS096_DrawPoint(int16 x, int16 y, const uint16 color)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-
-    IPS096_CS(0);
-    ips096_set_region(x, y, x, y);
-    ips096_write_16bit_data(color);
-    IPS096_CS(1);
+    if (x < 160 && y < 80 && x >= 0 && y >= 0)
+    {
+        if (IPS096_colorMode == XOR)
+        {
+            if (IPS096_buffer[y][x] == color)
+                IPS096_buffer[y][x] = IPS096_backgroundColor;
+            else
+                IPS096_buffer[y][x] = color;
+        } else
+            IPS096_buffer[y][x] = color;
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -338,15 +163,8 @@ void ips096_draw_point (uint16 x, uint16 y, const uint16 color)
 // 使用示例     ips096_draw_line(0, 0, 10, 10, RGB565_RED);     // 坐标 0,0 到 10,10 画一条红色的线
 // 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_draw_line (uint16 x_start, uint16 y_start, uint16 x_end, uint16 y_end, const uint16 color)
+void IPS096_DrawLine(int16 x_start, int16 y_start, int16 x_end, int16 y_end, const uint16 color)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x_start < ips096_x_max);
-    zf_assert(y_start < ips096_y_max);
-    zf_assert(x_end < ips096_x_max);
-    zf_assert(y_end < ips096_y_max);
-
     int16 x_dir = (x_start < x_end ? 1 : -1);
     int16 y_dir = (y_start < y_end ? 1 : -1);
     float temp_rate = 0;
@@ -354,39 +172,37 @@ void ips096_draw_line (uint16 x_start, uint16 y_start, uint16 x_end, uint16 y_en
 
     do
     {
-        if(x_start != x_end)
+        if (x_start != x_end)
         {
-            temp_rate = (float)(y_start - y_end) / (float)(x_start - x_end);
-            temp_b = (float)y_start - (float)x_start * temp_rate;
-        }
-        else
+            temp_rate = (float) (y_start - y_end) / (float) (x_start - x_end);
+            temp_b = (float) y_start - (float) x_start * temp_rate;
+        } else
         {
-            while(y_start != y_end)
+            while (y_start != y_end)
             {
-                ips096_draw_point(x_start, y_start, color);
+                IPS096_DrawPoint(x_start, y_start, color);
                 y_start += y_dir;
             }
             break;
         }
-        if(func_abs(y_start - y_end) > func_abs(x_start - x_end))
+        if (func_abs(y_start - y_end) > func_abs(x_start - x_end))
         {
-            while(y_start != y_end)
+            while (y_start != y_end)
             {
-                ips096_draw_point(x_start, y_start, color);
+                IPS096_DrawPoint(x_start, y_start, color);
                 y_start += y_dir;
-                x_start = (int16)(((float)y_start - temp_b) / temp_rate);
+                x_start = (int16) (((float) y_start - temp_b) / temp_rate);
             }
-        }
-        else
+        } else
         {
-            while(x_start != x_end)
+            while (x_start != x_end)
             {
-                ips096_draw_point(x_start, y_start, color);
+                IPS096_DrawPoint(x_start, y_start, color);
                 x_start += x_dir;
-                y_start = (int16)((float)x_start * temp_rate + temp_b);
+                y_start = (int16) ((float) x_start * temp_rate + temp_b);
             }
         }
-    }while(0);
+    } while (0);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -398,76 +214,53 @@ void ips096_draw_line (uint16 x_start, uint16 y_start, uint16 x_end, uint16 y_en
 // 使用示例     ips096_show_char(0, 0, 'x');                    // 坐标 0,0 写一个字符 x
 // 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_show_char (uint16 x, uint16 y, const char dat)
+void IPS096_ShowChar(int16 x, int16 y, const char dat)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-
     uint8 i, j;
-
-    IPS096_CS(0);
-    switch(ips096_display_font)
+    switch (ips096_display_font)
     {
     case IPS096_6X8_FONT:
-        for(i = 0; i < 6; i ++)
+        for (i = 0; i < 6; i++)
         {
-            ips096_set_region(x + i, y, x + i, y + 8);
             // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
             uint8 temp_top = ascii_font_6x8[dat - 32][i];
-            for(j = 0; j < 8; j ++)
+            for (j = 0; j < 8; j++)
             {
-                if(temp_top & 0x01)
+                if (temp_top & 0x01)
                 {
-                    ips096_write_16bit_data(ips096_pencolor);
-                }
-                else
-                {
-                    ips096_write_16bit_data(ips096_bgcolor);
+                    IPS096_DrawPoint(x + i, y + j ,IPS096_penColor);
                 }
                 temp_top >>= 1;
             }
         }
         break;
     case IPS096_8X16_FONT:
-        for(i = 0; i < 8; i ++)
+        for (i = 0; i < 8; i++)
         {
-            ips096_set_region(x + i, y, x + i, y + 15);
             // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
             uint8 temp_top = ascii_font_8x16[dat - 32][i];
             uint8 temp_bottom = ascii_font_8x16[dat - 32][i + 8];
-            for(j = 0; j < 8; j ++)
+            for (j = 0; j < 8; j++)
             {
-                if(temp_top & 0x01)
+                if (temp_top & 0x01)
                 {
-                    ips096_write_16bit_data(ips096_pencolor);
-                }
-                else
-                {
-                    ips096_write_16bit_data(ips096_bgcolor);
+                    IPS096_DrawPoint(x + i, y + j ,IPS096_penColor);
                 }
                 temp_top >>= 1;
             }
-            for(j = 0; j < 8; j ++)
+            for (j = 0; j < 8; j++)
             {
-                if(temp_bottom & 0x01)
+                if (temp_bottom & 0x01)
                 {
-                    ips096_write_16bit_data(ips096_pencolor);
-                }
-                else
-                {
-                    ips096_write_16bit_data(ips096_bgcolor);
+                    IPS096_DrawPoint(x + i, y + j + 8,IPS096_penColor);
                 }
                 temp_bottom >>= 1;
             }
         }
         break;
-    case IPS096_16X16_FONT:
-        // 暂不支持
+    default:
         break;
     }
-    IPS096_CS(1);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -479,28 +272,22 @@ void ips096_show_char (uint16 x, uint16 y, const char dat)
 // 使用示例     ips096_show_string(0, 0, "seekfree");
 // 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_show_string (uint16 x, uint16 y, const char dat[])
+void IPS096_ShowStr(int16 x, int16 y, const char dat[])
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-
     uint16 j = 0;
-    while(dat[j] != '\0')
+    while (dat[j] != '\0')
     {
-        switch(ips096_display_font)
+        switch (ips096_display_font)
         {
         case IPS096_6X8_FONT:
-            ips096_show_char(x + 6 * j, y, dat[j]);
-            j ++;
+            IPS096_ShowChar(x + 6 * j, y, dat[j]);
+            j++;
             break;
         case IPS096_8X16_FONT:
-            ips096_show_char(x + 8 * j, y, dat[j]);
-            j ++;
+            IPS096_ShowChar(x + 8 * j, y, dat[j]);
+            j++;
             break;
-        case IPS096_16X16_FONT:
-            // 暂不支持
+        default:
             break;
         }
     }
@@ -516,12 +303,8 @@ void ips096_show_string (uint16 x, uint16 y, const char dat[])
 // 使用示例     ips096_show_int(0, 0, x, 3);                    // x 可以为 int32 int16 int8 类型
 // 备注信息     负数会显示一个 ‘-’号   正数显示一个空格
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
+void IPS096_ShowInt(int16 x, int16 y, const int32 dat, uint8 num)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
     zf_assert(num > 0);
     zf_assert(num <= 10);
 
@@ -532,16 +315,16 @@ void ips096_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
     memset(data_buffer, 0, 12);
     memset(data_buffer, ' ', num + 1);
 
-    if(num < 10)
+    if (num < 10)
     {
-        for(; num > 0; num --)
+        for (; num > 0; num--)
         {
             offset *= 10;
         }
         dat_temp %= offset;
     }
     func_int_to_str(data_buffer, dat_temp);
-    ips096_show_string(x, y, (const char *)&data_buffer);
+    IPS096_ShowStr(x, y, (const char *) &data_buffer);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -554,12 +337,8 @@ void ips096_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
 // 使用示例     ips096_show_uint(0, 0, x, 3);                   // x 可以为 uint32 uint16 uint8 类型
 // 备注信息     负数会显示一个 ‘-’号   正数显示一个空格
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
+void IPS096_ShowUint(int16 x, int16 y, const uint32 dat, uint8 num)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
     zf_assert(num > 0);
     zf_assert(num <= 10);
 
@@ -569,16 +348,16 @@ void ips096_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
     memset(data_buffer, 0, 12);
     memset(data_buffer, ' ', num);
 
-    if(num < 10)
+    if (num < 10)
     {
-        for(; num > 0; num --)
+        for (; num > 0; num--)
         {
             offset *= 10;
         }
         dat_temp %= offset;
     }
     func_uint_to_str(data_buffer, dat_temp);
-    ips096_show_string(x, y, (const char *)&data_buffer);
+    IPS096_ShowStr(x, y, (const char *) &data_buffer);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -586,7 +365,7 @@ void ips096_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
 // 参数说明     x               坐标x方向的起点 参数范围 [0, ips096_x_max-1]
 // 参数说明     y               坐标y方向的起点 参数范围 [0, ips096_y_max-1]
 // 参数说明     dat             需要显示的变量 数据类型 float 或 double
-// 参数说明     num             整数位显示长度   最高10位
+// 参数说明     num             整数位显示长度   最高8位
 // 参数说明     pointnum        小数位显示长度   最高6位
 // 返回参数     void
 // 使用示例     ips096_show_float(0, 0, x, 2, 3);               // 显示浮点数 整数显示 2 位 小数显示 3 位
@@ -595,12 +374,8 @@ void ips096_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
 //              有关问题的详情，请自行百度学习   浮点数精度丢失问题。
 //              负数会显示一个 ‘-’号   正数显示一个空格
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 pointnum)
+void IPS096_ShowFloat(int16 x, int16 y, const float dat, uint8 num, uint8 pointnum)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
     zf_assert(num > 0);
     zf_assert(num <= 8);
     zf_assert(pointnum > 0);
@@ -612,65 +387,385 @@ void ips096_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 po
     memset(data_buffer, 0, 17);
     memset(data_buffer, ' ', num + pointnum + 2);
 
-    if(num < 10)
+    if (num < 10)
     {
-        for(; num > 0; num --)
+        for (; num > 0; num--)
         {
             offset *= 10;
         }
-        dat_temp = dat_temp - ((int)dat_temp / (int)offset) * offset;
+        dat_temp = dat_temp - ((int) dat_temp / (int) offset) * offset;
     }
     func_float_to_str(data_buffer, dat_temp, pointnum);
-    ips096_show_string(x, y, data_buffer);
+    IPS096_ShowStr(x, y, data_buffer);
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 显示二值图像 数据每八个点组成一个字节数据
-// 参数说明     x               坐标x方向的起点 参数范围 [0, ips096_x_max-1]
-// 参数说明     y               坐标y方向的起点 参数范围 [0, ips096_y_max-1]
-// 参数说明     *image          图像数组指针
-// 参数说明     width           图像实际宽度
-// 参数说明     height          图像实际高度
-// 参数说明     dis_width       图像显示宽度 参数范围 [0, ips096_x_max]
-// 参数说明     dis_height      图像显示高度 参数范围 [0, ips096_y_max]
-// 返回参数     void
-// 使用示例     ips096_show_binary_image(0, 0, ov7725_image_binary[0], OV7725_W, OV7725_H, OV7725_W, OV7725_H);
-// 备注信息
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height)
+
+bool reversedColor = false;
+
+void IPS096_ModifyColor()
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-    zf_assert(image != NULL);
-
-    uint32 i = 0, j = 0;
-    uint8 temp = 0;
-    uint32 width_index = 0, height_index = 0;
-
-    IPS096_CS(0);
-    ips096_set_region(x, y, x + dis_width - 1, y + dis_height - 1);             // 设置显示区域
-
-    for(j = 0; j < dis_height; j ++)
+    if (reversedColor)
     {
-        height_index = j * height / dis_height;
-        for(i = 0; i < dis_width; i ++)
+        IPS096_penColor = IPS096_DEFAULT_BGCOLOR;
+        IPS096_backgroundColor = IPS096_DEFAULT_PENCOLOR;
+    } else
+    {
+        IPS096_penColor = IPS096_DEFAULT_PENCOLOR;
+        IPS096_backgroundColor = IPS096_DEFAULT_BGCOLOR;
+    }
+}
+
+
+/*!
+ * @brief   Draw circle / disc with 5 choices of section
+ *
+ * @param   x           Center x of the circle
+ * @param   y           Center y of the circle
+ * @param   r           Radius
+ * @param   color       Color
+ * @param   section     See definition in user_ips096.h
+ * @return  void
+ */
+void IPS096_DrawCircle(int16_t x, int16_t y, uint16_t r, const uint16_t color, uint8_t section)
+{
+    // y = kx, k = 1
+    uint16_t x0 = (uint16_t) (r * cos(0.01745 * 45));
+    uint16_t fx;
+
+    // x^2 + y^2 = r^2, y->x / x->y
+    for (int i = -x0 + 1; i < 0; ++i)
+    {
+        fx = (uint16_t) sqrt(pow(r, 2) - pow(i, 2));
+        if (section & CIRCLE_UPPER_RIGHT)
         {
-            width_index = i * width / dis_width;
-            temp = *(image + height_index * width / 8 + width_index / 8);       // 读取像素点
-            if(0x80 & (temp << (width_index % 8)))
+            IPS096_DrawPoint(x - i, y - fx, color);
+            IPS096_DrawPoint(x + fx, y + i, color);
+        }
+        if (section & CIRCLE_UPPER_LEFT)
+        {
+            IPS096_DrawPoint(x + i, y - fx, color);
+            IPS096_DrawPoint(x - fx, y + i, color);
+        }
+        if (section & CIRCLE_LOWER_LEFT)
+        {
+            IPS096_DrawPoint(x + i, y + fx, color);
+            IPS096_DrawPoint(x - fx, y - i, color);
+        }
+        if (section & CIRCLE_LOWER_RIGHT)
+        {
+            IPS096_DrawPoint(x - i, y + fx, color);
+            IPS096_DrawPoint(x + fx, y - i, color);
+        }
+    }
+
+    // Add support for XOR color mode
+    fx = (uint16_t) sqrt(pow(r, 2) - pow(x0, 2));
+    if (section & CIRCLE_UPPER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawPoint(x + r, y, color);
+            IPS096_DrawPoint(x, y - r, color);
+        }
+        if (x0 == fx)
+            IPS096_DrawPoint(x + x0, y - x0, color);
+        else
+        {
+            IPS096_DrawPoint(x + x0, y - fx, color);
+            IPS096_DrawPoint(x + fx, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_UPPER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawPoint(x - r, y, color);
+            IPS096_DrawPoint(x, y - r, color);
+        }
+        if (x0 == fx)
+            IPS096_DrawPoint(x - x0, y - x0, color);
+        else
+        {
+            IPS096_DrawPoint(x - x0, y - fx, color);
+            IPS096_DrawPoint(x - fx, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawPoint(x - r, y, color);
+            IPS096_DrawPoint(x, y + r, color);
+        }
+        if (x0 == fx)
+            IPS096_DrawPoint(x - x0, y + x0, color);
+        else
+        {
+            IPS096_DrawPoint(x - x0, y + fx, color);
+            IPS096_DrawPoint(x - fx, y + x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawPoint(x + r, y, color);
+            IPS096_DrawPoint(x, y + r, color);
+        }
+        if (x0 == fx)
+            IPS096_DrawPoint(x + x0, y + x0, color);
+        else
+        {
+            IPS096_DrawPoint(x + x0, y + fx, color);
+            IPS096_DrawPoint(x + fx, y + x0, color);
+        }
+    }
+    if (section == CIRCLE_DRAW_ALL)
+    {
+        IPS096_DrawPoint(x + r, y, color);
+        IPS096_DrawPoint(x - r, y, color);
+        IPS096_DrawPoint(x, y - r, color);
+        IPS096_DrawPoint(x, y + r, color);
+    }
+}
+void IPS096_DrawDisc(int16_t x, int16_t y, uint16_t r, const uint16_t color, uint8_t section)
+{
+    // y = kx, k = 1
+    uint16_t x0 = (uint16_t) (r * cos(0.01745 * 45));
+    uint16_t fx;
+
+    // x^2 + y^2 = r^2, y->x / x->y
+    for (int i = -x0 + 1; i < 0; ++i)
+    {
+        fx = (uint16_t) sqrt(pow(r, 2) - pow(i, 2));
+        if (section & CIRCLE_UPPER_RIGHT)
+        {
+            IPS096_DrawLine(x - i, y - fx, x - i, y + i, color);
+            IPS096_DrawLine(x + fx, y + i, x - i, y + i, color);
+        }
+        if (section & CIRCLE_UPPER_LEFT)
+        {
+            IPS096_DrawLine(x + i, y - fx, x + i, y + i, color);
+            IPS096_DrawLine(x - fx, y + i, x + i, y + i, color);
+        }
+        if (section & CIRCLE_LOWER_LEFT)
+        {
+            IPS096_DrawLine(x + i, y + fx, x + i, y - i, color);
+            IPS096_DrawLine(x - fx, y - i, x + i, y - i, color);
+        }
+        if (section & CIRCLE_LOWER_RIGHT)
+        {
+            IPS096_DrawLine(x - i, y + fx, x - i, y - i, color);
+            IPS096_DrawLine(x + fx, y - i, x - i, y - i, color);
+        }
+    }
+
+    // Add support for XOR color mode
+    IPS096_DrawPoint(x, y, color);
+    if (r != 2)
+        IPS096_DrawPoint(x, y, color);
+
+    fx = (uint16_t) sqrt(pow(r, 2) - pow(x0, 2));
+    if (section & CIRCLE_UPPER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawLine(x + r, y, x, y, color);
+            IPS096_DrawLine(x, y - r, x, y, color);
+        }
+        if (r > 2)
+            IPS096_DrawLine(x, y, x + x0, y - x0, color);
+        if (x0 == fx)
+            IPS096_DrawPoint(x + x0, y - x0, color);
+        else
+        {
+            IPS096_DrawPoint(x + x0, y - fx, color);
+            IPS096_DrawPoint(x + fx, y - x0, color);
+            IPS096_DrawPoint(x + x0, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_UPPER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawLine(x - r, y, x, y, color);
+            IPS096_DrawLine(x, y - r, x, y, color);
+        }
+        if (r > 2)
+            IPS096_DrawLine(x, y, x - x0, y - x0, color);
+        if (x0 == fx)
+            IPS096_DrawPoint(x - x0, y - x0, color);
+        else
+        {
+            IPS096_DrawPoint(x - x0, y - fx, color);
+            IPS096_DrawPoint(x - fx, y - x0, color);
+            IPS096_DrawPoint(x - x0, y - x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_LEFT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawLine(x - r, y, x, y, color);
+            IPS096_DrawLine(x, y + r, x, y, color);
+        }
+        if (r > 2)
+            IPS096_DrawLine(x, y, x - x0, y + x0, color);
+        if (x0 == fx)
+            IPS096_DrawPoint(x - x0, y + x0, color);
+        else
+        {
+            IPS096_DrawPoint(x - x0, y + fx, color);
+            IPS096_DrawPoint(x - fx, y + x0, color);
+            IPS096_DrawPoint(x - x0, y + x0, color);
+        }
+    }
+    if (section & CIRCLE_LOWER_RIGHT)
+    {
+        if (r > 1)
+        {
+            IPS096_DrawLine(x + r, y, x, y, color);
+            IPS096_DrawLine(x, y + r, x, y, color);
+        }
+        if (r > 2)
+            IPS096_DrawLine(x, y, x + x0, y + x0, color);
+        if (x0 == fx)
+            IPS096_DrawPoint(x + x0, y + x0, color);
+        else
+        {
+            IPS096_DrawPoint(x + x0, y + fx, color);
+            IPS096_DrawPoint(x + fx, y + x0, color);
+            IPS096_DrawPoint(x + x0, y + x0, color);
+        }
+    }
+    if (section == CIRCLE_DRAW_ALL)
+    {
+        IPS096_DrawLine(x + r, y, x, y, color);
+        IPS096_DrawLine(x - r, y, x, y, color);
+        IPS096_DrawLine(x, y - r, x, y, color);
+        IPS096_DrawLine(x, y + r, x, y, color);
+        IPS096_DrawPoint(x, y, color);
+    }
+}
+
+
+/*!
+ * @brief   Draw box / filled box
+ *
+ * @param   x       Starting x
+ * @param   y       Starting y
+ * @param   width   Box width
+ * @param   height  Box height
+ * @param   color   Color
+ * @return  void
+ */
+void IPS096_DrawFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+{
+    for (int i = x; i < x + width; i++)
+    {
+        IPS096_DrawPoint(i, y, color);
+        IPS096_DrawPoint(i, y + height - 1, color);
+    }
+    for (int j = y; j < y + height; j++)
+    {
+        IPS096_DrawPoint(x, j, color);
+        IPS096_DrawPoint(x + width - 1, j, color);
+    }
+}
+void IPS096_DrawBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color)
+{
+    for (int i = x; i < x + width; ++i)
+    {
+        for (int j = y; j < y + height; ++j)
+        {
+            IPS096_DrawPoint(i, j, color);
+        }
+    }
+}
+
+
+/*!
+ * @brief   Draw rounded box / filled box
+ *
+ * @param   x       Starting x
+ * @param   y       Starting y
+ * @param   width   Box width
+ * @param   height  Box height
+ * @param   color   Color
+ * @param   r       Radius
+ * @return  void
+ */
+void IPS096_DrawRFrame(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color, uint8_t r)
+{
+    for (int i = x + r + 1; i < x + width - r - 1; i++)
+    {
+        IPS096_DrawPoint(i, y, color);
+        IPS096_DrawPoint(i, y + height - 1, color);
+    }
+    for (int j = y + r + 1; j < y + height - r - 1; j++)
+    {
+        IPS096_DrawPoint(x, j, color);
+        IPS096_DrawPoint(x + width - 1, j, color);
+    }
+
+    IPS096_DrawCircle(x + r, y + r, r, color, CIRCLE_UPPER_LEFT);
+    IPS096_DrawCircle(x + width - 1 - r, y + r, r, color, CIRCLE_UPPER_RIGHT);
+    IPS096_DrawCircle(x + r, y + height - 1 - r, r, color, CIRCLE_LOWER_LEFT);
+    IPS096_DrawCircle(x + width - 1 - r, y + height - 1 - r, r, color, CIRCLE_LOWER_RIGHT);
+}
+void IPS096_DrawRBox(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint16_t color, uint8_t r)
+{
+    IPS096_DrawDisc(x + r, y + r, r, color, CIRCLE_UPPER_LEFT);
+    IPS096_DrawDisc(x + width - 1 - r, y + r, r, color, CIRCLE_UPPER_RIGHT);
+    IPS096_DrawDisc(x + r, y + height - 1 - r, r, color, CIRCLE_LOWER_LEFT);
+    IPS096_DrawDisc(x + width - 1 - r, y + height - 1 - r, r, color, CIRCLE_LOWER_RIGHT);
+
+    IPS096_DrawBox(x + r + 1, y, width - 2 - 2 * r, r + 1, color);
+    IPS096_DrawBox(x, y + r + 1, width, height - 2 * r - 2, color);
+    IPS096_DrawBox(x + r + 1, y + height - 1 - r, width - 2 - 2 * r, r + 1, color);
+}
+
+
+/*!
+ * @brief   Show Binary BMP photo on screen
+ *
+ * @param   x       Starting x
+ * @param   y       Starting y
+ * @param   width   Pic width
+ * @param   height  Pic height
+ * @param   pic     The array of picture(阴码 逐行式 逆向)
+ */
+void IPS096_ShowBMP(int16_t x, int16_t y, uint16_t width, uint16_t height, const uint8_t *pic)
+{
+    uint8_t temp, j;
+    uint8_t x0 = x;
+    uint8_t *tmp = (uint8_t *) pic;
+    uint16_t i, picSize = 0;
+
+    picSize = (width / 8 + ((width % 8) ? 1 : 0)) * height;
+
+    for (i = 0; i < picSize; i++)
+    {
+        temp = tmp[i];
+        for (j = 0; j < 8; j++)
+        {
+            if (temp & 0x01)
             {
-                ips096_write_16bit_data(RGB565_WHITE);
+                IPS096_DrawPoint(x, y, IPS096_penColor);
             }
-            else
+            temp >>= 1;
+            x++;
+
+            if ((x - x0) == width)
             {
-                ips096_write_16bit_data(RGB565_BLACK);
+                x = x0;
+                y++;
+                break;
             }
         }
     }
-    IPS096_CS(1);
 }
+
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     IPS096 显示 8bit 灰度图像 带二值化阈值
@@ -686,193 +781,65 @@ void ips096_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 wi
 // 使用示例     ips096_show_gray_image(0, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H, MT9V03X_W, MT9V03X_H, 0);
 // 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_show_gray_image (uint16 x, uint16 y, const uint8 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height, uint8 threshold)
+void
+IPS096_ShowGrayImage(uint16_t x, uint16_t y, const uint8_t *image, uint16_t width, uint16_t height, uint16_t dis_width,
+                     uint16_t dis_height, uint8_t threshold)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-    zf_assert(image != NULL);
-
-    uint32 i = 0, j = 0;
-    uint16 color = 0,temp = 0;
-    uint32 width_index = 0, height_index = 0;
+    uint16_t i, j;
+    uint16_t color, temp;
+    uint32_t width_index, height_index;
 
     IPS096_CS(0);
-    ips096_set_region(x, y, x + dis_width - 1, y + dis_height - 1);             // 设置显示区域
-
-    for(j = 0; j < dis_height; j ++)
+    for (j = 0; j < dis_height; j++)
     {
         height_index = j * height / dis_height;
-        for(i = 0; i < dis_width; i ++)
+        for (i = 0; i < dis_width; i++)
         {
             width_index = i * width / dis_width;
-            temp = *(image + height_index * width + width_index);               // 读取像素点
-            if(threshold == 0)
+            temp = *(image + height_index * width + width_index);
+            if (threshold == 0)
             {
                 color = (0x001f & ((temp) >> 3)) << 11;
                 color = color | (((0x003f) & ((temp) >> 2)) << 5);
                 color = color | (0x001f & ((temp) >> 3));
-                ips096_write_16bit_data(color);
-            }
-            else if(temp < threshold)
-            {
-                ips096_write_16bit_data(RGB565_BLACK);
-            }
+                IPS096_DrawPoint(x + i, y + j, color);
+            } else if (temp < threshold)
+                IPS096_DrawPoint(x + i, y + j, RGB565_BLACK);
             else
-            {
-                ips096_write_16bit_data(RGB565_WHITE);
-            }
+                IPS096_DrawPoint(x + i, y + j, RGB565_WHITE);
         }
     }
     IPS096_CS(1);
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 显示 RGB565 彩色图像
-// 参数说明     x               坐标x方向的起点 参数范围 [0, ips096_x_max-1]
-// 参数说明     y               坐标y方向的起点 参数范围 [0, ips096_y_max-1]
-// 参数说明     *image          图像数组指针
-// 参数说明     width           图像实际宽度
-// 参数说明     height          图像实际高度
-// 参数说明     dis_width       图像显示宽度 参数范围 [0, ips096_x_max]
-// 参数说明     dis_height      图像显示高度 参数范围 [0, ips096_y_max]
-// 参数说明     color_mode      色彩模式 0-低位在前 1-高位在前
-// 返回参数     void
-// 使用示例     ips096_show_rgb565_image(0, 0, scc8660_image[0], SCC8660_W, SCC8660_H, SCC8660_W, SCC8660_H, 1);
-// 备注信息
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_show_rgb565_image (uint16 x, uint16 y, const uint16 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height, uint8 color_mode)
+
+void IPS096_SetDirection (ips096_dir_enum dir)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-    zf_assert(image != NULL);
-
-    uint32 i = 0, j = 0;
-    uint16 color = 0;
-    uint32 width_index = 0, height_index = 0;
-
-    IPS096_CS(0);
-    ips096_set_region(x, y, x + dis_width - 1, y + dis_height - 1);             // 设置显示区域
-
-    for(j = 0; j < dis_height; j ++)
+    ips096_display_dir = dir;
+    switch(ips096_display_dir)
     {
-        height_index = j * height / dis_height;
-        for(i = 0; i < dis_width; i ++)
-        {
-            width_index = i * width / dis_width;
-            color = *(image + height_index * width + width_index);              // 读取像素点
-            if(color_mode)
-            {
-                color = ((color & 0xff) << 8) | (color >> 8);
-            }
-            ips096_write_16bit_data(color);
-        }
+    case IPS096_PORTAIT:
+    case IPS096_PORTAIT_180:
+    {
+        ips096_x_max = 80;
+        ips096_y_max = 160;
+    }break;
+    case IPS096_CROSSWISE:
+    case IPS096_CROSSWISE_180:
+    {
+        ips096_x_max = 160;
+        ips096_y_max = 80;
+    }break;
     }
-    IPS096_CS(1);
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     IPS096 显示波形
-// 参数说明     x               坐标x方向的起点 参数范围 [0, ips096_x_max-1]
-// 参数说明     y               坐标y方向的起点 参数范围 [0, ips096_y_max-1]
-// 参数说明     *wave           波形数组指针
-// 参数说明     width           波形实际宽度
-// 参数说明     value_max       波形实际最大值
-// 参数说明     dis_width       波形显示宽度 参数范围 [0, ips096_x_max]
-// 参数说明     dis_value_max   波形显示最大值 参数范围 [0, ips096_y_max]
-// 返回参数     void
-// 使用示例     ips096_show_wave(56,35,data,128,64,128,64);
-// 备注信息
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_show_wave (uint16 x, uint16 y, const uint16 *wave, uint16 width, uint16 value_max, uint16 dis_width, uint16 dis_value_max)
+
+void IPS096_SetColor (const uint16 pen, const uint16 bgcolor)
 {
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-    zf_assert(wave != NULL);
-
-    uint32 i = 0, j = 0;
-    uint32 width_index = 0, value_max_index = 0;
-
-    IPS096_CS(0);
-    ips096_set_region(x, y, x + dis_width - 1, y + dis_value_max - 1);          // 设置显示区域
-    for(i = 0; i < dis_value_max; i ++)
-    {
-        for(j = 0; j < dis_width; j ++)
-        {
-            ips096_write_16bit_data(ips096_bgcolor);
-        }
-    }
-    IPS096_CS(1);
-
-    for(i = 0; i < dis_width; i ++)
-    {
-        width_index = i * width / dis_width;
-        value_max_index = *(wave + width_index) * (dis_value_max - 1) / value_max;
-        ips096_draw_point(i + x, (dis_value_max - 1) - value_max_index + y, ips096_pencolor);
-    }
+    IPS096_penColor = pen;
+    IPS096_backgroundColor = bgcolor;
 }
 
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     汉字显示
-// 参数说明     x               坐标x方向的起点 参数范围 [0, ips096_x_max-1]
-// 参数说明     y               坐标y方向的起点 参数范围 [0, ips096_y_max-1]
-// 参数说明     size            取模的时候设置的汉字字体大小 也就是一个汉字占用的点阵长宽为多少个点 取模的时候需要长宽是一样的
-// 参数说明     *chinese_buffer 需要显示的汉字数组
-// 参数说明     number          需要显示多少位
-// 参数说明     color           颜色格式 RGB565 或者可以使用 zf_common_font.h 内 rgb565_color_enum 枚举值或者自行写入
-// 返回参数     void
-// 使用示例     ips096_show_chinese(0, 0, 16, chinese_test[0], 4, RGB565_RED);// 显示font文件里面的 示例
-// 备注信息     使用PCtoLCD2002软件取模           阴码、逐行式、顺向   16*16
-//-------------------------------------------------------------------------------------------------------------------
-void ips096_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_buffer, uint8 number, const uint16 color)
-{
-    // 如果程序在输出了断言信息 并且提示出错位置在这里
-    // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
-    zf_assert(x < ips096_x_max);
-    zf_assert(y < ips096_y_max);
-    zf_assert(chinese_buffer != NULL);
-
-    int i, j, k;
-    uint8 temp, temp1, temp2;
-    const uint8 *p_data;
-
-    temp2 = size / 8;
-
-    IPS096_CS(0);
-    ips096_set_region(x, y, number * size - 1 + x, y + size - 1);
-
-    for(i = 0; i < size; i ++)
-    {
-        temp1 = number;
-        p_data = chinese_buffer + i * temp2;
-        while(temp1 --)
-        {
-            for(k = 0; k < temp2; k ++)
-            {
-                for(j = 8; j > 0; j --)
-                {
-                    temp = (*p_data >> (j - 1)) & 0x01;
-                    if(temp)
-                    {
-                        ips096_write_16bit_data(color);
-                    }
-                    else
-                    {
-                        ips096_write_16bit_data(ips096_bgcolor);
-                    }
-                }
-                p_data ++;
-            }
-            p_data = p_data - temp2 + temp2 * size;
-        }
-    }
-    IPS096_CS(1);
-}
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     1.14寸 IPS液晶初始化
@@ -881,7 +848,7 @@ void ips096_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_b
 // 使用示例     ips096_init();
 // 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void ips096_init (void)
+void IPS096_Init (void)
 {
 #if IPS096_USE_SOFT_SPI
     soft_spi_init(&ips096_spi, 0, IPS096_SOFT_SPI_DELAY, IPS096_SCL_PIN, IPS096_SDA_PIN, SOFT_SPI_PIN_NULL, SOFT_SPI_PIN_NULL);
@@ -894,9 +861,8 @@ void ips096_init (void)
     gpio_init(IPS096_CS_PIN, GPO, GPIO_HIGH, GPO_PUSH_PULL);
     gpio_init(IPS096_BLK_PIN, GPO, GPIO_HIGH, GPO_PUSH_PULL);
 
-    ips096_set_dir(ips096_display_dir);
-    ips096_set_color(ips096_pencolor, ips096_bgcolor);
-    ips096_debug_init();
+    IPS096_SetDirection(ips096_display_dir);
+    IPS096_SetColor(IPS096_penColor, IPS096_backgroundColor);
 
     IPS096_RST(0);
     system_delay_ms(200);
@@ -999,6 +965,4 @@ void ips096_init (void)
 
     ips096_write_index(0x29);
     IPS096_CS(1);
-
-    ips096_clear();
 }

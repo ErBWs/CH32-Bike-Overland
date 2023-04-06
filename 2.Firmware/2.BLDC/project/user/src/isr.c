@@ -34,8 +34,7 @@
 ********************************************************************************************************************/
 
 #include "zf_common_headfile.h"
-#include "easy_key.h"
-#include "ips096.h"
+
 void NMI_Handler(void)       __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
@@ -272,7 +271,7 @@ void EXTI15_10_IRQHandler(void)
     }
 }
 
-int8_t count = 0;
+int16_t count = 1000;
 void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
@@ -280,15 +279,20 @@ void TIM1_UP_IRQHandler(void)
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
         EasyKeyScanKeyState();
         EasyKeyUserApp();
-//        printf("Press:%d\n", keyL.isPressed);
-//        printf("Hold:%d\n", keyL.isHold);
-        if (keyL.isPressed)
-            count--;
-        if (keyR.isMultiClick)
-            count+=2;
-        if (keyR.isPressed)
-            count++;
-        ips096_show_int(0, 0, count, 3);
+        if (keyBackward.isPressed)
+            count-= 100;
+        if (keyForward.isPressed)
+            count+= 100;
+//        IPS096_ClearBuffer();
+//        IPS096_ShowInt(0, 0, count, 5);
+//        IPS096_SendBuffer();
+        if (count == 0)
+            pwm_set_duty(TIM8_PWM_MAP1_CH4_C13, 0);
+        else
+        {
+            pwm_set_freq(TIM8_PWM_MAP1_CH4_C13, count, 5000);
+            pwm_set_duty(TIM8_PWM_MAP1_CH4_C13, 5000);
+        }
     }
 }
 

@@ -33,9 +33,6 @@
 * 2022-09-15        大W            first version
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
-#include "easy_key.h"
-#include "ips096.h"
-#include "vofa.h"
 
 int main (void)
 {
@@ -43,34 +40,39 @@ int main (void)
     debug_init();                                                               // 初始化默认 Debug UART
 
     // 此处编写用户代码 例如外设初始化代码等
-    EasyKeyInit(&keyL, E2);
-    EasyKeyInit(&keyC, E3);
-    EasyKeyInit(&keyR, E4);
+    EasyKeyInit(&keyForward, KEY_FORWARD);
+    EasyKeyInit(&keyConfirm, KEY_CONFIRM);
+    EasyKeyInit(&keyBackward, KEY_BACKWARD);
 //    printf("uart3 success\n");
-    ips096_init();
+    IPS096_Init();
+//    gps_init();
 //    ips096_full(RGB565_CYAN);
 //    imu660ra_init();
-    pit_init(TIM1_PIT, 1);
-//    pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer
-//    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
+    pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer
     timer_init(TIM_2, TIMER_US);
+    pit_ms_init(TIM1_PIT, 1);
+//    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
     // 此处编写用户代码 例如外设初始化代码等
 
     while(1)
     {
-        // 此处编写需要循环执行的代码
-//        timer_start(TIM_2);
-//        timer_stop(TIM_2);
-//        ips114_show_int(0, 0, timer_get(TIM_2), 5);
-//        timer_clear(TIM_2);
-//        imu660ra_get_gyro();
-//        vofaData[0] = imu660ra_gyro_x;
-//        vofaData[1] = imu660ra_gyro_y;
-//        vofaData[2] = imu660ra_gyro_z;
-//        VofaLittleEndianSendFrame();
-//        system_delay_ms(10);
-//        ips114_show_int(0, 0, count++, 5);
-        // 此处编写需要循环执行的代码
+//        if (gps_tau1201_flag)
+//        {
+//            if (!gps_data_parse())
+//            {
+//                printf("%d\n", gps_tau1201.state);
+//                printf("%d\n", gps_tau1201.satellite_used);
+//                printf("%lf\n", gps_tau1201.longitude);
+//                printf("%lf\n", gps_tau1201.latitude);
+//            }
+//            gps_tau1201_flag = 0;
+//        }
+//        GetEasingCurves(0, 1, 4, 10, IN_BOUNCE);
+        IPS096_ClearBuffer();
+//        IPS096_ShowBMP(0, 0, 58 ,56 ,ErBW_s_5856);
+//        EasyUITransitionAnim();
+        IPS096_ShowInt(0, 60, time, 5);
+        IPS096_SendBuffer();
     }
 }
 

@@ -14,40 +14,36 @@
       <config projectName="2_BLDC" targetName="2_BLDC" />
     </generated>
   </component>
-  <component name="CMakeSettings">
+  <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f793d503-f0cb-4acb-9078-5a392af2a895" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../1.Hardware/3.BLDC/1.ControlBoard/Driver.kicad_pcb" beforeDir="false" afterPath="$PROJECT_DIR$/../../1.Hardware/3.BLDC/1.ControlBoard/Driver.kicad_pcb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1.Hardware/3.BLDC/1.ControlBoard/Driver.kicad_prl" beforeDir="false" afterPath="$PROJECT_DIR$/../../1.Hardware/3.BLDC/1.ControlBoard/Driver.kicad_prl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1.Hardware/3.BLDC/1.ControlBoard/fp-info-cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../1.Hardware/3.BLDC/1.ControlBoard/fp-info-cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/code/user_header.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libraries/zf_common/zf_common_debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_common/zf_common_debug.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libraries/zf_device/zf_device_imu660ra.h" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_device/zf_device_imu660ra.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libraries/zf_common/zf_common_headfile.h" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_common/zf_common_headfile.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.c" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.h" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/code/easy_key.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_key.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/code/easy_key.h" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_key.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/.template" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/.template" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/code/ips096.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/ips096.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/code/ips096.h" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/ips096.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.hex" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.hex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.lst" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.map" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/code/easy_key.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/code/easy_key.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/code/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/code/subdir.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/isr.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/isr.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/main.d" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/main.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/zf_common/zf_common_debug.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/zf_common/zf_common_debug.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/zf_device/zf_device_imu660ra.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/zf_device/zf_device_imu660ra.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/user/src/isr.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/user/src/isr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/user/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/user/src/main.c" afterDir="false" />
     </list>
@@ -73,18 +69,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/project/mrs/obj&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MakefileSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.Flash">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -133,8 +136,18 @@
       <workItem from="1680231616483" duration="3504000" />
       <workItem from="1680241616278" duration="18040000" />
       <workItem from="1680356294420" duration="17408000" />
+      <workItem from="1680522257858" duration="28576000" />
+      <workItem from="1680699227679" duration="19000" />
+      <workItem from="1680699259446" duration="51000" />
+      <workItem from="1680699316664" duration="36000" />
+      <workItem from="1680699359464" duration="30000" />
+      <workItem from="1680699395202" duration="918000" />
+      <workItem from="1680700390309" duration="13822000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
     <isAutomaticEditVcpkgJson value="false" />

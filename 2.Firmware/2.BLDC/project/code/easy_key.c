@@ -7,7 +7,6 @@
 
 #include "easy_key.h"
 
-EasyKey_t keyL, keyC, keyR;
 bool multiClickSwitch = false;
 EasyKey_t *head = NULL, *tail = NULL;
 

@@ -427,6 +427,7 @@ uint8 gps_data_parse (void)
 }
 
 
+NMEA0183 nmea0183;
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     GPS串口回调函数
 // 参数说明     void
@@ -445,6 +446,11 @@ void gps_uart_callback (void)
         while(uart_query_byte(GPS_TAU1201_UART, &dat))
         {
             fifo_write_buffer(&gps_tau1201_receiver_fifo, &dat, 1);
+//            printf("success\n");
+//            if(nmea_decode(&nmea0183, dat))
+//            {
+//                printf("%d", nmea0183.gpsData.status);
+//            }
         }
         
         if('\n' == dat)
