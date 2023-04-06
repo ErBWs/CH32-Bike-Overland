@@ -1,17 +1,15 @@
 #include "ctrl.h"
-#define ANGLE_STATIC_BIAS 4.5
+#define ANGLE_STATIC_BIAS -1
 
-//2,9,10,5,1
-#define MAIN_PIT   TIM3_PIT
-#define IMU_PIT    TIM4_PIT
+
+#define MAIN_PIT           TIM1_PIT
+
 uint16 imu_update_counts=0;
 float dynamic_zero = 0;
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
-    pit_ms_init(IMU_PIT,2);
-    interrupt_set_priority(TIM3_IRQn, (2<<5) | 2);
-    interrupt_set_priority(TIM4_IRQn, (2<<5) | 1);
+    interrupt_set_priority(TIM1_UP_IRQn, (2<<5) | 1);
 }
 float num_float[8];
 void IMUGetCalFun(void)

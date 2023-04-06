@@ -12,7 +12,7 @@
 #include "inc_all.h"
 //#include "imu.h"
 
-#define GPS_MAX_POINT   2
+#define GPS_MAX_POINT   5
 
 
 
@@ -37,11 +37,12 @@ extern _gps_st gps_data;
 extern _gps_use_st gps_use;
 extern uint8 write_key_flag;
 extern uint8 read_key_flag;
+extern uint8 main_key_flag;
 extern uint8 Bike_Start;
 void GPS_init(void);
 void gps_handler(void);
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_use_st *gps_use);
-double yaw_gps_delta( double azimuth, float yaw);
+float yaw_gps_delta( float azimuth, float yaw);
 uint8 get_point(double latitude_now, double longitude_now,_gps_st *gps_data);
 //double yaw_gps_delta( _gps_st gps_data, _imu_st imu_data);
 
