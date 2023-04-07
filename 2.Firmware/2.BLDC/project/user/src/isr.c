@@ -279,6 +279,10 @@ void TIM1_UP_IRQHandler(void)
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
         EasyKeyScanKeyState();
         EasyKeyUserApp();
+        EasyUIKeyActionMonitor();
+//        if (opnExit)
+//            IPS096_ShowStr(0, 0, "hold");
+//        IPS096_SendBuffer();
 //        if (count == 0)
 //            pwm_set_duty(TIM8_PWM_MAP1_CH4_C13, 0);
 //        else

@@ -1137,8 +1137,11 @@ void EasyUIInit(uint8_t mode)
  * @param   void
  * @return  void
  */
-void EasyUISyncOpnValue()
+void EasyUIKeyActionMonitor()
 {
+    if (opnForward || opnBackward || opnEnter || opnExit || opnUp || opnDown)
+        return;
+
 #if KEY_NUM == 2
     opnForward = keyForward.isPressed;
     opnBackward = keyBackward.isPressed;
@@ -1168,12 +1171,11 @@ void EasyUISyncOpnValue()
  */
 void EasyUI(uint8_t timer)
 {
-    if (errorOccurred)
-        return;
+//    if (errorOccurred)
+//        return;
 
     static uint8_t index = 0, itemSum = 0;
 
-    EasyUISyncOpnValue();
     EasyUIModifyColor();
     EasyUISetDrawColor(NORMAL);
 
@@ -1183,14 +1185,6 @@ void EasyUI(uint8_t timer)
     {
         page = page->next;
     }
-
-//    if (EasyUIGetBatteryVoltage() < 7.2)
-//    {
-//        EasyUIDrawMsgBox("Battery Low!!");
-//        EasyUISendBuffer();
-//        errorOccurred = true;
-//        return;
-//    }
 
     // Quit UI to run function
     // If running function and hold the confirm button, quit the function
@@ -1220,23 +1214,20 @@ void EasyUI(uint8_t timer)
 
     EasyUIClearBuffer();
 
+    // Custom page--------------------------------------------------------------------------------
     if (page->funcType == PAGE_CUSTOM)
     {
         page->Event(page);
 
         if (layer == 0)
         {
-            if (opnExit)
-            {
-                pageIndex[++layer] = 1;
-                EasyUITransitionAnim();
-            }
             EasyUISendBuffer();
             return;
         }
 
         if (opnExit)
         {
+            opnExit = false;
             pageIndex[layer] = 0;
             itemIndex[layer--] = 0;
             index = itemIndex[layer];
@@ -1247,7 +1238,9 @@ void EasyUI(uint8_t timer)
         EasyUISendBuffer();
         return;
     }
+    // -------------------------------------------------------------------------------------------
 
+    // Icon page----------------------------------------------------------------------------------
     if (page->funcType == PAGE_ICON)
     {
         if (layer == 0)
@@ -1258,6 +1251,7 @@ void EasyUI(uint8_t timer)
 
         if (opnExit)
         {
+            opnExit = false;
             pageIndex[layer] = 0;
             itemIndex[layer--] = 0;
             index = itemIndex[layer];
@@ -1268,8 +1262,9 @@ void EasyUI(uint8_t timer)
         EasyUISendBuffer();
         return;
     }
+    // -------------------------------------------------------------------------------------------
 
-    // Display every item in current page
+    // List page----------------------------------------------------------------------------------
     for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
     {
         EasyUIGetItemPos(page, item, index, timer);
@@ -1308,6 +1303,9 @@ void EasyUI(uint8_t timer)
         }
     }
 
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnUp = opnDown = false;
+
     if (layer == 0)
     {
         EasyUISendBuffer();
@@ -1315,6 +1313,7 @@ void EasyUI(uint8_t timer)
     }
     if (opnExit)
     {
+        opnExit = false;
         pageIndex[layer] = 0;
         itemIndex[layer--] = 0;
         index = itemIndex[layer];
@@ -1325,5 +1324,8 @@ void EasyUI(uint8_t timer)
         }
         EasyUITransitionAnim();
     }
+    // -------------------------------------------------------------------------------------------
+
     EasyUISendBuffer();
+
 }

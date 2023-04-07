@@ -55,8 +55,8 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define ICON_SIZE               50
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_TIME     50
-#define ITEM_MOVE_TIME          50
+#define INDICATOR_MOVE_TIME     140
+#define ITEM_MOVE_TIME          140
 
 #define EasyUIScreenInit()                                      (IPS096_Init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS096_ShowStr(x, y, str))
@@ -137,7 +137,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
 void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...);
 void EasyUITransitionAnim();
 void EasyUIBackgroundBlur();
-void EasyUISyncOpnValue();
+void EasyUIKeyActionMonitor();
 
 void EasyUIDrawMsgBox(char *msg);
 float EasyUIGetBatteryVoltage();

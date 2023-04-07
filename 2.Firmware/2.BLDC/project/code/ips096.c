@@ -965,4 +965,7 @@ void IPS096_Init (void)
 
     ips096_write_index(0x29);
     IPS096_CS(1);
+
+    IPS096_ClearBuffer();
+    IPS096_SendBuffer();
 }

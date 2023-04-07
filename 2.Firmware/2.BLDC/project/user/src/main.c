@@ -43,9 +43,10 @@ int main (void)
     MenuInit();
 //    gps_init();
 //    imu660ra_init();
-    pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer
+//    pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer
     timer_init(TIM_2, TIMER_US);
     pit_ms_init(TIM1_PIT, 20);
+    system_delay_ms(500);
 //    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
     EasyUITransitionAnim();
 
@@ -68,11 +69,12 @@ int main (void)
 //        EasyUITransitionAnim();
 //        IPS096_ShowInt(0, 60, time, 5);
         timer_start(TIM_2);
-        EasyUI(20);
         timer_stop(TIM_2);
 //        IPS096_ShowInt(0, 0, timer_get(TIM_2), 5);
         timer_clear(TIM_2);
-//        IPS096_SendBuffer();
+
+        EasyUI(20);
+        system_delay_ms(20);
     }
 }
 

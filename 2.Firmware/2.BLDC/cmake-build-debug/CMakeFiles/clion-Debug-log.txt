@@ -1,4 +1,10 @@
-"/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.174/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC -B /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug
+"/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/baohan/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC -B /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug
+-- The C compiler identification is AppleClang 14.0.3.14030022
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/cmake-build-debug
