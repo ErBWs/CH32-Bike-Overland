@@ -3222,11 +3222,11 @@ Discarded input sections
  .text.EasyUIGetBatteryVoltage
                 0x0000000000000000       0x82 ./code/easy_ui.o
  .text.EasyUIEventChangeUint
-                0x0000000000000000      0xac4 ./code/easy_ui.o
+                0x0000000000000000      0xb1c ./code/easy_ui.o
  .text.EasyUIEventChangeInt
-                0x0000000000000000      0xa66 ./code/easy_ui.o
+                0x0000000000000000      0xabe ./code/easy_ui.o
  .text.EasyUIEventChangeFloat
-                0x0000000000000000      0xb54 ./code/easy_ui.o
+                0x0000000000000000      0xbac ./code/easy_ui.o
  .sbss.height.6546
                 0x0000000000000000        0x2 ./code/easy_ui.o
  .sbss.width.6545
@@ -4072,7 +4072,7 @@ END GROUP
                 0x0000000000000200                . = ALIGN (0x40)
  *fill*         0x00000000000001d8       0x28 
 
-.text           0x0000000000000200    0x1664c
+.text           0x0000000000000200    0x166e4
                 0x0000000000000200                . = ALIGN (0x4)
  *(.text)
  .text          0x0000000000000200       0xa8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-memset.o)
@@ -4607,539 +4607,539 @@ END GROUP
                 0x0000000000009936       0xc4 ./code/easy_ui.o
                 0x0000000000009936                EasyUIAddPage
  .text.EasyUITransitionAnim
-                0x00000000000099fa      0x1aa ./code/easy_ui.o
+                0x00000000000099fa      0x202 ./code/easy_ui.o
                 0x00000000000099fa                EasyUITransitionAnim
  .text.EasyUIBackgroundBlur
-                0x0000000000009ba4      0x134 ./code/easy_ui.o
-                0x0000000000009ba4                EasyUIBackgroundBlur
+                0x0000000000009bfc      0x17c ./code/easy_ui.o
+                0x0000000000009bfc                EasyUIBackgroundBlur
  .text.EasyUIDrawMsgBox
-                0x0000000000009cd8      0x140 ./code/easy_ui.o
-                0x0000000000009cd8                EasyUIDrawMsgBox
+                0x0000000000009d78      0x140 ./code/easy_ui.o
+                0x0000000000009d78                EasyUIDrawMsgBox
  .text.EasyUIDrawProgressBar
-                0x0000000000009e18      0x332 ./code/easy_ui.o
-                0x0000000000009e18                EasyUIDrawProgressBar
+                0x0000000000009eb8      0x332 ./code/easy_ui.o
+                0x0000000000009eb8                EasyUIDrawProgressBar
  .text.EasyUIDrawCheckbox
-                0x000000000000a14a       0xdc ./code/easy_ui.o
-                0x000000000000a14a                EasyUIDrawCheckbox
+                0x000000000000a1ea       0xdc ./code/easy_ui.o
+                0x000000000000a1ea                EasyUIDrawCheckbox
  .text.EasyUIGetItemPos
-                0x000000000000a226      0x212 ./code/easy_ui.o
-                0x000000000000a226                EasyUIGetItemPos
+                0x000000000000a2c6      0x212 ./code/easy_ui.o
+                0x000000000000a2c6                EasyUIGetItemPos
  .text.EasyUIDisplayItem
-                0x000000000000a438      0x3b2 ./code/easy_ui.o
-                0x000000000000a438                EasyUIDisplayItem
+                0x000000000000a4d8      0x3b2 ./code/easy_ui.o
+                0x000000000000a4d8                EasyUIDisplayItem
  .text.EasyUIDrawIndicator
-                0x000000000000a7ea      0x316 ./code/easy_ui.o
-                0x000000000000a7ea                EasyUIDrawIndicator
+                0x000000000000a88a      0x316 ./code/easy_ui.o
+                0x000000000000a88a                EasyUIDrawIndicator
  .text.EasyUIItemOperationResponse
-                0x000000000000ab00      0x19a ./code/easy_ui.o
-                0x000000000000ab00                EasyUIItemOperationResponse
+                0x000000000000aba0      0x19a ./code/easy_ui.o
+                0x000000000000aba0                EasyUIItemOperationResponse
  .text.EasyUIEventSaveSettings
-                0x000000000000ac9a       0x92 ./code/easy_ui.o
-                0x000000000000ac9a                EasyUIEventSaveSettings
+                0x000000000000ad3a       0x92 ./code/easy_ui.o
+                0x000000000000ad3a                EasyUIEventSaveSettings
  .text.EasyUIEventResetSettings
-                0x000000000000ad2c       0x9c ./code/easy_ui.o
-                0x000000000000ad2c                EasyUIEventResetSettings
+                0x000000000000adcc       0x9c ./code/easy_ui.o
+                0x000000000000adcc                EasyUIEventResetSettings
  .text.EasyUIInit
-                0x000000000000adc8      0x146 ./code/easy_ui.o
-                0x000000000000adc8                EasyUIInit
+                0x000000000000ae68      0x148 ./code/easy_ui.o
+                0x000000000000ae68                EasyUIInit
  .text.EasyUIKeyActionMonitor
-                0x000000000000af0e       0xa0 ./code/easy_ui.o
-                0x000000000000af0e                EasyUIKeyActionMonitor
- .text.EasyUI   0x000000000000afae      0x3a0 ./code/easy_ui.o
-                0x000000000000afae                EasyUI
+                0x000000000000afb0       0xa0 ./code/easy_ui.o
+                0x000000000000afb0                EasyUIKeyActionMonitor
+ .text.EasyUI   0x000000000000b050      0x3a0 ./code/easy_ui.o
+                0x000000000000b050                EasyUI
  .text.PageImage
-                0x000000000000b34e      0x12e ./code/easy_ui_user_app.o
-                0x000000000000b34e                PageImage
+                0x000000000000b3f0      0x12e ./code/easy_ui_user_app.o
+                0x000000000000b3f0                PageImage
  .text.PageAbout
-                0x000000000000b47c      0x232 ./code/easy_ui_user_app.o
-                0x000000000000b47c                PageAbout
+                0x000000000000b51e      0x232 ./code/easy_ui_user_app.o
+                0x000000000000b51e                PageAbout
  .text.MenuInit
-                0x000000000000b6ae      0x2ae ./code/easy_ui_user_app.o
-                0x000000000000b6ae                MenuInit
- .text.pow      0x000000000000b95c      0x324 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_pow.o)
-                0x000000000000b95c                pow
- .text.sqrt     0x000000000000bc80       0xba /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_sqrt.o)
-                0x000000000000bc80                sqrt
+                0x000000000000b750      0x2ae ./code/easy_ui_user_app.o
+                0x000000000000b750                MenuInit
+ .text.pow      0x000000000000b9fe      0x324 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_pow.o)
+                0x000000000000b9fe                pow
+ .text.sqrt     0x000000000000bd22       0xba /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_sqrt.o)
+                0x000000000000bd22                sqrt
  .text.__ieee754_pow
-                0x000000000000bd3a      0xad4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_pow.o)
-                0x000000000000bd3a                __ieee754_pow
+                0x000000000000bddc      0xad4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_pow.o)
+                0x000000000000bddc                __ieee754_pow
  .text.__ieee754_sqrt
-                0x000000000000c80e      0x1d4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_sqrt.o)
-                0x000000000000c80e                __ieee754_sqrt
- .text.fabs     0x000000000000c9e2        0x6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_fabs.o)
-                0x000000000000c9e2                fabs
- .text.finite   0x000000000000c9e8        0xe /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_finite.o)
-                0x000000000000c9e8                finite
- .text.matherr  0x000000000000c9f6        0x4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_matherr.o)
-                0x000000000000c9f6                matherr
- .text.nan      0x000000000000c9fa        0xe /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_nan.o)
-                0x000000000000c9fa                nan
- .text.rint     0x000000000000ca08      0x186 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_rint.o)
-                0x000000000000ca08                rint
- .text.scalbn   0x000000000000cb8e      0x13e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_scalbn.o)
-                0x000000000000cb8e                scalbn
+                0x000000000000c8b0      0x1d4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_sqrt.o)
+                0x000000000000c8b0                __ieee754_sqrt
+ .text.fabs     0x000000000000ca84        0x6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_fabs.o)
+                0x000000000000ca84                fabs
+ .text.finite   0x000000000000ca8a        0xe /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_finite.o)
+                0x000000000000ca8a                finite
+ .text.matherr  0x000000000000ca98        0x4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_matherr.o)
+                0x000000000000ca98                matherr
+ .text.nan      0x000000000000ca9c        0xe /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_nan.o)
+                0x000000000000ca9c                nan
+ .text.rint     0x000000000000caaa      0x186 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_rint.o)
+                0x000000000000caaa                rint
+ .text.scalbn   0x000000000000cc30      0x13e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_scalbn.o)
+                0x000000000000cc30                scalbn
  .text.copysign
-                0x000000000000cccc       0x16 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_copysign.o)
-                0x000000000000cccc                copysign
+                0x000000000000cd6e       0x16 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_copysign.o)
+                0x000000000000cd6e                copysign
  .text.__adddf3
-                0x000000000000cce2      0xa0e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(adddf3.o)
-                0x000000000000cce2                __adddf3
+                0x000000000000cd84      0xa0e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(adddf3.o)
+                0x000000000000cd84                __adddf3
  .text.__divdf3
-                0x000000000000d6f0      0x7ea /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(divdf3.o)
-                0x000000000000d6f0                __divdf3
- .text.__eqdf2  0x000000000000deda       0x98 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(eqdf2.o)
-                0x000000000000deda                __eqdf2
-                0x000000000000deda                __nedf2
- .text.__gedf2  0x000000000000df72       0xb6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(gedf2.o)
-                0x000000000000df72                __gtdf2
-                0x000000000000df72                __gedf2
- .text.__ledf2  0x000000000000e028       0xb6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(ledf2.o)
-                0x000000000000e028                __ltdf2
-                0x000000000000e028                __ledf2
+                0x000000000000d792      0x7ea /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(divdf3.o)
+                0x000000000000d792                __divdf3
+ .text.__eqdf2  0x000000000000df7c       0x98 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(eqdf2.o)
+                0x000000000000df7c                __eqdf2
+                0x000000000000df7c                __nedf2
+ .text.__gedf2  0x000000000000e014       0xb6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(gedf2.o)
+                0x000000000000e014                __gtdf2
+                0x000000000000e014                __gedf2
+ .text.__ledf2  0x000000000000e0ca       0xb6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(ledf2.o)
+                0x000000000000e0ca                __ltdf2
+                0x000000000000e0ca                __ledf2
  .text.__muldf3
-                0x000000000000e0de      0x656 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(muldf3.o)
-                0x000000000000e0de                __muldf3
+                0x000000000000e180      0x656 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(muldf3.o)
+                0x000000000000e180                __muldf3
  .text.__subdf3
-                0x000000000000e734      0xa8c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(subdf3.o)
-                0x000000000000e734                __subdf3
+                0x000000000000e7d6      0xa8c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(subdf3.o)
+                0x000000000000e7d6                __subdf3
  .text.__unorddf2
-                0x000000000000f1c0       0x7c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(unorddf2.o)
-                0x000000000000f1c0                __unorddf2
+                0x000000000000f262       0x7c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(unorddf2.o)
+                0x000000000000f262                __unorddf2
  .text.__fixdfsi
-                0x000000000000f23c       0xd8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(fixdfsi.o)
-                0x000000000000f23c                __fixdfsi
+                0x000000000000f2de       0xd8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(fixdfsi.o)
+                0x000000000000f2de                __fixdfsi
  .text.__fixunsdfsi
-                0x000000000000f314       0x9e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(fixunsdfsi.o)
-                0x000000000000f314                __fixunsdfsi
+                0x000000000000f3b6       0x9e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(fixunsdfsi.o)
+                0x000000000000f3b6                __fixunsdfsi
  .text.__floatsidf
-                0x000000000000f3b2       0x70 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(floatsidf.o)
-                0x000000000000f3b2                __floatsidf
+                0x000000000000f454       0x70 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(floatsidf.o)
+                0x000000000000f454                __floatsidf
  .text.__floatunsidf
-                0x000000000000f422       0x66 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(floatunsidf.o)
-                0x000000000000f422                __floatunsidf
+                0x000000000000f4c4       0x66 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(floatunsidf.o)
+                0x000000000000f4c4                __floatunsidf
  .text.__extendsfdf2
-                0x000000000000f488       0xe8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(extendsfdf2.o)
-                0x000000000000f488                __extendsfdf2
+                0x000000000000f52a       0xe8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(extendsfdf2.o)
+                0x000000000000f52a                __extendsfdf2
  .text.__truncdfsf2
-                0x000000000000f570      0x31e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(truncdfsf2.o)
-                0x000000000000f570                __truncdfsf2
+                0x000000000000f612      0x31e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(truncdfsf2.o)
+                0x000000000000f612                __truncdfsf2
  .text.__clzsi2
-                0x000000000000f88e       0x76 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(_clzsi2.o)
-                0x000000000000f88e                __clzsi2
- .text.__errno  0x000000000000f904        0x8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-errno.o)
-                0x000000000000f904                __errno
- .text.memcpy   0x000000000000f90c       0xb6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-memcpy.o)
-                0x000000000000f90c                memcpy
- .text.__cvt    0x000000000000f9c2       0xee /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
-                0x000000000000f9c2                __cvt
+                0x000000000000f930       0x76 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(_clzsi2.o)
+                0x000000000000f930                __clzsi2
+ .text.__errno  0x000000000000f9a6        0x8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-errno.o)
+                0x000000000000f9a6                __errno
+ .text.memcpy   0x000000000000f9ae       0xb6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-memcpy.o)
+                0x000000000000f9ae                memcpy
+ .text.__cvt    0x000000000000fa64       0xee /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x000000000000fa64                __cvt
  .text.__exponent
-                0x000000000000fab0       0x8c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
-                0x000000000000fab0                __exponent
+                0x000000000000fb52       0x8c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x000000000000fb52                __exponent
  .text._printf_float
-                0x000000000000fb3c      0x4c4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
-                0x000000000000fb3c                _printf_float
+                0x000000000000fbde      0x4c4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x000000000000fbde                _printf_float
  .text._printf_common
-                0x0000000000010000      0x10c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x0000000000010000                _printf_common
+                0x00000000000100a2      0x10c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00000000000100a2                _printf_common
  .text._printf_i
-                0x000000000001010c      0x2ac /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x000000000001010c                _printf_i
- .text.printf   0x00000000000103b8       0x42 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-printf.o)
-                0x00000000000103b8                printf
-                0x00000000000103b8                iprintf
- .text.sprintf  0x00000000000103fa       0x46 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-sprintf.o)
-                0x00000000000103fa                sprintf
-                0x00000000000103fa                siprintf
- .text.strlen   0x0000000000010440       0x12 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-strlen.o)
-                0x0000000000010440                strlen
- .text.strncmp  0x0000000000010452       0x2c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-strncmp.o)
-                0x0000000000010452                strncmp
- .text.quorem   0x000000000001047e      0x13a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
- .text._dtoa_r  0x00000000000105b8      0xbea /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
-                0x00000000000105b8                _dtoa_r
- .text.std      0x00000000000111a2       0x6a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x00000000000101ae      0x2ac /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00000000000101ae                _printf_i
+ .text.printf   0x000000000001045a       0x42 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-printf.o)
+                0x000000000001045a                printf
+                0x000000000001045a                iprintf
+ .text.sprintf  0x000000000001049c       0x46 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-sprintf.o)
+                0x000000000001049c                sprintf
+                0x000000000001049c                siprintf
+ .text.strlen   0x00000000000104e2       0x12 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-strlen.o)
+                0x00000000000104e2                strlen
+ .text.strncmp  0x00000000000104f4       0x2c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-strncmp.o)
+                0x00000000000104f4                strncmp
+ .text.quorem   0x0000000000010520      0x13a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
+ .text._dtoa_r  0x000000000001065a      0xbea /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
+                0x000000000001065a                _dtoa_r
+ .text.std      0x0000000000011244       0x6a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
  .text._cleanup_r
-                0x000000000001120c        0xa /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
-                0x000000000001120c                _cleanup_r
+                0x00000000000112ae        0xa /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x00000000000112ae                _cleanup_r
  .text.__sfmoreglue
-                0x0000000000011216       0x48 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
-                0x0000000000011216                __sfmoreglue
- .text.__sinit  0x000000000001125e       0x6c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
-                0x000000000001125e                __sinit
- .text.__sfp    0x00000000000112ca       0xa0 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
-                0x00000000000112ca                __sfp
+                0x00000000000112b8       0x48 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x00000000000112b8                __sfmoreglue
+ .text.__sinit  0x0000000000011300       0x6c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x0000000000011300                __sinit
+ .text.__sfp    0x000000000001136c       0xa0 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x000000000001136c                __sfp
  .text._fwalk_reent
-                0x000000000001136a       0x6c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fwalk.o)
-                0x000000000001136a                _fwalk_reent
+                0x000000000001140c       0x6c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fwalk.o)
+                0x000000000001140c                _fwalk_reent
  .text._localeconv_r
-                0x00000000000113d6       0x18 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-localeconv.o)
-                0x00000000000113d6                _localeconv_r
- .text.malloc   0x00000000000113ee        0xc /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-malloc.o)
-                0x00000000000113ee                malloc
- .text.memchr   0x00000000000113fa       0x1a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-memchr.o)
-                0x00000000000113fa                memchr
- .text._Balloc  0x0000000000011414       0x88 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011414                _Balloc
- .text._Bfree   0x000000000001149c       0x44 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x000000000001149c                _Bfree
+                0x0000000000011478       0x18 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-localeconv.o)
+                0x0000000000011478                _localeconv_r
+ .text.malloc   0x0000000000011490        0xc /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-malloc.o)
+                0x0000000000011490                malloc
+ .text.memchr   0x000000000001149c       0x1a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-memchr.o)
+                0x000000000001149c                memchr
+ .text._Balloc  0x00000000000114b6       0x88 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000114b6                _Balloc
+ .text._Bfree   0x000000000001153e       0x44 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x000000000001153e                _Bfree
  .text.__multadd
-                0x00000000000114e0       0x98 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x00000000000114e0                __multadd
+                0x0000000000011582       0x98 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x0000000000011582                __multadd
  .text.__hi0bits
-                0x0000000000011578       0x46 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011578                __hi0bits
+                0x000000000001161a       0x46 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x000000000001161a                __hi0bits
  .text.__lo0bits
-                0x00000000000115be       0x6a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x00000000000115be                __lo0bits
- .text.__i2b    0x0000000000011628       0x1c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011628                __i2b
+                0x0000000000011660       0x6a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x0000000000011660                __lo0bits
+ .text.__i2b    0x00000000000116ca       0x1c /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000116ca                __i2b
  .text.__multiply
-                0x0000000000011644      0x144 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011644                __multiply
+                0x00000000000116e6      0x144 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000116e6                __multiply
  .text.__pow5mult
-                0x0000000000011788       0xbe /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011788                __pow5mult
+                0x000000000001182a       0xbe /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x000000000001182a                __pow5mult
  .text.__lshift
-                0x0000000000011846       0xce /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011846                __lshift
- .text.__mcmp   0x0000000000011914       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011914                __mcmp
- .text.__mdiff  0x0000000000011946       0xf2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011946                __mdiff
- .text.__d2b    0x0000000000011a38       0xd4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000011a38                __d2b
+                0x00000000000118e8       0xce /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000118e8                __lshift
+ .text.__mcmp   0x00000000000119b6       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000119b6                __mcmp
+ .text.__mdiff  0x00000000000119e8       0xf2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000119e8                __mdiff
+ .text.__d2b    0x0000000000011ada       0xd4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x0000000000011ada                __d2b
  .text._calloc_r
-                0x0000000000011b0c       0x26 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-callocr.o)
-                0x0000000000011b0c                _calloc_r
- .text._free_r  0x0000000000011b32       0xa8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-freer.o)
-                0x0000000000011b32                _free_r
+                0x0000000000011bae       0x26 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-callocr.o)
+                0x0000000000011bae                _calloc_r
+ .text._free_r  0x0000000000011bd4       0xa8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-freer.o)
+                0x0000000000011bd4                _free_r
  .text._malloc_r
-                0x0000000000011bda       0xd4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-mallocr.o)
-                0x0000000000011bda                _malloc_r
+                0x0000000000011c7c       0xd4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-mallocr.o)
+                0x0000000000011c7c                _malloc_r
  .text.__ssputs_r
-                0x0000000000011cae       0xee /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-svfprintf.o)
-                0x0000000000011cae                __ssputs_r
+                0x0000000000011d50       0xee /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-svfprintf.o)
+                0x0000000000011d50                __ssputs_r
  .text._svfprintf_r
-                0x0000000000011d9c      0x27e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-svfprintf.o)
-                0x0000000000011d9c                _svfprintf_r
-                0x0000000000011d9c                _svfiprintf_r
+                0x0000000000011e3e      0x27e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-svfprintf.o)
+                0x0000000000011e3e                _svfprintf_r
+                0x0000000000011e3e                _svfiprintf_r
  .text.__sfputc_r
-                0x000000000001201a       0x28 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
+                0x00000000000120bc       0x28 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x0000000000012042       0x44 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
-                0x0000000000012042                __sfputs_r
+                0x00000000000120e4       0x44 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
+                0x00000000000120e4                __sfputs_r
  .text._vfprintf_r
-                0x0000000000012086      0x29e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
-                0x0000000000012086                _vfiprintf_r
-                0x0000000000012086                _vfprintf_r
- .text._sbrk_r  0x0000000000012324       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-sbrkr.o)
-                0x0000000000012324                _sbrk_r
- .text.__sread  0x0000000000012356       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
-                0x0000000000012356                __sread
+                0x0000000000012128      0x29e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
+                0x0000000000012128                _vfiprintf_r
+                0x0000000000012128                _vfprintf_r
+ .text._sbrk_r  0x00000000000123c6       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-sbrkr.o)
+                0x00000000000123c6                _sbrk_r
+ .text.__sread  0x00000000000123f8       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
+                0x00000000000123f8                __sread
  .text.__swrite
-                0x0000000000012386       0x4e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
-                0x0000000000012386                __swrite
- .text.__sseek  0x00000000000123d4       0x36 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
-                0x00000000000123d4                __sseek
+                0x0000000000012428       0x4e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
+                0x0000000000012428                __swrite
+ .text.__sseek  0x0000000000012476       0x36 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
+                0x0000000000012476                __sseek
  .text.__sclose
-                0x000000000001240a        0x6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
-                0x000000000001240a                __sclose
+                0x00000000000124ac        0x6 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-stdio.o)
+                0x00000000000124ac                __sclose
  .text.__swbuf_r
-                0x0000000000012410       0xc2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-wbuf.o)
-                0x0000000000012410                __swbuf_r
+                0x00000000000124b2       0xc2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-wbuf.o)
+                0x00000000000124b2                __swbuf_r
  .text._write_r
-                0x00000000000124d2       0x36 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-writer.o)
-                0x00000000000124d2                _write_r
+                0x0000000000012574       0x36 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-writer.o)
+                0x0000000000012574                _write_r
  .text.__swsetup_r
-                0x0000000000012508      0x110 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-wsetup.o)
-                0x0000000000012508                __swsetup_r
+                0x00000000000125aa      0x110 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-wsetup.o)
+                0x00000000000125aa                __swsetup_r
  .text._close_r
-                0x0000000000012618       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-closer.o)
-                0x0000000000012618                _close_r
+                0x00000000000126ba       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-closer.o)
+                0x00000000000126ba                _close_r
  .text.__sflush_r
-                0x000000000001264a      0x13e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fflush.o)
-                0x000000000001264a                __sflush_r
+                0x00000000000126ec      0x13e /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fflush.o)
+                0x00000000000126ec                __sflush_r
  .text._fflush_r
-                0x0000000000012788       0x68 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fflush.o)
-                0x0000000000012788                _fflush_r
+                0x000000000001282a       0x68 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fflush.o)
+                0x000000000001282a                _fflush_r
  .text._lseek_r
-                0x00000000000127f0       0x34 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-lseekr.o)
-                0x00000000000127f0                _lseek_r
+                0x0000000000012892       0x34 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-lseekr.o)
+                0x0000000000012892                _lseek_r
  .text.__swhatbuf_r
-                0x0000000000012824       0x58 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-makebuf.o)
-                0x0000000000012824                __swhatbuf_r
+                0x00000000000128c6       0x58 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-makebuf.o)
+                0x00000000000128c6                __swhatbuf_r
  .text.__smakebuf_r
-                0x000000000001287c       0xa0 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-makebuf.o)
-                0x000000000001287c                __smakebuf_r
+                0x000000000001291e       0xa0 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-makebuf.o)
+                0x000000000001291e                __smakebuf_r
  .text.__ascii_mbtowc
-                0x000000000001291c       0x3a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mbtowc_r.o)
-                0x000000000001291c                __ascii_mbtowc
- .text.memmove  0x0000000000012956       0x4a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-memmove.o)
-                0x0000000000012956                memmove
+                0x00000000000129be       0x3a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mbtowc_r.o)
+                0x00000000000129be                __ascii_mbtowc
+ .text.memmove  0x00000000000129f8       0x4a /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-memmove.o)
+                0x00000000000129f8                memmove
  .text.__malloc_lock
-                0x00000000000129a0        0x2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mlock.o)
-                0x00000000000129a0                __malloc_lock
+                0x0000000000012a42        0x2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mlock.o)
+                0x0000000000012a42                __malloc_lock
  .text.__malloc_unlock
-                0x00000000000129a2        0x2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mlock.o)
-                0x00000000000129a2                __malloc_unlock
+                0x0000000000012a44        0x2 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mlock.o)
+                0x0000000000012a44                __malloc_unlock
  .text._realloc_r
-                0x00000000000129a4       0x58 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-reallocr.o)
-                0x00000000000129a4                _realloc_r
- .text._read_r  0x00000000000129fc       0x34 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-readr.o)
-                0x00000000000129fc                _read_r
+                0x0000000000012a46       0x58 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-reallocr.o)
+                0x0000000000012a46                _realloc_r
+ .text._read_r  0x0000000000012a9e       0x34 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-readr.o)
+                0x0000000000012a9e                _read_r
  .text.__ascii_wctomb
-                0x0000000000012a30       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-wctomb_r.o)
-                0x0000000000012a30                __ascii_wctomb
+                0x0000000000012ad2       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-wctomb_r.o)
+                0x0000000000012ad2                __ascii_wctomb
  .text._fstat_r
-                0x0000000000012a50       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fstatr.o)
-                0x0000000000012a50                _fstat_r
+                0x0000000000012af2       0x32 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-fstatr.o)
+                0x0000000000012af2                _fstat_r
  .text._isatty_r
-                0x0000000000012a82       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-isattyr.o)
-                0x0000000000012a82                _isatty_r
+                0x0000000000012b24       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-isattyr.o)
+                0x0000000000012b24                _isatty_r
  .text._malloc_usable_size_r
-                0x0000000000012ab2       0x14 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-msizer.o)
-                0x0000000000012ab2                _malloc_usable_size_r
+                0x0000000000012b54       0x14 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-msizer.o)
+                0x0000000000012b54                _malloc_usable_size_r
  .text.__trunctfdf2
-                0x0000000000012ac6      0x3d0 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(trunctfdf2.o)
-                0x0000000000012ac6                __trunctfdf2
- .text._close   0x0000000000012e96       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(close.o)
-                0x0000000000012e96                _close
- .text._fstat   0x0000000000012ea6       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(fstat.o)
-                0x0000000000012ea6                _fstat
- .text._isatty  0x0000000000012eb6       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(isatty.o)
-                0x0000000000012eb6                _isatty
- .text._lseek   0x0000000000012ec6       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(lseek.o)
-                0x0000000000012ec6                _lseek
- .text._read    0x0000000000012ed6       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(read.o)
-                0x0000000000012ed6                _read
- .text._sbrk    0x0000000000012ee6       0x24 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(sbrk.o)
-                0x0000000000012ee6                _sbrk
+                0x0000000000012b68      0x3d0 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(trunctfdf2.o)
+                0x0000000000012b68                __trunctfdf2
+ .text._close   0x0000000000012f38       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(close.o)
+                0x0000000000012f38                _close
+ .text._fstat   0x0000000000012f48       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(fstat.o)
+                0x0000000000012f48                _fstat
+ .text._isatty  0x0000000000012f58       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(isatty.o)
+                0x0000000000012f58                _isatty
+ .text._lseek   0x0000000000012f68       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(lseek.o)
+                0x0000000000012f68                _lseek
+ .text._read    0x0000000000012f78       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(read.o)
+                0x0000000000012f78                _read
+ .text._sbrk    0x0000000000012f88       0x24 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libnosys.a(sbrk.o)
+                0x0000000000012f88                _sbrk
  *(.rodata)
- *fill*         0x0000000000012f0a        0x2 
- .rodata        0x0000000000012f0c       0x69 ./zf_driver/zf_driver_flash.o
- *fill*         0x0000000000012f75        0x3 
- .rodata        0x0000000000012f78       0x8f ./zf_driver/zf_driver_pit.o
- *fill*         0x0000000000013007        0x1 
- .rodata        0x0000000000013008       0x67 ./zf_driver/zf_driver_spi.o
- *fill*         0x000000000001306f        0x1 
- .rodata        0x0000000000013070       0x69 ./zf_driver/zf_driver_timer.o
- *fill*         0x00000000000130d9        0x3 
- .rodata        0x00000000000130dc       0x68 ./zf_driver/zf_driver_uart.o
- *fill*         0x0000000000013144        0x4 
- .rodata        0x0000000000013148        0x8 ./zf_device/zf_device_dm1xa.o
- .rodata        0x0000000000013150       0xf0 ./zf_device/zf_device_gps_tau1201.o
- .rodata        0x0000000000013240       0x78 ./zf_common/zf_common_debug.o
- .rodata        0x00000000000132b8       0x68 ./zf_common/zf_common_fifo.o
- .rodata        0x0000000000013320       0xa8 ./zf_common/zf_common_function.o
- .rodata        0x00000000000133c8       0x41 ./sdk/Peripheral/ch32v30x_usbotg_device.o
- *fill*         0x0000000000013409        0x7 
- .rodata        0x0000000000013410       0x78 ./code/ips096.o
- .rodata        0x0000000000013488       0xf8 ./code/easy_ui.o
- .rodata        0x0000000000013580      0x1d0 ./code/easy_ui_user_app.o
+ *fill*         0x0000000000012fac        0x0 
+ .rodata        0x0000000000012fac       0x69 ./zf_driver/zf_driver_flash.o
+ *fill*         0x0000000000013015        0x3 
+ .rodata        0x0000000000013018       0x8f ./zf_driver/zf_driver_pit.o
+ *fill*         0x00000000000130a7        0x1 
+ .rodata        0x00000000000130a8       0x67 ./zf_driver/zf_driver_spi.o
+ *fill*         0x000000000001310f        0x1 
+ .rodata        0x0000000000013110       0x69 ./zf_driver/zf_driver_timer.o
+ *fill*         0x0000000000013179        0x3 
+ .rodata        0x000000000001317c       0x68 ./zf_driver/zf_driver_uart.o
+ *fill*         0x00000000000131e4        0x4 
+ .rodata        0x00000000000131e8        0x8 ./zf_device/zf_device_dm1xa.o
+ .rodata        0x00000000000131f0       0xf0 ./zf_device/zf_device_gps_tau1201.o
+ .rodata        0x00000000000132e0       0x78 ./zf_common/zf_common_debug.o
+ .rodata        0x0000000000013358       0x68 ./zf_common/zf_common_fifo.o
+ .rodata        0x00000000000133c0       0xa8 ./zf_common/zf_common_function.o
+ .rodata        0x0000000000013468       0x41 ./sdk/Peripheral/ch32v30x_usbotg_device.o
+ *fill*         0x00000000000134a9        0x7 
+ .rodata        0x00000000000134b0       0x78 ./code/ips096.o
+ .rodata        0x0000000000013528       0xf0 ./code/easy_ui.o
+ .rodata        0x0000000000013618      0x1d0 ./code/easy_ui_user_app.o
  *(.rodata*)
  .rodata.pit_init
-                0x0000000000013750       0x28 ./zf_driver/zf_driver_pit.o
+                0x00000000000137e8       0x28 ./zf_driver/zf_driver_pit.o
  .rodata.spi_index
-                0x0000000000013778        0xc ./zf_driver/zf_driver_spi.o
-                0x0000000000013778                spi_index
+                0x0000000000013810        0xc ./zf_driver/zf_driver_spi.o
+                0x0000000000013810                spi_index
  .rodata.timer_start
-                0x0000000000013784       0x28 ./zf_driver/zf_driver_timer.o
+                0x000000000001381c       0x28 ./zf_driver/zf_driver_timer.o
  .rodata.timer_stop
-                0x00000000000137ac       0x28 ./zf_driver/zf_driver_timer.o
+                0x0000000000013844       0x28 ./zf_driver/zf_driver_timer.o
  .rodata.timer_get
-                0x00000000000137d4       0x28 ./zf_driver/zf_driver_timer.o
+                0x000000000001386c       0x28 ./zf_driver/zf_driver_timer.o
  .rodata.timer_clear
-                0x00000000000137fc       0x28 ./zf_driver/zf_driver_timer.o
+                0x0000000000013894       0x28 ./zf_driver/zf_driver_timer.o
  .rodata.timer_init
-                0x0000000000013824       0x28 ./zf_driver/zf_driver_timer.o
+                0x00000000000138bc       0x28 ./zf_driver/zf_driver_timer.o
  .rodata.uart_index
-                0x000000000001384c       0x20 ./zf_driver/zf_driver_uart.o
-                0x000000000001384c                uart_index
+                0x00000000000138e4       0x20 ./zf_driver/zf_driver_uart.o
+                0x00000000000138e4                uart_index
  .rodata.ascii_font_8x16
-                0x000000000001386c      0x5f0 ./zf_common/zf_common_font.o
-                0x000000000001386c                ascii_font_8x16
+                0x0000000000013904      0x5f0 ./zf_common/zf_common_font.o
+                0x0000000000013904                ascii_font_8x16
  .rodata.ascii_font_6x8
-                0x0000000000013e5c      0x228 ./zf_common/zf_common_font.o
-                0x0000000000013e5c                ascii_font_6x8
+                0x0000000000013ef4      0x228 ./zf_common/zf_common_font.o
+                0x0000000000013ef4                ascii_font_6x8
  .rodata.MyDevDescrHD
-                0x0000000000014084       0x12 ./sdk/Peripheral/ch32v30x_usbotg_device.o
-                0x0000000000014084                MyDevDescrHD
- *fill*         0x0000000000014096        0x2 
- .rodata.MyCfgDescrHD
-                0x0000000000014098       0x43 ./sdk/Peripheral/ch32v30x_usbotg_device.o
-                0x0000000000014098                MyCfgDescrHD
- *fill*         0x00000000000140db        0x1 
- .rodata.MyReportDescHD
-                0x00000000000140dc       0x14 ./sdk/Peripheral/ch32v30x_usbotg_device.o
-                0x00000000000140dc                MyReportDescHD
- .rodata.MyManuInfoHD
-                0x00000000000140f0        0xe ./sdk/Peripheral/ch32v30x_usbotg_device.o
-                0x00000000000140f0                MyManuInfoHD
- *fill*         0x00000000000140fe        0x2 
- .rodata.MyProdInfoHD
-                0x0000000000014100        0xc ./sdk/Peripheral/ch32v30x_usbotg_device.o
-                0x0000000000014100                MyProdInfoHD
- .rodata.MySerNumInfoHD
-                0x000000000001410c       0x16 ./sdk/Peripheral/ch32v30x_usbotg_device.o
-                0x000000000001410c                MySerNumInfoHD
- *fill*         0x0000000000014122        0x2 
- .rodata.MyUSBQUADescHD
-                0x0000000000014124        0xa ./sdk/Peripheral/ch32v30x_usbotg_device.o
-                0x0000000000014124                MyUSBQUADescHD
+                0x000000000001411c       0x12 ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x000000000001411c                MyDevDescrHD
  *fill*         0x000000000001412e        0x2 
+ .rodata.MyCfgDescrHD
+                0x0000000000014130       0x43 ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x0000000000014130                MyCfgDescrHD
+ *fill*         0x0000000000014173        0x1 
+ .rodata.MyReportDescHD
+                0x0000000000014174       0x14 ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x0000000000014174                MyReportDescHD
+ .rodata.MyManuInfoHD
+                0x0000000000014188        0xe ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x0000000000014188                MyManuInfoHD
+ *fill*         0x0000000000014196        0x2 
+ .rodata.MyProdInfoHD
+                0x0000000000014198        0xc ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x0000000000014198                MyProdInfoHD
+ .rodata.MySerNumInfoHD
+                0x00000000000141a4       0x16 ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x00000000000141a4                MySerNumInfoHD
+ *fill*         0x00000000000141ba        0x2 
+ .rodata.MyUSBQUADescHD
+                0x00000000000141bc        0xa ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x00000000000141bc                MyUSBQUADescHD
+ *fill*         0x00000000000141c6        0x2 
  .rodata.OTG_FS_IRQHandler
-                0x0000000000014130       0xbc ./sdk/Peripheral/ch32v30x_usbotg_device.o
+                0x00000000000141c8       0xbc ./sdk/Peripheral/ch32v30x_usbotg_device.o
  .rodata.EasyUIAddItem
-                0x00000000000141ec       0x20 ./code/easy_ui.o
+                0x0000000000014284       0x20 ./code/easy_ui.o
  .rodata.EasyUIDisplayItem
-                0x000000000001420c       0x1c ./code/easy_ui.o
+                0x00000000000142a4       0x1c ./code/easy_ui.o
  .rodata.EasyUIItemOperationResponse
-                0x0000000000014228       0x20 ./code/easy_ui.o
+                0x00000000000142c0       0x20 ./code/easy_ui.o
  .rodata.EasyUIEventSaveSettings
-                0x0000000000014248       0x1c ./code/easy_ui.o
+                0x00000000000142e0       0x1c ./code/easy_ui.o
  .rodata.EasyUIEventResetSettings
-                0x0000000000014264       0x1c ./code/easy_ui.o
+                0x00000000000142fc       0x1c ./code/easy_ui.o
  .rodata.EasyUIInit
-                0x0000000000014280       0x1c ./code/easy_ui.o
+                0x0000000000014318       0x1c ./code/easy_ui.o
  .rodata.ErBW_s_2928
-                0x000000000001429c      0x658 ./code/profile_photo_erbws.o
-                0x000000000001429c                ErBW_s_2928
+                0x0000000000014334      0x658 ./code/profile_photo_erbws.o
+                0x0000000000014334                ErBW_s_2928
  .rodata.ErBW_s_5856
-                0x00000000000148f4     0x1960 ./code/profile_photo_erbws.o
-                0x00000000000148f4                ErBW_s_5856
- *fill*         0x0000000000016254        0x4 
+                0x000000000001498c     0x1960 ./code/profile_photo_erbws.o
+                0x000000000001498c                ErBW_s_5856
+ *fill*         0x00000000000162ec        0x4 
  .rodata.pow.cst8
-                0x0000000000016258       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_pow.o)
+                0x00000000000162f0       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_pow.o)
  .rodata.pow.str1.4
-                0x0000000000016288        0x4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_pow.o)
+                0x0000000000016320        0x4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_pow.o)
  .rodata.sqrt.str1.4
-                0x000000000001628c        0x5 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_sqrt.o)
- *fill*         0x0000000000016291        0x7 
+                0x0000000000016324        0x5 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-w_sqrt.o)
+ *fill*         0x0000000000016329        0x7 
  .rodata.__ieee754_pow.cst8
-                0x0000000000016298      0x100 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_pow.o)
+                0x0000000000016330      0x100 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_pow.o)
                                         0x110 (size before relaxing)
  .rodata.__ieee754_pow.str1.4
-                0x0000000000016398        0x5 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_pow.o)
+                0x0000000000016430        0x5 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-e_pow.o)
                                           0x1 (size before relaxing)
  .rodata.nan.cst8
-                0x0000000000016398        0x8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_nan.o)
- .rodata.TWO52  0x00000000000163a0       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_rint.o)
+                0x0000000000016430        0x8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_nan.o)
+ .rodata.TWO52  0x0000000000016438       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_rint.o)
  .rodata.scalbn.cst8
-                0x00000000000163b0       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_scalbn.o)
+                0x0000000000016448       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libm.a(lib_a-s_scalbn.o)
                                          0x20 (size before relaxing)
  .rodata.__divdf3
-                0x00000000000163c0       0x40 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(divdf3.o)
+                0x0000000000016458       0x40 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(divdf3.o)
  .rodata.__muldf3
-                0x0000000000016400       0x40 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(muldf3.o)
+                0x0000000000016498       0x40 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(muldf3.o)
  .rodata.__clz_tab
-                0x0000000000016440      0x100 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(_clz.o)
-                0x0000000000016440                __clz_tab
+                0x00000000000164d8      0x100 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imafc/ilp32f/libgcc.a(_clz.o)
+                0x00000000000164d8                __clz_tab
  .rodata._printf_float.cst8
-                0x0000000000016540        0x8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x00000000000165d8        0x8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
  .rodata._printf_float.str1.4
-                0x0000000000016548       0x12 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
- *fill*         0x000000000001655a        0x2 
+                0x00000000000165e0       0x12 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_float.o)
+ *fill*         0x00000000000165f2        0x2 
  .rodata._printf_i.str1.4
-                0x000000000001655c       0x25 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_i.o)
- *fill*         0x0000000000016581        0x7 
+                0x00000000000165f4       0x25 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ *fill*         0x0000000000016619        0x7 
  .rodata._dtoa_r.cst8
-                0x0000000000016588       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
+                0x0000000000016620       0x30 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
                                          0x48 (size before relaxing)
  .rodata._dtoa_r.str1.4
-                0x00000000000165b8       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
+                0x0000000000016650       0x10 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-dtoa.o)
                                          0x12 (size before relaxing)
  .rodata.__sf_fake_stderr
-                0x00000000000165c8       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
-                0x00000000000165c8                __sf_fake_stderr
+                0x0000000000016660       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x0000000000016660                __sf_fake_stderr
  .rodata.__sf_fake_stdin
-                0x00000000000165e8       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
-                0x00000000000165e8                __sf_fake_stdin
+                0x0000000000016680       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x0000000000016680                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x0000000000016608       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
-                0x0000000000016608                __sf_fake_stdout
+                0x00000000000166a0       0x20 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-findfp.o)
+                0x00000000000166a0                __sf_fake_stdout
  .rodata.__mprec_bigtens
-                0x0000000000016628       0x28 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000016628                __mprec_bigtens
+                0x00000000000166c0       0x28 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000166c0                __mprec_bigtens
  .rodata.__mprec_tens
-                0x0000000000016650       0xc8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
-                0x0000000000016650                __mprec_tens
+                0x00000000000166e8       0xc8 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000166e8                __mprec_tens
  .rodata.p05.3321
-                0x0000000000016718        0xc /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
+                0x00000000000167b0        0xc /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-mprec.o)
  .rodata._svfprintf_r.str1.4
-                0x0000000000016724       0x13 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-svfprintf.o)
+                0x00000000000167bc       0x13 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-svfprintf.o)
  .rodata._vfprintf_r.str1.4
-                0x0000000000016737       0x13 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
- *fill*         0x0000000000016737        0x1 
+                0x00000000000167cf       0x13 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-nano-vfprintf.o)
+ *fill*         0x00000000000167cf        0x1 
  .rodata._setlocale_r.str1.4
-                0x0000000000016738        0xa /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-locale.o)
+                0x00000000000167d0        0xa /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-locale.o)
                                           0xd (size before relaxing)
- *fill*         0x0000000000016742        0x2 
+ *fill*         0x00000000000167da        0x2 
  .rodata.str1.4
-                0x0000000000016744        0x4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-locale.o)
+                0x00000000000167dc        0x4 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-locale.o)
                                           0x2 (size before relaxing)
  .rodata._ctype_
-                0x0000000000016748      0x101 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-ctype_.o)
-                0x0000000000016748                _ctype_
+                0x00000000000167e0      0x101 /Users/baohan/ErBW_s/Code/Toolchains/xpack-riscv-none-embed-gcc-8.2.0/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imafc/ilp32f/libg_nano.a(lib_a-ctype_.o)
+                0x00000000000167e0                _ctype_
  *(.glue_7)
  *(.glue_7t)
  *(.gnu.linkonce.t.*)
-                0x000000000001684c                . = ALIGN (0x4)
- *fill*         0x0000000000016849        0x3 
+                0x00000000000168e4                . = ALIGN (0x4)
+ *fill*         0x00000000000168e1        0x3 
 
-.rela.dyn       0x000000000001684c        0x0
- .rela.init     0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
- .rela.vector   0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+.rela.dyn       0x00000000000168e4        0x0
+ .rela.init     0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
+ .rela.vector   0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text.handle_reset
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._svfprintf_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._vfprintf_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._sbrk_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._write_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._close_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._lseek_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._read_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._fstat_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._isatty_r
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._close
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._fstat
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._isatty
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._lseek
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._read
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
  .rela.text._sbrk
-                0x000000000001684c        0x0 ./zf_driver/zf_driver_delay.o
+                0x00000000000168e4        0x0 ./zf_driver/zf_driver_delay.o
 
-.fini           0x000000000001684c        0x0
+.fini           0x00000000000168e4        0x0
  *(SORT_NONE(.fini))
-                0x000000000001684c                . = ALIGN (0x4)
+                0x00000000000168e4                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (_eitcm = .)
 
-.preinit_array  0x000000000001684c        0x0
+.preinit_array  0x00000000000168e4        0x0
                 [!provide]                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x000000000001684c        0x0
+.init_array     0x00000000000168e4        0x0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x000000000001684c        0x0
+.fini_array     0x00000000000168e4        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -5159,15 +5159,15 @@ END GROUP
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
 
-.dalign         0x0000000020000000        0x0 load address 0x000000000001684c
+.dalign         0x0000000020000000        0x0 load address 0x00000000000168e4
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                PROVIDE (_data_vma = .)
 
-.dlalign        0x000000000001684c        0x0
-                0x000000000001684c                . = ALIGN (0x4)
-                0x000000000001684c                PROVIDE (_data_lma = .)
+.dlalign        0x00000000000168e4        0x0
+                0x00000000000168e4                . = ALIGN (0x4)
+                0x00000000000168e4                PROVIDE (_data_lma = .)
 
-.data           0x0000000020000000      0x2a0 load address 0x000000000001684c
+.data           0x0000000020000000      0x2a0 load address 0x00000000000168e4
  *(.gnu.linkonce.r.*)
  *(.data .data.*)
  .data.gpio_group
@@ -5280,7 +5280,7 @@ END GROUP
                 0x00000000200002a0                . = ALIGN (0x4)
                 0x00000000200002a0                PROVIDE (_edata = .)
 
-.bss            0x00000000200002a0     0x6fc4 load address 0x0000000000016aec
+.bss            0x00000000200002a0     0x6fc4 load address 0x0000000000016b84
                 0x00000000200002a0                . = ALIGN (0x4)
                 0x00000000200002a0                PROVIDE (_sbss = .)
  *(.sbss*)
@@ -5730,7 +5730,7 @@ OUTPUT(Seekfree_CH32V307VCT6_Opensource_Library.elf elf32-littleriscv)
  .debug_ranges  0x0000000000000f08       0xc0 ./code/easy_ui.o
  .debug_ranges  0x0000000000000fc8       0x38 ./code/easy_ui_user_app.o
 
-.debug_line     0x0000000000000000    0x1a8ee
+.debug_line     0x0000000000000000    0x1a9a8
  .debug_line    0x0000000000000000      0x3ee ./zf_driver/zf_driver_delay.o
  .debug_line    0x00000000000003ee      0x838 ./zf_driver/zf_driver_flash.o
  .debug_line    0x0000000000000c26      0x6d7 ./zf_driver/zf_driver_gpio.o
@@ -5761,9 +5761,9 @@ OUTPUT(Seekfree_CH32V307VCT6_Opensource_Library.elf elf32-littleriscv)
  .debug_line    0x0000000000014040      0x8ea ./code/easy_key.o
  .debug_line    0x000000000001492a     0x2302 ./code/ips096.o
  .debug_line    0x0000000000016c2c      0x6c9 ./code/user_flash.o
- .debug_line    0x00000000000172f5     0x2996 ./code/easy_ui.o
- .debug_line    0x0000000000019c8b      0xad9 ./code/easy_ui_user_app.o
- .debug_line    0x000000000001a764      0x18a ./code/profile_photo_erbws.o
+ .debug_line    0x00000000000172f5     0x2a50 ./code/easy_ui.o
+ .debug_line    0x0000000000019d45      0xad9 ./code/easy_ui_user_app.o
+ .debug_line    0x000000000001a81e      0x18a ./code/profile_photo_erbws.o
 
 .debug_str      0x0000000000000000     0x75c3
  .debug_str     0x0000000000000000      0x5d1 ./zf_driver/zf_driver_delay.o

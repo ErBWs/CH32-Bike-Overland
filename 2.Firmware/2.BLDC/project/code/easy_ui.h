@@ -57,6 +57,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
 #define INDICATOR_MOVE_TIME     140
 #define ITEM_MOVE_TIME          140
+#define TRANSITION_TIME         120
 
 #define EasyUIScreenInit()                                      (IPS096_Init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS096_ShowStr(x, y, str))

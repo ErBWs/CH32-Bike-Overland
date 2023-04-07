@@ -39,16 +39,16 @@ int main (void)
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
 
-    EasyUIInit(1);
     MenuInit();
+    EasyUIInit(1);
 //    gps_init();
 //    imu660ra_init();
 //    pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer
     timer_init(TIM_2, TIMER_US);
-    pit_ms_init(TIM1_PIT, 20);
     system_delay_ms(500);
 //    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
     EasyUITransitionAnim();
+    pit_ms_init(TIM1_PIT, 20);
 
     while(1)
     {
