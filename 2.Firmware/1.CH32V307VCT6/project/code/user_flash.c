@@ -160,7 +160,7 @@ void ReadFlashWithConversion(double *value)
 
 void FlashOperationEnd()
 {
-    flash_write_page_from_buffer(flashSecIndex, flashPageIndex);
+//    flash_write_page_from_buffer(flashSecIndex, flashPageIndex);
     flash_buffer_clear();
     flashBufIndex = 0;
     flashSecIndex = 63;

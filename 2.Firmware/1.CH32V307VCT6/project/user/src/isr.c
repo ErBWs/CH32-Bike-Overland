@@ -321,11 +321,15 @@ void TIM1_UP_IRQHandler(void)
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
+//        timer_clear(TIM_7);
+//        timer_start(TIM_7);
         IMUGetCalFun();
         UpdateControl();
         ServoControl();
         FlyWheelControl();
         BackMotoControl();
+//        timer_stop(TIM_7);
+//        printf("%d\n", timer_get(TIM_7));
     }
 }
 
@@ -352,7 +356,7 @@ void TIM3_IRQHandler(void)
                 if(beep_time!=0)
                 {
                     beep_state = 1;
-                    pwm_init(BEEP_PWM_PIN,beep_feq,500);
+                    pwm_init(BEEP_PWM_PIN,beep_feq,800);
                 }
                 break;
             case 1:

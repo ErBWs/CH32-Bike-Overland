@@ -21,7 +21,7 @@ static void* BuffDataIndex(void* buff,uint16 *offset,uint8_t size)
     *offset += size;
     return p;
 }
-static void BlueToothPrintf(char *formatString,...)
+void BlueToothPrintf(char *formatString,...)
 {
     char TXBuffer[RX_DATA_BUFFER_LEN];
     uint16_t length;

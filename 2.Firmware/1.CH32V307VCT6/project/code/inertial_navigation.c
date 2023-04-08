@@ -21,28 +21,18 @@ uint8 Bike_Start = 0;
 void GPS_init(void)
 {
     gps_init();
-//    EasyKeyInit(&key_read, B0);
-//    EasyKeyInit(&key_write, B12);
     exti_init(B0,EXTI_TRIGGER_BOTH);//r
     exti_init(D8,EXTI_TRIGGER_BOTH);//w
-//    while(1)
-//   {
-//        if(read_key_flag==1)
-//        {
-//            read_key_flag = 0;
-//        }
-//        if(write_key_flag==1)
-//        {
-//            write_key_flag = 0;
-//        }
-//   }
-//    gps_handler();
 }
 
 void gps_handler(void)
 {
     static uint8 write_keep_flag=0;
-    if(write_keep_flag==0)
+    if(key_write.isPressed)
+    {
+        printf("sat:%d\n",gps_tau1201.satellite_used);
+    }
+    if(write_keep_flag==0&&write_key_flag==2)
     {
         /*初始化buff指针*/
         flashBufIndex = 0;
@@ -64,17 +54,20 @@ void gps_handler(void)
             {
                 if(write_key_flag==2)
                 {
-                     write_key_flag = 0;
-                     write_keep_flag = 0;//写完点后取消读点模式，以便下一次随时进入写点模式。
-                     double count = gps_use.point_count;
-                     SaveToFlashWithConversion(&count);
-                     for(uint32 k=0;k<gps_use.point_count;k++)
-                     {
+                    write_key_flag = 0;
+                    write_keep_flag = 0;//写完点后取消读点模式，以便下一次随时进入写点模式。
+                    double count = gps_use.point_count;
+                    SaveToFlashWithConversion(&count);
+                    for(uint8 k=0;k<gps_use.point_count;k++)
+                    {
                          SaveToFlashWithConversion(&gps_data_array[k].latitude);
                          SaveToFlashWithConversion(&gps_data_array[k].longitude);
-                     }
-                     FlashOperationEnd();
-                     break;
+                    }
+                    FlashOperationEnd();
+                    gps_data_array[0].is_used = 1;//设为已用状态
+                    gps_data = gps_data_array[0];//获得第一个目标点
+                    gps_use.use_point_count=1;
+                    break;
                 }
                 if(write_key_flag==1&&write_keep_flag==1)
                 {
@@ -86,6 +79,10 @@ void gps_handler(void)
                          printf("gps_point : %d\r\n",gps_use.point_count);
                          printf("latitude:%.9f\r\n",gps_tau1201.latitude);
                          printf("longitude:%.9f\r\n",gps_tau1201.longitude);
+                         BlueToothPrintf("\ngps_satellite:%d\r\n",gps_tau1201.satellite_used);
+                         BlueToothPrintf("gps_point : %d\r\n",gps_use.point_count);
+                         BlueToothPrintf("latitude:%.9f\r\n",gps_tau1201.latitude);
+                         BlueToothPrintf("longitude:%.9f\r\n",gps_tau1201.longitude);
                          gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
                          gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
                          gps_use.point_count++;
@@ -93,7 +90,7 @@ void gps_handler(void)
                      }
                      else
                      {
-                         printf("satellite?0?5?0?2%d",gps_tau1201.satellite_used);
+                         printf("satellite-couts:%d",gps_tau1201.satellite_used);
                      }
                      write_key_flag = 0;
                 }
@@ -112,6 +109,9 @@ void gps_handler(void)
              SaveToFlashWithConversion(&gps_data_array[k].longitude);
         }
         FlashOperationEnd();
+        gps_data_array[0].is_used = 1;//设为已用状态
+        gps_data = gps_data_array[0];//获得第一个目标点
+        gps_use.use_point_count=1;
     }
     if(read_key_flag==1)//从Flash读点，通常在不写点的时候起作用。写点完成后无须read。
     {
@@ -124,8 +124,8 @@ void gps_handler(void)
         memset(&gps_use,0,sizeof(_gps_use_st));//清空记录信息准备录入新的数据
         double count;
         ReadFlashWithConversion(&count);//写完点后取消读点模式，以便下一次随时进入写点模式。
-        gps_use.point_count=count;
-        for(uint16 k=0;k<gps_use.point_count;k++)
+        gps_use.point_count=(uint8)count;
+        for(uint8 k=0;k<gps_use.point_count;k++)
         {
             ReadFlashWithConversion(&gps_data_array[k].latitude);
             ReadFlashWithConversion(&gps_data_array[k].longitude);
@@ -134,8 +134,13 @@ void gps_handler(void)
         gps_data = gps_data_array[0];//获得第一个目标点
         gps_use.use_point_count=1;
         read_key_flag = 0;
+        printf("total:%d\n",gps_use.point_count);
+        for(uint16 k=0;k<gps_use.point_count;k++)
+        {
+            printf("the %d point's comformation:\nlatitude:%f\nlongitude:%f\n",k,gps_data_array[k].latitude,gps_data_array[k].longitude);
+        }
     }
-    if (main_key_flag==2) {//发车
+    if (main_key_flag==1) {//发车
         if(gps_use.point_count!=0)
         {
             Bike_Start = 1;
@@ -145,27 +150,20 @@ void gps_handler(void)
 }
 
 
-void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_use_st *gps_result)
+void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result)
 {
     double gps_distance,gps_azimuth;
-    if (gps_result->use_point_count > GPS_MAX_POINT)
-    {
-        printf("no_other_gps_points\r\n");
-    }
-    else
-    {
-        //更新当前的位置姿态
-        gps_distance = get_two_points_distance(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
-        gps_azimuth = get_two_points_azimuth(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
+    //更新当前的位置姿态
+    gps_distance = get_two_points_distance(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
+    gps_azimuth = get_two_points_azimuth(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
 
-        gps_result->points_distance = gps_distance;
-        gps_result->points_azimuth = gps_azimuth;
+    gps_result->points_distance = gps_distance;
+    gps_result->points_azimuth = gps_azimuth;
 //        printf("%f\n",gps_data->latitude);
 //        printf("%f\n",gps_data->longitude);
 //        printf("%.9f\n",gps_result->points_distance);
 //        printf("%.9f\n",gps_result->points_azimuth);
 
-    }
 }
 
 float yaw_gps_delta( float azimuth, float yaw)
@@ -215,17 +213,17 @@ float yaw_gps_delta( float azimuth, float yaw)
         if (yaw>(azimuth-180)&&yaw<azimuth)
         {
             delta = azimuth - yaw;
-            return -delta;
+            return delta;
         }
         else if (yaw>0 && yaw<(azimuth-180))
         {
             delta = 360 - azimuth + yaw;
-            return delta;
+            return -delta;
         }
         else if(yaw>azimuth && yaw<360)
         {
             delta = yaw - azimuth;
-            return delta;
+            return -delta;
         }
     }
     //270<azimut<360
@@ -252,28 +250,30 @@ float yaw_gps_delta( float azimuth, float yaw)
 
 #define EXTRA_FORECAST_POINT 0
 #define DISTANCE_LIMITATION 1
-uint8 get_point(double latitude_now, double longitude_now,_gps_st *gps_data)//只能在解析完数据后才能调用此函数
+uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_data)//只能在解析完数据后才能调用此函数
 {
     double min_distance;
     double min_azimuth;
     uint8 state = 0;
     uint8 i,k;
-    uint8 min_index = gps_use.use_point_count;
-    uint8 forecase_depth = EXTRA_FORECAST_POINT;
-    _gps_use_st gps_result;
+    uint8 min_index = gps_use.use_point_count-1;//假设以当前的目标点作为最小点
+    int16 forecase_depth = EXTRA_FORECAST_POINT;
+    _gps_two_point_st gps_result;
+
     while(1)
     {
-        if(gps_use.use_point_count>=gps_use.point_count)
+        if(gps_use.use_point_count>gps_use.point_count)
         {
             state = 1;
             break;
         }
         two_points_message(latitude_now,longitude_now,&gps_data_array[min_index],&gps_result);
-        min_distance = gps_result.points_distance;//假设最小距离为列表里第一个导航点
+        min_distance = gps_result.points_distance;//以当前目标点作为缺省点
+        min_azimuth = gps_result.points_azimuth;
         if(gps_use.use_point_count+forecase_depth>=gps_use.point_count)
         {
             forecase_depth = (gps_use.point_count-1)-gps_use.use_point_count;//动态深度更新
-            forecase_depth = forecase_depth<0?0:forecase_depth;//防止最后一个点depth为负数
+            forecase_depth = forecase_depth<-1?-1:forecase_depth;
         }
         for(i=gps_use.use_point_count;i<=gps_use.use_point_count+forecase_depth;i++)//筛选出指顶前瞻区间内的距离最短且满足给定距离的导航点
         {
@@ -292,19 +292,55 @@ uint8 get_point(double latitude_now, double longitude_now,_gps_st *gps_data)//�
                 gps_data_array[k].is_used = 1;
                 gps_use.use_point_count++;
             }
-            if(min_index+1 != gps_use.point_count)
+            if(min_index+1 < gps_use.point_count)
             {
                 *gps_data = gps_data_array[min_index+1];//赋予新的目标点
-
-
+                gps_use.use_point_count++;
                 printf("CHANGE-POINT\n");
             }
             else {
                 printf("OVER-OF-POINTS\n");
+                gps_use.use_point_count++;//已经到达终点
             }
+        }
+        else
+        {
+            printf("distance last=%f\n",gps_result.points_distance);
         }
         break;
     }
+    return state;
+}
+
+uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
+{
+    uint8 state=0;
+    _gps_two_point_st gps_result;
+    while(1)
+    {
+        if(gps_use.use_point_count>gps_use.point_count)
+        {
+            state=1;
+            break;
+        }
+        two_points_message(latitude_now,longitude_now,gps_data,&gps_result);
+        if(gps_result.points_distance<DISTANCE_LIMITATION)
+        {
+            *gps_data = gps_data_array[gps_use.use_point_count];
+            gps_data->is_used = 1;
+            gps_use.use_point_count++;
+            printf("CHANGE-POINT\n");
+            beep_time=20;
+        }
+        else
+        {
+            printf("distance last=%f\n",gps_result.points_distance);
+            BlueToothPrintf("distance last=%f\n",gps_result.points_distance);
+        }
+        break;
+    }
+    gps_use.points_distance=gps_result.points_distance;
+    gps_use.points_azimuth=gps_result.points_azimuth;
     return state;
 }
 

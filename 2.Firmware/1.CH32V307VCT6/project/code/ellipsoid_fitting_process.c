@@ -45,7 +45,7 @@ char Offset_Mag_OK = 0;
 void imuGetMagData(_xyz_mag_s16_st *mag_data)
 {
     imu963ra_get_mag();
-    if (0)
+    if (Offset_Mag_OK)
         {
         mag_data->mx = ((float)imu963ra_mag_x - (float)mag_Offset.X0) / (float)mag_Offset.A;  //获取磁力计拟合数据
         mag_data->my = ((float)imu963ra_mag_y - (float)mag_Offset.Y0) / (float)mag_Offset.B;
@@ -311,7 +311,7 @@ void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
     }
     if(mode == NO_ICO)
     {
-        imu_data.mag_yaw = atan2f(mag_data->mx,mag_data->my) * VAL;
+        imu_data.mag_yaw = atan2f(mag_data->my,mag_data->mx) * VAL;
     }
     if (imu_data.mag_yaw < 0)
     {

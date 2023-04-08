@@ -31,5 +31,6 @@ extern uint8 receive_complete;
 extern UserDataTypedef BlueToothData;
 void BlueToothInit(void);
 void BlueToothUpdate(void);
+void BlueToothPrintf(char *formatString,...);
 void BlueToothInterupt_Handler(void);
 #endif
