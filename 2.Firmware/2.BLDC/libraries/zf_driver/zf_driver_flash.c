@@ -61,7 +61,7 @@ uint8 flash_check (uint32 sector_num, uint32 page_num)
 
     for(temp_loop = 0; temp_loop < FLASH_PAGE_SIZE; temp_loop+=4)                                       // 循环读取 Flash 的值
     {
-        if( (*(__IO u32*) (flash_addr+temp_loop)) != 0x39E339E3 )                                       // 该单片机擦除后如果不是 0x39E339E3 那就是有值
+        if( (*(__IO u32*) (flash_addr+temp_loop)) != 0xE339E339 )                                       // 该单片机擦除后如果不是 0x39E339E3 那就是有值
         {
             return_state = 1;
             break;

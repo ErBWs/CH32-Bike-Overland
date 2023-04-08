@@ -44,19 +44,20 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 #define BATTERY_ADC_PIN         ADC1_IN9_B1
 
-#define SCREEN_WIDTH            240
-#define SCREEN_HEIGHT           135
+#define SCREEN_WIDTH            160
+#define SCREEN_HEIGHT           80
 #define FONT_WIDTH              6
 #define FONT_HEIGHT             8
-#define ITEM_HEIGHT             16
+#define ITEM_HEIGHT             12
 #define SCROLL_BAR_WIDTH        4
 #define ITEM_LINES              ((uint8_t)(SCREEN_HEIGHT / ITEM_HEIGHT))
 #define MAX_LAYER               10
 #define ICON_SIZE               50
 
 // Represent the time it takes to play the animation, smaller the quicker. Unit: ms
-#define INDICATOR_MOVE_TIME     50
-#define ITEM_MOVE_TIME          50
+#define INDICATOR_MOVE_TIME     140
+#define ITEM_MOVE_TIME          140
+#define TRANSITION_TIME         120
 
 #define EasyUIScreenInit()                                      (IPS096_Init())
 #define EasyUIDisplayStr(x, y, str)                             (IPS096_ShowStr(x, y, str))
@@ -73,6 +74,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUIModifyColor()                                     (IPS096_ModifyColor())
 
 #define EasyUIGetAdc(pin)                                       (adc_convert(pin))
+#define EasyUIDelay_ms(time)                                    (system_delay_ms(time))
 
 typedef     double      paramType;
 
@@ -137,7 +139,7 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
 void EasyUIAddPage(EasyUIPage_t *page, EasyUIPage_e func, ...);
 void EasyUITransitionAnim();
 void EasyUIBackgroundBlur();
-void EasyUISyncOpnValue();
+void EasyUIKeyActionMonitor();
 
 void EasyUIDrawMsgBox(char *msg);
 float EasyUIGetBatteryVoltage();

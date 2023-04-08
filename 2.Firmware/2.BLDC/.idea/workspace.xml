@@ -21,28 +21,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f793d503-f0cb-4acb-9078-5a392af2a895" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project/code/user_header.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libraries/zf_common/zf_common_headfile.h" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_common/zf_common_headfile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.c" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.h" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/zf_device/zf_device_gps_tau1201.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/code/easy_key.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_key.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/code/easy_key.h" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_key.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/code/easy_ui.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_ui.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/code/easy_ui.h" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_ui.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/code/easy_ui_user_app.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_ui_user_app.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/code/ips096.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/ips096.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/code/ips096.h" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/ips096.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.hex" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.hex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.lst" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.map" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/code/easy_key.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/code/easy_key.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/code/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/code/subdir.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/isr.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/isr.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/main.d" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/main.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/user/src/isr.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/user/src/isr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/user/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/user/src/main.c" afterDir="false" />
@@ -85,6 +72,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "MakefileSettings",
+    "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -110,7 +98,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Flash" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2_BLDC" TARGET_NAME="2_BLDC" CONFIG_NAME="Debug" version="1" RUN_PATH="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf">
-      <openocd version="1" gdb-port="3333" telnet-port="4444" board-config="$PROJECT_DIR$/../../../../Code/Toolchains/openocd_arm64/bin/wch-riscv.cfg" reset-type="INIT" download-type="UPDATED_ONLY">
+      <openocd version="1" gdb-port="3333" telnet-port="4444" board-config="$PROJECT_DIR$/../../../../Code/Toolchains/openocd_arm64/bin/wch-riscv.cfg" reset-type="RUN" download-type="UPDATED_ONLY">
         <debugger kind="GDB" isBundled="true" />
       </openocd>
       <method v="2">
@@ -142,7 +130,7 @@
       <workItem from="1680699316664" duration="36000" />
       <workItem from="1680699359464" duration="30000" />
       <workItem from="1680699395202" duration="918000" />
-      <workItem from="1680700390309" duration="13822000" />
+      <workItem from="1680700390309" duration="32403000" />
     </task>
     <servers />
   </component>
@@ -165,5 +153,11 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="com.jetbrains.cidr.embedded.openocd.conf.type">
+        <watch expression="opnForward" language="ObjectiveC" />
+        <watch expression="opnExit" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

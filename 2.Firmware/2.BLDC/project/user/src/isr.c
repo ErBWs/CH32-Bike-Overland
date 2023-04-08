@@ -279,20 +279,17 @@ void TIM1_UP_IRQHandler(void)
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
         EasyKeyScanKeyState();
         EasyKeyUserApp();
-        if (keyBackward.isPressed)
-            count-= 100;
-        if (keyForward.isPressed)
-            count+= 100;
-//        IPS096_ClearBuffer();
-//        IPS096_ShowInt(0, 0, count, 5);
+        EasyUIKeyActionMonitor();
+//        if (opnExit)
+//            IPS096_ShowStr(0, 0, "hold");
 //        IPS096_SendBuffer();
-        if (count == 0)
-            pwm_set_duty(TIM8_PWM_MAP1_CH4_C13, 0);
-        else
-        {
-            pwm_set_freq(TIM8_PWM_MAP1_CH4_C13, count, 5000);
-            pwm_set_duty(TIM8_PWM_MAP1_CH4_C13, 5000);
-        }
+//        if (count == 0)
+//            pwm_set_duty(TIM8_PWM_MAP1_CH4_C13, 0);
+//        else
+//        {
+//            pwm_set_freq(TIM8_PWM_MAP1_CH4_C13, count, 5000);
+//            pwm_set_duty(TIM8_PWM_MAP1_CH4_C13, 5000);
+//        }
     }
 }
 

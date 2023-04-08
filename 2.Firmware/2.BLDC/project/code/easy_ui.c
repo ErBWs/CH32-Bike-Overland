@@ -164,6 +164,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -172,6 +173,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
     for (int j = 0; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -180,6 +182,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -188,6 +191,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i - 1, j - 1, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
 }
 
@@ -207,6 +211,7 @@ void EasyUIBackgroundBlur()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 3);
     EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -215,6 +220,7 @@ void EasyUIBackgroundBlur()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 3);
     EasyUISendBuffer();
     for (int j = 0; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -223,6 +229,7 @@ void EasyUIBackgroundBlur()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 3);
     EasyUISendBuffer();
 }
 
@@ -741,6 +748,9 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
             changeStep = false;
     }
 
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnExit = opnUp = opnDown = false;
+
     IPS096_SendBuffer();
 }
 
@@ -873,6 +883,9 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
         else if (index == 2)
             changeStep = false;
     }
+
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnExit = opnUp = opnDown = false;
 
     IPS096_SendBuffer();
 }
@@ -1008,6 +1021,9 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
             changeStep = false;
     }
 
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnExit = opnUp = opnDown = false;
+
     IPS096_SendBuffer();
 }
 
@@ -1019,6 +1035,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
  */
 void EasyUIEventSaveSettings(EasyUIItem_t *item)
 {
+    interrupt_global_disable();
     for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
     {
         for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
@@ -1040,6 +1057,7 @@ void EasyUIEventSaveSettings(EasyUIItem_t *item)
         }
     }
     FlashOperationEnd();
+    interrupt_global_enable(1);
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
@@ -1092,6 +1110,7 @@ void EasyUIInit(uint8_t mode)
     // Power-off storage
     if (flash_check(flashSecIndex, flashPageIndex))
     {
+        interrupt_global_disable();
         for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
         {
             for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
@@ -1113,6 +1132,7 @@ void EasyUIInit(uint8_t mode)
             }
         }
         FlashOperationEnd();
+        interrupt_global_enable(1);
     }
 
     // Display the welcome photo and info
@@ -1122,11 +1142,11 @@ void EasyUIInit(uint8_t mode)
         EasyUIDisplayBMP((SCREEN_WIDTH - 58) / 2, (SCREEN_HEIGHT - 56) / 2, 58, 56, ErBW_s_5856);
     else
         EasyUIDisplayBMP((SCREEN_WIDTH - 29) / 2, (SCREEN_HEIGHT - 28) / 2, 29, 28, ErBW_s_2928);
-    if (SCREEN_WIDTH > (25 * FONT_WIDTH + 1))
+    if (2 * SCREEN_WIDTH / 3 > (25 * FONT_WIDTH + 1))
         EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT,
                          "Powered by EasyUI(ErBW_s)");
     else if (SCREEN_WIDTH > (14 * FONT_WIDTH + 1))
-        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
+        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 14 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
     EasyUISendBuffer();
 }
 
@@ -1137,8 +1157,11 @@ void EasyUIInit(uint8_t mode)
  * @param   void
  * @return  void
  */
-void EasyUISyncOpnValue()
+void EasyUIKeyActionMonitor()
 {
+    if (opnForward || opnBackward || opnEnter || opnExit || opnUp || opnDown)
+        return;
+
 #if KEY_NUM == 2
     opnForward = keyForward.isPressed;
     opnBackward = keyBackward.isPressed;
@@ -1168,12 +1191,11 @@ void EasyUISyncOpnValue()
  */
 void EasyUI(uint8_t timer)
 {
-    if (errorOccurred)
-        return;
+//    if (errorOccurred)
+//        return;
 
     static uint8_t index = 0, itemSum = 0;
 
-    EasyUISyncOpnValue();
     EasyUIModifyColor();
     EasyUISetDrawColor(NORMAL);
 
@@ -1183,14 +1205,6 @@ void EasyUI(uint8_t timer)
     {
         page = page->next;
     }
-
-//    if (EasyUIGetBatteryVoltage() < 7.2)
-//    {
-//        EasyUIDrawMsgBox("Battery Low!!");
-//        EasyUISendBuffer();
-//        errorOccurred = true;
-//        return;
-//    }
 
     // Quit UI to run function
     // If running function and hold the confirm button, quit the function
@@ -1220,23 +1234,20 @@ void EasyUI(uint8_t timer)
 
     EasyUIClearBuffer();
 
+    // Custom page--------------------------------------------------------------------------------
     if (page->funcType == PAGE_CUSTOM)
     {
         page->Event(page);
 
         if (layer == 0)
         {
-            if (opnExit)
-            {
-                pageIndex[++layer] = 1;
-                EasyUITransitionAnim();
-            }
             EasyUISendBuffer();
             return;
         }
 
         if (opnExit)
         {
+            opnExit = false;
             pageIndex[layer] = 0;
             itemIndex[layer--] = 0;
             index = itemIndex[layer];
@@ -1247,7 +1258,9 @@ void EasyUI(uint8_t timer)
         EasyUISendBuffer();
         return;
     }
+    // -------------------------------------------------------------------------------------------
 
+    // Icon page----------------------------------------------------------------------------------
     if (page->funcType == PAGE_ICON)
     {
         if (layer == 0)
@@ -1258,6 +1271,7 @@ void EasyUI(uint8_t timer)
 
         if (opnExit)
         {
+            opnExit = false;
             pageIndex[layer] = 0;
             itemIndex[layer--] = 0;
             index = itemIndex[layer];
@@ -1268,8 +1282,9 @@ void EasyUI(uint8_t timer)
         EasyUISendBuffer();
         return;
     }
+    // -------------------------------------------------------------------------------------------
 
-    // Display every item in current page
+    // List page----------------------------------------------------------------------------------
     for (EasyUIItem_t *item = page->itemHead; item != NULL; item = item->next)
     {
         EasyUIGetItemPos(page, item, index, timer);
@@ -1308,6 +1323,9 @@ void EasyUI(uint8_t timer)
         }
     }
 
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnUp = opnDown = false;
+
     if (layer == 0)
     {
         EasyUISendBuffer();
@@ -1315,6 +1333,7 @@ void EasyUI(uint8_t timer)
     }
     if (opnExit)
     {
+        opnExit = false;
         pageIndex[layer] = 0;
         itemIndex[layer--] = 0;
         index = itemIndex[layer];
@@ -1325,5 +1344,8 @@ void EasyUI(uint8_t timer)
         }
         EasyUITransitionAnim();
     }
+    // -------------------------------------------------------------------------------------------
+
     EasyUISendBuffer();
+
 }
