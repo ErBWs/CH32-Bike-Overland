@@ -184,4 +184,4 @@ add_executable(CH32V307VCT6
         project/code/easy_key.c
         project/code/inertial_navigation.c
         project/code/encoder.c
-        project/code/pid.c)
+        project/code/pid.c project/code/user_flash.c project/code/moto.c)

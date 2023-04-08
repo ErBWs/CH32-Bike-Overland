@@ -37,15 +37,61 @@
 /*
  * TIM2 Servo
  * TIM4 FLY_WHEEL AND BACK WHELL
- * TIM8 BEEP
  * TIM9 FLY_ENCODER
  * TIM10 BACK_MOTO_ENCODER
  *
+ * TIM8 BEEP_PWM
+ * TIM3 BEEP_AND_KEY_PIT
  *
  */
 extern uint8 gps_state;
-#define BEEP_AND_KEY_PIT   TIM3_PIT
-#define USE_GPS 0
+typedef enum tone_frq
+{
+    NONE=0,
+    DO=500,
+    RE=550,
+    MI=590,
+    FA=640,
+    SO=710,
+    LA=760,
+    TI=830,
+    DO1=880,
+    RE1=950,
+
+};
+#define TONE_PLAY(frq,time) beep_feq=frq;        \
+                            beep_time = time;   \
+                            while(beep_time!=0);
+void play_song(void)
+{
+    TONE_PLAY(MI,20);
+    TONE_PLAY(SO,20);
+    TONE_PLAY(LA,20);
+    TONE_PLAY(NONE,5);
+    TONE_PLAY(LA,30);
+    TONE_PLAY(NONE,5);
+    TONE_PLAY(LA,20);
+    TONE_PLAY(TI,20);
+    TONE_PLAY(DO1,20);
+    TONE_PLAY(NONE,5);
+    TONE_PLAY(DO1,30);
+    TONE_PLAY(NONE,5);
+    TONE_PLAY(DO1,20);
+    TONE_PLAY(RE1,20);
+    TONE_PLAY(TI,20);
+    TONE_PLAY(NONE,5);
+    TONE_PLAY(TI,30);
+    TONE_PLAY(NONE,5);
+    TONE_PLAY(LA,20);
+    TONE_PLAY(SO,20);
+    TONE_PLAY(NONE,5);
+    TONE_PLAY(SO,10);
+    TONE_PLAY(LA,20);
+    TONE_PLAY(NONE,100);
+    TONE_PLAY(DO,50);
+    TONE_PLAY(DO1,50);
+}
+#define USE_GPS 1
 //extern double flashBuf[2000];
 int main (void)
 {
@@ -55,15 +101,40 @@ int main (void)
     EasyKeyInit(&keyL,E2);
     EasyKeyInit(&keyC,E3);
     EasyKeyInit(&keyR,E4);
-    pit_ms_init(BEEP_AND_KEY_PIT, 10);
+//    timer_init(TIM_7,TIMER_US);
     ips096_init();
+////    adc_init(ADC1_IN9_B1,ADC_12BIT);
+////    double temp=101.22;
+////    SaveToFlashWithConversion(&temp);
+////    double count;
+////    FlashOperationEnd();
+////    ReadFlashWithConversion(&count);
+////    printf("%f",count);
+//
+////    while(1)
+////    {
+////        system_delay_ms(100);
+//////        printf("%d\n", adc_convert(ADC2_IN9_B1));
+////        ips096_show_int(0,0,adc_convert(ADC1_IN9_B1),4);
+////    }
     encoderInit();
     motoInit();
     imuinit(IMU_ALL);
+//    ADRC_Init(&ADRC_GYRO_Controller,&ADRC_SPEED_Controller,&ADRC_SPEED_MIN_Controller);//自抗扰控制器初始化
     pidAllInit();
     BlueToothInit();
+
     Butterworth_Parameter_Init();
-//    pwm_set_duty(BEEP_PWM_PIN,500);
+    backSpdPid.target[NOW]=2;
+
+//    pwm_set_duty(MOTOR_BACK_PIN,5000);
+//    system_delay_ms(1000);
+//    pwm_set_duty(SERVO_PIN, GetServoDuty(-20));
+//    system_delay_ms(1000);
+//    pwm_set_duty(SERVO_PIN, GetServoDuty(20));
+//    system_delay_ms(1000);
+//    pwm_set_duty(SERVO_PIN, GetServoDuty(0));
+//while(1);
 #if USE_GPS==1
     GPS_init();
 #endif
@@ -78,14 +149,23 @@ int main (void)
             uint8 gps_state = gps_data_parse();
             if(gps_state==0)
             {
-                uint8 is_finish;
-                is_finish = get_point(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
-                two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data,&gps_use);//根据当前经纬以及得到的目标点解算，放到gps_use里
+                uint8 is_finish=0;
+                is_finish = GetPoint(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
+//                two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data,&gps_use);//根据当前经纬以及得到的目标点解算，放到gps_use里
                 gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
-                printf("delta:%f\n",gps_use.delta);
-                printf("dis:%f\n",gps_use.points_distance);
+                BlueToothPrintf("\ndelta:%f\n",gps_use.delta);
+                BlueToothPrintf("yaw:%f\n",imu_data.mag_yaw);
+                BlueToothPrintf("azimuth:%f\n",gps_use.points_azimuth);
+//                ips096_show_float(0,0,gps_use.delta,3,3);
+//                ips096_show_float(0,8,imu_data.mag_yaw,3,3);
+//                printf("dis:%f\n",gps_use.points_distance);
                 if(is_finish)
                 {
+                    stagger_flag=1;
+                    motoDutySet(MOTOR_FLY_PIN,0);
+                    Bike_Start = 0;
+
+                    play_song();
                     while(1)
                     {
                         printf("Complete!!\n");

@@ -307,11 +307,17 @@ void imuinit(char imumode)
         IMU_Offset(imumode);
 //        num_float[5] = (float)Offset_OK;
 //        vcan_sendware(num_float, sizeof(num_float));
-        beep_time=10;
+        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        system_delay_ms(100);
+        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        printf("ok1\n");
 //        num_float[5] = 0;
         imuMagOffset();
         Ellipsoid_fitting_Process(&mag_origin_data);
-        beep_time=10;
+        printf("ok2\n");
+        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        system_delay_ms(100);
+        pwm_init(BEEP_PWM_PIN,beep_feq,0);
     }
     if (imumode == IMU_ICM)
     {

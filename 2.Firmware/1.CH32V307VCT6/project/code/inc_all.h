@@ -27,6 +27,7 @@
 #include "pid.h"
 #include "ctrl.h"
 #include "jdy34.h"
+//#include "ADRC.h"
 
 extern uint16 beep_time;
 extern uint16 beep_feq;
