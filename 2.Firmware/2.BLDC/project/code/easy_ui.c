@@ -1035,6 +1035,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
  */
 void EasyUIEventSaveSettings(EasyUIItem_t *item)
 {
+    interrupt_global_disable();
     for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
     {
         for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
@@ -1056,6 +1057,7 @@ void EasyUIEventSaveSettings(EasyUIItem_t *item)
         }
     }
     FlashOperationEnd();
+    interrupt_global_enable(1);
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
@@ -1108,6 +1110,7 @@ void EasyUIInit(uint8_t mode)
     // Power-off storage
     if (flash_check(flashSecIndex, flashPageIndex))
     {
+        interrupt_global_disable();
         for (EasyUIPage_t *page = pageHead; page != NULL; page = page->next)
         {
             for (EasyUIItem_t *itemTmp = page->itemHead; itemTmp != NULL; itemTmp = itemTmp->next)
@@ -1129,6 +1132,7 @@ void EasyUIInit(uint8_t mode)
             }
         }
         FlashOperationEnd();
+        interrupt_global_enable(1);
     }
 
     // Display the welcome photo and info

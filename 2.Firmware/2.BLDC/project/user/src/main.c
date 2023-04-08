@@ -36,7 +36,7 @@
 
 int main (void)
 {
-    clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
+    clock_init(SYSTEM_CLOCK_120M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
 
     MenuInit();
@@ -62,10 +62,10 @@ int main (void)
 //            }
 //            gps_tau1201_flag = 0;
 //        }
-        timer_start(TIM_2);
-        timer_stop(TIM_2);
-        timer_clear(TIM_2);
-
+//        timer_start(TIM_2);
+//        timer_stop(TIM_2);
+//        timer_clear(TIM_2);
+//
         EasyUI(20);
         system_delay_ms(20);
     }
