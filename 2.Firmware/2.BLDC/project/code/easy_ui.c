@@ -164,6 +164,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -172,6 +173,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
     for (int j = 0; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -180,6 +182,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -188,6 +191,7 @@ void EasyUITransitionAnim()
             EasyUIDrawDot(i - 1, j - 1, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 4);
     EasyUISendBuffer();
 }
 
@@ -207,6 +211,7 @@ void EasyUIBackgroundBlur()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 3);
     EasyUISendBuffer();
     for (int j = 1; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -215,6 +220,7 @@ void EasyUIBackgroundBlur()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 3);
     EasyUISendBuffer();
     for (int j = 0; j < SCREEN_HEIGHT + 1; j += 2)
     {
@@ -223,6 +229,7 @@ void EasyUIBackgroundBlur()
             EasyUIDrawDot(i, j, IPS096_backgroundColor);
         }
     }
+    EasyUIDelay_ms(TRANSITION_TIME / 3);
     EasyUISendBuffer();
 }
 
@@ -741,6 +748,9 @@ void EasyUIEventChangeUint(EasyUIItem_t *item)
             changeStep = false;
     }
 
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnExit = opnUp = opnDown = false;
+
     IPS096_SendBuffer();
 }
 
@@ -873,6 +883,9 @@ void EasyUIEventChangeInt(EasyUIItem_t *item)
         else if (index == 2)
             changeStep = false;
     }
+
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnExit = opnUp = opnDown = false;
 
     IPS096_SendBuffer();
 }
@@ -1008,6 +1021,9 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
             changeStep = false;
     }
 
+    // Clear the states of key to monitor next key action
+    opnForward = opnBackward = opnEnter = opnExit = opnUp = opnDown = false;
+
     IPS096_SendBuffer();
 }
 
@@ -1122,11 +1138,11 @@ void EasyUIInit(uint8_t mode)
         EasyUIDisplayBMP((SCREEN_WIDTH - 58) / 2, (SCREEN_HEIGHT - 56) / 2, 58, 56, ErBW_s_5856);
     else
         EasyUIDisplayBMP((SCREEN_WIDTH - 29) / 2, (SCREEN_HEIGHT - 28) / 2, 29, 28, ErBW_s_2928);
-    if (SCREEN_WIDTH > (25 * FONT_WIDTH + 1))
+    if (2 * SCREEN_WIDTH / 3 > (25 * FONT_WIDTH + 1))
         EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT,
                          "Powered by EasyUI(ErBW_s)");
     else if (SCREEN_WIDTH > (14 * FONT_WIDTH + 1))
-        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
+        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 14 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
     EasyUISendBuffer();
 }
 
