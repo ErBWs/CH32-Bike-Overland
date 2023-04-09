@@ -1,0 +1,4 @@
+"C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6" -B "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/cmake-build-debug-mingw

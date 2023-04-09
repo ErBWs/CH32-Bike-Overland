@@ -95,6 +95,8 @@ typedef struct
     // 下面两个个信息从GNGGA语句中获取
     uint8       satellite_used;                                                 // 用于定位的卫星数量
     float       height;                                                         // 高度
+    
+    float       hdop                                                            //水平精度因子
 }gps_info_struct;
 
 typedef enum

@@ -286,14 +286,14 @@ void Ellipsoid_fitting_Process(_xyz_mag_s16_ary_st *mag_origin_data)
 //    }
 //    printf("  X0 = %f| Y0 = %f| Z0 = %f| A = %d| B = %d| C = %d \r\n", mag_Offset.X0, mag_Offset.Y0, mag_Offset.Z0, mag_Offset.A, mag_Offset.B, mag_Offset.C);
 }
-extern float num_float[8];
+//extern float num_float[8];
 //倾角补偿 + 偏航角解算
 void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
 {
 //    imu_data.pit; y   ??
 //    imu_data.rol; x   ??
     float Hx = 0,Hy = 0;
-    float temp;
+//    float temp;
     if (mode == ICO)
     {
 //        temp = atan2f(mag_data->mx,mag_data->my) * VAL;

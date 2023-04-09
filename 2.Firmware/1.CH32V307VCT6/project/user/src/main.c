@@ -44,7 +44,7 @@
  * TIM3 BEEP_AND_KEY_PIT
  *
  */
-extern uint8 gps_state;
+//extern uint8 gps_state;
 typedef enum tone_frq
 {
     NONE=0,
@@ -92,7 +92,6 @@ void play_song(void)
     TONE_PLAY(DO1,50);
 }
 #define USE_GPS 1
-//extern double flashBuf[2000];
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz

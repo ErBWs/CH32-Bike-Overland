@@ -253,7 +253,7 @@ float yaw_gps_delta( float azimuth, float yaw)
 uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_data)//只能在解析完数据后才能调用此函数
 {
     double min_distance;
-    double min_azimuth;
+    double min_azimuth = 0;
     uint8 state = 0;
     uint8 i,k;
     uint8 min_index = gps_use.use_point_count-1;//假设以当前的目标点作为最小点
