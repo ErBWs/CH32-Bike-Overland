@@ -2,6 +2,7 @@
 #define _PID_H
 #include <stdint.h>
 #include <stdbool.h>
+#include "easy_ui.h"
 #define ABS(x)		(((x)>0)? (x): -(x))
 #define pi 3.1415926535898
 
@@ -19,9 +20,9 @@ enum {
 extern uint8_t motionflag;
 typedef struct _PID_Typedef
 {
-    float Kp;
-    float Ki;
-    float Kd;
+    paramType Kp;
+    paramType Ki;
+    paramType Kd;
 
     float target[3];					//目标值,包含NOW， LAST， LLAST上上次
     float feedback[3];					//测量值

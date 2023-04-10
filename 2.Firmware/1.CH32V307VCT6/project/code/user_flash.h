@@ -25,6 +25,9 @@ void SaveToFlashWithConversion(const double *value);
 void ReadFlash(int32_t *value);
 void ReadFlashWithConversion(double *value);
 void FlashOperationEnd();
+void GPSSaveToFlashWithConversion(const double *value);
+void GPSReadFlashWithConversion(double *value);
+void GPSFlashOperationEnd();
 
 #ifdef __cplusplus
 }

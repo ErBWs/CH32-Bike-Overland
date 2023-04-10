@@ -1,5 +1,5 @@
 #include "ctrl.h"
-#define ANGLE_STATIC_BIAS 0
+#define ANGLE_STATIC_BIAS 1.2
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -18,10 +18,10 @@ void IMUGetCalFun(void)
 {
     if(imu_update_counts<1500)
             imu_update_counts++;
-    IMU_Getdata(&gyro,&acc, IMU_ALL);
-    imuGetMagData(&mag_data);
+    IMU_Getdata(&gyro,&acc, IMU_963RA);
     Data_steepest();
-    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
+    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
+    imuGetMagData(&mag_data);
     Inclination_compensation(&mag_data, NO_ICO);
     Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
 //    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
@@ -36,7 +36,7 @@ void ServoControl(void)
 //    static float servo_feedback;
 //    servo_feedback = 0.8*servo_feedback+0.2*gps_use.delta;
     static uint8 counts=0;
-    if(++counts!=25)return;
+    if(++counts!=20)return;
     counts=0;
     if(pile_state==1)
     {
@@ -45,9 +45,9 @@ void ServoControl(void)
         PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
     }
     PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//´¿P
-    BlueToothPrintf("servo_input_delta:%f\n",gps_use.delta);
-    BlueToothPrintf("servo_out:%f\n",dirPid.pos_out);
-    dynamic_zero = dirPid.pos_out/17;
+//    BlueToothPrintf("servo_input_delta:%f\n",gps_use.delta);
+//    BlueToothPrintf("servo_out:%f\n",dirPid.pos_out);
+//    dynamic_zero = dirPid.pos_out/17;
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.pos_out));
 #endif
 //    printf("A%f\r\n",imu_data.rol);
@@ -148,7 +148,7 @@ void FlyWheelControl(void)
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//½ÇËÙ¶È»·PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>25)
+    if(abs(imu_data.rol)>20)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);

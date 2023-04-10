@@ -9,6 +9,7 @@
 #ifndef INC_ALL_H_
 #define INC_ALL_H_
 
+#define USE_GPS 1
 
 #include "complementary_filter.h"
 #include "math.h"
@@ -27,6 +28,10 @@
 #include "pid.h"
 #include "ctrl.h"
 #include "jdy34.h"
+#include "easy_ui.h"
+#include "easy_ui_user_app.h"
+#include "profile_photo_erbws.h"
+
 //#include "ADRC.h"
 
 extern uint16 beep_time;

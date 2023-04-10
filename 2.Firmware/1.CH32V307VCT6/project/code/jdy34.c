@@ -52,8 +52,8 @@ void BlueToothInit(void)
 static void DataResolve(void)
 {
     uint16 offset = 0;
-    uint8 ValidFactorFlag = 0;
-    uint8 BreakDownFlag = 0;
+//    uint8 ValidFactorFlag = 0;
+//    uint8 BreakDownFlag = 0;
     BlueToothData.VelocityVal = GET_ELE(blue_tooth_buffer,offset,char);
     BlueToothData.TurnVal = GET_ELE(blue_tooth_buffer,offset,char);
 //    BreakDownFlag = GET_ELE(blue_tooth_buffer,offset,char);
