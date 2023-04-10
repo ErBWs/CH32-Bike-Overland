@@ -51,19 +51,19 @@ int main (void)
     clock_init(SYSTEM_CLOCK_120M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
     pidAllInit();
-    MenuInit();
-    EasyUIInit(1);
     encoderInit();
     motoInit();
     BlueToothInit();
-    imuinit(IMU_963RA);
+    imuinit(IMU_ALL);
     Butterworth_Parameter_Init();
+    MenuInit();
+    EasyUIInit(1);
 #if USE_GPS==1
     GPS_init();
 #endif
     EasyUITransitionAnim();
     taskTimAllInit();
-    interrupt_disable(TIM1_PIT);
+//    interrupt_disable(TIM1_PIT);
     while(1)
     {
         EasyUI(20);
@@ -76,7 +76,6 @@ int main (void)
 //        BlueToothPrintf();
 //        BlueToothPrintf("yaw:%f\n",0);
 //        system_delay_ms(50);
-
     }
 }
 

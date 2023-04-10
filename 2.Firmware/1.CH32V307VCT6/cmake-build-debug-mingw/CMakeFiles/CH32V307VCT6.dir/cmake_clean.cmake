@@ -146,6 +146,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj.d"
   "CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj"
   "CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj.d"
+  "CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj"
+  "CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj.d"
   "CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj"
   "CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj.d"
   "CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj"

@@ -1,5 +1,7 @@
 #include "ctrl.h"
-#define ANGLE_STATIC_BIAS 0.5
+#include "easy_ui.h"
+
+paramType ANGLE_STATIC_BIAS=0.5;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -18,13 +20,13 @@ void IMUGetCalFun(void)
 {
     if(imu_update_counts<1500)
             imu_update_counts++;
-    IMU_Getdata(&gyro,&acc, IMU_963RA);
+    IMU_Getdata(&gyro,&acc, IMU_ALL);
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
     imuGetMagData(&mag_data);
     Inclination_compensation(&mag_data, NO_ICO);
     Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
-//    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
+    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
 
 }
 #define USE_BLUE_TOOTH 1

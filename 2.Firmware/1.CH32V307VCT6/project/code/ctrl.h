@@ -5,6 +5,7 @@
 
 extern uint32_t back_inter_distance;
 extern uint8 stagger_flag;
+extern paramType ANGLE_STATIC_BIAS;
 void IMUGetCalFun(void);
 void ServoControl(void);
 void taskTimAllInit(void);

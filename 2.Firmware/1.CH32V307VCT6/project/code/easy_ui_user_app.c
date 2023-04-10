@@ -13,7 +13,7 @@ EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageBack
 // Items
 EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemEle, itemSetting;
 EasyUIItem_t titleGPS, titleGPS, itemPr2, itemPr3;
-EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
+EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd,itemOffset, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
 EasyUIItem_t titleBackMotorPID, itemBackMotorKp, itemBackMotorKi, itemBackMotorKd, itemBackMotorInMax, itemBackMotorErrMax, itemBackMotorErrMin;
 EasyUIItem_t itemExp, itemTh;
@@ -23,7 +23,7 @@ EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemRe
 
 void EventMainLoop(EasyUIItem_t *item)
 {
-    interrupt_enable(TIM1_PIT);
+//    interrupt_enable(TIM1_PIT);
 //    printf("%f\n", Gp2yGetDistance());
 #if USE_GPS==1
     if(gps_tau1201_flag==1)
@@ -39,25 +39,23 @@ void EventMainLoop(EasyUIItem_t *item)
                     stagger_flag=1;
                     motoDutySet(MOTOR_FLY_PIN,0);
                     Bike_Start = 0;
-                    while(true)
-                    {
-                        printf("Complete!!\n");
-                        system_delay_ms(500);
-                    }
                 }
             }
-            else {
+            else
+            {
                 printf("no\n");
             }
             gps_tau1201_flag=0;
         }
+     else
+        {
+            gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+        }
 #endif
-
-
     if (opnExit)
     {
         opnExit = false;
-        interrupt_disable(TIM1_PIT);
+//        interrupt_disable(TIM1_PIT);
         functionIsRunning = false;
         EasyUIBackgroundBlur();
     }
@@ -156,18 +154,15 @@ void PagePoints(EasyUIItem_t *page)
     IPS096_ShowStr(0, 14, "longitude:");
     IPS096_ShowStr(0, 26, "hdop:");
     IPS096_ShowStr(0, 38, "time:  :  ");
-//    IPS096_ShowStr(0, 38+12, "satellite_used:");
-//    IPS096_ShowFloat(54, 2, 123.665962,3,6);
-//    IPS096_ShowFloat(60, 14, 36.556965,3,6);
-//    IPS096_ShowFloat(30, 26, 15.26,2,2);
-//    IPS096_ShowUint(30, 38, 12,2);
-//    IPS096_ShowUint(50, 38, 54,2);
+    IPS096_ShowStr(0, 38+12, "satellite_used:");
+    IPS096_ShowStr(0, 38+12+12, "yaw:");
     IPS096_ShowFloat(54, 2, gps_tau1201.latitude,3,6);
     IPS096_ShowFloat(60, 14, gps_tau1201.longitude,3,6);
     IPS096_ShowFloat(30, 26, gps_tau1201.hdop,2,2);
     IPS096_ShowUint(30, 38, gps_tau1201.time.minute,2);
     IPS096_ShowUint(50, 38, gps_tau1201.time.second,2);
     IPS096_ShowUint(92, 38+12, gps_tau1201.satellite_used,2);
+    IPS096_ShowFloat(4*8, 38+12+12, imu_data.mag_yaw,3,3);
     
     gps_handler();
 }
@@ -273,6 +268,7 @@ void MenuInit()
     EasyUIAddItem(&pageSpdPID, &itemAngSpdKp, "FlyAngleSpd Kp", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageSpdPID, &itemAngSpdKi, "FlyAngleSpd Ki", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Ki, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageSpdPID, &itemAngSpdKd, "FlyAngleSpd Kd", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kd, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageSpdPID, &itemOffset, "Static Bias", ITEM_CHANGE_VALUE, &ANGLE_STATIC_BIAS, EasyUIEventChangeFloat);
     
     // Page direction pid
     EasyUIAddItem(&pageDirPID, &titleDirPID, "[Direction PID]", ITEM_PAGE_DESCRIPTION);
@@ -292,6 +288,7 @@ void MenuInit()
     EasyUIAddItem(&pageSetting, &titleSetting, "[Settings]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageSetting, &itemColor, "Reversed Color", ITEM_SWITCH, &reversedColor);
     EasyUIAddItem(&pageSetting, &itemListLoop, "List Loop", ITEM_SWITCH, &listLoop);
+    
 //    EasyUIAddItem(&pageSetting, &itemBuzzer, "Buzzer Volume", ITEM_PROGRESS_BAR, &buzzerVolume, EventChangeBuzzerVolume);
     EasyUIAddItem(&pageSetting, &itemSave, "Save Settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
     EasyUIAddItem(&pageSetting, &itemReset, "Reset Settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
