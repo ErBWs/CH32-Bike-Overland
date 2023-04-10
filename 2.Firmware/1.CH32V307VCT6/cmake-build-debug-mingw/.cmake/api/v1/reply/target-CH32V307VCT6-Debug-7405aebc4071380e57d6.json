@@ -218,7 +218,10 @@
 				171,
 				172,
 				173,
-				174
+				174,
+				175,
+				177,
+				179
 			]
 		}
 	],
@@ -344,7 +347,10 @@
 				171,
 				172,
 				173,
-				174
+				174,
+				175,
+				177,
+				179
 			]
 		},
 		{
@@ -435,7 +441,14 @@
 				158,
 				160,
 				162,
-				163
+				163,
+				176,
+				178,
+				180,
+				181,
+				182,
+				183,
+				184
 			]
 		}
 	],
@@ -1405,6 +1418,59 @@
 			"compileGroupIndex" : 0,
 			"path" : "project/code/moto.c",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "project/code/easy_ui.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/easy_ui.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "project/code/easy_ui_user_app.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/easy_ui_user_app.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "project/code/profile_photo_erbws.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/profile_photo_erbws.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/pid.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/ips096.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/user_flash.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "project/code/inertial_navigation.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

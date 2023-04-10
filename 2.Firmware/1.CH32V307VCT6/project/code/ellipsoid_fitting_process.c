@@ -44,21 +44,23 @@ char Offset_Mag_OK = 0;
 //读取磁力计数据
 void imuGetMagData(_xyz_mag_s16_st *mag_data)
 {
+    static _xyz_mag_s16_st last_mag = {0};
     imu963ra_get_mag();
     if (Offset_Mag_OK)
         {
+        imu963ra_mag_x = imu963ra_mag_x * cosf(ANGLE_TO_RAD(imu_data.pit)) - imu963ra_mag_y * sinf(ANGLE_TO_RAD(imu_data.pit)) * sinf(ANGLE_TO_RAD(imu_data.rol)) - imu963ra_mag_z * cosf(ANGLE_TO_RAD(imu_data.rol)) * sinf(ANGLE_TO_RAD(imu_data.pit));
+        imu963ra_mag_y = imu963ra_mag_y * cosf(ANGLE_TO_RAD(imu_data.rol)) - imu963ra_mag_z * sinf(ANGLE_TO_RAD(imu_data.rol));
         mag_data->mx = ((float)imu963ra_mag_x - (float)mag_Offset.X0) / (float)mag_Offset.A;  //获取磁力计拟合数据
         mag_data->my = ((float)imu963ra_mag_y - (float)mag_Offset.Y0) / (float)mag_Offset.B;
         mag_data->mz = ((float)imu963ra_mag_z - (float)mag_Offset.Z0) / (float)mag_Offset.C;
-//        magmx.out = mag_data->mx;
-//        magmy.out = mag_data->my;
-//        magmz.out = mag_data->mz;
-//        limit_filter(0.002, 500, &magmx, mag_data->mx);
-//        limit_filter(0.002, 500, &magmy, mag_data->my);
-//        limit_filter(0.002, 500, &magmz, mag_data->mz);
-//        mag_data->mx = magmx.out;
-//        mag_data->my = magmy.out;
-//        mag_data->mz = magmz.out;
+        
+        mag_data->mx = mag_data->mx * 0.8 + last_mag.mx * 0.2;//低通滤波
+        mag_data->my = mag_data->my * 0.8 + last_mag.my * 0.2;
+        mag_data->mz = mag_data->mz * 0.8 + last_mag.mz * 0.2;
+        
+        last_mag.mx = mag_data->mx;
+        last_mag.my = mag_data->my;
+        last_mag.mz = mag_data->mz;
         }
      else
         {
@@ -297,8 +299,7 @@ void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
     if (mode == ICO)
     {
 //        temp = atan2f(mag_data->mx,mag_data->my) * VAL;
-       Hx = mag_data->mx * cosf(ANGLE_TO_RAD(imu_data.pit)) - mag_data->my * sinf(ANGLE_TO_RAD(imu_data.pit)) * sinf(ANGLE_TO_RAD(imu_data.rol)) - mag_data->mz * cosf(ANGLE_TO_RAD(imu_data.rol)) * sinf(ANGLE_TO_RAD(imu_data.pit));
-       Hy = mag_data->my * cosf(ANGLE_TO_RAD(imu_data.rol)) - mag_data->mz * sinf(ANGLE_TO_RAD(imu_data.rol));
+
 //       printf("%f,",Hx);
 //       printf("%f,",Hy);
 //       printf("%f,",mag_data->mx);
@@ -311,11 +312,11 @@ void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
     }
     if(mode == NO_ICO)
     {
-        imu_data.mag_yaw = atan2f(mag_data->my,mag_data->mx) * VAL;
+        imu_data.mag_yaw = atan2f(-mag_data->my,mag_data->mx) * VAL;
     }
-    if (imu_data.mag_yaw < 0)
-    {
-        imu_data.mag_yaw += 360;
-    }
+//    if (imu_data.mag_yaw < 0)
+//    {
+//        imu_data.mag_yaw += 360;
+//    }
 }
 

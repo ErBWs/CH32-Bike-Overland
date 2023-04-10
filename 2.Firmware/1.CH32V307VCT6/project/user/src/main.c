@@ -44,144 +44,39 @@
  * TIM3 BEEP_AND_KEY_PIT
  *
  */
-//extern uint8 gps_state;
-typedef enum tone_frq
-{
-    NONE=0,
-    DO=500,
-    RE=550,
-    MI=590,
-    FA=640,
-    SO=710,
-    LA=760,
-    TI=830,
-    DO1=880,
-    RE1=950,
 
-};
-#define TONE_PLAY(frq,time) beep_feq=frq;        \
-                            beep_time = time;   \
-                            while(beep_time!=0);
-void play_song(void)
-{
-    TONE_PLAY(MI,20);
-    TONE_PLAY(SO,20);
-    TONE_PLAY(LA,20);
-    TONE_PLAY(NONE,5);
-    TONE_PLAY(LA,30);
-    TONE_PLAY(NONE,5);
-    TONE_PLAY(LA,20);
-    TONE_PLAY(TI,20);
-    TONE_PLAY(DO1,20);
-    TONE_PLAY(NONE,5);
-    TONE_PLAY(DO1,30);
-    TONE_PLAY(NONE,5);
-    TONE_PLAY(DO1,20);
-    TONE_PLAY(RE1,20);
-    TONE_PLAY(TI,20);
-    TONE_PLAY(NONE,5);
-    TONE_PLAY(TI,30);
-    TONE_PLAY(NONE,5);
-    TONE_PLAY(LA,20);
-    TONE_PLAY(SO,20);
-    TONE_PLAY(NONE,5);
-    TONE_PLAY(SO,10);
-    TONE_PLAY(LA,20);
-    TONE_PLAY(NONE,100);
-    TONE_PLAY(DO,50);
-    TONE_PLAY(DO1,50);
-}
-#define USE_GPS 1
+
 int main (void)
 {
-    clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 144MHz
+    clock_init(SYSTEM_CLOCK_120M);                                              // 初始化芯片时钟 工作频率为 144MHz
     debug_init();                                                               // 初始化默认 Debug UART
-    // 此处编写用户代码 例如外设初始化代码等
-    EasyKeyInit(&keyL,E2);
-    EasyKeyInit(&keyC,E3);
-    EasyKeyInit(&keyR,E4);
-//    timer_init(TIM_7,TIMER_US);
-    ips096_init();
-////    adc_init(ADC1_IN9_B1,ADC_12BIT);
-////    double temp=101.22;
-////    SaveToFlashWithConversion(&temp);
-////    double count;
-////    FlashOperationEnd();
-////    ReadFlashWithConversion(&count);
-////    printf("%f",count);
-//
-////    while(1)
-////    {
-////        system_delay_ms(100);
-//////        printf("%d\n", adc_convert(ADC2_IN9_B1));
-////        ips096_show_int(0,0,adc_convert(ADC1_IN9_B1),4);
-////    }
+    pidAllInit();
+    MenuInit();
+    EasyUIInit(1);
     encoderInit();
     motoInit();
-    imuinit(IMU_ALL);
-//    ADRC_Init(&ADRC_GYRO_Controller,&ADRC_SPEED_Controller,&ADRC_SPEED_MIN_Controller);//自抗扰控制器初始化
-    pidAllInit();
     BlueToothInit();
-
+    imuinit(IMU_963RA);
     Butterworth_Parameter_Init();
-    backSpdPid.target[NOW]=2;
-
-//    pwm_set_duty(MOTOR_BACK_PIN,5000);
-//    system_delay_ms(1000);
-//    pwm_set_duty(SERVO_PIN, GetServoDuty(-20));
-//    system_delay_ms(1000);
-//    pwm_set_duty(SERVO_PIN, GetServoDuty(20));
-//    system_delay_ms(1000);
-//    pwm_set_duty(SERVO_PIN, GetServoDuty(0));
-//while(1);
 #if USE_GPS==1
     GPS_init();
 #endif
-    // 此处编写用户代码 例如外设初始化代码等
+    EasyUITransitionAnim();
     taskTimAllInit();
-
+    interrupt_disable(TIM1_PIT);
     while(1)
     {
-#if USE_GPS==1
-        if(gps_tau1201_flag==1&&Bike_Start==1)
-        {
-            uint8 gps_state = gps_data_parse();
-            if(gps_state==0)
-            {
-                uint8 is_finish=0;
-                is_finish = GetPoint(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
-//                two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data,&gps_use);//根据当前经纬以及得到的目标点解算，放到gps_use里
-                gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
-                BlueToothPrintf("\ndelta:%f\n",gps_use.delta);
-                BlueToothPrintf("yaw:%f\n",imu_data.mag_yaw);
-                BlueToothPrintf("azimuth:%f\n",gps_use.points_azimuth);
-//                ips096_show_float(0,0,gps_use.delta,3,3);
-//                ips096_show_float(0,8,imu_data.mag_yaw,3,3);
-//                printf("dis:%f\n",gps_use.points_distance);
-                if(is_finish)
-                {
-                    stagger_flag=1;
-                    motoDutySet(MOTOR_FLY_PIN,0);
-                    Bike_Start = 0;
+        EasyUI(20);
+//        BlueToothPrintf("rol:%f\n",imu_data.rol);
+//        BlueToothPrintf("yaw:%f\n",imu_data.mag_yaw);
+//        BlueToothPrintf("imu_data.inter_pit:%f\n",imu_data.inter_pit);
+//        if (imu_data.yaw<0)imu_data.yaw += 360;
+//        BlueToothPrintf("yaw:%f\n",imu_data.yaw);
+//        BlueToothPrintf("yaw:%f\n",imu_data.mag_yaw);
+//        BlueToothPrintf();
+//        BlueToothPrintf("yaw:%f\n",0);
+//        system_delay_ms(50);
 
-                    play_song();
-                    while(1)
-                    {
-                        printf("Complete!!\n");
-                        system_delay_ms(500);
-                    }
-                    //........//
-                }
-            }
-//            gps_state=1;
-            gps_tau1201_flag=0;
-        }
-        if(Bike_Start==0)
-        {
-            gps_handler();
-        }
-#endif
-        // 此处编写需要循环执行的代码
     }
 }
 

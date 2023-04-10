@@ -552,6 +552,18 @@
 		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_key.h">
 			<Option target="CH32V307VCT6"/>
 		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui.c">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui.h">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_app.c">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_app.h">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
 		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ellipsoid_fitting_process.c">
 			<Option target="CH32V307VCT6"/>
 		</Unit>
@@ -613,6 +625,12 @@
 			<Option target="CH32V307VCT6"/>
 		</Unit>
 		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/pid.h">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/profile_photo_erbws.c">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/profile_photo_erbws.h">
 			<Option target="CH32V307VCT6"/>
 		</Unit>
 		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/sendware.c">

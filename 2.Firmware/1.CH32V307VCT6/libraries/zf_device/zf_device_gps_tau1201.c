@@ -262,7 +262,7 @@ static uint8 gps_gnrmc_parse (char *line, gps_info_struct *gps)
         gps->longitude  = gps->longitude_degree + (double)gps->longitude_cent / 60 + (double)gps->longitude_second / 600000;
 
         speed_tmp       = get_float_number(&buf[get_parameter_index(7, buf)]);  // 速度(海里/小时)
-        gps->speed      = speed_tmp * 1.85f;                                    // 转换为公里/小时
+        gps->speed      = speed_tmp * 1.852f;                                    // 转换为公里/小时
         gps->direction  = get_float_number(&buf[get_parameter_index(8, buf)]);  // 角度
     }
 

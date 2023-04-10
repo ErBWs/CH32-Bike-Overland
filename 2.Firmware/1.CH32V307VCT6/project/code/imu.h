@@ -45,7 +45,9 @@ typedef struct
 
     _xyz_f_st a_acc;
     _xyz_f_st w_acc;
-
+    
+    
+    
     float rol;
     float pit;
     float yaw;
@@ -88,7 +90,7 @@ enum {
 extern _sensor_st sensor;
 extern void Data_steepest(void);
 extern void IMU_Offset(char imumode);
-extern void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc,_imu_st *imu);
+extern void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st *imu);
 extern void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode);
 extern void imuinit(char imumode);
 #endif /* CODE_IMU_H_ */

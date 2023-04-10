@@ -8,7 +8,7 @@
 #include "inertial_navigation.h"
 
 
-_gps_st gps_data_array[GPS_MAX_POINT];
+_gps_st gps_data_array[GPS_MAX_POINT] = {0};
 _gps_st gps_data;
 _gps_use_st gps_use;
 double first_point_latitude, first_point_longitude, second_point_latitude, second_point_longitude;
@@ -24,7 +24,80 @@ void GPS_init(void)
     exti_init(B0,EXTI_TRIGGER_BOTH);//r
     exti_init(D8,EXTI_TRIGGER_BOTH);//w
 }
+void gps_handler(void)
+{
+    uint8 state = gps_data_parse();
+    static uint8_t writeStatus = 0;
+    
+    if (opnEnter)
+    {
+        if(writeStatus==0)
+        {
+            writeStatus=1;
+            EasyUIDrawMsgBox("EnterSavingMode");
+            flash_buffer_clear();
+            memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//清空数组准备录入新的数据
+            memset(&gps_use,0,sizeof(_gps_use_st));//清空记录信息准备录入新的数据
+        }
+        opnEnter = false;
+        flash_buffer_clear();
+        if (state == 0 && (gps_tau1201.hdop < 0.75))
+        {
+            EasyUIDrawMsgBox("Saving...");
+            beep_time=20;
+            gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
+            gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
+            gps_use.point_count++;
+        }
+        else
+        {
+            EasyUIDrawMsgBox("Error!");
+        }
+    }
+    if (opnForward)
+    {
+        opnForward = false;
+        if(writeStatus == 0)
+        {
+            flash_buffer_clear();
+            memset(gps_data_array, 0, sizeof(_gps_st) * GPS_MAX_POINT);//清空数组准备录入新的数据
+            memset(&gps_use, 0, sizeof(_gps_use_st));//清空记录信息准备录入新的数据
+            double count;
+            GPSReadFlashWithConversion(&count);//写完点后取消读点模式，以便下一次随时进入写点模式。
+            gps_use.point_count = (uint8) count;
+            for (uint8 k = 0; k < gps_use.point_count; k++) {
+                GPSReadFlashWithConversion(&gps_data_array[k].latitude);
+                GPSReadFlashWithConversion(&gps_data_array[k].longitude);
+            }
+            gps_data_array[0].is_used = 1;//设为已用状态
+            gps_data = gps_data_array[0];//获得第一个目标点
+            gps_use.use_point_count = 1;
+        }
+    }
+    if (opnExit)
+    {
+        EasyUIDrawMsgBox("Saving to Flash...");
+//        EasyUIBackgroundBlur();
+        writeStatus = 0;
+        if(gps_use.point_count!=0)
+        {
+            double count = gps_use.point_count;
+            GPSSaveToFlashWithConversion(&count);
+            for(uint32 k=0;k<gps_use.point_count;k++)
+            {
+                GPSSaveToFlashWithConversion(&gps_data_array[k].latitude);
+                GPSSaveToFlashWithConversion(&gps_data_array[k].longitude);
+            }
+            gps_data_array[0].is_used = 1;//设为已用状态
+            gps_data = gps_data_array[0];//获得第一个目标点
+            gps_use.use_point_count=1;
+            GPSFlashOperationEnd();
+        }
+//        opnExit = false;//bug!!!
+    }
+}
 
+/*
 void gps_handler(void)
 {
     static uint8 write_keep_flag=0;
@@ -34,7 +107,7 @@ void gps_handler(void)
     }
     if(write_keep_flag==0&&write_key_flag==2)
     {
-        /*初始化buff指针*/
+        
         flashBufIndex = 0;
         flashSecIndex = 63;
         flashPageIndex = 3;
@@ -73,16 +146,16 @@ void gps_handler(void)
                 {
                      if (gps_tau1201.state && (gps_tau1201.satellite_used >= 4))
                      {
-                         printf("gps_state:%d\r\n",gps_tau1201.state);
-                         printf("gps_satellite:%d\r\n",gps_tau1201.satellite_used);
-                         printf("save successful\r\n");
-                         printf("gps_point : %d\r\n",gps_use.point_count);
-                         printf("latitude:%.9f\r\n",gps_tau1201.latitude);
-                         printf("longitude:%.9f\r\n",gps_tau1201.longitude);
-                         BlueToothPrintf("\ngps_satellite:%d\r\n",gps_tau1201.satellite_used);
-                         BlueToothPrintf("gps_point : %d\r\n",gps_use.point_count);
-                         BlueToothPrintf("latitude:%.9f\r\n",gps_tau1201.latitude);
-                         BlueToothPrintf("longitude:%.9f\r\n",gps_tau1201.longitude);
+//                         printf("gps_state:%d\r\n",gps_tau1201.state);
+//                         printf("gps_satellite:%d\r\n",gps_tau1201.satellite_used);
+//                         printf("save successful\r\n");
+//                         printf("gps_point : %d\r\n",gps_use.point_count);
+//                         printf("latitude:%.9f\r\n",gps_tau1201.latitude);
+//                         printf("longitude:%.9f\r\n",gps_tau1201.longitude);
+//                         BlueToothPrintf("\ngps_satellite:%d\r\n",gps_tau1201.satellite_used);
+//                         BlueToothPrintf("gps_point : %d\r\n",gps_use.point_count);
+//                         BlueToothPrintf("latitude:%.9f\r\n",gps_tau1201.latitude);
+//                         BlueToothPrintf("longitude:%.9f\r\n",gps_tau1201.longitude);
                          gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
                          gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
                          gps_use.point_count++;
@@ -115,7 +188,6 @@ void gps_handler(void)
     }
     if(read_key_flag==1)//从Flash读点，通常在不写点的时候起作用。写点完成后无须read。
     {
-        /*初始化buff指针*/
         flashBufIndex = 0;
         flashSecIndex = 63;
         flashPageIndex = 3;
@@ -148,7 +220,7 @@ void gps_handler(void)
         main_key_flag = 0;
     }
 }
-
+*/
 
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result)
 {

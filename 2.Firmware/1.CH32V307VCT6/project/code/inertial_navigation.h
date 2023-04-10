@@ -32,6 +32,7 @@ typedef struct
     uint8       point_count;                                                   //采点数
     uint8       use_point_count;                                                //已用点数
 }_gps_use_st;
+
 typedef struct
 {
     double      points_azimuth ;                                               //两个点之间的方位角

@@ -18,10 +18,10 @@ void IMUGetCalFun(void)
 {
     if(imu_update_counts<1500)
             imu_update_counts++;
-    IMU_Getdata(&gyro,&acc, IMU_ALL);
-    imuGetMagData(&mag_data);
+    IMU_Getdata(&gyro,&acc, IMU_963RA);
     Data_steepest();
-    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
+    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
+    imuGetMagData(&mag_data);
     Inclination_compensation(&mag_data, NO_ICO);
     Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
 //    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);

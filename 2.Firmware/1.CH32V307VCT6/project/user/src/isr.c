@@ -369,6 +369,7 @@ void TIM3_IRQHandler(void)
         }
         EasyKeyScanKeyState();
         EasyKeyUserApp();
+        EasyUIKeyActionMonitor();
         if(keyL.isHold)
         {
             beep_time = 100;

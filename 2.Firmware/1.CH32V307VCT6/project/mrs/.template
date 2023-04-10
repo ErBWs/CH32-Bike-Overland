@@ -14,4 +14,4 @@ Description=ROM(byte): 192K, SRAM(byte): 128K, CHIP PINS: 100, GPIO PORTS: 80.\n
 PeripheralVersion=1.5
 
 CLKSpeed=1
-Target Path=obj/Seekfree_CH32V307VCT6_Opensource_Library.hex
+Target Path=obj\Seekfree_CH32V307VCT6_Opensource_Library.hex

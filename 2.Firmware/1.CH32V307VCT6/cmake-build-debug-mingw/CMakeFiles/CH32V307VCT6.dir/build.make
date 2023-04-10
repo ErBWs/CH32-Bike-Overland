@@ -1418,6 +1418,51 @@ CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\moto.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.s
 
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui.c
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_91) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c"
+
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c" > CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.i
+
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.s
+
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_app.c
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_92) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c"
+
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c" > CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.i
+
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.s
+
+CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
+CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
+CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/profile_photo_erbws.c
+CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_93) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c"
+
+CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c" > CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.i
+
+CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.s
+
 # Object files for target CH32V307VCT6
 CH32V307VCT6_OBJECTS = \
 "CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj" \
@@ -1509,7 +1554,10 @@ CH32V307VCT6_OBJECTS = \
 "CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj" \
 "CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj" \
 "CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj" \
-"CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj"
+"CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj" \
+"CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj" \
+"CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj" \
+"CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj"
 
 # External object files for target CH32V307VCT6
 CH32V307VCT6_EXTERNAL_OBJECTS =
@@ -1604,11 +1652,14 @@ CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj
+CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj
+CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj
+CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/build.make
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/linklibs.rsp
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/objects1.rsp
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_91) "Linking C executable CH32V307VCT6.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_94) "Linking C executable CH32V307VCT6.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\CH32V307VCT6.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
