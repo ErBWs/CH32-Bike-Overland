@@ -1856,6 +1856,30 @@ libraries/zf_driver/zf_driver_usb_cdc.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.s
 .PHONY : libraries/zf_driver/zf_driver_usb_cdc.c.s
 
+project/code/buzzer.obj: project/code/buzzer.c.obj
+.PHONY : project/code/buzzer.obj
+
+# target to build an object file
+project/code/buzzer.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj
+.PHONY : project/code/buzzer.c.obj
+
+project/code/buzzer.i: project/code/buzzer.c.i
+.PHONY : project/code/buzzer.i
+
+# target to preprocess a source file
+project/code/buzzer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.i
+.PHONY : project/code/buzzer.c.i
+
+project/code/buzzer.s: project/code/buzzer.c.s
+.PHONY : project/code/buzzer.s
+
+# target to generate assembly for a file
+project/code/buzzer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.s
+.PHONY : project/code/buzzer.c.s
+
 project/code/complementary_filter.obj: project/code/complementary_filter.c.obj
 .PHONY : project/code/complementary_filter.obj
 
@@ -2585,6 +2609,9 @@ help:
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.obj
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.i
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.s
+	@echo ... project/code/buzzer.obj
+	@echo ... project/code/buzzer.i
+	@echo ... project/code/buzzer.s
 	@echo ... project/code/complementary_filter.obj
 	@echo ... project/code/complementary_filter.i
 	@echo ... project/code/complementary_filter.s

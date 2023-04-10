@@ -49,8 +49,7 @@ typedef enum tone_frq
     LA=760,
     TI=830,
     DO1=880,
-    RE1=950,
-
+    RE1=950
 };
 #define TONE_PLAY(frq,time) beep_feq=frq;       \
                             beep_time = time;   \

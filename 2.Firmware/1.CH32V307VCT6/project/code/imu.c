@@ -146,11 +146,8 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode)
 void IMU_Offset(char imumode)
 {
     uint8 i, Count = 100;
-    int64 temp[6] = {0};
-
-//    acc_offset.x = 0;
-//    acc_offset.y = 0;
-//    acc_offset.z = 0;
+    int64 temp[3] = {0};
+    
     gyro_offset.x = 0;
     gyro_offset.y = 0;
     gyro_offset.z = 0;
@@ -159,22 +156,13 @@ void IMU_Offset(char imumode)
     {
         IMU_Getdata(&gyro, &acc, imumode);   //读取陀螺仪数据
         system_delay_ms(2);
-
-//        temp[0] += acc.x;
-//        temp[1] += acc.y;
-//        temp[2] += acc.z;
-
-        temp[3] += gyro.x;
-        temp[4] += gyro.y;
-        temp[5] += gyro.z;
+        temp[0] += gyro.x;
+        temp[1] += gyro.y;
+        temp[2] += gyro.z;
     }
-//    acc_offset.x = (int16)(temp[0] / Count);
-//    acc_offset.y = (int16)(temp[1] / Count);
-//    acc_offset.z = (int16)(temp[2] / Count);
-
-    gyro_offset.x = (int16)(temp[3] / Count);
-    gyro_offset.y = (int16)(temp[4] / Count);
-    gyro_offset.z = (int16)(temp[5] / Count);
+    gyro_offset.x = (int16)(temp[0] / Count);
+    gyro_offset.y = (int16)(temp[1] / Count);
+    gyro_offset.z = (int16)(temp[2] / Count);
 
     Offset_OK = 1;
 }
@@ -209,13 +197,13 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st
     float acc_length,q_length,mag_length;
     _xyz_f_st acc_norm;
     _xyz_f_st vec_err;
-    float mag_err;
+//    float mag_err;
     _xyz_f_st d_angle;
 
-    _xyz_f_st mag_norm;
-    _xyz_f_st mag_body;         //机体坐标系下的理论磁力计
-    _xyz_f_st mag_half;         //大地坐标系下的实际磁力计（）
-    _xyz_f_st mag_world;        //大地坐标系下的理论磁力计
+//    _xyz_f_st mag_norm;
+//    _xyz_f_st mag_body;         //机体坐标系下的理论磁力计
+//    _xyz_f_st mag_half;         //大地坐标系下的实际磁力计（）
+//    _xyz_f_st mag_world;        //大地坐标系下的理论磁力计
 
 
     w_q = imu->w;
@@ -242,10 +230,10 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st
     acc_norm.z = acc->z / acc_length;
 //    imu_data.inter_pit = acc_length;
     // 磁力计的读数，单位化
-    mag_length = my_sqrt(my_pow(mag->x) + my_pow(mag->y) + my_pow(mag->z));
-    mag_norm.x = mag->x / mag_length;
-    mag_norm.y = mag->y / mag_length;
-    mag_norm.z = mag->z / mag_length;
+//    mag_length = my_sqrt(my_pow(mag->x) + my_pow(mag->y) + my_pow(mag->z));
+//    mag_norm.x = mag->x / mag_length;
+//    mag_norm.y = mag->y / mag_length;
+//    mag_norm.z = mag->z / mag_length;
     
     // 载体坐标下的x方向向量，单位化
     imu->x_vec.x = 1 - (2*q2q2 + 2*q3q3);
@@ -263,17 +251,17 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st
     imu->z_vec.z = 1 - (2*q1q1 + 2*q2q2);
 
     //计算大地坐标系下的磁力计实际数值
-    mag_half.x = imu->x_vec.x * mag_norm.x + imu->x_vec.y * mag_norm.y + imu->x_vec.z * mag_norm.z;
-    mag_half.y = imu->y_vec.x * mag_norm.x + imu->y_vec.y * mag_norm.y + imu->y_vec.z * mag_norm.z;
+//    mag_half.x = imu->x_vec.x * mag_norm.x + imu->x_vec.y * mag_norm.y + imu->x_vec.z * mag_norm.z;
+//    mag_half.y = imu->y_vec.x * mag_norm.x + imu->y_vec.y * mag_norm.y + imu->y_vec.z * mag_norm.z;
 //    mag_half.z = imu->z_vec.x * mag_norm.x + imu->z_vec.y * mag_norm.y + imu->z_vec.z * mag_norm.z;
     
-    mag_length = my_sqrt(my_pow(mag_half.x) + my_pow(mag_half.y));
+//    mag_length = my_sqrt(my_pow(mag_half.x) + my_pow(mag_half.y));
     //方向归一化
-    mag_half.x = mag_half.x / mag_length;
-    mag_half.y = mag_half.y / mag_length;
+//    mag_half.x = mag_half.x / mag_length;
+//    mag_half.y = mag_half.y / mag_length;
     
     //方向叉乘 标准方向【0，1】
-    mag_err = -mag_half.y*1;
+//    mag_err = -mag_half.y*1;
 //    //计算大地坐标系下的磁力计理论数值
 //    mag_world.x = my_sqrt(my_pow(mag_half.x) + my_pow(mag_half.y));
 //    mag_world.y = 0;
@@ -323,9 +311,9 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st
     vec_err_i.z += err_lf_z.out *dT *ki;
 
     // 构造增量旋转（含融合矫正）
-    d_angle.x = (gyr->x *RAD_PER_DEG + (err_lf_x.out + vec_err_i.x) * kp + mag_err * imu->z_vec.x * kp_mag) * dT / 2 ;
-    d_angle.y = (gyr->y *RAD_PER_DEG + (err_lf_y.out + vec_err_i.y) * kp + mag_err * imu->z_vec.y * kp_mag) * dT / 2 ;
-    d_angle.z = (gyr->z *RAD_PER_DEG + (err_lf_z.out + vec_err_i.z) * kp + mag_err * imu->z_vec.z * kp_mag) * dT / 2 ;
+    d_angle.x = (gyr->x *RAD_PER_DEG + (err_lf_x.out + vec_err_i.x) * kp ) * dT / 2 ;
+    d_angle.y = (gyr->y *RAD_PER_DEG + (err_lf_y.out + vec_err_i.y) * kp ) * dT / 2 ;
+    d_angle.z = (gyr->z *RAD_PER_DEG + (err_lf_z.out + vec_err_i.z) * kp ) * dT / 2 ;
 
     // 计算姿态
     imu->w = w_q           - x_q*d_angle.x - y_q*d_angle.y - z_q*d_angle.z;
@@ -354,11 +342,17 @@ void imuinit(char imumode)
         IMU_Offset(imumode);
 
 //        vcan_sendware(num_float, sizeof(num_float));
+        IMU_Getdata(&gyro,&acc, IMU_ALL);
+        imu_data.rol = atan2f(acc.y,acc.z);//        num_float[5] = (float)Offset_OK;
+        imu_data.pit = atan2f(acc.x,acc.z);
+        imu_data.w = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
+        imu_data.x = sinf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) - cosf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
+        imu_data.y = cosf(imu_data.rol/2) * sinf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* cosf(imu_data.pit/2)*sinf(imu_data.yaw/2);
+        imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
         pwm_init(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
         pwm_init(BEEP_PWM_PIN,beep_feq,0);
         printf("ok1\n");
-//        num_float[5] = 0;
         imuMagOffset();
         Ellipsoid_fitting_Process(&mag_origin_data);
         printf("ok2\n");

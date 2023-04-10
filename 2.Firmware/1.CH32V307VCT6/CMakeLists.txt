@@ -196,4 +196,7 @@ add_executable(CH32V307VCT6
         project/code/pid.h
         project/code/ips096.h
         project/code/user_flash.c
-        project/code/user_flash.h project/code/inertial_navigation.h)
+        project/code/user_flash.h
+        project/code/inertial_navigation.h
+        project/code/buzzer.c
+        project/code/buzzer.h project/code/ctrl.h)

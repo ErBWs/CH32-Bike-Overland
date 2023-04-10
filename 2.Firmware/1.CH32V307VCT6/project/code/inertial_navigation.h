@@ -31,6 +31,7 @@ typedef struct
     double      points_distance;                                               //两点之间的距离
     uint8       point_count;                                                   //采点数
     uint8       use_point_count;                                                //已用点数
+    float       z_angle;                                                        //z轴陀螺仪积分
 }_gps_use_st;
 
 typedef struct
