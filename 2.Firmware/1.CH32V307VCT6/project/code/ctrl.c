@@ -1,5 +1,5 @@
 #include "ctrl.h"
-#define ANGLE_STATIC_BIAS 0.5
+#define ANGLE_STATIC_BIAS 0
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -27,7 +27,7 @@ void IMUGetCalFun(void)
 //    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
 
 }
-#define USE_BLUE_TOOTH 1
+#define USE_BLUE_TOOTH 0
 void ServoControl(void)
 {
 #if USE_BLUE_TOOTH==1
@@ -38,9 +38,16 @@ void ServoControl(void)
     static uint8 counts=0;
     if(++counts!=25)return;
     counts=0;
+    if(pile_state==1)
+    {
+        if(pile_update_flag!=1)return;//若绕桩模式下参数没有更新则提前退出
+        pile_update_flag=0;
+        PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
+    }
+    PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//纯P
     BlueToothPrintf("servo_input_delta:%f\n",gps_use.delta);
-    PID_Calculate(&dirPid,0,gps_use.delta);//纯P
     BlueToothPrintf("servo_out:%f\n",dirPid.pos_out);
+    dynamic_zero = dirPid.pos_out/17;
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.pos_out));
 #endif
 //    printf("A%f\r\n",imu_data.rol);

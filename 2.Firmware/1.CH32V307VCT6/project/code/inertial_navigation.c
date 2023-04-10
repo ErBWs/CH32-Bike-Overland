@@ -47,55 +47,56 @@ void gps_handler(void)
     }
     while(gps_use.point_count < GPS_MAX_POINT&&write_keep_flag==1)
     {
-        if(gps_tau1201_flag==1)
-        {
+        if(gps_tau1201_flag==1) {
             uint8 state = gps_data_parse();
-            if(state==0)
-            {
-                if(write_key_flag==2)
-                {
+            if (state == 0) {
+                if (write_key_flag == 2) {
                     write_key_flag = 0;
                     write_keep_flag = 0;//写完点后取消读点模式，以便下一次随时进入写点模式。
                     double count = gps_use.point_count;
                     SaveToFlashWithConversion(&count);
-                    for(uint8 k=0;k<gps_use.point_count;k++)
-                    {
-                         SaveToFlashWithConversion(&gps_data_array[k].latitude);
-                         SaveToFlashWithConversion(&gps_data_array[k].longitude);
+                    for (uint8 k = 0; k < gps_use.point_count; k++) {
+                        SaveToFlashWithConversion(&gps_data_array[k].latitude);
+                        SaveToFlashWithConversion(&gps_data_array[k].longitude);
                     }
                     FlashOperationEnd();
                     gps_data_array[0].is_used = 1;//设为已用状态
                     gps_data = gps_data_array[0];//获得第一个目标点
-                    gps_use.use_point_count=1;
+                    gps_use.use_point_count = 1;
                     break;
                 }
-                if(write_key_flag==1&&write_keep_flag==1)
-                {
-                     if (gps_tau1201.state && (gps_tau1201.satellite_used >= 4))
-                     {
-                         printf("gps_state:%d\r\n",gps_tau1201.state);
-                         printf("gps_satellite:%d\r\n",gps_tau1201.satellite_used);
-                         printf("save successful\r\n");
-                         printf("gps_point : %d\r\n",gps_use.point_count);
-                         printf("latitude:%.9f\r\n",gps_tau1201.latitude);
-                         printf("longitude:%.9f\r\n",gps_tau1201.longitude);
-                         BlueToothPrintf("\ngps_satellite:%d\r\n",gps_tau1201.satellite_used);
-                         BlueToothPrintf("gps_point : %d\r\n",gps_use.point_count);
-                         BlueToothPrintf("latitude:%.9f\r\n",gps_tau1201.latitude);
-                         BlueToothPrintf("longitude:%.9f\r\n",gps_tau1201.longitude);
-                         gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
-                         gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
-                         gps_use.point_count++;
-                         ips114_show_int(10, 32, gps_use.point_count, 2);
-                     }
-                     else
-                     {
-                         printf("satellite-couts:%d",gps_tau1201.satellite_used);
-                     }
-                     write_key_flag = 0;
+                if ((write_key_flag == 1 || read_key_flag == 3) && write_keep_flag == 1) {
+                    if (gps_tau1201.state && (gps_tau1201.satellite_used >= 4) && gps_tau1201.hpdo < 0.75) {
+                        printf("gps_state:%d\r\n", gps_tau1201.state);
+                        printf("gps_satellite:%d\r\n", gps_tau1201.satellite_used);
+                        printf("save successful\r\n");
+                        printf("gps_point : %d\r\n", gps_use.point_count);
+                        printf("latitude:%.9f\r\n", gps_tau1201.latitude);
+                        printf("longitude:%.9f\r\n", gps_tau1201.longitude);
+                        BlueToothPrintf("\ngps_satellite:%d\r\n", gps_tau1201.satellite_used);
+                        BlueToothPrintf("gps_point : %d\r\n", gps_use.point_count);
+                        BlueToothPrintf("latitude:%.9f\r\n", gps_tau1201.latitude);
+                        BlueToothPrintf("longitude:%.9f\r\n", gps_tau1201.longitude);
+                        gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
+                        gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
+                        if(read_key_flag == 3)
+                        {
+                            TONE_PLAY(DO,10);
+                            TONE_PLAY(RE,10);
+                            TONE_PLAY(MI,10);
+                            gps_data_array[gps_use.point_count].type = 1;
+                            read_key_flag = 0;
+                        }
+                        gps_use.point_count++;
+                        ips114_show_int(10, 32, gps_use.point_count, 2);
+                    } else {
+                        printf("satellite-couts:%d", gps_tau1201.satellite_used);
+                    }
+                    write_key_flag = 0;
+
                 }
             }
-            gps_tau1201_flag=0;
+            gps_tau1201_flag = 0;
         }
      }
     if(write_keep_flag == 1&&gps_use.point_count==GPS_MAX_POINT)//当读点达到上限的时候清除读点模式并写入Flash
@@ -140,9 +141,12 @@ void gps_handler(void)
             printf("the %d point's comformation:\nlatitude:%f\nlongitude:%f\n",k,gps_data_array[k].latitude,gps_data_array[k].longitude);
         }
     }
+
     if (main_key_flag==1) {//发车
         if(gps_use.point_count!=0)
         {
+            TONE_PLAY(DO,100);
+            TONE_PLAY(DO1,20);
             Bike_Start = 1;
         }
         main_key_flag = 0;
@@ -166,7 +170,7 @@ void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_
 
 }
 
-float yaw_gps_delta( float azimuth, float yaw)
+double yaw_gps_delta( float azimuth, float yaw)
 {
     double delta;
     //0<azimut<90
@@ -250,7 +254,7 @@ float yaw_gps_delta( float azimuth, float yaw)
 
 #define EXTRA_FORECAST_POINT 0
 #define DISTANCE_LIMITATION 1
-uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_data)//只能在解析完数据后才能调用此函数
+uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gpsData)//只能在解析完数据后才能调用此函数
 {
     double min_distance;
     double min_azimuth;
@@ -294,7 +298,7 @@ uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_dat
             }
             if(min_index+1 < gps_use.point_count)
             {
-                *gps_data = gps_data_array[min_index+1];//赋予新的目标点
+                *gpsData = gps_data_array[min_index + 1];//赋予新的目标点
                 gps_use.use_point_count++;
                 printf("CHANGE-POINT\n");
             }
@@ -312,7 +316,7 @@ uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_dat
     return state;
 }
 
-uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
+uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gpsData)
 {
     uint8 state=0;
     _gps_two_point_st gps_result;
@@ -323,11 +327,11 @@ uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
             state=1;
             break;
         }
-        two_points_message(latitude_now,longitude_now,gps_data,&gps_result);
+        two_points_message(latitude_now, longitude_now, gpsData, &gps_result);
         if(gps_result.points_distance<DISTANCE_LIMITATION)
         {
-            *gps_data = gps_data_array[gps_use.use_point_count];
-            gps_data->is_used = 1;
+            *gpsData = gps_data_array[gps_use.use_point_count];
+            gpsData->is_used = 1;
             gps_use.use_point_count++;
             printf("CHANGE-POINT\n");
             beep_time=20;
@@ -343,6 +347,80 @@ uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
     gps_use.points_azimuth=gps_result.points_azimuth;
     return state;
 }
-
-
+uint8 pile_state = 0;
+uint8 pile_update_flag=0;
+void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData)
+{
+    static uint8 state =0;
+    static float last_yaw;
+    static float beg_yaw;
+    static uint8 dir;
+    static uint8 dir_change_flag=0;
+    _gps_two_point_st gps_result;
+    switch(state)
+    {
+        case 0:
+            if(gpsData->type == 1)//如果是绕桩点
+            {
+                dir = gps_use.delta<0?0:1;//判断绕行方向，0为逆时针，1为顺时针
+                last_yaw = beg_yaw = imu_data.mag_yaw;
+                dirDisPid.target[NOW] = 2;//距离环设定为2米，即绕桩半径为2m
+                pile_state = 1;
+                state=1;
+            }
+        break;
+        case 1:
+            two_points_message(latitude_now, longitude_now, gpsData, &gps_result);
+            gps_use.delta+=gps_use.delta>=0?-90:90;
+            gps_use.points_distance = gps_result.points_distance;
+            pile_update_flag=1;//置位更新标志位
+            if(dir==0)
+            {
+                if(yaw_gps_delta(last_yaw,imu_data.mag_yaw)>0)//逆时针转有效
+                    last_yaw = imu_data.mag_yaw;
+                if(dir_change_flag==0&&yaw_gps_delta(last_yaw,beg_yaw)<0)
+                {
+                    TONE_PLAY(SO,10);
+                    TONE_PLAY(DO,10);
+                    dir_change_flag=1;
+                }
+                else if(dir_change_flag==0&&yaw_gps_delta(last_yaw,beg_yaw)>0)
+                {
+                    dir_change_flag=0;
+                    state = 2;
+                }
+            }
+            else if(dir==1)
+            {
+                if(yaw_gps_delta(last_yaw,imu_data.mag_yaw)<0)//顺时针转有效
+                    last_yaw = imu_data.mag_yaw;
+                if(dir_change_flag==0&&yaw_gps_delta(last_yaw,beg_yaw)>0)
+                {
+                    TONE_PLAY(SO,10);
+                    TONE_PLAY(DO,10);
+                    dir_change_flag=1;
+                }
+                else if(dir_change_flag==1&&yaw_gps_delta(last_yaw,beg_yaw)<0)
+                {
+                    dir_change_flag=0;
+                    state = 2;
+                }
+            }
+        break;
+        case 2:
+            dirDisPid.target[NOW] = 0;//距离环设定为2米，即绕桩半径为2m
+            TONE_PLAY(DO,10);
+            TONE_PLAY(SO,10);
+            *gpsData = gps_data_array[gps_use.use_point_count];
+            gpsData->is_used = 1;
+            gps_use.use_point_count++;
+            printf("CHANGE-POINT\n");
+            pile_state = 0;
+            state=0;
+        break;
+        default:
+            printf("logical error!\n");
+        break;
+    }
+}
 

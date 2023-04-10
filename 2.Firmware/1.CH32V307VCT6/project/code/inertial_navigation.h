@@ -45,12 +45,16 @@ extern uint8 write_key_flag;
 extern uint8 read_key_flag;
 extern uint8 main_key_flag;
 extern uint8 Bike_Start;
+
+extern uint8 pile_state;
+extern uint8 pile_update_flag;
 void GPS_init(void);
 void gps_handler(void);
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result);
-float yaw_gps_delta( float azimuth, float yaw);
-uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_data);
-uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data);
+double yaw_gps_delta( float azimuth, float yaw);
+uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gpsData);
+uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gpsData);
+void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData);
 //double yaw_gps_delta( _gps_st gps_data, _imu_st imu_data);
 
 #endif /* INERTIAL_NAVIGATION_H_ */

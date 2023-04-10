@@ -45,23 +45,8 @@
  *
  */
 extern uint8 gps_state;
-typedef enum tone_frq
-{
-    NONE=0,
-    DO=500,
-    RE=550,
-    MI=590,
-    FA=640,
-    SO=710,
-    LA=760,
-    TI=830,
-    DO1=880,
-    RE1=950,
 
-};
-#define TONE_PLAY(frq,time) beep_feq=frq;        \
-                            beep_time = time;   \
-                            while(beep_time!=0);
+
 void play_song(void)
 {
     TONE_PLAY(MI,20);
@@ -101,8 +86,9 @@ int main (void)
     EasyKeyInit(&keyL,E2);
     EasyKeyInit(&keyC,E3);
     EasyKeyInit(&keyR,E4);
-//    timer_init(TIM_7,TIMER_US);
     ips096_init();
+//    timer_init(TIM_7,TIMER_US);
+
 ////    adc_init(ADC1_IN9_B1,ADC_12BIT);
 ////    double temp=101.22;
 ////    SaveToFlashWithConversion(&temp);
@@ -150,9 +136,12 @@ int main (void)
             if(gps_state==0)
             {
                 uint8 is_finish=0;
-                is_finish = GetPoint(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
-//                two_points_message(gps_tau1201.latitude, gps_tau1201.longitude, &gps_data,&gps_use);//根据当前经纬以及得到的目标点解算，放到gps_use里
-                gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+                if(gps_tau1201.hpdo<0.75&&pile_state==0)//在绕桩模式下（即pile_state==1）取消自动换点逻辑
+                {
+                    is_finish = GetPoint(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
+                    gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+                }
+                pileProcess(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
                 BlueToothPrintf("\ndelta:%f\n",gps_use.delta);
                 BlueToothPrintf("yaw:%f\n",imu_data.mag_yaw);
                 BlueToothPrintf("azimuth:%f\n",gps_use.points_azimuth);
@@ -164,7 +153,6 @@ int main (void)
                     stagger_flag=1;
                     motoDutySet(MOTOR_FLY_PIN,0);
                     Bike_Start = 0;
-
                     play_song();
                     while(1)
                     {
@@ -174,7 +162,6 @@ int main (void)
                     //........//
                 }
             }
-//            gps_state=1;
             gps_tau1201_flag=0;
         }
         if(Bike_Start==0)
