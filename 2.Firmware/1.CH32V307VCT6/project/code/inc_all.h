@@ -9,7 +9,7 @@
 #ifndef INC_ALL_H_
 #define INC_ALL_H_
 
-#define USE_GPS 1
+#define USE_GPS 0
 
 #include "complementary_filter.h"
 #include "math.h"
@@ -33,7 +33,7 @@
 #include "profile_photo_erbws.h"
 
 //#include "ADRC.h"
-
+extern uint32 now_tick;
 extern uint16 beep_time;
 extern uint16 beep_feq;
 #define BEEP_PWM_PIN TIM8_PWM_MAP1_CH4_C13

@@ -91,6 +91,7 @@ int main (void)
     EasyUITransitionAnim();
     backSpdPid.target[NOW]=2;
     taskTimAllInit();
+    ServoSportSet(GetServoDuty(20),100);
 //    pit_disable(TIM1_PIT);
     while(1)
     {
@@ -107,5 +108,15 @@ int main (void)
 //        BlueToothPrintf("yaw:%f\n",0);
 //        system_delay_ms(50);
     }
+}
+float GetBatteryVoltage()
+{
+    float batVoltageAdc;
+    float batVoltage;
+
+    batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
+    batVoltage = 37.35f * batVoltageAdc / 4096;
+    vofaData[0] = batVoltage;
+    return batVoltage;
 }
 

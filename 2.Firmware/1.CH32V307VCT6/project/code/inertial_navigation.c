@@ -323,8 +323,7 @@ double yaw_gps_delta( float azimuth, float yaw)
 }
 
 
-#define EXTRA_FORECAST_POINT 0
-#define DISTANCE_LIMITATION 1
+
 uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gpsData)//只能在解析完数据后才能调用此函数
 {
     double min_distance;
@@ -414,10 +413,13 @@ uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gpsData)
         }
         break;
     }
+    gps_use.points_distance = gps_result.points_distance;
+    gps_use.points_azimuth = gps_result.points_azimuth;
     return state;
 }
-uint8 pile_state = 0;
+uint8 navigate_forbid = 0;
 uint8 pile_update_flag=0;
+uint8 circle_fitting_flag=0;
 void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData)
 {
     static uint8 state =0;
@@ -434,7 +436,7 @@ void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData)
                 dir = gps_use.delta<0?0:1;//判断绕行方向，0为逆时针，1为顺时针
                 last_yaw = beg_yaw = imu_data.mag_yaw;
                 dirDisPid.target[NOW] = 2;//距离环设定为2米，即绕桩半径为2m
-                pile_state = 1;
+                navigate_forbid = 1;
                 state=1;
             }
         break;
@@ -477,14 +479,14 @@ void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData)
             }
         break;
         case 2:
-            dirDisPid.target[NOW] = 0;//距离环设定为2米，即绕桩半径为2m
+            dirDisPid.target[NOW] = 0;
             TONE_PLAY(DO,10);
             TONE_PLAY(SO,10);
             *gpsData = gps_data_array[gps_use.use_point_count];
             gpsData->is_used = 1;
             gps_use.use_point_count++;
             printf("CHANGE-POINT\n");
-            pile_state = 0;
+            navigate_forbid = 0;
             state=0;
         break;
         default:
@@ -492,4 +494,84 @@ void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData)
         break;
     }
 }
-
+void pileProcess2(_gps_st *gpsData)
+{
+    static uint8 state =0;
+    static _gps_st beg_point;
+    _gps_two_point_st gps_result;
+    double bias=0;
+    switch(state)
+    {
+        case 0:
+            if(gpsData->type == 1)//如果是绕桩点
+            {
+                state=1;
+            }
+        break;
+        case 1:
+            if(gpsData->type == 0)
+            {
+                beg_point = *gpsData;//存储开始的导航点
+                gpsData->is_used = 1;
+                *gpsData = gps_data_array[gps_use.use_point_count];//下一个点是锥桶中心，用于判断角度是否在90°附近
+                gps_use.use_point_count++;
+                printf("Begin Pile\n");
+                beep_feq = SO;
+                beep_time=30;
+                circle_fitting_flag = 1;//取消原本角度解算方法，改用state=2里的方法
+                state = 2;
+            }
+        break;
+        case 2:
+            bias = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+            bias+=bias>=0?-90:90;
+            gps_use.delta = bias;
+            if(fabs(bias)<ANGLE_BIAS_THRESHOLD)//满足偏差条件，开始绕弯并进行角度积分
+            {
+                beep_feq = DO;
+                beep_time = 30;
+                gps_use.z_angle = 0;
+                state=3;
+            }
+        break;
+        case 3:
+            if(gps_use.z_angle>360)
+            state = 4;
+        break;
+    }
+}
+static uint16_t duty_target=0;
+static int32_t servo_step_duty;
+static int32_t duty_err;
+uint8 servo_sport_update_flag = 0;
+uint16 servo_current_duty;
+void ServoSportSet(uint16_t duty_value,int32_t ticks)
+{
+    duty_target = duty_value;
+    duty_err = duty_value- TIM2->CH1CVR;
+    servo_step_duty = duty_err/ticks;
+    servo_step_duty = servo_step_duty!=0?servo_step_duty:duty_err>0?1:-1;
+    servo_sport_update_flag = 1;
+}
+void ServoSportHandler(uint16 *duty_input)
+{
+    static uint32 last_ticks;
+    uint16 input_pwm_duty=servo_current_duty;//(TIM2->CH1CVR*PWM_DUTY_MAX)/TIM2->ATRLR;
+    if(now_tick>last_ticks&&servo_sport_update_flag==1)
+    {
+        last_ticks = now_tick;
+        duty_err-=servo_step_duty;
+        if((servo_step_duty<0&&duty_err>=0)||(servo_step_duty>0&&duty_err<=0))
+        {
+            servo_sport_update_flag = 0;
+            duty_err = 0;
+            input_pwm_duty = duty_target;
+        }
+        else{
+            input_pwm_duty += servo_step_duty;
+            input_pwm_duty = input_pwm_duty<0?0:input_pwm_duty>=PWM_DUTY_MAX?PWM_DUTY_MAX-1:input_pwm_duty;
+        }
+    }
+    *duty_input = input_pwm_duty;
+    servo_current_duty = input_pwm_duty;
+}

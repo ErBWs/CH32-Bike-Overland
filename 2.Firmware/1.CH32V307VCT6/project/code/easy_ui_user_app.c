@@ -25,42 +25,38 @@ void EventMainLoop(EasyUIItem_t *item)
 {
 //    pit_enable(TIM1_PIT);
 #if USE_GPS==1
-    _gps_two_point_st result;
+//    _gps_two_point_st result;
     if(Bike_Start==0)
         Bike_Start=1;
     if(gps_tau1201_flag==1)
+    {
+        uint8 gps_state = gps_data_parse();
+        if(gps_state==0)
         {
-            uint8 gps_state = gps_data_parse();
-            if(gps_state==0)
-            {
-                uint8 is_finish=0;
+            uint8 is_finish=0;
+            if(navigate_forbid==0)
                 is_finish = GetPoint(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
-                two_points_message(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data,&result);
-                gps_use.points_distance=result.points_distance;
-                gps_use.points_azimuth=result.points_azimuth;
-                gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
-                printf("yaw:%f\n",imu_data.mag_yaw);
-                if(is_finish)
-                {
+//            two_points_message(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data,&result);
+//            gps_use.points_distance=result.points_distance;
+//            gps_use.points_azimuth=result.points_azimuth;
+            if(is_finish)
+            {
 //                    stagger_flag=1;
 //                    motoDutySet(MOTOR_FLY_PIN,0);
-                    Bike_Start = 0;
-                    extern void play_song(void);
-                    play_song();
-                    functionIsRunning=false;
-                    EasyUIBackgroundBlur();
-                }
+                Bike_Start = 0;
+                extern void play_song(void);
+                play_song();
+                functionIsRunning=false;
+                EasyUIBackgroundBlur();
             }
-            else
-            {
-                printf("no\n");
-            }
-            gps_tau1201_flag=0;
         }
-     else
-        {
-            gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
-        }
+        gps_tau1201_flag=0;
+    }
+    if(navigate_forbid==0||circle_fitting_flag==0)
+    {
+        gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+    }
+    pileProcess2(&gps_data);
 #endif
     if (opnExit)
     {
