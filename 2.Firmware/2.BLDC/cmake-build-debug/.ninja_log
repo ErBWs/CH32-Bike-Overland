@@ -1,12 +1,12 @@
 # ninja log v5
 102	137	1680698575960908849	CMakeFiles/2_BLDC.dir/libraries/zf_device/zf_device_wireless_uart.c.o	ae0ac74bc1ae0b49
 3	102	1680698575926395045	CMakeFiles/2_BLDC.dir/libraries/zf_device/zf_device_scc8660_dvp.c.o	bc9d0074bc54ca9f
-136	173	1680698575996460650	CMakeFiles/2_BLDC.dir/libraries/zf_driver/zf_driver_pit.c.o	f21ef870a8a09953
 4	102	1680698575925044089	CMakeFiles/2_BLDC.dir/libraries/zf_device/zf_device_type.c.o	7e99b0aa04a12712
+136	173	1680698575996460650	CMakeFiles/2_BLDC.dir/libraries/zf_driver/zf_driver_pit.c.o	f21ef870a8a09953
+173	211	1680698576035211945	CMakeFiles/2_BLDC.dir/project/code/easy_key.c.o	2a8bfddb37d821e2
 139	181	1680698576004367426	CMakeFiles/2_BLDC.dir/libraries/zf_driver/zf_driver_soft_spi.c.o	b09adefcc38e78cb
 108	142	1680698575964511883	CMakeFiles/2_BLDC.dir/libraries/zf_driver/zf_driver_gpio.c.o	1e610085e4a2c26c
 4	103	1680698575925765588	CMakeFiles/2_BLDC.dir/libraries/zf_device/zf_device_w25q32.c.o	259989f374fc4656
-173	211	1680698576035211945	CMakeFiles/2_BLDC.dir/project/code/easy_key.c.o	2a8bfddb37d821e2
 138	180	1680698576004174759	CMakeFiles/2_BLDC.dir/libraries/zf_driver/zf_driver_soft_iic.c.o	1ba45cc63429c518
 3	208	1680604086817005309	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.o	1bf2dacac742fbda
 174	231	1680698576054828030	CMakeFiles/2_BLDC.dir/project/code/ips096.c.o	20a1a142f11d7bb0
@@ -57,7 +57,7 @@
 42	78	1680700232769165394	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.o	1609503db9e70712
 169	207	1680698576029680374	CMakeFiles/2_BLDC.dir/libraries/zf_driver/zf_driver_usb_cdc.c.o	345982b8cb749751
 45	82	1680700232773284597	CMakeFiles/2_BLDC.dir/libraries/zf_common/zf_common_clock.c.o	bed3a7ad007be43c
-5	47	1680700232738204393	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.o	247f660d2b27eda
-4	39	1680700232730133362	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.o	71f630e559e2e590
 5	44	1680700232734343773	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.o	bd312f6f80ab4158
+4	39	1680700232730133362	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.o	71f630e559e2e590
+5	47	1680700232738204393	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.o	247f660d2b27eda
 4	41	1680700232730264862	CMakeFiles/2_BLDC.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.o	e3990b33b31a3304

@@ -6,6 +6,7 @@
  */
 
 #include "easy_ui.h"
+#include "buzzer.h"
 
 EasyUIPage_t *pageHead = NULL, *pageTail = NULL;
 
@@ -18,7 +19,7 @@ uint8_t opnForward, opnBackward;
 uint8_t opnEnter, opnExit, opnUp, opnDown;
 
 char *EasyUIVersion = "v1.5b";
-bool functionIsRunning = false, listLoop = true, errorOccurred = false;
+bool functionIsRunning = false, listLoop = true, errorOccurred = false, batteryMonitor = true;
 
 /*!
  * @brief   Add item to page
@@ -253,6 +254,7 @@ void EasyUIDrawMsgBox(char *msg)
     EasyUISetDrawColor(XOR);
     EasyUIDisplayStr(x - offset + 2, y + offset + (ITEM_HEIGHT - FONT_HEIGHT) / 2, msg);
     EasyUISetDrawColor(NORMAL);
+    EasyUISendBuffer();
 }
 
 
@@ -316,17 +318,6 @@ void EasyUIDrawCheckbox(int16_t x, int16_t y, uint16_t size, uint8_t offset, boo
     EasyUIDrawRFrame(x, y, size, size, IPS096_penColor, r);
     if (boolValue)
         EasyUIDrawRBox(x + offset, y + offset, size - 2 * offset, size - 2 * offset, IPS096_penColor, r);
-}
-
-
-float EasyUIGetBatteryVoltage()
-{
-    uint16_t batVoltageAdc;
-    float batVoltage;
-
-    batVoltageAdc = EasyUIGetAdc(BATTERY_ADC_PIN);
-    batVoltage = 26.4 * batVoltageAdc / 4096;
-    return batVoltage;
 }
 
 
@@ -1191,8 +1182,29 @@ void EasyUIKeyActionMonitor()
  */
 void EasyUI(uint8_t timer)
 {
-//    if (errorOccurred)
-//        return;
+    float batVoltage = 0;
+
+    if (batteryMonitor)
+    {
+        batVoltage = EasyUIGetBatVoltage();
+
+        if (batVoltage < LOWEST_BATTERY_VOLTAGE && errorOccurred == false)
+        {
+            EasyUIDrawMsgBox("Low Battery!");
+            errorOccurred = true;
+        }
+        if (batVoltage >= LOWEST_BATTERY_VOLTAGE && errorOccurred == true)
+        {
+            EasyUIBackgroundBlur();
+            errorOccurred = false;
+        }
+    }
+
+    if (errorOccurred)
+    {
+        beepTime = 100;
+        return;
+    }
 
     static uint8_t index = 0, itemSum = 0;
 
@@ -1239,8 +1251,12 @@ void EasyUI(uint8_t timer)
     {
         page->Event(page);
 
+        // Clear the states of key to monitor next key action
+        opnForward = opnBackward = opnEnter = opnUp = opnDown = false;
+
         if (layer == 0)
         {
+            opnExit = false;
             EasyUISendBuffer();
             return;
         }
@@ -1263,8 +1279,13 @@ void EasyUI(uint8_t timer)
     // Icon page----------------------------------------------------------------------------------
     if (page->funcType == PAGE_ICON)
     {
+
+        // Clear the states of key to monitor next key action
+        opnForward = opnBackward = opnEnter = opnUp = opnDown = false;
+
         if (layer == 0)
         {
+            opnExit = false;
             EasyUISendBuffer();
             return;
         }
@@ -1328,6 +1349,7 @@ void EasyUI(uint8_t timer)
 
     if (layer == 0)
     {
+        opnExit = false;
         EasyUISendBuffer();
         return;
     }

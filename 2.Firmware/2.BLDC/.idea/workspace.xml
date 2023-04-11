@@ -21,15 +21,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f793d503-f0cb-4acb-9078-5a392af2a895" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/project/code/buzzer.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/code/buzzer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/code/easy_ui.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_ui.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/code/easy_ui.h" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_ui.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/code/easy_ui_user_app.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/easy_ui_user_app.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/code/ips096.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/ips096.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.hex" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.hex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.lst" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/code/user_header.h" beforeDir="false" afterPath="$PROJECT_DIR$/project/code/user_header.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.elf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.hex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.lst" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.map" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/Seekfree_CH32V307VCT6_Opensource_Library.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/code/subdir.mk" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/code/subdir.mk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/isr.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/isr.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/main.d" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/main.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/mrs/obj/user_c/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/project/mrs/obj/user_c/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/user/src/isr.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/user/src/isr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/user/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/project/user/src/main.c" afterDir="false" />
@@ -42,9 +49,26 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="EmbeddedSvdWindowState">
+    <option name="columnWidths">
+      <list>
+        <option value="212" />
+        <option value="92" />
+        <option value="2128" />
+      </list>
+    </option>
+    <option name="columnOrder">
+      <list>
+        <option value="Name" />
+        <option value="Value" />
+        <option value="Description" />
+      </list>
+    </option>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -65,21 +89,26 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC",
+    "last_opened_file_path": "/Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/project/code",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "MakefileSettings",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.make",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/project/code" />
+    </key>
+  </component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.Flash">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="Build" type="ShConfigurationType">
@@ -131,17 +160,32 @@
       <workItem from="1680699359464" duration="30000" />
       <workItem from="1680699395202" duration="918000" />
       <workItem from="1680700390309" duration="32403000" />
+      <workItem from="1680839400562" duration="55601000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.s" />
+  </component>
   <component name="VCPKGProject">
     <isAutomaticEditVcpkgJson value="false" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

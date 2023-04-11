@@ -20,7 +20,7 @@ extern "C"
 #include "zf_driver_delay.h"
 
 #define FILTER_TIME_US          100     // Dithering elimination
-#define UPDATE_KEY_STATE_MS     20       // Update key state once per (x) ms
+#define UPDATE_KEY_STATE_MS     10       // Update key state once per (x) ms
 #define HOLD_THRESHOLD_MS       300     // Time longer than this is considered as "hold"
 #define INTERVAL_THRESHOLD_MS   140     // Trigger time interval less than this is considered as "multiClick"
 

@@ -5,8 +5,8 @@
  * @author  Baohan
  */
 
-#ifndef _EASY_UI_H
-#define _EASY_UI_H
+#ifndef _EASY_UI_H_
+#define _EASY_UI_H_
 
 #ifdef __cplusplus
 extern "C"
@@ -43,6 +43,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define ROTARY          0
 
 #define BATTERY_ADC_PIN         ADC1_IN9_B1
+#define LOWEST_BATTERY_VOLTAGE  11.1f
 
 #define SCREEN_WIDTH            160
 #define SCREEN_HEIGHT           80
@@ -73,7 +74,8 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define EasyUIDisplayBMP(x, y, width, height, pic)              (IPS096_ShowBMP(x, y, width, height, pic))
 #define EasyUIModifyColor()                                     (IPS096_ModifyColor())
 
-#define EasyUIGetAdc(pin)                                       (adc_convert(pin))
+extern float GetBatteryVoltage();
+#define EasyUIGetBatVoltage()                                   (GetBatteryVoltage())
 #define EasyUIDelay_ms(time)                                    (system_delay_ms(time))
 
 typedef     double      paramType;
@@ -132,7 +134,7 @@ typedef struct EasyUI_page
 } EasyUIPage_t;
 
 extern char *EasyUIVersion;
-extern bool functionIsRunning, listLoop, errorOccurred;
+extern bool functionIsRunning, listLoop, errorOccurred, batteryMonitor;
 extern EasyUIPage_t *pageHead, *pageTail;
 
 void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUIItem_e func, ...);

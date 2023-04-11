@@ -61,6 +61,8 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
         EasyUIBackgroundBlur();
         functionIsRunning = false;
     }
+
+    opnForward = opnBackward = opnExit = opnEnter = opnUp = opnDown = false;
 }
 
 
