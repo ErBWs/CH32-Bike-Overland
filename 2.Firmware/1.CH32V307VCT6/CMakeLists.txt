@@ -184,4 +184,19 @@ add_executable(CH32V307VCT6
         project/code/easy_key.c
         project/code/inertial_navigation.c
         project/code/encoder.c
-        project/code/pid.c project/code/user_flash.c project/code/moto.c)
+        project/code/pid.c
+        project/code/user_flash.c
+        project/code/moto.c
+        project/code/easy_ui.c
+        project/code/easy_ui.h
+        project/code/easy_ui_user_app.c
+        project/code/easy_ui_user_app.h
+        project/code/profile_photo_erbws.c
+        project/code/profile_photo_erbws.h
+        project/code/pid.h
+        project/code/ips096.h
+        project/code/user_flash.c
+        project/code/user_flash.h
+        project/code/inertial_navigation.h
+        project/code/buzzer.c
+        project/code/buzzer.h project/code/ctrl.h)

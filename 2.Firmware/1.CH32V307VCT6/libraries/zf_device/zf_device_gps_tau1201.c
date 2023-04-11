@@ -262,7 +262,7 @@ static uint8 gps_gnrmc_parse (char *line, gps_info_struct *gps)
         gps->longitude  = gps->longitude_degree + (double)gps->longitude_cent / 60 + (double)gps->longitude_second / 600000;
 
         speed_tmp       = get_float_number(&buf[get_parameter_index(7, buf)]);  // 速度(海里/小时)
-        gps->speed      = speed_tmp * 1.85f;                                    // 转换为公里/小时
+        gps->speed      = speed_tmp * 1.852f;                                    // 转换为公里/小时
         gps->direction  = get_float_number(&buf[get_parameter_index(8, buf)]);  // 角度
     }
 
@@ -299,6 +299,7 @@ static uint8 gps_gngga_parse (char *line, gps_info_struct *gps)
     if (state != ',')
     {
         gps->satellite_used = (uint8)get_int_number(&buf[get_parameter_index(7, buf)]);
+        gps->hdop           = get_float_number(&buf[get_parameter_index(8, buf)]);
         gps->height         = get_float_number(&buf[get_parameter_index(9, buf)]) + get_float_number(&buf[get_parameter_index(11, buf)]);  // 高度 = 海拔高度 + 地球椭球面相对大地水准面的高度
         return_state = 1;
     }
