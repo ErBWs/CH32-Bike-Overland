@@ -12,9 +12,17 @@
 #include "inc_all.h"
 //#include "imu.h"
 
-#define GPS_MAX_POINT   5
+#define GPS_MAX_POINT   40
 
 
+
+typedef enum
+{
+    COMMON = 1,
+    PILE,
+    OTHER,
+    STOP
+}gpsState;
 
 typedef struct
 {
@@ -31,6 +39,7 @@ typedef struct
     double      points_distance;                                               //两点之间的距离
     uint8       point_count;                                                   //采点数
     uint8       use_point_count;                                                //已用点数
+    float       z_angle;                                                        //z轴角速度积分
 }_gps_use_st;
 
 typedef struct
@@ -38,6 +47,9 @@ typedef struct
     double      points_azimuth ;                                               //两个点之间的方位角
     double      points_distance;                                               //两点之间的距离
 }_gps_two_point_st;
+
+
+
 
 extern _gps_st gps_data_array[GPS_MAX_POINT];
 extern _gps_st gps_data;
@@ -47,11 +59,16 @@ extern uint8 read_key_flag;
 extern uint8 main_key_flag;
 extern uint8 Bike_Start;
 void GPS_init(void);
-void gps_handler(void);
+void gps_handler(uint8_t pointStatus);
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result);
 float yaw_gps_delta( float azimuth, float yaw);
 uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_data);
-uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data);
+void GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data);
+
+void gpsStateCheck(void);
+void normalHandler(void);
+void pileHandler(void);
+void pointsStatusCheck(void);
 //double yaw_gps_delta( _gps_st gps_data, _imu_st imu_data);
 
 #endif /* INERTIAL_NAVIGATION_H_ */

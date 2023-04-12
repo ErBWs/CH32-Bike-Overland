@@ -9,8 +9,8 @@
 
 
 _gps_st gps_data_array[GPS_MAX_POINT] = {0};
-_gps_st gps_data;
-_gps_use_st gps_use;
+_gps_st gps_data = {0};
+_gps_use_st gps_use = {0};
 double first_point_latitude, first_point_longitude, second_point_latitude, second_point_longitude;
 
 EasyKey_t key_read, key_write;
@@ -21,32 +21,20 @@ uint8 Bike_Start = 0;
 void GPS_init(void)
 {
     gps_init();
-    exti_init(B0,EXTI_TRIGGER_BOTH);//r
-    exti_init(D8,EXTI_TRIGGER_BOTH);//w
 }
-void gps_handler(void)
-{
+void gps_handler(uint8_t pointStatus) {
     uint8 state = gps_data_parse();
-    static uint8_t writeStatus = 0;
     
     if (opnEnter)
     {
-        if(writeStatus==0)
-        {
-            writeStatus=1;
-            EasyUIDrawMsgBox("EnterSavingMode");
-            flash_buffer_clear();
-            memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//清空数组准备录入新的数据
-            memset(&gps_use,0,sizeof(_gps_use_st));//清空记录信息准备录入新的数据
-        }
         opnEnter = false;
         flash_buffer_clear();
-        if (state == 0 && (gps_tau1201.hdop < 0.75))
-        {
+        if (state == 0 && (gps_tau1201.hdop < 0.8)) {
             EasyUIDrawMsgBox("Saving...");
-            beep_time=20;
+            beep_time = 20;
             gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
             gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
+            gps_data_array[gps_use.point_count].type = pointStatus;
             gps_use.point_count++;
         }
         else
@@ -56,47 +44,87 @@ void gps_handler(void)
     }
     if (opnForward)
     {
-        opnForward = false;
-        if(writeStatus == 0)
-        {
-            flash_buffer_clear();
-            memset(gps_data_array, 0, sizeof(_gps_st) * GPS_MAX_POINT);//清空数组准备录入新的数据
-            memset(&gps_use, 0, sizeof(_gps_use_st));//清空记录信息准备录入新的数据
-            double count;
-            GPSReadFlashWithConversion(&count);//写完点后取消读点模式，以便下一次随时进入写点模式。
-            gps_use.point_count = (uint8) count;
-            for (uint8 k = 0; k < gps_use.point_count; k++) {
-                GPSReadFlashWithConversion(&gps_data_array[k].latitude);
-                GPSReadFlashWithConversion(&gps_data_array[k].longitude);
-            }
-            gps_data_array[0].is_used = 1;//设为已用状态
-            gps_data = gps_data_array[0];//获得第一个目标点
-            gps_use.use_point_count = 1;
-        }
+    
     }
     if (opnExit)
     {
-        EasyUIDrawMsgBox("Saving to Flash...");
-//        EasyUIBackgroundBlur();
-        writeStatus = 0;
-        if(gps_use.point_count!=0)
-        {
-            double count = gps_use.point_count;
-            GPSSaveToFlashWithConversion(&count);
-            for(uint32 k=0;k<gps_use.point_count;k++)
-            {
-                GPSSaveToFlashWithConversion(&gps_data_array[k].latitude);
-                GPSSaveToFlashWithConversion(&gps_data_array[k].longitude);
-            }
-            gps_data_array[0].is_used = 1;//设为已用状态
-            gps_data = gps_data_array[0];//获得第一个目标点
-            gps_use.use_point_count=1;
-            GPSFlashOperationEnd();
-        }
-//        opnExit = false;//bug!!!
+    
     }
 }
 
+void gpsStateCheck(void)
+{
+    switch (gps_data.type)
+    {
+        case COMMON:
+        {
+            normalHandler();
+            break;
+        }
+        case PILE:
+        {
+            pileHandler();
+            break;
+        }
+        case OTHER:
+        {
+            
+            break;
+        }
+        case STOP:
+        {
+            stagger_flag=1;
+            motoDutySet(MOTOR_FLY_PIN,0);
+            Bike_Start = 0;
+            break;
+        }
+    }
+}
+
+void normalHandler(void)
+{
+    if(gps_tau1201_flag==1)
+    {
+        uint8 gps_state = gps_data_parse();
+        if(gps_state==0)//&&gps_tau1201.hdop<0.8
+        {
+            GetPoint(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
+            gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+            pointsStatusCheck();
+        }
+        gps_tau1201_flag=0;
+    }
+//    else
+//    {
+//        gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
+//    }
+}
+
+void pileHandler(void)
+{
+    gps_use.delta = -30;
+    if (gps_use.z_angle >= 360)
+    {
+        gps_use.use_point_count++;
+        gps_data.type = gps_data_array[gps_use.use_point_count].type;//更新下一个点的类型
+    }
+}
+
+void pointsStatusCheck(void)
+{
+    if (gps_data_array[gps_use.point_count].type == PILE)
+    {
+        gps_data.type = PILE;
+    }
+    if (gps_data_array[gps_use.point_count].type == OTHER)
+    {
+        gps_data.type = OTHER;
+    }
+    if(gps_use.use_point_count>gps_use.point_count)
+    {
+        gps_data.type = STOP;
+    }
+}
 /*
 void gps_handler(void)
 {
@@ -231,25 +259,20 @@ void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_
 
     gps_result->points_distance = gps_distance;
     gps_result->points_azimuth = gps_azimuth;
-//        printf("%f\n",gps_data->latitude);
-//        printf("%f\n",gps_data->longitude);
-//        printf("%.9f\n",gps_result->points_distance);
-//        printf("%.9f\n",gps_result->points_azimuth);
-
 }
 
 float yaw_gps_delta( float azimuth, float yaw)
 {
     double delta;
     //0<azimut<90
-    if(azimuth>0&&azimuth<90)
+    if(azimuth>=0&&azimuth<90)
     {
-        if (yaw>0&&yaw<azimuth)
+        if (yaw>=0&&yaw<azimuth)
         {
             delta = azimuth - yaw;
             return delta;
         }
-        else if (yaw>(azimuth+180)&&yaw<360)
+        else if (yaw>=(azimuth+180)&&yaw<360)
         {
             delta = 360 - yaw + azimuth;
             return delta;
@@ -261,14 +284,14 @@ float yaw_gps_delta( float azimuth, float yaw)
         }
     }
     //90<azimut<180
-    if (azimuth>90&&azimuth<180)
+    if (azimuth>=90&&azimuth<180)
     {
-       if (yaw>0 && yaw<azimuth)
+       if (yaw>=0 && yaw<azimuth)
        {
            delta = azimuth - yaw;
            return delta;
        }
-       else if(yaw>(azimuth+180)&&yaw<360)
+       else if(yaw>=(azimuth+180)&&yaw<360)
        {
            delta = 360-yaw+azimuth;
            return delta;
@@ -280,33 +303,33 @@ float yaw_gps_delta( float azimuth, float yaw)
        }
     }
     //180<azimut<270
-    if (azimuth>180&&azimuth<270)
+    if (azimuth>=180&&azimuth<270)
     {
-        if (yaw>(azimuth-180)&&yaw<azimuth)
+        if (yaw>=(azimuth-180)&&yaw<azimuth)
         {
             delta = azimuth - yaw;
             return delta;
         }
-        else if (yaw>0 && yaw<(azimuth-180))
+        else if (yaw>=0 && yaw<(azimuth-180))
         {
             delta = 360 - azimuth + yaw;
             return -delta;
         }
-        else if(yaw>azimuth && yaw<360)
+        else if(yaw>=azimuth && yaw<360)
         {
             delta = yaw - azimuth;
             return -delta;
         }
     }
     //270<azimut<360
-    if (azimuth>270&&azimuth<360)
+    if (azimuth>=270&&azimuth<=360)
     {
-        if (yaw>(azimuth-180)&&yaw<azimuth)
+        if (yaw>=(azimuth-180)&&yaw<azimuth)
         {
             delta = azimuth - yaw;
             return delta;
         }
-        else if (yaw>azimuth&&yaw<360)
+        else if (yaw>=azimuth&&yaw<360)
         {
             delta = yaw - azimuth;
             return -delta;
@@ -384,16 +407,12 @@ uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_dat
     return state;
 }
 
-uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
+void GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
 {
-    uint8 state=0;
     _gps_two_point_st gps_result;
-    while(1)
-    {
         if(gps_use.use_point_count>gps_use.point_count)
         {
-            state=1;
-            break;
+            gps_data->type = STOP;
         }
         two_points_message(latitude_now,longitude_now,gps_data,&gps_result);
         if(gps_result.points_distance<DISTANCE_LIMITATION)
@@ -401,19 +420,16 @@ uint8 GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
             *gps_data = gps_data_array[gps_use.use_point_count];
             gps_data->is_used = 1;
             gps_use.use_point_count++;
-            printf("CHANGE-POINT\n");
+//            printf("CHANGE-POINT\n");
             beep_time=20;
         }
         else
         {
-            printf("distance last=%f\n",gps_result.points_distance);
-            BlueToothPrintf("distance last=%f\n",gps_result.points_distance);
+//            printf("distance last=%f\n",gps_result.points_distance);
+//            BlueToothPrintf("distance last=%f\n",gps_result.points_distance);
         }
-        break;
-    }
     gps_use.points_distance=gps_result.points_distance;
     gps_use.points_azimuth=gps_result.points_azimuth;
-    return state;
 }
 
 
