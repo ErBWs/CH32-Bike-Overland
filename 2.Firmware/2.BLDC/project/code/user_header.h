@@ -13,12 +13,14 @@ extern "C"
 {
 #endif
 
+#include "buzzer.h"
 #include "easing_function.h"
 #include "easy_key.h"
 #include "easy_ui.h"
 #include "easy_ui_user_app.h"
 #include "ips096.h"
 #include "ips096_dma.h"
+#include "nmea0183.h"
 #include "profile_photo_erbws.h"
 #include "user_flash.h"
 #include "user_spi.h"

@@ -54,6 +54,7 @@ extern PID_TypeDef flyAnglePid;
 extern PID_TypeDef flyAngleSpdPid;
 extern PID_TypeDef backSpdPid;
 extern PID_TypeDef dirPid;
+extern PID_TypeDef dirDisPid;
 extern bool preset1, preset2, preset3;
 
 void PID_Init(

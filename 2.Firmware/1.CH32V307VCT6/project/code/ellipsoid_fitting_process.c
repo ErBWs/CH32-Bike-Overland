@@ -48,13 +48,14 @@ void imuGetMagData(_xyz_mag_s16_st *mag_data)
     imu963ra_get_mag();
     if (Offset_Mag_OK)
         {
-        imu963ra_mag_x = imu963ra_mag_x * cosf(ANGLE_TO_RAD(imu_data.pit)) - imu963ra_mag_y * sinf(ANGLE_TO_RAD(imu_data.pit)) * sinf(ANGLE_TO_RAD(imu_data.rol)) - imu963ra_mag_z * cosf(ANGLE_TO_RAD(imu_data.rol)) * sinf(ANGLE_TO_RAD(imu_data.pit));
-        imu963ra_mag_y = imu963ra_mag_y * cosf(ANGLE_TO_RAD(imu_data.rol)) - imu963ra_mag_z * sinf(ANGLE_TO_RAD(imu_data.rol));
+        //倾角补偿未验证
+//        imu963ra_mag_x = imu963ra_mag_x * cosf(ANGLE_TO_RAD(imu_data.pit)) - imu963ra_mag_y * sinf(ANGLE_TO_RAD(imu_data.pit)) * sinf(ANGLE_TO_RAD(imu_data.rol)) - imu963ra_mag_z * cosf(ANGLE_TO_RAD(imu_data.rol)) * sinf(ANGLE_TO_RAD(imu_data.pit));
+//        imu963ra_mag_y = imu963ra_mag_y * cosf(ANGLE_TO_RAD(imu_data.rol)) - imu963ra_mag_z * sinf(ANGLE_TO_RAD(imu_data.rol));
         mag_data->mx = ((float)imu963ra_mag_x - (float)mag_Offset.X0) / (float)mag_Offset.A;  //获取磁力计拟合数据
         mag_data->my = ((float)imu963ra_mag_y - (float)mag_Offset.Y0) / (float)mag_Offset.B;
         mag_data->mz = ((float)imu963ra_mag_z - (float)mag_Offset.Z0) / (float)mag_Offset.C;
-        
-        mag_data->mx = mag_data->mx * 0.8 + last_mag.mx * 0.2;//低通滤波
+        //低通滤波
+        mag_data->mx = mag_data->mx * 0.8 + last_mag.mx * 0.2;
         mag_data->my = mag_data->my * 0.8 + last_mag.my * 0.2;
         mag_data->mz = mag_data->mz * 0.8 + last_mag.mz * 0.2;
         
@@ -312,11 +313,11 @@ void Inclination_compensation(_xyz_mag_s16_st *mag_data, char mode)
     }
     if(mode == NO_ICO)
     {
-        imu_data.mag_yaw = atan2f(-mag_data->my,mag_data->mx) * VAL;
+        imu_data.mag_yaw = atan2f(mag_data->my,mag_data->mx) * VAL;
     }
-//    if (imu_data.mag_yaw < 0)
-//    {
-//        imu_data.mag_yaw += 360;
-//    }
+    if (imu_data.mag_yaw < 0)
+    {
+        imu_data.mag_yaw += 360;
+    }
 }
 

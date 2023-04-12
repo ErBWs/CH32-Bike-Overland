@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6"
+CMAKE_SOURCE_DIR = F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw"
+CMAKE_BINARY_DIR = F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CH32V307VCT6.dir/depend.make
@@ -70,1398 +70,1413 @@ include CMakeFiles/CH32V307VCT6.dir/flags.make
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Core/core_riscv.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Core/core_riscv.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core\core_riscv.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core\core_riscv.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core\core_riscv.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core\core_riscv.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Core/core_riscv.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core\core_riscv.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core\core_riscv.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Core\core_riscv.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_adc.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_adc.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_adc.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_adc.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_adc.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_adc.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_adc.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_adc.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_adc.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_adc.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_bkp.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_bkp.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_bkp.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_bkp.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_bkp.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_bkp.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_bkp.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_bkp.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_bkp.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_bkp.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_can.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_can.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_can.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_can.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_can.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_can.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_can.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_can.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_can.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_can.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_crc.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_crc.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_crc.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_crc.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_crc.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_crc.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_crc.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_crc.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_crc.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_crc.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dac.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dac.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dac.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dac.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dac.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dac.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dac.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dac.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dac.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dac.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dbgmcu.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dbgmcu.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dma.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dma.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dma.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dma.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dma.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dma.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dma.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dma.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dma.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dma.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dvp.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_dvp.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dvp.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dvp.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dvp.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dvp.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_dvp.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dvp.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_dvp.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_dvp.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_eth.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_eth.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_eth.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_eth.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_eth.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_eth.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_eth.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_eth.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_eth.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_eth.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_exti.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_exti.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_exti.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_exti.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_exti.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_exti.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_exti.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_exti.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_exti.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_exti.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_flash.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_flash.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_flash.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_flash.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_flash.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_flash.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_flash.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_flash.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_flash.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_fsmc.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_fsmc.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_fsmc.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_fsmc.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_fsmc.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_fsmc.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_fsmc.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_fsmc.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_fsmc.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_fsmc.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_gpio.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_gpio.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_gpio.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_gpio.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_gpio.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_gpio.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_gpio.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_gpio.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_gpio.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_gpio.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_i2c.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_i2c.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_i2c.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_i2c.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_i2c.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_i2c.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_i2c.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_i2c.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_i2c.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_i2c.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_iwdg.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_iwdg.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_iwdg.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_iwdg.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_iwdg.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_iwdg.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_iwdg.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_iwdg.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_iwdg.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_iwdg.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_opa.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_opa.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_opa.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_opa.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_opa.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_opa.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_opa.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_opa.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_opa.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_opa.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_pwr.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_pwr.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_pwr.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_pwr.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_pwr.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_pwr.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_pwr.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_pwr.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_pwr.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_pwr.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_rcc.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_rcc.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rcc.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rcc.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rcc.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rcc.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rcc.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rcc.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rcc.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rcc.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_rng.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_rng.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rng.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rng.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rng.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rng.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rng.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rng.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rng.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rng.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_rtc.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_rtc.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rtc.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rtc.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rtc.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rtc.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_rtc.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rtc.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_rtc.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_rtc.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_sdio.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_sdio.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_sdio.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_sdio.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_sdio.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_sdio.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_sdio.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_sdio.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_sdio.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_sdio.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_spi.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_spi.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_spi.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_spi.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_spi.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_spi.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_spi.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_spi.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_spi.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_spi.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_tim.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_tim.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_tim.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_tim.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_tim.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_tim.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_tim.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_tim.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_tim.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_tim.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_usart.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_usart.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usart.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usart.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usart.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usart.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usart.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usart.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usart.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usart.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_usbotg_device.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_usbotg_device.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_wwdg.c
+CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/sdk/Peripheral/ch32v30x_wwdg.c
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_wwdg.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_wwdg.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_wwdg.c" > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_wwdg.c > CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/sdk/Peripheral/ch32v30x_wwdg.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_wwdg.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral\ch32v30x_wwdg.c -o CMakeFiles\CH32V307VCT6.dir\libraries\sdk\Peripheral\ch32v30x_wwdg.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_clock.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_clock.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_clock.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_clock.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_clock.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_clock.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_clock.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_clock.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_clock.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_clock.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_debug.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_debug.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_debug.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_debug.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_debug.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_debug.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_debug.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_debug.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_debug.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_debug.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_fifo.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_fifo.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_30) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_fifo.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_fifo.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_fifo.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_fifo.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_fifo.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_fifo.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_fifo.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_fifo.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_font.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_font.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_font.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_font.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_font.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_font.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_font.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_font.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_font.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_font.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_function.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_function.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_function.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_function.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_function.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_function.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_function.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_function.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_function.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_function.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_interrupt.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_common/zf_common_interrupt.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_interrupt.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_interrupt.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_interrupt.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_interrupt.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_common/zf_common_interrupt.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_interrupt.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common\zf_common_interrupt.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_common\zf_common_interrupt.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_absolute_encoder.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_absolute_encoder.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_absolute_encoder.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_absolute_encoder.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_absolute_encoder.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_absolute_encoder.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_absolute_encoder.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_absolute_encoder.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_absolute_encoder.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_absolute_encoder.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_aht20.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_aht20.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_aht20.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_aht20.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_aht20.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_aht20.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_aht20.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_aht20.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_aht20.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_aht20.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_bluetooth_ch9141.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_bluetooth_ch9141.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_36) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_bluetooth_ch9141.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_bluetooth_ch9141.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_bluetooth_ch9141.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_bluetooth_ch9141.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_bluetooth_ch9141.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_bluetooth_ch9141.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_bluetooth_ch9141.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_bluetooth_ch9141.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_camera.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_camera.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_37) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_camera.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_camera.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_camera.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_camera.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_camera.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_camera.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_camera.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_camera.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_gps_tau1201.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_gps_tau1201.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_38) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_gps_tau1201.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_gps_tau1201.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_gps_tau1201.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_gps_tau1201.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_gps_tau1201.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_gps_tau1201.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_gps_tau1201.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_gps_tau1201.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_icm20602.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_icm20602.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_icm20602.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_icm20602.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_icm20602.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_icm20602.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_icm20602.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_icm20602.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_icm20602.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_icm20602.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_imu660ra.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_imu660ra.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu660ra.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu660ra.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu660ra.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu660ra.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu660ra.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu660ra.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu660ra.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu660ra.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_imu963ra.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_imu963ra.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_41) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu963ra.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu963ra.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu963ra.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu963ra.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_imu963ra.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu963ra.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_imu963ra.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_imu963ra.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_ips114.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_ips114.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_42) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips114.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips114.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips114.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips114.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips114.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips114.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips114.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips114.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_ips200.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_ips200.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips200.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips200.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips200.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips200.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_ips200.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips200.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_ips200.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_ips200.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_k24c02.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_k24c02.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_k24c02.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_k24c02.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_k24c02.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_k24c02.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_k24c02.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_k24c02.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_k24c02.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_k24c02.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_key.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_key.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_key.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_key.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_key.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_key.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_key.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_key.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_key.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_key.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_mpu6050.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_mpu6050.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mpu6050.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mpu6050.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mpu6050.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mpu6050.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mpu6050.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mpu6050.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mpu6050.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mpu6050.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_mt9v03x_dvp.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_mt9v03x_dvp.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mt9v03x_dvp.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mt9v03x_dvp.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mt9v03x_dvp.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mt9v03x_dvp.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_mt9v03x_dvp.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mt9v03x_dvp.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_mt9v03x_dvp.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_mt9v03x_dvp.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_oled.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_oled.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_oled.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_oled.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_oled.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_oled.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_oled.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_oled.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_oled.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_oled.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_scc8660_dvp.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_scc8660_dvp.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_49) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_scc8660_dvp.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_scc8660_dvp.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_scc8660_dvp.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_scc8660_dvp.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_scc8660_dvp.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_scc8660_dvp.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_scc8660_dvp.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_scc8660_dvp.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_tft180.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_tft180.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_50) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_tft180.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_tft180.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_tft180.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_tft180.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_tft180.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_tft180.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_tft180.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_tft180.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_type.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_type.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_51) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_type.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_type.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_type.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_type.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_type.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_type.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_type.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_type.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_virtual_oscilloscope.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_virtual_oscilloscope.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_52) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_virtual_oscilloscope.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_virtual_oscilloscope.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_virtual_oscilloscope.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_virtual_oscilloscope.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_virtual_oscilloscope.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_virtual_oscilloscope.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_virtual_oscilloscope.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_virtual_oscilloscope.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_w25q32.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_w25q32.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_53) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_w25q32.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_w25q32.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_w25q32.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_w25q32.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_w25q32.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_w25q32.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_w25q32.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_w25q32.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_wifi_uart.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_wifi_uart.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_54) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wifi_uart.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wifi_uart.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wifi_uart.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wifi_uart.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wifi_uart.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wifi_uart.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wifi_uart.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wifi_uart.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_wireless_ch573.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_wireless_ch573.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_55) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_ch573.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_ch573.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_ch573.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_ch573.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_ch573.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_ch573.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_ch573.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_ch573.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_wireless_uart.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_device/zf_device_wireless_uart.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_uart.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_uart.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_uart.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_uart.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_device/zf_device_wireless_uart.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_uart.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device\zf_device_wireless_uart.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_device\zf_device_wireless_uart.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_adc.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_adc.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_adc.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_adc.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_adc.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_adc.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_adc.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_adc.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_adc.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_adc.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_delay.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_delay.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_delay.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_delay.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_delay.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_delay.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_delay.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_delay.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_delay.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_delay.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_dvp.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_dvp.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_dvp.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_dvp.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_dvp.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_dvp.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_dvp.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_dvp.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_dvp.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_dvp.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_encoder.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_encoder.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_encoder.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_encoder.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_encoder.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_encoder.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_encoder.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_encoder.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_encoder.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_encoder.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_exti.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_exti.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_exti.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_exti.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_exti.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_exti.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_exti.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_exti.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_exti.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_exti.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_flash.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_flash.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_flash.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_flash.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_flash.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_flash.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_flash.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_flash.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_flash.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_flash.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_gpio.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_gpio.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_gpio.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_gpio.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_gpio.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_gpio.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_gpio.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_gpio.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_gpio.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_gpio.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_iic.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_iic.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_iic.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_iic.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_iic.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_iic.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_iic.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_iic.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_iic.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_iic.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_pit.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_pit.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pit.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pit.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pit.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pit.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pit.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pit.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pit.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pit.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_pwm.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_pwm.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pwm.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pwm.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pwm.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pwm.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_pwm.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pwm.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_pwm.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_pwm.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_soft_iic.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_soft_iic.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_iic.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_iic.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_iic.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_iic.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_iic.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_iic.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_iic.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_iic.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_soft_spi.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_soft_spi.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_spi.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_spi.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_spi.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_spi.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_soft_spi.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_spi.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_soft_spi.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_soft_spi.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_spi.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_spi.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_spi.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_spi.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_spi.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_spi.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_spi.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_spi.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_spi.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_spi.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_timer.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_timer.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_timer.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_timer.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_timer.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_timer.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_timer.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_timer.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_timer.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_timer.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_uart.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_uart.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_uart.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_uart.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_uart.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_uart.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_uart.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_uart.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_uart.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_uart.c.s
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_usb_cdc.c
+CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_usb_cdc.c
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_usb_cdc.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.obj -MF CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_usb_cdc.c
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_usb_cdc.c" > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_usb_cdc.c > CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.i
 
 CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_usb_cdc.c" -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver\zf_driver_usb_cdc.c -o CMakeFiles\CH32V307VCT6.dir\libraries\zf_driver\zf_driver_usb_cdc.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/complementary_filter.c
+CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/complementary_filter.c
 CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\complementary_filter.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\complementary_filter.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\complementary_filter.c" > CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\complementary_filter.c > CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/complementary_filter.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\complementary_filter.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\complementary_filter.c -o CMakeFiles\CH32V307VCT6.dir\project\code\complementary_filter.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ellipsoid_fitting_process.c
+CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ellipsoid_fitting_process.c
 CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ellipsoid_fitting_process.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ellipsoid_fitting_process.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ellipsoid_fitting_process.c" > CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ellipsoid_fitting_process.c > CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/ellipsoid_fitting_process.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ellipsoid_fitting_process.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ellipsoid_fitting_process.c -o CMakeFiles\CH32V307VCT6.dir\project\code\ellipsoid_fitting_process.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.c
+CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.c
 CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\filter.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\filter.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\filter.c" > CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\filter.c > CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\filter.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\filter.c -o CMakeFiles\CH32V307VCT6.dir\project\code\filter.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/imu.c
+CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/imu.c
 CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_76) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\imu.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\imu.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\imu.c" > CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\imu.c > CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\imu.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\imu.c -o CMakeFiles\CH32V307VCT6.dir\project\code\imu.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/my_math.c
+CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/my_math.c
 CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\my_math.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\my_math.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\my_math.c" > CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\my_math.c > CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/my_math.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\my_math.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\my_math.c -o CMakeFiles\CH32V307VCT6.dir\project\code\my_math.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/sendware.c
+CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/sendware.c
 CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\sendware.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\sendware.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\sendware.c" > CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\sendware.c > CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/sendware.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\sendware.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\sendware.c -o CMakeFiles\CH32V307VCT6.dir\project\code\sendware.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/vofa.c
+CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/vofa.c
 CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\vofa.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\vofa.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\vofa.c" > CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\vofa.c > CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/vofa.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\vofa.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\vofa.c -o CMakeFiles\CH32V307VCT6.dir\project\code\vofa.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/user/src/isr.c
+CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/user/src/isr.c
 CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\isr.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\isr.c
 
 CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\isr.c" > CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\isr.c > CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/user/src/isr.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\isr.c" -o CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\isr.c -o CMakeFiles\CH32V307VCT6.dir\project\user\src\isr.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/user/src/main.c
+CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/user/src/main.c
 CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\main.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\main.c
 
 CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\main.c" > CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\main.c > CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/user/src/main.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\main.c" -o CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\src\main.c -o CMakeFiles\CH32V307VCT6.dir\project\user\src\main.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.c
+CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.c
 CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\jdy34.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\jdy34.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\jdy34.c" > CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\jdy34.c > CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/jdy34.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\jdy34.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\jdy34.c -o CMakeFiles\CH32V307VCT6.dir\project\code\jdy34.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.c
+CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ctrl.c
 CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_83) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ctrl.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ctrl.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ctrl.c" > CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ctrl.c > CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/ctrl.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ctrl.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ctrl.c -o CMakeFiles\CH32V307VCT6.dir\project\code\ctrl.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ips096.c
+CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ips096.c
 CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_84) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ips096.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ips096.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ips096.c" > CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ips096.c > CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/ips096.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ips096.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\ips096.c -o CMakeFiles\CH32V307VCT6.dir\project\code\ips096.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_key.c
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_key.c
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_85) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_key.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_key.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_key.c" > CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_key.c > CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/easy_key.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_key.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_key.c -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_key.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/inertial_navigation.c
+CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/inertial_navigation.c
 CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_86) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\inertial_navigation.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\inertial_navigation.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\inertial_navigation.c" > CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\inertial_navigation.c > CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\inertial_navigation.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\inertial_navigation.c -o CMakeFiles\CH32V307VCT6.dir\project\code\inertial_navigation.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/encoder.c
+CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/encoder.c
 CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_87) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\encoder.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\encoder.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\encoder.c" > CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\encoder.c > CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\encoder.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\encoder.c -o CMakeFiles\CH32V307VCT6.dir\project\code\encoder.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/pid.c
+CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/pid.c
 CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_88) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\pid.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\pid.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\pid.c" > CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\pid.c > CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/pid.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\pid.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\pid.c -o CMakeFiles\CH32V307VCT6.dir\project\code\pid.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/user_flash.c
+CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/user_flash.c
 CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_89) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\user_flash.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\user_flash.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\user_flash.c" > CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\user_flash.c > CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/user_flash.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\user_flash.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\user_flash.c -o CMakeFiles\CH32V307VCT6.dir\project\code\user_flash.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/moto.c
+CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/moto.c
 CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_90) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\moto.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\moto.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\moto.c" > CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\moto.c > CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\moto.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\moto.c -o CMakeFiles\CH32V307VCT6.dir\project\code\moto.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui.c
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui.c
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_91) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c" > CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c > CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui.c -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_app.c
+CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_app.c
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_92) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c" > CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c > CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\easy_ui_user_app.c -o CMakeFiles\CH32V307VCT6.dir\project\code\easy_ui_user_app.c.s
 
 CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
 CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
-CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/profile_photo_erbws.c
+CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/profile_photo_erbws.c
 CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_93) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.obj -c "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c
 
 CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c" > CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.i
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c > CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.i
 
 CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c" -o CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.s
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\profile_photo_erbws.c -o CMakeFiles\CH32V307VCT6.dir\project\code\profile_photo_erbws.c.s
+
+CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj: CMakeFiles/CH32V307VCT6.dir/flags.make
+CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj: CMakeFiles/CH32V307VCT6.dir/includes_C.rsp
+CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj: F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/buzzer.c
+CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj: CMakeFiles/CH32V307VCT6.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building C object CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj -MF CMakeFiles\CH32V307VCT6.dir\project\code\buzzer.c.obj.d -o CMakeFiles\CH32V307VCT6.dir\project\code\buzzer.c.obj -c F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\buzzer.c
+
+CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.i"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\buzzer.c > CMakeFiles\CH32V307VCT6.dir\project\code\buzzer.c.i
+
+CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.s"
+	E:\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code\buzzer.c -o CMakeFiles\CH32V307VCT6.dir\project\code\buzzer.c.s
 
 # Object files for target CH32V307VCT6
 CH32V307VCT6_OBJECTS = \
@@ -1557,7 +1572,8 @@ CH32V307VCT6_OBJECTS = \
 "CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj" \
 "CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj" \
 "CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj" \
-"CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj"
+"CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj" \
+"CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj"
 
 # External object files for target CH32V307VCT6
 CH32V307VCT6_EXTERNAL_OBJECTS =
@@ -1655,11 +1671,12 @@ CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/moto.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/easy_ui_user_app.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/profile_photo_erbws.c.obj
+CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/build.make
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/linklibs.rsp
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/objects1.rsp
 CH32V307VCT6.exe: CMakeFiles/CH32V307VCT6.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_94) "Linking C executable CH32V307VCT6.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Linking C executable CH32V307VCT6.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\CH32V307VCT6.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -1671,6 +1688,6 @@ CMakeFiles/CH32V307VCT6.dir/clean:
 .PHONY : CMakeFiles/CH32V307VCT6.dir/clean
 
 CMakeFiles/CH32V307VCT6.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6" "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6" "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw" "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw" "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles\CH32V307VCT6.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6 F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles\CH32V307VCT6.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/CH32V307VCT6.dir/depend
 

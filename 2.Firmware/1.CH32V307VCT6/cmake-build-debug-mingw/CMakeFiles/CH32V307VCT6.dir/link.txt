@@ -1,3 +1,3 @@
-"C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\CH32V307VCT6.dir/objects.a
-C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\ar.exe qc CMakeFiles\CH32V307VCT6.dir/objects.a @CMakeFiles\CH32V307VCT6.dir\objects1.rsp
-C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\CH32V307VCT6.dir/objects.a -Wl,--no-whole-archive -o CH32V307VCT6.exe -Wl,--out-implib,libCH32V307VCT6.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\CH32V307VCT6.dir\linklibs.rsp
+"E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\CH32V307VCT6.dir/objects.a
+E:\mingw64\bin\ar.exe qc CMakeFiles\CH32V307VCT6.dir/objects.a @CMakeFiles\CH32V307VCT6.dir\objects1.rsp
+E:\mingw64\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\CH32V307VCT6.dir/objects.a -Wl,--no-whole-archive -o CH32V307VCT6.exe -Wl,--out-implib,libCH32V307VCT6.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\CH32V307VCT6.dir\linklibs.rsp

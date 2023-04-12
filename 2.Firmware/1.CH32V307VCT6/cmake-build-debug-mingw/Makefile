@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6"
+CMAKE_SOURCE_DIR = F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw"
+CMAKE_BINARY_DIR = F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -1856,6 +1856,30 @@ libraries/zf_driver/zf_driver_usb_cdc.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.s
 .PHONY : libraries/zf_driver/zf_driver_usb_cdc.c.s
 
+project/code/buzzer.obj: project/code/buzzer.c.obj
+.PHONY : project/code/buzzer.obj
+
+# target to build an object file
+project/code/buzzer.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.obj
+.PHONY : project/code/buzzer.c.obj
+
+project/code/buzzer.i: project/code/buzzer.c.i
+.PHONY : project/code/buzzer.i
+
+# target to preprocess a source file
+project/code/buzzer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.i
+.PHONY : project/code/buzzer.c.i
+
+project/code/buzzer.s: project/code/buzzer.c.s
+.PHONY : project/code/buzzer.s
+
+# target to generate assembly for a file
+project/code/buzzer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/buzzer.c.s
+.PHONY : project/code/buzzer.c.s
+
 project/code/complementary_filter.obj: project/code/complementary_filter.c.obj
 .PHONY : project/code/complementary_filter.obj
 
@@ -2585,6 +2609,9 @@ help:
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.obj
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.i
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.s
+	@echo ... project/code/buzzer.obj
+	@echo ... project/code/buzzer.i
+	@echo ... project/code/buzzer.s
 	@echo ... project/code/complementary_filter.obj
 	@echo ... project/code/complementary_filter.i
 	@echo ... project/code/complementary_filter.s

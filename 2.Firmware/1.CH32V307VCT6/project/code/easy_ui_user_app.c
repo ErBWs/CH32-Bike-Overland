@@ -173,7 +173,6 @@ void PageNormalPoints(EasyUIPage_t *page)
     IPS096_ShowStr(0, 38, "time:  :  ");
     IPS096_ShowStr(0, 38+12, "satellite_used:");
     IPS096_ShowStr(0, 38+12+12, "yaw:");
-    
     IPS096_ShowFloat(54, 2, gps_tau1201.latitude,3,6);
     IPS096_ShowFloat(60, 14, gps_tau1201.longitude,3,6);
     IPS096_ShowFloat(30, 26, gps_tau1201.hdop,2,2);
@@ -361,6 +360,7 @@ void MenuInit()
     EasyUIAddItem(&pageSetting, &titleSetting, "[Settings]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageSetting, &itemColor, "Reversed Color", ITEM_SWITCH, &reversedColor);
     EasyUIAddItem(&pageSetting, &itemListLoop, "List Loop", ITEM_SWITCH, &listLoop);
+    
 //    EasyUIAddItem(&pageSetting, &itemBuzzer, "Buzzer Volume", ITEM_PROGRESS_BAR, &buzzerVolume, EventChangeBuzzerVolume);
     EasyUIAddItem(&pageSetting, &itemSave, "Save Settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
     EasyUIAddItem(&pageSetting, &itemReset, "Reset Settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);

@@ -48,7 +48,7 @@ void systemInit();
 float num[8] = {0};
 int main (void)
 {
-    clock_init(SYSTEM_CLOCK_120M);                                              // 初始化芯片时钟 工作频率为 144MHz
+    clock_init(SYSTEM_CLOCK_120M);                                              // 初始化芯片时钟 工作频率为 120MHz
     debug_init();                                                               // 初始化默认 Debug UART
     systemInit();
     while(1)
@@ -96,18 +96,44 @@ int main (void)
 void systemInit(void)
 {
     pidAllInit();
-    MenuInit();
-    EasyUIInit(1);
     encoderInit();
     motoInit();
     BlueToothInit();
     imuinit(IMU_ALL);
     Butterworth_Parameter_Init();
+    MenuInit();
+    EasyUIInit(1);
 #if USE_GPS==1
     GPS_init();
 #endif
     EasyUITransitionAnim();
-    backSpdPid.target[NOW] = 2;
     taskTimAllInit();
+    ServoSportSet(GetServoDuty(20),100);
+//    pit_disable(TIM1_PIT);
+    while(1)
+    {
+        EasyUI(20);
+//        printf("A%f\r\n",imu_data.rol);
+//        printf("B%f\r\n", atan2f(acc.y,acc.z)*57.29f);
+//        BlueToothPrintf("rol:%f\n",imu_data.rol);
+//        BlueToothPrintf("yaw:%f\n",imu_data.mag_yaw);
+//        BlueToothPrintf("imu_data.inter_pit:%f\n",imu_data.inter_pit);
+//        if (imu_data.yaw<0)imu_data.yaw += 360;
+//        BlueToothPrintf("yaw:%f\n",imu_data.yaw);
+//        BlueToothPrintf("yaw:%f\n",imu_data.mag_yaw);
+//        BlueToothPrintf();
+//        BlueToothPrintf("yaw:%f\n",0);
+//        system_delay_ms(50);
+    }
+}
+float GetBatteryVoltage()
+{
+    float batVoltageAdc;
+    float batVoltage;
+
+    batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
+    batVoltage = 37.35f * batVoltageAdc / 4096;
+    vofaData[0] = batVoltage;
+    return batVoltage;
 }
 

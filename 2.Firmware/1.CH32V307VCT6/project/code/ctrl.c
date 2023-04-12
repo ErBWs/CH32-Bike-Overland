@@ -1,5 +1,8 @@
 #include "ctrl.h"
-#define ANGLE_STATIC_BIAS 0.5
+//#define ANGLE_STATIC_BIAS 1.2
+#include "easy_ui.h"
+
+paramType ANGLE_STATIC_BIAS=0.5;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -18,16 +21,16 @@ void IMUGetCalFun(void)
 {
     if(imu_update_counts<1500)
             imu_update_counts++;
-    IMU_Getdata(&gyro,&acc, IMU_963RA);
+    IMU_Getdata(&gyro,&acc, IMU_ALL);
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
     imuGetMagData(&mag_data);
     Inclination_compensation(&mag_data, NO_ICO);
     Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
-//    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
+    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
 
 }
-#define USE_BLUE_TOOTH 1
+#define USE_BLUE_TOOTH 0
 void ServoControl(void)
 {
 #if USE_BLUE_TOOTH==1
@@ -36,15 +39,20 @@ void ServoControl(void)
 //    static float servo_feedback;
 //    servo_feedback = 0.8*servo_feedback+0.2*gps_use.delta;
     static uint8 counts=0;
-    if(++counts!=25)return;
+    if(++counts!=20)return;
     counts=0;
-    BlueToothPrintf("servo_input_delta:%f\n",gps_use.delta);
-    PID_Calculate(&dirPid,0,gps_use.delta);//纯P
-    BlueToothPrintf("servo_out:%f\n",dirPid.pos_out);
-    pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.pos_out));
+//    if(navigate_forbid==1)
+//    {
+//        if(pile_update_flag!=1)return;//若绕桩模式下参数没有更新则提前退出
+//        pile_update_flag=0;
+//        PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
+//    }
+    PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//纯P
+//    dynamic_zero = dirPid.pos_out/17;
+    uint16 duty_input=GetServoDuty(dirPid.pos_out);
+    ServoSportHandler(&duty_input);
+    pwm_set_duty(SERVO_PIN,duty_input);
 #endif
-//    printf("A%f\r\n",imu_data.rol);
-//    dynamic_zero = dirPid.pos_out/15;
 }
 uint32_t back_inter_distance=0;
 uint8 back_maintain_flag=1;
@@ -141,7 +149,7 @@ void FlyWheelControl(void)
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>25)
+    if(abs(imu_data.rol)>20)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);

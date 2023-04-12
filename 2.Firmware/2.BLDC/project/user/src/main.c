@@ -42,12 +42,17 @@ int main (void)
     MenuInit();
     EasyUIInit(1);
 //    gps_init();
-//    imu660ra_init();
+//    gpio_init(E2, GPI, 0,GPI_PULL_UP);
+//    gpio_init(E3, GPI, 0,GPI_PULL_DOWN);
+//    gpio_init(E4, GPI, 0,GPI_PULL_DOWN);
+    adc_init(ADC1_IN9_B1, ADC_12BIT);
+    BuzzerInit();
+    imu660ra_init();
 //    pwm_init(TIM8_PWM_MAP1_CH4_C13, 1000, 5000);  // Buzzer
     timer_init(TIM_2, TIMER_US);
 //    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
     EasyUITransitionAnim();
-    pit_ms_init(TIM1_PIT, 20);
+    pit_ms_init(TIM1_PIT, 10);
 
     while(1)
     {
@@ -66,8 +71,21 @@ int main (void)
 //        timer_stop(TIM_2);
 //        timer_clear(TIM_2);
 //
+//        imu660ra_get_gyro();
         EasyUI(20);
         system_delay_ms(20);
+        VofaLittleEndianSendFrame();
     }
 }
 
+
+float GetBatteryVoltage()
+{
+    float batVoltageAdc;
+    float batVoltage;
+
+    batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
+    batVoltage = 37.35f * batVoltageAdc / 4096;
+    vofaData[0] = batVoltage;
+    return batVoltage;
+}
