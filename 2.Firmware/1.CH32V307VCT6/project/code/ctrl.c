@@ -41,20 +41,18 @@ void ServoControl(void)
     static uint8 counts=0;
     if(++counts!=20)return;
     counts=0;
-    if(pile_state==1)
-    {
-        if(pile_update_flag!=1)return;//若绕桩模式下参数没有更新则提前退出
-        pile_update_flag=0;
-        PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
-    }
+//    if(navigate_forbid==1)
+//    {
+//        if(pile_update_flag!=1)return;//若绕桩模式下参数没有更新则提前退出
+//        pile_update_flag=0;
+//        PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
+//    }
     PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//纯P
-//    BlueToothPrintf("servo_input_delta:%f\n",gps_use.delta);
-//    BlueToothPrintf("servo_out:%f\n",dirPid.pos_out);
 //    dynamic_zero = dirPid.pos_out/17;
-    pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.pos_out));
+    uint16 duty_input=GetServoDuty(dirPid.pos_out);
+    ServoSportHandler(&duty_input);
+    pwm_set_duty(SERVO_PIN,duty_input);
 #endif
-//    printf("A%f\r\n",imu_data.rol);
-//    dynamic_zero = dirPid.pos_out/15;
 }
 uint32_t back_inter_distance=0;
 uint8 back_maintain_flag=1;
