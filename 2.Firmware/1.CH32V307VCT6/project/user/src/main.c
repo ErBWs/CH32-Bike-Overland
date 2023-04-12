@@ -107,6 +107,7 @@ void systemInit(void)
     GPS_init();
 #endif
     EasyUITransitionAnim();
+    backSpdPid.target[NOW]=2;
     taskTimAllInit();
     ServoSportSet(GetServoDuty(20),100);
 //    pit_disable(TIM1_PIT);

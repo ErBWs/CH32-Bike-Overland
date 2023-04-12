@@ -265,7 +265,7 @@ void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_
 
 float yaw_gps_delta( float azimuth, float yaw)
 {
-    double delta;
+    float delta;
     //0<azimut<90
     if(azimuth>=0&&azimuth<90)
     {
@@ -429,9 +429,9 @@ void GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
 //            printf("distance last=%f\n",gps_result.points_distance);
 //            BlueToothPrintf("distance last=%f\n",gps_result.points_distance);
         }
-    gps_use.points_distance=gps_result.points_distance;
-    gps_use.points_azimuth=gps_result.points_azimuth;
 
+    gps_use.points_distance = gps_result.points_distance;
+    gps_use.points_azimuth = gps_result.points_azimuth;
 }
 uint8 navigate_forbid = 0;
 uint8 pile_update_flag=0;
@@ -591,3 +591,4 @@ void ServoSportHandler(uint16 *duty_input)
     *duty_input = input_pwm_duty;
     servo_current_duty = input_pwm_duty;
 }
+

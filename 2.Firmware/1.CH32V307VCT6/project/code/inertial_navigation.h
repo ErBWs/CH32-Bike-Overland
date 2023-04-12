@@ -75,7 +75,6 @@ void gpsStateCheck(void);
 void normalHandler(void);
 void pileHandler(void);
 void pointsStatusCheck(void);
-//double yaw_gps_delta( _gps_st gps_data, _imu_st imu_data);
 void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData);
 void pileProcess2(_gps_st *gpsData);
 void ServoSportSet(uint16_t duty_value,int32_t ticks);
