@@ -36,17 +36,9 @@ void ServoControl(void)
 #if USE_BLUE_TOOTH==1
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
-//    static float servo_feedback;
-//    servo_feedback = 0.8*servo_feedback+0.2*gps_use.delta;
     static uint8 counts=0;
     if(++counts!=20)return;
     counts=0;
-//    if(navigate_forbid==1)
-//    {
-//        if(pile_update_flag!=1)return;//若绕桩模式下参数没有更新则提前退出
-//        pile_update_flag=0;
-//        PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
-//    }
     PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//纯P
 //    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);

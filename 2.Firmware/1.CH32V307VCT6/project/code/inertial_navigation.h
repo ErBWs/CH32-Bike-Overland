@@ -30,7 +30,6 @@ typedef struct
 {
     double      latitude;                                                       // 当前目标点经度
     double      longitude;                                                      // 当前目标点纬度
-    uint8       is_used;                                                        //该结点已用状态标志
     uint8       type;                                                           //该结点的类型
 }_gps_st;
 
@@ -56,16 +55,8 @@ typedef struct
 extern _gps_st gps_data_array[GPS_MAX_POINT];
 extern _gps_st gps_data;
 extern _gps_use_st gps_use;
-extern uint8 write_key_flag;
-extern uint8 read_key_flag;
-extern uint8 main_key_flag;
-extern uint8 Bike_Start;
 
-extern uint8 navigate_forbid;
-extern uint8 pile_update_flag;
-extern uint8 circle_fitting_flag;
-extern uint8 servo_sport_update_flag;
-extern uint16 servo_current_duty;
+extern uint8 Bike_Start;
 
 
 
@@ -75,15 +66,6 @@ void GPS_init(void);
 void gps_handler(uint8_t pointStatus);
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result);
 float yaw_gps_delta( float azimuth, float yaw);
-uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gps_data);
-void GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data);
-void gpsStateCheck(void);
-void normalHandler(void);
 void pileHandler(void);
-void pointsStatusCheck(void);
-void pileProcess(double latitude_now, double longitude_now,_gps_st *gpsData);
-void pileProcess2(_gps_st *gpsData);
-void ServoSportSet(uint16_t duty_value,int32_t ticks);
-void ServoSportHandler(uint16 *duty_input);
 
 #endif /* INERTIAL_NAVIGATION_H_ */

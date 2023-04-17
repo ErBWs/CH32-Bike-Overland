@@ -33,8 +33,13 @@
 #define MOTOR_FLY_PIN         TIM4_PWM_MAP1_CH1_D12                     // Right motor pwm output pin
 #define MOTOR_FLY_DIR_PIN     D13                                  // Right motor direction output pin
 
+
+extern uint8 servo_sport_update_flag;
+extern uint16 servo_current_duty;
 void motoInit(void);
 void motoDutySet(pwm_channel_enum pin,int32_t duty);
+void ServoSportSet(uint16_t duty_value,int32_t ticks);
+void ServoSportHandler(uint16 *duty_input);
 #define myABS(x) (x>0?x:-x)
 
 #endif
