@@ -54,7 +54,7 @@
 
 #define GPS_TAU1201_BUFFER_SIZE     (128)
 
-uint8                       gps_tau1201_flag;                                       // 1：采集完成等待处理数据 0：没有采集完成
+uint8                       gps_tau1201_flag=0;                                       // 1：采集完成等待处理数据 0：没有采集完成
 gps_info_struct             gps_tau1201;                                            // GPS解析之后的数据
 
 static  uint8               gps_tau1201_state = 0;                                  // 1：GPS初始化完成

@@ -127,6 +127,8 @@ void PagePathGenerate(EasyUIPage_t *item)
     GraphPathGenerate(&GlobalGraph);
 
     EasyUIDrawMsgBox("Finish!");
+    functionIsRunning = false;
+    EasyUIBackgroundBlur();
 }
 void EventChangeBuzzerVolume(EasyUIItem_t *item)
 {
