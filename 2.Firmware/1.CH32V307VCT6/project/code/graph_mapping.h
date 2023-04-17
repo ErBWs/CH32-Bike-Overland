@@ -19,12 +19,12 @@
 #endif
 
 #define B_ORDER                 4
-#define B_REFER_POINT_COUNTS    10
+#define B_REFER_POINT_COUNTS_MAX    30
 
-#define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS-1)+2)
-#define NIP_FACTOR_VECTOR_SIZE  (B_REFER_POINT_COUNTS)
-#define REF_NODE_LIST_SIZE      (B_REFER_POINT_COUNTS)
-#define GRAPH_NODE_TOTAL        (B_REFER_POINT_COUNTS+100)
+#define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS_MAX-1)+2)
+#define NIP_FACTOR_VECTOR_SIZE  (B_REFER_POINT_COUNTS_MAX)
+#define REF_NODE_LIST_SIZE      (B_REFER_POINT_COUNTS_MAX)
+#define GRAPH_NODE_TOTAL        (200)
 
 
 
@@ -68,14 +68,16 @@ typedef struct {
 typedef struct
 {
     nodeLink_typedef nodeBuff;
-    gpsData_typedef *base_node;
+    gpsData_typedef *base_gps_data;
     B_Constructor_typedef *B_constructor;
     stanleyController_typedef *Stanley_controller;
     uint16_t total;
     uint8_t  is_init : 1;
+    uint8_t  is_finish : 1;
     uint8_t  has_constructor : 1;
     uint8_t  has_stanley : 1;
-    uint8_t  is_finish : 1;
+
+
 }nodeGraph_typedef,*graphLink_typedef;
 
 extern double                   GlobalNodeVector[NODE_VECTOR_SIZE];
@@ -90,9 +92,11 @@ extern gpsData_typedef          GlobalBase_GPS_data;
 
 extern node_typedef Global_current_node;
 extern float Global_v_now;
-extern stanleyController_typedef    Global_stanleyController;
+extern float Global_yaw;
 extern float Global_pd_array[GRAPH_NODE_TOTAL-1];
+extern stanleyController_typedef    Global_stanleyController;
 
+void latlonTodxdy(double lat, double *dx_dlat, double *dy_dlon);
 void WGS_84_ConvertToXY(double base_latitude, double base_longitude, gpsDataLink_typedef gpsDATA, nodeLink_typedef nodesDATA, uint16_t counts);
 void B_ConstructorInit(B_Constructor_typedef *constructor,uint8_t ref_counts,uint8_t order);
 void B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVector, double *NipFactorVector, nodeLink_typedef refNodeList);
@@ -104,6 +108,8 @@ void GraphInit(nodeGraph_typedef *graph,nodeLink_typedef nodeBuff,gpsData_typede
 void unEven(double *NodeVector, uint8_t p, uint8_t n);
 double BaseIterateFunc(uint8_t i, uint8_t p, double u,const double *NodeVector);
 void GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint16_t counts);
+void GraphReferNodeConvertInput(nodeGraph_typedef *graph, gpsDataLink_typedef gps_set, uint16_t counts);
 void GraphPathGenerate(nodeGraph_typedef *graph);
-
+void GraphNode_Diff(nodeGraph_typedef *graph);
+void Stanley_Control(nodeGraph_typedef *graph);
 #endif //GRAPH_MAPPING_H

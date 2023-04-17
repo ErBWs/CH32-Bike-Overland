@@ -12,7 +12,7 @@
 #include "inc_all.h"
 //#include "imu.h"
 
-#define GPS_MAX_POINT   40
+#define GPS_MAX_POINT   30
 
 #define EXTRA_FORECAST_POINT 0
 #define DISTANCE_LIMITATION 1
@@ -20,9 +20,9 @@
 
 typedef enum
 {
-    COMMON = 1,
+    COMMON = 0,
     PILE,
-    OTHER,
+    BASE,
     STOP
 }gpsState;
 
@@ -35,12 +35,10 @@ typedef struct
 
 typedef struct
 {
-    double      delta;
-    double      points_azimuth ;                                               //两个点之间的方位角
-    double      points_distance;                                               //两点之间的距离
     uint8       point_count;                                                   //采点数
     uint8       use_point_count;                                                //已用点数
     float       z_angle;                                                        //z轴陀螺仪积分
+    float       delta;
 }_gps_use_st;
 
 typedef struct
@@ -63,7 +61,7 @@ extern uint8 Bike_Start;
 
 
 void GPS_init(void);
-void gps_handler(uint8_t pointStatus);
+void gps_handler(gpsState pointStatus);
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result);
 float yaw_gps_delta( float azimuth, float yaw);
 void pileHandler(void);

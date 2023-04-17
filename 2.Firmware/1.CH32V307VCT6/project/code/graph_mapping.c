@@ -10,18 +10,29 @@ node_typedef GlobalRefNodeList[REF_NODE_LIST_SIZE]={0};
 B_Constructor_typedef Global_B_Constructor;
 
 //settings of graph
-#define GRAPH_NODE_TOTAL        (B_REFER_POINT_COUNTS+100)
 
 nodeGraph_typedef   GlobalGraph;
 node_typedef        GlobalGraph_NodeBuffer[GRAPH_NODE_TOTAL]={0};
-gpsData_typedef     GlobalBase_GPS_data = {31.059215,121.205382};
+gpsData_typedef     GlobalBase_GPS_data = {0};
 
 //settings of stanley
 node_typedef Global_current_node;
 float Global_v_now;
-stanleyController_typedef   Global_stanleyController;
+float Global_yaw;
 float Global_pd_array[GRAPH_NODE_TOTAL-1] = {0};
-
+stanleyController_typedef   Global_stanleyController;
+void latlonTodxdy(double lat, double *dx_dlat, double *dy_dlon)
+{
+    double R = 6378137.0f;
+    double f = 1.0f/298.257223563f;
+    lat = ANGLE_TO_RAD(lat);
+    double A,B,C;
+    A = (1.0f - f*(2.0f-f)* pow(sin(lat),2));
+    B = 1.0f-f*(2.0f-f);
+    C = R / sqrt(A);
+    *dx_dlat = 1.0f/A * B * C;
+    *dy_dlon = C * cos(lat);
+}
 void WGS_84_ConvertToXY(double base_latitude, double base_longitude, gpsDataLink_typedef gpsDATA, nodeLink_typedef nodesDATA, uint16_t counts)
 {
     double radLat1 ,radLat2, radLong1, radLong2, delta_lat, delta_long;
@@ -79,7 +90,7 @@ void GraphInit(nodeGraph_typedef *graph,nodeLink_typedef nodeBuff,gpsData_typede
 {
     memset(graph,0, sizeof(nodeGraph_typedef));
     memset(nodeBuff,0, sizeof(node_typedef)* buff_total);
-    graph->base_node = base_gps_data;
+    graph->base_gps_data = base_gps_data;
     graph->nodeBuff = nodeBuff;
     graph->total = buff_total;
     graph->is_init = 1;
@@ -201,6 +212,26 @@ void GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint1
         constructor->refNodeList[i].Y = *(nodes_set+2*i+1);
     }
 }
+void GraphReferNodeConvertInput(nodeGraph_typedef *graph, gpsDataLink_typedef gps_set, uint16_t counts)
+{
+    if(!graph->is_init || !graph->has_constructor)
+    {
+        printf("graph may not be initialized or has no B_constructor!");
+        return;
+    }
+    nodeLink_typedef refNodeList;
+    gpsData_typedef base_gps_data;
+    refNodeList = graph->B_constructor->refNodeList;
+    base_gps_data = *graph->base_gps_data;
+    double dx_lat,dy_lon;
+    for(uint16_t i=0;i<counts;i++)
+    {
+        latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
+        refNodeList[i].X = (gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
+        refNodeList[i].Y = (gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
+    }
+//    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
+}
 void GraphPathGenerate(nodeGraph_typedef *graph)
 {
     if(!graph->is_init || !graph->has_constructor)
@@ -289,7 +320,7 @@ static void Stanley_CalculateIndexError(nodeGraph_typedef *graph)
                     x-=2*PI;            \
                     else if(x < -PI)    \
                     x+=2*PI;
-void Stanley_Control(nodeGraph_typedef *graph, float dt)
+void Stanley_Control(nodeGraph_typedef *graph)
 {
     if(graph->is_finish)return;
     stanleyController_typedef *controller = graph->Stanley_controller;

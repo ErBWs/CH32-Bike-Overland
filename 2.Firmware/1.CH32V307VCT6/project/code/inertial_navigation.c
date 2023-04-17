@@ -17,20 +17,37 @@ void GPS_init(void)
 {
     gps_init();
 }
-void gps_handler(uint8_t pointStatus) {
+void gps_handler(gpsState pointStatus) {
     uint8 state = gps_data_parse();
     
     if (opnEnter)
     {
         opnEnter = false;
-        flash_buffer_clear();
-        if (state == 0 && (gps_tau1201.hdop < 1)) {
-            EasyUIDrawMsgBox("Saving...");
-            beep_time = 20;
-            gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
-            gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
-            gps_data_array[gps_use.point_count].type = pointStatus;
-            gps_use.point_count++;
+//        flash_buffer_clear();
+        if(gps_use.point_count > GPS_MAX_POINT)
+        {
+            EasyUIDrawMsgBox("Gps_Buff Not Enough!");
+            return;
+        }
+        if (state == 0 && (gps_tau1201.hdop < 0.8)) {
+            switch (pointStatus) {
+                case COMMON:
+                case PILE:
+                    EasyUIDrawMsgBox("Saving...");
+                    beep_time = 20;
+                    gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
+                    gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
+                    gps_data_array[gps_use.point_count].type = pointStatus;
+                    gps_use.point_count++;
+                break;
+                case BASE:
+                    GlobalBase_GPS_data.latitude = gps_tau1201.latitude;
+                    GlobalBase_GPS_data.longitude = gps_tau1201.longitude;
+                    EasyUIDrawMsgBox("Saving...");
+                    beep_time = 50;
+                break;
+                default:;
+            }
         }
         else
         {

@@ -31,6 +31,7 @@
 #include "easy_ui.h"
 #include "easy_ui_user_app.h"
 #include "profile_photo_erbws.h"
+#include "graph_mapping.h"
 
 //#include "ADRC.h"
 extern uint32 now_tick;
