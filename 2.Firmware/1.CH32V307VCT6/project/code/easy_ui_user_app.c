@@ -24,12 +24,16 @@ EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemRe
 void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS
-//    Bike_Start = 1;
+    if(Bike_Start ==0)
+    {
+        Bike_Start = 1;
+    }
     gpsStateCheck();
 #endif
     
     if (opnExit)
     {
+        Bike_Start = 0;
         opnExit = false;
         functionIsRunning = false;
         EasyUIBackgroundBlur();
@@ -46,7 +50,8 @@ void EventSavePionts(EasyUIItem_t *item)
         {
             GPSSaveToFlashWithConversion(&gps_data_array[k].latitude);
             GPSSaveToFlashWithConversion(&gps_data_array[k].longitude);
-            GPSSaveToFlashWithConversion(&gps_data_array[k].type);
+            double temp = gps_data_array[k].type;
+            GPSSaveToFlashWithConversion(&temp);
         }
     }
     gps_data_array[0].is_used = 1;//设为已用状态
@@ -60,7 +65,7 @@ void EventSavePionts(EasyUIItem_t *item)
 
 void EventReadPionts(EasyUIPage_t *item)
 {
-    flash_buffer_clear();
+    GPSFlashOperationEnd();
     memset(gps_data_array, 0, sizeof(_gps_st) * GPS_MAX_POINT);//清空数组准备录入新的数据
     memset(&gps_use, 0, sizeof(_gps_use_st));//清空记录信息准备录入新的数据
     double count;
@@ -69,7 +74,7 @@ void EventReadPionts(EasyUIPage_t *item)
     for (uint8 k = 0; k < gps_use.point_count; k++) {
         GPSReadFlashWithConversion(&gps_data_array[k].latitude);
         GPSReadFlashWithConversion(&gps_data_array[k].longitude);
-        GPSReadFlashWithConversion(&gps_data_array[k].type);
+        GPSReadFlashWithConversion((double *)&gps_data_array[k].type);
     }
     gps_data_array[0].is_used = 1;//设为已用状态
     gps_data = gps_data_array[0];//获得第一个目标点

@@ -28,7 +28,7 @@ void gps_handler(uint8_t pointStatus) {
     {
         opnEnter = false;
         flash_buffer_clear();
-        if (state == 0 && (gps_tau1201.hdop < 0.8)) {
+        if (state == 0 && (gps_tau1201.hdop < 1)) {
             EasyUIDrawMsgBox("Saving...");
             beep_time = 20;
             gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
@@ -43,16 +43,16 @@ void gps_handler(uint8_t pointStatus) {
     }
     if (opnForward)
     {
-    
+
     }
     if (opnExit)
     {
-    
     }
 }
 
 void gpsStateCheck(void)
 {
+    pointsStatusCheck();
     switch (gps_data.type)
     {
         case COMMON:
@@ -72,8 +72,10 @@ void gpsStateCheck(void)
         }
         case STOP:
         {
-            stagger_flag=1;
-            motoDutySet(MOTOR_FLY_PIN,0);
+//            stagger_flag=1;
+//            motoDutySet(MOTOR_FLY_PIN,0);
+            functionIsRunning = false;
+            beep_time = 70;
             Bike_Start = 0;
             break;
         }
@@ -89,7 +91,7 @@ void normalHandler(void)
         {
             GetPoint(gps_tau1201.latitude, gps_tau1201.longitude,&gps_data);
             gps_use.delta = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
-            pointsStatusCheck();
+
         }
         gps_tau1201_flag=0;
     }
@@ -101,156 +103,42 @@ void normalHandler(void)
 
 void pileHandler(void)
 {
-    gps_use.delta = -30;
-    if (gps_use.z_angle >= 360)
+    static uint8 state=0;
+    switch(state)
     {
-        gps_use.use_point_count++;
-        gps_data.type = gps_data_array[gps_use.use_point_count].type;//更新下一个点的类型
+        case 0:
+            beep_time = 20;
+            gps_use.z_angle=0;
+            gps_use.delta = -160;
+            state = 1;
+        break;
+        case 1:
+            if (gps_use.z_angle >= 360)
+            {
+                beep_time = 40;
+                gps_data = gps_data_array[gps_use.use_point_count];
+                gps_use.use_point_count++;
+                state = 0;
+            }
+        break;
     }
 }
 
 void pointsStatusCheck(void)
 {
-    if (gps_data_array[gps_use.point_count].type == PILE)
-    {
-        gps_data.type = PILE;
-    }
-    if (gps_data_array[gps_use.point_count].type == OTHER)
-    {
-        gps_data.type = OTHER;
-    }
+//    if (gps_data_array[gps_use.point_count].type == PILE)
+//    {
+//        gps_data.type = PILE;
+//    }
+//    if (gps_data_array[gps_use.point_count].type == OTHER)
+//    {
+//        gps_data.type = OTHER;
+//    }
     if(gps_use.use_point_count>gps_use.point_count)
     {
         gps_data.type = STOP;
     }
 }
-/*
-void gps_handler(void)
-{
-    static uint8 write_keep_flag=0;
-    if(key_write.isPressed)
-    {
-        printf("sat:%d\n",gps_tau1201.satellite_used);
-    }
-    if(write_keep_flag==0&&write_key_flag==2)
-    {
-        
-        flashBufIndex = 0;
-        flashSecIndex = 63;
-        flashPageIndex = 3;
-
-        flash_buffer_clear();
-        memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//清空数组准备录入新的数据
-        memset(&gps_use,0,sizeof(_gps_use_st));//清空记录信息准备录入新的数据
-        write_keep_flag = 1;
-        write_key_flag = 0;
-    }
-    while(gps_use.point_count < GPS_MAX_POINT&&write_keep_flag==1)
-    {
-        if(gps_tau1201_flag==1) {
-            uint8 state = gps_data_parse();
-            if (state == 0) {
-                if (write_key_flag == 2) {
-                    write_key_flag = 0;
-                    write_keep_flag = 0;//写完点后取消读点模式，以便下一次随时进入写点模式。
-                    double count = gps_use.point_count;
-                    SaveToFlashWithConversion(&count);
-                    for (uint8 k = 0; k < gps_use.point_count; k++) {
-                        SaveToFlashWithConversion(&gps_data_array[k].latitude);
-                        SaveToFlashWithConversion(&gps_data_array[k].longitude);
-                    }
-                    FlashOperationEnd();
-                    gps_data_array[0].is_used = 1;//设为已用状态
-                    gps_data = gps_data_array[0];//获得第一个目标点
-                    gps_use.use_point_count = 1;
-                    break;
-                }
-                if ((write_key_flag == 1 || read_key_flag == 3) && write_keep_flag == 1) {
-                    if (gps_tau1201.state && (gps_tau1201.satellite_used >= 4) && gps_tau1201.hpdo < 0.75) {
-                        printf("gps_state:%d\r\n", gps_tau1201.state);
-                        printf("gps_satellite:%d\r\n", gps_tau1201.satellite_used);
-                        printf("save successful\r\n");
-                        printf("gps_point : %d\r\n", gps_use.point_count);
-                        printf("latitude:%.9f\r\n", gps_tau1201.latitude);
-                        printf("longitude:%.9f\r\n", gps_tau1201.longitude);
-                        BlueToothPrintf("\ngps_satellite:%d\r\n", gps_tau1201.satellite_used);
-                        BlueToothPrintf("gps_point : %d\r\n", gps_use.point_count);
-                        BlueToothPrintf("latitude:%.9f\r\n", gps_tau1201.latitude);
-                        BlueToothPrintf("longitude:%.9f\r\n", gps_tau1201.longitude);
-                        gps_data_array[gps_use.point_count].latitude = gps_tau1201.latitude;
-                        gps_data_array[gps_use.point_count].longitude = gps_tau1201.longitude;
-                        if(read_key_flag == 3)
-                        {
-                            TONE_PLAY(DO,10);
-                            TONE_PLAY(RE,10);
-                            TONE_PLAY(MI,10);
-                            gps_data_array[gps_use.point_count].type = 1;
-                            read_key_flag = 0;
-                        }
-                        gps_use.point_count++;
-                        ips114_show_int(10, 32, gps_use.point_count, 2);
-                    } else {
-                        printf("satellite-couts:%d", gps_tau1201.satellite_used);
-                    }
-                    write_key_flag = 0;
-                }
-            }
-            gps_tau1201_flag = 0;
-        }
-     }
-    if(write_keep_flag == 1&&gps_use.point_count==GPS_MAX_POINT)//当读点达到上限的时候清除读点模式并写入Flash
-    {
-        write_keep_flag = 0;
-        double count = gps_use.point_count;
-        SaveToFlashWithConversion(&count);
-        for(uint32 k=0;k<gps_use.point_count;k++)
-        {
-             SaveToFlashWithConversion(&gps_data_array[k].latitude);
-             SaveToFlashWithConversion(&gps_data_array[k].longitude);
-        }
-        FlashOperationEnd();
-        gps_data_array[0].is_used = 1;//设为已用状态
-        gps_data = gps_data_array[0];//获得第一个目标点
-        gps_use.use_point_count=1;
-    }
-    if(read_key_flag==1)//从Flash读点，通常在不写点的时候起作用。写点完成后无须read。
-    {
-        flashBufIndex = 0;
-        flashSecIndex = 63;
-        flashPageIndex = 3;
-        flash_buffer_clear();
-        memset(gps_data_array,0,sizeof(_gps_st)*GPS_MAX_POINT);//清空数组准备录入新的数据
-        memset(&gps_use,0,sizeof(_gps_use_st));//清空记录信息准备录入新的数据
-        double count;
-        ReadFlashWithConversion(&count);//写完点后取消读点模式，以便下一次随时进入写点模式。
-        gps_use.point_count=(uint8)count;
-        for(uint8 k=0;k<gps_use.point_count;k++)
-        {
-            ReadFlashWithConversion(&gps_data_array[k].latitude);
-            ReadFlashWithConversion(&gps_data_array[k].longitude);
-        }
-        gps_data_array[0].is_used = 1;//设为已用状态
-        gps_data = gps_data_array[0];//获得第一个目标点
-        gps_use.use_point_count=1;
-        read_key_flag = 0;
-        printf("total:%d\n",gps_use.point_count);
-        for(uint16 k=0;k<gps_use.point_count;k++)
-        {
-            printf("the %d point's comformation:\nlatitude:%f\nlongitude:%f\n",k,gps_data_array[k].latitude,gps_data_array[k].longitude);
-        }
-    }
-
-    if (main_key_flag==1) {//发车
-        if(gps_use.point_count!=0)
-        {
-            TONE_PLAY(DO,100);
-            TONE_PLAY(DO1,20);
-            Bike_Start = 1;
-        }
-        main_key_flag = 0;
-    }
-}
-*/
 
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result)
 {
@@ -344,8 +232,6 @@ float yaw_gps_delta( float azimuth, float yaw)
     }
 }
 
-
-
 uint8 GetPointAdvance(double latitude_now, double longitude_now,_gps_st *gpsData)//只能在解析完数据后才能调用此函数
 {
     double min_distance;
@@ -413,7 +299,7 @@ void GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
     _gps_two_point_st gps_result;
         if(gps_use.use_point_count>gps_use.point_count)
         {
-            gps_data->type = STOP;
+
         }
         two_points_message(latitude_now, longitude_now, gps_data, &gps_result);
         if(gps_result.points_distance<DISTANCE_LIMITATION)
@@ -429,7 +315,6 @@ void GetPoint(double latitude_now, double longitude_now,_gps_st *gps_data)
 //            printf("distance last=%f\n",gps_result.points_distance);
 //            BlueToothPrintf("distance last=%f\n",gps_result.points_distance);
         }
-
     gps_use.points_distance = gps_result.points_distance;
     gps_use.points_azimuth = gps_result.points_azimuth;
 }
@@ -516,62 +401,85 @@ void pileProcess2(_gps_st *gpsData)
     static _gps_st beg_point;
     _gps_two_point_st gps_result;
     double bias=0;
+    static uint8 dir=255;
     switch(state)
     {
         case 0:
-            if(gpsData->type == 1)//如果是绕桩点
+            if(gpsData->type == 1)//如果是绕桩起点
             {
+                beg_point = *gpsData;//存储开始的导航点
                 state=1;
             }
         break;
         case 1:
-            if(gpsData->type == 0)
+            if(gpsData->type == 2)//若转换到了桩的中心点
             {
-                beg_point = *gpsData;//存储开始的导航点
-                gpsData->is_used = 1;
-                *gpsData = gps_data_array[gps_use.use_point_count];//下一个点是锥桶中心，用于判断角度是否在90°附近
-                gps_use.use_point_count++;
                 printf("Begin Pile\n");
                 beep_feq = SO;
                 beep_time=30;
-                circle_fitting_flag = 1;//取消原本角度解算方法，改用state=2里的方法
+                navigate_forbid = 1;//禁用换点函数，但仍然解析当前与目标点（即桩的中心点）
+                circle_fitting_flag = 1;//取消原本角度解算方法，改用state=2里的方法,但导航目标点的解算仍然进行
                 state = 2;
             }
         break;
         case 2:
             bias = yaw_gps_delta(gps_use.points_azimuth, imu_data.mag_yaw);
-            bias+=bias>=0?-90:90;
+            if(dir==255)
+                dir = bias<0?0:1;//0:逆时针，1:顺时针
+            bias += bias>=0?-90:90;
             gps_use.delta = bias;
             if(fabs(bias)<ANGLE_BIAS_THRESHOLD)//满足偏差条件，开始绕弯并进行角度积分
             {
+                if(dir==0)
+                    ServoSportSet(GetServoDuty(-10),20);
+                else
+                    ServoSportSet(GetServoDuty(10),20);
                 beep_feq = DO;
                 beep_time = 30;
                 gps_use.z_angle = 0;
+                gps_data = beg_point;//将初始的点变为导航的目标点
                 state=3;
             }
         break;
         case 3:
-            if(gps_use.z_angle>360)
-            state = 4;
+            if(gps_use.points_distance<DISTANCE_LIMITATION)
+            {
+                state = 4;
+            }
+        break;
+        case 4:
+            if((gps_use.z_angle<-360&&dir==0)||(gps_use.z_angle>360&&dir==1))
+            {
+                ServoSportSet(GetServoDuty(0),30);
+                beep_feq = DO1;
+                beep_time = 70;
+                circle_fitting_flag = 0;//恢复正常的delta解算方法
+                navigate_forbid = 0;//恢复导航
+                dir=255;
+                state = 0;
+            }
+        break;
+        default:
+            printf("error");
         break;
     }
 }
 static uint16_t duty_target=0;
 static int32_t servo_step_duty;
 static int32_t duty_err;
-uint8 servo_sport_update_flag = 0;
-uint16 servo_current_duty;
+uint8 servo_sport_update_flag = 0;//若该标志位置1，则外部不能有强行修改servo_current_duty的行为；
+uint16 servo_current_duty = GetServoDuty(0);
 void ServoSportSet(uint16_t duty_value,int32_t ticks)
 {
     duty_target = duty_value;
-    duty_err = duty_value- TIM2->CH1CVR;
+    duty_err = duty_value- servo_current_duty;
     servo_step_duty = duty_err/ticks;
     servo_step_duty = servo_step_duty!=0?servo_step_duty:duty_err>0?1:-1;
     servo_sport_update_flag = 1;
 }
 void ServoSportHandler(uint16 *duty_input)
 {
-    static uint32 last_ticks;
+    static uint32 last_ticks=1LL << 31;
     uint16 input_pwm_duty=servo_current_duty;//(TIM2->CH1CVR*PWM_DUTY_MAX)/TIM2->ATRLR;
     if(now_tick>last_ticks&&servo_sport_update_flag==1)
     {

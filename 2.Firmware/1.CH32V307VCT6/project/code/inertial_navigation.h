@@ -64,7 +64,13 @@ extern uint8 Bike_Start;
 extern uint8 navigate_forbid;
 extern uint8 pile_update_flag;
 extern uint8 circle_fitting_flag;
+extern uint8 servo_sport_update_flag;
 extern uint16 servo_current_duty;
+
+
+
+
+
 void GPS_init(void);
 void gps_handler(uint8_t pointStatus);
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result);

@@ -342,6 +342,7 @@ double get_two_points_distance (double latitude1, double longitude1, double lati
     return distance;  
 }
 
+
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     计算从第一个点到第二个点的方位角
 // 参数说明     latitude1       第一个点的纬度

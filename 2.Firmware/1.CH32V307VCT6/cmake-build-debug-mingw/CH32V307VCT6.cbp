@@ -586,6 +586,12 @@
 		<Unit filename="F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/filter.h">
 			<Option target="CH32V307VCT6"/>
 		</Unit>
+		<Unit filename="F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/graph_mapping.c">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/graph_mapping.h">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
 		<Unit filename="F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/imu.c">
 			<Option target="CH32V307VCT6"/>
 		</Unit>

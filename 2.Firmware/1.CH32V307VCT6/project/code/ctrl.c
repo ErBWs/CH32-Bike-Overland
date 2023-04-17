@@ -48,8 +48,12 @@ void ServoControl(void)
 //        PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
 //    }
     PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//纯P
-//    dynamic_zero = dirPid.pos_out/17;
+//    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);
+    if(servo_sport_update_flag==0)
+    {
+        servo_current_duty = duty_input;//记得在缓动不起效果时更新当前duty值
+    }
     ServoSportHandler(&duty_input);
     pwm_set_duty(SERVO_PIN,duty_input);
 #endif

@@ -2072,6 +2072,30 @@ project/code/filter.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.s
 .PHONY : project/code/filter.c.s
 
+project/code/graph_mapping.obj: project/code/graph_mapping.c.obj
+.PHONY : project/code/graph_mapping.obj
+
+# target to build an object file
+project/code/graph_mapping.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.obj
+.PHONY : project/code/graph_mapping.c.obj
+
+project/code/graph_mapping.i: project/code/graph_mapping.c.i
+.PHONY : project/code/graph_mapping.i
+
+# target to preprocess a source file
+project/code/graph_mapping.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.i
+.PHONY : project/code/graph_mapping.c.i
+
+project/code/graph_mapping.s: project/code/graph_mapping.c.s
+.PHONY : project/code/graph_mapping.s
+
+# target to generate assembly for a file
+project/code/graph_mapping.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.s
+.PHONY : project/code/graph_mapping.c.s
+
 project/code/imu.obj: project/code/imu.c.obj
 .PHONY : project/code/imu.obj
 
@@ -2636,6 +2660,9 @@ help:
 	@echo ... project/code/filter.obj
 	@echo ... project/code/filter.i
 	@echo ... project/code/filter.s
+	@echo ... project/code/graph_mapping.obj
+	@echo ... project/code/graph_mapping.i
+	@echo ... project/code/graph_mapping.s
 	@echo ... project/code/imu.obj
 	@echo ... project/code/imu.i
 	@echo ... project/code/imu.s

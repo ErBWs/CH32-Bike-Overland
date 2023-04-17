@@ -142,7 +142,8 @@ void pidAllInit(void)
 	
   * @retval None
   */
-	PID_Init(&dirPid,POSITION_PID,8,8,-0.10,0,0);//舵机PD
+#define SERVO_MAX_ANGLE 17.0
+	PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,0,-(float)(SERVO_MAX_ANGLE/180.0),0,0);//舵机PD
     PID_Init(&dirDisPid,POSITION_PID,2,0,0,0,0);//舵机距离环P
 //	PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,0,0.48,0,0);//飞轮速度环纯P
 //	PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-10,0,6.4,0,0);//飞轮角度环PD
