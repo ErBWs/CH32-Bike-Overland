@@ -425,6 +425,16 @@ uint8 gps_data_parse (void)
         gps_gga_state = GPS_STATE_RECEIVING;
         
     }while(0);
+    if (return_state == 0)
+    {
+        kalmanDistanceY.gps_valid_flag = 1;
+        kalmanDistanceX.gps_valid_flag = 1;
+    }
+    else
+    {
+        kalmanDistanceX.gps_valid_flag = 2;
+        kalmanDistanceY.gps_valid_flag = 2;
+    }
     return return_state;
 }
 

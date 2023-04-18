@@ -213,6 +213,7 @@ void kalmanVelocityUpdata(carState *car, kalman_filter_t *kalmanVelocity, float 
     float Weight = 0.3f;
     car->velocity = kalman_update(kalmanVelocity,car->velocity,car->acceleration,dt);
     car->velocity = Weight * car->velocity + (1-Weight) * lastVelocity;
+    kalmanVelocity->gps_valid_flag = 1;
 }
 
 void senserDistanceDataConversion(carState *car)
