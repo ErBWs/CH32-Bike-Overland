@@ -98,12 +98,13 @@ void EventReadPoints(EasyUIPage_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
-#define PATH_TOTAL_COUNTS 100
+#define PATH_TOTAL_COUNTS 600
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
-void PagePathGenerate(EasyUIPage_t *item)
+void EventPathGenerate(EasyUIItem_t  *item)
 {
+    functionIsRunning = false;
     if(gps_use.point_count<=1)
     {
         EasyUIDrawMsgBox("Points Not Enough!");
@@ -123,12 +124,23 @@ void PagePathGenerate(EasyUIPage_t *item)
     B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
     B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
     B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
-    GraphReferNodeConvertInput(&GlobalGraph,(gpsDataLink_typedef)gps_data_array,gps_use.point_count);
+    extern void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts);
+    GraphReferNodeConvertInput(&GlobalGraph,gps_data_array,gps_use.point_count);
     GraphPathGenerate(&GlobalGraph);
+    BlueToothPrintf("refer-points:\n");
+    for(int i=0;i<gps_use.point_count;i++)
+    {
+        BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
+    }
+    BlueToothPrintf("all-points:\n");
+    for(int i=0;i<GlobalGraph.total;i++)
+    {
+        BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+    }
 
     EasyUIDrawMsgBox("Finish!");
-    functionIsRunning = false;
     EasyUIBackgroundBlur();
+
 }
 void EventChangeBuzzerVolume(EasyUIItem_t *item)
 {
@@ -331,7 +343,6 @@ void MenuInit()
     EasyUIAddPage(&pageBasePoints, PAGE_CUSTOM, PageBasePoints);
     EasyUIAddPage(&pageNormalPoints, PAGE_CUSTOM, PageNormalPoints);
     EasyUIAddPage(&pagePilePoints, PAGE_CUSTOM, PagePilePoints);
-    EasyUIAddPage(&pagePathGenerate, PAGE_CUSTOM, PagePathGenerate);
     EasyUIAddPage(&pageSetting, PAGE_LIST);
     EasyUIAddPage(&pageAbout, PAGE_CUSTOM, PageAbout);
 
@@ -349,7 +360,7 @@ void MenuInit()
     EasyUIAddItem(&pagePoints, &itemBasePoints, "Base Points", ITEM_JUMP_PAGE, pageBasePoints.id);
     EasyUIAddItem(&pagePoints, &itemNormalPoints, "Normal Points", ITEM_JUMP_PAGE, pageNormalPoints.id);
     EasyUIAddItem(&pagePoints, &itemPilePoints, "Pile Points", ITEM_JUMP_PAGE, pagePilePoints.id);
-    EasyUIAddItem(&pagePoints, &itemPathGenerate, "Path Generate", ITEM_JUMP_PAGE, pagePathGenerate.id);
+    EasyUIAddItem(&pagePoints, &itemPathGenerate, "Path Generate", ITEM_MESSAGE, "Generating...", EventPathGenerate);
 
     EasyUIAddItem(&pagePoints, &itemSavePoints, "Save", ITEM_MESSAGE, "Saving...", EventSavePoints);
     EasyUIAddItem(&pagePoints, &itemReadPoints, "Read", ITEM_MESSAGE, "Reading...", EventReadPoints);

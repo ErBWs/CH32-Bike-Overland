@@ -17,11 +17,12 @@ int main (void)
     debug_init();                                                               // ³õÊ¼»¯Ä¬ÈÏ Debug UART
     systemInit();
     gps_use.z_angle=0;
+
     while(1)
     {
 //        BlueToothPrintf("delta:%f\n",gps_use.delta);
-        BlueToothPrintf("delta:%f\n",gps_use.z_angle);
-        BlueToothPrintf("type:%d",gps_data.type);
+//        BlueToothPrintf("delta:%f\n",gps_use.z_angle);
+//        BlueToothPrintf("type:%d",gps_data.type);
         EasyUI(20);
     }
 }

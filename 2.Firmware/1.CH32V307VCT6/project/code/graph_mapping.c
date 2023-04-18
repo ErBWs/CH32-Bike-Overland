@@ -3,6 +3,7 @@
 //
 #include "graph_mapping.h"
 
+
 //settings of B_spline curve
 double GlobalNodeVector[NODE_VECTOR_SIZE]={0};
 double GlobalNipFactorVector[NIP_FACTOR_VECTOR_SIZE]={0};
@@ -212,7 +213,8 @@ void GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint1
         constructor->refNodeList[i].Y = *(nodes_set+2*i+1);
     }
 }
-void GraphReferNodeConvertInput(nodeGraph_typedef *graph, gpsDataLink_typedef gps_set, uint16_t counts)
+
+void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts)
 {
     if(!graph->is_init || !graph->has_constructor)
     {
@@ -227,8 +229,8 @@ void GraphReferNodeConvertInput(nodeGraph_typedef *graph, gpsDataLink_typedef gp
     for(uint16_t i=0;i<counts;i++)
     {
         latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
-        refNodeList[i].X = (gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
-        refNodeList[i].Y = (gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
+        refNodeList[i].X = ANGLE_TO_RAD(gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
+        refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
     }
 //    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
 }

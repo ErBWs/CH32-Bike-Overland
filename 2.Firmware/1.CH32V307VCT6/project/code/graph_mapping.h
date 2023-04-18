@@ -1,12 +1,15 @@
 //
 // Created by Mr.WU on 2023/4/15.
 //
+
+#ifndef GRAPH_MAPPING_H
+#define GRAPH_MAPPING_H
+
 #include <stdio.h>
 #include <stdint.h>
 #include <math.h>
 #include <string.h>
-#ifndef GRAPH_MAPPING_H
-#define GRAPH_MAPPING_H
+#include "inc_all.h"
 
 #ifndef EARTH_RADIUS
             #define EARTH_RADIUS 6378137
@@ -24,8 +27,7 @@
 #define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS_MAX-1)+2)
 #define NIP_FACTOR_VECTOR_SIZE  (B_REFER_POINT_COUNTS_MAX)
 #define REF_NODE_LIST_SIZE      (B_REFER_POINT_COUNTS_MAX)
-#define GRAPH_NODE_TOTAL        (200)
-
+#define GRAPH_NODE_TOTAL        (600)
 
 
 typedef struct
@@ -108,7 +110,7 @@ void GraphInit(nodeGraph_typedef *graph,nodeLink_typedef nodeBuff,gpsData_typede
 void unEven(double *NodeVector, uint8_t p, uint8_t n);
 double BaseIterateFunc(uint8_t i, uint8_t p, double u,const double *NodeVector);
 void GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint16_t counts);
-void GraphReferNodeConvertInput(nodeGraph_typedef *graph, gpsDataLink_typedef gps_set, uint16_t counts);
+//void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st *gps_set, uint16_t counts);
 void GraphPathGenerate(nodeGraph_typedef *graph);
 void GraphNode_Diff(nodeGraph_typedef *graph);
 void Stanley_Control(nodeGraph_typedef *graph);

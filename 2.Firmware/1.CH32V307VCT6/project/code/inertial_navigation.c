@@ -27,7 +27,7 @@ void gps_handler(gpsState pointStatus) {
                 EasyUIDrawMsgBox("Gps_Buff Not Enough!");
                 return;
             }
-            if (state == 0 && (gps_tau1201.hdop < 0.8) && (gps_tau1201.hdop > 0.5)) {
+            if (state == 0 && (gps_tau1201.hdop < 1) && (gps_tau1201.hdop > 0.5)) {
                 switch (pointStatus) {
                     case COMMON:
                     case PILE:
