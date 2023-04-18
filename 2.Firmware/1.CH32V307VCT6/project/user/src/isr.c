@@ -323,6 +323,7 @@ void TIM3_IRQHandler(void)
                 break;
             default:;
         }
+        Beep();
         EasyKeyScanKeyState();
         EasyKeyUserApp();
         EasyUIKeyActionMonitor();

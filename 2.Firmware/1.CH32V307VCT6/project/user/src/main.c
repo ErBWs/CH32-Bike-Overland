@@ -1,5 +1,6 @@
 #include "zf_common_headfile.h"
 #include "inc_all.h"
+
 /*
  * TIM2 Servo
  * TIM4 FLY_WHEEL AND BACK WHELL
@@ -7,9 +8,9 @@
  * TIM10 BACK_MOTO_ENCODER
  * TIM8 BEEP_PWM
  * TIM3 BEEP_AND_KEY_PIT
- *
  */
 
+extern float num_float[8];
 void systemInit();
 int main (void)
 {
@@ -31,16 +32,18 @@ int main (void)
 
 void systemInit(void)
 {
+
     pidAllInit();
+//    kalman_config_v(&kalman_v);
     MenuInit();
     EasyUIInit(1);
-    adc_init(BATTERY_ADC_PIN, ADC_12BIT);
+    adc_init(BATTERY_ADC_PIN,ADC_12BIT);
+    kalmanInit(&carBodyState,&kalmanDistanceX,&kalmanDistanceY,&kalmanVelocity,&imu_data.mag_yaw);
     encoderInit();
     motoInit();
     BlueToothInit();
     imuinit(IMU_ALL);
     Butterworth_Parameter_Init();
-
 #if USE_GPS==1
     GPS_init();
 #endif

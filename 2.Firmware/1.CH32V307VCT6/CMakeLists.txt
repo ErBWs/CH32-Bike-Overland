@@ -200,3 +200,4 @@ add_executable(CH32V307VCT6
         project/code/inertial_navigation.h
         project/code/buzzer.c
         project/code/buzzer.h project/code/ctrl.h project/code/graph_mapping.c)
+
