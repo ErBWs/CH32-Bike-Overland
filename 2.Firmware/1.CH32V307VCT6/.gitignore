@@ -1,0 +1,5 @@
+/.idea/
+/cmake-build-debug-mingw/
+*.o
+*.d
+*.txt

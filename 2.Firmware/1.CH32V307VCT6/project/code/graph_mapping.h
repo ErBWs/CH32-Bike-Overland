@@ -12,7 +12,7 @@
 #include "inc_all.h"
 
 #ifndef EARTH_RADIUS
-            #define EARTH_RADIUS 6378137
+            #define EARTH_RADIUS (6378137)
 #endif
 #ifndef PI
             #define PI                  (3.1415926535898)

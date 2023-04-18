@@ -20,7 +20,7 @@ EasyUIItem_t itemExp, itemTh;
 EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, itemObstacle, itemGarage;
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
-
+uint8 yawflag = 0;
 void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS

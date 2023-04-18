@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "easy_ui.h"
 #define ABS(x)		(((x)>0)? (x): -(x))
-#define pi 3.1415926535898
+#define pi 3.14159265358979
 
 #define Limitation(x, low, high) ((x) < (low) ? (low) : ((x) > (high) ? (high) : (x)))
 

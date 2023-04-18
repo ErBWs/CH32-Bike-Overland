@@ -262,7 +262,7 @@ static uint8 gps_gnrmc_parse (char *line, gps_info_struct *gps)
         gps->longitude  = gps->longitude_degree + (double)gps->longitude_cent / 60 + (double)gps->longitude_second / 600000;
 
         speed_tmp       = get_float_number(&buf[get_parameter_index(7, buf)]);  // 速度(海里/小时)
-        gps->speed      = speed_tmp * 1.852f;                                    // 转换为公里/小时
+        gps->speed      = speed_tmp * 0.5144f;                                    //m/s
         gps->direction  = get_float_number(&buf[get_parameter_index(8, buf)]);  // 角度
     }
 
@@ -319,7 +319,7 @@ static uint8 gps_gngga_parse (char *line, gps_info_struct *gps)
 //-------------------------------------------------------------------------------------------------------------------
 double get_two_points_distance (double latitude1, double longitude1, double latitude2, double longitude2)
 {  
-    const double EARTH_RADIUS = 6378137;                                        // 地球半径(单位：m)
+    const double _EARTH_RADIUS = 6378137;                                        // 地球半径(单位：m)
     double rad_latitude1;
     double rad_latitude2;
     double rad_longitude1;
@@ -337,7 +337,7 @@ double get_two_points_distance (double latitude1, double longitude1, double lati
     b = rad_longitude1 - rad_longitude2;
 
     distance = 2 * asin(sqrt(pow(sin(a / 2), 2) + cos(rad_latitude1) * cos(rad_latitude2) * pow(sin(b / 2), 2)));   // google maps 里面实现的算法
-    distance = distance*EARTH_RADIUS;
+    distance = distance*_EARTH_RADIUS;
 
     return distance;  
 }
@@ -425,6 +425,16 @@ uint8 gps_data_parse (void)
         gps_gga_state = GPS_STATE_RECEIVING;
         
     }while(0);
+    if (return_state == 0)
+    {
+        kalmanDistanceY.gps_valid_flag = 1;
+        kalmanDistanceX.gps_valid_flag = 1;
+    }
+    else
+    {
+        kalmanDistanceX.gps_valid_flag = 2;
+        kalmanDistanceY.gps_valid_flag = 2;
+    }
     return return_state;
 }
 

@@ -7,7 +7,6 @@
 
 #include "inertial_navigation.h"
 
-
 _gps_st gps_data_array[GPS_MAX_POINT] = {0};
 _gps_st gps_data = {0};
 _gps_use_st gps_use = {0};
@@ -177,6 +176,7 @@ float yaw_gps_delta( float azimuth, float yaw)
         }
     }
 }
+
 
 
 
