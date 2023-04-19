@@ -177,6 +177,17 @@ float yaw_gps_delta( float azimuth, float yaw)
     }
 }
 
-
+void gpsTest(void)
+{
+    if (gps_tau1201_flag == 1)
+    {
+        uint8 state = gps_data_parse();
+        if (state == 0)
+        {
+            printf("%f,%f,%f,%f\n",carBodyState.velocity,gps_tau1201.speed * 0.5144f, carBodyState.gpsvelocity,imu_data.w_acc.x/1000.0);
+            system_delay_ms(50);
+        }
+    }
+}
 
 

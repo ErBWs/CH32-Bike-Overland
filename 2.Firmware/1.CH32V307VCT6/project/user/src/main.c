@@ -10,7 +10,7 @@
  * TIM3 BEEP_AND_KEY_PIT
  */
 
-extern float num_float[8];
+
 void systemInit();
 int main (void)
 {
@@ -21,9 +21,6 @@ int main (void)
 
     while(1)
     {
-//        BlueToothPrintf("delta:%f\n",gps_use.delta);
-//        BlueToothPrintf("delta:%f\n",gps_use.z_angle);
-//        BlueToothPrintf("type:%d",gps_data.type);
         EasyUI(20);
     }
 }
@@ -35,7 +32,6 @@ void systemInit(void)
 {
 
     pidAllInit();
-//    kalman_config_v(&kalman_v);
     MenuInit();
     EasyUIInit(1);
     adc_init(BATTERY_ADC_PIN,ADC_12BIT);
@@ -45,7 +41,7 @@ void systemInit(void)
     BlueToothInit();
     imuinit(IMU_ALL);
     Butterworth_Parameter_Init();
-#if USE_GPS==1
+#if USE_GPS
     GPS_init();
 #endif
     EasyUITransitionAnim();

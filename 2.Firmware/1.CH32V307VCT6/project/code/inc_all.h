@@ -9,7 +9,7 @@
 #ifndef INC_ALL_H_
 #define INC_ALL_H_
 
-#define USE_GPS 1
+#define USE_GPS 2
 
 #include "complementary_filter.h"
 #include "math.h"

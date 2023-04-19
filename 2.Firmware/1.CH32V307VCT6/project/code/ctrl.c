@@ -16,13 +16,13 @@ void taskTimAllInit(void)
     interrupt_set_priority(TIM1_UP_IRQn, (1<<5) | 2);
     interrupt_set_priority(TIM3_IRQn, (2<<5) | 2);
 }
-float num_float[8];
 void IMUGetCalFun(void)
 {
     static uint8_t count = 0;
     count++;
     if(imu_update_counts<1500)
             imu_update_counts++;
+    static float temp,tempUseFlag = 0;
     IMU_Getdata(&gyro,&acc, IMU_ALL);
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
@@ -30,18 +30,28 @@ void IMUGetCalFun(void)
     {
         imuGetMagData(&mag_data);
         Inclination_compensation(&mag_data, NO_ICO);
+        temp = imu_data.mag_yaw;
     }
-    else if (Bike_Start == 1)
+    else if (Bike_Start == 1 && tempUseFlag == 0)
     {
-        Cal_YawAngle(sensor.Gyro_deg.z, carBodyState.yaw);
+        carBodyState.yaw = temp;
+        tempUseFlag = 1;
     }
-    if (Bike_Start == 1 && count % 5 == 0)
+    if (Bike_Start == 1 && tempUseFlag == 1)
+    {
+        Cal_YawAngle(sensor.Gyro_deg.z, &carBodyState.yaw);
+    }
+    if (Bike_Start == 1 && count % 5 == 0 && tempUseFlag == 1)
     {
         kalmanVelocityUpdata(&carBodyState,&kalmanVelocity,0.01);
     }
-    if (Bike_Start == 1 && (count % 50 == 0 || gps_tau1201_flag == 1))
+    if (Bike_Start == 1 && count % 50 == 0 && tempUseFlag == 1)
     {
-        kalmanDistanceUpdata(&carBodyState,&kalmanDistanceX,&kalmanDistanceY,0.1);
+        if (gps_tau1201_flag == 1)
+        {
+            kalmanDistanceUpdata(&carBodyState,&kalmanDistanceX,&kalmanDistanceY,0.1);
+            gps_tau1201_flag = 0;
+        }
         count = 0;
     }
 }

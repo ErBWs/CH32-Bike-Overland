@@ -11,7 +11,7 @@
 #include "inc_all.h"
 #include "zf_common_headfile.h"
 
-#define V_Q_POS     0.2f
+#define V_Q_POS     0.3f
 #define DIS_Q_POS   0.8f
 #define KNOT_To_MS(x)    ((x) * 0.514444f)
 
@@ -41,7 +41,8 @@ typedef volatile struct {
     float x_velocity;
     float y_velocity;
     float acceleration;
-    float *yaw;
+    float yaw;
+    float gpsvelocity;
     
     float velocity;
     float x_distance;

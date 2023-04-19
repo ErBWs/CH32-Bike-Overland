@@ -66,4 +66,6 @@ void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_
 float yaw_gps_delta( float azimuth, float yaw);
 void pileHandler(void);
 
+void gpsTest(void);
+
 #endif /* INERTIAL_NAVIGATION_H_ */

@@ -89,7 +89,7 @@ typedef struct
     int8        ns;                                                             // 纬度半球 N（北半球）或 S（南半球）
     int8        ew;                                                             // 经度半球 E（东经）或 W（西经）
     
-    float       speed;                                                          // m/s
+    float       speed;                                                          // 海里/小时
     float       direction;                                                      // 地面航向（000.0~359.9 度，以真北方为参考基准）
     
     // 下面两个个信息从GNGGA语句中获取

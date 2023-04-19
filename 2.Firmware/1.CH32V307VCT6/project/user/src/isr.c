@@ -146,9 +146,6 @@ void UART8_IRQHandler (void)
     if(USART_GetITStatus(UART8, USART_IT_RXNE) != RESET)
     {
         gps_uart_callback();
-//        if (gps_tau1201_flag == 1) {
-//            gps_state = gps_data_parse();
-//        }
         USART_ClearITPendingBit(UART8, USART_IT_RXNE);
     }
 

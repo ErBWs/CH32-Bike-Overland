@@ -202,8 +202,8 @@ void sensorVelocityDataConversion(carState *car)
     car->acceleration = imu_data.w_acc.x / 1000;
 
     float temp = (float)gps_tau1201.speed;
-    int v_decimal = num_times_nth_power_of_10(1,gps_tau1201.speed);
-    car->velocity = KNOT_To_MS(temp / v_decimal);
+//    int v_decimal = num_times_nth_power_of_10(1,gps_tau1201.speed);
+    car->gpsvelocity = KNOT_To_MS(temp);
 }
 
 void kalmanVelocityUpdata(carState *car, kalman_filter_t *kalmanVelocity, float dt)
@@ -211,16 +211,16 @@ void kalmanVelocityUpdata(carState *car, kalman_filter_t *kalmanVelocity, float 
     sensorVelocityDataConversion(car);
     float lastVelocity = car->velocity;
     float Weight = 0.3f;
-    car->velocity = kalman_update(kalmanVelocity,car->velocity,car->acceleration,dt);
+    car->velocity = kalman_update(kalmanVelocity,car->gpsvelocity,car->acceleration,dt);
     car->velocity = Weight * car->velocity + (1-Weight) * lastVelocity;
     kalmanVelocity->gps_valid_flag = 1;
 }
 
 void senserDistanceDataConversion(carState *car)
 {
-    *car->yaw = ANGLE_TO_RAD(*car->yaw);
-    car->x_velocity = car->velocity * cosf(*car->yaw);
-    car->y_velocity = car->velocity * sinf(*car->yaw);
+    car->yaw = ANGLE_TO_RAD(car->yaw);
+    car->x_velocity = car->velocity * cosf(car->yaw);
+    car->y_velocity = car->velocity * sinf(car->yaw);
 }
 
 void kalmanDistanceUpdata(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, float dt)
@@ -232,7 +232,7 @@ void kalmanDistanceUpdata(carState *car, kalman_filter_t *kalmanDistanceX, kalma
 
 void kalmanInit(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, kalman_filter_t *kalmanVelocity, float *yaw)
 {
-    car->yaw = yaw;
+    car->yaw = *yaw;
     kalman_config_v(kalmanVelocity);
     kalman_config_distance(kalmanDistanceX,car->x_distance);
     kalman_config_distance(kalmanDistanceY,car->y_distance);

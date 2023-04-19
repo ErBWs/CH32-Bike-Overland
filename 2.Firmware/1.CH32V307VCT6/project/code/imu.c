@@ -285,9 +285,6 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st
     imu->w_acc.z = imu->z_vec.x *imu->a_acc.x + imu->z_vec.y *imu->a_acc.y + imu->z_vec.z *imu->a_acc.z;
     
     // 测量值与等效重力向量的叉积（计算向量误差）
-//    vec_err.x =  (acc_norm.y * imu->z_vec.z - imu->z_vec.y * acc_norm.z);
-//    vec_err.y = -(acc_norm.x * imu->z_vec.z - imu->z_vec.x * acc_norm.z);
-//    vec_err.z = -(acc_norm.y * imu->z_vec.x - imu->z_vec.y * acc_norm.x);
 
     vec_err.x =  (acc_norm.y * imu->z_vec.z - imu->z_vec.y * acc_norm.z) ;
     vec_err.y = -(acc_norm.x * imu->z_vec.z - imu->z_vec.x * acc_norm.z) ;
@@ -358,8 +355,8 @@ void imuinit(char imumode)
         pwm_init(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
         pwm_init(BEEP_PWM_PIN,beep_feq,0);
-        *carBodyState.yaw = atan2f((float)(imu963ra_mag_y), (float)(imu963ra_mag_x));
-        *carBodyState.yaw = (float)Degree_To_360(*carBodyState.yaw);
+//        carBodyState.yaw = atan2f((float)(imu963ra_mag_y), (float)(imu963ra_mag_x));
+//        carBodyState.yaw = (float)Degree_To_360(carBodyState.yaw);
     }
     if (imumode == IMU_ICM)
     {

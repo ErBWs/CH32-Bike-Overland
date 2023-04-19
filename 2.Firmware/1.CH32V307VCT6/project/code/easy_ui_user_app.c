@@ -20,10 +20,9 @@ EasyUIItem_t itemExp, itemTh;
 EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, itemObstacle, itemGarage;
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
-uint8 yawflag = 0;
 void EventMainLoop(EasyUIItem_t *item)
 {
-#if USE_GPS
+#if USE_GPS == 1
     if(Bike_Start ==0)
     {
         stanleyControllerInit(&Global_stanleyController,(float)0.1,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
@@ -39,14 +38,15 @@ void EventMainLoop(EasyUIItem_t *item)
         if(GlobalGraph.is_finish)
         {
             GlobalGraph.is_finish = 0;
-            //stagger_flag=1;
-            //motoDutySet(MOTOR_FLY_PIN,0);
             functionIsRunning = false;
             beep_time = 70;
             Bike_Start = 0;
             break;
         }
     }
+#elif USE_GPS == 2
+        Bike_Start = 1;
+        gpsTest();
 #endif
     if (opnExit)
     {
