@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <projectDescription>
-	<name>Seekfree_CH32V307VCT6_Opensource_Library</name>
+	<name>SEEKFREE_CH32V307_DOUBLE_BLDC</name>
 	<comment/>
 	<projects>
 	</projects>
@@ -25,19 +25,29 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>bldc_config</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/bldc_config</locationURI>
+		</link>
+		<link>
+			<name>bldc_hardware</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/bldc_hardware</locationURI>
+		</link>
+		<link>
+			<name>bldc_software</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/bldc_software</locationURI>
+		</link>
+		<link>
 			<name>code</name>
 			<type>2</type>
 			<locationURI>PARENT-1-PROJECT_LOC/code</locationURI>
 		</link>
 		<link>
-			<name>doc</name>
+			<name>seekfree_libraries</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Libraries/doc</locationURI>
-		</link>
-		<link>
-			<name>sdk</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/libraries/sdk</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/seekfree_libraries</locationURI>
 		</link>
 		<link>
 			<name>user_c</name>
@@ -48,21 +58,6 @@
 			<name>user_h</name>
 			<type>2</type>
 			<locationURI>PARENT-1-PROJECT_LOC/user/inc</locationURI>
-		</link>
-		<link>
-			<name>zf_common</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/libraries/zf_common</locationURI>
-		</link>
-		<link>
-			<name>zf_device</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/libraries/zf_device</locationURI>
-		</link>
-		<link>
-			<name>zf_driver</name>
-			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/libraries/zf_driver</locationURI>
 		</link>
 	</linkedResources>
 	<filteredResources>

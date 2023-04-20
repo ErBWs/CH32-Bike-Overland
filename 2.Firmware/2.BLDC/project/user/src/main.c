@@ -30,58 +30,173 @@
 *
 * 修改记录
 * 日期                                      作者                             备注
-* 2022-09-15        大W            first version
+* 2023-03-31        大W            first version
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
 
+#include "hall.h"
+#include "pwm_output.h"
+#include "pwm_input.h"
+#include "led.h"
+#include "operational_amplifier.h"
+#include "comparator.h"
+#include "motor.h"
+#include "en_switch.h"
+#include "encoder.h"
+#include "move_filter.h"
+#include "battery_adc.h"
+#include "virtual_oscilloscope.h"
+
+
+
+
 int main (void)
 {
-    clock_init(SYSTEM_CLOCK_120M);                                              // 初始化芯片时钟 工作频率为 144MHz
-    debug_init();                                                               // 初始化默认 Debug UART
+    // 初始化芯片时钟 工作频率为 144MHz
+    clock_init(SYSTEM_CLOCK_120M);
+    // 初始化默认 Debug UART
+    debug_init();
 
-    MenuInit();
-    EasyUIInit(1);
-//    gps_init();
-    adc_init(ADC1_IN9_B1, ADC_12BIT);
-    BuzzerInit();
-    imu660ra_init();
-    timer_init(TIM_2, TIMER_US);
-//    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
-    EasyUITransitionAnim();
-    pit_ms_init(TIM1_PIT, 10);
+    //------------------------电机1初始化-------------------------//
+    // 初始化LED引脚
+    led_init(MOTOR_1, &motor1_led);
+
+    // 初始化运放，将采样电阻的电压进行放大，然后传递给比较器
+    operational_amplifier_init(MOTOR_1);
+
+    // 初始化比较器，用于实现堵转保护，比较器触发时自动关闭PWM输出，无需代码手动关闭
+    comparator_init(MOTOR_1);
+
+    // 滑动滤波初始化
+    move_filter_init(&motor1_speed_filter);
+
+    // 霍尔初始化
+    hall_init(MOTOR_1, &motor1_hall);
+
+    // pi闭环初始化
+    closed_loop_pi_init(&motor1_closed_loop);
+
+    // 速度曲线初始化
+    motor_speed_curve_init(&motor1_control, &motor1_speed_filter);
+
+    // 初始化输出速度与方向信息的引脚
+    encoder_init(MOTOR_1, &motor1_encoder_out);
+
+    // 输入信号捕获初始化
+    pwm_input_init(MOTOR_1, &motor1_pwm_input_value);
+
+    // 使能开关初始化
+    switch_init(MOTOR_1, &motor1_enable_switch);
+
+    // 电机adc引脚初始化
+    motor_init(MOTOR_1, &motor1_control);
+
+    // 设置电机1为N车飞轮电机
+    motor_set_type(&motor1_control, BLDC_MOTOR_MOMENTUM);
+
+    // N车飞轮极对数为7
+    motor_set_polepairs(&motor1_control, 7);
+
+    // 设置电机超前角度，60度
+    motor_set_commutation_angle(&motor1_control, 60);
+
+    // 初始化定时器1，用于输出互补PWM
+    pwm_complementary_init(MOTOR_1, &motor1_pwm_output);
+
+    //------------------------电机1初始化-------------------------//
+
+    //------------------------电机2初始化-------------------------//
+    // 初始化LED引脚
+    led_init(MOTOR_2, &motor2_led);
+
+    // 初始化运放，将采样电阻的电压进行放大，然后传递给比较器
+    operational_amplifier_init(MOTOR_2);
+
+    // 初始化比较器，用于实现堵转保护，比较器触发时自动关闭PWM输出，无需代码手动关闭
+    comparator_init(MOTOR_2);
+
+    // 滑动滤波初始化
+    move_filter_init(&motor2_speed_filter);
+
+    // 霍尔初始化
+    hall_init(MOTOR_2, &motor2_hall);
+
+    // pi闭环初始化
+    closed_loop_pi_init(&motor2_closed_loop);
+
+    // 速度曲线初始化
+    motor_speed_curve_init(&motor2_control, &motor2_speed_filter);
+
+    // 初始化输出速度与方向信息的引脚
+    encoder_init(MOTOR_2, &motor2_encoder_out);
+
+    // 输入信号捕获初始化
+    pwm_input_init(MOTOR_2, &motor2_pwm_input_value);
+
+    // 使能开关初始化
+    switch_init(MOTOR_2, &motor2_enable_switch);
+
+    // 电机adc引脚初始化
+    motor_init(MOTOR_2, &motor2_control);
+
+    // 设置电机2为N车飞轮电机
+    motor_set_type(&motor2_control, BLDC_MOTOR_TRAVELING);
+
+    // N车飞轮极对数为7
+    motor_set_polepairs(&motor2_control, 7);
+
+    // 设置电机超前角度，60度
+    motor_set_commutation_angle(&motor2_control, 60);
+
+    // 初始化定时器9，用于输出互补PWM
+    pwm_complementary_init(MOTOR_2, &motor2_pwm_output);
+    //------------------------电机2初始化-------------------------//
+
+    // 初始化adc通道，adc用于采集电源电压
+    battery_adc_init();
+
+    // 初始化定时器6，用于PI闭环计算
+    pit_ms_init(TIM6_PIT, 1);
+
+//    MenuInit();
+//    EasyUIInit(1);
+////    gps_init();
+//    adc_init(ADC1_IN9_B1, ADC_12BIT);
+//    BuzzerInit();
+////    imu660ra_init();
+//    timer_init(TIM_2, TIMER_US);
+////    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
+//    EasyUITransitionAnim();
+//    pit_ms_init(TIM1_PIT, 10);
+
 
     while(1)
     {
-//        if (gps_tau1201_flag)
-//        {
-//            if (!gps_data_parse())
-//            {
-//                printf("%d\n", gps_tau1201.state);
-//                printf("%d\n", gps_tau1201.satellite_used);
-//                printf("%lf\n", gps_tau1201.longitude);
-//                printf("%lf\n", gps_tau1201.latitude);
-//            }
-//            gps_tau1201_flag = 0;
-//        }
-//        timer_start(TIM_2);
-//        timer_stop(TIM_2);
-//        timer_clear(TIM_2);
-//
-//        imu660ra_get_gyro();
-        EasyUI(20);
-//        system_delay_ms(20);
-        VofaLittleEndianSendFrame();
+
+        // 发送数据到虚拟示波器 虚拟示波器下载链接 https://pan.baidu.com/s/198CMXTZsbI3HAEqNXDngBw
+        virtual_oscilloscope_data_conversion(motor1_control.speed_now/10, motor1_pwm_input_value.cycle*1000,
+                                             motor2_control.speed_now/10, motor2_pwm_input_value.cycle*1000);
+        uart_write_buffer(DEBUG_UART_INDEX, virtual_oscilloscope_data, sizeof(virtual_oscilloscope_data));
+
+        // 检查电机状态然后控制对应的LED灯点亮或熄灭
+        led_control(&motor1_led, &motor1_control, &motor1_pwm_output);
+        led_control(&motor2_led, &motor2_control, &motor2_pwm_output);
+
+
+//        EasyUI(20);
+////        system_delay_ms(20);
+//        VofaLittleEndianSendFrame();
     }
 }
 
 
-float GetBatteryVoltage()
-{
-    float batVoltageAdc;
-    float batVoltage;
-
-    batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
-    batVoltage = 37.35f * batVoltageAdc / 4096;
-    vofaData[0] = batVoltage;
-    return batVoltage;
-}
+//float GetBatteryVoltage()
+//{
+//    float batVoltageAdc;
+//    float batVoltage;
+//
+//    batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
+//    batVoltage = 37.35f * batVoltageAdc / 4096;
+//    vofaData[0] = batVoltage;
+//    return batVoltage;
+//}

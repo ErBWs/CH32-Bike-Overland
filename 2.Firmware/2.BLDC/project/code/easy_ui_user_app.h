@@ -18,7 +18,6 @@ extern "C"
 #include "easy_ui.h"
 #include "easy_key.h"
 #include "zf_driver_uart.h"
-#include "zf_device_dl1a.h"
 
 void MenuInit();
 

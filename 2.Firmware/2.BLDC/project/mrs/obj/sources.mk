@@ -23,12 +23,13 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+bldc_hardware \
+bldc_software \
 code \
-sdk/Core \
-sdk/Peripheral \
-sdk/Startup \
+seekfree_libraries/sdk/Core \
+seekfree_libraries/sdk/Peripheral \
+seekfree_libraries/sdk/Startup \
+seekfree_libraries/zf_common \
+seekfree_libraries/zf_driver \
 user_c \
-zf_common \
-zf_device \
-zf_driver \
 
