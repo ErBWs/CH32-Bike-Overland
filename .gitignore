@@ -1,3 +1,6 @@
 *.o
 *.d
-/.idea/
+**/.idea/
+*-backups
+*.kicad_prl
+**/#auto_saved_files#
