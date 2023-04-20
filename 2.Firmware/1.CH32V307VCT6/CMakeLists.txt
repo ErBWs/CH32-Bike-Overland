@@ -201,5 +201,5 @@ add_executable(CH32V307VCT6
         project/code/buzzer.c
         project/code/buzzer.h
         project/code/ctrl.h
-        project/code/graph_mapping.c)
+        project/code/graph_mapping.c project/code/graph_mapping.h project/code/INS/INS.h project/code/INS/insapi.c project/code/INS/insapi.h project/code/encoder.h)
 

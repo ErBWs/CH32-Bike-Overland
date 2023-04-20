@@ -1856,6 +1856,30 @@ libraries/zf_driver/zf_driver_usb_cdc.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/libraries/zf_driver/zf_driver_usb_cdc.c.s
 .PHONY : libraries/zf_driver/zf_driver_usb_cdc.c.s
 
+project/code/INS/insapi.obj: project/code/INS/insapi.c.obj
+.PHONY : project/code/INS/insapi.obj
+
+# target to build an object file
+project/code/INS/insapi.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/INS/insapi.c.obj
+.PHONY : project/code/INS/insapi.c.obj
+
+project/code/INS/insapi.i: project/code/INS/insapi.c.i
+.PHONY : project/code/INS/insapi.i
+
+# target to preprocess a source file
+project/code/INS/insapi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/INS/insapi.c.i
+.PHONY : project/code/INS/insapi.c.i
+
+project/code/INS/insapi.s: project/code/INS/insapi.c.s
+.PHONY : project/code/INS/insapi.s
+
+# target to generate assembly for a file
+project/code/INS/insapi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/INS/insapi.c.s
+.PHONY : project/code/INS/insapi.c.s
+
 project/code/buzzer.obj: project/code/buzzer.c.obj
 .PHONY : project/code/buzzer.obj
 
@@ -2633,6 +2657,9 @@ help:
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.obj
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.i
 	@echo ... libraries/zf_driver/zf_driver_usb_cdc.s
+	@echo ... project/code/INS/insapi.obj
+	@echo ... project/code/INS/insapi.i
+	@echo ... project/code/INS/insapi.s
 	@echo ... project/code/buzzer.obj
 	@echo ... project/code/buzzer.i
 	@echo ... project/code/buzzer.s

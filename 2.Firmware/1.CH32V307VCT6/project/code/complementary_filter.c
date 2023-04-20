@@ -51,6 +51,7 @@ double Degree_To_360(double angle)
     {
         angle += 360;
     }
+    return angle;
 }
 
 double Degree_To_Degree(double angle)
@@ -71,8 +72,9 @@ double Degree_To_Degree(double angle)
 */
 int num_times_nth_power_of_10(int num, int n)
 {
-    switch (n) {
-        case 0:num = num;
+    switch (n)
+    {
+        case 0:num = num + 0;
             break;
         case 1:num = (num << 3) + (num << 1);
             break;

@@ -534,6 +534,15 @@
 		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/libraries/zf_driver/zf_driver_usb_cdc.h">
 			<Option target="CH32V307VCT6"/>
 		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/INS/INS.h">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/INS/insapi.c">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
+		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/INS/insapi.h">
+			<Option target="CH32V307VCT6"/>
+		</Unit>
 		<Unit filename="S:/WorkSpace/bicycle motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/buzzer.c">
 			<Option target="CH32V307VCT6"/>
 		</Unit>

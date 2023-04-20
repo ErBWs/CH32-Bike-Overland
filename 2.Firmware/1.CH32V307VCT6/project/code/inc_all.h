@@ -33,6 +33,7 @@
 #include "profile_photo_erbws.h"
 #include "graph_mapping.h"
 #include "buzzer.h"
+#include "INS/INS.h"
 
 extern uint32 now_tick;
 extern uint16 beep_time;
