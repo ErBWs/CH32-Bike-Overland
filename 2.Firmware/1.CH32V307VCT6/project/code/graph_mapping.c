@@ -354,6 +354,7 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         if(*controller->v_now!=0.0)
             alpha = atanf((controller->k_gain * controller->error)/ (*controller->v_now));
         controller->theta = alpha + delta;
+//        BlueToothPrintf("%f,%f\n",alpha,delta);
     }
     else
     {

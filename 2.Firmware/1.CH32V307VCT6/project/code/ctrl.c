@@ -11,6 +11,8 @@ uint32_t myTimeStamp = 0;
 
 uint16 imu_update_counts=0;
 float dynamic_zero = 0;
+extern double X0,Y0;
+
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
@@ -29,28 +31,31 @@ void IMUGetCalFun(void)
     imuGetMagData(&mag_data);
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
-    INS_U.IMU.acc_x = (float)-imu660ra_acc_x / 4096 * 9.8f;
-    INS_U.IMU.acc_y = (float)-imu660ra_acc_y / 4096 * 9.8f;
-    INS_U.IMU.acc_z = (float)imu660ra_acc_z / 4096 * 9.8f;
-    INS_U.IMU.gyr_x = ANGLE_TO_RAD((float)-imu660ra_gyro_x / 16.4f);
-    INS_U.IMU.gyr_y = ANGLE_TO_RAD((float)-imu660ra_gyro_y / 16.4f);
-    INS_U.IMU.gyr_z = ANGLE_TO_RAD((float)imu660ra_gyro_z / 16.4f);
-    INS_U.IMU.timestamp = myTimeStamp;
-    INS_U.MAG.mag_x = (float)imu963ra_mag_x / 3000;
-    INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000;
-    INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000;
-    INS_U.MAG.timestamp = myTimeStamp;
-    myTimeStamp+=2;
-    INS_step();
+    if (Bike_Start == 1)
+    {
+        INS_U.IMU.acc_x = (float)-imu660ra_acc_x / 4096 * 9.8f;
+        INS_U.IMU.acc_y = (float)-imu660ra_acc_y / 4096 * 9.8f;
+        INS_U.IMU.acc_z = (float)imu660ra_acc_z / 4096 * 9.8f;
+        INS_U.IMU.gyr_x = ANGLE_TO_RAD((float)-imu660ra_gyro_x / 16.4f);
+        INS_U.IMU.gyr_y = ANGLE_TO_RAD((float)-imu660ra_gyro_y / 16.4f);
+        INS_U.IMU.gyr_z = ANGLE_TO_RAD((float)imu660ra_gyro_z / 16.4f);
+        INS_U.IMU.timestamp = myTimeStamp;
+        INS_U.MAG.mag_x = (float)imu963ra_mag_x / 3000;
+        INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000;
+        INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000;
+        INS_U.MAG.timestamp = myTimeStamp;
+        myTimeStamp+=2;
+        INS_step();
+//        BlueToothPrintf("%f\n", Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi)) );
+    }
     if (gps_tau1201_flag == 1 && Bike_Start==1)
     {
         uint8 state = gps_data_parse();
         if (state == 0)
         {
             int dir = gpio_get_level(D1);
-            float YAW = 0;
-            INS_U.GPS_uBlox.lat = gps_tau1201.latitude * 1e9;
-            INS_U.GPS_uBlox.lon = gps_tau1201.longitude * 1e9;
+            INS_U.GPS_uBlox.lat = gps_tau1201.latitude * 1e7;
+            INS_U.GPS_uBlox.lon = gps_tau1201.longitude * 1e7;
             INS_U.GPS_uBlox.velN = gps_tau1201.speed * 0.51444f * 1e3 * cosf(INS_Y.INS_Out.psi);
             INS_U.GPS_uBlox.velE = gps_tau1201.speed  * 0.51444f * 1e3 * sinf(INS_Y.INS_Out.psi);
             if (dir)
@@ -59,14 +64,15 @@ void IMUGetCalFun(void)
                 INS_U.GPS_uBlox.velE *= -1;
             }
             INS_U.GPS_uBlox.fixType = 3;
-            INS_U.GPS_uBlox.hAcc = gps_tau1201.hdop;
-            INS_U.GPS_uBlox.vAcc = 0;
-            INS_U.GPS_uBlox.sAcc = 0;
+            INS_U.GPS_uBlox.hAcc = gps_tau1201.hdop * 1e3;
+            INS_U.GPS_uBlox.vAcc = 0 * 1e3;
+            INS_U.GPS_uBlox.sAcc = 0 * 1e3;
+            INS_U.GPS_uBlox.numSV = gps_tau1201.satellite_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
             Global_v_now = gps_tau1201.speed * 0.51444f;
             Global_yaw = INS_Y.INS_Out.psi;
-            Global_current_node.X += INS_Y.INS_Out.x_R;
-            Global_current_node.Y += INS_Y.INS_Out.y_R;
+            Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;
+            Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R;
         }
         gps_tau1201_flag = 0;
     }

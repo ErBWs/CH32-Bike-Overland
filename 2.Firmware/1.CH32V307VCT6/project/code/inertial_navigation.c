@@ -48,7 +48,7 @@ void gps_handler(gpsState pointStatus) {
                 }
             }
             else {
-                EasyUIDrawMsgBox("Error!");
+//                EasyUIDrawMsgBox("Error!");
             }
         }
     }
