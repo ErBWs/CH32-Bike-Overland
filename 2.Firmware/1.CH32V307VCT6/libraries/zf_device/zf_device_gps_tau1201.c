@@ -425,22 +425,6 @@ uint8 gps_data_parse (void)
         gps_gga_state = GPS_STATE_RECEIVING;
         
     }while(0);
-    double dx_lat,dy_lon;
-    if (return_state == 0)
-    {
-        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-        carBodyState.x_distance = ANGLE_TO_RAD(gps_tau1201.latitude - GlobalBase_GPS_data.latitude)*dx_lat;
-        carBodyState.y_distance = ANGLE_TO_RAD(gps_tau1201.longitude - GlobalBase_GPS_data.longitude)*dy_lon;
-        Global_current_node.X = carBodyState.x_distance;
-        Global_current_node.Y = carBodyState.y_distance;
-        kalmanDistanceY.gps_valid_flag = 1;
-        kalmanDistanceX.gps_valid_flag = 1;
-    }
-    else
-    {
-        kalmanDistanceX.gps_valid_flag = 2;
-        kalmanDistanceY.gps_valid_flag = 2;
-    }
     return return_state;
 }
 

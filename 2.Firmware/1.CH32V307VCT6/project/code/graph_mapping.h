@@ -27,7 +27,7 @@
 #define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS_MAX-1)+2)
 #define NIP_FACTOR_VECTOR_SIZE  (B_REFER_POINT_COUNTS_MAX)
 #define REF_NODE_LIST_SIZE      (B_REFER_POINT_COUNTS_MAX)
-#define GRAPH_NODE_TOTAL        (600)
+#define GRAPH_NODE_TOTAL        (400)
 
 
 typedef struct

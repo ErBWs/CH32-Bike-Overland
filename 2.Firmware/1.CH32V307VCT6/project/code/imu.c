@@ -65,25 +65,25 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode)
     {
         imu660ra_get_acc();
         imu660ra_get_gyro();
-        if (0)
+        if (Offset_OK)
         {
-            acc->x = imu660ra_acc_x;  //获取加速度原始数据
+            acc->x = -imu660ra_acc_x;  //获取加速度原始数据
             acc->y = imu660ra_acc_y;
-            acc->z = imu660ra_acc_z;
+            acc->z = -imu660ra_acc_z;
 
-            gyro->x = imu660ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
+            gyro->x = -imu660ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
             gyro->y = imu660ra_gyro_y - gyro_offset.y;
-            gyro->z = imu660ra_gyro_z - gyro_offset.z;
+            gyro->z = -imu660ra_gyro_z - gyro_offset.z;
         }
         else
         {
-            acc->x = imu660ra_acc_x;  //获取加速度计原始数据
+            acc->x = -imu660ra_acc_x;  //获取加速度计原始数据
             acc->y = imu660ra_acc_y;
-            acc->z = imu660ra_acc_z;
+            acc->z = -imu660ra_acc_z;
 
-            gyro->x = imu660ra_gyro_x;  //获取陀螺仪原始数据
+            gyro->x = -imu660ra_gyro_x;  //获取陀螺仪原始数据
             gyro->y = imu660ra_gyro_y;
-            gyro->z = imu660ra_gyro_z;
+            gyro->z = -imu660ra_gyro_z;
         }
 
 

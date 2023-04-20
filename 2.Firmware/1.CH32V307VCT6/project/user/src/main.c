@@ -21,6 +21,8 @@ int main (void)
 
     while(1)
     {
+        system_delay_ms(20);
+
         EasyUI(20);
     }
 }
