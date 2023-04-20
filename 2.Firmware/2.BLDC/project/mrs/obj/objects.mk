@@ -5,5 +5,5 @@
 
 USER_OBJS := 
 
-LIBS := -lm -lzf_device_config
+LIBS := -lm
 

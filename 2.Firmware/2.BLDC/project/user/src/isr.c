@@ -35,294 +35,152 @@
 
 #include "zf_common_headfile.h"
 
+#include "hall.h"
+#include "pwm_output.h"
+#include "pwm_input.h"
+#include "led.h"
+#include "operational_amplifier.h"
+#include "comparator.h"
+#include "motor.h"
+#include "en_switch.h"
+#include "encoder.h"
+#include "move_filter.h"
+#include "battery_adc.h"
+
 void NMI_Handler(void)       __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
-void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void USART2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void USART3_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void UART4_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void UART5_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void UART6_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void UART7_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void UART8_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void DVP_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void USART2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void USART3_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void UART4_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void UART5_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void UART6_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void UART7_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void UART8_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void DVP_IRQHandler (void) __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM1_BRK_IRQHandler        (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
-void TIM1_UP_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
+//void TIM1_UP_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM1_TRG_COM_IRQHandler    (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM1_CC_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 void TIM2_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 void TIM3_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 void TIM4_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
-void TIM5_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
+//void TIM5_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 void TIM6_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
-void TIM7_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
+//void TIM7_IRQHandler            (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM8_BRK_IRQHandler        (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
-void TIM8_UP_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
+//void TIM8_UP_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM8_TRG_COM_IRQHandler    (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM8_CC_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM9_BRK_IRQHandler        (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
-void TIM9_UP_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
+//void TIM9_UP_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM9_TRG_COM_IRQHandler    (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM9_CC_IRQHandler         (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM10_BRK_IRQHandler       (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
-void TIM10_UP_IRQHandler        (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
+//void TIM10_UP_IRQHandler        (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 //void TIM10_TRG_COM_IRQHandler   (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
-//void TIM10_CC_IRQHandler        (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
+void TIM10_CC_IRQHandler        (void)  __attribute__((interrupt("WCH-Interrupt-fast")));
 
-void EXTI0_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void EXTI1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void EXTI2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void EXTI3_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void EXTI4_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void EXTI9_5_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void EXTI15_10_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void EXTI0_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void EXTI1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void EXTI2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void EXTI3_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void EXTI4_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void EXTI9_5_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void EXTI15_10_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
-void USART1_IRQHandler(void)
-{
-    if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
-    {
-
-        USART_ClearITPendingBit(USART1, USART_IT_RXNE);
-    }
-}
-void USART2_IRQHandler(void)
-{
-    if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
-    {
-
-
-        USART_ClearITPendingBit(USART2, USART_IT_RXNE);
-    }
-}
-void USART3_IRQHandler(void)
-{
-    if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
-    {
-#if DEBUG_UART_USE_INTERRUPT                                                    // 如果开启 debug 串口中断
-        debug_interrupr_handler();                                              // 调用 debug 串口接收处理函数 数据会被 debug 环形缓冲区读取
-#endif                                                                          // 如果修改了 DEBUG_UART_INDEX 那这段代码需要放到对应的串口中断去
-        USART_ClearITPendingBit(USART3, USART_IT_RXNE);
-    }
-}
-void UART4_IRQHandler (void)
-{
-    if(USART_GetITStatus(UART4, USART_IT_RXNE) != RESET)
-    {
-
-        USART_ClearITPendingBit(UART4, USART_IT_RXNE);
-    }
-}
-void UART5_IRQHandler (void)
-{
-    if(USART_GetITStatus(UART5, USART_IT_RXNE) != RESET)
-    {
-        camera_uart_handler();
-        USART_ClearITPendingBit(UART5, USART_IT_RXNE);
-    }
-}
-void UART6_IRQHandler (void)
-{
-    if(USART_GetITStatus(UART6, USART_IT_RXNE) != RESET)
-    {
-
-        USART_ClearITPendingBit(UART6, USART_IT_RXNE);
-    }
-}
-void UART7_IRQHandler (void)
-{
-    if(USART_GetITStatus(UART7, USART_IT_RXNE) != RESET)
-    {
-        wireless_module_uart_handler();
-        USART_ClearITPendingBit(UART7, USART_IT_RXNE);
-    }
-}
-void UART8_IRQHandler (void)
-{
-    if(USART_GetITStatus(UART8, USART_IT_RXNE) != RESET)
-    {
-        gps_uart_callback();
-        USART_ClearITPendingBit(UART8, USART_IT_RXNE);
-    }
-
-}
-
-
-
-void DVP_IRQHandler(void)
-{
-    if (DVP->IFR & RB_DVP_IF_FRM_DONE)
-    {
-        camera_dvp_handler();
-        DVP->IFR &= ~RB_DVP_IF_FRM_DONE;
-    }
-}
-void EXTI0_IRQHandler(void)
-{
-    if(SET == EXTI_GetITStatus(EXTI_Line0))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line0);
-
-    }
-}
-
-void EXTI1_IRQHandler(void)
-{
-    if(SET == EXTI_GetITStatus(EXTI_Line1))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line1);
-
-    }
-}
-
-void EXTI2_IRQHandler(void)
-{
-    if(SET == EXTI_GetITStatus(EXTI_Line2))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line2);
-
-    }
-}
-
-void EXTI3_IRQHandler(void)
-{
-    if(SET == EXTI_GetITStatus(EXTI_Line3))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line3);
-
-    }
-}
-
-void EXTI4_IRQHandler(void)
-{
-    if(SET == EXTI_GetITStatus(EXTI_Line4))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line4);
-
-    }
-}
-
-
-void EXTI9_5_IRQHandler(void)
-{
-    if(SET == EXTI_GetITStatus(EXTI_Line5))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line5);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line6))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line6);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line7))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line7);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line8))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line8);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line9))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line9);
-
-    }
-
-}
-
-void EXTI15_10_IRQHandler(void)
-{
-    if(SET == EXTI_GetITStatus(EXTI_Line10))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line10);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line11))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line11);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line12))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line12);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line13))
-    {
-        EXTI_ClearITPendingBit(EXTI_Line13);
-
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line14))
-    {
-        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
-        dm1xa_light_callback();
-        // -----------------* DM1XA 光信号 预置中断处理函数 *-----------------
-        EXTI_ClearITPendingBit(EXTI_Line14);
-    }
-    if(SET == EXTI_GetITStatus(EXTI_Line15))
-    {
-        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
-        dm1xa_sound_callback();
-        // -----------------* DM1XA 声/反馈信号 预置中断处理函数 *-----------------
-        EXTI_ClearITPendingBit(EXTI_Line15);
-    }
-}
-
-int16_t count = 1000;
-void TIM1_UP_IRQHandler(void)
-{
-    if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
-    {
-        TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-        EasyKeyScanKeyState();
-        EasyKeyUserApp();
-        EasyUIKeyActionMonitor();
-        Beep();
-    }
-}
 
 void TIM2_IRQHandler(void)
 {
-    if(TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
+    if (RESET != TIM_GetITStatus(TIM2, TIM_FLAG_CC2))
     {
-       TIM_ClearITPendingBit(TIM2, TIM_IT_Update );
+        TIM_ClearFlag(TIM2, TIM_FLAG_CC2);
+        pwm_input_trigger_callback(&motor1_pwm_input_value);
 
-
+    }
+    if (RESET != TIM_GetITStatus(TIM2, TIM_FLAG_CC4))
+    {
+        TIM_ClearFlag(TIM2, TIM_FLAG_CC4);
+        pwm_input_timeout_callback(&motor1_pwm_input_value);
     }
 }
 
 void TIM3_IRQHandler(void)
 {
-    if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
+    TIM3->CNT = 0;
+    if (RESET != TIM_GetITStatus(TIM3, TIM_IT_Update))
     {
-       TIM_ClearITPendingBit(TIM3, TIM_IT_Update );
+        TIM_ClearFlag(TIM3, TIM_IT_Update);
+    }
 
+    if (RESET != TIM_GetITStatus(TIM3, TIM_IT_CC1))
+    {
+        TIM_ClearFlag(TIM3, TIM_FLAG_CC1);
+
+
+        // 捕获到新的霍尔值
+        motor_commutation_finished_callback(
+                &motor1_hall,
+                &motor1_control,
+                &motor1_pwm_input_value,
+                &motor1_pwm_output,
+                &motor1_closed_loop,
+                &motor1_enable_switch,
+                &motor1_speed_filter
+        );
+    }
+
+    if (RESET != TIM_GetITStatus(TIM3, TIM_IT_CC2))
+    {
+        TIM_ClearFlag(TIM3, TIM_FLAG_CC2);
+//        // 换相时间到
+//        motor_commutation_callback(&motor1_control, &motor1_pwm_output, &motor1_hall);
+    }
+
+    if (RESET != TIM_GetITStatus(TIM3, TIM_IT_CC3))
+    {
+        TIM_ClearFlag(TIM3, TIM_FLAG_CC3);
+        // 换相超时
+        motor_commutation_timeout_callback(&motor1_control, &motor1_speed_filter);
 
     }
 }
 
 void TIM4_IRQHandler(void)
 {
-    if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
+    TIM4->CNT = 0;
+
+    if (RESET != TIM_GetITStatus(TIM4, TIM_IT_CC1))
     {
-       TIM_ClearITPendingBit(TIM4, TIM_IT_Update );
+        TIM_ClearFlag(TIM4, TIM_FLAG_CC1);
+        // 捕获到新的霍尔值
+        motor_commutation_finished_callback(
+                &motor2_hall,
+                &motor2_control,
+                &motor2_pwm_input_value,
+                &motor2_pwm_output,
+                &motor2_closed_loop,
+                &motor2_enable_switch,
+                &motor2_speed_filter
+        );
+    }
 
+    if (RESET != TIM_GetITStatus(TIM4, TIM_IT_CC2))
+    {
+        TIM_ClearFlag(TIM4, TIM_FLAG_CC2);
+//        // 换相时间到
+//        motor_commutation_callback(&motor2_control, &motor2_pwm_output, &motor2_hall);
+    }
 
+    if (RESET != TIM_GetITStatus(TIM4, TIM_IT_CC3))
+    {
+        TIM_ClearFlag(TIM4, TIM_FLAG_CC3);
+        // 换相超时
+        motor_commutation_timeout_callback(&motor2_control, &motor2_speed_filter);
     }
 }
 
-void TIM5_IRQHandler(void)
-{
-    if(TIM_GetITStatus(TIM5, TIM_IT_Update) != RESET)
-    {
-       TIM_ClearITPendingBit(TIM5, TIM_IT_Update );
-
-
-    }
-}
 
 void TIM6_IRQHandler(void)
 {
@@ -330,50 +188,59 @@ void TIM6_IRQHandler(void)
     {
        TIM_ClearITPendingBit(TIM6, TIM_IT_Update );
 
+       motor_pit_control_callback(
+                &motor1_hall,
+                &motor1_control,
+                &motor1_pwm_input_value,
+                &motor1_pwm_output,
+                &motor1_closed_loop,
+                &motor1_enable_switch,
+                &motor1_encoder_out
+       );
+
+       motor_pit_control_callback(
+                &motor2_hall,
+                &motor2_control,
+                &motor2_pwm_input_value,
+                &motor2_pwm_output,
+                &motor2_closed_loop,
+                &motor2_enable_switch,
+                &motor2_encoder_out
+       );
+
+       battery_adc_read();
+
+//       EasyKeyScanKeyState();
+//       EasyKeyUserApp();
+//       EasyUIKeyActionMonitor();
+//       Beep();
     }
 }
 
-void TIM7_IRQHandler(void)
+
+void TIM10_CC_IRQHandler(void)
 {
-    if(TIM_GetITStatus(TIM7, TIM_IT_Update) != RESET)
+    if (RESET != TIM_GetITStatus(TIM10, TIM_FLAG_CC1))
     {
-       TIM_ClearITPendingBit(TIM7, TIM_IT_Update );
+        TIM_ClearFlag(TIM10, TIM_FLAG_CC1);
+    }
 
+    if (RESET != TIM_GetITStatus(TIM10, TIM_FLAG_CC2))
+    {
+        TIM_ClearFlag(TIM10, TIM_FLAG_CC2);
+        pwm_input_trigger_callback(&motor2_pwm_input_value);
+    }
 
+    if (RESET != TIM_GetITStatus(TIM10, TIM_FLAG_CC3))
+    {
+        TIM_ClearFlag(TIM10, TIM_FLAG_CC3);
+    }
+    if (RESET != TIM_GetITStatus(TIM10, TIM_FLAG_CC4))
+    {
+        TIM_ClearFlag(TIM10, TIM_FLAG_CC4);
+        pwm_input_timeout_callback(&motor2_pwm_input_value);
     }
 }
-
-
-void TIM8_UP_IRQHandler(void)
-{
-    if(TIM_GetITStatus(TIM8, TIM_IT_Update) != RESET)
-    {
-        TIM_ClearITPendingBit(TIM8, TIM_IT_Update);
-
-    }
-}
-
-
-void TIM9_UP_IRQHandler(void)
-{
-    if(TIM_GetITStatus(TIM9, TIM_IT_Update) != RESET)
-    {
-        TIM_ClearITPendingBit(TIM9, TIM_IT_Update);
-
-    }
-}
-
-
-void TIM10_UP_IRQHandler(void)
-{
-    if(TIM_GetITStatus(TIM10, TIM_IT_Update) != RESET)
-    {
-        TIM_ClearITPendingBit(TIM10, TIM_IT_Update);
-
-    }
-}
-
-
 
 //.section    .text.vector_handler, "ax", @progbits
 
