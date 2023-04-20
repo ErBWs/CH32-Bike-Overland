@@ -44,9 +44,8 @@ extern float num_float[8];
 //读取磁力计数据
 void imuGetMagData(_xyz_mag_s16_st *mag_data)
 {
-    static _xyz_mag_s16_st last_mag = {0};
     imu963ra_get_mag();
-    if (Offset_Mag_OK)
+    if (0)
         {
         mag_data->mx = ((float)imu963ra_mag_x - (float)mag_Offset.X0) / (float)mag_Offset.A;  //获取磁力计拟合数据
         mag_data->my = ((float)imu963ra_mag_y - (float)mag_Offset.Y0) / (float)mag_Offset.B;

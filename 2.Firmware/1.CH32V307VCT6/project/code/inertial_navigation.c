@@ -182,15 +182,8 @@ float yaw_gps_delta( float azimuth, float yaw)
 
 void gpsTest(void)
 {
-    if (gps_tau1201_flag == 1)
-    {
-        uint8 state = gps_data_parse();
-        if (state == 0)
-        {
-            printf("%f,%f,%f,%f\n",carBodyState.velocity,gps_tau1201.speed * 0.5144f, carBodyState.gpsvelocity,imu_data.w_acc.x/1000.0);
-            system_delay_ms(50);
-        }
-    }
+    BlueToothPrintf("%f,%f,%f,%f,%f,%d\n",INS_Y.INS_Out.vn,INS_Y.INS_Out.ve,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R,
+                    Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi)),gpio_get_level(D1));
+    system_delay_ms(50);
 }
-
 

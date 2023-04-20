@@ -8,6 +8,7 @@ extern uint8 stagger_flag;
 extern paramType ANGLE_STATIC_BIAS;
 extern float temp_x;
 extern int16_t fly_wheel_encode;
+extern uint32_t myTimeStamp;
 void IMUGetCalFun(void);
 void ServoControl(void);
 void taskTimAllInit(void);

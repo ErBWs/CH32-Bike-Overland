@@ -65,25 +65,25 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode)
     {
         imu660ra_get_acc();
         imu660ra_get_gyro();
-        if (Offset_OK)
+        if (0)
         {
-            acc->x = -imu660ra_acc_x;  //获取加速度原始数据
+            acc->x = imu660ra_acc_x;  //获取加速度原始数据
             acc->y = imu660ra_acc_y;
-            acc->z = -imu660ra_acc_z;
+            acc->z = imu660ra_acc_z;
 
-            gyro->x = -imu660ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
+            gyro->x = imu660ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
             gyro->y = imu660ra_gyro_y - gyro_offset.y;
-            gyro->z = -imu660ra_gyro_z - gyro_offset.z;
+            gyro->z = imu660ra_gyro_z - gyro_offset.z;
         }
         else
         {
-            acc->x = -imu660ra_acc_x;  //获取加速度计原始数据
+            acc->x = imu660ra_acc_x;  //获取加速度计原始数据
             acc->y = imu660ra_acc_y;
-            acc->z = -imu660ra_acc_z;
+            acc->z = imu660ra_acc_z;
 
-            gyro->x = -imu660ra_gyro_x;  //获取陀螺仪原始数据
+            gyro->x = imu660ra_gyro_x;  //获取陀螺仪原始数据
             gyro->y = imu660ra_gyro_y;
-            gyro->z = -imu660ra_gyro_z;
+            gyro->z = imu660ra_gyro_z;
         }
 
 
@@ -92,7 +92,7 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode)
     {
         imu963ra_get_acc();
         imu963ra_get_gyro();
-        if (Offset_OK)
+        if (0)
         {
             acc->x = imu963ra_acc_x;  //获取加速度原始数据
             acc->y = imu963ra_acc_y;
@@ -117,7 +117,7 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode)
     {
         icm20602_get_acc();
         icm20602_get_gyro();
-        if (Offset_OK)
+        if (0)
         {
             acc->x = icm20602_acc_x;  //获取加速度原始数据
             acc->y = icm20602_acc_y;
@@ -349,8 +349,8 @@ void imuinit(char imumode)
         system_delay_ms(100);
         pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
         printf("ok1\n");
-        imuMagOffset();
-        Ellipsoid_fitting_Process(&mag_origin_data);
+//        imuMagOffset();
+//        Ellipsoid_fitting_Process(&mag_origin_data);
         printf("ok2\n");
         pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
