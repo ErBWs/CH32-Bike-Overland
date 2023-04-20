@@ -29,7 +29,7 @@ void Cal_YawAngle(float mag_gyro_z, float *Yaw )
     if (gps_tau1201_flag == 1)
     {
             if (gps_tau1201.direction == *Yaw)  *Yaw = gps_tau1201.direction;
-            if (gps_tau1201.direction < *Yaw)   *Yaw += (mag_gyro_z - gps_tau1201.direction)*weight;
+            if (gps_tau1201.direction < *Yaw)   *Yaw -= (mag_gyro_z - gps_tau1201.direction)*weight;
             if (gps_tau1201.direction > *Yaw)   *Yaw += (mag_gyro_z - gps_tau1201.direction)*weight;
     }
     *Yaw += d_gyro_angle;

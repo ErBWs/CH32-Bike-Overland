@@ -30,7 +30,7 @@ void IMUGetCalFun(void)
     {
         imuGetMagData(&mag_data);
         Inclination_compensation(&mag_data, NO_ICO);
-        temp = imu_data.mag_yaw;
+        temp = imu_data.yaw;
     }
     else if (Bike_Start == 1 && tempUseFlag == 0)
     {
@@ -40,16 +40,19 @@ void IMUGetCalFun(void)
     if (Bike_Start == 1 && tempUseFlag == 1)
     {
         Cal_YawAngle(sensor.Gyro_deg.z, &carBodyState.yaw);
+        Global_yaw = carBodyState.yaw;
     }
     if (Bike_Start == 1 && count % 5 == 0 && tempUseFlag == 1)
     {
         kalmanVelocityUpdata(&carBodyState,&kalmanVelocity,0.01);
+        Global_v_now = carBodyState.velocity;
     }
     if (Bike_Start == 1 && count % 50 == 0 && tempUseFlag == 1)
     {
         if (gps_tau1201_flag == 1)
         {
             kalmanDistanceUpdata(&carBodyState,&kalmanDistanceX,&kalmanDistanceY,0.1);
+
             gps_tau1201_flag = 0;
         }
         count = 0;

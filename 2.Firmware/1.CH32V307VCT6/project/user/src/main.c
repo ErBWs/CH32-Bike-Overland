@@ -10,7 +10,6 @@
  * TIM3 BEEP_AND_KEY_PIT
  */
 
-
 void systemInit();
 int main (void)
 {
@@ -30,11 +29,11 @@ int main (void)
 
 void systemInit(void)
 {
-
     pidAllInit();
     MenuInit();
     EasyUIInit(1);
     adc_init(BATTERY_ADC_PIN,ADC_12BIT);
+    BuzzerInit();
     kalmanInit(&carBodyState,&kalmanDistanceX,&kalmanDistanceY,&kalmanVelocity,&imu_data.mag_yaw);
     encoderInit();
     motoInit();

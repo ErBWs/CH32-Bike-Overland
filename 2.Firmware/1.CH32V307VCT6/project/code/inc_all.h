@@ -9,7 +9,7 @@
 #ifndef INC_ALL_H_
 #define INC_ALL_H_
 
-#define USE_GPS 2
+#define USE_GPS 1
 
 #include "complementary_filter.h"
 #include "math.h"
@@ -32,6 +32,7 @@
 #include "easy_ui_user_app.h"
 #include "profile_photo_erbws.h"
 #include "graph_mapping.h"
+#include "buzzer.h"
 
 extern uint32 now_tick;
 extern uint16 beep_time;

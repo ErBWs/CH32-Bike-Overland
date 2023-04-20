@@ -308,13 +308,13 @@ void TIM3_IRQHandler(void)
                 if(beep_time!=0)
                 {
                     beep_state = 1;
-                    pwm_init(BEEP_PWM_PIN,beep_feq,800);
+                    pwm_set_freq(BEEP_PWM_PIN,beep_feq,800);
                 }
                 break;
             case 1:
                 if(--beep_time==0)
                 {
-                    pwm_init(BEEP_PWM_PIN,beep_feq,0);
+                    pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
                     beep_state = 0;
                 }
                 break;

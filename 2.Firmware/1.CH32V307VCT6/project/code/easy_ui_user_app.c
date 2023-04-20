@@ -23,17 +23,34 @@ EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemRe
 void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS == 1
+    uint8_t status=0;
     if(Bike_Start ==0)
     {
         stanleyControllerInit(&Global_stanleyController,(float)0.1,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
-        stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
-        stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
-        GraphNode_Diff(&GlobalGraph);
+        status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
+        status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
+        status|=GraphNode_Diff(&GlobalGraph);
+        if(status)
+        {
+            functionIsRunning = false;
+            EasyUIDrawMsgBox("Err check uart msg!");
+            system_delay_ms(100);
+            EasyUIBackgroundBlur();
+            return;
+        }
         Bike_Start = 1;
     }
     while(1)
     {
-        Stanley_Control(&GlobalGraph);
+        status |= Stanley_Control(&GlobalGraph);
+        if(status)
+        {
+            functionIsRunning = false;
+            EasyUIDrawMsgBox("Err check uart msg!");
+            system_delay_ms(100);
+            EasyUIBackgroundBlur();
+            return;
+        }
         gps_use.delta = RAD_TO_ANGLE(GlobalGraph.Stanley_controller->theta);
         if(GlobalGraph.is_finish)
         {
@@ -98,7 +115,7 @@ void EventReadPoints(EasyUIPage_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
-#define PATH_TOTAL_COUNTS 600
+#define PATH_TOTAL_COUNTS 30
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
@@ -120,13 +137,21 @@ void EventPathGenerate(EasyUIItem_t  *item)
         EasyUIDrawMsgBox("G_Buff Not Enough!");
         return;
     }
+    uint8_t status=0;
     GraphInit(&GlobalGraph, GlobalGraph_NodeBuffer, &GlobalBase_GPS_data, PATH_TOTAL_COUNTS);
-    B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
-    B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
-    B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
+    status|=B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
+    status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
+    status|=B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
     extern void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts);
     GraphReferNodeConvertInput(&GlobalGraph,gps_data_array,gps_use.point_count);
-    GraphPathGenerate(&GlobalGraph);
+    status|=GraphPathGenerate(&GlobalGraph);
+    if(status==1)
+    {
+        EasyUIDrawMsgBox("Err check uart msg!");
+        system_delay_ms(100);
+        EasyUIBackgroundBlur();
+        return;
+    }
     BlueToothPrintf("refer-points:\n");
     for(int i=0;i<gps_use.point_count;i++)
     {
@@ -240,7 +265,7 @@ void MessegeShowFun(void)
     IPS096_ShowUint(30, 38, gps_tau1201.time.minute,2);
     IPS096_ShowUint(50, 38, gps_tau1201.time.second,2);
     IPS096_ShowUint(92, 38+12, gps_tau1201.satellite_used,2);
-    IPS096_ShowFloat(4*8, 38+12+12, imu_data.mag_yaw,3,3);
+    IPS096_ShowFloat(4*8, 38+12+12, imu_data.yaw,3,3);
 }
 void PageNormalPoints(EasyUIPage_t *page)
 {

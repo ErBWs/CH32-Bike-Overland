@@ -345,16 +345,16 @@ void imuinit(char imumode)
         imu_data.x = sinf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) - cosf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
         imu_data.y = cosf(imu_data.rol/2) * sinf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* cosf(imu_data.pit/2)*sinf(imu_data.yaw/2);
         imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
         printf("ok1\n");
         imuMagOffset();
         Ellipsoid_fitting_Process(&mag_origin_data);
         printf("ok2\n");
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
 //        carBodyState.yaw = atan2f((float)(imu963ra_mag_y), (float)(imu963ra_mag_x));
 //        carBodyState.yaw = (float)Degree_To_360(carBodyState.yaw);
     }
@@ -376,16 +376,16 @@ void imuinit(char imumode)
         imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
 //        BlueToothPrintf("rol:%f\n",imu_data.rol*53.29f);
 //        BlueToothPrintf("pit:%f\n",imu_data.pit*53.29f);
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
         printf("ok1\n");
         imuMagOffset();
         Ellipsoid_fitting_Process(&mag_origin_data);
         printf("ok2\n");
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
     }
     if(imumode == IMU_660RA)
     {

@@ -59,25 +59,31 @@ void WGS_84_ConvertToXY(double base_latitude, double base_longitude, gpsDataLink
         nodesDATA[i].Y = y;
     }
 }
-void B_ConstructorInit(B_Constructor_typedef *constructor,uint8_t ref_counts,uint8_t order)
+uint8_t B_ConstructorInit(B_Constructor_typedef *constructor,uint8_t ref_counts,uint8_t order)
 {
     memset(constructor,0, sizeof(B_Constructor_typedef));
     if(order<=0)
     {
         printf("Order input Wrong!");
-        return;
+        return 1;
     }
     constructor->B_n = ref_counts-1;
     constructor->B_p = order-1;
     constructor->B_m = constructor->B_n + constructor->B_p + 1;
+    if(constructor->B_n-constructor->B_p-1<0)
+    {
+        constructor->B_p = constructor->B_n ;
+        printf("Warning the order is not fit the counts of control-point! Auto Fixed.");
+    }
     constructor->is_init = 1;
+    return 0;
 }
-void B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVector, double *NipFactorVector, nodeLink_typedef refNodeList)
+uint8_t B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVector, double *NipFactorVector, nodeLink_typedef refNodeList)
 {
     if(!constructor->is_init)
     {
         printf("constructor may not be initialized!");
-        return;
+        return 1;
     }
     memset(NodeVector,0, sizeof(double)*(constructor->B_m + 1));
     memset(NipFactorVector,0,sizeof(double)*(constructor->B_n + 1));
@@ -86,6 +92,7 @@ void B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVecto
     constructor->NipFactorVector = NipFactorVector;
     constructor->refNodeList = refNodeList;
     constructor->is_link = 1;
+    return 0;
 }
 void GraphInit(nodeGraph_typedef *graph,nodeLink_typedef nodeBuff,gpsData_typedef *base_gps_data,uint16_t buff_total)
 {
@@ -96,20 +103,21 @@ void GraphInit(nodeGraph_typedef *graph,nodeLink_typedef nodeBuff,gpsData_typede
     graph->total = buff_total;
     graph->is_init = 1;
 }
-void B_GraphRegister(nodeGraph_typedef *graph, B_Constructor_typedef *constructor)
+uint8_t B_GraphRegister(nodeGraph_typedef *graph, B_Constructor_typedef *constructor)
 {
     if(!graph->is_init)
     {
         printf("graph may not be initialized!");
-        return;
+        return 1;
     }
     if(!constructor->is_init&&constructor->is_link)
     {
         printf("constructor may not be initialized or buff-linked!");
-        return;
+        return 1;
     }
     graph->B_constructor = constructor;
     graph->has_constructor = 1;
+    return 0;
 }
 
 void stanleyControllerInit(stanleyController_typedef *controller, float k_gain, float L, float *yaw, float *v_now,node_typedef *current_node)
@@ -122,12 +130,12 @@ void stanleyControllerInit(stanleyController_typedef *controller, float k_gain, 
     controller->current_node = current_node;
     controller->is_init = 1;
 }
-void stanleyBuffLink(stanleyController_typedef *controller, float *pd_array,float *pdd_array,uint16_t point_total)
+uint8_t stanleyBuffLink(stanleyController_typedef *controller, float *pd_array,float *pdd_array,uint16_t point_total)
 {
     if(!controller->is_init)
     {
         printf("stanley_controller may not be initialized!");
-        return;
+        return 1;
     }
     if(pd_array!=NULL)
         memset(pd_array,0,sizeof(float)*point_total-1);
@@ -136,21 +144,23 @@ void stanleyBuffLink(stanleyController_typedef *controller, float *pd_array,floa
     controller->pd_array = pd_array;
     controller->pdd_array = pdd_array;
     controller->is_link =  1;
+    return 0;
 }
-void stanley_GraphRegister(nodeGraph_typedef *graph, stanleyController_typedef *controller)
+uint8_t stanley_GraphRegister(nodeGraph_typedef *graph, stanleyController_typedef *controller)
 {
     if(!graph->is_init)
     {
         printf("graph may not be initialized!");
-        return;
+        return 1;
     }
     if(!controller->is_init&&controller->is_link)
     {
         printf("controller may not be initialized or buff-linked!");
-        return;
+        return 1;
     }
     graph->Stanley_controller = controller;
     graph->has_stanley = 1;
+    return 0;
 }
 void unEven(double *NodeVector, uint8_t p, uint8_t n)
 {
@@ -158,15 +168,8 @@ void unEven(double *NodeVector, uint8_t p, uint8_t n)
     uint8_t flag = 1;
     if(piecewise<=1)
     {
-        if((n+p+2)%2==0)
-            for (int i = p+1; i < n+p+2; ++i)
-                NodeVector[i] = 1;
-        else
-        {
-            for (int i = p+1+(int)piecewise; i < n+p+2; ++i)
-                NodeVector[i] = 1;
-            NodeVector[(n+p+2)/2] = 0.5;
-        }
+        for (int i = p+1; i < n+p+2; ++i)
+            NodeVector[i] = 1;
     }
     else
     {
@@ -198,12 +201,12 @@ double BaseIterateFunc(uint8_t i, uint8_t p, double u,const double *NodeVector)
     }
     return result;
 }
-void GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint16_t counts)
+uint8_t GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint16_t counts)
 {
     if(!graph->is_init || !graph->has_constructor)
     {
         printf("graph may not be initialized or has no B_constructor!");
-        return;
+        return 1;
     }
     B_Constructor_typedef *constructor;
     constructor = graph->B_constructor;
@@ -212,14 +215,15 @@ void GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint1
         constructor->refNodeList[i].X = *(nodes_set+2*i);
         constructor->refNodeList[i].Y = *(nodes_set+2*i+1);
     }
+    return 0;
 }
 
-void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts)
+uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts)
 {
     if(!graph->is_init || !graph->has_constructor)
     {
         printf("graph may not be initialized or has no B_constructor!");
-        return;
+        return 1;
     }
     nodeLink_typedef refNodeList;
     gpsData_typedef base_gps_data;
@@ -233,13 +237,14 @@ void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uin
         refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
     }
 //    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
+    return 0;
 }
-void GraphPathGenerate(nodeGraph_typedef *graph)
+uint8_t GraphPathGenerate(nodeGraph_typedef *graph)
 {
     if(!graph->is_init || !graph->has_constructor)
     {
         printf("graph may not be initialized or has no B_constructor!");
-        return;
+        return 1;
     }
     double step,u;
     B_Constructor_typedef *constructor;
@@ -261,14 +266,15 @@ void GraphPathGenerate(nodeGraph_typedef *graph)
         }
     }
     constructor->is_interpolated = 1;
+    return 0;
 }
 
-void GraphNode_Diff(nodeGraph_typedef *graph)
+uint8_t GraphNode_Diff(nodeGraph_typedef *graph)
 {
     if(!graph->is_init || !graph->has_constructor || !graph->has_stanley)
     {
         printf("graph may not be initialized or has no B_constructor or no stanley!");
-        return;
+        return 1;
     }
     stanleyController_typedef *controller = graph->Stanley_controller;
     nodeLink_typedef node_list = graph->nodeBuff;
@@ -278,14 +284,15 @@ void GraphNode_Diff(nodeGraph_typedef *graph)
         controller->pd_array[i] = (float)((node_list[i+1].Y-node_list[i].Y)/(node_list[i+1].X-node_list[i].X));
     }
     controller->pd_array[graph->total-1] = controller->pd_array[graph->total-2];//give the final node's pd from the last node's
+    return 0;
 }
 #define FORECAST_FACTOR 2
-static void Stanley_CalculateIndexError(nodeGraph_typedef *graph)
+static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
 {
     if(!graph->is_init || !graph->has_constructor || !graph->has_stanley)
     {
         printf("graph may not be initialized or has no B_constructor or no stanley!");
-        return;
+        return 1;
     }
     stanleyController_typedef *controller = graph->Stanley_controller;
     nodeLink_typedef node_list = graph->nodeBuff;
@@ -317,17 +324,20 @@ static void Stanley_CalculateIndexError(nodeGraph_typedef *graph)
     }
     controller->target_index = min_index;
     controller->error = (float)(y < node_list[min_index].Y ? -min_distance:min_distance);
+    return 0;
 }
 #define PiPi(x)   if(x > PI)            \
                     x-=2*PI;            \
                     else if(x < -PI)    \
                     x+=2*PI;
-void Stanley_Control(nodeGraph_typedef *graph)
+uint8_t Stanley_Control(nodeGraph_typedef *graph)
 {
-    if(graph->is_finish)return;
+    if(graph->is_finish)return 0;
     stanleyController_typedef *controller = graph->Stanley_controller;
     nodeLink_typedef node_list = graph->nodeBuff;
-    Stanley_CalculateIndexError(graph);
+    uint8_t state = Stanley_CalculateIndexError(graph);
+    if(state == 1)
+        return 1;
     double target_x,target_y,x,y;float delta,temp,alpha=0;
     float yaw;
     if(controller->target_index!=graph->total-1)
@@ -349,6 +359,7 @@ void Stanley_Control(nodeGraph_typedef *graph)
     {
         graph->is_finish = 1;
     }
+    return 0;
 }
 
 
