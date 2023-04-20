@@ -2,7 +2,7 @@
 //#define ANGLE_STATIC_BIAS 1.2
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=0.5;
+paramType ANGLE_STATIC_BIAS=0.2;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -16,19 +16,47 @@ void taskTimAllInit(void)
     interrupt_set_priority(TIM1_UP_IRQn, (1<<5) | 2);
     interrupt_set_priority(TIM3_IRQn, (2<<5) | 2);
 }
-float num_float[8];
 void IMUGetCalFun(void)
 {
+    static uint8_t count = 0;
+    count++;
     if(imu_update_counts<1500)
             imu_update_counts++;
+    static float temp,tempUseFlag = 0;
     IMU_Getdata(&gyro,&acc, IMU_ALL);
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
-    imuGetMagData(&mag_data);
-    Inclination_compensation(&mag_data, NO_ICO);
-    Cal_YawAngle(sensor.Gyro_deg.z, &imu_data.mag_yaw);
-    gpsFusionyaw(gps_tau1201.direction, &imu_data.mag_yaw);
+    if (Bike_Start == 0)
+    {
+        imuGetMagData(&mag_data);
+        Inclination_compensation(&mag_data, NO_ICO);
+        temp = imu_data.yaw;
+    }
+    else if (Bike_Start == 1 && tempUseFlag == 0)
+    {
+        carBodyState.yaw = temp;
+        tempUseFlag = 1;
+    }
+    if (Bike_Start == 1 && tempUseFlag == 1)
+    {
+        Cal_YawAngle(sensor.Gyro_deg.z, &carBodyState.yaw);
+        Global_yaw = carBodyState.yaw;
+    }
+    if (Bike_Start == 1 && count % 5 == 0 && tempUseFlag == 1)
+    {
+        kalmanVelocityUpdata(&carBodyState,&kalmanVelocity,0.01);
+        Global_v_now = carBodyState.velocity;
+    }
+    if (Bike_Start == 1 && count % 50 == 0 && tempUseFlag == 1)
+    {
+        if (gps_tau1201_flag == 1)
+        {
+            kalmanDistanceUpdata(&carBodyState,&kalmanDistanceX,&kalmanDistanceY,0.1);
 
+            gps_tau1201_flag = 0;
+        }
+        count = 0;
+    }
 }
 #define USE_BLUE_TOOTH 0
 void ServoControl(void)
@@ -36,20 +64,16 @@ void ServoControl(void)
 #if USE_BLUE_TOOTH==1
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
-//    static float servo_feedback;
-//    servo_feedback = 0.8*servo_feedback+0.2*gps_use.delta;
     static uint8 counts=0;
     if(++counts!=20)return;
     counts=0;
-//    if(navigate_forbid==1)
-//    {
-//        if(pile_update_flag!=1)return;//若绕桩模式下参数没有更新则提前退出
-//        pile_update_flag=0;
-//        PID_Calculate(&dirDisPid,dirDisPid.target[NOW],(float)gps_use.points_distance);
-//    }
     PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//纯P
-//    dynamic_zero = dirPid.pos_out/17;
+//    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);
+    if(servo_sport_update_flag==0)
+    {
+        servo_current_duty = duty_input;//记得在缓动不起效果时更新当前duty值
+    }
     ServoSportHandler(&duty_input);
     pwm_set_duty(SERVO_PIN,duty_input);
 #endif
@@ -70,7 +94,6 @@ void BackMotoControl(void)
     int16_t back_wheel_encode=0;
 
     back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
-//    printf("A%d\r\n",-back_wheel_encode);
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
@@ -114,44 +137,42 @@ void BackMotoControl(void)
     motoDutySet(MOTOR_BACK_PIN,backSpdPid.pos_out);
 }
 uint8 stagger_flag=1;
+float temp_x;
+int16_t fly_wheel_encode=0;
 void FlyWheelControl(void)
 {
     extern Butter_Parameter Butter_10HZ_Parameter_Acce;
+    extern Butter_Parameter Butter_80HZ_Parameter_Acce;
     extern Butter_BufferData Butter_Buffer;
-    int16_t fly_wheel_encode=0;
+
     static uint8 counts=0;
 
     if(imu_update_counts!=1500)return;
-//    uint8 delay_2ms=0;
-//    if(++delay_2ms>5)
-//    {
-////            printf("A%f\r\n",imu_data.mag_yaw);
-//        printf("A%f\r\n",flyAngleSpdPid.delta_out);
-//        delay_2ms=0;
-//    }
-
     counts++;
-    float temp_x;
+
     temp_x = LPButterworth(sensor.Gyro_deg.x,&Butter_Buffer,&Butter_10HZ_Parameter_Acce);
     if(counts%5 == 0)
     {
-        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//    printf("A%d\r\n",fly_wheel_encode);
-//        fly_wheel_encode = fly_wheel_encode*0.8 + last_fly_wheel_encode * 0.2;//速度低通滤波
-//        last_fly_wheel_encode = fly_wheel_encode;
+        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
-//        Fhan_ADRC(&ADRC_SPEED_Controller,flySpdPid.pos_out); //对速度环的输出量进行TD
         counts=0;
     }
     if(counts%2 == 0)
     {
-        PID_Calculate(&flyAnglePid, (flySpdPid.pos_out<0?-sqrtf(-flySpdPid.pos_out):sqrtf(flySpdPid.pos_out))+ANGLE_STATIC_BIAS+dynamic_zero,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
+//        ANGLE_STATIC_BIAS -= fly_wheel_encode * 0.00001f;
+//        if (my_abs(ANGLE_STATIC_BIAS)>6)
+//        {
+//            ANGLE_STATIC_BIAS = ANGLE_STATIC_BIAS<0?-6:6;
+//        }
+        PID_Calculate(&flyAnglePid, (flySpdPid.pos_out<0?-sqrtf(-flySpdPid.pos_out):sqrtf(flySpdPid.pos_out))+ANGLE_STATIC_BIAS,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
     if(abs(imu_data.rol)>20)
     {
         stagger_flag=1;
+        ANGLE_STATIC_BIAS = 0.2;
         motoDutySet(MOTOR_FLY_PIN,0);
         return;
     }

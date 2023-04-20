@@ -10,44 +10,62 @@
 
 #include "inc_all.h"
 #include "zf_common_headfile.h"
-//#include "imu.h"
-//#include "ellipsoid_fitting_process.h"
 
-//typedef struct
-//{
-//    float mx;
-//    float my;
-//    float mz;
-//} _xyz_mag_s16_st;
-//
-//typedef struct
-//{
-//    float w;//q0;
-//    float x;//q1;
-//    float y;//q2;
-//    float z;//q3;
-//
-//    _xyz_f_st x_vec;
-//    _xyz_f_st y_vec;
-//    _xyz_f_st z_vec;
-//
-//    _xyz_f_st a_acc;
-//    _xyz_f_st w_acc;
-//
-//    float rol;
-//    float pit;
-//    float yaw;
-//
-//    float inter_rol;
-//    float inter_pit;
-//    float inter_yaw;
-//    float mag_yaw;
-//} _imu_st ;
+#define V_Q_POS     0.3f
+#define DIS_Q_POS   0.8f
+#define KNOT_To_MS(x)    ((x) * 0.514444f)
 
-#define  VAL  57.2957795f;
-#define  INVVAL  0.0174533f
+/*! \brief The data after performing Kalman fusion */
+typedef struct {
+    float v;
+    float distance_north;
+    float distance_east;
+} kalman_data_t;
 
+typedef struct {
+    float q_pos; // Process noise variance for the position
+    float q_vel; // Process noise variance for the velocity
+    float r_pos; // Measurement noise variance - this is actually the variance of the measurement noise
+    float r_old_pos;
+    
+    float pos;   // The pos calculated by the Kalman filter - part of the 2x1 state vector
+    float vel;   // The gyro velocity calculated by the Kalman filter - part of the 2x1 state vector
+    float bias;  // The bias of velocity
+    
+    float P[2][2]; // Error covariance 2x2 matrix
+    unsigned char gps_valid_flag;
+} kalman_filter_t;
+
+
+typedef volatile struct {
+    float x_velocity;
+    float y_velocity;
+    float acceleration;
+    float yaw;
+    float gpsvelocity;
+    
+    float velocity;
+    float x_distance;
+    float y_distance;
+}carState;
+
+extern kalman_data_t kalmanData;
+
+extern kalman_filter_t kalmanVelocity;
+extern kalman_filter_t kalmanDistanceX;
+extern kalman_filter_t kalmanDistanceY;
+
+extern carState carBodyState;
+
+int num_times_nth_power_of_10(int num, int n);
 double Cal_Angle(int16 gyro_x, int16 acc_y, int16 acc_z, int16 offset);
 void Cal_YawAngle(float mag_gyro_z, float *yaw);
 void gpsFusionyaw(float gpsangle, float *yaw);
+
+void kalmanVelocityUpdata(carState *car, kalman_filter_t *kalmanVelocity, float dt);
+void kalmanDistanceUpdata(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, float dt);
+void kalmanInit(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, kalman_filter_t *kalmanVelocity, float *yaw);
+
+double Degree_To_360(double angle);
+
 #endif /* COMPLEMENTARY_FILTER_H_ */

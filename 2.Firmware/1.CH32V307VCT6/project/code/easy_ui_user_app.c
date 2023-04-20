@@ -8,11 +8,11 @@
 #include "easy_ui_user_app.h"
 #include "inc_all.h"
 // Pages
-EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePilePoints, pageotherPoints, pageSetting, pageAbout;
+EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePilePoints, pagePathGenerate,pageBasePoints, pageSetting, pageAbout;
 
 // Items
 EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS, itemSetting;
-EasyUIItem_t titleGPS, itemNormalPoints, itemPilePoints, itemotherPoints, itemSavePoints, itemReadPoints;
+EasyUIItem_t titleGPS, itemNormalPoints, itemPilePoints, itemBasePoints, itemPathGenerate, itemSavePoints, itemReadPoints;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
 EasyUIItem_t titleBackMotorPID, itemBackMotorKp, itemBackMotorKi, itemBackMotorKd, itemBackMotorInMax, itemBackMotorErrMax, itemBackMotorErrMin;
@@ -20,23 +20,61 @@ EasyUIItem_t itemExp, itemTh;
 EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, itemObstacle, itemGarage;
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
-
 void EventMainLoop(EasyUIItem_t *item)
 {
-#if USE_GPS
-//    Bike_Start = 1;
-    gpsStateCheck();
+#if USE_GPS == 1
+    uint8_t status=0;
+    if(Bike_Start ==0)
+    {
+        stanleyControllerInit(&Global_stanleyController,(float)0.1,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
+        status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
+        status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
+        status|=GraphNode_Diff(&GlobalGraph);
+        if(status)
+        {
+            functionIsRunning = false;
+            EasyUIDrawMsgBox("Err check uart msg!");
+            system_delay_ms(100);
+            EasyUIBackgroundBlur();
+            return;
+        }
+        Bike_Start = 1;
+    }
+    while(1)
+    {
+        status |= Stanley_Control(&GlobalGraph);
+        if(status)
+        {
+            functionIsRunning = false;
+            EasyUIDrawMsgBox("Err check uart msg!");
+            system_delay_ms(100);
+            EasyUIBackgroundBlur();
+            return;
+        }
+        gps_use.delta = RAD_TO_ANGLE(GlobalGraph.Stanley_controller->theta);
+        if(GlobalGraph.is_finish)
+        {
+            GlobalGraph.is_finish = 0;
+            functionIsRunning = false;
+            beep_time = 70;
+            Bike_Start = 0;
+            break;
+        }
+    }
+#elif USE_GPS == 2
+        Bike_Start = 1;
+        gpsTest();
 #endif
-    
     if (opnExit)
     {
+        Bike_Start = 0;
         opnExit = false;
         functionIsRunning = false;
         EasyUIBackgroundBlur();
     }
 }
 
-void EventSavePionts(EasyUIItem_t *item)
+void EventSavePoints(EasyUIItem_t *item)
 {
     if(gps_use.point_count!=0)
     {
@@ -46,10 +84,10 @@ void EventSavePionts(EasyUIItem_t *item)
         {
             GPSSaveToFlashWithConversion(&gps_data_array[k].latitude);
             GPSSaveToFlashWithConversion(&gps_data_array[k].longitude);
-            GPSSaveToFlashWithConversion(&gps_data_array[k].type);
+            double temp = gps_data_array[k].type;
+            GPSSaveToFlashWithConversion(&temp);
         }
     }
-    gps_data_array[0].is_used = 1;//设为已用状态
     gps_data = gps_data_array[0];//获得第一个目标点
     gps_use.use_point_count=1;
     GPSFlashOperationEnd();
@@ -58,9 +96,9 @@ void EventSavePionts(EasyUIItem_t *item)
     EasyUIBackgroundBlur();
 }
 
-void EventReadPionts(EasyUIPage_t *item)
+void EventReadPoints(EasyUIPage_t *item)
 {
-    flash_buffer_clear();
+    GPSFlashOperationEnd();
     memset(gps_data_array, 0, sizeof(_gps_st) * GPS_MAX_POINT);//清空数组准备录入新的数据
     memset(&gps_use, 0, sizeof(_gps_use_st));//清空记录信息准备录入新的数据
     double count;
@@ -69,16 +107,66 @@ void EventReadPionts(EasyUIPage_t *item)
     for (uint8 k = 0; k < gps_use.point_count; k++) {
         GPSReadFlashWithConversion(&gps_data_array[k].latitude);
         GPSReadFlashWithConversion(&gps_data_array[k].longitude);
-        GPSReadFlashWithConversion(&gps_data_array[k].type);
+        GPSReadFlashWithConversion((double *)&gps_data_array[k].type);
     }
-    gps_data_array[0].is_used = 1;//设为已用状态
     gps_data = gps_data_array[0];//获得第一个目标点
     gps_use.use_point_count = 1;
-    EasyUIDrawMsgBox("Finish...");
+
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
+#define PATH_TOTAL_COUNTS 30
+#if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
+#error Too Many Points!
+#endif
+void EventPathGenerate(EasyUIItem_t  *item)
+{
+    functionIsRunning = false;
+    if(gps_use.point_count<=1)
+    {
+        EasyUIDrawMsgBox("Points Not Enough!");
+        return;
+    }
+    if(gps_use.point_count > B_REFER_POINT_COUNTS_MAX)
+    {
+        EasyUIDrawMsgBox("B_Buff Not Enough!");
+        return;
+    }
+    if(gps_use.point_count > GRAPH_NODE_TOTAL)
+    {
+        EasyUIDrawMsgBox("G_Buff Not Enough!");
+        return;
+    }
+    uint8_t status=0;
+    GraphInit(&GlobalGraph, GlobalGraph_NodeBuffer, &GlobalBase_GPS_data, PATH_TOTAL_COUNTS);
+    status|=B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
+    status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
+    status|=B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
+    extern void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts);
+    GraphReferNodeConvertInput(&GlobalGraph,gps_data_array,gps_use.point_count);
+    status|=GraphPathGenerate(&GlobalGraph);
+    if(status==1)
+    {
+        EasyUIDrawMsgBox("Err check uart msg!");
+        system_delay_ms(100);
+        EasyUIBackgroundBlur();
+        return;
+    }
+    BlueToothPrintf("refer-points:\n");
+    for(int i=0;i<gps_use.point_count;i++)
+    {
+        BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
+    }
+    BlueToothPrintf("all-points:\n");
+    for(int i=0;i<GlobalGraph.total;i++)
+    {
+        BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+    }
 
+    EasyUIDrawMsgBox("Finish!");
+    EasyUIBackgroundBlur();
+
+}
 void EventChangeBuzzerVolume(EasyUIItem_t *item)
 {
     if (opnUp)
@@ -163,10 +251,8 @@ void PageImage(EasyUIPage_t *page)
             *page->itemHead->param = 0;
     }
 }
-
-void PageNormalPoints(EasyUIPage_t *page)
+void MessegeShowFun(void)
 {
-    uint8_t pointStatus = NORMAL;
     IPS096_ShowStr(0,2,"latitude:");
     IPS096_ShowStr(0, 14, "longitude:");
     IPS096_ShowStr(0, 26, "hdop:");
@@ -179,57 +265,29 @@ void PageNormalPoints(EasyUIPage_t *page)
     IPS096_ShowUint(30, 38, gps_tau1201.time.minute,2);
     IPS096_ShowUint(50, 38, gps_tau1201.time.second,2);
     IPS096_ShowUint(92, 38+12, gps_tau1201.satellite_used,2);
-    IPS096_ShowFloat(4*8, 38+12+12, imu_data.mag_yaw,3,3);
-    
+    IPS096_ShowFloat(4*8, 38+12+12, imu_data.yaw,3,3);
+}
+void PageNormalPoints(EasyUIPage_t *page)
+{
+    gpsState pointStatus = COMMON;
+    MessegeShowFun();
     gps_handler(pointStatus);
 }
 
 void PagePilePoints(EasyUIPage_t *page)
 {
-    uint8_t pointStatus = PILE;
-    IPS096_ShowStr(0,2,"latitude:");
-    IPS096_ShowStr(0, 14, "longitude:");
-    IPS096_ShowStr(0, 26, "hdop:");
-    IPS096_ShowStr(0, 38, "time:  :  ");
-    IPS096_ShowStr(0, 38+12, "satellite_used:");
-    IPS096_ShowStr(0, 38+12+12, "yaw:");
-    
-    IPS096_ShowFloat(54, 2, gps_tau1201.latitude,3,6);
-    IPS096_ShowFloat(60, 14, gps_tau1201.longitude,3,6);
-    IPS096_ShowFloat(30, 26, gps_tau1201.hdop,2,2);
-    IPS096_ShowUint(30, 38, gps_tau1201.time.minute,2);
-    IPS096_ShowUint(50, 38, gps_tau1201.time.second,2);
-    IPS096_ShowUint(92, 38+12, gps_tau1201.satellite_used,2);
-    IPS096_ShowFloat(4*8, 38+12+12, imu_data.mag_yaw,3,3);
-    
+    gpsState pointStatus = PILE;
+    MessegeShowFun();
     gps_handler(pointStatus);
 }
 
-void PagerOtherPoints(EasyUIPage_t *page)
+void PageBasePoints(EasyUIPage_t *page)
 {
-    uint8_t pointStatus = OTHER;
-    IPS096_ShowStr(0,2,"latitude:");
-    IPS096_ShowStr(0, 14, "longitude:");
-    IPS096_ShowStr(0, 26, "hdop:");
-    IPS096_ShowStr(0, 38, "time:  :  ");
-    IPS096_ShowStr(0, 38+12, "satellite_used:");
-    IPS096_ShowStr(0, 38+12+12, "yaw:");
-
-    IPS096_ShowFloat(54, 2, gps_tau1201.latitude,3,6);
-    IPS096_ShowFloat(60, 14, gps_tau1201.longitude,3,6);
-    IPS096_ShowFloat(30, 26, gps_tau1201.hdop,2,2);
-    IPS096_ShowUint(30, 38, gps_tau1201.time.minute,2);
-    IPS096_ShowUint(50, 38, gps_tau1201.time.second,2);
-    IPS096_ShowUint(92, 38+12, gps_tau1201.satellite_used,2);
-    IPS096_ShowFloat(4*8, 38+12+12, imu_data.mag_yaw,3,3);
-    
+    gpsState pointStatus = BASE;
+    MessegeShowFun();
     gps_handler(pointStatus);
 }
 
-//void PagePoints(EasyUIItem_t *page)
-//{
-//
-//}
 
 
 /*!
@@ -307,9 +365,9 @@ void MenuInit()
     EasyUIAddPage(&pageSpdPID, PAGE_LIST);
     EasyUIAddPage(&pageDirPID, PAGE_LIST);
     EasyUIAddPage(&pageBackMotorPID, PAGE_LIST);
+    EasyUIAddPage(&pageBasePoints, PAGE_CUSTOM, PageBasePoints);
     EasyUIAddPage(&pageNormalPoints, PAGE_CUSTOM, PageNormalPoints);
     EasyUIAddPage(&pagePilePoints, PAGE_CUSTOM, PagePilePoints);
-    EasyUIAddPage(&pageotherPoints, PAGE_CUSTOM, PagerOtherPoints);
     EasyUIAddPage(&pageSetting, PAGE_LIST);
     EasyUIAddPage(&pageAbout, PAGE_CUSTOM, PageAbout);
 
@@ -324,35 +382,36 @@ void MenuInit()
 
     // Page GPS points
     EasyUIAddItem(&pagePoints, &titleGPS, "[GPS Points]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pagePoints, &itemBasePoints, "Base Points", ITEM_JUMP_PAGE, pageBasePoints.id);
     EasyUIAddItem(&pagePoints, &itemNormalPoints, "Normal Points", ITEM_JUMP_PAGE, pageNormalPoints.id);
     EasyUIAddItem(&pagePoints, &itemPilePoints, "Pile Points", ITEM_JUMP_PAGE, pagePilePoints.id);
-    EasyUIAddItem(&pagePoints, &itemotherPoints, ".. Points", ITEM_JUMP_PAGE, pageotherPoints.id);
-    EasyUIAddItem(&pagePoints, &itemSavePoints, "Save", ITEM_MESSAGE, "Saving...", EventSavePionts);
-    EasyUIAddItem(&pagePoints, &itemReadPoints, "Read", ITEM_MESSAGE, "Reading...", EventReadPionts);
+    EasyUIAddItem(&pagePoints, &itemPathGenerate, "Path Generate", ITEM_MESSAGE, "Generating...", EventPathGenerate);
+
+    EasyUIAddItem(&pagePoints, &itemSavePoints, "Save", ITEM_MESSAGE, "Saving...", EventSavePoints);
+    EasyUIAddItem(&pagePoints, &itemReadPoints, "Read", ITEM_MESSAGE, "Reading...", EventReadPoints);
     
     // Page Fly speed pid
     EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Fly Speed PID]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageSpdPID, &itemSpdKp, "FlySpeed Kp", ITEM_CHANGE_VALUE, &flySpdPid.Kp, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemSpdKi, "FlySpeed Ki", ITEM_CHANGE_VALUE, &flySpdPid.Ki, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemSpdKd, "FlySpeed Kd", ITEM_CHANGE_VALUE, &flySpdPid.Kd, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageSpdPID, &itemSpdKi, "FlySpeed Ki", ITEM_CHANGE_VALUE, &flySpdPid.Ki, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageSpdPID, &itemSpdKd, "FlySpeed Kd", ITEM_CHANGE_VALUE, &flySpdPid.Kd, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageSpdPID, &itemAngKp, "FlyAngle Kp", ITEM_CHANGE_VALUE, &flyAnglePid.Kp, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemAngKi, "FlyAngle Ki", ITEM_CHANGE_VALUE, &flyAnglePid.Ki, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemAngKd, "FlyAngle Kd", ITEM_CHANGE_VALUE, &flyAnglePid.Kd, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageSpdPID, &itemAngKi, "FlyAngle Ki", ITEM_CHANGE_VALUE, &flyAnglePid.Ki, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageSpdPID, &itemAngKd, "FlyAngle Kd", ITEM_CHANGE_VALUE, &flyAnglePid.Kd, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageSpdPID, &itemAngSpdKp, "FlyAngleSpd Kp", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageSpdPID, &itemAngSpdKi, "FlyAngleSpd Ki", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Ki, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemAngSpdKd, "FlyAngleSpd Kd", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kd, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageSpdPID, &itemAngSpdKd, "FlyAngleSpd Kd", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kd, EasyUIEventChangeFloat);
     
     // Page direction pid
     EasyUIAddItem(&pageDirPID, &titleDirPID, "[Direction PID]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageDirPID, &itemDirKp, "Dir Kp", ITEM_CHANGE_VALUE, &dirPid.Kp, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageDirPID, &itemDirKi, "Dir Ki", ITEM_CHANGE_VALUE, &dirPid.Ki, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageDirPID, &itemDirKd, "Dir Kd", ITEM_CHANGE_VALUE, &dirPid.Kd, EasyUIEventChangeFloat);
     
     //Page BackMotor pid
     EasyUIAddItem(&pageBackMotorPID, &titleBackMotorPID, "[BackMotor PID]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageBackMotorPID, &itemBackMotorKp, "BackMotor Kp", ITEM_CHANGE_VALUE, &backSpdPid.Kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageBackMotorPID, &itemBackMotorKi, "BackMotor Ki", ITEM_CHANGE_VALUE, &backSpdPid.Ki, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageBackMotorPID, &itemBackMotorKd, "BackMotor Kd", ITEM_CHANGE_VALUE, &backSpdPid.Kd, EasyUIEventChangeFloat);
+
     
     
 

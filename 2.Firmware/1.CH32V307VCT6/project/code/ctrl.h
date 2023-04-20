@@ -6,6 +6,8 @@
 extern uint32_t back_inter_distance;
 extern uint8 stagger_flag;
 extern paramType ANGLE_STATIC_BIAS;
+extern float temp_x;
+extern int16_t fly_wheel_encode;
 void IMUGetCalFun(void);
 void ServoControl(void);
 void taskTimAllInit(void);

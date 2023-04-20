@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6
+CMAKE_SOURCE_DIR = "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw
+CMAKE_BINARY_DIR = "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-bu
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"E:\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start F:\bike\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\cmake-build-debug-mingw\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -2072,6 +2072,30 @@ project/code/filter.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.s
 .PHONY : project/code/filter.c.s
 
+project/code/graph_mapping.obj: project/code/graph_mapping.c.obj
+.PHONY : project/code/graph_mapping.obj
+
+# target to build an object file
+project/code/graph_mapping.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.obj
+.PHONY : project/code/graph_mapping.c.obj
+
+project/code/graph_mapping.i: project/code/graph_mapping.c.i
+.PHONY : project/code/graph_mapping.i
+
+# target to preprocess a source file
+project/code/graph_mapping.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.i
+.PHONY : project/code/graph_mapping.c.i
+
+project/code/graph_mapping.s: project/code/graph_mapping.c.s
+.PHONY : project/code/graph_mapping.s
+
+# target to generate assembly for a file
+project/code/graph_mapping.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CH32V307VCT6.dir\build.make CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.s
+.PHONY : project/code/graph_mapping.c.s
+
 project/code/imu.obj: project/code/imu.c.obj
 .PHONY : project/code/imu.obj
 
@@ -2636,6 +2660,9 @@ help:
 	@echo ... project/code/filter.obj
 	@echo ... project/code/filter.i
 	@echo ... project/code/filter.s
+	@echo ... project/code/graph_mapping.obj
+	@echo ... project/code/graph_mapping.i
+	@echo ... project/code/graph_mapping.s
 	@echo ... project/code/imu.obj
 	@echo ... project/code/imu.i
 	@echo ... project/code/imu.s

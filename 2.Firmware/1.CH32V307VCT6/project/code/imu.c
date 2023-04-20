@@ -285,9 +285,6 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st
     imu->w_acc.z = imu->z_vec.x *imu->a_acc.x + imu->z_vec.y *imu->a_acc.y + imu->z_vec.z *imu->a_acc.z;
     
     // 测量值与等效重力向量的叉积（计算向量误差）
-//    vec_err.x =  (acc_norm.y * imu->z_vec.z - imu->z_vec.y * acc_norm.z);
-//    vec_err.y = -(acc_norm.x * imu->z_vec.z - imu->z_vec.x * acc_norm.z);
-//    vec_err.z = -(acc_norm.y * imu->z_vec.x - imu->z_vec.y * acc_norm.x);
 
     vec_err.x =  (acc_norm.y * imu->z_vec.z - imu->z_vec.y * acc_norm.z) ;
     vec_err.y = -(acc_norm.x * imu->z_vec.z - imu->z_vec.x * acc_norm.z) ;
@@ -329,7 +326,7 @@ void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st
     //四元数转欧拉角
     imu->pit = asin(2*q1q3 - 2*q0q2)*57.29f;
     imu->rol = fast_atan2(2*q2q3 + 2*q0q1, -2*q1q1-2*q2q2 + 1)*57.29f;
-    imu->yaw = -fast_atan2(2*q1q2 + 2*q0q3, -2*q2q2-2*q3q3 + 1)*57.29f;
+//    imu->yaw = -fast_atan2(2*q1q2 + 2*q0q3, -2*q2q2-2*q3q3 + 1)*57.29f;
 }
 //extern float num_float[8];
 
@@ -340,25 +337,26 @@ void imuinit(char imumode)
         imu963ra_init();
         imu660ra_init();
         IMU_Offset(imumode);
-
-//        vcan_sendware(num_float, sizeof(num_float));
+        
         IMU_Getdata(&gyro,&acc, IMU_ALL);
-        imu_data.rol = atan2f(acc.y,acc.z);//        num_float[5] = (float)Offset_OK;
+        imu_data.rol = atan2f(acc.y,acc.z);
         imu_data.pit = atan2f(acc.x,acc.z);
         imu_data.w = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
         imu_data.x = sinf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) - cosf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
         imu_data.y = cosf(imu_data.rol/2) * sinf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* cosf(imu_data.pit/2)*sinf(imu_data.yaw/2);
         imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
         printf("ok1\n");
         imuMagOffset();
         Ellipsoid_fitting_Process(&mag_origin_data);
         printf("ok2\n");
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
+//        carBodyState.yaw = atan2f((float)(imu963ra_mag_y), (float)(imu963ra_mag_x));
+//        carBodyState.yaw = (float)Degree_To_360(carBodyState.yaw);
     }
     if (imumode == IMU_ICM)
     {
@@ -378,16 +376,16 @@ void imuinit(char imumode)
         imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
 //        BlueToothPrintf("rol:%f\n",imu_data.rol*53.29f);
 //        BlueToothPrintf("pit:%f\n",imu_data.pit*53.29f);
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
         printf("ok1\n");
         imuMagOffset();
         Ellipsoid_fitting_Process(&mag_origin_data);
         printf("ok2\n");
-        pwm_init(BEEP_PWM_PIN,beep_feq,500);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
         system_delay_ms(100);
-        pwm_init(BEEP_PWM_PIN,beep_feq,0);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
     }
     if(imumode == IMU_660RA)
     {

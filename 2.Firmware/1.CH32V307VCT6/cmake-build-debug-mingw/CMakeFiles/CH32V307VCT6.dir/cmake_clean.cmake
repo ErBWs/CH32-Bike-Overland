@@ -164,6 +164,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CH32V307VCT6.dir/project/code/encoder.c.obj.d"
   "CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj"
   "CMakeFiles/CH32V307VCT6.dir/project/code/filter.c.obj.d"
+  "CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.obj"
+  "CMakeFiles/CH32V307VCT6.dir/project/code/graph_mapping.c.obj.d"
   "CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj"
   "CMakeFiles/CH32V307VCT6.dir/project/code/imu.c.obj.d"
   "CMakeFiles/CH32V307VCT6.dir/project/code/inertial_navigation.c.obj"

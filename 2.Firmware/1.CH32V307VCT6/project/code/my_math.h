@@ -31,6 +31,8 @@
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define my_pow_2_curve(in,a,max) (((1.0f - (a)) + (a) *ABS((in) / (max))) * in)
+#define Max(a,b)    ((a) > (b) ? (a) : (b))
+#define Min(a,b)    ((a) < (b) ? (a) : (b))
 
 float my_abs(float f);
 REAL fast_atan2(REAL y, REAL x);

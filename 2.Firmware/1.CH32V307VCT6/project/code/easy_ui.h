@@ -43,7 +43,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define ROTARY          0
 
 #define BATTERY_ADC_PIN         ADC1_IN9_B1
-#define LOWEST_BATTERY_VOLTAGE  11.1f
+#define LOWEST_BATTERY_VOLTAGE  11.5f
 
 #define SCREEN_WIDTH            160
 #define SCREEN_HEIGHT           80
@@ -78,7 +78,7 @@ extern float GetBatteryVoltage();
 #define EasyUIGetBatVoltage()                                   (GetBatteryVoltage())
 #define EasyUIDelay_ms(time)                                    (system_delay_ms(time))
 
-typedef     double      paramType;
+typedef     float      paramType;
 
 typedef enum
 {
@@ -111,7 +111,6 @@ typedef struct EasyUI_item
     int16_t position;
     char *title;
 
-    uint8_t *icon;                              // PAGE_ICON
     char *msg;                                  // ITEM_MESSAGE
     bool *flag;                                 // ITEM_CHECKBOX and ITEM_RADIO_BUTTON and ITEM_SWITCH
     bool flagDefault;                           // Factory default setting

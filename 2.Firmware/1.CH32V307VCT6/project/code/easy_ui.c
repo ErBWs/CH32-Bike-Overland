@@ -81,9 +81,6 @@ void EasyUIAddItem(EasyUIPage_t *page, EasyUIItem_t *item, char *_title, EasyUII
         break;
     }
 
-    if (page->funcType == PAGE_ICON)
-        item->icon = va_arg(variableArg, uint8_t *);
-
     va_end(variableArg);
 
     item->next = NULL;

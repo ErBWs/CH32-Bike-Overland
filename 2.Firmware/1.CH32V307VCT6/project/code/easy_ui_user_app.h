@@ -23,6 +23,7 @@ extern "C"
 void MenuInit();
 
 extern uint64_t uid;
+extern uint8 yawflag;
 
 #ifdef __cplusplus
 }

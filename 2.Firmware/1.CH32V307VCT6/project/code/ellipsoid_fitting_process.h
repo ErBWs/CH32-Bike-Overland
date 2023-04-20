@@ -7,6 +7,8 @@
 #ifndef CODE_ELLIPSOID_FITTING_PROCESS_H_
 #define CODE_ELLIPSOID_FITTING_PROCESS_H_
 
+#define  VAL  57.2957795f;
+
 #include "zf_common_headfile.h"
 #include "inc_all.h"
 
