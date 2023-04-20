@@ -17,18 +17,16 @@ void GPS_init(void)
     gps_init();
 }
 void gps_handler(gpsState pointStatus) {
-
-    if (opnEnter) {
-        opnEnter = false;
-        beep_time = 20;
-        if (gps_use.point_count > GPS_MAX_POINT) {
-            EasyUIDrawMsgBox("Gps_Buff Not Enough!");
-            return;
-        }
-        if(gps_tau1201_flag)
-        {
-            uint8 state = gps_data_parse();
-            gps_tau1201_flag = 0;
+    if(gps_tau1201_flag)
+    {
+        uint8 state = gps_data_parse();
+        gps_tau1201_flag = 0;
+        if (opnEnter) {
+            opnEnter = false;
+            if (gps_use.point_count > GPS_MAX_POINT) {
+                EasyUIDrawMsgBox("Gps_Buff Not Enough!");
+                return;
+            }
             if (state == 0 && (gps_tau1201.hdop < 1) && (gps_tau1201.hdop > 0.5)) {
                 switch (pointStatus) {
                     case COMMON:
@@ -49,10 +47,10 @@ void gps_handler(gpsState pointStatus) {
                     default:;
                 }
             }
-        } else {
-            EasyUIDrawMsgBox("Error!");
+            else {
+                EasyUIDrawMsgBox("Error!");
+            }
         }
-
     }
     if (opnForward)
     {

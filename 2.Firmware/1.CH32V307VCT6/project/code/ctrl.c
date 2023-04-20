@@ -15,7 +15,7 @@ void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
     pit_ms_init(BEEP_AND_KEY_PIT, 10);
-    interrupt_set_priority(TIM1_UP_IRQn, (1<<5) | 2);
+    interrupt_set_priority(TIM1_UP_IRQn, (1<<5) | 1);
     interrupt_set_priority(TIM3_IRQn, (2<<5) | 2);
 }
 void IMUGetCalFun(void)
@@ -42,10 +42,9 @@ void IMUGetCalFun(void)
     INS_U.MAG.timestamp = myTimeStamp;
     myTimeStamp+=2;
     INS_step();
-    if (gps_tau1201_flag == 1)
+    if (gps_tau1201_flag == 1 && Bike_Start==1)
     {
         uint8 state = gps_data_parse();
-        
         if (state == 0)
         {
             int dir = gpio_get_level(D1);
@@ -64,6 +63,10 @@ void IMUGetCalFun(void)
             INS_U.GPS_uBlox.vAcc = 0;
             INS_U.GPS_uBlox.sAcc = 0;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
+            Global_v_now = gps_tau1201.speed * 0.51444f;
+            Global_yaw = INS_Y.INS_Out.psi;
+            Global_current_node.X += INS_Y.INS_Out.x_R;
+            Global_current_node.Y += INS_Y.INS_Out.y_R;
         }
         gps_tau1201_flag = 0;
     }

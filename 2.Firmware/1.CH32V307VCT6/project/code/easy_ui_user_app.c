@@ -30,6 +30,10 @@ void EventMainLoop(EasyUIItem_t *item)
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
+        double dx_lat,dy_lon;
+        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
+        Global_current_node.X = ANGLE_TO_RAD(gps_tau1201.latitude - GlobalBase_GPS_data.latitude)*dx_lat;
+        Global_current_node.Y = ANGLE_TO_RAD(gps_tau1201.longitude - GlobalBase_GPS_data.longitude)*dy_lon;
         if(status)
         {
             functionIsRunning = false;

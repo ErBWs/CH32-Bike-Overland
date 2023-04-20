@@ -346,7 +346,7 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         target_y = node_list[controller->target_index+1].Y;
         x = controller->current_node->X;
         y = controller->current_node->Y;
-        yaw = *controller->yaw;
+        yaw = ANGLE_TO_RAD(*controller->yaw);
         temp = (float)atan((target_y-y)/(target_x-x));
         temp = (float)((target_x-x)<0 ? temp+PI:temp);
         delta = temp - yaw;
