@@ -27,7 +27,7 @@ void gps_handler(gpsState pointStatus) {
                 EasyUIDrawMsgBox("Gps_Buff Not Enough!");
                 return;
             }
-            if (state == 0 && (gps_tau1201.hdop < 1) && (gps_tau1201.hdop > 0.5)) {
+            if (state == 0 && (gps_tau1201.hdop < 1.2) && (gps_tau1201.hdop > 0.5)) {
                 switch (pointStatus) {
                     case COMMON:
                     case PILE:
@@ -184,4 +184,3 @@ void gpsTest(void)
                     Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi)),gpio_get_level(D1));
     system_delay_ms(50);
 }
-

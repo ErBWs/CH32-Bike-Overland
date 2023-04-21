@@ -143,7 +143,7 @@ void pidAllInit(void)
   * @retval None
   */
 
-#define SERVO_MAX_ANGLE 17.0
+#define SERVO_MAX_ANGLE 18.0
 	PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,0,-(float)(SERVO_MAX_ANGLE/180.0),0,0);//¶æ»úPD
     PID_Init(&dirDisPid,POSITION_PID,2,0,0,0,0);//¶æ»ú¾àÀë»·P
 

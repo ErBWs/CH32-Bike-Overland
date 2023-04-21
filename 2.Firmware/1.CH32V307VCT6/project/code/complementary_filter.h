@@ -65,7 +65,7 @@ void gpsFusionyaw(float gpsangle, float *yaw);
 void kalmanVelocityUpdata(carState *car, kalman_filter_t *kalmanVelocity, float dt);
 void kalmanDistanceUpdata(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, float dt);
 void kalmanInit(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, kalman_filter_t *kalmanVelocity, float *yaw);
-
+double Pi_To_2Pi(double angle);
 double Degree_To_360(double angle);
 
 #endif /* COMPLEMENTARY_FILTER_H_ */

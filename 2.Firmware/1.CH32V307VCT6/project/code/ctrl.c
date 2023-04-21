@@ -69,8 +69,8 @@ void IMUGetCalFun(void)
             INS_U.GPS_uBlox.sAcc = 0 * 1e3;
             INS_U.GPS_uBlox.numSV = gps_tau1201.satellite_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
-            Global_v_now = gps_tau1201.speed * 0.51444f;
-            Global_yaw = INS_Y.INS_Out.psi;
+            Global_v_now = 0.1f;//gps_tau1201.speed * 0.51444f;
+            Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
             Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;
             Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R;
         }
@@ -112,7 +112,7 @@ void ServoControl(void)
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
     static uint8 counts=0;
-    if(++counts!=20)return;
+    if(++counts!=20||stagger_flag==1)return;
     counts=0;
     PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//´¿P
 //    dynamic_zero = dirPid.pos_out*4/12;

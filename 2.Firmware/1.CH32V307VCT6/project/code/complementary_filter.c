@@ -44,7 +44,14 @@ double Pi_To_Pi(double angle)
     
     return angle;
 }
-
+double Pi_To_2Pi(double angle)
+{
+    if (angle < 0)
+    {
+        angle += 2*PI;
+    }
+    return angle;
+}
 double Degree_To_360(double angle)
 {
     if (angle < 0)

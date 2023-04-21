@@ -286,7 +286,7 @@ uint8_t GraphNode_Diff(nodeGraph_typedef *graph)
     controller->pd_array[graph->total-1] = controller->pd_array[graph->total-2];//give the final node's pd from the last node's
     return 0;
 }
-#define FORECAST_FACTOR 2
+#define FORECAST_FACTOR 1
 static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
 {
     if(!graph->is_init || !graph->has_constructor || !graph->has_stanley)
@@ -301,8 +301,8 @@ static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
     y = controller->current_node->Y;
     yaw = *controller->yaw;
     N = FORECAST_FACTOR;
-    x += controller->L * cos(ANGLE_TO_RAD(yaw));
-    y += controller->L * sin(ANGLE_TO_RAD(yaw));
+    x += controller->L * cosf(yaw);
+    y += controller->L * sinf(yaw);
 
     if(controller->target_index+N +1 > graph->total-1)
     {
@@ -323,7 +323,7 @@ static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
         }
     }
     controller->target_index = min_index;
-    controller->error = (float)(y < node_list[min_index].Y ? -min_distance:min_distance);
+    controller->error = (float)(y > node_list[min_index].Y ? -min_distance:min_distance);
     return 0;
 }
 #define PiPi(x)   if(x > PI)            \
@@ -353,8 +353,9 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         PiPi(delta);
         if(*controller->v_now!=0.0)
             alpha = atanf((controller->k_gain * controller->error)/ (*controller->v_now));
-        controller->theta = alpha + delta;
-//        BlueToothPrintf("%f,%f\n",alpha,delta);
+        controller->theta =  delta;//+alpha;
+        BlueToothPrintf("%f\n",RAD_TO_ANGLE(delta));
+//        BlueToothPrintf("%f\n",RAD_TO_ANGLE(alpha));
     }
     else
     {
