@@ -346,7 +346,7 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         target_y = node_list[controller->target_index+1].Y;
         x = controller->current_node->X;
         y = controller->current_node->Y;
-        yaw = ANGLE_TO_RAD(*controller->yaw);
+        yaw = *controller->yaw;
         temp = (float)atan((target_y-y)/(target_x-x));
         temp = (float)((target_x-x)<0 ? temp+PI:temp);
         delta = temp - yaw;
@@ -354,7 +354,7 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         if(*controller->v_now!=0.0)
             alpha = atanf((controller->k_gain * controller->error)/ (*controller->v_now));
         controller->theta = alpha + delta;
-//        BlueToothPrintf("%f,%f\n",alpha,delta);
+        BlueToothPrintf("%f,%f\n",alpha,delta);
     }
     else
     {

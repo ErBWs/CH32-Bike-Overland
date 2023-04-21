@@ -7,12 +7,15 @@
 
 #include "complementary_filter.h"
 
+
+
 kalman_filter_t kalmanVelocity = {0};
 kalman_filter_t kalmanDistanceX = {0};
 kalman_filter_t kalmanDistanceY = {0};
 
 carState carBodyState = {0};
 
+move_filter moveArray;
 /*
  * 一阶互补滤波
  * mag_gyro_z,yaw：x轴陀螺仪采集数据, 偏航角解算
@@ -42,6 +45,15 @@ double Pi_To_Pi(double angle)
     else if (angle < -pi)
         angle = angle + 2 * pi;
     
+    return angle;
+}
+
+double Pi_To_2Pi(double angle)
+{
+    if (angle < 0)
+    {
+        angle += 2*pi;
+    }
     return angle;
 }
 
@@ -238,4 +250,24 @@ void kalmanInit(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t
     kalman_config_v(kalmanVelocity);
     kalman_config_distance(kalmanDistanceX,car->x_distance);
     kalman_config_distance(kalmanDistanceY,car->y_distance);
+}
+
+void moveFilter(move_filter *movefilter,float simpleXNow,float simpleYNow)
+{
+    static float sumX = 0, sumY = 0;
+    static uint8 count = 0;
+    movefilter->simpleX[count] = simpleXNow;
+    movefilter->simpleY[count] = simpleYNow;
+    count++;
+    if (count >= 8)
+    {
+        count = 0;
+    }
+    for (int i = 0; i < MOVEMAX; ++i)
+    {
+        sumX += movefilter->simpleX[i];
+        sumY += movefilter->simpleY[i];
+    }
+    movefilter->offsetX = sumX / MOVEMAX;
+    movefilter->offsetY = sumY / MOVEMAX;
 }

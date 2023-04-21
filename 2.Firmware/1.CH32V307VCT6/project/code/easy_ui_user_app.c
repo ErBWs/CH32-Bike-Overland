@@ -27,34 +27,35 @@ void EventMainLoop(EasyUIItem_t *item)
     uint8_t status=0;
     if(Bike_Start ==0)
     {
-//        stanleyControllerInit(&Global_stanleyController,(float)0.1,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
-//        status|=stanleyBuffLink(&Global_stanley
-//        Controller,Global_pd_array,NULL,GlobalGraph.total);
-//        status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
-//        status|=GraphNode_Diff(&GlobalGraph);
-//        double dx_lat,dy_lon;
-//        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-//        X0 = ANGLE_TO_RAD(gps_tau1201.latitude - GlobalBase_GPS_data.latitude)*dx_lat;
-//        Y0 = ANGLE_TO_RAD(gps_tau1201.longitude - GlobalBase_GPS_data.longitude)*dy_lon;
-//        if(status)
-//        {
-//            functionIsRunning = false;
-//            EasyUIDrawMsgBox("Err check uart msg!");
-//            system_delay_ms(100);
-//            EasyUIBackgroundBlur();
-//            return;
-//        }
+        stanleyControllerInit(&Global_stanleyController,(float)0.1,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
+        status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
+        status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
+        status|=GraphNode_Diff(&GlobalGraph);
+        double dx_lat,dy_lon;
+        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
+        X0 = ANGLE_TO_RAD(gps_tau1201.latitude - GlobalBase_GPS_data.latitude)*dx_lat;
+        Y0 = ANGLE_TO_RAD(gps_tau1201.longitude - GlobalBase_GPS_data.longitude)*dy_lon;
+        if(status)
+        {
+            functionIsRunning = false;
+            EasyUIDrawMsgBox("Err check uart msg!");
+            system_delay_ms(100);
+            EasyUIBackgroundBlur();
+            return;
+        }
         Bike_Start = 1;
     }
     while(1)
     {
-//        status |= Stanley_Control(&GlobalGraph);
+        status |= Stanley_Control(&GlobalGraph);
 //        BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
-        BlueToothPrintf("=================\n%f,%f,%f,%f\n=================\n",INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R,Global_current_node.X,Global_current_node.Y);
-        BlueToothPrintf("%.8f,%.8f\n",gps_tau1201.latitude,gps_tau1201.longitude);
+        BlueToothPrintf("=================\n%f,%f\n=================\n",Global_current_node.X,Global_current_node.Y);
+        BlueToothPrintf("det:%f\n",GlobalGraph.Stanley_controller->theta);
+        BlueToothPrintf("ind:%d\n",GlobalGraph.Stanley_controller->target_index);
+//        BlueToothPrintf("%.8f,%.8f\n",gps_tau1201.latitude,gps_tau1201.longitude);
         //        BlueToothPrintf("yaw:%f\n", Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi) ) );
-        BlueToothPrintf("%d\n",INS_Y.INS_Out.status);
-        BlueToothPrintf("%d\n",INS_Y.INS_Out.flag);
+//        BlueToothPrintf("%d\n",INS_Y.INS_Out.status);
+//        BlueToothPrintf("%d\n",INS_Y.INS_Out.flag);
         if(status)
         {
             functionIsRunning = false;
@@ -72,18 +73,18 @@ void EventMainLoop(EasyUIItem_t *item)
             Bike_Start = 0;
             break;
         }
+        if (opnExit)
+        {
+            Bike_Start = 0;
+            opnExit = false;
+            functionIsRunning = false;
+            EasyUIBackgroundBlur();
+        }
     }
 #elif USE_GPS == 2
         Bike_Start = 1;
         gpsTest();
 #endif
-    if (opnExit)
-    {
-        Bike_Start = 0;
-        opnExit = false;
-        functionIsRunning = false;
-        EasyUIBackgroundBlur();
-    }
 }
 
 void EventSavePoints(EasyUIItem_t *item)
