@@ -7,12 +7,15 @@
 
 #include "complementary_filter.h"
 
+
+
 kalman_filter_t kalmanVelocity = {0};
 kalman_filter_t kalmanDistanceX = {0};
 kalman_filter_t kalmanDistanceY = {0};
 
 carState carBodyState = {0};
 
+move_filter moveArray;
 /*
  * Ò»½×»¥²¹ÂË²¨
  * mag_gyro_z,yaw£ºxÖáÍÓÂÝÒÇ²É¼¯Êý¾Ý, Æ«º½½Ç½âËã
@@ -245,4 +248,24 @@ void kalmanInit(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t
     kalman_config_v(kalmanVelocity);
     kalman_config_distance(kalmanDistanceX,car->x_distance);
     kalman_config_distance(kalmanDistanceY,car->y_distance);
+}
+
+void moveFilter(move_filter *movefilter,float simpleXNow,float simpleYNow)
+{
+    static float sumX = 0, sumY = 0;
+    static uint8 count = 0;
+    movefilter->simpleX[count] = simpleXNow;
+    movefilter->simpleY[count] = simpleYNow;
+    count++;
+    if (count >= 8)
+    {
+        count = 0;
+    }
+    for (int i = 0; i < MOVEMAX; ++i)
+    {
+        sumX += movefilter->simpleX[i];
+        sumY += movefilter->simpleY[i];
+    }
+    movefilter->offsetX = sumX / MOVEMAX;
+    movefilter->offsetY = sumY / MOVEMAX;
 }

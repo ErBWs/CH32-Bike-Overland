@@ -14,6 +14,7 @@
 #define V_Q_POS     0.3f
 #define DIS_Q_POS   0.8f
 #define KNOT_To_MS(x)    ((x) * 0.514444f)
+#define MOVEMAX 10
 
 /*! \brief The data after performing Kalman fusion */
 typedef struct {
@@ -27,11 +28,11 @@ typedef struct {
     float q_vel; // Process noise variance for the velocity
     float r_pos; // Measurement noise variance - this is actually the variance of the measurement noise
     float r_old_pos;
-    
+
     float pos;   // The pos calculated by the Kalman filter - part of the 2x1 state vector
     float vel;   // The gyro velocity calculated by the Kalman filter - part of the 2x1 state vector
     float bias;  // The bias of velocity
-    
+
     float P[2][2]; // Error covariance 2x2 matrix
     unsigned char gps_valid_flag;
 } kalman_filter_t;
@@ -43,11 +44,19 @@ typedef volatile struct {
     float acceleration;
     float yaw;
     float gpsvelocity;
-    
+
     float velocity;
     float x_distance;
     float y_distance;
 }carState;
+
+typedef struct
+{
+    float simpleX[MOVEMAX];
+    float simpleY[MOVEMAX];
+    float offsetX;
+    float offsetY;
+}move_filter;
 
 extern kalman_data_t kalmanData;
 
@@ -57,15 +66,20 @@ extern kalman_filter_t kalmanDistanceY;
 
 extern carState carBodyState;
 
+extern move_filter moveArray;
+
 int num_times_nth_power_of_10(int num, int n);
 double Cal_Angle(int16 gyro_x, int16 acc_y, int16 acc_z, int16 offset);
 void Cal_YawAngle(float mag_gyro_z, float *yaw);
 void gpsFusionyaw(float gpsangle, float *yaw);
 
+
 void kalmanVelocityUpdata(carState *car, kalman_filter_t *kalmanVelocity, float dt);
 void kalmanDistanceUpdata(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, float dt);
 void kalmanInit(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t *kalmanDistanceY, kalman_filter_t *kalmanVelocity, float *yaw);
-double Pi_To_2Pi(double angle);
+
+void moveFilter(move_filter *movefilter,float simpleXNow,float simpleYNow);
 double Degree_To_360(double angle);
+double Pi_To_2Pi(double angle);
 
 #endif /* COMPLEMENTARY_FILTER_H_ */

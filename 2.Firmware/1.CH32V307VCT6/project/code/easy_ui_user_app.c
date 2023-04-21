@@ -39,7 +39,6 @@ void EventMainLoop(EasyUIItem_t *item)
         {
             functionIsRunning = false;
             EasyUIDrawMsgBox("Err check uart msg!");
-//            system_delay_ms(100);
             EasyUIBackgroundBlur();
             return;
         }

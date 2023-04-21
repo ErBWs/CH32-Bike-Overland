@@ -46,7 +46,6 @@ void IMUGetCalFun(void)
         INS_U.MAG.timestamp = myTimeStamp;
         myTimeStamp+=2;
         INS_step();
-//        BlueToothPrintf("%f\n", Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi)) );
     }
     if (gps_tau1201_flag == 1 && Bike_Start==1)
     {
@@ -69,10 +68,18 @@ void IMUGetCalFun(void)
             INS_U.GPS_uBlox.sAcc = 0 * 1e3;
             INS_U.GPS_uBlox.numSV = gps_tau1201.satellite_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
-            Global_v_now = 0.1f;//gps_tau1201.speed * 0.51444f;
-            Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
-            Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;
-            Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R;
+            Global_v_now = 0.1;//gps_tau1201.speed * 0.51444f;
+            Global_yaw = Pi_To_2Pi(INS_Y.INS_Out.psi);
+            if (Bike_Start == 1 && stagger_flag == 0)
+            {
+                Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX;
+                Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY;
+            }
+            else
+            {
+                moveFilter(&moveArray,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
+            }
+
         }
         gps_tau1201_flag = 0;
     }
