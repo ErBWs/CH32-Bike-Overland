@@ -13,6 +13,8 @@ uint16 imu_update_counts=0;
 float dynamic_zero = 0;
 extern double X0,Y0;
 
+gps_report_t gpsReport;
+
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
@@ -47,33 +49,25 @@ void IMUGetCalFun(void)
         myTimeStamp+=2;
         INS_step();
     }
-    if (gps_tau1201_flag == 1 && Bike_Start==1)
+    if (gps_read(&gpsReport))
     {
-        uint8 state = gps_data_parse();
-        if (state == 0)
-        {
-            int dir = gpio_get_level(D1);
-            INS_U.GPS_uBlox.lat = gps_tau1201.latitude * 1e7;
-            INS_U.GPS_uBlox.lon = gps_tau1201.longitude * 1e7;
-            INS_U.GPS_uBlox.velN = gps_tau1201.speed * 0.51444f * 1e3 * cosf(INS_Y.INS_Out.psi);
-            INS_U.GPS_uBlox.velE = gps_tau1201.speed  * 0.51444f * 1e3 * sinf(INS_Y.INS_Out.psi);
-            if (dir)
-            {
-                INS_U.GPS_uBlox.velN *= -1;
-                INS_U.GPS_uBlox.velE *= -1;
-            }
+            INS_U.GPS_uBlox.lat = gpsReport.lat;
+            INS_U.GPS_uBlox.lon = gpsReport.lon;
+            INS_U.GPS_uBlox.velN = gpsReport.vel_n_m_s * 1e3;
+            INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
+            INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
             INS_U.GPS_uBlox.fixType = 3;
-            INS_U.GPS_uBlox.hAcc = gps_tau1201.hdop * 1e3;
-            INS_U.GPS_uBlox.vAcc = 0 * 1e3;
-            INS_U.GPS_uBlox.sAcc = 0 * 1e3;
-            INS_U.GPS_uBlox.numSV = gps_tau1201.satellite_used;
+            INS_U.GPS_uBlox.hAcc = gpsReport.hdop * 1e3;
+            INS_U.GPS_uBlox.vAcc = gpsReport.vdop * 1e3;
+            INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
+            INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
-            Global_v_now = 0.1;//gps_tau1201.speed * 0.51444f;
-            Global_yaw = Pi_To_2Pi(INS_Y.INS_Out.psi);
+//            Global_v_now = INS_Y.INS_Out;
+//            Global_yaw = Pi_To_2Pi(INS_Y.INS_Out.psi); 
             if (Bike_Start == 1 && stagger_flag == 0)
             {
-                Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX;
-                Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY;
+                Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;// - moveArray.offsetX;
+                Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R;// - moveArray.offsetY;
             }
             else
             {
@@ -81,8 +75,7 @@ void IMUGetCalFun(void)
             }
 
         }
-        gps_tau1201_flag = 0;
-    }
+}
 //    if (Bike_Start == 0)
 //    {
 //        imuGetMagData(&mag_data);
@@ -111,7 +104,7 @@ void IMUGetCalFun(void)
 //        }
 //        count = 0;
 //    }
-}
+
 #define USE_BLUE_TOOTH 0
 void ServoControl(void)
 {

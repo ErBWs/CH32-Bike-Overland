@@ -50,6 +50,7 @@ void EventMainLoop(EasyUIItem_t *item)
         BlueToothPrintf("target:%f,%f\n",GlobalGraph.nodeBuff[Global_stanleyController.target_index].X,
                         GlobalGraph.nodeBuff[Global_stanleyController.target_index].Y);
         BlueToothPrintf("yaw:%f\n", Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi) ) );
+        BlueToothPrintf("OffsetX:%f,OffsetY:%f\n",moveArray.offsetX,moveArray.offsetY);
         if(!stagger_flag)
         {
             status |= Stanley_Control(&GlobalGraph);

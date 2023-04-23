@@ -34,6 +34,8 @@
 #include "graph_mapping.h"
 #include "buzzer.h"
 #include "INS/INS.h"
+#include "gps_ubx.h"
+#include "ublox.h"
 
 extern uint32 now_tick;
 extern uint16 beep_time;

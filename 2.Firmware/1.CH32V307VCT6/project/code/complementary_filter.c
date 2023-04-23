@@ -252,7 +252,7 @@ void kalmanInit(carState *car, kalman_filter_t *kalmanDistanceX, kalman_filter_t
 
 void moveFilter(move_filter *movefilter,float simpleXNow,float simpleYNow)
 {
-    static float sumX = 0, sumY = 0;
+    float sumX = 0, sumY = 0;
     static uint8 count = 0;
     movefilter->simpleX[count] = simpleXNow;
     movefilter->simpleY[count] = simpleYNow;
