@@ -12,7 +12,7 @@
 #define DRV_DBG(...)    printf(__VA_ARGS__)
 
 
-#define CONFIGURE_RETRY_MAX 5
+#define CONFIGURE_RETRY_MAX 50
 #define M_DEG_TO_RAD_F      0.01745329251994f
 #define M_RAD_TO_DEG_F      57.2957795130823f
 
@@ -35,6 +35,7 @@ err_t gps_serial_rx_ind()
 
     while (uart_query_byte(GPS_TAU1201_UART,&ch)) {
         parse_ubx_char(&ubx_decoder, ch);
+        uart_write_byte(UART_7,ch);
     }
 
     return E_OK;
@@ -463,18 +464,18 @@ err_t gps_ubx_init()
     uart_rx_interrupt(GPS_TAU1201_UART, 1);
     /* init ublox decoder */
     zf_assert(init_ubx_decoder(&ubx_decoder, ubx_rx_handle) == 0);
-    
+
     uint32_t baudrate;
     uint8_t i;
     
-    for (i = 0; i < CONFIGURE_RETRY_MAX; i++) {
-        if (probe(&baudrate) == E_OK) {
-            if (configure_by_ubx(baudrate) == E_OK) {
-                /* GPS is dected, now register */
-                break;
-            }
-        }
-    }
+//    for (i = 0; i < CONFIGURE_RETRY_MAX; i++) {
+//        if (probe(&baudrate) == E_OK) {
+//            if (configure_by_ubx(baudrate) == E_OK) {
+//                /* GPS is dected, now register */
+//                break;
+//            }
+//        }
+//    }
     
     if (i >= CONFIGURE_RETRY_MAX) {
         printf("GPS configuration fail! Please check if GPS module has connected.");

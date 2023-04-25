@@ -353,7 +353,7 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         PiPi(delta);
         if(*controller->v_now!=0.0)
             alpha = atanf((controller->k_gain * controller->error)/ (*controller->v_now));
-        controller->theta =  delta;//+alpha;
+        controller->theta =  delta+alpha;
         BlueToothPrintf("%f\n",RAD_TO_ANGLE(delta));
 //        BlueToothPrintf("%f\n",RAD_TO_ANGLE(alpha));
     }

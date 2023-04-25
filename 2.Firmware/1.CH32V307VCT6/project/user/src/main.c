@@ -22,21 +22,17 @@ union
 void systemInit();
 int main (void)
 {
-    clock_init(SYSTEM_CLOCK_120M);                                              // 初始化芯片时钟 工作频率为 120MHz
+    clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 120MHz
     debug_init();                                                               // 初始化默认 Debug UART
     systemInit();
     INS_init();
+    gps_ubx_init();
     gps_use.z_angle=0;
     uint16 i = 1;
     while(1)
     {
         system_delay_ms(20);
-        D_data.data = (float)sinf(i * 60.0 / 360.0);
-        uart_write_buffer(DEBUG_UART_INDEX, &D_data.ComInfo, 4);//("%f\r\n",(float)sin(i*60.0/360.0));
-        i++;
-        if (i > 2000) {
-            i = 0;
-        }
+//        BlueToothPrintf("%d\n",INS_U.GPS_uBlox.lon);
         EasyUI(20);
     }
 }

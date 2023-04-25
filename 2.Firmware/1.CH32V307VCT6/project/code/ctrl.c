@@ -46,9 +46,9 @@ void IMUGetCalFun(void)
         INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000;
         INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000;
         INS_U.MAG.timestamp = myTimeStamp;
-        myTimeStamp+=2;
         INS_step();
     }
+    myTimeStamp+=2;
     if (gps_read(&gpsReport))
     {
             INS_U.GPS_uBlox.lat = gpsReport.lat;
@@ -73,7 +73,6 @@ void IMUGetCalFun(void)
             {
                 moveFilter(&moveArray,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
             }
-
         }
 }
 //    if (Bike_Start == 0)
@@ -114,7 +113,7 @@ void ServoControl(void)
     static uint8 counts=0;
     if(++counts!=20||stagger_flag==1)return;
     counts=0;
-    PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//´¿P
+    PID_Calculate(&dirPid,0,(float)gps_use.delta);//´¿P
 //    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);
     if(servo_sport_update_flag==0)
