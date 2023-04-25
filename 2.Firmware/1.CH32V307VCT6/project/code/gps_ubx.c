@@ -35,7 +35,6 @@ err_t gps_serial_rx_ind()
 
     while (uart_query_byte(GPS_TAU1201_UART,&ch)) {
         parse_ubx_char(&ubx_decoder, ch);
-        uart_write_byte(UART_7,ch);
     }
 
     return E_OK;
@@ -460,14 +459,15 @@ size_t gps_read(gps_report_t* report)
 err_t gps_ubx_init()
 {
     /* open serial device */
-    uart_init(GPS_TAU1201_UART, 115200, GPS_TAU1201_RX, GPS_TAU1201_TX);
+    uart_init(GPS_TAU1201_UART, 38400, GPS_TAU1201_RX, GPS_TAU1201_TX);
     uart_rx_interrupt(GPS_TAU1201_UART, 1);
     /* init ublox decoder */
     zf_assert(init_ubx_decoder(&ubx_decoder, ubx_rx_handle) == 0);
 
     uint32_t baudrate;
     uint8_t i;
-    
+    ubx_decoder.configured = 1;
+    ubx_decoder.use_nav_pvt = 1;
 //    for (i = 0; i < CONFIGURE_RETRY_MAX; i++) {
 //        if (probe(&baudrate) == E_OK) {
 //            if (configure_by_ubx(baudrate) == E_OK) {
@@ -476,7 +476,7 @@ err_t gps_ubx_init()
 //            }
 //        }
 //    }
-    
+
     if (i >= CONFIGURE_RETRY_MAX) {
         printf("GPS configuration fail! Please check if GPS module has connected.");
     }

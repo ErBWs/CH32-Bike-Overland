@@ -29,9 +29,12 @@ int main (void)
     gps_ubx_init();
     gps_use.z_angle=0;
     uint16 i = 1;
+    INS_U.GPS_uBlox.velE = 1000;
+    INS_U.GPS_uBlox.lat = 888;
     while(1)
     {
         system_delay_ms(20);
+        BlueToothPrintf("%d\n%d\n",INS_U.GPS_uBlox.velE,INS_U.GPS_uBlox.lat);
 //        BlueToothPrintf("%d\n",INS_U.GPS_uBlox.lon);
         EasyUI(20);
     }
@@ -51,7 +54,7 @@ void systemInit(void)
     encoderInit();
     motoInit();
     BlueToothInit();
-    imuinit(IMU_ALL);
+//    imuinit(IMU_ALL);
     Butterworth_Parameter_Init();
 #if USE_GPS
     GPS_init();
