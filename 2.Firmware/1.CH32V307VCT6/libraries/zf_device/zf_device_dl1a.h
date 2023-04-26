@@ -71,6 +71,10 @@
 #endif
 
 #define DL1A_XS_PIN                 ( E10 )
+#define DL1A_INT_ENABLE             ( 0 )                                       // 是否启用 INT 引脚 启用则会自动更新数据
+#if DL1A_INT_ENABLE
+#define DL1A_INT_PIN                ( XX )										// 未定义引脚，可以不接。
+#endif
 #define DL1A_TIMEOUT_COUNT          (0x00FF)                                    // DL1A 超时计数
 
 //================================================定义 DL1A 内部地址================================================

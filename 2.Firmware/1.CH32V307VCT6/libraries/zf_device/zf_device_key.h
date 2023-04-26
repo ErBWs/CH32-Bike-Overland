@@ -72,13 +72,14 @@ typedef enum
 typedef enum
 {
     KEY_RELEASE,                                                                // 按键释放状态
-    KEY_CHECK_SHOCK,                                                            // 按键消抖状态
     KEY_SHORT_PRESS,                                                            // 按键短按状态
     KEY_LONG_PRESS,                                                             // 按键长按状态
 }key_state_enum;
 
-void            key_scanner     (void);
-key_state_enum  key_get_state   (key_index_enum key_n);
-void            key_init        (uint32 period);
+void            key_scanner             (void);
+key_state_enum  key_get_state           (key_index_enum key_n);
+void            key_clear_state         (key_index_enum key_n);
+void            key_clear_all_state     (void);
+void            key_init                (uint32 period);
 
 #endif

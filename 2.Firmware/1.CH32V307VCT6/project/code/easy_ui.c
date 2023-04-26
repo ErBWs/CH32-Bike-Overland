@@ -1126,14 +1126,14 @@ void EasyUIInit(uint8_t mode)
     // Display the welcome photo and info
     EasyUIModifyColor();
     EasyUIClearBuffer();
-    if (mode)
-        EasyUIDisplayBMP((SCREEN_WIDTH - 58) / 2, (SCREEN_HEIGHT - 56) / 2, 58, 56, ErBW_s_5856);
-    else
+//    if (mode)
+//        EasyUIDisplayBMP((SCREEN_WIDTH - 58) / 2, (SCREEN_HEIGHT - 56) / 2, 58, 56, ErBW_s_5856);
+//    else
         EasyUIDisplayBMP((SCREEN_WIDTH - 29) / 2, (SCREEN_HEIGHT - 28) / 2, 29, 28, ErBW_s_2928);
-    if (2 * SCREEN_WIDTH / 3 > (25 * FONT_WIDTH + 1))
-        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT,
-                         "Powered by EasyUI(ErBW_s)");
-    else if (SCREEN_WIDTH > (14 * FONT_WIDTH + 1))
+//    if (2 * SCREEN_WIDTH / 3 > (25 * FONT_WIDTH + 1))
+//        EasyUIDisplayStr(SCREEN_WIDTH - 1 - 25 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT,
+//                         "Powered by EasyUI(ErBW_s)");
+//    else if (SCREEN_WIDTH > (14 * FONT_WIDTH + 1))
         EasyUIDisplayStr(SCREEN_WIDTH - 1 - 14 * FONT_WIDTH, SCREEN_HEIGHT - 1 - FONT_HEIGHT, "EasyUI(ErBW_s)");
     EasyUISendBuffer();
 }

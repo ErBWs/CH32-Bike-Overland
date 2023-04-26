@@ -200,16 +200,19 @@ static void ips114_debug_init (void)
     switch(ips114_display_font)
     {
         case IPS114_6X8_FONT:
+        {
             info.font_x_size = 6;
             info.font_y_size = 8;
-            break;
+        }break;
         case IPS114_8X16_FONT:
+        {
             info.font_x_size = 8;
             info.font_y_size = 16;
-            break;
+        }break;
         case IPS114_16X16_FONT:
+        {
             // 暂不支持
-            break;
+        }break;
     }
     info.output_screen = ips114_show_string;
     info.output_screen_clear = ips114_clear;
@@ -230,7 +233,7 @@ void ips114_clear (void)
 
     IPS114_CS(0);
     ips114_set_region(0, 0, ips114_x_max - 1, ips114_y_max - 1);
-    for( ; i > 0; i --)
+    for( ; 0 < i; i --)
     {
         ips114_write_16bit_data(ips114_bgcolor);
     }
@@ -250,7 +253,7 @@ void ips114_full (const uint16 color)
 
     IPS114_CS(0);
     ips114_set_region(0, 0, ips114_x_max - 1, ips114_y_max - 1);
-    for( ; i > 0; i --)
+    for( ; 0 < i; i --)
     {
         ips114_write_16bit_data(color);
     }
@@ -267,15 +270,20 @@ void ips114_full (const uint16 color)
 void ips114_set_dir (ips114_dir_enum dir)
 {
     ips114_display_dir = dir;
-    if(dir < 2)
+    switch(ips114_display_dir)
     {
-        ips114_x_max = 135;
-        ips114_y_max = 240;
-    }
-    else
-    {
-        ips114_x_max = 240;
-        ips114_y_max = 135;
+        case IPS114_PORTAIT:
+        case IPS114_PORTAIT_180:
+        {
+            ips114_x_max = 135;
+            ips114_y_max = 240;
+        }break;
+        case IPS114_CROSSWISE:
+        case IPS114_CROSSWISE_180:
+        {
+            ips114_x_max = 240;
+            ips114_y_max = 135;
+        }break;
     }
 }
 
@@ -396,7 +404,7 @@ void ips114_draw_line (uint16 x_start, uint16 y_start, uint16 x_end, uint16 y_en
 // 参数说明     dat             需要显示的字符
 // 返回参数     void
 // 使用示例     ips114_show_char(0, 0, 'x');                    // 坐标 0,0 写一个字符 x
-// 备注信息
+// 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_char (uint16 x, uint16 y, const char dat)
 {
@@ -405,18 +413,19 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
 
-    uint8 i, j;
+    uint8 i = 0, j = 0;
 
     IPS114_CS(0);
     switch(ips114_display_font)
     {
         case IPS114_6X8_FONT:
-            for(i = 0; i < 6; i ++)
+        {
+            for(i = 0; 6 > i; i ++)
             {
                 ips114_set_region(x + i, y, x + i, y + 8);
                 // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
                 uint8 temp_top = ascii_font_6x8[dat - 32][i];
-                for(j = 0; j < 8; j ++)
+                for(j = 0; 8 > j; j ++)
                 {
                     if(temp_top & 0x01)
                     {
@@ -429,15 +438,16 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
                     temp_top >>= 1;
                 }
             }
-            break;
+        }break;
         case IPS114_8X16_FONT:
-            for(i = 0; i < 8; i ++)
+        {
+            for(i = 0; 8 > i; i ++)
             {
                 ips114_set_region(x + i, y, x + i, y + 15);
                 // 减 32 因为是取模是从空格开始取得 空格在 ascii 中序号是 32
                 uint8 temp_top = ascii_font_8x16[dat - 32][i];
                 uint8 temp_bottom = ascii_font_8x16[dat - 32][i + 8];
-                for(j = 0; j < 8; j ++)
+                for(j = 0; 8 > j; j ++)
                 {
                     if(temp_top & 0x01)
                     {
@@ -449,7 +459,7 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
                     }
                     temp_top >>= 1;
                 }
-                for(j = 0; j < 8; j ++)
+                for(j = 0; 8 > j; j ++)
                 {
                     if(temp_bottom & 0x01)
                     {
@@ -462,10 +472,11 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
                     temp_bottom >>= 1;
                 }
             }
-            break;
+        }break;
         case IPS114_16X16_FONT:
+        {
             // 暂不支持
-            break;
+        }break;
     }
     IPS114_CS(1);
 }
@@ -477,7 +488,7 @@ void ips114_show_char (uint16 x, uint16 y, const char dat)
 // 参数说明     dat             需要显示的字符串
 // 返回参数     void
 // 使用示例     ips114_show_string(0, 0, "seekfree");
-// 备注信息
+// 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_string (uint16 x, uint16 y, const char dat[])
 {
@@ -487,22 +498,15 @@ void ips114_show_string (uint16 x, uint16 y, const char dat[])
     zf_assert(y < ips114_y_max);
     
     uint16 j = 0;
-    while(dat[j] != '\0')
+    while('\0' != dat[j])
     {
         switch(ips114_display_font)
         {
-            case IPS114_6X8_FONT:
-                ips114_show_char(x + 6 * j, y, dat[j]);
-                j ++;
-                break;
-            case IPS114_8X16_FONT:
-                ips114_show_char(x + 8 * j, y, dat[j]);
-                j ++;
-                break;
-            case IPS114_16X16_FONT:
-                // 暂不支持
-                break;
+            case IPS114_6X8_FONT:   ips114_show_char(x + 6 * j, y, dat[j]); break;
+            case IPS114_8X16_FONT:  ips114_show_char(x + 8 * j, y, dat[j]); break;
+            case IPS114_16X16_FONT: break;                                      // 暂不支持
         }
+        j ++;
     }
 }
 
@@ -514,7 +518,7 @@ void ips114_show_string (uint16 x, uint16 y, const char dat[])
 // 参数说明     num             需要显示的位数 最高10位  不包含正负号
 // 返回参数     void
 // 使用示例     ips114_show_int(0, 0, x, 3);                    // x 可以为 int32 int16 int8 类型
-// 备注信息     负数会显示一个 ‘-’号   正数显示一个空格
+// 备注信息     负数会显示一个 ‘-’号
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
 {
@@ -522,8 +526,8 @@ void ips114_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(num > 0);
-    zf_assert(num <= 10);
+    zf_assert(0 < num);
+    zf_assert(10 >= num);
 
     int32 dat_temp = dat;
     int32 offset = 1;
@@ -532,9 +536,10 @@ void ips114_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
     memset(data_buffer, 0, 12);
     memset(data_buffer, ' ', num + 1);
 
-    if(num < 10)
+    // 用来计算余数显示 123 显示 2 位则应该显示 23
+    if(10 > num)
     {
-        for(; num > 0; num --)
+        for(; 0 < num; num --)
         {
             offset *= 10;
         }
@@ -552,7 +557,7 @@ void ips114_show_int (uint16 x, uint16 y, const int32 dat, uint8 num)
 // 参数说明     num             需要显示的位数 最高10位  不包含正负号
 // 返回参数     void
 // 使用示例     ips114_show_uint(0, 0, x, 3);                   // x 可以为 uint32 uint16 uint8 类型
-// 备注信息     负数会显示一个 ‘-’号   正数显示一个空格
+// 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
 {
@@ -560,8 +565,8 @@ void ips114_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(num > 0);
-    zf_assert(num <= 10);
+    zf_assert(0 < num);
+    zf_assert(10 >= num);
 
     uint32 dat_temp = dat;
     int32 offset = 1;
@@ -569,9 +574,10 @@ void ips114_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
     memset(data_buffer, 0, 12);
     memset(data_buffer, ' ', num);
 
-    if(num < 10)
+    // 用来计算余数显示 123 显示 2 位则应该显示 23
+    if(10 > num)
     {
-        for(; num > 0; num --)
+        for(; 0 < num; num --)
         {
             offset *= 10;
         }
@@ -585,15 +591,15 @@ void ips114_show_uint (uint16 x, uint16 y, const uint32 dat, uint8 num)
 // 函数简介     IPS114 显示浮点数 (去除整数部分无效的0)
 // 参数说明     x               坐标x方向的起点 参数范围 [0, ips114_x_max-1]
 // 参数说明     y               坐标y方向的起点 参数范围 [0, ips114_y_max-1]
-// 参数说明     dat             需要显示的变量 数据类型 float 或 double
-// 参数说明     num             整数位显示长度   最高10位
+// 参数说明     dat             需要显示的变量 数据类型 float
+// 参数说明     num             整数位显示长度   最高8位  
 // 参数说明     pointnum        小数位显示长度   最高6位
 // 返回参数     void
 // 使用示例     ips114_show_float(0, 0, x, 2, 3);               // 显示浮点数 整数显示 2 位 小数显示 3 位
 // 备注信息     特别注意当发现小数部分显示的值与你写入的值不一样的时候，
 //              可能是由于浮点数精度丢失问题导致的，这并不是显示函数的问题，
 //              有关问题的详情，请自行百度学习   浮点数精度丢失问题。
-//              负数会显示一个 ‘-’号   正数显示一个空格
+//              负数会显示一个 ‘-’号
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 pointnum)
 {
@@ -601,10 +607,10 @@ void ips114_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 po
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(num > 0);
-    zf_assert(num <= 8);
-    zf_assert(pointnum > 0);
-    zf_assert(pointnum <= 6);
+    zf_assert(0 < num);
+    zf_assert(8 >= num);
+    zf_assert(0 < pointnum);
+    zf_assert(6 >= pointnum);
 
     float dat_temp = dat;
     float offset = 1.0;
@@ -612,14 +618,12 @@ void ips114_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 po
     memset(data_buffer, 0, 17);
     memset(data_buffer, ' ', num + pointnum + 2);
 
-    if(num < 10)
+    // 用来计算余数显示 123 显示 2 位则应该显示 23
+    for(; 0 < num; num --)
     {
-        for(; num > 0; num --)
-        {
-            offset *= 10;
-        }
-        dat_temp = dat_temp - ((int)dat_temp / (int)offset) * offset;
+        offset *= 10;
     }
+    dat_temp = dat_temp - ((int)dat_temp / (int)offset) * offset;
     func_float_to_str(data_buffer, dat_temp, pointnum);
     ips114_show_string(x, y, data_buffer);
 }
@@ -635,7 +639,10 @@ void ips114_show_float (uint16 x, uint16 y, const float dat, uint8 num, uint8 po
 // 参数说明     dis_height      图像显示高度 参数范围 [0, ips114_y_max]
 // 返回参数     void
 // 使用示例     ips114_show_binary_image(0, 0, ov7725_image_binary[0], OV7725_W, OV7725_H, OV7725_W, OV7725_H);
-// 备注信息
+// 备注信息     用于显示小钻风的未解压的压缩二值化图像
+//              这个函数不可以用来直接显示总钻风的未压缩的二值化图像
+//              这个函数不可以用来直接显示总钻风的未压缩的二值化图像
+//              这个函数不可以用来直接显示总钻风的未压缩的二值化图像
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height)
 {
@@ -643,7 +650,7 @@ void ips114_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 wi
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(image != NULL);
+    zf_assert(NULL != image);
 
     uint32 i = 0, j = 0;
     uint8 temp = 0;
@@ -684,7 +691,10 @@ void ips114_show_binary_image (uint16 x, uint16 y, const uint8 *image, uint16 wi
 // 参数说明     threshold       二值化显示阈值 0-不开启二值化
 // 返回参数     void
 // 使用示例     ips114_show_gray_image(0, 0, mt9v03x_image[0], MT9V03X_W, MT9V03X_H, MT9V03X_W, MT9V03X_H, 0);
-// 备注信息
+// 备注信息     用于显示总钻风的图像
+//              如果要显示二值化图像 直接修改最后一个参数为需要的二值化阈值即可
+//              如果要显示二值化图像 直接修改最后一个参数为需要的二值化阈值即可
+//              如果要显示二值化图像 直接修改最后一个参数为需要的二值化阈值即可
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_gray_image (uint16 x, uint16 y, const uint8 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height, uint8 threshold)
 {
@@ -692,7 +702,7 @@ void ips114_show_gray_image (uint16 x, uint16 y, const uint8 *image, uint16 widt
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(image != NULL);
+    zf_assert(NULL != image);
 
     uint32 i = 0, j = 0;
     uint16 color = 0,temp = 0;
@@ -740,7 +750,10 @@ void ips114_show_gray_image (uint16 x, uint16 y, const uint8 *image, uint16 widt
 // 参数说明     color_mode      色彩模式 0-低位在前 1-高位在前
 // 返回参数     void
 // 使用示例     ips114_show_rgb565_image(0, 0, scc8660_image[0], SCC8660_W, SCC8660_H, SCC8660_W, SCC8660_H, 1);
-// 备注信息
+// 备注信息     用于显示凌瞳的 RGB565 的图像
+//              如果要显示低位在前的其他 RGB565 图像 修改最后一个参数即可
+//              如果要显示低位在前的其他 RGB565 图像 修改最后一个参数即可
+//              如果要显示低位在前的其他 RGB565 图像 修改最后一个参数即可
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_rgb565_image (uint16 x, uint16 y, const uint16 *image, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height, uint8 color_mode)
 {
@@ -748,7 +761,7 @@ void ips114_show_rgb565_image (uint16 x, uint16 y, const uint16 *image, uint16 w
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(image != NULL);
+    zf_assert(NULL != image);
 
     uint32 i = 0, j = 0;
     uint16 color = 0;
@@ -785,7 +798,7 @@ void ips114_show_rgb565_image (uint16 x, uint16 y, const uint16 *image, uint16 w
 // 参数说明     dis_value_max   波形显示最大值 参数范围 [0, ips114_y_max]
 // 返回参数     void
 // 使用示例     ips114_show_wave(56,35,data,128,64,128,64);
-// 备注信息
+// 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_show_wave (uint16 x, uint16 y, const uint16 *wave, uint16 width, uint16 value_max, uint16 dis_width, uint16 dis_value_max)
 {
@@ -793,7 +806,7 @@ void ips114_show_wave (uint16 x, uint16 y, const uint16 *wave, uint16 width, uin
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(wave != NULL);
+    zf_assert(NULL != wave);
 
     uint32 i = 0, j = 0;
     uint32 width_index = 0, value_max_index = 0;
@@ -835,11 +848,11 @@ void ips114_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_b
     // 那么一般是屏幕显示的时候超过屏幕分辨率范围了
     zf_assert(x < ips114_x_max);
     zf_assert(y < ips114_y_max);
-    zf_assert(chinese_buffer != NULL);
+    zf_assert(NULL != chinese_buffer);
 
-    int i, j, k; 
-    uint8 temp, temp1, temp2;
-    const uint8 *p_data;
+    int i = 0, j = 0, k = 0; 
+    uint8 temp = 0, temp1 = 0, temp2 = 0;
+    const uint8 *p_data = chinese_buffer;
     
     temp2 = size / 8;
 
@@ -854,7 +867,7 @@ void ips114_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_b
         {
             for(k = 0; k < temp2; k ++)
             {
-                for(j = 8; j > 0; j --)
+                for(j = 8; 0 < j; j --)
                 {
                     temp = (*p_data >> (j - 1)) & 0x01;
                     if(temp)
@@ -879,7 +892,7 @@ void ips114_show_chinese (uint16 x, uint16 y, uint8 size, const uint8 *chinese_b
 // 参数说明     void
 // 返回参数     void
 // 使用示例     ips114_init();
-// 备注信息
+// 备注信息     
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_init (void)
 {
@@ -896,7 +909,6 @@ void ips114_init (void)
 
     ips114_set_dir(ips114_display_dir);
     ips114_set_color(ips114_pencolor, ips114_bgcolor);
-    ips114_debug_init();
 
     IPS114_RST(0);
     system_delay_ms(200);
@@ -907,21 +919,12 @@ void ips114_init (void)
     IPS114_CS(0);
     ips114_write_index(0x36);
     system_delay_ms(100);
-    if(ips114_display_dir == 0)
+    switch(ips114_display_dir)
     {
-        ips114_write_8bit_data(0x00);
-    }
-    else if(ips114_display_dir == 1)
-    {
-        ips114_write_8bit_data(0xC0);
-    }
-    else if(ips114_display_dir == 2)
-    {
-        ips114_write_8bit_data(0x70);
-    }
-    else
-    {
-        ips114_write_8bit_data(0xA0);
+        case IPS114_PORTAIT:        ips114_write_8bit_data(0x00);   break;
+        case IPS114_PORTAIT_180:    ips114_write_8bit_data(0xC0);   break;
+        case IPS114_CROSSWISE:      ips114_write_8bit_data(0x70);   break;
+        case IPS114_CROSSWISE_180:  ips114_write_8bit_data(0xA0);   break;
     }
 
     ips114_write_index(0x3A);
@@ -1000,4 +1003,5 @@ void ips114_init (void)
     IPS114_CS(1);
 
     ips114_clear();
+    ips114_debug_init();
 }

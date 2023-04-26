@@ -48,7 +48,7 @@
 #define _zf_device_gps_tau1201_h_
 
 #include "zf_common_typedef.h"
-#include "complementary_filter.h"
+
 //--------------------------------------------------------------------------------------------------
 //引脚配置
 //--------------------------------------------------------------------------------------------------
@@ -89,13 +89,12 @@ typedef struct
     int8        ns;                                                             // 纬度半球 N（北半球）或 S（南半球）
     int8        ew;                                                             // 经度半球 E（东经）或 W（西经）
     
-    float       speed;                                                          // 海里/小时
+    float       speed;                                                          // 速度（公里/每小时）
     float       direction;                                                      // 地面航向（000.0~359.9 度，以真北方为参考基准）
     
     // 下面两个个信息从GNGGA语句中获取
     uint8       satellite_used;                                                 // 用于定位的卫星数量
     float       height;                                                         // 高度
-    float       hdop;                                                            //水平精度因子
 }gps_info_struct;
 
 typedef enum

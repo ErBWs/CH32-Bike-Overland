@@ -465,11 +465,11 @@ void spi_init(spi_index_enum spi_n, spi_mode_enum mode, uint32 baud, spi_pin_enu
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);                                           // 复用总线使能
 
-    if(sck_pin == SPI1_MAP1_SCK_B3 && miso_pin == SPI1_MAP1_MISO_B4 && mosi_pin == SPI1_MAP1_MOSI_B5)
+    if(sck_pin == SPI1_MAP1_SCK_B3 && mosi_pin == SPI1_MAP1_MOSI_B5)
     {
         GPIO_PinRemapConfig(GPIO_Remap_SPI1, ENABLE);
     }
-    else if(sck_pin == SPI3_MAP1_SCK_C10 && miso_pin == SPI3_MAP1_MISO_C11 && mosi_pin == SPI3_MAP1_MOSI_C12)
+    else if(sck_pin == SPI3_MAP1_SCK_C10 && mosi_pin == SPI3_MAP1_MOSI_C12)
     {
         GPIO_PinRemapConfig(GPIO_Remap_SPI3, ENABLE);
     }

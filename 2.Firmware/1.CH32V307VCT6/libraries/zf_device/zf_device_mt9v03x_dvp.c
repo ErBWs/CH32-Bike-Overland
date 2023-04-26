@@ -409,7 +409,7 @@ uint8 mt9v03x_init (void)
         if(mt9v03x_set_config_sccb(&mt9v03x_iic_struct, mt9v03x_set_confing_buffer))
         {
             mt9v03x_type = MT9V03X_UART;
-            // 初始换串口 配置摄像头
+            // 初始化串口 配置摄像头
             uart_init (MT9V03X_COF_UART, MT9V03X_COF_BAUR, MT9V03X_COF_UART_RX, MT9V03X_COF_UART_TX);    //初始换串口 配置摄像头
             uart_rx_interrupt(MT9V03X_COF_UART, ENABLE);
             system_delay_ms(200);
@@ -438,6 +438,7 @@ uint8 mt9v03x_init (void)
                 // 检查一下接线有没有问题 如果没问题可能就是坏了
                 zf_log(0, "MT9V03X set config error.");
                 set_camera_type(NO_CAMERE, NULL, NULL);
+                uart_rx_interrupt(MT9V03X_COF_UART, DISABLE);
                 return_state = 1;
                 break;
             }
@@ -450,6 +451,7 @@ uint8 mt9v03x_init (void)
                 // 检查一下接线有没有问题 如果没问题可能就是坏了
                 zf_log(0, "MT9V03X get config error.");
                 set_camera_type(NO_CAMERE, NULL, NULL);
+                uart_rx_interrupt(MT9V03X_COF_UART, DISABLE);
                 return_state = 1;
                 break;
             }

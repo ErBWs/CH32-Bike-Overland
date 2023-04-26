@@ -75,22 +75,17 @@
 #define DM1XA_S_PIN                         ( E15 )
 #define DM1XA_L_PIN                         ( E14 )
 
-// 固定使用一个定时器
-#define DM1XA_TIM_INDEX                     ( TIM_7 )
+#define DM1XA_TIM_INDEX                     ( TIM_7 )                           // 固定使用一个定时器
 
-// 每次测距的载波数 最小 6 最大 100
-// 那么每次测距 EN 上脉冲时长为 DM1XA_FB_SEND * 1000 / 38 微秒
-#define DM1XA_FB_SEND                       ( 10 )
+#define DM1XA_SOUND_SPEED_MM_PER_US         ( 0.34 )                            // 定义声速 340M/s = 0.34 mm/us
 
-#if (DM1XA_FB_SEND < 6 || DM1XA_FB_SEND > 100)
+#define DM1XA_FB_SEND                       ( 10 )                              // 每次测距 EN 上脉冲时长为 DM1XA_FB_SEND * 1000 / 38 微秒
+#if (DM1XA_FB_SEND < 6 || DM1XA_FB_SEND > 100)                                  // 每次测距的载波数 最小 6 最大 100
 #error "DM1XA_FB_SEND error,  it must be between 6 and 100"
 #endif
 
-// 初始化尝试次数
-#define DM1XA_INIT_MAX_COUNT                ( 100 )
-
-// 超时设置 这里不允许用户修改
-#define DM1XA_RECEIVER_TIMEROUT_US          ( 30000 )
+#define DM1XA_INIT_MAX_COUNT                ( 100 )                             // 初始化尝试次数
+#define DM1XA_RECEIVER_TIMEROUT_US          ( 30000 )                           // 超时设置 这里不允许用户修改
 
 // DM1XA 模块错误识别码 用户不允许更改
 typedef enum

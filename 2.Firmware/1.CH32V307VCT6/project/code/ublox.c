@@ -329,7 +329,7 @@ int parse_ubx_char(ubx_decoder_t* ubx_decoder, const uint8_t c)
         _add_byte_to_checksum(ubx_decoder, c);
         ubx_decoder->rx_payload_length |= c << 8; // calculate payload size
 
-        //if(ubx_decoder->rx_msg == UBX_MSG_NAV_SVINFO)
+//        if(ubx_decoder->rx_msg == UBX_MSG_NAV_SVINFO)
 
         if (_payload_rx_init(ubx_decoder) != 0) { // start payload reception
             // payload will not be handled, discard message

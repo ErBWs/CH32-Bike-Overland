@@ -79,50 +79,72 @@
 #define IMU660RA_CS_PIN             (C10)                                       // CS 片选引脚
 #define IMU660RA_CS(x)              ((x) ? (gpio_high(IMU660RA_CS_PIN)) : (gpio_low(IMU660RA_CS_PIN)))
 
-#define IMU660RA_TIMEOUT_COUNT      (0x00FF)                                    // IMU660RA 超时计数
+typedef enum
+{
+    IMU660RA_ACC_SAMPLE_SGN_2G ,                                                // 加速度计量程 ±2G  (ACC = Accelerometer 加速度计) (SGN = signum 带符号数 表示正负范围) (G = g 重力加速度 g≈9.80 m/s^2)
+    IMU660RA_ACC_SAMPLE_SGN_4G ,                                                // 加速度计量程 ±4G  (ACC = Accelerometer 加速度计) (SGN = signum 带符号数 表示正负范围) (G = g 重力加速度 g≈9.80 m/s^2)
+    IMU660RA_ACC_SAMPLE_SGN_8G ,                                                // 加速度计量程 ±8G  (ACC = Accelerometer 加速度计) (SGN = signum 带符号数 表示正负范围) (G = g 重力加速度 g≈9.80 m/s^2)
+    IMU660RA_ACC_SAMPLE_SGN_16G,                                                // 加速度计量程 ±16G (ACC = Accelerometer 加速度计) (SGN = signum 带符号数 表示正负范围) (G = g 重力加速度 g≈9.80 m/s^2)
+}imu660ra_acc_sample_config;
 
-#define IMU660RA_DEV_ADDR           (0x69)                                      // SA0接地：0x68 SA0上拉：0x69 模块默认上拉
-#define IMU660RA_SPI_W              (0x00)
-#define IMU660RA_SPI_R              (0x80)
+typedef enum
+{
+    IMU660RA_GYRO_SAMPLE_SGN_125DPS ,                                           // 陀螺仪量程 ±125DPS  (GYRO = Gyroscope 陀螺仪) (SGN = signum 带符号数 表示正负范围) (DPS = Degree Per Second 角速度单位 °/S)
+    IMU660RA_GYRO_SAMPLE_SGN_250DPS ,                                           // 陀螺仪量程 ±250DPS  (GYRO = Gyroscope 陀螺仪) (SGN = signum 带符号数 表示正负范围) (DPS = Degree Per Second 角速度单位 °/S)
+    IMU660RA_GYRO_SAMPLE_SGN_500DPS ,                                           // 陀螺仪量程 ±500DPS  (GYRO = Gyroscope 陀螺仪) (SGN = signum 带符号数 表示正负范围) (DPS = Degree Per Second 角速度单位 °/S)
+    IMU660RA_GYRO_SAMPLE_SGN_1000DPS,                                           // 陀螺仪量程 ±1000DPS (GYRO = Gyroscope 陀螺仪) (SGN = signum 带符号数 表示正负范围) (DPS = Degree Per Second 角速度单位 °/S)
+    IMU660RA_GYRO_SAMPLE_SGN_2000DPS,                                           // 陀螺仪量程 ±2000DPS (GYRO = Gyroscope 陀螺仪) (SGN = signum 带符号数 表示正负范围) (DPS = Degree Per Second 角速度单位 °/S)
+}imu660ra_gyro_sample_config;
 
-#define IMU660RA_CHIP_ID            (0x00)
-#define IMU660RA_PWR_CONF           (0x7C)
-#define IMU660RA_PWR_CTRL           (0x7D)
-#define IMU660RA_INIT_CTRL          (0x59)
-#define IMU660RA_INIT_DATA          (0x5E)
-#define IMU660RA_INT_STA            (0x21)
-#define IMU660RA_ACC_ADDRESS        (0x0C)
-#define IMU660RA_GYRO_ADDRESS       (0x12)
-#define IMU660RA_ACC_CONF           (0x40)
-#define IMU660RA_ACC_RANGE          (0x41)
+#define IMU660RA_ACC_SAMPLE_DEFAULT     ( IMU660RA_ACC_SAMPLE_SGN_8G )          // 在这设置默认的 加速度计 初始化量程
+#define IMU660RA_GYRO_SAMPLE_DEFAULT    ( IMU660RA_GYRO_SAMPLE_SGN_2000DPS )    // 在这设置默认的 陀螺仪   初始化量程
 
-#define IMU660RA_GYR_CONF           (0x42)
-#define IMU660RA_GYR_RANGE          (0x43)
+#define IMU660RA_TIMEOUT_COUNT      ( 0x00FF )                                  // IMU660RA 超时计数
 
-#define IMU660RA_ACC_SAMPLE         (0x02)                                      // 加速度计量程
-// 设置为:0x00 加速度计量程为:±2g         获取到的加速度计数据 除以 16384   可以转化为带物理单位的数据 单位：g(m/s^2)
-// 设置为:0x01 加速度计量程为:±4g         获取到的加速度计数据 除以 8192    可以转化为带物理单位的数据 单位：g(m/s^2)
-// 设置为:0x02 加速度计量程为:±8g         获取到的加速度计数据 除以 4096    可以转化为带物理单位的数据 单位：g(m/s^2)
-// 设置为:0x03 加速度计量程为:±16g        获取到的加速度计数据 除以 2048    可以转化为带物理单位的数据 单位：g(m/s^2)
+//================================================定义 IMU660RA 内部地址================================================
+#define IMU660RA_DEV_ADDR           ( 0x69 )                                    // SA0接地：0x68 SA0上拉：0x69 模块默认上拉
+#define IMU660RA_SPI_W              ( 0x00 )
+#define IMU660RA_SPI_R              ( 0x80 )
 
-
-#define IMU660RA_GYR_SAMPLE         (0x00)                                      // 陀螺仪量程
-// 设置为:0x00 陀螺仪量程为:±2000dps     获取到的陀螺仪数据 除以 16.4       可以转化为带物理单位的数据 单位为：°/s
-// 设置为:0x01 陀螺仪量程为:±1000dps     获取到的陀螺仪数据 除以 32.8       可以转化为带物理单位的数据 单位为：°/s
-// 设置为:0x02 陀螺仪量程为:±500 dps     获取到的陀螺仪数据 除以 65.6       可以转化为带物理单位的数据 单位为：°/s
-// 设置为:0x03 陀螺仪量程为:±250 dps     获取到的陀螺仪数据 除以 131.2      可以转化为带物理单位的数据 单位为：°/s
-// 设置为:0x04 陀螺仪量程为:±125 dps     获取到的陀螺仪数据 除以 262.4      可以转化为带物理单位的数据 单位为：°/s
-
-
+#define IMU660RA_CHIP_ID            ( 0x00 )
+#define IMU660RA_PWR_CONF           ( 0x7C )
+#define IMU660RA_PWR_CTRL           ( 0x7D )
+#define IMU660RA_INIT_CTRL          ( 0x59 )
+#define IMU660RA_INIT_DATA          ( 0x5E )
+#define IMU660RA_INT_STA            ( 0x21 )
+#define IMU660RA_ACC_ADDRESS        ( 0x0C )
+#define IMU660RA_GYRO_ADDRESS       ( 0x12 )
+#define IMU660RA_ACC_CONF           ( 0x40 )
+#define IMU660RA_ACC_RANGE          ( 0x41 )
+#define IMU660RA_GYR_CONF           ( 0x42 )
+#define IMU660RA_GYR_RANGE          ( 0x43 )
+//================================================定义 IMU660RA 内部地址================================================
 
 extern int16 imu660ra_gyro_x, imu660ra_gyro_y, imu660ra_gyro_z;                 // 三轴陀螺仪数据      gyro (陀螺仪)
 extern int16 imu660ra_acc_x, imu660ra_acc_y, imu660ra_acc_z;                    // 三轴加速度计数据     acc (accelerometer 加速度计)
-
+extern float imu660ra_transition_factor[2];
 
 void  imu660ra_get_acc              (void);                                     // 获取 IMU660RA 加速度计数据
 void  imu660ra_get_gyro             (void);                                     // 获取 IMU660RA 陀螺仪数据
-float imu660ra_acc_transition       (int16 acc_value);                          // 将 IMU660RA 加速度计数据转换为实际物理数据
-float imu660ra_gyro_transition      (int16 gyro_value);                         // 将 IMU660RA 陀螺仪数据转换为实际物理数据
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     将 IMU660RA 加速度计数据转换为实际物理数据
+// 参数说明     acc_value       任意轴的加速度计数据
+// 返回参数     void
+// 使用示例     float data = imu660ra_acc_transition(imu660ra_acc_x);           // 单位为 g(m/s^2)
+// 备注信息
+//-------------------------------------------------------------------------------------------------------------------
+#define imu660ra_acc_transition(acc_value)      ((float)acc_value / imu660ra_transition_factor[0])
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     将 IMU660RA 陀螺仪数据转换为实际物理数据
+// 参数说明     gyro_value      任意轴的陀螺仪数据
+// 返回参数     void
+// 使用示例     float data = imu660ra_gyro_transition(imu660ra_gyro_x);         // 单位为 °/s
+// 备注信息
+//-------------------------------------------------------------------------------------------------------------------
+#define imu660ra_gyro_transition(gyro_value)    ((float)gyro_value / imu660ra_transition_factor[1])
+
 uint8 imu660ra_init                 (void);                                     // 初始化 IMU660RA
 
 #endif

@@ -218,8 +218,8 @@ void    uart_write_byte         (uart_index_enum uart_n, const uint8 dat);
 void    uart_write_buffer       (uart_index_enum uart_n, const uint8 *buff, uint32 len);
 void    uart_write_string       (uart_index_enum uart_n, const char *str);
 
-void    uart_read_byte          (uart_index_enum uart_n, uint8 *dat);
-uint8   uart_query_byte         (uart_index_enum uart_n, uint8 *dat);
+uint8   uart_read_byte                      (uart_index_enum uartn);
+uint8   uart_query_byte                     (uart_index_enum uartn, uint8 *dat);
 
 void    uart_tx_interrupt       (uart_index_enum uart_n, uint8 status);
 void    uart_rx_interrupt       (uart_index_enum uart_n, uint8 status);

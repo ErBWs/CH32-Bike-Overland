@@ -7,6 +7,8 @@
 
 #include "easy_ui_user_app.h"
 #include "inc_all.h"
+
+extern gps_report_t gpsReport;
 // Pages
 EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePilePoints, pagePathGenerate,pageBasePoints, pageSetting, pageAbout;
 
@@ -33,8 +35,8 @@ void EventMainLoop(EasyUIItem_t *item)
         status|=GraphNode_Diff(&GlobalGraph);
         double dx_lat,dy_lon;
         latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-        X0 = ANGLE_TO_RAD(gps_tau1201.latitude - GlobalBase_GPS_data.latitude)*dx_lat;
-        Y0 = ANGLE_TO_RAD(gps_tau1201.longitude - GlobalBase_GPS_data.longitude)*dy_lon;
+        X0 = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
+        Y0 = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
         if(status)
         {
             functionIsRunning = false;
@@ -106,7 +108,7 @@ void EventSavePoints(EasyUIItem_t *item)
             GPSSaveToFlashWithConversion(&temp);
         }
     }
-    gps_data = gps_data_array[0];//获得第一个目标点
+//    gps_data = gps_data_array[0];//获得第一个目标点
     gps_use.use_point_count=1;
     GPSFlashOperationEnd();
     EasyUIDrawMsgBox("Finish...");
@@ -127,7 +129,7 @@ void EventReadPoints(EasyUIPage_t *item)
         GPSReadFlashWithConversion(&gps_data_array[k].longitude);
         GPSReadFlashWithConversion((double *)&gps_data_array[k].type);
     }
-    gps_data = gps_data_array[0];//获得第一个目标点
+//    gps_data = gps_data_array[0];//获得第一个目标点
     gps_use.use_point_count = 1;
 
     functionIsRunning = false;
@@ -279,16 +281,13 @@ void MessegeShowFun(void)
     IPS096_ShowStr(0,2,"latitude:");
     IPS096_ShowStr(0, 14, "longitude:");
     IPS096_ShowStr(0, 26, "hdop:");
-    IPS096_ShowStr(0, 38, "time:  :  ");
-    IPS096_ShowStr(0, 38+12, "satellite_used:");
-    IPS096_ShowStr(0, 38+12+12, "yaw:");
-    IPS096_ShowFloat(54, 2, gps_tau1201.latitude,3,6);
-    IPS096_ShowFloat(60, 14, gps_tau1201.longitude,3,6);
-    IPS096_ShowFloat(30, 26, gps_tau1201.hdop,2,2);
-    IPS096_ShowUint(30, 38, gps_tau1201.time.minute,2);
-    IPS096_ShowUint(50, 38, gps_tau1201.time.second,2);
-    IPS096_ShowUint(92, 38+12, gps_tau1201.satellite_used,2);
-    IPS096_ShowFloat(4*8, 38+12+12, imu_data.yaw,3,3);
+    IPS096_ShowStr(0, 26+12, "satellite_used:");
+    IPS096_ShowStr(0, 26+12+12, "yaw:");
+    IPS096_ShowFloat(54, 2, gpsReport.lat * 1e-7,3,6);
+    IPS096_ShowFloat(60, 14, gpsReport.lon * 1e-7,3,6);
+    IPS096_ShowFloat(30, 26, gpsReport.hdop,2,2);
+    IPS096_ShowUint(92, 26+12,gpsReport.satellites_used,2);
+    IPS096_ShowFloat(4*8, 26+12+12, imu_data.yaw,3,3);
 }
 void PageNormalPoints(EasyUIPage_t *page)
 {

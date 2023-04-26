@@ -2,6 +2,9 @@
 #define _CTRL_H_
 #include "zf_common_headfile.h"
 #include "inc_all.h"
+#include "gps_ubx.h"
+
+
 
 extern uint32_t back_inter_distance;
 extern uint8 stagger_flag;

@@ -526,6 +526,18 @@ void dl1a_get_distance (void)
 }
 
 //-------------------------------------------------------------------------------------------------------------------
+// 函数简介     DL1A INT 中断响应处理函数
+// 参数说明     void
+// 返回参数     void
+// 使用示例     dl1a_int_handler();
+// 备注信息     本函数需要在 DL1A_INT_PIN 对应的外部中断处理函数中调用
+//-------------------------------------------------------------------------------------------------------------------
+void dl1a_int_handler (void)
+{
+#if DL1A_INT_ENABLE
+    dl1a_get_distance();
+#endif
+}
 // 函数简介     初始化 DL1A
 // 参数说明     void
 // 返回参数     uint8           1-初始化失败 0-初始化成功
@@ -750,5 +762,10 @@ uint8 dl1a_init (void)
         dl1a_write_register(DL1A_SYSRANGE_START, 0x02);
     }while(0);
 
+#if DL1A_INT_ENABLE
+    exti_init(DL1A_INT_PIN, EXTI_TRIGGER_FALLING);
+    dl1a_int_handler();
+    dl1a_finsh_flag = 0;
+#endif
     return return_state;
 }

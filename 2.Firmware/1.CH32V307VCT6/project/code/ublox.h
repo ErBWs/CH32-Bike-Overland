@@ -11,7 +11,7 @@ extern "C" {
 #define E_OK 0
 #define E_EMPTY 2
 
-
+typedef int err_t;
 
 #define UBX_SYNC1 0xB5
 #define UBX_SYNC2 0x62

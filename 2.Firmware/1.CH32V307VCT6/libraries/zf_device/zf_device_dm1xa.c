@@ -61,6 +61,7 @@
 
 static uint16                   dm1xa_distance_mm   = 6800;
 static uint32                   dm1xa_plus_count    = 0;
+//static uint32                   dm1xa_match_count   = 0;
 static dm1xa_type_enum          dm1xa_type          = DM1XA_NO_INIT;
 static dm1xa_ranging_state_enum dm1xa_ranging_state = DM1XA_RECEIVER_RANGING_NO_SIGNAL;
 
@@ -100,7 +101,7 @@ void dm1xa_sound_callback (void)
                     if(150 < timer_get(DM1XA_TIM_INDEX) - dm1xa_plus_count)     // 判断这个声信号脉冲是否是低于 150us 的干扰噪声
                     {
                         timer_clear(DM1XA_TIM_INDEX);                           // 清空时间
-                        dm1xa_distance_mm = (uint16)((float)dm1xa_plus_count * 0.3432); // 计算距离值 毫米单位
+                        dm1xa_distance_mm = (float)dm1xa_plus_count * DM1XA_SOUND_SPEED_MM_PER_US;	// 计算距离值 毫米单位
                         dm1xa_ranging_state = DM1XA_RECEIVER_RANGING_SUCCESS;   // 测距信息更新为完成测距
                     }
                 }

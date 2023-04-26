@@ -28,11 +28,11 @@ void IMUGetCalFun(void)
     count++;
     if(imu_update_counts<1500)
             imu_update_counts++;
-    static float temp,tempUseFlag = 0;
+//    static float temp,tempUseFlag = 0;
     IMU_Getdata(&gyro,&acc, IMU_ALL);
     imuGetMagData(&mag_data);
     Data_steepest();
-    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
+    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
     if (Bike_Start == 1)
     {
         INS_U.IMU.acc_x = (float)-imu660ra_acc_x / 4096 * 9.8f;
@@ -56,7 +56,7 @@ void IMUGetCalFun(void)
             INS_U.GPS_uBlox.velN = gpsReport.vel_n_m_s * 1e3;
             INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
             INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
-            INS_U.GPS_uBlox.fixType = 3;
+            INS_U.GPS_uBlox.fixType = gpsReport.fix_type;
             INS_U.GPS_uBlox.hAcc = gpsReport.hdop * 1e3;
             INS_U.GPS_uBlox.vAcc = gpsReport.vdop * 1e3;
             INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
@@ -188,7 +188,7 @@ int16_t fly_wheel_encode=0;
 void FlyWheelControl(void)
 {
     extern Butter_Parameter Butter_10HZ_Parameter_Acce;
-    extern Butter_Parameter Butter_80HZ_Parameter_Acce;
+//    extern Butter_Parameter Butter_80HZ_Parameter_Acce;
     extern Butter_BufferData Butter_Buffer;
 
     static uint8 counts=0;
