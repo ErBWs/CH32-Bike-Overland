@@ -88,56 +88,56 @@ void IMU_Getdata(_xyz_s16_st *gyro, _xyz_s16_st *acc, char imumode)
 
 
     }
-    else if (imumode == IMU_963RA)
-    {
-        imu963ra_get_acc();
-        imu963ra_get_gyro();
-        if (0)
-        {
-            acc->x = imu963ra_acc_x;  //获取加速度原始数据
-            acc->y = imu963ra_acc_y;
-            acc->z = imu963ra_acc_z;
-
-            gyro->x = imu963ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
-            gyro->y = imu963ra_gyro_y - gyro_offset.y;
-            gyro->z = imu963ra_gyro_z - gyro_offset.z;
-        }
-        else
-        {
-            acc->x = imu963ra_acc_x;  //获取加速度计原始数据
-            acc->y = imu963ra_acc_y;
-            acc->z = imu963ra_acc_z;
-
-            gyro->x = imu963ra_gyro_x;  //获取陀螺仪原始数据
-            gyro->y = imu963ra_gyro_y;
-            gyro->z = imu963ra_gyro_z;
-        }
-    }
-    else if (imumode == IMU_ICM)
-    {
-        icm20602_get_acc();
-        icm20602_get_gyro();
-        if (0)
-        {
-            acc->x = icm20602_acc_x;  //获取加速度原始数据
-            acc->y = icm20602_acc_y;
-            acc->z = icm20602_acc_z;
-
-            gyro->x = icm20602_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
-            gyro->y = icm20602_gyro_y - gyro_offset.y;
-            gyro->z = icm20602_gyro_z - gyro_offset.z;
-        }
-        else
-        {
-            acc->x = icm20602_acc_x;  //获取加速度计原始数据
-            acc->y = icm20602_acc_y;
-            acc->z = icm20602_acc_z;
-
-            gyro->x = icm20602_gyro_x;  //获取陀螺仪原始数据
-            gyro->y = icm20602_gyro_y;
-            gyro->z = icm20602_gyro_z;
-        }
-    }
+//    else if (imumode == IMU_963RA)
+//    {
+//        imu963ra_get_acc();
+//        imu963ra_get_gyro();
+//        if (0)
+//        {
+//            acc->x = imu963ra_acc_x;  //获取加速度原始数据
+//            acc->y = imu963ra_acc_y;
+//            acc->z = imu963ra_acc_z;
+//
+//            gyro->x = imu963ra_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
+//            gyro->y = imu963ra_gyro_y - gyro_offset.y;
+//            gyro->z = imu963ra_gyro_z - gyro_offset.z;
+//        }
+//        else
+//        {
+//            acc->x = imu963ra_acc_x;  //获取加速度计原始数据
+//            acc->y = imu963ra_acc_y;
+//            acc->z = imu963ra_acc_z;
+//
+//            gyro->x = imu963ra_gyro_x;  //获取陀螺仪原始数据
+//            gyro->y = imu963ra_gyro_y;
+//            gyro->z = imu963ra_gyro_z;
+//        }
+//    }
+//    else if (imumode == IMU_ICM)
+//    {
+//        icm20602_get_acc();
+//        icm20602_get_gyro();
+//        if (0)
+//        {
+//            acc->x = icm20602_acc_x;  //获取加速度原始数据
+//            acc->y = icm20602_acc_y;
+//            acc->z = icm20602_acc_z;
+//
+//            gyro->x = icm20602_gyro_x - gyro_offset.x;  // 获取陀螺仪原始数据并减去零偏
+//            gyro->y = icm20602_gyro_y - gyro_offset.y;
+//            gyro->z = icm20602_gyro_z - gyro_offset.z;
+//        }
+//        else
+//        {
+//            acc->x = icm20602_acc_x;  //获取加速度计原始数据
+//            acc->y = icm20602_acc_y;
+//            acc->z = icm20602_acc_z;
+//
+//            gyro->x = icm20602_gyro_x;  //获取陀螺仪原始数据
+//            gyro->y = icm20602_gyro_y;
+//            gyro->z = icm20602_gyro_z;
+//        }
+//    }
 
 
 }
@@ -186,15 +186,15 @@ void Data_steepest(void)
 }
 
 //角度解算
-void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _xyz_f_st *mag, _imu_st *imu)
+void IMU_update(float dT,_xyz_f_st *gyr, _xyz_f_st *acc, _imu_st *imu)
 {
     //PI补偿器 KP是对于加速度计的信任程度，KP越大，对加速度计信任程度越高，表现为：收敛速度快，但是毛刺变多。
     //KI用于消除稳态误差，经过零偏矫正的角速度测量，KI取值很小。KI越大，表现为：收敛时出现震荡。
-    float kp = 4.5f, ki = 0.0001f, kp_mag = 0.0f;
+    float kp = 4.5f, ki = 0.0001f;
 
     float q0q1,q0q2,q1q1,q1q3,q2q2,q2q3,q3q3,q1q2,q0q3;
     float w_q,x_q,y_q,z_q;
-    float acc_length,q_length,mag_length;
+    float acc_length,q_length;
     _xyz_f_st acc_norm;
     _xyz_f_st vec_err;
 //    float mag_err;
@@ -349,48 +349,44 @@ void imuinit(char imumode)
         system_delay_ms(100);
         pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
         printf("ok1\n");
+        printf("ok2\n");
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
+        system_delay_ms(100);
+        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
+    }
+//    if (imumode == IMU_ICM)
+//    {
+//        icm20602_init();
+//        IMU_Offset(imumode);
+//    }
+//    if (imumode == IMU_963RA)
+//    {
+//        imu963ra_init();
+//        IMU_Offset(imumode);
+//        IMU_Getdata(&gyro,&acc, IMU_963RA);
+//        imu_data.rol = atan2f(acc.y,acc.z);//        num_float[5] = (float)Offset_OK;
+//        imu_data.pit = atan2f(acc.x,acc.z);
+//        imu_data.w = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
+//        imu_data.x = sinf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) - cosf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
+//        imu_data.y = cosf(imu_data.rol/2) * sinf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* cosf(imu_data.pit/2)*sinf(imu_data.yaw/2);
+//        imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
+////        BlueToothPrintf("rol:%f\n",imu_data.rol*53.29f);
+////        BlueToothPrintf("pit:%f\n",imu_data.pit*53.29f);
+//        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
+//        system_delay_ms(100);
+//        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
+//        printf("ok1\n");
 //        imuMagOffset();
 //        Ellipsoid_fitting_Process(&mag_origin_data);
-        printf("ok2\n");
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
-        system_delay_ms(100);
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
-//        carBodyState.yaw = atan2f((float)(imu963ra_mag_y), (float)(imu963ra_mag_x));
-//        carBodyState.yaw = (float)Degree_To_360(carBodyState.yaw);
-    }
-    if (imumode == IMU_ICM)
-    {
-        icm20602_init();
-        IMU_Offset(imumode);
-    }
-    if (imumode == IMU_963RA)
-    {
-        imu963ra_init();
-        IMU_Offset(imumode);
-        IMU_Getdata(&gyro,&acc, IMU_963RA);
-        imu_data.rol = atan2f(acc.y,acc.z);//        num_float[5] = (float)Offset_OK;
-        imu_data.pit = atan2f(acc.x,acc.z);
-        imu_data.w = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
-        imu_data.x = sinf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) - cosf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
-        imu_data.y = cosf(imu_data.rol/2) * sinf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* cosf(imu_data.pit/2)*sinf(imu_data.yaw/2);
-        imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
-//        BlueToothPrintf("rol:%f\n",imu_data.rol*53.29f);
-//        BlueToothPrintf("pit:%f\n",imu_data.pit*53.29f);
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
-        system_delay_ms(100);
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
-        printf("ok1\n");
-        imuMagOffset();
-        Ellipsoid_fitting_Process(&mag_origin_data);
-        printf("ok2\n");
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
-        system_delay_ms(100);
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
-    }
-    if(imumode == IMU_660RA)
-    {
-        imu660ra_init();
-    }
+//        printf("ok2\n");
+//        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
+//        system_delay_ms(100);
+//        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
+//    }
+//    if(imumode == IMU_660RA)
+//    {
+//        imu660ra_init();
+//    }
 
 
 }

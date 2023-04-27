@@ -35,6 +35,7 @@
 
 #include "zf_common_headfile.h"
 #include "inc_all.h"
+#include "gps_ubx.h"
 
 uint32 now_tick=0;
 //uint8 gps_state=1;
@@ -145,7 +146,8 @@ void UART8_IRQHandler (void)
 {
     if(USART_GetITStatus(UART8, USART_IT_RXNE) != RESET)
     {
-        gps_uart_callback();
+//        gps_uart_callback();
+        gps_serial_rx_ind();
         USART_ClearITPendingBit(UART8, USART_IT_RXNE);
     }
 

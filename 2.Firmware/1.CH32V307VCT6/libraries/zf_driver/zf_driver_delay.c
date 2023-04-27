@@ -39,25 +39,47 @@
 
 #include "zf_driver_delay.h"
 
-
 //-------------------------------------------------------------------------------------------------------------------
-// 函数简介     system 延时函数
-// 参数说明     time            需要延时的时间
-// 参数说明     num             需要延时的次数
+// 函数简介     system 延时函数 ms 级别
+// 参数说明     time            需要延时的时间 ms 级别
 // 返回参数     void
-// 使用示例     system_delay(1000000, (time));
-// 备注信息     无需用户调用 用户请使用 zf_driver_delay.h 文件中的宏定义
+// 使用示例     system_delay_ms(100);
+// 备注信息
 //-------------------------------------------------------------------------------------------------------------------
-void system_delay (uint32 time, uint32 num)
+void system_delay_ms (uint32 num)
 {
-    while(num --)
-    {
-        SysTick->CTLR = 0;
-        SysTick->CNT  = 0;
-        SysTick->CTLR = 1;          //启动系统计数器 systick（HCLK/8 时基） us
+    SysTick->SR &= ~(1 << 0);
 
-        //while((*(volatile uint32*)0xE000F004) <= time);
-        while(SysTick->CNT <= time);
-    }
+
+    SysTick->CMP = (uint64_t)(system_clock/8000) * num;
+    SysTick->CTLR |= (1 << 4);
+    SysTick->CTLR |= (1 << 5) | (1 << 0);
+
+    while((SysTick->SR & (1 << 0)) != (1 << 0));
+
+    SysTick->CTLR &= ~(1 << 0);
 }
+
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     system 延时函数 us 级别
+// 参数说明     time            需要延时的时间 us 级别
+// 返回参数     void
+// 使用示例     system_delay_us(100);
+// 备注信息     受限于程序运行跳转 此延时会比输入值高出一些
+//-------------------------------------------------------------------------------------------------------------------
+void system_delay_us (uint32 num)
+{
+    SysTick->SR &= ~(1 << 0);
+
+
+    SysTick->CMP = (uint64_t)(system_clock/8000000) * num;
+    SysTick->CTLR |= (1 << 4);
+    SysTick->CTLR |= (1 << 5) | (1 << 0);
+
+    while((SysTick->SR & (1 << 0)) != (1 << 0));
+
+    SysTick->CTLR &= ~(1 << 0);
+}
+
 

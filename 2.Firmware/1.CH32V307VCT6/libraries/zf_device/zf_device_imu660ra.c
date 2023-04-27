@@ -65,7 +65,7 @@
 
 int16 imu660ra_gyro_x = 0, imu660ra_gyro_y = 0, imu660ra_gyro_z = 0;            // 三轴陀螺仪数据   gyro (陀螺仪)
 int16 imu660ra_acc_x = 0, imu660ra_acc_y = 0, imu660ra_acc_z = 0;               // 三轴加速度计数据 acc  (accelerometer 加速度计)
-
+float imu660ra_transition_factor[2] = {4096, 16.4};
 
 #if IMU660RA_USE_SOFT_IIC
 static soft_iic_info_struct imu660ra_iic_struct;
@@ -203,49 +203,6 @@ void imu660ra_get_gyro (void)
 }
 
 //-------------------------------------------------------------------------------------------------------------------
-// 函数简介     将 IMU660RA 加速度计数据转换为实际物理数据
-// 参数说明     gyro_value              // 任意轴的加速度计数据
-// 返回参数     void
-// 使用示例     float data = imu660ra_acc_transition(imu660ra_acc_x);  //单位为 g(m/s^2)
-// 备注信息
-//-------------------------------------------------------------------------------------------------------------------
-float imu660ra_acc_transition (int16 acc_value)
-{
-    float acc_data = 0;
-    switch(IMU660RA_ACC_SAMPLE)
-    {
-        case 0x00: acc_data = (float)acc_value / 16384; break; // 0x00 加速度计量程为:±2g          获取到的加速度计数据 除以16384      可以转化为带物理单位的数据，单位：g(m/s^2)
-        case 0x01: acc_data = (float)acc_value / 8192; break;  // 0x01 加速度计量程为:±4g          获取到的加速度计数据 除以8192       可以转化为带物理单位的数据，单位：g(m/s^2)
-        case 0x02: acc_data = (float)acc_value / 4096; break;  // 0x02 加速度计量程为:±8g          获取到的加速度计数据 除以4096       可以转化为带物理单位的数据，单位：g(m/s^2)
-        case 0x03: acc_data = (float)acc_value / 2048; break;  // 0x03 加速度计量程为:±16g         获取到的加速度计数据 除以2048       可以转化为带物理单位的数据，单位：g(m/s^2)
-        default: break;
-    }
-    return acc_data;
-}
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     将 IMU660RA 陀螺仪数据转换为实际物理数据
-// 参数说明     gyro_value              // 任意轴的陀螺仪数据
-// 返回参数     void
-// 使用示例     float data = imu660ra_gyro_transition(imu660ra_gyro_x);  // 单位为°/s
-// 备注信息
-//-------------------------------------------------------------------------------------------------------------------
-float imu660ra_gyro_transition (int16 gyro_value)
-{
-    float gyro_data = 0;
-    switch(IMU660RA_GYR_SAMPLE)
-    {
-        case 0x00: gyro_data = (float)gyro_value / 16.4f;  break;  //  0x00 陀螺仪量程为:±2000dps      获取到的陀螺仪数据除以16.4          可以转化为带物理单位的数据，单位为：°/s
-        case 0x01: gyro_data = (float)gyro_value / 32.8f;  break;  //  0x01 陀螺仪量程为:±1000dps      获取到的陀螺仪数据除以32.8          可以转化为带物理单位的数据，单位为：°/s
-        case 0x02: gyro_data = (float)gyro_value / 65.6f;  break;  //  0x02 陀螺仪量程为:±500 dps      获取到的陀螺仪数据除以65.6          可以转化为带物理单位的数据，单位为：°/s
-        case 0x03: gyro_data = (float)gyro_value / 131.2f; break;  //  0x03 陀螺仪量程为:±250 dps      获取到的陀螺仪数据除以131.2         可以转化为带物理单位的数据，单位为：°/s
-        case 0x04: gyro_data = (float)gyro_value / 262.4f; break;  //  0x04 陀螺仪量程为:±125 dps      获取到的陀螺仪数据除以262.4         可以转化为带物理单位的数据，单位为：°/s
-        default: break;
-    }
-    return gyro_data;
-}
-
-//-------------------------------------------------------------------------------------------------------------------
 // 函数简介     初始化 IMU660RA
 // 参数说明     void
 // 返回参数     uint8           1-初始化失败 0-初始化成功
@@ -255,60 +212,127 @@ float imu660ra_gyro_transition (int16 gyro_value)
 uint8 imu660ra_init (void)
 {
     uint8 return_state = 0;
-    system_delay_ms(20);                                                    // 等待设备上电成功
+    system_delay_ms(20);                                                        // 等待设备上电成功
+
 #if IMU660RA_USE_SOFT_IIC
-    soft_iic_init(&imu660ra_iic_struct, IMU660RA_DEV_ADDR, IMU660RA_SOFT_IIC_DELAY, IMU660RA_SCL_PIN, IMU660RA_SDA_PIN);        // 配置 IMU660RA 的 IIC端口
+    soft_iic_init(&imu660ra_iic_struct, IMU660RA_DEV_ADDR, IMU660RA_SOFT_IIC_DELAY, IMU660RA_SCL_PIN, IMU660RA_SDA_PIN);        // 配置 IMU660RA 的 IIC 端口
 #else
-    spi_init(IMU660RA_SPI, SPI_MODE0, IMU660RA_SPI_SPEED, IMU660RA_SPC_PIN, IMU660RA_SDI_PIN, IMU660RA_SDO_PIN, SPI_CS_NULL);   // 配置 IMU660RA 的 SPI端口
-    gpio_init(IMU660RA_CS_PIN, GPO, GPIO_HIGH, GPO_PUSH_PULL);                                                                  // 配置 IMU660RA 的 CS端口
-    imu660ra_read_register(IMU660RA_CHIP_ID);                                                                                   // 读取一下设备ID，将设备设置为SPI模式
+    spi_init(IMU660RA_SPI, SPI_MODE0, IMU660RA_SPI_SPEED, IMU660RA_SPC_PIN, IMU660RA_SDI_PIN, IMU660RA_SDO_PIN, SPI_CS_NULL);   // 配置 IMU660RA 的 SPI 端口
+    gpio_init(IMU660RA_CS_PIN, GPO, GPIO_HIGH, GPO_PUSH_PULL);                  // 配置 IMU660RA 的CS端口
+    imu660ra_read_register(IMU660RA_CHIP_ID);                                   // 读取一下设备ID 将设备设置为SPI模式
 #endif
     do{
-        if(imu660ra_self_check())                                           // IMU660RA自检
+        if(imu660ra_self_check())                                               // IMU660RA 自检
         {
             // 如果程序在输出了断言信息 并且提示出错位置在这里
-            // 那么就是 imu660ra 自检出错并超时退出了
+            // 那么就是 IMU660RA 自检出错并超时退出了
             // 检查一下接线有没有问题 如果没问题可能就是坏了
             zf_log(0, "imu660ra self check error.");
             return_state = 1;
             break;
         }
-        imu660ra_write_register(IMU660RA_PWR_CONF, 0x00);                   // 关闭高级省电模式
+        imu660ra_write_register(IMU660RA_PWR_CONF, 0x00);                       // 关闭高级省电模式
         system_delay_ms(1);
-        imu660ra_write_register(IMU660RA_INIT_CTRL, 0x00);                  // 开始对模块进行初始化配置
-        imu660ra_write_registers(IMU660RA_INIT_DATA, imu660ra_config_file, sizeof(imu660ra_config_file));                       // 输出配置文件
-        imu660ra_write_register(IMU660RA_INIT_CTRL, 0x01);                  // 初始化配置结束
+        imu660ra_write_register(IMU660RA_INIT_CTRL, 0x00);                      // 开始对模块进行初始化配置
+        imu660ra_write_registers(IMU660RA_INIT_DATA, imu660ra_config_file, sizeof(imu660ra_config_file));   // 输出配置文件
+        imu660ra_write_register(IMU660RA_INIT_CTRL, 0x01);                      // 初始化配置结束
         system_delay_ms(20);
-        if(imu660ra_read_register(IMU660RA_INT_STA) == 0)                   // 检查是否配置完成
+        if(0 == imu660ra_read_register(IMU660RA_INT_STA))                       // 检查是否配置完成
         {
             // 如果程序在输出了断言信息 并且提示出错位置在这里
-            // 那么就是 imu660ra 配置初始化文件出错了
+            // 那么就是 IMU660RA 配置初始化文件出错了
             // 检查一下接线有没有问题 如果没问题可能就是坏了
             zf_log(0, "imu660ra init error.");
             return_state = 1;
             break;
         }
-        imu660ra_write_register(IMU660RA_PWR_CTRL, 0x0E);                   // 开启性能模式  使能陀螺仪、加速度、温度传感器
-        imu660ra_write_register(IMU660RA_ACC_CONF, 0xA7);                   // 加速度采集配置 性能模式 正常采集 50Hz 采样频率
-        imu660ra_write_register(IMU660RA_GYR_CONF, 0xA9);                   // 陀螺仪采集配置 性能模式 正常采集 200Hz采样频率
-        imu660ra_write_register(IMU660RA_ACC_RANGE, IMU660RA_ACC_SAMPLE);   // 加速度量程配置 配置量程为:±8g
-        imu660ra_write_register(IMU660RA_GYR_RANGE, IMU660RA_GYR_SAMPLE);   // 陀螺仪量程配置 配置量程为:±2000dps
+        imu660ra_write_register(IMU660RA_PWR_CTRL, 0x0E);                       // 开启性能模式  使能陀螺仪、加速度、温度传感器
+        imu660ra_write_register(IMU660RA_ACC_CONF, 0xA7);                       // 加速度采集配置 性能模式 正常采集 50Hz  采样频率
+        imu660ra_write_register(IMU660RA_GYR_CONF, 0xA9);                       // 陀螺仪采集配置 性能模式 正常采集 200Hz 采样频率
 
-        // IMU660RA_GYR_RANGE寄存器
-        // 设置为:0x00 加速度计量程为:±2g          获取到的加速度计数据 除以16384      可以转化为带物理单位的数据，单位：g(m/s^2)
-        // 设置为:0x01 加速度计量程为:±4g          获取到的加速度计数据 除以8192       可以转化为带物理单位的数据，单位：g(m/s^2)
-        // 设置为:0x02 加速度计量程为:±8g          获取到的加速度计数据 除以4096       可以转化为带物理单位的数据，单位：g(m/s^2)
-        // 设置为:0x03 加速度计量程为:±16g         获取到的加速度计数据 除以2048       可以转化为带物理单位的数据，单位：g(m/s^2)
+        // IMU660RA_ACC_SAMPLE 寄存器
+        // 设置为 0x00 加速度计量程为 ±2  g   获取到的加速度计数据除以 16384  可以转化为带物理单位的数据 单位 g(m/s^2)
+        // 设置为 0x01 加速度计量程为 ±4  g   获取到的加速度计数据除以 8192   可以转化为带物理单位的数据 单位 g(m/s^2)
+        // 设置为 0x02 加速度计量程为 ±8  g   获取到的加速度计数据除以 4096   可以转化为带物理单位的数据 单位 g(m/s^2)
+        // 设置为 0x03 加速度计量程为 ±16 g   获取到的加速度计数据除以 2048   可以转化为带物理单位的数据 单位 g(m/s^2)
+        switch(IMU660RA_ACC_SAMPLE_DEFAULT)
+        {
+            default:
+            {
+                zf_log(0, "IMU660RA_ACC_SAMPLE_DEFAULT set error.");
+                return_state = 1;
+            }break;
+            case IMU660RA_ACC_SAMPLE_SGN_2G:
+            {
+                imu660ra_write_register(IMU660RA_ACC_RANGE, 0x00);
+                imu660ra_transition_factor[0] = 16384;
+            }break;
+            case IMU660RA_ACC_SAMPLE_SGN_4G:
+            {
+                imu660ra_write_register(IMU660RA_ACC_RANGE, 0x01);
+                imu660ra_transition_factor[0] = 8192;
+            }break;
+            case IMU660RA_ACC_SAMPLE_SGN_8G:
+            {
+                imu660ra_write_register(IMU660RA_ACC_RANGE, 0x02);
+                imu660ra_transition_factor[0] = 4096;
+            }break;
+            case IMU660RA_ACC_SAMPLE_SGN_16G:
+            {
+                imu660ra_write_register(IMU660RA_ACC_RANGE, 0x03);
+                imu660ra_transition_factor[0] = 2048;
+            }break;
+        }
+        if(1 == return_state)
+        {
+            break;
+        }
 
-        // IMU660RA_ACC_SAMPLE寄存器
-        // 设置为:0x00 陀螺仪量程为:±2000dps      获取到的陀螺仪数据除以16.4          可以转化为带物理单位的数据，单位为：°/s
-        // 设置为:0x01 陀螺仪量程为:±1000dps      获取到的陀螺仪数据除以32.8          可以转化为带物理单位的数据，单位为：°/s
-        // 设置为:0x02 陀螺仪量程为:±500 dps      获取到的陀螺仪数据除以65.6          可以转化为带物理单位的数据，单位为：°/s
-        // 设置为:0x03 陀螺仪量程为:±250 dps      获取到的陀螺仪数据除以131.2         可以转化为带物理单位的数据，单位为：°/s
-        // 设置为:0x04 陀螺仪量程为:±125 dps      获取到的陀螺仪数据除以262.4         可以转化为带物理单位的数据，单位为：°/s
+        // IMU660RA_GYR_RANGE 寄存器
+        // 设置为 0x04 陀螺仪量程为 ±125  dps    获取到的陀螺仪数据除以 262.4   可以转化为带物理单位的数据 单位为 °/s
+        // 设置为 0x03 陀螺仪量程为 ±250  dps    获取到的陀螺仪数据除以 131.2   可以转化为带物理单位的数据 单位为 °/s
+        // 设置为 0x02 陀螺仪量程为 ±500  dps    获取到的陀螺仪数据除以 65.6    可以转化为带物理单位的数据 单位为 °/s
+        // 设置为 0x01 陀螺仪量程为 ±1000 dps    获取到的陀螺仪数据除以 32.8    可以转化为带物理单位的数据 单位为 °/s
+        // 设置为 0x00 陀螺仪量程为 ±2000 dps    获取到的陀螺仪数据除以 16.4    可以转化为带物理单位的数据 单位为 °/s
+        switch(IMU660RA_GYRO_SAMPLE_DEFAULT)
+        {
+            default:
+            {
+                zf_log(0, "IMU660RA_GYRO_SAMPLE_DEFAULT set error.");
+                return_state = 1;
+            }break;
+            case IMU660RA_GYRO_SAMPLE_SGN_125DPS:
+            {
+                imu660ra_write_register(IMU660RA_GYR_RANGE, 0x04);
+                imu660ra_transition_factor[1] = 262.4;
+            }break;
+            case IMU660RA_GYRO_SAMPLE_SGN_250DPS:
+            {
+                imu660ra_write_register(IMU660RA_GYR_RANGE, 0x03);
+                imu660ra_transition_factor[1] = 131.2;
+            }break;
+            case IMU660RA_GYRO_SAMPLE_SGN_500DPS:
+            {
+                imu660ra_write_register(IMU660RA_GYR_RANGE, 0x02);
+                imu660ra_transition_factor[1] = 65.6;
+            }break;
+            case IMU660RA_GYRO_SAMPLE_SGN_1000DPS:
+            {
+                imu660ra_write_register(IMU660RA_GYR_RANGE, 0x01);
+                imu660ra_transition_factor[1] = 32.8;
+            }break;
+            case IMU660RA_GYRO_SAMPLE_SGN_2000DPS:
+            {
+                imu660ra_write_register(IMU660RA_GYR_RANGE, 0x00);
+                imu660ra_transition_factor[1] = 16.4;
+            }break;
+        }
+        if(1 == return_state)
+        {
+            break;
+        }
     }while(0);
     return return_state;
 }
-
 
 

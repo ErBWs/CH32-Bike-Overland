@@ -36,6 +36,8 @@
 #ifndef _zf_device_config_h_
 #define _zf_device_config_h_
 
+#include "zf_driver_delay.h"
+
 extern const unsigned char imu660ra_config_file[8192];
 
 unsigned char   mt9v03x_set_config_sccb         (void *soft_iic_obj, short int buff[10][2]);

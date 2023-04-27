@@ -120,14 +120,14 @@
 #define IPS200_DEFAULT_DISPLAY_FONT     (IPS200_8X16_FONT)                      // 默认的字体模式
 
 // 控制语句
-#define IPS200_RD(x)        ((x) ? (gpio_high(IPS200_RD_PIN_PARALLEL8))  : (gpio_low(IPS200_RD_PIN_PARALLEL8)))
-#define IPS200_WR(x)        ((x) ? (gpio_high(IPS200_WR_PIN_PARALLEL8))  : (gpio_low(IPS200_WR_PIN_PARALLEL8)))
-#define IPS200_RS(x)        ((x) ? (gpio_high(IPS200_RS_PIN_PARALLEL8))  : (gpio_low(IPS200_RS_PIN_PARALLEL8)))
-#define IPS200_RST(x)       ((x) ? (gpio_high(ips_rst_pin))              : (gpio_low(ips_rst_pin)))
-#define IPS200_CS(x)        ((x) ? (gpio_high(IPS200_CS_PIN_PARALLEL8))  : (gpio_low(IPS200_CS_PIN_PARALLEL8)))
-#define IPS200_BL(x)        ((x) ? (gpio_high(ips_bl_pin))               : (gpio_low(ips_bl_pin)))
+#define IPS200_RD(x)        ((x) ? (gpio_high(IPS200_RD_PIN_PARALLEL8)) : (gpio_low(IPS200_RD_PIN_PARALLEL8)))
+#define IPS200_WR(x)        ((x) ? (gpio_high(IPS200_WR_PIN_PARALLEL8)) : (gpio_low(IPS200_WR_PIN_PARALLEL8)))
+#define IPS200_RST(x)       ((x) ? (gpio_high(ips_rst_pin)) : (gpio_low(ips_rst_pin)))
+#define IPS200_BL(x)        ((x) ? (gpio_high(ips_bl_pin)) : (gpio_low(ips_bl_pin)))
+#define IPS200_RS(x)        ((x) ? (gpio_high(IPS200_RS_PIN_PARALLEL8)) : (gpio_low(IPS200_RS_PIN_PARALLEL8)))
 
-#define IPS200_DC(x)        ((x) ? (gpio_high(IPS200_DC_PIN_SPI))  : (gpio_low(IPS200_DC_PIN_SPI)))
+#define IPS200_DC(x)        ((x) ? (gpio_high(IPS200_DC_PIN_SPI)) : (gpio_low(IPS200_DC_PIN_SPI)))
+#define IPS200_CS(x)        ((x) ? (gpio_high(ips_cs_pin)) : (gpio_low(ips_cs_pin)))
 
 
 typedef enum

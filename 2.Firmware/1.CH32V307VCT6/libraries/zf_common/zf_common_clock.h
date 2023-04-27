@@ -57,5 +57,5 @@ typedef enum
 extern uint32 system_clock;                                                   // 全局变量 系统时钟信息
 
 void clock_init (uint32 clock);                                               // 核心时钟初始化
-
+void clock_set_freq(uint32 clock);                                            // 设置系统频率
 #endif

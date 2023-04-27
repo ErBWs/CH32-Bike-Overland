@@ -61,7 +61,7 @@ static void clock_reset(void)
 // 参数说明     clock           时钟频率 推荐使用 zf_common_clock.h 中 system_clock_enum 定义的选项
 // 返回参数     void
 //-------------------------------------------------------------------------------------------------------------------
-static void clock_set_freq(uint32 clock)
+void clock_set_freq(uint32 clock)
 {
     __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
 

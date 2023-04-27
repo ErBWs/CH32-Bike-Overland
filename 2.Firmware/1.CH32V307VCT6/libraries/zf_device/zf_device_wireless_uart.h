@@ -67,21 +67,31 @@
 // 开启自动波特率务必阅读上面两条 注意事项
 // 开启自动波特率务必阅读上面两条 注意事项
 
-// 0：关闭自动波特率
+// 0：关闭自动波特率  
 // 1：开启自动波特率 自动波特率的作用是修改 WIRELESS_UART_BAUD 之后不需要对模块进行配置 模块会自动设置为对应的波特率
 
-#define WIRELESS_UART_AUTO_BAUD_RATE    (0)
+#define WIRELESS_UART_AUTO_BAUD_RATE    ( 0 )
+
+#if (1 == WIRELESS_UART_AUTO_BAUD_RATE)
+typedef enum
+{
+    WIRELESS_UART_AUTO_BAUD_RATE_SUCCESS,
+    WIRELESS_UART_AUTO_BAUD_RATE_INIT,
+    WIRELESS_UART_AUTO_BAUD_RATE_START,
+    WIRELESS_UART_AUTO_BAUD_RATE_GET_ACK,
+}wireless_uart_auto_baudrate_state_enum;
+#endif
 // ------------------------------------ 自动波特率 ------------------------------------
 
-#define WIRELESS_UART_BUFFER_SIZE       (64  )
-#define WIRELESS_UART_TIMEOUT_COUNT     (0x64)
+#define WIRELESS_UART_BUFFER_SIZE       ( 64   )
+#define WIRELESS_UART_TIMEOUT_COUNT     ( 0x64 )
 
 uint32      wireless_uart_send_byte         (const uint8 data);
-uint32      wireless_uart_send_buff         (const uint8 *buff, uint32 len);
+uint32      wireless_uart_send_buffer      (const uint8 *buff, uint32 len);
 uint32      wireless_uart_send_string       (const char *str);
 void        wireless_uart_send_image        (const uint8 *image_addr, uint32 image_size);
 
-uint32      wireless_uart_read_buff         (uint8 *buff, uint32 len);
+uint32      wireless_uart_read_buffer       (uint8 *buff, uint32 len);
 
 void        wireless_uart_callback          (void);
 

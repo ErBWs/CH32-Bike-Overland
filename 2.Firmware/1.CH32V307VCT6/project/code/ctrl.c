@@ -13,6 +13,8 @@ uint16 imu_update_counts=0;
 float dynamic_zero = 0;
 extern double X0,Y0;
 
+gps_report_t gpsReport;
+
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
@@ -26,11 +28,11 @@ void IMUGetCalFun(void)
     count++;
     if(imu_update_counts<1500)
             imu_update_counts++;
-    static float temp,tempUseFlag = 0;
+//    static float temp,tempUseFlag = 0;
     IMU_Getdata(&gyro,&acc, IMU_ALL);
     imuGetMagData(&mag_data);
     Data_steepest();
-    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss,&mag_data, &imu_data);
+    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
     if (Bike_Start == 1)
     {
         INS_U.IMU.acc_x = (float)-imu660ra_acc_x / 4096 * 9.8f;
@@ -44,38 +46,35 @@ void IMUGetCalFun(void)
         INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000;
         INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000;
         INS_U.MAG.timestamp = myTimeStamp;
-        myTimeStamp+=2;
         INS_step();
-//        BlueToothPrintf("%f\n", Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi)) );
     }
-    if (gps_tau1201_flag == 1 && Bike_Start==1)
+    myTimeStamp+=2;
+    if (gps_read(&gpsReport))
     {
-        uint8 state = gps_data_parse();
-        if (state == 0)
-        {
-            int dir = gpio_get_level(D1);
-            INS_U.GPS_uBlox.lat = gps_tau1201.latitude * 1e7;
-            INS_U.GPS_uBlox.lon = gps_tau1201.longitude * 1e7;
-            INS_U.GPS_uBlox.velN = gps_tau1201.speed * 0.51444f * 1e3 * cosf(INS_Y.INS_Out.psi);
-            INS_U.GPS_uBlox.velE = gps_tau1201.speed  * 0.51444f * 1e3 * sinf(INS_Y.INS_Out.psi);
-            if (dir)
-            {
-                INS_U.GPS_uBlox.velN *= -1;
-                INS_U.GPS_uBlox.velE *= -1;
-            }
-            INS_U.GPS_uBlox.fixType = 3;
-            INS_U.GPS_uBlox.hAcc = gps_tau1201.hdop * 1e3;
-            INS_U.GPS_uBlox.vAcc = 0 * 1e3;
-            INS_U.GPS_uBlox.sAcc = 0 * 1e3;
-            INS_U.GPS_uBlox.numSV = gps_tau1201.satellite_used;
+            INS_U.GPS_uBlox.lat = gpsReport.lat;
+            INS_U.GPS_uBlox.lon = gpsReport.lon;
+            INS_U.GPS_uBlox.velN = gpsReport.vel_n_m_s * 1e3;
+            INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
+            INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
+            INS_U.GPS_uBlox.fixType = gpsReport.fix_type;
+            INS_U.GPS_uBlox.hAcc = gpsReport.hdop * 1e3;
+            INS_U.GPS_uBlox.vAcc = gpsReport.vdop * 1e3;
+            INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
+            INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
-            Global_v_now = gps_tau1201.speed * 0.51444f;
-            Global_yaw = INS_Y.INS_Out.psi;
-            Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;
-            Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R;
+//            Global_v_now = INS_Y.INS_Out;
+//            Global_yaw = Pi_To_2Pi(INS_Y.INS_Out.psi); 
+            if (Bike_Start == 1 && stagger_flag == 0)
+            {
+                Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;// - moveArray.offsetX;
+                Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R;// - moveArray.offsetY;
+            }
+            else
+            {
+                moveFilter(&moveArray,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
+            }
         }
-        gps_tau1201_flag = 0;
-    }
+}
 //    if (Bike_Start == 0)
 //    {
 //        imuGetMagData(&mag_data);
@@ -104,7 +103,7 @@ void IMUGetCalFun(void)
 //        }
 //        count = 0;
 //    }
-}
+
 #define USE_BLUE_TOOTH 0
 void ServoControl(void)
 {
@@ -112,9 +111,9 @@ void ServoControl(void)
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
     static uint8 counts=0;
-    if(++counts!=20)return;
+    if(++counts!=20||stagger_flag==1)return;
     counts=0;
-    PID_Calculate(&dirPid,dirDisPid.pos_out,(float)gps_use.delta);//´¿P
+    PID_Calculate(&dirPid,0,(float)gps_use.delta);//´¿P
 //    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);
     if(servo_sport_update_flag==0)
@@ -189,7 +188,7 @@ int16_t fly_wheel_encode=0;
 void FlyWheelControl(void)
 {
     extern Butter_Parameter Butter_10HZ_Parameter_Acce;
-    extern Butter_Parameter Butter_80HZ_Parameter_Acce;
+//    extern Butter_Parameter Butter_80HZ_Parameter_Acce;
     extern Butter_BufferData Butter_Buffer;
 
     static uint8 counts=0;

@@ -111,7 +111,7 @@ void adc_init (adc_channel_enum ch, adc_resolution_enum resolution)
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC2 , ENABLE );          // 使能ADC2通道时钟
     }
 
-    RCC_ADCCLKConfig(RCC_PCLK2_Div2);
+    RCC_ADCCLKConfig(RCC_PCLK2_Div8);
 
 
 //    if(system_clock > 84000000)  RCC_ADCCLKConfig(RCC_PCLK2_Div8);    // 设置ADC分频因子，ADC最大速率不能超过14M
