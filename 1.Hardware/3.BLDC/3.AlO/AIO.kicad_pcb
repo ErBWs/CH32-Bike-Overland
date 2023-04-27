@@ -6107,6 +6107,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
+    (model "/Users/baohan/ErBW_s/3D_Model/SH1.0/SH1.0-WT-5P.STEP"
+      (offset (xyz 0 1.7 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "ErBW_s:SOD-323" (layer "F.Cu")

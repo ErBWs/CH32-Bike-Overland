@@ -158,18 +158,6 @@ int main (void)
     // 初始化定时器6，用于PI闭环计算
     pit_ms_init(TIM6_PIT, 1);
 
-//    MenuInit();
-//    EasyUIInit(1);
-////    gps_init();
-//    adc_init(ADC1_IN9_B1, ADC_12BIT);
-//    BuzzerInit();
-////    imu660ra_init();
-//    timer_init(TIM_2, TIMER_US);
-////    pwm_init(TIM2_PWM_MAP1_CH1_A15, 50, 800);     // Servo
-//    EasyUITransitionAnim();
-//    pit_ms_init(TIM1_PIT, 10);
-
-
     while(1)
     {
 
@@ -182,21 +170,5 @@ int main (void)
         led_control(&motor1_led, &motor1_control, &motor1_pwm_output);
         led_control(&motor2_led, &motor2_control, &motor2_pwm_output);
 
-
-//        EasyUI(20);
-////        system_delay_ms(20);
-//        VofaLittleEndianSendFrame();
     }
 }
-
-
-//float GetBatteryVoltage()
-//{
-//    float batVoltageAdc;
-//    float batVoltage;
-//
-//    batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
-//    batVoltage = 37.35f * batVoltageAdc / 4096;
-//    vofaData[0] = batVoltage;
-//    return batVoltage;
-//}
