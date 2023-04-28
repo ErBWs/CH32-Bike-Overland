@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=0.2;
+paramType ANGLE_STATIC_BIAS=0;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -30,7 +30,7 @@ void IMUGetCalFun(void)
             imu_update_counts++;
 //    static float temp,tempUseFlag = 0;
     IMU_Getdata(&gyro,&acc, IMU_ALL);
-    imuGetMagData(&mag_data);
+//    imuGetMagData(&mag_data);
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
     if (Bike_Start == 1)
@@ -42,13 +42,12 @@ void IMUGetCalFun(void)
         INS_U.IMU.gyr_y = ANGLE_TO_RAD((float)-imu660ra_gyro_y / 16.4f);
         INS_U.IMU.gyr_z = ANGLE_TO_RAD((float)imu660ra_gyro_z / 16.4f);
         INS_U.IMU.timestamp = myTimeStamp;
-        INS_U.MAG.mag_x = (float)imu963ra_mag_x / 3000;
-        INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000;
-        INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000;
-        INS_U.MAG.timestamp = myTimeStamp;
+//        INS_U.MAG.mag_x = (float)imu963ra_mag_x / 3000;
+//        INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000;
+//        INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000;
+//        INS_U.MAG.timestamp = myTimeStamp;
         INS_step();
     }
-    myTimeStamp+=2;
     if (gps_read(&gpsReport))
     {
             INS_U.GPS_uBlox.lat = gpsReport.lat;
@@ -57,13 +56,13 @@ void IMUGetCalFun(void)
             INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
             INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
             INS_U.GPS_uBlox.fixType = gpsReport.fix_type;
-            INS_U.GPS_uBlox.hAcc = gpsReport.hdop * 1e3;
-            INS_U.GPS_uBlox.vAcc = gpsReport.vdop * 1e3;
+            INS_U.GPS_uBlox.hAcc = gpsReport.eph * 1e3;
+            INS_U.GPS_uBlox.vAcc = gpsReport.epv * 1e3;
             INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
             INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
-//            Global_v_now = INS_Y.INS_Out;
-//            Global_yaw = Pi_To_2Pi(INS_Y.INS_Out.psi); 
+            Global_v_now = gpsReport.vel_m_s;
+            Global_yaw = Pi_To_2Pi(INS_Y.INS_Out.psi);
             if (Bike_Start == 1 && stagger_flag == 0)
             {
                 Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;// - moveArray.offsetX;
@@ -74,6 +73,7 @@ void IMUGetCalFun(void)
                 moveFilter(&moveArray,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
             }
         }
+    myTimeStamp+=2;
 }
 //    if (Bike_Start == 0)
 //    {
@@ -167,7 +167,7 @@ void BackMotoControl(void)
             if(imu_data.pit>15)
             {
                 pitch_state=1;
-                beep_time = 20;
+                beepTime = 400;
             }
             break;
         case 1:
@@ -175,7 +175,7 @@ void BackMotoControl(void)
             {
                 backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
                 backSpdPid.iout = 0;
-                beep_time = 20;
+                beepTime = 400;
                 pitch_state=0;
             }
             break;
@@ -218,7 +218,6 @@ void FlyWheelControl(void)
     if(abs(imu_data.rol)>20)
     {
         stagger_flag=1;
-        ANGLE_STATIC_BIAS = 0.2;
         motoDutySet(MOTOR_FLY_PIN,0);
         return;
     }

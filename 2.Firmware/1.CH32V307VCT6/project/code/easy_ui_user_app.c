@@ -29,14 +29,23 @@ void EventMainLoop(EasyUIItem_t *item)
     uint8_t status=0;
     if(Bike_Start ==0)
     {
+        if(!GlobalGraph.is_init || GlobalGraph.is_finish ||!GlobalGraph.B_constructor->is_interpolated)
+        {
+            functionIsRunning = false;
+            EasyUIDrawMsgBox("Not generate!");
+            EasyUIBackgroundBlur();
+            return;
+        }
         stanleyControllerInit(&Global_stanleyController,(float)0.1,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
+        INS_Y.INS_Out.x_R = 0;
+        INS_Y.INS_Out.y_R = 0;
         double dx_lat,dy_lon;
-        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-        X0 = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
-        Y0 = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
+//        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
+        X0 = GlobalGraph.nodeBuff[0].X;//ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
+        Y0 = GlobalGraph.nodeBuff[0].Y;//ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
         if(status)
         {
             functionIsRunning = false;
@@ -49,15 +58,20 @@ void EventMainLoop(EasyUIItem_t *item)
     while(1)
     {
 //        BlueToothPrintf("=================\n%f,%f,%f,%f\n=================\n",Global_current_node.X,Global_current_node.Y,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
-        BlueToothPrintf("[target-point]%f,%f#\n",GlobalGraph.nodeBuff[Global_stanleyController.target_index].X,
-                        GlobalGraph.nodeBuff[Global_stanleyController.target_index].Y);
-
-        BlueToothPrintf("[yaw]%f#\n", Degree_To_360(RAD_TO_ANGLE(INS_Y.INS_Out.psi)));
-        BlueToothPrintf("[trace-points]\n%f,%f\n#",Global_current_node.X,Global_current_node.Y);
+//        BlueToothPrintf("[target-point]%f,%f;#\n",GlobalGraph.nodeBuff[Global_stanleyController.target_index].X,
+//                        GlobalGraph.nodeBuff[Global_stanleyController.target_index].Y);
+        static uint8 temp=1000;
+        if(--temp==0)
+        {
+            BlueToothPrintf("[trace-points]%f,%f#",Global_current_node.X,Global_current_node.Y);
+            temp = 1000;
+        }
+//        BlueToothPrintf("[yaw]%f#\n", RAD_TO_ANGLE(*Global_stanleyController.yaw));
+//        BlueToothPrintf("[vel]%f#\n",*Global_stanleyController.v_now);
         if(!stagger_flag)
         {
             status |= Stanley_Control(&GlobalGraph);
-            BlueToothPrintf("index:%d\n",GlobalGraph.Stanley_controller->target_index);
+//            BlueToothPrintf("index:%d\n",GlobalGraph.Stanley_controller->target_index);
             if(status)
             {
                 functionIsRunning = false;
@@ -68,11 +82,10 @@ void EventMainLoop(EasyUIItem_t *item)
             gps_use.delta = RAD_TO_ANGLE(GlobalGraph.Stanley_controller->theta);
             if(GlobalGraph.is_finish)
             {
-                GlobalGraph.is_finish = 0;
                 myTimeStamp = 0;
                 INS_Y.INS_Out.x_R = INS_Y.INS_Out.y_R =0;
                 functionIsRunning = false;
-                beep_time = 70;
+                beepTime = 1000;
                 Bike_Start = 0;
                 break;
             }
@@ -90,7 +103,7 @@ void EventMainLoop(EasyUIItem_t *item)
     }
 #elif USE_GPS == 2
         Bike_Start = 1;
-        gpsTest();
+//        gpsTest();
 #endif
 }
 
@@ -135,7 +148,7 @@ void EventReadPoints(EasyUIPage_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
-#define PATH_TOTAL_COUNTS 150
+#define PATH_TOTAL_COUNTS 300
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
@@ -175,16 +188,12 @@ void EventPathGenerate(EasyUIItem_t  *item)
     BlueToothPrintf("[refer-points]\n",gps_use.point_count);
     for(int i=0;i<gps_use.point_count;i++)
     {
-        uart_write_buffer(BLUE_TOOTH_JDY34_UART,(const uint8 *)&GlobalGraph.B_constructor->refNodeList[i].X,4);
-        uart_write_buffer(BLUE_TOOTH_JDY34_UART,(const uint8 *)&GlobalGraph.B_constructor->refNodeList[i].Y,4);
         BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
     }
     BlueToothPrintf("#\n");
     BlueToothPrintf("[all-points]\n",GlobalGraph.total);
     for(int i=0;i<GlobalGraph.total;i++)
     {
-        uart_write_buffer(BLUE_TOOTH_JDY34_UART,(const uint8 *)&GlobalGraph.nodeBuff[i].X,4);
-        uart_write_buffer(BLUE_TOOTH_JDY34_UART,(const uint8 *)&GlobalGraph.nodeBuff[i].Y,4);
         BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
     }
     BlueToothPrintf("#\n");
@@ -200,6 +209,7 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
             *item->param += 10;
         else
             *item->param = 100;
+        opnUp = opnForward = false;
     }
     if (opnDown)
     {
@@ -207,6 +217,7 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
             *item->param -= 10;
         else
             *item->param = 0;
+        opnDown = opnBackward = false;
     }
 
     if (opnEnter)
@@ -214,12 +225,14 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
         item->paramBackup = *item->param;
         EasyUIBackgroundBlur();
         functionIsRunning = false;
+        opnEnter = false;
     }
     if (opnExit)
     {
         *item->param = item->paramBackup;
         EasyUIBackgroundBlur();
         functionIsRunning = false;
+        opnExit = false;
     }
 }
 
@@ -280,12 +293,12 @@ void MessegeShowFun(void)
 {
     IPS096_ShowStr(0,2,"latitude:");
     IPS096_ShowStr(0, 14, "longitude:");
-    IPS096_ShowStr(0, 26, "hdop:");
+    IPS096_ShowStr(0, 26, "hacc:");
     IPS096_ShowStr(0, 26+12, "satellite_used:");
     IPS096_ShowStr(0, 26+12+12, "yaw:");
     IPS096_ShowFloat(54, 2, gpsReport.lat * 1e-7,3,6);
     IPS096_ShowFloat(60, 14, gpsReport.lon * 1e-7,3,6);
-    IPS096_ShowFloat(30, 26, gpsReport.hdop,2,2);
+    IPS096_ShowFloat(30, 26, gpsReport.eph,2,2);
     IPS096_ShowUint(92, 26+12,gpsReport.satellites_used,2);
     IPS096_ShowFloat(4*8, 26+12+12, imu_data.yaw,3,3);
 }
@@ -442,7 +455,7 @@ void MenuInit()
     EasyUIAddItem(&pageSetting, &itemColor, "Reversed Color", ITEM_SWITCH, &reversedColor);
     EasyUIAddItem(&pageSetting, &itemListLoop, "List Loop", ITEM_SWITCH, &listLoop);
     
-//    EasyUIAddItem(&pageSetting, &itemBuzzer, "Buzzer Volume", ITEM_PROGRESS_BAR, &buzzerVolume, EventChangeBuzzerVolume);
+    EasyUIAddItem(&pageSetting, &itemBuzzer, "Buzzer Volume", ITEM_PROGRESS_BAR, &buzzerVolume, EventChangeBuzzerVolume);
     EasyUIAddItem(&pageSetting, &itemSave, "Save Settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
     EasyUIAddItem(&pageSetting, &itemReset, "Reset Settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
     EasyUIAddItem(&pageSetting, &itemAbout, "<About>", ITEM_JUMP_PAGE, pageAbout.id);

@@ -19,22 +19,22 @@ uint8 Bike_Start = 0;
 //    gps_init();
 //}
 void gps_handler(gpsState pointStatus) {
-    if(gps_tau1201_flag)
-    {
-        uint8 state = gps_data_parse();
-        gps_tau1201_flag = 0;
+//    if(gps_tau1201_flag)
+//    {
+//        uint8 state = gps_data_parse();
+//        gps_tau1201_flag = 0;
         if (opnEnter) {
             opnEnter = false;
             if (gps_use.point_count > GPS_MAX_POINT) {
                 EasyUIDrawMsgBox("Gps_Buff Not Enough!");
                 return;
             }
-            if (state == 0 && (gpsReport.hdop < 1.2) && (gpsReport.hdop > 0.5)) {
+            if ((gpsReport.eph < 1.5) && (gpsReport.eph > 0.1)) {
                 switch (pointStatus) {
                     case COMMON:
                     case PILE:
                         EasyUIDrawMsgBox("Saving...");
-                        beep_time = 20;
+                        beepTime = 400;
                         gps_data_array[gps_use.point_count].latitude = gpsReport.lat * 1e-7;
                         gps_data_array[gps_use.point_count].longitude = gpsReport.lon * 1e-7;
                         gps_data_array[gps_use.point_count].type = pointStatus;
@@ -44,7 +44,7 @@ void gps_handler(gpsState pointStatus) {
                         GlobalBase_GPS_data.latitude = gpsReport.lat * 1e-7;
                         GlobalBase_GPS_data.longitude = gpsReport.lon * 1e-7;
                         EasyUIDrawMsgBox("Saving...");
-                        beep_time = 50;
+                        beepTime = 800;
                         break;
                     default:;
                 }
@@ -52,7 +52,7 @@ void gps_handler(gpsState pointStatus) {
             else {
 //                EasyUIDrawMsgBox("Error!");
             }
-        }
+//        }
     }
     if (opnForward)
     {

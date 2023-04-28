@@ -38,8 +38,6 @@
 #include "ublox.h"
 
 extern uint32 now_tick;
-extern uint16 beep_time;
-extern uint16 beep_feq;
 #define BEEP_PWM_PIN TIM8_PWM_MAP1_CH4_C13
 
 #endif /* INC_ALL_H_ */

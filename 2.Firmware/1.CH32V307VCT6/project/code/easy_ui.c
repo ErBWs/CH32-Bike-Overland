@@ -252,6 +252,9 @@ void EasyUIDrawMsgBox(char *msg)
     EasyUIDisplayStr(x - offset + 2, y + offset + (ITEM_HEIGHT - FONT_HEIGHT) / 2, msg);
     EasyUISetDrawColor(NORMAL);
     EasyUISendBuffer();
+    extern uint32_t now_tick;
+    uint32 temptick = now_tick;
+    while(now_tick-temptick<80);
 }
 
 

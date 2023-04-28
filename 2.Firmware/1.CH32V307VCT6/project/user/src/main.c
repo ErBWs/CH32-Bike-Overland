@@ -18,7 +18,7 @@
 //    }ComInfo;
 //    float data;
 //}D_data;
-
+extern gps_report_t gpsReport;
 void systemInit();
 int main (void)
 {
@@ -26,8 +26,25 @@ int main (void)
     debug_init();                                                               // ³õÊ¼»¯Ä¬ÈÏ Debug UART
     systemInit();
 //    gps_use.z_angle=0;
+
     while(1)
     {
+//        system_delay_ms(10);
+//        gpsReport.hdop * 1e3;
+//        INS_U.GPS_uBlox.vAcc = gpsReport.vdop * 1e3;
+//        INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
+//        BlueToothPrintf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
+//                        INS_U.GPS_uBlox.lat,
+//                        INS_U.GPS_uBlox.lon,
+//                        INS_U.GPS_uBlox.velN,
+//                        INS_U.GPS_uBlox.velE,
+//                        INS_U.GPS_uBlox.velD,
+//                        INS_U.GPS_uBlox.fixType,
+//                        INS_U.GPS_uBlox.hAcc,
+//                        INS_U.GPS_uBlox.vAcc,
+//                        INS_U.GPS_uBlox.sAcc,
+//                        INS_U.GPS_uBlox.numSV
+//        );
         EasyUI(20);
     }
 }
