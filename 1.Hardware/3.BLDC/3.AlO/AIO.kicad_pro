@@ -464,7 +464,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "AIO.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
