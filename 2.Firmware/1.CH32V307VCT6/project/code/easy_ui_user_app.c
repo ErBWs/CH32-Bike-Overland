@@ -148,7 +148,7 @@ void EventReadPoints(EasyUIPage_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
-#define PATH_TOTAL_COUNTS 300
+#define PATH_TOTAL_COUNTS 175
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
@@ -185,16 +185,21 @@ void EventPathGenerate(EasyUIItem_t  *item)
         EasyUIBackgroundBlur();
         return;
     }
-    BlueToothPrintf("[refer-points]\n",gps_use.point_count);
+    BlueToothPrintf("[refer-points]");
     for(int i=0;i<gps_use.point_count;i++)
     {
-        BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
+        BlueToothPrintf("%.7f,%.7f;",i+1,GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
     }
     BlueToothPrintf("#\n");
-    BlueToothPrintf("[all-points]\n",GlobalGraph.total);
+    BlueToothPrintf("[all-points]");
     for(int i=0;i<GlobalGraph.total;i++)
     {
-        BlueToothPrintf("%.9f,%.9f;\n",i+1,GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+        BlueToothPrintf("%.7f,%.7f;",i+1,GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+        if(i%100==0)
+        {
+            BlueToothPrintf("#");
+            BlueToothPrintf("[all-points]");
+        }
     }
     BlueToothPrintf("#\n");
     EasyUIDrawMsgBox("Finish!");

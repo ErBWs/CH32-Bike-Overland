@@ -47557,7 +47557,7 @@ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_a
 00015e26 <EventPathGenerate>:
 EventPathGenerate():
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_app.c:156
-#define PATH_TOTAL_COUNTS 300
+#define PATH_TOTAL_COUNTS 175
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
@@ -47612,7 +47612,7 @@ F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_a
    15e6e:	fe0403a3          	sb	zero,-25(s0)
 F:/bike/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/easy_ui_user_app.c:174
     GraphInit(&GlobalGraph, GlobalGraph_NodeBuffer, &GlobalBase_GPS_data, PATH_TOTAL_COUNTS);
-   15e72:	12c00693          	li	a3,300
+   15e72:	0af00693          	li	a3,175
    15e76:	200077b7          	lui	a5,0x20007
    15e7a:	d7878613          	addi	a2,a5,-648 # 20006d78 <GlobalBase_GPS_data>
    15e7e:	200057b7          	lui	a5,0x20005

@@ -323,7 +323,7 @@ static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
         }
     }
     controller->target_index = min_index;
-    controller->error = (float)(y > node_list[min_index].Y ? -min_distance:min_distance);
+    controller->error = (float)((y - node_list[min_index].Y)*(x-node_list[min_index].X)<0 ? -min_distance:min_distance);
     return 0;
 }
 #define PiPi(x)   if(x > PI)            \
