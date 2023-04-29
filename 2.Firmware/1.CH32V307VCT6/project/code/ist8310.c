@@ -15,8 +15,8 @@ static soft_iic_info_struct ist8310_iic_struct;
 
 static bool isInit = false;
 
-_xyz_s16_st Mag_ADCRaw; //ist8310 origin data
-_xyz_f_st   Mag_Raw;    // unit ut
+s16_st Mag_ADCRaw; //ist8310 origin data
+f_st   Mag_Raw;    // unit ut
 
 bool CompassCheck(void)
 {
@@ -32,10 +32,14 @@ bool CompassCheck(void)
 
 void Magdata_To_Ut(void)
 {
-    //转换为uT
-    Mag_Raw.x = Mag_ADCRaw.x * 0.3f;//14位有效数据的正负，1600uT
-    Mag_Raw.y = Mag_ADCRaw.y * 0.3f;//14位有效数据的正负，1600uT
-    Mag_Raw.z = Mag_ADCRaw.z * 0.3f;//14位有效数据的正负，2500uT
+//    //转换为uT
+//    Mag_Raw.x = Mag_ADCRaw.x * 0.3f;//14位有效数据的正负，量程:1600uT
+//    Mag_Raw.y = Mag_ADCRaw.y * 0.3f;//14位有效数据的正负，量程:1600uT
+//    Mag_Raw.z = Mag_ADCRaw.z * 0.3f;//14位有效数据的正负，量程:2500uT
+    //转换为Gs
+    Mag_Raw.x = Mag_ADCRaw.x * 0.3f * 0.01f;//量程:16Gs
+    Mag_Raw.y = Mag_ADCRaw.y * 0.3f * 0.01f;//量程:16Gs
+    Mag_Raw.z = Mag_ADCRaw.z * 0.3f * 0.01f;//量程:25Gs
 }
 
 void IST8310Init(void)
@@ -60,7 +64,7 @@ void Compass_Read(void)
   uint8_t IST8310_Stu = 0x00;
 
   ist8310_read_registers(IST8310_STATUS_1, &IST8310_Stu, 1);
-  system_delay_ms(1);
+  system_delay_us(100);
   if(0x01 == (IST8310_Stu & 0x01))
   {
 //    ist8310_read_registers(IST8310_XOUT_L, IST8310_Buff, 6);
@@ -76,7 +80,7 @@ void Compass_Read(void)
     Mag_ADCRaw.y = (int16_t)(((u16)IST8310_Buff[1] << 8 | IST8310_Buff[0]));
     Mag_ADCRaw.z = (int16_t)(((u16)IST8310_Buff[5] << 8 | IST8310_Buff[4]));
   }
-  system_delay_ms(1);
+  system_delay_us(100);
   ist8310_write_register(IST8310_CTR_1, 0x01);//配置模式， Single Measurement Mode,每次读数据之前要配置该寄存器
   Magdata_To_Ut();
 }

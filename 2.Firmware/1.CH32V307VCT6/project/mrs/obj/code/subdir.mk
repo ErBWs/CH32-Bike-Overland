@@ -19,6 +19,7 @@ S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/pro
 S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/imu.c \
 S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/inertial_navigation.c \
 S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ips096.c \
+S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ist8310.c \
 S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.c \
 S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/moto.c \
 S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/my_math.c \
@@ -44,6 +45,7 @@ OBJS += \
 ./code/imu.o \
 ./code/inertial_navigation.o \
 ./code/ips096.o \
+./code/ist8310.o \
 ./code/jdy34.o \
 ./code/moto.o \
 ./code/my_math.o \
@@ -69,6 +71,7 @@ C_DEPS += \
 ./code/imu.d \
 ./code/inertial_navigation.d \
 ./code/ips096.d \
+./code/ist8310.d \
 ./code/jdy34.d \
 ./code/moto.d \
 ./code/my_math.d \
@@ -121,6 +124,9 @@ code/inertial_navigation.o: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2
 	@	@	riscv-none-embed-gcc -march=rv32imafc -mabi=ilp32f -msmall-data-limit=8 -mno-save-restore -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -pedantic -Wunused -Wuninitialized -Wall  -g -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\Libraries\doc" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Ld" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Startup" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\inc" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver" -std=gnu11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
 	@	@
 code/ips096.o: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ips096.c
+	@	@	riscv-none-embed-gcc -march=rv32imafc -mabi=ilp32f -msmall-data-limit=8 -mno-save-restore -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -pedantic -Wunused -Wuninitialized -Wall  -g -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\Libraries\doc" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Ld" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Startup" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\inc" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver" -std=gnu11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+	@	@
+code/ist8310.o: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/ist8310.c
 	@	@	riscv-none-embed-gcc -march=rv32imafc -mabi=ilp32f -msmall-data-limit=8 -mno-save-restore -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -pedantic -Wunused -Wuninitialized -Wall  -g -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\Libraries\doc" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Core" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Ld" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Peripheral" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\sdk\Startup" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\user\inc" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_common" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_device" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\project\code" -I"S:\WorkSpace\bicycle motocross\CH32-Bike-Overland\2.Firmware\1.CH32V307VCT6\libraries\zf_driver" -std=gnu11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
 	@	@
 code/jdy34.o: S:/WorkSpace/bicycle\ motocross/CH32-Bike-Overland/2.Firmware/1.CH32V307VCT6/project/code/jdy34.c

@@ -28,9 +28,8 @@ void IMUGetCalFun(void)
     count++;
     if(imu_update_counts<1500)
             imu_update_counts++;
-//    static float temp,tempUseFlag = 0;
     IMU_Getdata(&gyro,&acc, IMU_ALL);
-//    imuGetMagData(&mag_data);
+    Compass_Read();
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
     if (Bike_Start == 1)
@@ -42,9 +41,9 @@ void IMUGetCalFun(void)
         INS_U.IMU.gyr_y = ANGLE_TO_RAD((float)-imu660ra_gyro_y / 16.4f);
         INS_U.IMU.gyr_z = ANGLE_TO_RAD((float)imu660ra_gyro_z / 16.4f);
         INS_U.IMU.timestamp = myTimeStamp;
-        INS_U.MAG.mag_x = (float)imu963ra_mag_x / 3000.0f;
-        INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000.0f;
-        INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000.0f;
+        INS_U.MAG.mag_x = Mag_Raw.x;
+        INS_U.MAG.mag_y = Mag_Raw.y;
+        INS_U.MAG.mag_z = Mag_Raw.z;
         INS_U.MAG.timestamp = myTimeStamp;
         INS_step();
     }

@@ -37,17 +37,17 @@ typedef struct
     short int x;
     short int y;
     short int z;
-} _xyz_s16_st;
+} s16_st;
 
 typedef struct
 {
     float x;
     float y;
     float z;
-} _xyz_f_st;
+} f_st;
 
-extern _xyz_s16_st Mag_ADCRaw;
-extern _xyz_f_st   Mag_Raw;
+extern s16_st Mag_ADCRaw;
+extern f_st   Mag_Raw;
 
 void IST8310Init(void);
 void Compass_Read(void);
