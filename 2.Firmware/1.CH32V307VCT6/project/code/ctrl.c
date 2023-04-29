@@ -42,10 +42,10 @@ void IMUGetCalFun(void)
         INS_U.IMU.gyr_y = ANGLE_TO_RAD((float)-imu660ra_gyro_y / 16.4f);
         INS_U.IMU.gyr_z = ANGLE_TO_RAD((float)imu660ra_gyro_z / 16.4f);
         INS_U.IMU.timestamp = myTimeStamp;
-//        INS_U.MAG.mag_x = (float)imu963ra_mag_x / 3000;
-//        INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000;
-//        INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000;
-//        INS_U.MAG.timestamp = myTimeStamp;
+        INS_U.MAG.mag_x = (float)imu963ra_mag_x / 3000.0f;
+        INS_U.MAG.mag_y = (float)-imu963ra_mag_y / 3000.0f;
+        INS_U.MAG.mag_z = (float)-imu963ra_mag_z / 3000.0f;
+        INS_U.MAG.timestamp = myTimeStamp;
         INS_step();
     }
     if (gps_read(&gpsReport))
@@ -62,7 +62,7 @@ void IMUGetCalFun(void)
             INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
             Global_v_now = gpsReport.vel_m_s;
-            Global_yaw = Pi_To_2Pi(INS_Y.INS_Out.psi);
+            Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
             if (Bike_Start == 1 && stagger_flag == 0)
             {
                 Global_current_node.X =  X0+ INS_Y.INS_Out.x_R;// - moveArray.offsetX;

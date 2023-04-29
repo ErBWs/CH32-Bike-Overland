@@ -57,15 +57,16 @@ void EventMainLoop(EasyUIItem_t *item)
     }
     while(1)
     {
+//        GlobalGraph.nodeBuff
 //        BlueToothPrintf("=================\n%f,%f,%f,%f\n=================\n",Global_current_node.X,Global_current_node.Y,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
 //        BlueToothPrintf("[target-point]%f,%f;#\n",GlobalGraph.nodeBuff[Global_stanleyController.target_index].X,
 //                        GlobalGraph.nodeBuff[Global_stanleyController.target_index].Y);
-        static uint8 temp=1000;
-        if(--temp==0)
-        {
-            BlueToothPrintf("[trace-points]%f,%f#",Global_current_node.X,Global_current_node.Y);
-            temp = 1000;
-        }
+//        static uint8 temp=1000;
+//        if(--temp==0)
+//        {
+//            BlueToothPrintf("[trace-points]%f,%f#",Global_current_node.X,Global_current_node.Y);
+//            temp = 1000;
+//        }
 //        BlueToothPrintf("[yaw]%f#\n", RAD_TO_ANGLE(*Global_stanleyController.yaw));
 //        BlueToothPrintf("[vel]%f#\n",*Global_stanleyController.v_now);
         if(!stagger_flag)
@@ -185,23 +186,24 @@ void EventPathGenerate(EasyUIItem_t  *item)
         EasyUIBackgroundBlur();
         return;
     }
-    BlueToothPrintf("[refer-points]");
-    for(int i=0;i<gps_use.point_count;i++)
-    {
-        BlueToothPrintf("%.7f,%.7f;",i+1,GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
-    }
-    BlueToothPrintf("#\n");
-    BlueToothPrintf("[all-points]");
+//    BlueToothPrintf("[refer-points]");
+//    for(int i=0;i<gps_use.point_count;i++)
+//    {
+//        BlueToothPrintf("%.9f,%.9f\n",GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
+//    }
+//    BlueToothPrintf("#");
+//    BlueToothPrintf("[all-points]");
     for(int i=0;i<GlobalGraph.total;i++)
     {
-        BlueToothPrintf("%.7f,%.7f;",i+1,GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
-        if(i%100==0)
-        {
-            BlueToothPrintf("#");
-            BlueToothPrintf("[all-points]");
-        }
+//        if(i%100==0)
+//        {
+//            BlueToothPrintf("#");
+//            BlueToothPrintf("[all-points]");
+        BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+//        }
+        system_delay_ms(50);
     }
-    BlueToothPrintf("#\n");
+//    BlueToothPrintf("#");
     EasyUIDrawMsgBox("Finish!");
     EasyUIBackgroundBlur();
 
