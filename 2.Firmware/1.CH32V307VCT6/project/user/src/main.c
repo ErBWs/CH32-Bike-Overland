@@ -27,6 +27,8 @@ int main (void)
     systemInit();
     while(1)
     {
+//        system_delay_ms(50);
+//        BlueToothPrintf("%f,%f\n",INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
 //        BlueToothPrintf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
 //                        INS_U.GPS_uBlox.lat,
 //                        INS_U.GPS_uBlox.lon,
@@ -40,7 +42,7 @@ int main (void)
 //                        INS_U.GPS_uBlox.numSV
 //        );
         EasyUI(20);
-        VofaLittleEndianSendFrame();
+
     }
 }
 
@@ -72,7 +74,7 @@ float GetBatteryVoltage()
     float batVoltage;
     batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
     batVoltage = 37.35f * batVoltageAdc / 4096;
-    vofaData[4] = batVoltage;
+//    vofaData[5] = batVoltage;
     return batVoltage;
 }
 

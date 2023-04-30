@@ -16,7 +16,7 @@ extern "C"
 #include <stdint.h>
 #include "zf_driver_uart.h"
 
-#define CHANNEL_NUM     5
+#define CHANNEL_NUM     6
 
 extern float vofaData[CHANNEL_NUM];
 

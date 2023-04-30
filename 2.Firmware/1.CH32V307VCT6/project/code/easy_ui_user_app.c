@@ -23,13 +23,14 @@ EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, it
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
 double X0,Y0;
+float last_x_R,last_y_R;
 void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS == 1
     uint8_t status=0;
     if(Bike_Start ==0)
     {
-        if(!GlobalGraph.is_init || GlobalGraph.is_finish ||!GlobalGraph.B_constructor->is_interpolated)
+        if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
         {
             functionIsRunning = false;
             EasyUIDrawMsgBox("Not generate!");
@@ -40,12 +41,15 @@ void EventMainLoop(EasyUIItem_t *item)
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
-        INS_Y.INS_Out.x_R = 0;
-        INS_Y.INS_Out.y_R = 0;
-        double dx_lat,dy_lon;
+        INS_init();
+        last_x_R = INS_Y.INS_Out.x_R;
+        last_y_R = INS_Y.INS_Out.y_R;
+//        double dx_lat,dy_lon;
 //        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-        X0 = GlobalGraph.nodeBuff[0].X;//ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
-        Y0 = GlobalGraph.nodeBuff[0].Y;//ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
+//        X0 = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
+//        Y0 = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
+        X0 = GlobalGraph.nodeBuff[0].X;
+        Y0 = GlobalGraph.nodeBuff[0].Y;
         if(status)
         {
             functionIsRunning = false;
@@ -53,6 +57,7 @@ void EventMainLoop(EasyUIItem_t *item)
             EasyUIBackgroundBlur();
             return;
         }
+        GlobalGraph.is_finish = 0;
         Bike_Start = 1;
     }
     while(1)
@@ -61,13 +66,16 @@ void EventMainLoop(EasyUIItem_t *item)
 //        BlueToothPrintf("=================\n%f,%f,%f,%f\n=================\n",Global_current_node.X,Global_current_node.Y,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
 //        BlueToothPrintf("[target-point]%f,%f;#\n",GlobalGraph.nodeBuff[Global_stanleyController.target_index].X,
 //                        GlobalGraph.nodeBuff[Global_stanleyController.target_index].Y);
-        static uint8 temp=1000;
+        static uint16 temp=4000;
         if(--temp==0)
         {
-            vofaData[2] = Global_current_node.X;
-            vofaData[3] = Global_current_node.Y;
-//            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
-            temp = 1000;
+            BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
+//            vofaData[2] = Global_current_node.X;
+//            vofaData[3] = Global_current_node.Y;
+//            VofaLittleEndianSendFrame();
+//            BlueToothPrintf("%f\n", RAD_TO_ANGLE(Global_yaw) );
+//            BlueToothPrintf("[trace-points]%f,%f#",Global_current_node.X,Global_current_node.Y);
+            temp = 4000;
         }
 //        BlueToothPrintf("[yaw]%f#\n", RAD_TO_ANGLE(*Global_stanleyController.yaw));
 //        BlueToothPrintf("[vel]%f#\n",*Global_stanleyController.v_now);
@@ -86,9 +94,8 @@ void EventMainLoop(EasyUIItem_t *item)
             if(GlobalGraph.is_finish)
             {
                 myTimeStamp = 0;
-                INS_Y.INS_Out.x_R = INS_Y.INS_Out.y_R =0;
                 functionIsRunning = false;
-                beepTime = 1000;
+                beepTime = 1500;
                 Bike_Start = 0;
                 break;
             }
@@ -97,8 +104,7 @@ void EventMainLoop(EasyUIItem_t *item)
         if (opnExit)
         {
             Bike_Start = 0;
-            INS_Y.INS_Out.x_R = INS_Y.INS_Out.y_R =0;
-//            opnExit = false;
+            opnExit = false;
             functionIsRunning = false;
             EasyUIBackgroundBlur();
             break;
@@ -108,6 +114,7 @@ void EventMainLoop(EasyUIItem_t *item)
         Bike_Start = 1;
 //        gpsTest();
 #endif
+
 }
 
 void EventSavePoints(EasyUIItem_t *item)
@@ -151,7 +158,7 @@ void EventReadPoints(EasyUIPage_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
-#define PATH_TOTAL_COUNTS 175
+#define PATH_TOTAL_COUNTS 500
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
@@ -184,28 +191,32 @@ void EventPathGenerate(EasyUIItem_t  *item)
     if(status==1)
     {
         EasyUIDrawMsgBox("Err check uart msg!");
-        system_delay_ms(100);
         EasyUIBackgroundBlur();
         return;
     }
 //    BlueToothPrintf("[refer-points]");
-//    for(int i=0;i<gps_use.point_count;i++)
-//    {
-//        BlueToothPrintf("%.9f,%.9f\n",GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
-//    }
+    for(int i=0;i<gps_use.point_count;i++)
+    {
+//        vofaData[4] = GlobalGraph.B_constructor->refNodeList[i].X;
+//        vofaData[5] = GlobalGraph.B_constructor->refNodeList[i].Y;
+//        BlueToothPrintf("%.7f,%.7f;\n",GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
+    }
 //    BlueToothPrintf("#");
 //    BlueToothPrintf("[all-points]");
     for(int i=0;i<GlobalGraph.total;i++)
     {
-        vofaData[0] = GlobalGraph.nodeBuff[i].X;
-        vofaData[1] = GlobalGraph.nodeBuff[i].Y;
-        system_delay_ms(50);
-//        if(i%100==0)
+//        if(i%200==0&&i!=0)
 //        {
 //            BlueToothPrintf("#");
+//            uint32 temp = now_tick;
+//            while(now_tick-temp<40);
 //            BlueToothPrintf("[all-points]");
-//        BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
 //        }
+        vofaData[0] = GlobalGraph.nodeBuff[i].X;
+        vofaData[1] = GlobalGraph.nodeBuff[i].Y;
+        VofaLittleEndianSendFrame();
+//        system_delay_ms(50);
+//        BlueToothPrintf("%.7f,%.7f;",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
     }
 //    BlueToothPrintf("#");
     EasyUIDrawMsgBox("Finish!");

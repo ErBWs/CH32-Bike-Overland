@@ -12,7 +12,7 @@
 #include "inc_all.h"
 //#include "imu.h"
 
-#define GPS_MAX_POINT   30
+#define GPS_MAX_POINT   80
 
 #define EXTRA_FORECAST_POINT 0
 #define DISTANCE_LIMITATION 1.5
