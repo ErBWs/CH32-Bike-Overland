@@ -22,7 +22,7 @@
 #endif
 
 #define B_ORDER                 4
-#define B_REFER_POINT_COUNTS_MAX    80
+#define B_REFER_POINT_COUNTS_MAX    50
 
 #define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS_MAX-1)+2)
 #define NIP_FACTOR_VECTOR_SIZE  (B_REFER_POINT_COUNTS_MAX)

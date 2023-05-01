@@ -14,7 +14,7 @@ EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageBack
 
 // Items
 EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS, itemSetting;
-EasyUIItem_t titleGPS, itemNormalPoints, itemPilePoints, itemBasePoints, itemPathGenerate, itemSavePoints, itemReadPoints;
+EasyUIItem_t titleGPS, itemNormalPoints, itemPilePoints, itemBasePoints, itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
 EasyUIItem_t titleBackMotorPID, itemBackMotorKp, itemBackMotorKi, itemBackMotorKd, itemBackMotorInMax, itemBackMotorErrMax, itemBackMotorErrMin;
@@ -133,7 +133,6 @@ void EventSavePoints(EasyUIItem_t *item)
             GPSSaveToFlashWithConversion(&temp);
         }
     }
-//    gps_data = gps_data_array[0];//获得第一个目标点
     gps_use.use_point_count=1;
     GPSFlashOperationEnd();
     EasyUIDrawMsgBox("Finish...");
@@ -449,7 +448,11 @@ void MenuInit()
 
     EasyUIAddItem(&pagePoints, &itemSavePoints, "Save", ITEM_MESSAGE, "Saving...", EventSavePoints);
     EasyUIAddItem(&pagePoints, &itemReadPoints, "Read", ITEM_MESSAGE, "Reading...", EventReadPoints);
-    
+
+    EasyUIAddItem(&pagePoints, &itemCNX, "Change Normal X", ITEM_CHANGE_VALUE, &normalXArray[0], EasyUIEventChangeFloat);
+    EasyUIAddItem(&pagePoints, &itemCNY, "Change Normal Y", ITEM_CHANGE_VALUE, &normalYArray[0], EasyUIEventChangeFloat);
+
+
     // Page Fly speed pid
     EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Fly Speed PID]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageSpdPID, &itemSpdKp, "FlySpeed Kp", ITEM_CHANGE_VALUE, &flySpdPid.Kp, EasyUIEventChangeFloat);

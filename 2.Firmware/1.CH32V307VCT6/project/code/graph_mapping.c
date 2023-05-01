@@ -217,7 +217,6 @@ uint8_t GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, ui
     }
     return 0;
 }
-
 uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts)
 {
     if(!graph->is_init || !graph->has_constructor)
@@ -230,11 +229,15 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, 
     refNodeList = graph->B_constructor->refNodeList;
     base_gps_data = *graph->base_gps_data;
     double dx_lat,dy_lon;
-    for(uint16_t i=0;i<counts;i++)
+    latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
+    refNodeList[0].X = ANGLE_TO_RAD(gps_set[0].latitude - base_gps_data.latitude)*dx_lat;
+    refNodeList[0].Y = ANGLE_TO_RAD(gps_set[0].longitude - base_gps_data.longitude)*dy_lon;
+    for(uint16_t i=1;i<counts;i++)
     {
-        latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
-        refNodeList[i].X = ANGLE_TO_RAD(gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
-        refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
+        refNodeList[i].X = normalXArray[i] +refNodeList[i-1].X;
+        refNodeList[i].Y = normalYArray[i] +refNodeList[i-1].Y;
+//        refNodeList[i].X = ANGLE_TO_RAD(gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
+//        refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
     }
 //    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
     return 0;
