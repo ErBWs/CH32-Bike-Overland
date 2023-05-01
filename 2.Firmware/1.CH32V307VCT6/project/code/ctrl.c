@@ -12,7 +12,7 @@ uint32_t myTimeStamp = 0;
 uint16 imu_update_counts=0;
 float dynamic_zero = 0;
 extern double X0,Y0;
-extern float last_x_R,last_y_R;
+extern float bias_X,bias_Y;
 gps_report_t gpsReport;
 
 void taskTimAllInit(void)
@@ -32,7 +32,7 @@ void IMUGetCalFun(void)
     Compass_Read();
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
-    if (gps_read(&gpsReport))
+    if (gps_read(&gpsReport)&&Bike_Start !=0)
     {
         INS_U.GPS_uBlox.lat = gpsReport.lat;
         INS_U.GPS_uBlox.lon = gpsReport.lon;
@@ -47,14 +47,15 @@ void IMUGetCalFun(void)
         INS_U.GPS_uBlox.timestamp = myTimeStamp;
         Global_v_now = gpsReport.vel_m_s;
         Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
-        Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX;
-        Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY;
-        if(Bike_Start == 1 && stagger_flag == 1)
+
+        Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX - bias_X;
+        Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY - bias_Y;
+        if(Bike_Start == 2 && stagger_flag == 0)
         {
             moveFilter(&moveArray,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
         }
     }
-    if (Bike_Start == 1)
+    if (Bike_Start !=0)
     {
         INS_U.IMU.acc_x = (float)-imu660ra_acc_x / 4096 * 9.8f;
         INS_U.IMU.acc_y = (float)-imu660ra_acc_y / 4096 * 9.8f;
@@ -69,7 +70,6 @@ void IMUGetCalFun(void)
         INS_U.MAG.timestamp = myTimeStamp;
         INS_step();
     }
-
     myTimeStamp+=2;
 }
 
@@ -101,7 +101,7 @@ void BackMotoControl(void)
     static uint8 counts=0;
     if(++counts<5)return;
     counts=0;
-    if(stagger_flag==1||Bike_Start==0)
+    if(stagger_flag==1||Bike_Start!=1)
     {
         motoDutySet(MOTOR_BACK_PIN,0);
         return;
@@ -112,7 +112,7 @@ void BackMotoControl(void)
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
-    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],-back_wheel_encode);//速度环PID
+    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],-(float)back_wheel_encode);//速度环PID
     switch (beg_state) {
         case 0:
             if(back_maintain_flag==1)
@@ -184,7 +184,7 @@ void FlyWheelControl(void)
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>20)
+    if(abs(imu_data.rol)>15)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);

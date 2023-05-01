@@ -27,22 +27,7 @@ int main (void)
     systemInit();
     while(1)
     {
-//        system_delay_ms(50);
-//        BlueToothPrintf("%f,%f\n",INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
-//        BlueToothPrintf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
-//                        INS_U.GPS_uBlox.lat,
-//                        INS_U.GPS_uBlox.lon,
-//                        INS_U.GPS_uBlox.velN,
-//                        INS_U.GPS_uBlox.velE,
-//                        INS_U.GPS_uBlox.velD,
-//                        INS_U.GPS_uBlox.fixType,
-//                        INS_U.GPS_uBlox.hAcc,
-//                        INS_U.GPS_uBlox.vAcc,
-//                        INS_U.GPS_uBlox.sAcc,
-//                        INS_U.GPS_uBlox.numSV
-//        );
         EasyUI(20);
-
     }
 }
 
@@ -65,7 +50,19 @@ void systemInit(void)
 #endif
     INS_init();
     EasyUITransitionAnim();
-    backSpdPid.target[NOW]=2;
+    backSpdPid.target[NOW]=3;
+//    motoDutySet(MOTOR_BACK_PIN,2000);
+//    while(1)
+//    {
+//        system_delay_ms(50);
+//        int16_t back_wheel_encode=0;
+//
+//        back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
+//
+//        BlueToothPrintf("%d\n",back_wheel_encode);
+//
+//        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
+//    }
     taskTimAllInit();
 }
 float GetBatteryVoltage()

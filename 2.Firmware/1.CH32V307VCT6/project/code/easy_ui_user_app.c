@@ -23,7 +23,7 @@ EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, it
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
 double X0,Y0;
-float last_x_R,last_y_R;
+float bias_X=0,bias_Y=0;
 void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS == 1
@@ -37,19 +37,19 @@ void EventMainLoop(EasyUIItem_t *item)
             EasyUIBackgroundBlur();
             return;
         }
-        stanleyControllerInit(&Global_stanleyController,(float)0.1,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
+        stanleyControllerInit(&Global_stanleyController,(float)0.2,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
         INS_init();
-        last_x_R = INS_Y.INS_Out.x_R;
-        last_y_R = INS_Y.INS_Out.y_R;
 //        double dx_lat,dy_lon;
 //        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-//        X0 = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
-//        Y0 = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
+//        bias_X = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
+//        bias_Y = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
         X0 = GlobalGraph.nodeBuff[0].X;
         Y0 = GlobalGraph.nodeBuff[0].Y;
+//        bias_X -= X0;
+//        bias_Y -= Y0;
         if(status)
         {
             functionIsRunning = false;
@@ -58,31 +58,33 @@ void EventMainLoop(EasyUIItem_t *item)
             return;
         }
         GlobalGraph.is_finish = 0;
+        Bike_Start = 2;
+        uint16 temp=8000;
+        while(!opnEnter){
+            if (--temp==0)
+            {
+                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
+                temp = 8000;
+            }
+        }
+        opnEnter = false;
         Bike_Start = 1;
     }
     while(1)
     {
-//        GlobalGraph.nodeBuff
-//        BlueToothPrintf("=================\n%f,%f,%f,%f\n=================\n",Global_current_node.X,Global_current_node.Y,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
-//        BlueToothPrintf("[target-point]%f,%f;#\n",GlobalGraph.nodeBuff[Global_stanleyController.target_index].X,
-//                        GlobalGraph.nodeBuff[Global_stanleyController.target_index].Y);
-        static uint16 temp=4000;
+        static uint16 temp=8000;
         if(--temp==0)
         {
-            BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
-//            vofaData[2] = Global_current_node.X;
-//            vofaData[3] = Global_current_node.Y;
-//            VofaLittleEndianSendFrame();
-//            BlueToothPrintf("%f\n", RAD_TO_ANGLE(Global_yaw) );
-//            BlueToothPrintf("[trace-points]%f,%f#",Global_current_node.X,Global_current_node.Y);
-            temp = 4000;
+//            BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
+////            vofaData[2] = Global_current_node.X;
+////            vofaData[3] = Global_current_node.Y;
+////            VofaLittleEndianSendFrame();
+            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
+            temp = 8000;
         }
-//        BlueToothPrintf("[yaw]%f#\n", RAD_TO_ANGLE(*Global_stanleyController.yaw));
-//        BlueToothPrintf("[vel]%f#\n",*Global_stanleyController.v_now);
         if(!stagger_flag)
         {
             status |= Stanley_Control(&GlobalGraph);
-//            BlueToothPrintf("index:%d\n",GlobalGraph.Stanley_controller->target_index);
             if(status)
             {
                 functionIsRunning = false;
@@ -195,14 +197,14 @@ void EventPathGenerate(EasyUIItem_t  *item)
         return;
     }
 //    BlueToothPrintf("[refer-points]");
-    for(int i=0;i<gps_use.point_count;i++)
-    {
-//        vofaData[4] = GlobalGraph.B_constructor->refNodeList[i].X;
-//        vofaData[5] = GlobalGraph.B_constructor->refNodeList[i].Y;
-//        BlueToothPrintf("%.7f,%.7f;\n",GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
-    }
-//    BlueToothPrintf("#");
-//    BlueToothPrintf("[all-points]");
+//    for(int i=0;i<gps_use.point_count;i++)
+//    {
+////        vofaData[4] = GlobalGraph.B_constructor->refNodeList[i].X;
+////        vofaData[5] = GlobalGraph.B_constructor->refNodeList[i].Y;
+////        BlueToothPrintf("%.7f,%.7f;\n",GlobalGraph.B_constructor->refNodeList[i].X,GlobalGraph.B_constructor->refNodeList[i].Y);
+//    }
+////    BlueToothPrintf("#");
+////    BlueToothPrintf("[all-points]");
     for(int i=0;i<GlobalGraph.total;i++)
     {
 //        if(i%200==0&&i!=0)
@@ -212,11 +214,11 @@ void EventPathGenerate(EasyUIItem_t  *item)
 //            while(now_tick-temp<40);
 //            BlueToothPrintf("[all-points]");
 //        }
-        vofaData[0] = GlobalGraph.nodeBuff[i].X;
-        vofaData[1] = GlobalGraph.nodeBuff[i].Y;
-        VofaLittleEndianSendFrame();
+//        vofaData[0] = GlobalGraph.nodeBuff[i].X;
+//        vofaData[1] = GlobalGraph.nodeBuff[i].Y;
+//        VofaLittleEndianSendFrame();
 //        system_delay_ms(50);
-//        BlueToothPrintf("%.7f,%.7f;",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+        BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
     }
 //    BlueToothPrintf("#");
     EasyUIDrawMsgBox("Finish!");
@@ -323,6 +325,7 @@ void MessegeShowFun(void)
     IPS096_ShowFloat(30, 26, gpsReport.eph,2,2);
     IPS096_ShowUint(92, 26+12,gpsReport.satellites_used,2);
     IPS096_ShowFloat(4*8, 26+12+12, imu_data.yaw,3,3);
+
 }
 void PageNormalPoints(EasyUIPage_t *page)
 {
