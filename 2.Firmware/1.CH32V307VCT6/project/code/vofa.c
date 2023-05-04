@@ -8,6 +8,7 @@
 #include "vofa.h"
 
 float vofaData[CHANNEL_NUM] = {0};
+#define vofaUART    UART_7
 
 /*!
  * @brief   Vofa send data using JustFloat
@@ -21,8 +22,8 @@ void VofaLittleEndianSendFrame()
 {
     unsigned char vofaTail[4] = {0x00, 0x00, 0x80, 0x7F};
 
-    uart_write_buffer(UART_3, (uint8_t *) vofaData, CHANNEL_NUM * sizeof(float));
-    uart_write_buffer(UART_3, (uint8_t *) vofaTail, 4);
+    uart_write_buffer(vofaUART, (uint8_t *) vofaData, CHANNEL_NUM * sizeof(float));
+    uart_write_buffer(vofaUART, (uint8_t *) vofaTail, 4);
 }
 
 void VofaBigEndianSendFrame()
@@ -37,6 +38,6 @@ void VofaBigEndianSendFrame()
         ((uint8 *) vofaData)[i + 1] = (uint8_t) temp;
     }
 
-    uart_write_buffer(UART_3, (uint8_t *) vofaTail, 4);
-    uart_write_buffer(UART_3, (uint8_t *) vofaData, CHANNEL_NUM * sizeof(float));
+    uart_write_buffer(vofaUART, (uint8_t *) vofaTail, 4);
+    uart_write_buffer(vofaUART, (uint8_t *) vofaData, CHANNEL_NUM * sizeof(float));
 }

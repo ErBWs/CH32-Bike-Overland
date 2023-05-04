@@ -345,14 +345,10 @@ void imuinit(char imumode)
         imu_data.x = sinf(imu_data.rol/2) * cosf(imu_data.pit/2)* cosf(imu_data.yaw/2) - cosf(imu_data.rol/2)* sinf(imu_data.pit/2)*sinf(imu_data.yaw/2);
         imu_data.y = cosf(imu_data.rol/2) * sinf(imu_data.pit/2)* cosf(imu_data.yaw/2) + sinf(imu_data.rol/2)* cosf(imu_data.pit/2)*sinf(imu_data.yaw/2);
         imu_data.z = cosf(imu_data.rol/2) * cosf(imu_data.pit/2)* sinf(imu_data.yaw/2) - sinf(imu_data.rol/2)* sinf(imu_data.pit/2)*cosf(imu_data.yaw/2);
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
-        system_delay_ms(100);
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
-        printf("ok1\n");
-        printf("ok2\n");
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,500);
-        system_delay_ms(100);
-        pwm_set_freq(BEEP_PWM_PIN,beep_feq,0);
+
+        pwm_set_freq(BEEP_PWM_PIN,1000,8000);
+        system_delay_ms(200);
+        pwm_set_freq(BEEP_PWM_PIN,1000,0);
     }
 //    if (imumode == IMU_ICM)
 //    {

@@ -10,13 +10,12 @@
 
 #include "zf_common_headfile.h"
 #include "inc_all.h"
-//#include "imu.h"
 
-#define GPS_MAX_POINT   30
 
-#define EXTRA_FORECAST_POINT 0
-#define DISTANCE_LIMITATION 1.5
-#define ANGLE_BIAS_THRESHOLD 20
+#define GPS_MAX_POINT   50
+
+
+
 
 typedef enum
 {
@@ -55,7 +54,7 @@ extern _gps_st gps_data;
 extern _gps_use_st gps_use;
 
 extern uint8 Bike_Start;
-
+extern float normalXArray[GPS_MAX_POINT],normalYArray[GPS_MAX_POINT];
 
 
 

@@ -217,7 +217,6 @@ uint8_t GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, ui
     }
     return 0;
 }
-
 uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts)
 {
     if(!graph->is_init || !graph->has_constructor)
@@ -230,11 +229,15 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, 
     refNodeList = graph->B_constructor->refNodeList;
     base_gps_data = *graph->base_gps_data;
     double dx_lat,dy_lon;
-    for(uint16_t i=0;i<counts;i++)
+    latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
+    refNodeList[0].X = ANGLE_TO_RAD(gps_set[0].latitude - base_gps_data.latitude)*dx_lat;
+    refNodeList[0].Y = ANGLE_TO_RAD(gps_set[0].longitude - base_gps_data.longitude)*dy_lon;
+    for(uint16_t i=1;i<counts;i++)
     {
-        latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
-        refNodeList[i].X = ANGLE_TO_RAD(gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
-        refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
+        refNodeList[i].X = normalXArray[i] +refNodeList[i-1].X;
+        refNodeList[i].Y = normalYArray[i] +refNodeList[i-1].Y;
+//        refNodeList[i].X = ANGLE_TO_RAD(gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
+//        refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
     }
 //    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
     return 0;
@@ -323,7 +326,7 @@ static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
         }
     }
     controller->target_index = min_index;
-    controller->error = (float)(y > node_list[min_index].Y ? -min_distance:min_distance);
+    controller->error = (float)((y - node_list[min_index].Y)*(x-node_list[min_index].X)<0 ? -min_distance:min_distance);
     return 0;
 }
 #define PiPi(x)   if(x > PI)            \
@@ -347,14 +350,15 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         x = controller->current_node->X;
         y = controller->current_node->Y;
         yaw = *controller->yaw;
-        temp = (float)atan((target_y-y)/(target_x-x));
-        temp = (float)((target_x-x)<0 ? temp+PI:temp);
+        temp = (float)atan2((target_y-y),(target_x-x));
+        temp = (float)Pi_To_2Pi(temp);
+//        temp = (float)((target_x-x)<0 ? temp+PI:temp);
         delta = temp - yaw;
         PiPi(delta);
         if(*controller->v_now!=0.0)
             alpha = atanf((controller->k_gain * controller->error)/ (*controller->v_now));
         controller->theta =  delta+alpha;
-        BlueToothPrintf("%f\n",RAD_TO_ANGLE(delta));
+//        BlueToothPrintf("%f\n",RAD_TO_ANGLE(delta));
 //        BlueToothPrintf("%f\n",RAD_TO_ANGLE(alpha));
     }
     else

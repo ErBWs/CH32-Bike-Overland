@@ -18,14 +18,13 @@
 //    }ComInfo;
 //    float data;
 //}D_data;
-
+extern gps_report_t gpsReport;
 void systemInit();
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 120MHz
     debug_init();                                                               // 初始化默认 Debug UART
     systemInit();
-//    gps_use.z_angle=0;
     while(1)
     {
         EasyUI(20);
@@ -40,7 +39,6 @@ void systemInit(void)
     EasyUIInit(1);
     adc_init(BATTERY_ADC_PIN,ADC_12BIT);
     BuzzerInit();
-//    kalmanInit(&carBodyState,&kalmanDistanceX,&kalmanDistanceY,&kalmanVelocity,&imu_data.mag_yaw);
     encoderInit();
     motoInit();
     BlueToothInit();
@@ -48,10 +46,23 @@ void systemInit(void)
     Butterworth_Parameter_Init();
 #if USE_GPS
     gps_ubx_init();
+    IST8310Init();
 #endif
     INS_init();
     EasyUITransitionAnim();
-    backSpdPid.target[NOW]=2;
+    backSpdPid.target[NOW]=3;
+//    motoDutySet(MOTOR_BACK_PIN,2000);
+//    while(1)
+//    {
+//        system_delay_ms(50);
+//        int16_t back_wheel_encode=0;
+//
+//        back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
+//
+//        BlueToothPrintf("%d\n",back_wheel_encode);
+//
+//        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
+//    }
     taskTimAllInit();
 }
 float GetBatteryVoltage()
@@ -60,7 +71,7 @@ float GetBatteryVoltage()
     float batVoltage;
     batVoltageAdc = adc_mean_filter_convert(BATTERY_ADC_PIN, 10);
     batVoltage = 37.35f * batVoltageAdc / 4096;
-    vofaData[0] = batVoltage;
+//    vofaData[5] = batVoltage;
     return batVoltage;
 }
 

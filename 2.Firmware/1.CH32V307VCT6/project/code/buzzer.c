@@ -13,7 +13,7 @@ int16_t beepTime = 0;
 
 void BuzzerInit()
 {
-    pwm_init(BUZZER_PIN, 50, 0);
+    pwm_init(BUZZER_PIN, 1000, 0);
 }
 
 void Beep()
@@ -23,7 +23,6 @@ void Beep()
         pwm_set_duty(BUZZER_PIN, 0);
         return;
     }
-
     pwm_set_duty(BUZZER_PIN, (uint32_t)buzzerVolume * 100);
     beepTime -= BUZZER_TRIGGER_TIME_MS;
 }
