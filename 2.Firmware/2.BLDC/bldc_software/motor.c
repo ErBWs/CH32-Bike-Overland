@@ -94,7 +94,22 @@ uint8 motor_next_hall(motor_struct *motor, closed_loop_struct *closed_loop, int8
     // 根据电机旋转方向以及超前角 计算下一次期望的霍尔值
     if(0 < closed_loop->out)
     {
-        hall_next = hall_value + commutation_phase_num;
+        switch (motor->bldc_motor_type)
+        {
+            case BLDC_MOTOR_3650:
+                hall_next = hall_value + commutation_phase_num;
+                break;
+            case BLDC_MOTOR_MOMENTUM:
+                hall_next = hall_value + commutation_phase_num;
+                break;
+            case BLDC_MOTOR_TRAVELING:
+                hall_next = hall_value + commutation_phase_num + 1;
+                break;
+
+            default:
+                hall_next = hall_value + commutation_phase_num;
+                break;
+        }
 
         if(6 < hall_next)
         {
@@ -103,16 +118,24 @@ uint8 motor_next_hall(motor_struct *motor, closed_loop_struct *closed_loop, int8
     }
     else
     {
-        if(motor->bldc_motor_type == BLDC_MOTOR_MOMENTUM)
+        switch (motor->bldc_motor_type)
         {
-            hall_next = hall_value - commutation_phase_num - 1;
-        }
-        else
-        {
-            hall_next = hall_value - commutation_phase_num;
+            case BLDC_MOTOR_3650:
+                hall_next = hall_value - commutation_phase_num;
+                break;
+            case BLDC_MOTOR_MOMENTUM:
+                hall_next = hall_value - commutation_phase_num - 1;
+                break;
+            case BLDC_MOTOR_TRAVELING:
+                hall_next = hall_value;
+                break;
+
+            default:
+                hall_next = hall_value - commutation_phase_num;
+                break;
         }
 
-        
+
         if(1 > hall_next)  
         {
             hall_next += 6;
