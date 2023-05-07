@@ -82,6 +82,17 @@ void hall_init(motor_index_enum motor_index, hall_struct *hall)
 {
     if(motor_index == MOTOR_1)
     {
+        hall->hall_a_pin = B6;
+        hall->hall_b_pin = B7;
+        hall->hall_c_pin = B8;
+        hall->tim_ch = TIM4;
+        hall->irqn = TIM4_IRQn;
+
+        interrupt_enable(hall->irqn);                                    // 使能中断
+        interrupt_set_priority(hall->irqn, 0<<5|0);                      // 抢占优先级0，次优先级0
+    }
+    else if(motor_index == MOTOR_2)
+    {
         hall->hall_a_pin = C6;
         hall->hall_b_pin = C7;
         hall->hall_c_pin = C8;
@@ -90,17 +101,6 @@ void hall_init(motor_index_enum motor_index, hall_struct *hall)
 
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);            // 使能AFIO复用功能模块时钟
         GPIO_PinRemapConfig(GPIO_FullRemap_TIM3, ENABLE);               // 完全重映射
-
-        interrupt_enable(hall->irqn);                                    // 使能中断
-        interrupt_set_priority(hall->irqn, 0<<5|0);                      // 抢占优先级0，次优先级0
-    }
-    else if(motor_index == MOTOR_2)
-    {
-        hall->hall_a_pin = B6;
-        hall->hall_b_pin = B7;
-        hall->hall_c_pin = B8;
-        hall->tim_ch = TIM4;
-        hall->irqn = TIM4_IRQn;
 
         interrupt_enable(hall->irqn);                                    // 使能中断
         interrupt_set_priority(hall->irqn, 0<<5|0);                      // 抢占优先级0，次优先级0

@@ -10,6 +10,7 @@
 
 #include "motor.h"
 #include "pwm_output.h"
+#include "vofa.h"
 
 
 typedef enum

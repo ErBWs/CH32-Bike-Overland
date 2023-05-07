@@ -16,10 +16,9 @@ extern "C"
 #include <stdint.h>
 #include "zf_driver_uart.h"
 
-#define CHANNEL_NUM     3
+#define CHANNEL_NUM     10
 
 extern float vofaData[CHANNEL_NUM];
-extern double gpsData[100];
 
 void VofaLittleEndianSendFrame();
 void VofaBigEndianSendFrame();

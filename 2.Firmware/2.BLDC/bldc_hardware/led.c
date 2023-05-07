@@ -16,7 +16,7 @@ led_struct motor2_led;
 //-------------------------------------------------------------------------------------------------------------------
 void led_run_control(led_struct *led, LED_STATUS_enum status)
 {
-    gpio_set_level(led->run_pin ,status);
+    vofaData[led->run_pin] = status;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ void led_run_control(led_struct *led, LED_STATUS_enum status)
 //-------------------------------------------------------------------------------------------------------------------
 void led_error_control(led_struct *led, LED_STATUS_enum status)
 {
-    gpio_set_level(led->err_pin, status);
+    vofaData[led->err_pin] = status;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ void led_error_control(led_struct *led, LED_STATUS_enum status)
 //-------------------------------------------------------------------------------------------------------------------
 void led_enable_control(led_struct *led, LED_STATUS_enum status)
 {
-    gpio_set_level(led->en_pin, status);
+    vofaData[led->en_pin] = status;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -63,33 +63,6 @@ void led_control(led_struct *led, motor_struct *motor, pwm_output_struct * pwm_o
     // 电机已使能
     else
     {
-        // 电源电压低于设置的阈值 LED闪烁
-        if(1 == battery_information.type)
-        {
-            static uint16 delay_time;
-            static uint8  led_en_state;
-            delay_time++;
-
-            if(0 == (delay_time%100))
-            {
-                if(0 == led_en_state)
-                {
-                    led_enable_control(led, LED_ON);
-                    led_en_state = 1;
-                }
-                else
-                {
-                    led_enable_control(led, LED_OFF);
-                    led_en_state = 0;
-                }
-            }
-        }
-        // 电源电压正常，LED常亮
-        else
-        {
-            led_enable_control(led, LED_ON);
-        }
-
         // 检查刹车信号是否有效
         if(TIM_GetFlagStatus(pwm_output->tim_ch, TIM_IT_Break) != RESET)
         {
@@ -126,23 +99,17 @@ void led_control(led_struct *led, motor_struct *motor, pwm_output_struct * pwm_o
 //-------------------------------------------------------------------------------------------------------------------
 void led_init(motor_index_enum motor_index, led_struct *led)
 {
-
     if(motor_index == MOTOR_1)
     {
-        led->en_pin = E10;
-        led->run_pin = E11;
-        led->err_pin = E12;
+        led->en_pin = 4;
+        led->run_pin = 5;
+        led->err_pin = 6;
     }
     else if(motor_index == MOTOR_2)
     {
-        led->en_pin = D4;
-        led->run_pin = D5;
-        led->err_pin = D6;
+        led->en_pin = 7;
+        led->run_pin = 8;
+        led->err_pin = 9;
     }
-
-
-    gpio_init(led->en_pin,  GPO, 1, GPO_PUSH_PULL);
-    gpio_init(led->err_pin, GPO, 1, GPO_PUSH_PULL);
-    gpio_init(led->run_pin, GPO, 1, GPO_PUSH_PULL);
 }
 
