@@ -27,7 +27,7 @@
 #define SERVO_DUTY_MAX      (GetServoDuty(14) - SERVO_MID)      // Maximum turning angle of servo motor
 #define SERVO_PIN           TIM2_PWM_MAP3_CH1_A15                    // Servo pwm output pin
 
-#define MOTOR_FREQ            10000                               // Motor frequency
+#define MOTOR_FREQ            1000                                // Motor frequency
 #define MOTOR_BACK_PIN        TIM4_PWM_MAP1_CH3_D14                     // Left motor pwm output pin
 #define MOTOR_BACK_DIR_PIN    D15                                  // Left motor direction output pin
 #define MOTOR_FLY_PIN         TIM4_PWM_MAP1_CH1_D12                     // Right motor pwm output pin

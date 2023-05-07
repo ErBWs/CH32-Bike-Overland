@@ -32,24 +32,25 @@ void IMUGetCalFun(void)
     Compass_Read();
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
-    if (gps_read(&gpsReport)&&Bike_Start !=0)
+    if (gps_read(&gpsReport))
     {
-        INS_U.GPS_uBlox.lat = gpsReport.lat;
-        INS_U.GPS_uBlox.lon = gpsReport.lon;
-        INS_U.GPS_uBlox.velN = gpsReport.vel_n_m_s * 1e3;
-        INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
-        INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
-        INS_U.GPS_uBlox.fixType = gpsReport.fix_type;
-        INS_U.GPS_uBlox.hAcc = gpsReport.eph * 1e3;
-        INS_U.GPS_uBlox.vAcc = gpsReport.epv * 1e3;
-        INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
-        INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
-        INS_U.GPS_uBlox.timestamp = myTimeStamp;
-        Global_v_now = gpsReport.vel_m_s;
-        Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
-
-        Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX - bias_X;
-        Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY - bias_Y;
+        if(Bike_Start !=0)
+        {
+            INS_U.GPS_uBlox.lat = gpsReport.lat;
+            INS_U.GPS_uBlox.lon = gpsReport.lon;
+            INS_U.GPS_uBlox.velN = gpsReport.vel_n_m_s * 1e3;
+            INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
+            INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
+            INS_U.GPS_uBlox.fixType = gpsReport.fix_type;
+            INS_U.GPS_uBlox.hAcc = gpsReport.eph * 1e3;
+            INS_U.GPS_uBlox.vAcc = gpsReport.epv * 1e3;
+            INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
+            INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
+            INS_U.GPS_uBlox.timestamp = myTimeStamp;
+            Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX - bias_X;
+            Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY - bias_Y;
+            Global_v_now = gpsReport.vel_m_s;
+        }
         if(Bike_Start == 2 && stagger_flag == 0)
         {
             moveFilter(&moveArray,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
@@ -69,6 +70,11 @@ void IMUGetCalFun(void)
         INS_U.MAG.mag_z = Mag_Raw.z;
         INS_U.MAG.timestamp = myTimeStamp;
         INS_step();
+        Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
+    }
+    else
+    {
+        Global_yaw = (float)Pi_To_2Pi(atan2f(-Mag_Raw.y,Mag_Raw.x)-(float)ANGLE_TO_RAD(10)) ;
     }
     myTimeStamp+=2;
 }
@@ -99,13 +105,13 @@ void BackMotoControl(void)
 {
     static uint8 beg_state=0,pitch_state=0;
     static uint8 counts=0;
-    if(++counts<5)return;
+    if(++counts<50)return;
     counts=0;
-    if(stagger_flag==1||Bike_Start!=1)
-    {
-        motoDutySet(MOTOR_BACK_PIN,0);
-        return;
-    }
+//    if(stagger_flag==1||Bike_Start!=1)
+//    {
+//        motoDutySet(MOTOR_BACK_PIN,0);
+//        return;
+//    }
     int16_t back_wheel_encode=0;
 
     back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);

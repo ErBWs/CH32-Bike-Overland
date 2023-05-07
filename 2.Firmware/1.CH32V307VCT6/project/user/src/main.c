@@ -50,19 +50,20 @@ void systemInit(void)
 #endif
     INS_init();
     EasyUITransitionAnim();
-    backSpdPid.target[NOW]=3;
-//    motoDutySet(MOTOR_BACK_PIN,2000);
-//    while(1)
-//    {
-//        system_delay_ms(50);
-//        int16_t back_wheel_encode=0;
-//
-//        back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
-//
-//        BlueToothPrintf("%d\n",back_wheel_encode);
-//
-//        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
-//    }
+    backSpdPid.target[NOW]=10;
+    motoDutySet(MOTOR_BACK_PIN,3000);
+    motoDutySet(MOTOR_FLY_PIN,3000);
+    while(1)
+    {
+        system_delay_ms(50);
+        int16_t back_wheel_encode=0;
+
+        back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
+
+        BlueToothPrintf("%d\n",back_wheel_encode);
+
+        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
+    }
     taskTimAllInit();
 }
 float GetBatteryVoltage()

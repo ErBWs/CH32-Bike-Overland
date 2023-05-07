@@ -8,27 +8,86 @@
 #include "inertial_navigation.h"
 extern gps_report_t gpsReport;
 
-#if GPS_MAX_POINT > B_REFER_POINT_COUNTS_MAX
+#if GPS_MAX_POINT != B_REFER_POINT_COUNTS_MAX
 #error "Too Much Point!"
 #endif
 
+#if USE_DISTANCE_STEP
+float distance_step=1;
+float multiple_counts=1;
+float constant_yaw=0;
+bool constant_yaw_flag=0;
+#endif
+float points_index=0;
 _gps_st gps_data_array[GPS_MAX_POINT] = {0};
-float normalXArray[GPS_MAX_POINT]={0},normalYArray[GPS_MAX_POINT]={0};
+float Dx_zero=0,Dy_zero=0;
 _gps_use_st gps_use = {0};
-
+float normalXArray[GPS_MAX_POINT]={0},normalYArray[GPS_MAX_POINT]={0};
 uint8 Bike_Start = 0;
 
 void gps_handler(gpsState pointStatus) {
+    static float x_bias=0,y_bias=0;
         if (opnEnter) {
             opnEnter = false;
             if (gps_use.point_count > GPS_MAX_POINT) {
                 EasyUIDrawMsgBox("Gps_Buff Not Enough!");
                 return;
             }
-            if ((gpsReport.eph < 1.5) && (gpsReport.eph > 0.1)) {
-                switch (pointStatus) {
+#if USE_DISTANCE_STEP==0
+            if ((gpsReport.eph < 1.5) && (gpsReport.eph > 0.1))
+            {
+#endif
+                switch (pointStatus)
+                {
                     case COMMON:
                     case PILE:
+#if USE_DISTANCE_STEP
+                        EasyUIDrawMsgBox("Saving...");
+                        beepTime = 400;
+                        if(gps_use.point_count != (int16)points_index) {
+                            for(int i=0;i<gps_use.point_count -(int16)points_index;i++)
+                            {
+                                Dx_zero -= normalXArray[(int16)points_index+i];
+                                Dy_zero -= normalYArray[(int16)points_index+i];
+                                normalXArray[(int16)points_index+i] = normalYArray[(int16)points_index+i]=0;
+                                x_bias = y_bias=0;
+                            }
+                            gps_use.point_count = (int16)points_index;
+                        }
+
+                        for(uint16 i=0;i<multiple_counts;i++)
+                        {
+                            if(gps_use.point_count==0)
+                            {
+                                gps_data_array[0].latitude = gpsReport.lat * 1e-7;
+                                gps_data_array[0].longitude = gpsReport.lon * 1e-7;
+                                gps_data_array[gps_use.point_count].type = pointStatus;
+                            }
+                            else
+                            {
+                                float x_det,y_det;
+                                x_det = normalXArray[gps_use.point_count-1]-x_bias;
+                                y_det = normalYArray[gps_use.point_count-1]-y_bias;
+                                if(constant_yaw_flag==0) {
+                                    x_bias = normalXArray[gps_use.point_count] = distance_step * cosf(Global_yaw);
+                                    y_bias = normalYArray[gps_use.point_count] = distance_step * sinf(Global_yaw);
+                                }
+                                else {
+                                    x_bias = normalXArray[gps_use.point_count] = distance_step * cosf(ANGLE_TO_RAD(constant_yaw));
+                                    y_bias = normalYArray[gps_use.point_count] = distance_step * sinf(ANGLE_TO_RAD(constant_yaw));
+                                }
+                                normalXArray[gps_use.point_count] += x_det;
+                                normalYArray[gps_use.point_count] += y_det;
+                                extern EasyUIItem_t itemCNX,itemCNY;
+                                itemCNX.param = &normalXArray[gps_use.point_count];
+                                itemCNY.param = &normalYArray[gps_use.point_count];
+                                Dx_zero += normalXArray[gps_use.point_count];
+                                Dy_zero += normalYArray[gps_use.point_count];
+                            }
+                            gps_use.point_count++;
+                            points_index = gps_use.point_count;
+                        }
+#else
                         EasyUIDrawMsgBox("Saving...");
                         beepTime = 400;
                         gps_data_array[gps_use.point_count].latitude = gpsReport.lat * 1e-7;
@@ -36,17 +95,28 @@ void gps_handler(gpsState pointStatus) {
                         gps_data_array[gps_use.point_count].type = pointStatus;
                         if(gps_use.point_count!=0)
                         {
+                            float x_det,y_det;
+                            x_det = normalXArray[gps_use.point_count-1]-x_bias;
+                            y_det = normalYArray[gps_use.point_count-1]-y_bias;
                             double dx_lat,dy_lon;
                             latlonTodxdy(gps_data_array[gps_use.point_count-1].latitude,&dx_lat,&dy_lon);
-                            normalXArray[gps_use.point_count] = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].latitude - gps_data_array[gps_use.point_count-1].latitude)*dx_lat;
-                            normalYArray[gps_use.point_count] = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].longitude - gps_data_array[gps_use.point_count-1].longitude)*dy_lon;
+                            x_bias = normalXArray[gps_use.point_count] = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].latitude - gps_data_array[gps_use.point_count-1].latitude)*dx_lat;
+                            y_bias = normalYArray[gps_use.point_count] = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].longitude - gps_data_array[gps_use.point_count-1].longitude)*dy_lon;
+                            normalXArray[gps_use.point_count] += x_det;
+                            normalYArray[gps_use.point_count] += y_det;
                             extern EasyUIItem_t itemCNX,itemCNY;
                             itemCNX.param = &normalXArray[gps_use.point_count];
                             itemCNY.param = &normalYArray[gps_use.point_count];
+                            Dx_zero += normalXArray[gps_use.point_count];
+                            Dy_zero += normalYArray[gps_use.point_count];
                         }
                         gps_use.point_count++;
+#endif
                         break;
                     case BASE:
+                        memset(&gps_use,0,sizeof(_gps_use_st));
+                        memset(gps_data_array,0, sizeof(_gps_st)*GPS_MAX_POINT);
+                        Dx_zero = Dy_zero = x_bias = y_bias=0;
                         GlobalBase_GPS_data.latitude = gpsReport.lat * 1e-7;
                         GlobalBase_GPS_data.longitude = gpsReport.lon * 1e-7;
                         EasyUIDrawMsgBox("Saving...");
@@ -54,11 +124,9 @@ void gps_handler(gpsState pointStatus) {
                         break;
                     default:;
                 }
+#if USE_DISTANCE_STEP==0
             }
-            else {
-//                EasyUIDrawMsgBox("Error!");
-            }
-//        }
+#endif
     }
     if (opnForward)
     {

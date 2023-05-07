@@ -12,9 +12,9 @@
 #include "inc_all.h"
 
 
-#define GPS_MAX_POINT   50
+#define GPS_MAX_POINT   70
 
-
+#define USE_DISTANCE_STEP 1
 
 
 typedef enum
@@ -55,9 +55,13 @@ extern _gps_use_st gps_use;
 
 extern uint8 Bike_Start;
 extern float normalXArray[GPS_MAX_POINT],normalYArray[GPS_MAX_POINT];
+extern float Dx_zero,Dy_zero;
+extern float distance_step;
+extern float multiple_counts;
 
-
-
+extern bool constant_yaw_flag;
+extern float constant_yaw;
+extern float points_index;
 
 void GPS_init(void);
 void gps_handler(gpsState pointStatus);
