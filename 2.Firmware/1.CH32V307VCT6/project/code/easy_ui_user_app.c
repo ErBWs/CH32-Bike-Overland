@@ -37,7 +37,7 @@ void EventMainLoop(EasyUIItem_t *item)
             EasyUIBackgroundBlur();
             return;
         }
-        stanleyControllerInit(&Global_stanleyController,(float)0.2,(float)0.2,&Global_yaw,&Global_v_now,&Global_current_node);
+        stanleyControllerInit(&Global_stanleyController,(float)0.05,(float)0.3,&Global_yaw,&Global_v_now,&Global_current_node);
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
@@ -59,25 +59,26 @@ void EventMainLoop(EasyUIItem_t *item)
         }
         GlobalGraph.is_finish = 0;
         Bike_Start = 2;
-        uint16 temp=8000;
+        uint16 temp=4000;
         while(!opnEnter){
             if (--temp==0)
             {
+                IPS096_ClearBuffer();
                 IPS096_ShowStr(0, 2, "offsetX:");
                 IPS096_ShowStr(0, 14, "offsetY:");
                 IPS096_ShowFloat(60, 2, moveArray.offsetX,3,2);
                 IPS096_ShowFloat(60, 14, moveArray.offsetY,3,2);
+                IPS096_SendBuffer();
                 BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
-                temp = 8000;
+                temp = 4000;
             }
         }
-        motoDutySet(MOTOR_BACK_PIN,2000);
         opnEnter = false;
         Bike_Start = 1;
     }
     while(1)
     {
-        static uint16 temp=8000;
+        static uint16 temp=4000;
         if(--temp==0)
         {
 //            BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
@@ -85,7 +86,7 @@ void EventMainLoop(EasyUIItem_t *item)
 ////            vofaData[3] = Global_current_node.Y;
 ////            VofaLittleEndianSendFrame();
             BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
-            temp = 8000;
+            temp = 4000;
         }
         if(!stagger_flag)
         {

@@ -1021,7 +1021,7 @@ void EasyUIEventChangeFloat(EasyUIItem_t *item)
     static int16_t x, y;
     static uint16_t width, height;
     static uint8_t index = 1;
-    static double step = 0.01;
+    static double step = 1;
     static uint8_t itemHeightOffset = (ITEM_HEIGHT - FONT_HEIGHT) / 2 + 1;
     static bool changeVal = false, changeStep = false;
 

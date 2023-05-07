@@ -20,6 +20,7 @@
 //}D_data;
 extern gps_report_t gpsReport;
 void systemInit();
+extern int16_t back_wheel_encode;
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 120MHz
@@ -27,6 +28,9 @@ int main (void)
     systemInit();
     while(1)
     {
+//        system_delay_ms(10);
+//        BlueToothPrintf("%d\n",back_wheel_encode);
+//        BlueToothPrintf("%f\n",backSpdPid.pos_out);
         EasyUI(20);
     }
 }
@@ -50,20 +54,20 @@ void systemInit(void)
 #endif
     INS_init();
     EasyUITransitionAnim();
-    backSpdPid.target[NOW]=10;
-    motoDutySet(MOTOR_BACK_PIN,3000);
-    motoDutySet(MOTOR_FLY_PIN,3000);
-    while(1)
-    {
-        system_delay_ms(50);
-        int16_t back_wheel_encode=0;
-
-        back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
-
-        BlueToothPrintf("%d\n",back_wheel_encode);
-
-        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
-    }
+    backSpdPid.target[NOW]=3;
+//    motoDutySet(MOTOR_BACK_PIN,3000);
+//    motoDutySet(MOTOR_FLY_PIN,3000);
+//    while(1)
+//    {
+//        system_delay_ms(50);
+//        int16_t back_wheel_encode=0;
+//
+//        back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
+//
+//        BlueToothPrintf("%d\n",back_wheel_encode);
+//
+//        encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
+//    }
     taskTimAllInit();
 }
 float GetBatteryVoltage()

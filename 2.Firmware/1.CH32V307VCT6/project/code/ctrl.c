@@ -101,24 +101,25 @@ void ServoControl(void)
 }
 uint32_t back_inter_distance=0;
 uint8 back_maintain_flag=1;
+int16_t back_wheel_encode=0;
+
 void BackMotoControl(void)
 {
     static uint8 beg_state=0,pitch_state=0;
     static uint8 counts=0;
-    if(++counts<50)return;
+    if(++counts<5)return;
     counts=0;
-//    if(stagger_flag==1||Bike_Start!=1)
-//    {
-//        motoDutySet(MOTOR_BACK_PIN,0);
-//        return;
-//    }
-    int16_t back_wheel_encode=0;
+    if(stagger_flag==1||Bike_Start!=1)
+    {
+        motoDutySet(MOTOR_BACK_PIN,0);
+        return;
+    }
 
     back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
-    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],-(float)back_wheel_encode);//速度环PID
+    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],(float)-back_wheel_encode);//速度环PID
     switch (beg_state) {
         case 0:
             if(back_maintain_flag==1)
@@ -128,8 +129,8 @@ void BackMotoControl(void)
             }
         break;
         case 1:
-            backSpdPid.pos_out=1500;
-            if(back_inter_distance>200)
+            backSpdPid.pos_out=1000;
+            if(back_inter_distance>150)
             {
                 pidClear(&backSpdPid);
                 back_maintain_flag=0;
@@ -141,13 +142,15 @@ void BackMotoControl(void)
         case 0:
             if(imu_data.pit>15)
             {
+                backSpdPid.target[NOW]=10;
                 pitch_state=1;
                 beepTime = 400;
             }
             break;
         case 1:
-            if(imu_data.pit<0)
+            if(imu_data.pit<1)
             {
+                backSpdPid.target[NOW]=3;
                 backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
                 backSpdPid.iout = 0;
                 beepTime = 400;
@@ -155,7 +158,7 @@ void BackMotoControl(void)
             }
             break;
     }
-    motoDutySet(MOTOR_BACK_PIN,backSpdPid.pos_out);
+    motoDutySet(MOTOR_BACK_PIN,(int32)backSpdPid.pos_out);
 }
 uint8 stagger_flag=1;
 float temp_x;
