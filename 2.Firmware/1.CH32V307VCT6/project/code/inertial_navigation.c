@@ -12,12 +12,10 @@ extern gps_report_t gpsReport;
 #error "Too Much Point!"
 #endif
 
-#if USE_DISTANCE_STEP
 float distance_step=1;
 float multiple_counts=1;
 float constant_yaw=0;
 bool constant_yaw_flag=0;
-#endif
 float ref_rad=0;
 
 float points_index=0;
@@ -43,9 +41,6 @@ void gps_handler(gpsState pointStatus) {
                 {
                     case COMMON:
                     case PILE:
-#if USE_DISTANCE_STEP
-                        EasyUIDrawMsgBox("Saving...");
-                        beepTime = 400;
                         if(gps_use.point_count != (int16)points_index) {
                             for(int i=0;i<gps_use.point_count -(int16)points_index;i++)
                             {
@@ -56,6 +51,9 @@ void gps_handler(gpsState pointStatus) {
                             }
                             gps_use.point_count = (int16)points_index;
                         }
+#if USE_DISTANCE_STEP
+                        EasyUIDrawMsgBox("Saving...");
+                        beepTime = 400;
 
                         for(uint16 i=0;i<multiple_counts;i++)
                         {

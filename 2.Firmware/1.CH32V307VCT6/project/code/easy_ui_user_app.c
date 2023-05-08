@@ -327,7 +327,6 @@ void PageImage(EasyUIPage_t *page)
 }
 void MessegeShowFun(void)
 {
-#if USE_DISTANCE_STEP
     IPS096_ShowStr(0, 2, "satellite-used:");
     IPS096_ShowStr(0, 14, "point-counts:");
     IPS096_ShowStr(0, 26, "hacc:");
@@ -348,26 +347,9 @@ void MessegeShowFun(void)
     temp = ref_rad-temp;
     horizontal_Y = sqrtf(Dy_zero*Dy_zero+Dx_zero*Dx_zero)* sinf(temp);
     vertical_X = sqrtf(Dy_zero*Dy_zero+Dx_zero*Dx_zero)* cosf(temp);
-    IPS096_ShowFloat(60, 50, horizontal_Y,3,2);
-    IPS096_ShowFloat(60, 62, vertical_X,3,2);
-#else
-    IPS096_ShowStr(0,2,"latitude:");
-    IPS096_ShowStr(0, 14, "longitude:");
-    IPS096_ShowStr(0, 26, "hacc:");
-    IPS096_ShowStr(0, 26+12, "satellite-used:");
-    IPS096_ShowStr(0, 26+24, "point-counts:");
-    IPS096_ShowStr(0, 26+36, "Dx_zero:");
-    IPS096_ShowStr(0, 26+48, "Dy_zero:");
+    IPS096_ShowFloat(90, 50, horizontal_Y,3,2);
+    IPS096_ShowFloat(90, 62, vertical_X,3,2);
 
-
-    IPS096_ShowFloat(54, 2, gpsReport.lat * 1e-7,3,6);
-    IPS096_ShowFloat(60, 14, gpsReport.lon * 1e-7,3,6);
-    IPS096_ShowFloat(30, 26, gpsReport.eph,2,2);
-    IPS096_ShowUint(92, 26+12,gpsReport.satellites_used,2);
-    IPS096_ShowUint(92, 26+24,gps_use.point_count,2);
-    IPS096_ShowFloat(30, 26+36, Dx_zero,2,2);
-    IPS096_ShowFloat(30, 26+48, Dy_zero,2,2);
-#endif
 
 }
 void PageNormalPoints(EasyUIPage_t *page)

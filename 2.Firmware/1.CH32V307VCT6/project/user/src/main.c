@@ -28,8 +28,8 @@ int main (void)
     systemInit();
     while(1)
     {
-//        system_delay_ms(10);
-//        BlueToothPrintf("%d\n",back_wheel_encode);
+        system_delay_ms(25);
+        BlueToothPrintf("%d\n",back_wheel_encode);
 //        BlueToothPrintf("%f\n",backSpdPid.pos_out);
         EasyUI(20);
     }
@@ -54,8 +54,8 @@ void systemInit(void)
 #endif
     INS_init();
     EasyUITransitionAnim();
-    backSpdPid.target[NOW]=3;
-//    motoDutySet(MOTOR_BACK_PIN,3000);
+    backSpdPid.target[NOW]=5;
+    motoDutySet(MOTOR_BACK_PIN,3000);
 //    motoDutySet(MOTOR_FLY_PIN,3000);
 //    while(1)
 //    {
