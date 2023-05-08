@@ -50,18 +50,10 @@ typedef struct
 
 
 extern _gps_st gps_data_array[GPS_MAX_POINT];
-extern _gps_st gps_data;
 extern _gps_use_st gps_use;
 
 extern uint8 Bike_Start;
 extern float normalXArray[GPS_MAX_POINT],normalYArray[GPS_MAX_POINT];
-extern float Dx_zero,Dy_zero;
-extern float distance_step;
-extern float multiple_counts;
-
-extern bool constant_yaw_flag;
-extern float constant_yaw;
-extern float points_index;
 
 extern float ref_rad;
 

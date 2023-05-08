@@ -228,18 +228,20 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, 
     gpsData_typedef base_gps_data;
     refNodeList = graph->B_constructor->refNodeList;
     base_gps_data = *graph->base_gps_data;
-    double dx_lat,dy_lon;
-    latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
-    refNodeList[0].X = ANGLE_TO_RAD(gps_set[0].latitude - base_gps_data.latitude)*dx_lat;
-    refNodeList[0].Y = ANGLE_TO_RAD(gps_set[0].longitude - base_gps_data.longitude)*dy_lon;
+//    double dx_lat,dy_lon;
+//    latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
+//    refNodeList[0].X = ANGLE_TO_RAD(gps_set[0].latitude - base_gps_data.latitude)*dx_lat;
+//    refNodeList[0].Y = ANGLE_TO_RAD(gps_set[0].longitude - base_gps_data.longitude)*dy_lon;
 //    //=========test=========
-//    refNodeList[0].X = 0;
-//    refNodeList[0].Y = 0;
+    refNodeList[0].X = 0;
+    refNodeList[0].Y = 0;
 //    //=========test=========
     for(uint16_t i=1;i<counts;i++)
     {
-        refNodeList[i].X = normalXArray[i] +refNodeList[i-1].X;
-        refNodeList[i].Y = normalYArray[i] +refNodeList[i-1].Y;
+        refNodeList[i].X = normalXArray[i]* cosf(ref_rad)+ normalYArray[i]* sinf(ref_rad);
+        refNodeList[i].Y = normalXArray[i]* sinf(ref_rad)- normalYArray[i]* cosf(ref_rad);
+//        refNodeList[i].X = normalXArray[i] +refNodeList[i-1].X;
+//        refNodeList[i].Y = normalYArray[i] +refNodeList[i-1].Y;
 //        refNodeList[i].X = ANGLE_TO_RAD(gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
 //        refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
     }

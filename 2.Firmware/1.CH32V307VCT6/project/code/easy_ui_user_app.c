@@ -14,7 +14,7 @@ EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageBack
 
 // Items
 EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS, itemSetting;
-EasyUIItem_t titleGPS, itemNormalPoints, itemPilePoints, itemBasePoints, itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemSCY,itemSMC,itemSetIndex;
+EasyUIItem_t titleGPS, itemNormalPoints, itemPilePoints, itemBasePoints, itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSetIndex;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
 EasyUIItem_t titleBackMotorPID, itemBackMotorKp, itemBackMotorKi, itemBackMotorKd, itemBackMotorInMax, itemBackMotorErrMax, itemBackMotorErrMin;
@@ -69,7 +69,7 @@ void EventMainLoop(EasyUIItem_t *item)
                 IPS096_ShowFloat(60, 2, moveArray.offsetX,3,3);
                 IPS096_ShowFloat(60, 14, moveArray.offsetY,3,3);
                 IPS096_SendBuffer();
-                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
+//                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
                 temp = 4000;
             }
         }
@@ -337,16 +337,21 @@ void MessegeShowFun(void)
     IPS096_ShowUint(92, 2,gpsReport.satellites_used,2);
     IPS096_ShowUint(92, 14,gps_use.point_count,2);
     IPS096_ShowFloat(30, 26, gpsReport.eph,2,2);
-    if (constant_yaw_flag)
-        IPS096_ShowFloat(30, 38, constant_yaw ,3,3);
-    else
-        IPS096_ShowFloat(30, 38, RAD_TO_ANGLE(Global_yaw) ,3,3);
-    float temp,horizontal_Y,vertical_X;
-    temp = (float)atan2f(Dy_zero,Dx_zero);
-    temp = (float)Pi_To_2Pi(temp);
-    temp = ref_rad-temp;
-    horizontal_Y = sqrtf(Dy_zero*Dy_zero+Dx_zero*Dx_zero)* sinf(temp);
-    vertical_X = sqrtf(Dy_zero*Dy_zero+Dx_zero*Dx_zero)* cosf(temp);
+    IPS096_ShowFloat(30, 38, RAD_TO_ANGLE(Global_yaw) ,3,3);
+
+    float temp,horizontal_Y=0,vertical_X=0,Dx=0,Dy=0;
+    if(gps_use.point_count!=0)
+    {
+        double dx_lat,dy_lon;
+        latlonTodxdy(gps_data_array[gps_use.point_count-1].latitude,&dx_lat,&dy_lon);
+        Dx = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - gps_data_array[gps_use.point_count-1].latitude )*dx_lat;
+        Dy = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - gps_data_array[gps_use.point_count-1].longitude)*dy_lon;
+        temp = (float)atan2f(Dy,Dx);
+        temp = (float)Pi_To_2Pi(temp);
+        temp = ref_rad-temp;
+        horizontal_Y = sqrtf(powf(Dy,2)+ powf(Dx,2))* sinf(temp);
+        vertical_X = sqrtf(powf(Dy,2)+ powf(Dx,2))* cosf(temp);
+    }
     IPS096_ShowFloat(90, 50, horizontal_Y,3,2);
     IPS096_ShowFloat(90, 62, vertical_X,3,2);
 
@@ -469,15 +474,10 @@ void MenuInit()
     EasyUIAddItem(&pagePoints, &titleGPS, "[GPS Points]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pagePoints, &itemBasePoints, "Base Points", ITEM_JUMP_PAGE, pageBasePoints.id);
     EasyUIAddItem(&pagePoints, &itemNormalPoints, "Normal Points", ITEM_JUMP_PAGE, pageNormalPoints.id);
-    EasyUIAddItem(&pagePoints, &itemSSD, "Set Step Distance", ITEM_CHANGE_VALUE, &distance_step, EasyUIEventChangeFloat);
     EasyUIAddItem(&pagePoints, &itemCNX, "Det X", ITEM_CHANGE_VALUE, &normalXArray[0], EasyUIEventChangeFloat);
     EasyUIAddItem(&pagePoints, &itemCNY, "Det Y", ITEM_CHANGE_VALUE, &normalYArray[0], EasyUIEventChangeFloat);
 
-
-    EasyUIAddItem(&pagePoints, &itemSMC, "Set MulCounts", ITEM_CHANGE_VALUE, &multiple_counts, EasyUIEventChangeUint);
-    EasyUIAddItem(&pagePoints, &itemCYF, "Enable Constant Yaw", ITEM_SWITCH, &constant_yaw_flag);
-    EasyUIAddItem(&pagePoints, &itemSCY, "Set Constant Yaw", ITEM_CHANGE_VALUE, &constant_yaw, EasyUIEventChangeFloatForYaw);
-    EasyUIAddItem(&pagePoints, &itemSetIndex, "Set Index", ITEM_CHANGE_VALUE, &points_index, EasyUIEventChangeUint);
+    EasyUIAddItem(&pagePoints, &itemSetIndex, "Set Index", ITEM_CHANGE_VALUE, &gps_use.point_count, EasyUIEventChangeUint);
     EasyUIAddItem(&pagePoints, &itemPathGenerate, "Path Generate", ITEM_MESSAGE, "Generating...", EventPathGenerate);
     EasyUIAddItem(&pagePoints, &itemPilePoints, "Pile Points", ITEM_JUMP_PAGE, pagePilePoints.id);
 
