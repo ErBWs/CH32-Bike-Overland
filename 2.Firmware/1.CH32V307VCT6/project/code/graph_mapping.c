@@ -232,6 +232,10 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, 
     latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
     refNodeList[0].X = ANGLE_TO_RAD(gps_set[0].latitude - base_gps_data.latitude)*dx_lat;
     refNodeList[0].Y = ANGLE_TO_RAD(gps_set[0].longitude - base_gps_data.longitude)*dy_lon;
+//    //=========test=========
+//    refNodeList[0].X = 0;
+//    refNodeList[0].Y = 0;
+//    //=========test=========
     for(uint16_t i=1;i<counts;i++)
     {
         refNodeList[i].X = normalXArray[i] +refNodeList[i-1].X;

@@ -63,6 +63,8 @@ extern bool constant_yaw_flag;
 extern float constant_yaw;
 extern float points_index;
 
+extern float ref_rad;
+
 void GPS_init(void);
 void gps_handler(gpsState pointStatus);
 void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result);

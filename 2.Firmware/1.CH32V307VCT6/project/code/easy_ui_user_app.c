@@ -37,7 +37,7 @@ void EventMainLoop(EasyUIItem_t *item)
             EasyUIBackgroundBlur();
             return;
         }
-        stanleyControllerInit(&Global_stanleyController,(float)0.05,(float)0.3,&Global_yaw,&Global_v_now,&Global_current_node);
+        stanleyControllerInit(&Global_stanleyController,(float)0.15,(float)0.25,&Global_yaw,&Global_v_now,&Global_current_node);
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
@@ -66,8 +66,8 @@ void EventMainLoop(EasyUIItem_t *item)
                 IPS096_ClearBuffer();
                 IPS096_ShowStr(0, 2, "offsetX:");
                 IPS096_ShowStr(0, 14, "offsetY:");
-                IPS096_ShowFloat(60, 2, moveArray.offsetX,3,2);
-                IPS096_ShowFloat(60, 14, moveArray.offsetY,3,2);
+                IPS096_ShowFloat(60, 2, moveArray.offsetX,3,3);
+                IPS096_ShowFloat(60, 14, moveArray.offsetY,3,3);
                 IPS096_SendBuffer();
                 BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
                 temp = 4000;
@@ -332,8 +332,8 @@ void MessegeShowFun(void)
     IPS096_ShowStr(0, 14, "point-counts:");
     IPS096_ShowStr(0, 26, "hacc:");
     IPS096_ShowStr(0, 38, "yaw:");
-    IPS096_ShowStr(0, 50, "Dx_zero:");
-    IPS096_ShowStr(0, 62, "Dy_zero:");
+    IPS096_ShowStr(0, 50, "horizontal_Y:");
+    IPS096_ShowStr(0, 62, "vertical_X:");
 
     IPS096_ShowUint(92, 2,gpsReport.satellites_used,2);
     IPS096_ShowUint(92, 14,gps_use.point_count,2);
@@ -342,8 +342,14 @@ void MessegeShowFun(void)
         IPS096_ShowFloat(30, 38, constant_yaw ,3,3);
     else
         IPS096_ShowFloat(30, 38, RAD_TO_ANGLE(Global_yaw) ,3,3);
-    IPS096_ShowFloat(60, 50, Dx_zero,3,2);
-    IPS096_ShowFloat(60, 62, Dy_zero,3,2);
+    float temp,horizontal_Y,vertical_X;
+    temp = (float)atan2f(Dy_zero,Dx_zero);
+    temp = (float)Pi_To_2Pi(temp);
+    temp = ref_rad-temp;
+    horizontal_Y = sqrtf(Dy_zero*Dy_zero+Dx_zero*Dx_zero)* sinf(temp);
+    vertical_X = sqrtf(Dy_zero*Dy_zero+Dx_zero*Dx_zero)* cosf(temp);
+    IPS096_ShowFloat(60, 50, horizontal_Y,3,2);
+    IPS096_ShowFloat(60, 62, vertical_X,3,2);
 #else
     IPS096_ShowStr(0,2,"latitude:");
     IPS096_ShowStr(0, 14, "longitude:");

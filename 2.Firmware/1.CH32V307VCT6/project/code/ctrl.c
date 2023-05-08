@@ -70,6 +70,7 @@ void IMUGetCalFun(void)
         INS_U.MAG.mag_z = Mag_Raw.z;
         INS_U.MAG.timestamp = myTimeStamp;
         INS_step();
+
         Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
     }
     else
@@ -91,11 +92,11 @@ void ServoControl(void)
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//纯P
 //    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);
-    if(servo_sport_update_flag==0)
-    {
-        servo_current_duty = duty_input;//记得在缓动不起效果时更新当前duty值
-    }
-    ServoSportHandler(&duty_input);
+//    if(servo_sport_update_flag==0)
+//    {
+//        servo_current_duty = duty_input;//记得在缓动不起效果时更新当前duty值
+//    }
+//    ServoSportHandler(&duty_input);
     pwm_set_duty(SERVO_PIN,duty_input);
 #endif
 }
@@ -107,7 +108,7 @@ void BackMotoControl(void)
 {
     static uint8 beg_state=0,pitch_state=0;
     static uint8 counts=0;
-    if(++counts<5)return;
+    if(++counts<10)return;
     counts=0;
     if(stagger_flag==1||Bike_Start!=1)
     {
@@ -129,8 +130,8 @@ void BackMotoControl(void)
             }
         break;
         case 1:
-            backSpdPid.pos_out=1000;
-            if(back_inter_distance>150)
+            backSpdPid.pos_out=2000;
+            if(back_inter_distance>100)
             {
                 pidClear(&backSpdPid);
                 back_maintain_flag=0;

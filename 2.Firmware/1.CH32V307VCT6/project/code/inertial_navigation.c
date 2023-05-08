@@ -18,6 +18,8 @@ float multiple_counts=1;
 float constant_yaw=0;
 bool constant_yaw_flag=0;
 #endif
+float ref_rad=0;
+
 float points_index=0;
 _gps_st gps_data_array[GPS_MAX_POINT] = {0};
 float Dx_zero=0,Dy_zero=0;
@@ -62,6 +64,7 @@ void gps_handler(gpsState pointStatus) {
                                 gps_data_array[0].latitude = gpsReport.lat * 1e-7;
                                 gps_data_array[0].longitude = gpsReport.lon * 1e-7;
                                 gps_data_array[gps_use.point_count].type = pointStatus;
+                                ref_rad = Global_yaw;
                             }
                             else
                             {
@@ -85,7 +88,6 @@ void gps_handler(gpsState pointStatus) {
                                 Dy_zero += normalYArray[gps_use.point_count];
                             }
                             gps_use.point_count++;
-                            points_index = gps_use.point_count;
                         }
 #else
                         EasyUIDrawMsgBox("Saving...");
@@ -112,11 +114,12 @@ void gps_handler(gpsState pointStatus) {
                         }
                         gps_use.point_count++;
 #endif
+                        points_index = gps_use.point_count;
                         break;
                     case BASE:
                         memset(&gps_use,0,sizeof(_gps_use_st));
                         memset(gps_data_array,0, sizeof(_gps_st)*GPS_MAX_POINT);
-                        Dx_zero = Dy_zero = x_bias = y_bias=0;
+                        Dx_zero = Dy_zero = x_bias = y_bias = points_index=0;
                         GlobalBase_GPS_data.latitude = gpsReport.lat * 1e-7;
                         GlobalBase_GPS_data.longitude = gpsReport.lon * 1e-7;
                         EasyUIDrawMsgBox("Saving...");
