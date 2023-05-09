@@ -238,12 +238,8 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, 
 //    //=========test=========
     for(uint16_t i=1;i<counts;i++)
     {
-        refNodeList[i].X = normalXArray[i]* cosf(ref_rad)+ normalYArray[i]* sinf(ref_rad);
-        refNodeList[i].Y = normalXArray[i]* sinf(ref_rad)- normalYArray[i]* cosf(ref_rad);
-//        refNodeList[i].X = normalXArray[i] +refNodeList[i-1].X;
-//        refNodeList[i].Y = normalYArray[i] +refNodeList[i-1].Y;
-//        refNodeList[i].X = ANGLE_TO_RAD(gps_set[i].latitude - base_gps_data.latitude)*dx_lat;
-//        refNodeList[i].Y = ANGLE_TO_RAD(gps_set[i].longitude - base_gps_data.longitude)*dy_lon;
+        refNodeList[i].X = normalXArray[i];
+        refNodeList[i].Y = normalYArray[i];
     }
 //    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
     return 0;

@@ -19,65 +19,46 @@ float normalXArray[GPS_MAX_POINT]={0},normalYArray[GPS_MAX_POINT]={0};
 uint8 Bike_Start = 0;
 
 void gps_handler(gpsState pointStatus) {
-        if (opnEnter) {
+    uint16 temp=4000;
+    while(1)
+    {
+        if (--temp==0)
+        {
+            IPS096_ClearBuffer();
+            IPS096_ShowStr(0, 2, "current_X:");
+            IPS096_ShowStr(0, 14, "current_Y:");
+            IPS096_ShowFloat(70, 2, (float)Global_current_node.X,3,3);
+            IPS096_ShowFloat(70, 14, (float)Global_current_node.Y,3,3);
+            IPS096_SendBuffer();
+//                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
+            temp = 4000;
+        }
+        if (opnEnter)
+        {
             opnEnter = false;
             if (gps_use.point_count > GPS_MAX_POINT) {
                 EasyUIDrawMsgBox("Gps_Buff Not Enough!");
                 return;
             }
-            if ((gpsReport.eph < 1.5) && (gpsReport.eph > 0.1))
+            if ((gpsReport.eph < 3) && (gpsReport.eph > 0.1))
             {
-                switch (pointStatus)
-                {
-                    case COMMON:
-                    case PILE:
-                        EasyUIDrawMsgBox("Saving...");
-                        gps_data_array[gps_use.point_count].latitude = gpsReport.lat * 1e-7;
-                        gps_data_array[gps_use.point_count].longitude = gpsReport.lon * 1e-7;
-                        gps_data_array[gps_use.point_count].type = pointStatus;
-                        if(gps_use.point_count==0)
-                        {
-                            beepTime = 800;
-                            ref_rad = Global_yaw;
-                        }
-                        else
-                        {
-                            beepTime = 400;
-                            double dx_lat,dy_lon;
-                            latlonTodxdy(gps_data_array[gps_use.point_count-1].latitude,&dx_lat,&dy_lon);
-                            normalXArray[gps_use.point_count] = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].latitude - gps_data_array[0].latitude)*dx_lat;
-                            normalYArray[gps_use.point_count] = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].longitude - gps_data_array[0].longitude)*dy_lon;
-                            float temp;
-                            temp = (float)atan2f(normalYArray[gps_use.point_count],normalYArray[gps_use.point_count]);
-                            temp = (float)Pi_To_2Pi(temp);
-                            temp = ref_rad-temp;
-                            normalYArray[gps_use.point_count] = sqrtf(powf(normalYArray[gps_use.point_count],2)+ powf(normalXArray[gps_use.point_count],2))* sinf(temp);
-                            normalXArray[gps_use.point_count] = sqrtf(powf(normalYArray[gps_use.point_count],2)+ powf(normalXArray[gps_use.point_count],2))* cosf(temp);
-                            extern EasyUIItem_t itemCNX,itemCNY;
-                            itemCNX.param = &normalXArray[gps_use.point_count];
-                            itemCNY.param = &normalYArray[gps_use.point_count];
-                        }
-                        gps_use.point_count++;
-                        break;
-                    case BASE:
-                        memset(&gps_use,0,sizeof(_gps_use_st));
-                        memset(gps_data_array,0, sizeof(_gps_st)*GPS_MAX_POINT);
-                        GlobalBase_GPS_data.latitude = gpsReport.lat * 1e-7;
-                        GlobalBase_GPS_data.longitude = gpsReport.lon * 1e-7;
-                        EasyUIDrawMsgBox("Saving...");
-                        beepTime = 800;
-                        break;
-                    default:;
-                }
+                beepTime = 400;
+                gps_use.point_count++;
+                normalXArray[gps_use.point_count] = (float)Global_current_node.X;
+                normalYArray[gps_use.point_count] = (float)Global_current_node.Y;
             }
+        }
+        if (opnExit)
+        {
+            Bike_Start = 0;
+            break;
+        }
     }
     if (opnForward)
     {
 
     }
-    if (opnExit)
-    {
-    }
+
 }
 
 

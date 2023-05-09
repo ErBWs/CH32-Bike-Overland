@@ -23,7 +23,6 @@ EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, it
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
 double X0,Y0;
-float bias_X=0,bias_Y=0;
 void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS == 1
@@ -42,14 +41,8 @@ void EventMainLoop(EasyUIItem_t *item)
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
         INS_init();
-//        double dx_lat,dy_lon;
-//        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-//        bias_X = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
-//        bias_Y = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
         X0 = GlobalGraph.nodeBuff[0].X;
         Y0 = GlobalGraph.nodeBuff[0].Y;
-//        bias_X -= X0;
-//        bias_Y -= Y0;
         if(status)
         {
             functionIsRunning = false;
@@ -327,6 +320,7 @@ void PageImage(EasyUIPage_t *page)
 }
 void MessegeShowFun(void)
 {
+    IPS096_ClearBuffer();
     IPS096_ShowStr(0, 2, "satellite-used:");
     IPS096_ShowStr(0, 14, "point-counts:");
     IPS096_ShowStr(0, 26, "hacc:");
@@ -354,14 +348,38 @@ void MessegeShowFun(void)
     }
     IPS096_ShowFloat(90, 50, horizontal_Y,3,2);
     IPS096_ShowFloat(90, 62, vertical_X,3,2);
-
+    IPS096_SendBuffer();
 
 }
 void PageNormalPoints(EasyUIPage_t *page)
 {
     gpsState pointStatus = COMMON;
-    MessegeShowFun();
+    opnEnter = false;
+    while(!opnEnter)
+    {
+        MessegeShowFun();
+    }
+    opnEnter = false;
+    INS_init();
+    Bike_Start = 2;
+    uint16 temp=4000;
+    while(!opnEnter){
+        if (--temp==0)
+        {
+            IPS096_ClearBuffer();
+            IPS096_ShowStr(0, 2, "offsetX:");
+            IPS096_ShowStr(0, 14, "offsetY:");
+            IPS096_ShowFloat(60, 2, moveArray.offsetX,3,3);
+            IPS096_ShowFloat(60, 14, moveArray.offsetY,3,3);
+            IPS096_SendBuffer();
+//                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
+            temp = 4000;
+        }
+    }
+    opnEnter = false;
+    Bike_Start = 1;
     gps_handler(pointStatus);
+//    functionIsRunning = false;
 }
 
 void PagePilePoints(EasyUIPage_t *page)

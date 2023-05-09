@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=1;
+paramType ANGLE_STATIC_BIAS=0.5;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -12,7 +12,6 @@ uint32_t myTimeStamp = 0;
 uint16 imu_update_counts=0;
 float dynamic_zero = 0;
 extern double X0,Y0;
-extern float bias_X,bias_Y;
 gps_report_t gpsReport;
 
 void taskTimAllInit(void)
@@ -47,8 +46,8 @@ void IMUGetCalFun(void)
             INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
             INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
             INS_U.GPS_uBlox.timestamp = myTimeStamp;
-            Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX - bias_X;
-            Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY - bias_Y;
+            Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX;
+            Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY;
             Global_v_now = gpsReport.vel_m_s;
         }
         if(Bike_Start == 2 && stagger_flag == 0)
