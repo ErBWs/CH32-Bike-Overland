@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=1;
+paramType ANGLE_STATIC_BIAS=0.5;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -75,7 +75,7 @@ void IMUGetCalFun(void)
     }
     else
     {
-        Global_yaw = (float)Pi_To_2Pi(atan2f(-Mag_Raw.y,Mag_Raw.x)-(float)ANGLE_TO_RAD(10)) ;
+        Global_yaw = (float)Pi_To_2Pi(atan2f(-Mag_Raw.y,Mag_Raw.x)) ;
     }
     myTimeStamp+=2;
 }
@@ -108,10 +108,11 @@ void BackMotoControl(void)
 {
     static uint8 beg_state=0,pitch_state=0;
     static uint8 counts=0;
-    if(++counts<10)return;
+    if(++counts<20)return;
     counts=0;
     if(stagger_flag==1||Bike_Start!=1)
     {
+        pidClear(&backSpdPid);
         motoDutySet(MOTOR_BACK_PIN,0);
         return;
     }
@@ -121,29 +122,29 @@ void BackMotoControl(void)
     back_inter_distance += myABS(back_wheel_encode);
 
     PID_Calculate(&backSpdPid,backSpdPid.target[NOW],(float)-back_wheel_encode);//速度环PID
-    switch (beg_state) {
-        case 0:
-            if(back_maintain_flag==1)
-            {
-                back_inter_distance=0;
-                beg_state=1;
-            }
-        break;
-        case 1:
-            backSpdPid.pos_out=2000;
-            if(back_inter_distance>100)
-            {
-                pidClear(&backSpdPid);
-                back_maintain_flag=0;
-                beg_state=0;
-            }
-        break;
-    }
+//    switch (beg_state) {
+//        case 0:
+//            if(back_maintain_flag==1)
+//            {
+//                back_inter_distance=0;
+//                beg_state=1;
+//            }
+//        break;
+//        case 1:
+//            backSpdPid.pos_out=2000;
+//            if(back_inter_distance>100)
+//            {
+//                pidClear(&backSpdPid);
+//                back_maintain_flag=0;
+//                beg_state=0;
+//            }
+//        break;
+//    }
     switch (pitch_state) {
         case 0:
             if(imu_data.pit>15)
             {
-                backSpdPid.target[NOW]=10;
+//                backSpdPid.target[NOW]=10;
                 pitch_state=1;
                 beepTime = 400;
             }
@@ -151,7 +152,7 @@ void BackMotoControl(void)
         case 1:
             if(imu_data.pit<1)
             {
-                backSpdPid.target[NOW]=3;
+//                backSpdPid.target[NOW]=5;
                 backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
                 backSpdPid.iout = 0;
                 beepTime = 400;

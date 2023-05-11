@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <math.h>
 #include <string.h>
-#include "inc_all.h"
+#include "inertial_navigation.h"
 
 #ifndef EARTH_RADIUS
             #define EARTH_RADIUS (6378137)
@@ -22,7 +22,7 @@
 #endif
 
 #define B_ORDER                 4
-#define B_REFER_POINT_COUNTS_MAX    70
+#define B_REFER_POINT_COUNTS_MAX    100
 
 #define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS_MAX-1)+2)
 #define NIP_FACTOR_VECTOR_SIZE  (B_REFER_POINT_COUNTS_MAX)
@@ -110,7 +110,7 @@ void GraphInit(nodeGraph_typedef *graph,nodeLink_typedef nodeBuff,gpsData_typede
 void unEven(double *NodeVector, uint8_t p, uint8_t n);
 double BaseIterateFunc(uint8_t i, uint8_t p, double u,const double *NodeVector);
 uint8_t GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, uint16_t counts);
-//void GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st *gps_set, uint16_t counts);
+//uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, uint16_t counts);
 uint8_t GraphPathGenerate(nodeGraph_typedef *graph);
 uint8_t GraphNode_Diff(nodeGraph_typedef *graph);
 uint8_t Stanley_Control(nodeGraph_typedef *graph);
