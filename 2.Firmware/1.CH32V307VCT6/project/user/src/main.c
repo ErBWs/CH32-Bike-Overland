@@ -20,13 +20,19 @@
 //}D_data;
 extern gps_report_t gpsReport;
 void systemInit();
+extern int16_t back_wheel_encode;
+extern EasyUIItem_t itemCNX,itemCNY;
 int main (void)
 {
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 120MHz
     debug_init();                                                               // 初始化默认 Debug UART
     systemInit();
+    static uint16 last_index=0;
     while(1)
     {
+        system_delay_ms(25);
+//        BlueToothPrintf("%d\n",back_wheel_encode);
+//        BlueToothPrintf("%f\n",backSpdPid.pos_out);
         EasyUI(20);
     }
 }
@@ -50,8 +56,9 @@ void systemInit(void)
 #endif
     INS_init();
     EasyUITransitionAnim();
-    backSpdPid.target[NOW]=3;
-//    motoDutySet(MOTOR_BACK_PIN,2000);
+    backSpdPid.target[NOW]=5;
+//    motoDutySet(MOTOR_BACK_PIN,3000);
+//    motoDutySet(MOTOR_FLY_PIN,3000);
 //    while(1)
 //    {
 //        system_delay_ms(50);

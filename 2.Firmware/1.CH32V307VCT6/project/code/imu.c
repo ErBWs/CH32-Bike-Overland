@@ -334,7 +334,7 @@ void imuinit(char imumode)
 {
     if (imumode == IMU_ALL)
     {
-        imu963ra_init();
+//        imu963ra_init();
         imu660ra_init();
         IMU_Offset(imumode);
         

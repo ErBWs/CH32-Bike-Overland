@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=1;
+paramType ANGLE_STATIC_BIAS=0.5;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -12,7 +12,6 @@ uint32_t myTimeStamp = 0;
 uint16 imu_update_counts=0;
 float dynamic_zero = 0;
 extern double X0,Y0;
-extern float bias_X,bias_Y;
 gps_report_t gpsReport;
 
 void taskTimAllInit(void)
@@ -32,24 +31,25 @@ void IMUGetCalFun(void)
     Compass_Read();
     Data_steepest();
     IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
-    if (gps_read(&gpsReport)&&Bike_Start !=0)
+    if (gps_read(&gpsReport))
     {
-        INS_U.GPS_uBlox.lat = gpsReport.lat;
-        INS_U.GPS_uBlox.lon = gpsReport.lon;
-        INS_U.GPS_uBlox.velN = gpsReport.vel_n_m_s * 1e3;
-        INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
-        INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
-        INS_U.GPS_uBlox.fixType = gpsReport.fix_type;
-        INS_U.GPS_uBlox.hAcc = gpsReport.eph * 1e3;
-        INS_U.GPS_uBlox.vAcc = gpsReport.epv * 1e3;
-        INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
-        INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
-        INS_U.GPS_uBlox.timestamp = myTimeStamp;
-        Global_v_now = gpsReport.vel_m_s;
-        Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
-
-        Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX - bias_X;
-        Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY - bias_Y;
+        if(Bike_Start !=0)
+        {
+            INS_U.GPS_uBlox.lat = gpsReport.lat;
+            INS_U.GPS_uBlox.lon = gpsReport.lon;
+            INS_U.GPS_uBlox.velN = gpsReport.vel_n_m_s * 1e3;
+            INS_U.GPS_uBlox.velE = gpsReport.vel_e_m_s * 1e3;
+            INS_U.GPS_uBlox.velD = gpsReport.vel_d_m_s * 1e3;
+            INS_U.GPS_uBlox.fixType = gpsReport.fix_type;
+            INS_U.GPS_uBlox.hAcc = gpsReport.eph * 1e3;
+            INS_U.GPS_uBlox.vAcc = gpsReport.epv * 1e3;
+            INS_U.GPS_uBlox.sAcc = gpsReport.s_variance_m_s * 1e3;
+            INS_U.GPS_uBlox.numSV = gpsReport.satellites_used;
+            INS_U.GPS_uBlox.timestamp = myTimeStamp;
+            Global_current_node.X =  X0+ INS_Y.INS_Out.x_R - moveArray.offsetX;
+            Global_current_node.Y =  Y0+ INS_Y.INS_Out.y_R - moveArray.offsetY;
+            Global_v_now = gpsReport.vel_m_s;
+        }
         if(Bike_Start == 2 && stagger_flag == 0)
         {
             moveFilter(&moveArray,INS_Y.INS_Out.x_R,INS_Y.INS_Out.y_R);
@@ -69,6 +69,12 @@ void IMUGetCalFun(void)
         INS_U.MAG.mag_z = Mag_Raw.z;
         INS_U.MAG.timestamp = myTimeStamp;
         INS_step();
+
+        Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
+    }
+    else
+    {
+        Global_yaw = (float)Pi_To_2Pi(atan2f(-Mag_Raw.y,Mag_Raw.x)-(float)ANGLE_TO_RAD(10)) ;
     }
     myTimeStamp+=2;
 }
@@ -85,63 +91,67 @@ void ServoControl(void)
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//纯P
 //    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);
-    if(servo_sport_update_flag==0)
-    {
-        servo_current_duty = duty_input;//记得在缓动不起效果时更新当前duty值
-    }
-    ServoSportHandler(&duty_input);
+//    if(servo_sport_update_flag==0)
+//    {
+//        servo_current_duty = duty_input;//记得在缓动不起效果时更新当前duty值
+//    }
+//    ServoSportHandler(&duty_input);
     pwm_set_duty(SERVO_PIN,duty_input);
 #endif
 }
 uint32_t back_inter_distance=0;
 uint8 back_maintain_flag=1;
+int16_t back_wheel_encode=0;
+
 void BackMotoControl(void)
 {
     static uint8 beg_state=0,pitch_state=0;
     static uint8 counts=0;
-    if(++counts<5)return;
+    if(++counts<20)return;
     counts=0;
     if(stagger_flag==1||Bike_Start!=1)
     {
+        pidClear(&backSpdPid);
         motoDutySet(MOTOR_BACK_PIN,0);
         return;
     }
-    int16_t back_wheel_encode=0;
 
     back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
-    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],-(float)back_wheel_encode);//速度环PID
-    switch (beg_state) {
-        case 0:
-            if(back_maintain_flag==1)
-            {
-                back_inter_distance=0;
-                beg_state=1;
-            }
-        break;
-        case 1:
-            backSpdPid.pos_out=1500;
-            if(back_inter_distance>200)
-            {
-                pidClear(&backSpdPid);
-                back_maintain_flag=0;
-                beg_state=0;
-            }
-        break;
-    }
+    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],(float)-back_wheel_encode);//速度环PID
+//    switch (beg_state) {
+//        case 0:
+//            if(back_maintain_flag==1)
+//            {
+//                back_inter_distance=0;
+//                beg_state=1;
+//            }
+//        break;
+//        case 1:
+//            backSpdPid.pos_out=2000;
+//            if(back_inter_distance>100)
+//            {
+//                pidClear(&backSpdPid);
+//                back_maintain_flag=0;
+//                beg_state=0;
+//            }
+//        break;
+//    }
     switch (pitch_state) {
         case 0:
             if(imu_data.pit>15)
             {
+//                backSpdPid.target[NOW]=10;
                 pitch_state=1;
                 beepTime = 400;
             }
             break;
         case 1:
-            if(imu_data.pit<0)
+            if(imu_data.pit<1)
             {
+//                backSpdPid.target[NOW]=10;
                 backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
                 backSpdPid.iout = 0;
                 beepTime = 400;
@@ -149,7 +159,7 @@ void BackMotoControl(void)
             }
             break;
     }
-    motoDutySet(MOTOR_BACK_PIN,backSpdPid.pos_out);
+    motoDutySet(MOTOR_BACK_PIN,(int32)backSpdPid.pos_out);
 }
 uint8 stagger_flag=1;
 float temp_x;
