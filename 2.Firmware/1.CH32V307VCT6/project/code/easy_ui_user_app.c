@@ -23,7 +23,6 @@ EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, it
 EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
 
 double X0,Y0;
-float bias_X=0,bias_Y=0;
 void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS == 1
@@ -42,14 +41,8 @@ void EventMainLoop(EasyUIItem_t *item)
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
         INS_init();
-//        double dx_lat,dy_lon;
-//        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
-//        bias_X = ANGLE_TO_RAD(gpsReport.lat * 1e-7 - GlobalBase_GPS_data.latitude)*dx_lat;
-//        bias_Y = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - GlobalBase_GPS_data.longitude)*dy_lon;
         X0 = GlobalGraph.nodeBuff[0].X;
         Y0 = GlobalGraph.nodeBuff[0].Y;
-//        bias_X -= X0;
-//        bias_Y -= Y0;
         if(status)
         {
             functionIsRunning = false;
@@ -69,7 +62,7 @@ void EventMainLoop(EasyUIItem_t *item)
                 IPS096_ShowFloat(60, 2, moveArray.offsetX,3,3);
                 IPS096_ShowFloat(60, 14, moveArray.offsetY,3,3);
                 IPS096_SendBuffer();
-                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
+//                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
                 temp = 4000;
             }
         }
@@ -324,13 +317,13 @@ void PageImage(EasyUIPage_t *page)
 }
 void MessegeShowFun(gpsState pointStatus)
 {
+//    IPS096_ClearBuffer();
     IPS096_ShowStr(0, 2, "satellite-used:");
     IPS096_ShowStr(0, 14, "point-counts:");
     IPS096_ShowStr(0, 26, "hacc:");
     IPS096_ShowStr(0, 38, "yaw:");
     IPS096_ShowStr(0, 50, "vertical_X:");
     IPS096_ShowStr(0, 62, "horizontal_Y:");
-
 
     IPS096_ShowUint(92, 2,gpsReport.satellites_used,2);
     IPS096_ShowUint(92, 14,gps_use.point_count,2);
@@ -380,7 +373,6 @@ void MessegeShowFun(gpsState pointStatus)
 
         default:;
     }
-
     IPS096_ShowFloat(80, 50, Dx_zeroTemp,3,2);
     IPS096_ShowFloat(80, 62, Dy_zeroTemp,3,2);
 
@@ -390,6 +382,7 @@ void PageNormalPoints(EasyUIPage_t *page)
     gpsState pointStatus = COMMON;
     MessegeShowFun(pointStatus);
     gps_handler(pointStatus);
+//    functionIsRunning = false;
 }
 
 void PageConePoints(EasyUIPage_t *page)
@@ -513,6 +506,7 @@ void MenuInit()
     EasyUIAddItem(&pagePoints, &titleGPS, "[GPS Points]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pagePoints, &itemBasePoints, "Base Points", ITEM_JUMP_PAGE, pageBasePoints.id);
     EasyUIAddItem(&pagePoints, &itemNormalPoints, "Normal Points", ITEM_JUMP_PAGE, pageNormalPoints.id);
+
     EasyUIAddItem(&pagePoints, &itemConePoints, "Cone Points", ITEM_JUMP_PAGE, pageConePoints.id);
     EasyUIAddItem(&pagePoints, &itemPilePoints, "Pile Points", ITEM_JUMP_PAGE, pagePilePoints.id);
     EasyUIAddItem(&pagePoints, &itemSSD, "Set Step Distance", ITEM_CHANGE_VALUE, &distance_step, EasyUIEventChangeFloat);

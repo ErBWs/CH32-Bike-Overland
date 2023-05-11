@@ -7,6 +7,7 @@
 
 #include "zf_common_typedef.h"
 #include "bldc_config.h"
+#include "vofa.h"
 
 
 typedef struct
@@ -14,6 +15,10 @@ typedef struct
     uint16 hall_a_pin;      // 霍尔A引脚
     uint16 hall_b_pin;      // 霍尔B引脚
     uint16 hall_c_pin;      // 霍尔C引脚
+    uint16 hall_a_vofa;      // 霍尔A引脚
+    uint16 hall_b_vofa;      // 霍尔B引脚
+    uint16 hall_c_vofa;      // 霍尔C引脚
+    uint16 hall_all_vofa;      // 霍尔C引脚
     TIM_TypeDef *tim_ch;    // 使用的定时器
     IRQn_Type irqn;         // 使用的定时器中断号
 }hall_struct;

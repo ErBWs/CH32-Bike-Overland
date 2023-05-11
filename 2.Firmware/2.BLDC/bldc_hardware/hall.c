@@ -18,11 +18,18 @@ uint8 hall_value_read(hall_struct *hall)
     uint8 hall_a;
     uint8 hall_b;
     uint8 hall_c;
+    uint16_t hall_all;
 
     hall_a = gpio_get_level(hall->hall_a_pin);
+    vofaData[hall->hall_a_vofa] = hall_a;
     hall_b = gpio_get_level(hall->hall_b_pin);
+    vofaData[hall->hall_b_vofa] = hall_b;
     hall_c = gpio_get_level(hall->hall_c_pin);
-    return (hall_a*4 + hall_b*2 + hall_c);
+    vofaData[hall->hall_c_vofa] = hall_c;
+
+    hall_all = (hall_a*4 + hall_b*2 + hall_c);
+    vofaData[hall->hall_all_vofa] = hall_all;
+    return hall_all;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -88,6 +95,11 @@ void hall_init(motor_index_enum motor_index, hall_struct *hall)
         hall->tim_ch = TIM4;
         hall->irqn = TIM4_IRQn;
 
+        hall->hall_a_vofa = 10;
+        hall->hall_b_vofa = 11;
+        hall->hall_c_vofa = 12;
+        hall->hall_all_vofa = 13;
+
         interrupt_enable(hall->irqn);                                    // 使能中断
         interrupt_set_priority(hall->irqn, 0<<5|0);                      // 抢占优先级0，次优先级0
     }
@@ -98,6 +110,11 @@ void hall_init(motor_index_enum motor_index, hall_struct *hall)
         hall->hall_c_pin = C8;
         hall->tim_ch = TIM3;
         hall->irqn = TIM3_IRQn;
+
+        hall->hall_a_vofa = 14;
+        hall->hall_b_vofa = 15;
+        hall->hall_c_vofa = 16;
+        hall->hall_all_vofa = 17;
 
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);            // 使能AFIO复用功能模块时钟
         GPIO_PinRemapConfig(GPIO_FullRemap_TIM3, ENABLE);               // 完全重映射

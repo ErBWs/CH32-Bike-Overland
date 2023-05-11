@@ -19,7 +19,7 @@ typedef enum
 #define PWM_PERIOD                  (uint16)(SYSTEM_CLOCK / PWM_FREQUENCY / 2) 
 
 // PWM死区设置
-#define PWM_DEADTIME                (1)
+#define PWM_DEADTIME                (0x1)
 
 // 刹车时占空比 不可更改
 #define BLDC_BRAKE_DUTY             (PWM_PERIOD / 100 * BLDC_BRAKE_PERCENT)

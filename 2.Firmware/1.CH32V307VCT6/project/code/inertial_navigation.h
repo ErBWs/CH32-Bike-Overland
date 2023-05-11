@@ -14,7 +14,7 @@
 
 #define GPS_MAX_POINT   100
 
-#define USE_DISTANCE_STEP 1
+#define USE_DISTANCE_STEP 0
 
 
 typedef enum
