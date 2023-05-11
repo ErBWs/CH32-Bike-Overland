@@ -26,11 +26,11 @@ void switch_init(motor_index_enum motor_index, enable_switch_struct *enable_swit
 {
     if(motor_index == MOTOR_1)
     {
-        enable_switch->switch_en_pin = C11;
+        enable_switch->switch_en_pin = E9;
     }
     else if(motor_index == MOTOR_2)
     {
-        enable_switch->switch_en_pin = E9;
+        enable_switch->switch_en_pin = C11;
     }
 
     gpio_init(enable_switch->switch_en_pin, GPI, 0, GPI_PULL_UP);

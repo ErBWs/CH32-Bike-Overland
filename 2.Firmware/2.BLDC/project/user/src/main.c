@@ -54,7 +54,7 @@
 int main (void)
 {
     // 初始化芯片时钟 工作频率为 144MHz
-    clock_init(SYSTEM_CLOCK_120M);
+    clock_init(SYSTEM_CLOCK_144M);
     // 初始化默认 Debug UART
     debug_init();
 
@@ -176,6 +176,6 @@ int main (void)
         led_control(&motor1_led, &motor1_control, &motor1_pwm_output);
         led_control(&motor2_led, &motor2_control, &motor2_pwm_output);
 
-        VofaLittleEndianSendFrame();
+//        VofaLittleEndianSendFrame();
     }
 }

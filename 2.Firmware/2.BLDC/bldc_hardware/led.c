@@ -63,6 +63,8 @@ void led_control(led_struct *led, motor_struct *motor, pwm_output_struct * pwm_o
     // 电机已使能
     else
     {
+        led_enable_control(led, LED_ON);
+
         // 检查刹车信号是否有效
         if(TIM_GetFlagStatus(pwm_output->tim_ch, TIM_IT_Break) != RESET)
         {
