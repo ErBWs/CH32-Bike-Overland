@@ -12,10 +12,7 @@
 #include "inc_all.h"
 
 
-#define GPS_MAX_POINT   100
-
-#define USE_DISTANCE_STEP 0
-
+#define GPS_MAX_POINT   120
 
 typedef enum
 {
@@ -54,6 +51,7 @@ extern float normalXArray[GPS_MAX_POINT],normalYArray[GPS_MAX_POINT];
 extern float Dx_zero,Dy_zero;
 extern float points_index;
 extern uint8 Bike_Start;
+extern bool generate_update_flag;
 
 //=========Normal=========
 extern bool constant_angle_flag;

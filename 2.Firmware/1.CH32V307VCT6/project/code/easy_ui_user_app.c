@@ -155,7 +155,7 @@ void EventReadPoints(EasyUIPage_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
-#define PATH_TOTAL_COUNTS 1600
+#define PATH_TOTAL_COUNTS 1000
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
@@ -181,19 +181,24 @@ void EventPathGenerate(EasyUIItem_t  *item)
     GlobalBase_GPS_data.longitude = gpsReport.lon * 1e-7;
     beepTime = 800;
     uint8_t status=0;
-    GraphInit(&GlobalGraph, GlobalGraph_NodeBuffer, &GlobalBase_GPS_data, PATH_TOTAL_COUNTS);
-    status|=B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
-    status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
-    status|=B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
-    uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, uint16_t counts);
-    GraphReferNodeConvertInput(&GlobalGraph,gps_data_array,gps_use.point_count);
-    status|=GraphPathGenerate(&GlobalGraph);
-    if(status==1)
+    if(generate_update_flag==true)
     {
-        EasyUIDrawMsgBox("Err check uart msg!");
-        EasyUIBackgroundBlur();
-        return;
+        GraphInit(&GlobalGraph, GlobalGraph_NodeBuffer, &GlobalBase_GPS_data, PATH_TOTAL_COUNTS);
+        status|=B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
+        status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
+        status|=B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
+        uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, uint16_t counts);
+        GraphReferNodeConvertInput(&GlobalGraph,gps_data_array,gps_use.point_count);
+        status|=GraphPathGenerate(&GlobalGraph);
+        if(status==1)
+        {
+            EasyUIDrawMsgBox("Err check uart msg!");
+            EasyUIBackgroundBlur();
+            return;
+        }
+        generate_update_flag = false;
     }
+
 //    BlueToothPrintf("[refer-points]");
 //    for(int i=0;i<gps_use.point_count;i++)
 //    {

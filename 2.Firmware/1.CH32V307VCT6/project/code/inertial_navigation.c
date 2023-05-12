@@ -35,6 +35,7 @@ float Dx_zero = 0, Dy_zero = 0;
 float points_index = 0;
 
 uint8 Bike_Start = 0;
+bool generate_update_flag=true;
 extern EasyUIItem_t itemCNX, itemCNY;
 void gps_handler(gpsState pointStatus) {
     if (opnEnter) {
@@ -77,6 +78,7 @@ void gps_handler(gpsState pointStatus) {
                     gps_use.point_count++;
                 }
                 points_index = gps_use.point_count;
+                generate_update_flag = true;
                 break;
             case CONE:
             {
@@ -146,6 +148,8 @@ void gps_handler(gpsState pointStatus) {
                 }
                 itemCNX.param = &normalXArray[gps_use.point_count-1];
                 itemCNY.param = &normalYArray[gps_use.point_count-1];
+                points_index = gps_use.point_count;
+                generate_update_flag = true;
                 break;
             }
             case PILE:
@@ -156,10 +160,10 @@ void gps_handler(gpsState pointStatus) {
                     break;
                 }
                 beepTime = 400;
-                float dir=1;uint8 point_start = gps_use.point_count;
+                float dir=-1;uint8 point_start = gps_use.point_count;
                 if(pile_print_dir==true)
-                    dir=-1;
-                for(uint16 i=1;i<10;i++)
+                    dir=1;
+                for(int16 i=-1;i<8;i++)
                 {
                     if (constant_angle_flag == false)
                     {
@@ -179,6 +183,8 @@ void gps_handler(gpsState pointStatus) {
                 }
                 itemCNX.param = &normalXArray[gps_use.point_count-1];
                 itemCNY.param = &normalYArray[gps_use.point_count-1];
+                points_index = gps_use.point_count;
+                generate_update_flag = true;
                 break;
             }
             case BASE:
