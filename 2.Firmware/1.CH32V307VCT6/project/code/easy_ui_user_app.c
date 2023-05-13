@@ -10,10 +10,10 @@
 
 extern gps_report_t gpsReport;
 // Pages
-EasyUIPage_t pageWelcome, pageMain, pagePreset, pageSpdPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout,pageGenerateCone,pageGeneratePile;
+EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout,pageGenerateCone,pageGeneratePile;
 
 // Items
-EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS, itemSetting,itemGenCone,itemGenPile;
+EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS,itemSetKgain, itemSetting,itemGenCone,itemGenPile;
 EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
@@ -487,7 +487,7 @@ void MenuInit()
     EasyUIAddPage(&pagePoints, PAGE_LIST);
     EasyUIAddPage(&pageGenerateCone, PAGE_LIST);
     EasyUIAddPage(&pageGeneratePile, PAGE_LIST);
-    EasyUIAddPage(&pageSpdPID, PAGE_LIST);
+    EasyUIAddPage(&pageFlyWheelPID, PAGE_LIST);
     EasyUIAddPage(&pageDirPID, PAGE_LIST);
     EasyUIAddPage(&pageBackMotorPID, PAGE_LIST);
     EasyUIAddPage(&pageBasePoints, PAGE_CUSTOM, PageBasePoints);
@@ -501,9 +501,10 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageMain, &itemRun, "Run", ITEM_MESSAGE, "Running...", EventMainLoop);
     EasyUIAddItem(&pageMain, &itemGPS, "GPS Points", ITEM_JUMP_PAGE, pagePoints.id);
+    EasyUIAddItem(&pageMain, &itemSetKgain, "Set K-gain", ITEM_CHANGE_VALUE, &Global_stanleyController.k_gain, EasyUIEventChangeFloat);
 
 
-    EasyUIAddItem(&pageMain, &itemSpdPID, "Speed PID", ITEM_JUMP_PAGE, pageSpdPID.id);
+    EasyUIAddItem(&pageMain, &itemSpdPID, "Fly-Wheel PID", ITEM_JUMP_PAGE, pageFlyWheelPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);
     EasyUIAddItem(&pageMain, &itemBackMotor, "BackMotor PID", ITEM_JUMP_PAGE, pageBackMotorPID.id);
     EasyUIAddItem(&pageMain, &itemSetting, "Settings", ITEM_JUMP_PAGE, pageSetting.id);
@@ -548,16 +549,16 @@ void MenuInit()
 
 
     // Page Fly speed pid
-    EasyUIAddItem(&pageSpdPID, &titleSpdPID, "[Fly Speed PID]", ITEM_PAGE_DESCRIPTION);
-    EasyUIAddItem(&pageSpdPID, &itemSpdKp, "FlySpeed Kp", ITEM_CHANGE_VALUE, &flySpdPid.Kp, EasyUIEventChangeFloat);
-//    EasyUIAddItem(&pageSpdPID, &itemSpdKi, "FlySpeed Ki", ITEM_CHANGE_VALUE, &flySpdPid.Ki, EasyUIEventChangeFloat);
-//    EasyUIAddItem(&pageSpdPID, &itemSpdKd, "FlySpeed Kd", ITEM_CHANGE_VALUE, &flySpdPid.Kd, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemAngKp, "FlyAngle Kp", ITEM_CHANGE_VALUE, &flyAnglePid.Kp, EasyUIEventChangeFloat);
-//    EasyUIAddItem(&pageSpdPID, &itemAngKi, "FlyAngle Ki", ITEM_CHANGE_VALUE, &flyAnglePid.Ki, EasyUIEventChangeFloat);
-//    EasyUIAddItem(&pageSpdPID, &itemAngKd, "FlyAngle Kd", ITEM_CHANGE_VALUE, &flyAnglePid.Kd, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemAngSpdKp, "FlyAngleSpd Kp", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kp, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageSpdPID, &itemAngSpdKi, "FlyAngleSpd Ki", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Ki, EasyUIEventChangeFloat);
-//    EasyUIAddItem(&pageSpdPID, &itemAngSpdKd, "FlyAngleSpd Kd", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kd, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageFlyWheelPID, &titleSpdPID, "[Fly Wheel PID]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageFlyWheelPID, &itemSpdKp, "FlySpeed Kp", ITEM_CHANGE_VALUE, &flySpdPid.Kp, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageFlyWheelPID, &itemSpdKi, "FlySpeed Ki", ITEM_CHANGE_VALUE, &flySpdPid.Ki, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageFlyWheelPID, &itemSpdKd, "FlySpeed Kd", ITEM_CHANGE_VALUE, &flySpdPid.Kd, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageFlyWheelPID, &itemAngKp, "FlyAngle Kp", ITEM_CHANGE_VALUE, &flyAnglePid.Kp, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageFlyWheelPID, &itemAngKi, "FlyAngle Ki", ITEM_CHANGE_VALUE, &flyAnglePid.Ki, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageFlyWheelPID, &itemAngKd, "FlyAngle Kd", ITEM_CHANGE_VALUE, &flyAnglePid.Kd, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageFlyWheelPID, &itemAngSpdKp, "FlyAngleSpd Kp", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kp, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageFlyWheelPID, &itemAngSpdKi, "FlyAngleSpd Ki", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Ki, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pageFlyWheelPID, &itemAngSpdKd, "FlyAngleSpd Kd", ITEM_CHANGE_VALUE, &flyAngleSpdPid.Kd, EasyUIEventChangeFloat);
     
     // Page direction pid
     EasyUIAddItem(&pageDirPID, &titleDirPID, "[Direction PID]", ITEM_PAGE_DESCRIPTION);
