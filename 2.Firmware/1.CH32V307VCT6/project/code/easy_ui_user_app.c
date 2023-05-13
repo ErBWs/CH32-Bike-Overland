@@ -29,6 +29,7 @@ void EventMainLoop(EasyUIItem_t *item)
     uint8_t status=0;
     if(Bike_Start ==0)
     {
+        motoDutySet(SERVO_PIN,SERVO_MID);
         if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
         {
             functionIsRunning = false;
@@ -36,7 +37,7 @@ void EventMainLoop(EasyUIItem_t *item)
             EasyUIBackgroundBlur();
             return;
         }
-        stanleyControllerInit(&Global_stanleyController,(float)0.05,(float)0.05,&Global_yaw,&Global_v_now,&Global_current_node);
+        stanleyControllerInit(&Global_stanleyController,(float)0.15,(float)0.05,&Global_yaw,&Global_v_now,&Global_current_node);
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
@@ -52,7 +53,7 @@ void EventMainLoop(EasyUIItem_t *item)
         }
         GlobalGraph.is_finish = 0;
         Bike_Start = 2;
-        uint16 temp=4000;
+        uint16 temp=2000;
         while(!opnEnter){
             if (--temp==0)
             {
@@ -63,7 +64,7 @@ void EventMainLoop(EasyUIItem_t *item)
                 IPS096_ShowFloat(60, 14, moveArray.offsetY,3,3);
                 IPS096_SendBuffer();
 //                BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
-                temp = 4000;
+                temp = 2000;
             }
         }
         opnEnter = false;

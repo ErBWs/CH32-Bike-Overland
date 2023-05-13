@@ -294,7 +294,7 @@ uint8_t GraphNode_Diff(nodeGraph_typedef *graph)
     controller->pd_array[graph->total-1] = controller->pd_array[graph->total-2];//give the final node's pd from the last node's
     return 0;
 }
-#define FORECAST_FACTOR 2
+#define FORECAST_FACTOR 10
 static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
 {
     if(!graph->is_init || !graph->has_constructor || !graph->has_stanley)
