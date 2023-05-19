@@ -69,8 +69,8 @@ extern float cone_horizon_distance;
 //==========Pile==========
 extern bool pile_print_dir;
 extern float pile_radius;
-
-
+extern float yaw_angle_bias;
+extern float Global_Raw_Yaw;
 
 
 void GPS_init(void);

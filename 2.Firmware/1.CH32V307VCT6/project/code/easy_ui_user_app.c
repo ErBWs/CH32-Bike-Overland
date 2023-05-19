@@ -13,7 +13,7 @@ extern gps_report_t gpsReport;
 EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout,pageGenerateCone,pageGeneratePile;
 
 // Items
-EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS,itemSetKgain, itemSetting,itemGenCone,itemGenPile;
+EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias, itemSetting,itemGenCone,itemGenPile;
 EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
@@ -27,7 +27,7 @@ void EventMainLoop(EasyUIItem_t *item)
 {
 #if USE_GPS == 1
     uint8_t status=0;
-    if(Bike_Start ==0)
+    if(Bike_Start ==0||Bike_Start==3)
     {
         motoDutySet(SERVO_PIN,SERVO_MID);
         if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
@@ -37,7 +37,7 @@ void EventMainLoop(EasyUIItem_t *item)
             EasyUIBackgroundBlur();
             return;
         }
-        stanleyControllerInit(&Global_stanleyController,(float)0.15,(float)0.05,&Global_yaw,&Global_v_now,&Global_current_node);
+        stanleyControllerInit(&Global_stanleyController,(float)0.3,(float)0.05,&Global_yaw,&Global_v_now,&Global_current_node);
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
@@ -324,12 +324,14 @@ void PageImage(EasyUIPage_t *page)
 void MessegeShowFun(gpsState pointStatus)
 {
 //    IPS096_ClearBuffer();
+    Bike_Start = 3;
     IPS096_ShowStr(0, 2, "satellite-used:");
     IPS096_ShowStr(0, 14, "point-counts:");
     IPS096_ShowStr(0, 26, "hacc:");
     IPS096_ShowStr(0, 38, "yaw:");
-    IPS096_ShowStr(0, 50, "vertical_X:");
-    IPS096_ShowStr(0, 62, "horizontal_Y:");
+    IPS096_ShowStr(0, 50, "gps_yaw:");
+    IPS096_ShowStr(0, 62, "vertical_X:");
+    IPS096_ShowStr(0, 74, "horizontal_Y:");
 
     IPS096_ShowUint(92, 2,gpsReport.satellites_used,2);
     IPS096_ShowUint(92, 14,gps_use.point_count,2);
@@ -337,15 +339,16 @@ void MessegeShowFun(gpsState pointStatus)
     if (constant_angle_flag==true)
         IPS096_ShowFloat(30, 38, constant_angle ,3,3);
     else
-        IPS096_ShowFloat(30, 38, RAD_TO_ANGLE(Global_yaw) ,3,3);
+        IPS096_ShowFloat(30, 38, RAD_TO_ANGLE(Global_Raw_Yaw) ,3,3);
+    IPS096_ShowFloat(30, 50,  RAD_TO_ANGLE(Global_yaw) ,3,3);
 
     float Dx_zeroTemp=Dx_zero,Dy_zeroTemp=Dy_zero;
     switch (pointStatus) {
         case COMMON:
             for(uint16 i=0;i<multiple_counts;i++) {
                 if (constant_angle_flag == false) {
-                    Dx_zeroTemp += distance_step * cosf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                    Dy_zeroTemp += distance_step * sinf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
+                    Dx_zeroTemp += distance_step * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                    Dy_zeroTemp += distance_step * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
                 } else {
                     Dx_zeroTemp += distance_step * cosf(ANGLE_TO_RAD(constant_angle - ref_angle));
                     Dy_zeroTemp += distance_step * sinf(ANGLE_TO_RAD(constant_angle - ref_angle));
@@ -356,8 +359,8 @@ void MessegeShowFun(gpsState pointStatus)
         {
             float dis = cone_total_distance * (2 * cone_total_counts)/ (2 * (cone_total_counts - 1));
             if (constant_angle_flag == false) {
-                Dx_zeroTemp += dis * cosf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                Dy_zeroTemp += dis * sinf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
+                Dx_zeroTemp += dis * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                Dy_zeroTemp += dis * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
             } else {
                 Dx_zeroTemp += dis * cosf(ANGLE_TO_RAD(constant_angle - ref_angle));
                 Dy_zeroTemp += dis * sinf(ANGLE_TO_RAD(constant_angle - ref_angle));
@@ -368,8 +371,8 @@ void MessegeShowFun(gpsState pointStatus)
         {
             float dis = 2* pile_radius;
             if (constant_angle_flag == false) {
-                Dx_zeroTemp += dis * cosf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                Dy_zeroTemp += dis * sinf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
+                Dx_zeroTemp += dis * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                Dy_zeroTemp += dis * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
             } else {
                 Dx_zeroTemp += dis * cosf(ANGLE_TO_RAD(constant_angle - ref_angle));
                 Dy_zeroTemp += dis * sinf(ANGLE_TO_RAD(constant_angle - ref_angle));
@@ -379,8 +382,8 @@ void MessegeShowFun(gpsState pointStatus)
 
         default:;
     }
-    IPS096_ShowFloat(80, 50, Dx_zeroTemp,3,2);
-    IPS096_ShowFloat(80, 62, Dy_zeroTemp,3,2);
+    IPS096_ShowFloat(80, 62, Dx_zeroTemp,3,2);
+    IPS096_ShowFloat(80, 72, Dy_zeroTemp,3,2);
 
 }
 void PageNormalPoints(EasyUIPage_t *page)
@@ -502,7 +505,7 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &itemRun, "Run", ITEM_MESSAGE, "Running...", EventMainLoop);
     EasyUIAddItem(&pageMain, &itemGPS, "GPS Points", ITEM_JUMP_PAGE, pagePoints.id);
     EasyUIAddItem(&pageMain, &itemSetKgain, "Set K-gain", ITEM_CHANGE_VALUE, &Global_stanleyController.k_gain, EasyUIEventChangeFloat);
-
+    EasyUIAddItem(&pageMain, &itemSetYawBias, "Set Yaw-Bias", ITEM_CHANGE_VALUE, &yaw_angle_bias, EasyUIEventChangeFloatForYaw);
 
     EasyUIAddItem(&pageMain, &itemSpdPID, "Fly-Wheel PID", ITEM_JUMP_PAGE, pageFlyWheelPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);

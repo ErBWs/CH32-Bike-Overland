@@ -17,12 +17,12 @@ bool constant_angle_flag = false;
 float constant_angle = 0;
 float distance_step = 1;
 float multiple_counts = 1;
-float ref_angle = 0;
+float ref_angle = 90;
 //==========Cone==========
 bool cone_print_dir = false;    //false:left, true:right.
-float cone_total_counts = 4;
-float cone_total_distance = 6;
-float cone_horizon_distance = 0.707f;
+float cone_total_counts = 5;
+float cone_total_distance = 8;
+float cone_horizon_distance = 0.3f;
 //==========Pile==========
 bool pile_print_dir = false;    //false:left, true:right.
 float pile_radius = 1;
@@ -33,6 +33,8 @@ gps_st gps_data_array[GPS_MAX_POINT] = {0};
 float normalXArray[GPS_MAX_POINT] = {0}, normalYArray[GPS_MAX_POINT] = {0};
 float Dx_zero = 0, Dy_zero = 0;
 float points_index = 0;
+float yaw_angle_bias = 0;
+float Global_Raw_Yaw = 0;
 
 uint8 Bike_Start = 0;
 bool generate_update_flag=true;
@@ -64,8 +66,8 @@ void gps_handler(gpsState pointStatus) {
                         gps_data_array[0].longitude = gpsReport.lon * 1e-7;
                     } else {
                         if (constant_angle_flag == false) {
-                            normalXArray[gps_use.point_count] = distance_step * cosf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                            normalYArray[gps_use.point_count] = distance_step * sinf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
+                            normalXArray[gps_use.point_count] = distance_step * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                            normalYArray[gps_use.point_count] = distance_step * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
                         } else {
                             normalXArray[gps_use.point_count] = distance_step * cosf(ANGLE_TO_RAD(constant_angle - ref_angle));
                             normalYArray[gps_use.point_count] = distance_step * sinf(ANGLE_TO_RAD(constant_angle - ref_angle));
@@ -106,12 +108,12 @@ void gps_handler(gpsState pointStatus) {
                 for (uint8 i=flag; i < counts; i++) {
                     if (i % 2 == 0) {
                         if (constant_angle_flag == false) {
-                            normalXArray[gps_use.point_count] = side_dis * cosf(Global_yaw -(float) (ANGLE_TO_RAD(ref_angle) -side_rad));
-                            normalYArray[gps_use.point_count++] = side_dis * sinf(Global_yaw -(float) (ANGLE_TO_RAD(ref_angle) -side_rad ));
-                            normalXArray[gps_use.point_count] = 2 * side_bias * cosf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                            normalYArray[gps_use.point_count++] = 2 * side_bias * sinf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                            normalXArray[gps_use.point_count] = side_dis * cosf(Global_yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
-                            normalYArray[gps_use.point_count++] = side_dis * sinf(Global_yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
+                            normalXArray[gps_use.point_count] = side_dis * cosf(Global_Raw_Yaw -(float) (ANGLE_TO_RAD(ref_angle) -side_rad));
+                            normalYArray[gps_use.point_count++] = side_dis * sinf(Global_Raw_Yaw -(float) (ANGLE_TO_RAD(ref_angle) -side_rad ));
+                            normalXArray[gps_use.point_count] = 2 * side_bias * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                            normalYArray[gps_use.point_count++] = 2 * side_bias * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                            normalXArray[gps_use.point_count] = side_dis * cosf(Global_Raw_Yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
+                            normalYArray[gps_use.point_count++] = side_dis * sinf(Global_Raw_Yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
                         }else
                         {
                             normalXArray[gps_use.point_count] = side_dis * cosf(ANGLE_TO_RAD(constant_angle) -(float) (ANGLE_TO_RAD(ref_angle) -side_rad));
@@ -123,12 +125,12 @@ void gps_handler(gpsState pointStatus) {
                         }
                     } else {
                         if (constant_angle_flag == false) {
-                            normalXArray[gps_use.point_count] =side_dis * cosf(Global_yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
-                            normalYArray[gps_use.point_count++] =side_dis * sinf(Global_yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
-                            normalXArray[gps_use.point_count] =2 * side_bias * cosf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                            normalYArray[gps_use.point_count++] =2 * side_bias * sinf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle));
-                            normalXArray[gps_use.point_count] =side_dis * cosf(Global_yaw - (float) (ANGLE_TO_RAD(ref_angle) - side_rad));
-                            normalYArray[gps_use.point_count++] =side_dis * sinf(Global_yaw - (float) (ANGLE_TO_RAD(ref_angle) - side_rad));
+                            normalXArray[gps_use.point_count] =side_dis * cosf(Global_Raw_Yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
+                            normalYArray[gps_use.point_count++] =side_dis * sinf(Global_Raw_Yaw - (float) (ANGLE_TO_RAD(ref_angle) + side_rad));
+                            normalXArray[gps_use.point_count] =2 * side_bias * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                            normalYArray[gps_use.point_count++] =2 * side_bias * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
+                            normalXArray[gps_use.point_count] =side_dis * cosf(Global_Raw_Yaw - (float) (ANGLE_TO_RAD(ref_angle) - side_rad));
+                            normalYArray[gps_use.point_count++] =side_dis * sinf(Global_Raw_Yaw - (float) (ANGLE_TO_RAD(ref_angle) - side_rad));
                         }
                         else
                         {
@@ -167,8 +169,8 @@ void gps_handler(gpsState pointStatus) {
                 {
                     if (constant_angle_flag == false)
                     {
-                        normalXArray[gps_use.point_count] =pile_radius * cosf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle+i*dir*60));
-                        normalYArray[gps_use.point_count++] =pile_radius * sinf(Global_yaw - (float) ANGLE_TO_RAD(ref_angle+i*dir*60));
+                        normalXArray[gps_use.point_count] =pile_radius * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle+i*dir*60));
+                        normalYArray[gps_use.point_count++] =pile_radius * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle+i*dir*60));
                     }
                     else
                     {
@@ -199,11 +201,11 @@ void gps_handler(gpsState pointStatus) {
             default:;
         }
     }
-    if (opnForward) {
-
-    }
-    if (opnExit) {
-    }
+//    if (opnForward) {
+//
+//    }
+//    if (opnExit) {
+//    }
 }
 
 

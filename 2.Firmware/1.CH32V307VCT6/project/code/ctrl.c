@@ -30,7 +30,7 @@ void IMUGetCalFun(void)
     IMU_Getdata(&gyro,&acc, IMU_ALL);
     Compass_Read();
     Data_steepest();
-    IMU_update(0.002, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
+    IMU_update(0.002f, &sensor.Gyro_deg, &sensor.Acc_mmss, &imu_data);
     if (gps_read(&gpsReport))
     {
         if(Bike_Start !=0)
@@ -72,23 +72,24 @@ void IMUGetCalFun(void)
 
         Global_yaw = (float)Pi_To_2Pi(INS_Y.INS_Out.psi);
     }
-    else
-    {
-        Global_yaw = (float)Pi_To_2Pi(atan2f(-Mag_Raw.y,Mag_Raw.x)) ;
-    }
+    Global_Raw_Yaw = (float)Pi_To_2Pi(atan2f(-Mag_Raw.y,Mag_Raw.x))- (float)ANGLE_TO_RAD(yaw_angle_bias);
     myTimeStamp+=2;
 }
 
 #define USE_BLUE_TOOTH 0
 void ServoControl(void)
 {
+     static float last_angle = 0;
+
 #if USE_BLUE_TOOTH==1
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
     static uint8 counts=0;
     if(++counts!=20||stagger_flag==1)return;
     counts=0;
+//    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//´¿P
+    last_angle = gps_use.delta;
 //    dynamic_zero = dirPid.pos_out*4/12;
     uint16 duty_input=GetServoDuty(dirPid.pos_out);
 //    if(servo_sport_update_flag==0)
