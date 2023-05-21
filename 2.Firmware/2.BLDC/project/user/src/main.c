@@ -176,6 +176,6 @@ int main (void)
         led_control(&motor1_led, &motor1_control, &motor1_pwm_output);
         led_control(&motor2_led, &motor2_control, &motor2_pwm_output);
 
-//        VofaLittleEndianSendFrame();
+        VofaLittleEndianSendFrame();
     }
 }
