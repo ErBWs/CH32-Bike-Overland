@@ -217,7 +217,7 @@ uint8_t GraphReferNodeInput(nodeGraph_typedef *graph,const double *nodes_set, ui
     }
     return 0;
 }
-uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, uint16_t counts)
+uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, uint16_t counts)
 {
     if(!graph->is_init || !graph->has_constructor)
     {
@@ -236,10 +236,13 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, _gps_st * gps_set, 
     refNodeList[0].X = 0;
     refNodeList[0].Y = 0;
 //    //=========test=========
+    double tempX=0,tempY=0;
     for(uint16_t i=1;i<counts;i++)
     {
-        refNodeList[i].X = normalXArray[i];
-        refNodeList[i].Y = normalYArray[i];
+        tempX += normalXArray[i];
+        tempY += normalYArray[i];
+        refNodeList[i].X = tempX* cosf(ANGLE_TO_RAD(ref_angle))+ tempY* sinf(ANGLE_TO_RAD(ref_angle));
+        refNodeList[i].Y = tempX* sinf(ANGLE_TO_RAD(ref_angle))+ tempY* cosf(ANGLE_TO_RAD(ref_angle));
     }
 //    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
     return 0;
@@ -291,7 +294,7 @@ uint8_t GraphNode_Diff(nodeGraph_typedef *graph)
     controller->pd_array[graph->total-1] = controller->pd_array[graph->total-2];//give the final node's pd from the last node's
     return 0;
 }
-#define FORECAST_FACTOR 2
+#define FORECAST_FACTOR 10
 static uint8_t Stanley_CalculateIndexError(nodeGraph_typedef *graph)
 {
     if(!graph->is_init || !graph->has_constructor || !graph->has_stanley)
