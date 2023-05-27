@@ -14,18 +14,22 @@ extern gps_report_t gpsReport;
 #endif
 //=========Normal=========
 bool constant_angle_flag = false;
+bool normal_gps_enable = false;
 float constant_angle = 0;
 float distance_step = 1;
 float multiple_counts = 1;
-float ref_angle = 90;
+float ref_angle = 0;
+uint8 normal_gps_index[GPS_MAX_POINT] = {0};
 //==========Cone==========
 bool cone_print_dir = false;    //false:left, true:right.
 float cone_total_counts = 5;
 float cone_total_distance = 8;
 float cone_horizon_distance = 0.3f;
+uint8 cone_index[2] = {0};
 //==========Pile==========
 bool pile_print_dir = false;    //false:left, true:right.
 float pile_radius = 1;
+uint8 pile_index[2] = {0};
 
 
 gps_use_st gps_use = {0};
@@ -59,12 +63,30 @@ void gps_handler(gpsState pointStatus) {
                     }
                     gps_use.point_count = (int16) points_index;
                 }
-
+                gps_data_array[gps_use.point_count].latitude = gpsReport.lat * 1e-7;
+                gps_data_array[gps_use.point_count].longitude = gpsReport.lon * 1e-7;
+                if(gps_use.point_count==0)
+                {
+                    GlobalBase_GPS_data.latitude =  gps_data_array[0].latitude;
+                    GlobalBase_GPS_data.longitude =  gps_data_array[0].longitude;
+                }
                 for (uint16 i = 0; i < multiple_counts; i++) {
-                    if (gps_use.point_count == 0) {
-                        gps_data_array[0].latitude = gpsReport.lat * 1e-7;
-                        gps_data_array[0].longitude = gpsReport.lon * 1e-7;
-                    } else {
+                    if(gps_use.point_count==0)
+                    {
+                        gps_use.point_count++;
+                        continue;
+                    }
+                    if(normal_gps_enable == true)
+                    {
+                        double dx_lat,dy_lon;float DX,DY;
+                        latlonTodxdy(GlobalBase_GPS_data.latitude,&dx_lat,&dy_lon);
+                        normalXArray[gps_use.point_count] = DX = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].latitude - GlobalBase_GPS_data.latitude)*dx_lat;
+                        normalYArray[gps_use.point_count] = DY = ANGLE_TO_RAD(gps_data_array[gps_use.point_count].longitude - GlobalBase_GPS_data.longitude)*dy_lon;
+                        Dx_zero = DX* cosf(ANGLE_TO_RAD(ref_angle))+ DY* sinf(ANGLE_TO_RAD(ref_angle));
+                        Dy_zero = -DX* sinf(ANGLE_TO_RAD(ref_angle))+ DY* cosf(ANGLE_TO_RAD(ref_angle));
+                        normal_gps_index[gps_use.point_count] = 1;
+                    }
+                    else{
                         if (constant_angle_flag == false) {
                             normalXArray[gps_use.point_count] = distance_step * cosf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
                             normalYArray[gps_use.point_count] = distance_step * sinf(Global_Raw_Yaw - (float) ANGLE_TO_RAD(ref_angle));
@@ -192,6 +214,11 @@ void gps_handler(gpsState pointStatus) {
             case BASE:
                 memset(&gps_use, 0, sizeof(gps_use_st));
                 memset(gps_data_array, 0, sizeof(gps_st) * GPS_MAX_POINT);
+                memset(normalXArray, 0 ,sizeof(float) * GPS_MAX_POINT);
+                memset(normalYArray, 0 ,sizeof(float) * GPS_MAX_POINT);
+                memset(normal_gps_index, 0 , sizeof(uint8) * GPS_MAX_POINT);
+                memset(cone_index, 0 , sizeof(uint8) *2);
+                memset(pile_index, 0 , sizeof(uint8) *2);
                 Dx_zero = Dy_zero = points_index = 0;
                 GlobalBase_GPS_data.latitude = gpsReport.lat * 1e-7;
                 GlobalBase_GPS_data.longitude = gpsReport.lon * 1e-7;
@@ -207,123 +234,6 @@ void gps_handler(gpsState pointStatus) {
 //    if (opnExit) {
 //    }
 }
-
-
-//void pileHandler(void)
-//{
-//    static uint8 state=0;
-//    switch(state)
-//    {
-//        case 0:
-//            beep_time = 20;
-//            gps_use.z_angle=0;
-//            gps_use.delta = -160;
-//            state = 1;
-//        break;
-//        case 1:
-//            if (gps_use.z_angle >= 360)
-//            {
-//                beep_time = 40;
-//                gps_data = gps_data_array[gps_use.use_point_count];
-//                gps_use.use_point_count++;
-//                state = 0;
-//            }
-//        break;
-//    }
-//}
-
-
-//void two_points_message(double latitude_now, double longitude_now, _gps_st *gps_data,_gps_two_point_st *gps_result)
-//{
-//    double gps_distance,gps_azimuth;
-//    //更新当前的位置姿态
-//    gps_distance = get_two_points_distance(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
-//    gps_azimuth = get_two_points_azimuth(latitude_now, longitude_now, gps_data->latitude, gps_data->longitude);
-//
-//    gps_result->points_distance = gps_distance;
-//    gps_result->points_azimuth = gps_azimuth;
-//}
-
-//float yaw_gps_delta( float azimuth, float yaw)
-//{
-//    float delta;
-//    //0<azimut<90
-//    if(azimuth>=0&&azimuth<90)
-//    {
-//        if (yaw>=0&&yaw<azimuth)
-//        {
-//            delta = azimuth - yaw;
-//            return delta;
-//        }
-//        else if (yaw>=(azimuth+180)&&yaw<360)
-//        {
-//            delta = 360 - yaw + azimuth;
-//            return delta;
-//        }
-//        else
-//        {
-//            delta = yaw - azimuth;
-//            return -delta;
-//        }
-//    }
-//    //90<azimut<180
-//    if (azimuth>=90&&azimuth<180)
-//    {
-//       if (yaw>=0 && yaw<azimuth)
-//       {
-//           delta = azimuth - yaw;
-//           return delta;
-//       }
-//       else if(yaw>=(azimuth+180)&&yaw<360)
-//       {
-//           delta = 360-yaw+azimuth;
-//           return delta;
-//       }
-//       else
-//       {
-//           delta = yaw - azimuth;
-//           return -delta;
-//       }
-//    }
-//    //180<azimut<270
-//    if (azimuth>=180&&azimuth<270)
-//    {
-//        if (yaw>=(azimuth-180)&&yaw<azimuth)
-//        {
-//            delta = azimuth - yaw;
-//            return delta;
-//        }
-//        else if (yaw>=0 && yaw<(azimuth-180))
-//        {
-//            delta = 360 - azimuth + yaw;
-//            return -delta;
-//        }
-//        else if(yaw>=azimuth && yaw<360)
-//        {
-//            delta = yaw - azimuth;
-//            return -delta;
-//        }
-//    }
-//    //270<azimut<360
-//    if (azimuth>=270&&azimuth<=360)
-//    {
-//        if (yaw>=(azimuth-180)&&yaw<azimuth)
-//        {
-//            delta = azimuth - yaw;
-//            return delta;
-//        }
-//        else if (yaw>=azimuth&&yaw<360)
-//        {
-//            delta = yaw - azimuth;
-//            return -delta;
-//        }
-//        else
-//        {
-//            delta = 360 - azimuth + yaw;
-//            return -delta;
-//        }
-//    }
-//}
 
 void gpsTest(void) {
     BlueToothPrintf("%f,%f,%f,%f,%f,%d\n", INS_Y.INS_Out.vn, INS_Y.INS_Out.ve, INS_Y.INS_Out.x_R, INS_Y.INS_Out.y_R,

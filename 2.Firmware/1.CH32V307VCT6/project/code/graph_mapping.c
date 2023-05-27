@@ -239,10 +239,22 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, ui
     double tempX=0,tempY=0;
     for(uint16_t i=1;i<counts;i++)
     {
-        tempX += normalXArray[i];
-        tempY += normalYArray[i];
-        refNodeList[i].X = tempX* cosf(ANGLE_TO_RAD(ref_angle))+ tempY* sinf(ANGLE_TO_RAD(ref_angle));
-        refNodeList[i].Y = tempX* sinf(ANGLE_TO_RAD(ref_angle))+ tempY* cosf(ANGLE_TO_RAD(ref_angle));
+        if(normal_gps_index[i]==0)
+        {
+            tempX = normalXArray[i]* cosf(ANGLE_TO_RAD(-ref_angle))+ normalYArray[i]* sinf(ANGLE_TO_RAD(-ref_angle));
+            tempY = -normalXArray[i]* sinf(ANGLE_TO_RAD(-ref_angle))+ normalYArray[i]* cosf(ANGLE_TO_RAD(-ref_angle));
+            refNodeList[i].X = refNodeList[i-1].X + tempX;
+            refNodeList[i].Y = refNodeList[i-1].Y + tempY;
+        }
+        else
+        {
+            refNodeList[i].X =  normalXArray[i];
+            refNodeList[i].Y =  normalYArray[i];
+        }
+//        tempX += normalXArray[i];
+//        tempY += normalYArray[i];
+//        refNodeList[i].X = tempX* cosf(ANGLE_TO_RAD(ref_angle))+ tempY* sinf(ANGLE_TO_RAD(ref_angle));
+//        refNodeList[i].Y = tempX* sinf(ANGLE_TO_RAD(ref_angle))+ tempY* cosf(ANGLE_TO_RAD(ref_angle));
     }
 //    WGS_84_ConvertToXY(base_gps_data.latitude,base_gps_data.longitude,gps_set,constructor->refNodeList,counts);
     return 0;
@@ -346,8 +358,7 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
     uint8_t state = Stanley_CalculateIndexError(graph);
     if(state == 1)
         return 1;
-    double target_x,target_y,x,y;float delta,temp,alpha=0;
-    float yaw;
+    double target_x,target_y,x,y;float delta,temp,yaw,alpha=0;
     if(controller->target_index!=graph->total-1)
     {
         target_x = node_list[controller->target_index+1].X;
@@ -357,7 +368,6 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
         yaw = *controller->yaw;
         temp = (float)atan2((target_y-y),(target_x-x));
         temp = (float)Pi_To_2Pi(temp);
-//        temp = (float)((target_x-x)<0 ? temp+PI:temp);
         delta = temp - yaw;
         PiPi(delta);
         if(*controller->v_now!=0.0)

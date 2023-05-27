@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=0.5;
+paramType ANGLE_STATIC_BIAS=2.3f;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -196,7 +196,7 @@ void FlyWheelControl(void)
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//½ÇËÙ¶È»·PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>15)
+    if(abs(imu_data.rol)>25)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);

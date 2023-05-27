@@ -14,7 +14,7 @@ EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pag
 
 // Items
 EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias, itemSetting,itemGenCone,itemGenPile;
-EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
+EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemEGFN,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
 EasyUIItem_t titleBackMotorPID, itemBackMotorKp, itemBackMotorKi, itemBackMotorKd, itemBackMotorInMax, itemBackMotorErrMax, itemBackMotorErrMin;
@@ -156,7 +156,7 @@ void EventReadPoints(EasyUIPage_t *item)
     functionIsRunning = false;
     EasyUIBackgroundBlur();
 }
-#define PATH_TOTAL_COUNTS 1000
+#define PATH_TOTAL_COUNTS 1499
 #if PATH_TOTAL_COUNTS > GRAPH_NODE_TOTAL
 #error Too Many Points!
 #endif
@@ -197,6 +197,7 @@ void EventPathGenerate(EasyUIItem_t  *item)
             EasyUIBackgroundBlur();
             return;
         }
+
         generate_update_flag = false;
     }
 
@@ -224,7 +225,7 @@ void EventPathGenerate(EasyUIItem_t  *item)
         if(i%50==0&&i!=0)
         {
             uint32 temp = now_tick;
-            while(now_tick-temp<10);
+            while(now_tick-temp<15);
         }
         BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
     }
@@ -340,7 +341,7 @@ void MessegeShowFun(gpsState pointStatus)
         IPS096_ShowFloat(30, 38, constant_angle ,3,3);
     else
         IPS096_ShowFloat(30, 38, RAD_TO_ANGLE(Global_Raw_Yaw) ,3,3);
-    IPS096_ShowFloat(30, 50,  RAD_TO_ANGLE(Global_yaw) ,3,3);
+    IPS096_ShowFloat(70, 50,  RAD_TO_ANGLE(Global_yaw) ,3,3);
 
     float Dx_zeroTemp=Dx_zero,Dy_zeroTemp=Dy_zero;
     switch (pointStatus) {
@@ -524,7 +525,8 @@ void MenuInit()
     EasyUIAddItem(&pagePoints, &itemCNY, "Det Y", ITEM_CHANGE_VALUE, &normalYArray[0], EasyUIEventChangeFloat);
 
     EasyUIAddItem(&pagePoints, &itemSMC, "Set MulCounts", ITEM_CHANGE_VALUE, &multiple_counts, EasyUIEventChangeUint);
-    EasyUIAddItem(&pagePoints, &itemCYF, "Enable Constant Angle", ITEM_SWITCH, &constant_angle_flag);
+    EasyUIAddItem(&pagePoints, &itemCYF, "Enable Const Angle", ITEM_SWITCH, &constant_angle_flag);
+    EasyUIAddItem(&pagePoints, &itemEGFN, "Enable GPS Normal", ITEM_SWITCH, &normal_gps_enable);
     EasyUIAddItem(&pagePoints, &itemSCY, "Set Constant Angle", ITEM_CHANGE_VALUE, &constant_angle, EasyUIEventChangeFloatForYaw);
     EasyUIAddItem(&pagePoints, &itemSRY, "Set Ref Angle", ITEM_CHANGE_VALUE, &ref_angle, EasyUIEventChangeFloatForYaw);
 

@@ -27,7 +27,7 @@
 #define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS_MAX-1)+2)
 #define NIP_FACTOR_VECTOR_SIZE  (B_REFER_POINT_COUNTS_MAX)
 #define REF_NODE_LIST_SIZE      (B_REFER_POINT_COUNTS_MAX)
-#define GRAPH_NODE_TOTAL        (1600)
+#define GRAPH_NODE_TOTAL        (1500)
 
 
 typedef struct
@@ -78,8 +78,6 @@ typedef struct
     uint8_t  is_finish : 1;
     uint8_t  has_constructor : 1;
     uint8_t  has_stanley : 1;
-
-
 }nodeGraph_typedef,*graphLink_typedef;
 
 extern double                   GlobalNodeVector[NODE_VECTOR_SIZE];

@@ -55,11 +55,12 @@ extern bool generate_update_flag;
 
 //=========Normal=========
 extern bool constant_angle_flag;
+extern bool normal_gps_enable;
 extern float constant_angle;
 extern float distance_step;
 extern float multiple_counts;
 extern float ref_angle;
-
+extern uint8 normal_gps_index[GPS_MAX_POINT];
 //==========Cone==========
 extern bool cone_print_dir;
 extern float cone_total_counts;
@@ -73,12 +74,7 @@ extern float yaw_angle_bias;
 extern float Global_Raw_Yaw;
 
 
-void GPS_init(void);
 void gps_handler(gpsState pointStatus);
-void two_points_message(double latitude_now, double longitude_now, gps_st *gps_data,gps_two_point_st *gps_result);
-float yaw_gps_delta( float azimuth, float yaw);
-void pileHandler(void);
-
 void gpsTest(void);
 
 #endif /* INERTIAL_NAVIGATION_H_ */
