@@ -13,7 +13,7 @@ extern gps_report_t gpsReport;
 EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout,pageGenerateCone,pageGeneratePile;
 
 // Items
-EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias, itemSetting,itemGenCone,itemGenPile;
+EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle,itemSetting,itemGenCone,itemGenPile;
 EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemEGFN,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
@@ -85,6 +85,7 @@ void EventMainLoop(EasyUIItem_t *item)
         if(!stagger_flag)
         {
             status |= Stanley_Control(&GlobalGraph);
+//            gpsConeHandler();
             if(status)
             {
                 functionIsRunning = false;
@@ -102,7 +103,6 @@ void EventMainLoop(EasyUIItem_t *item)
                 break;
             }
         }
-
         if (opnExit)
         {
             Bike_Start = 0;
@@ -507,7 +507,7 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &itemGPS, "GPS Points", ITEM_JUMP_PAGE, pagePoints.id);
     EasyUIAddItem(&pageMain, &itemSetKgain, "Set K-gain", ITEM_CHANGE_VALUE, &Global_stanleyController.k_gain, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSetYawBias, "Set Yaw-Bias", ITEM_CHANGE_VALUE, &yaw_angle_bias, EasyUIEventChangeFloatForYaw);
-
+    EasyUIAddItem(&pageMain, &itemSetStaticAngle, "Set Static-Angle", ITEM_CHANGE_VALUE, &ANGLE_STATIC_BIAS, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSpdPID, "Fly-Wheel PID", ITEM_JUMP_PAGE, pageFlyWheelPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);
     EasyUIAddItem(&pageMain, &itemBackMotor, "BackMotor PID", ITEM_JUMP_PAGE, pageBackMotorPID.id);

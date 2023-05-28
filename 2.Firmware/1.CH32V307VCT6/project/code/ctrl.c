@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=2.3f;
+paramType ANGLE_STATIC_BIAS=0.92f;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -79,25 +79,47 @@ void IMUGetCalFun(void)
 #define USE_BLUE_TOOTH 0
 void ServoControl(void)
 {
-     static float last_angle = 0;
-
+    static uint16 input_duty = 0;
+    static uint8 counts=0;
+    static bool turn_flag=false;
+    counts++;
 #if USE_BLUE_TOOTH==1
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
-    static uint8 counts=0;
-    if(++counts!=20||stagger_flag==1)return;
-    counts=0;
+
+    if(stagger_flag==1)return;
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//纯P
-    last_angle = gps_use.delta;
-//    dynamic_zero = dirPid.pos_out*4/12;
-    uint16 duty_input=GetServoDuty(dirPid.pos_out);
+
+    dynamic_zero = (input_duty- SERVO_MID)*0.008;
+
+    uint16 duty_temp=GetServoDuty(dirPid.pos_out);
+    if(abs(duty_temp-input_duty)> GetServoDuty(2))
+        turn_flag = true;
+    if(turn_flag ==true)
+    {
+        if(abs(duty_temp-input_duty)> GetServoDuty(2) && counts%3==0)
+        {
+            if(duty_temp>input_duty)
+                input_duty++;
+            else if(duty_temp<input_duty)
+                input_duty--;
+        }
+        else
+            turn_flag=false;
+    }
+    else
+    {
+        input_duty = duty_temp;
+    }
+
+
 //    if(servo_sport_update_flag==0)
 //    {
-//        servo_current_duty = duty_input;//记得在缓动不起效果时更新当前duty值
+//        servo_current_duty = input_duty;//记得在缓动不起效果时更新当前duty值
 //    }
-//    ServoSportHandler(&duty_input);
-    pwm_set_duty(SERVO_PIN,duty_input);
+//    ServoSportHandler(&input_duty);
+    pwm_set_duty(SERVO_PIN,input_duty);
 #endif
 }
 uint32_t back_inter_distance=0;
@@ -178,25 +200,25 @@ void FlyWheelControl(void)
     counts++;
 
     temp_x = LPButterworth(sensor.Gyro_deg.x,&Butter_Buffer,&Butter_10HZ_Parameter_Acce);
-    if(counts%5 == 0)
+    if(counts%3 == 0)//16
     {
         fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
         counts=0;
     }
-    if(counts%2 == 0)
+    if(counts%2 == 0)//4
     {
 //        ANGLE_STATIC_BIAS -= fly_wheel_encode * 0.00001f;
 //        if (my_abs(ANGLE_STATIC_BIAS)>6)
 //        {
 //            ANGLE_STATIC_BIAS = ANGLE_STATIC_BIAS<0?-6:6;
 //        }
-        PID_Calculate(&flyAnglePid, (flySpdPid.pos_out<0?-sqrtf(-flySpdPid.pos_out):sqrtf(flySpdPid.pos_out))+ANGLE_STATIC_BIAS,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
+        PID_Calculate(&flyAnglePid, (flySpdPid.pos_out<0?-sqrtf(-flySpdPid.pos_out):sqrtf(flySpdPid.pos_out))+ANGLE_STATIC_BIAS+dynamic_zero,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>25)
+    if(abs(imu_data.rol)>17)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);

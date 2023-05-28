@@ -21,7 +21,7 @@
             #define ANGLE_TO_RAD(x) 	((x) * PI / 180.0)
 #endif
 
-#define B_ORDER                 4
+#define B_ORDER                 3
 #define B_REFER_POINT_COUNTS_MAX    120
 
 #define NODE_VECTOR_SIZE        ((B_ORDER-1)+(B_REFER_POINT_COUNTS_MAX-1)+2)

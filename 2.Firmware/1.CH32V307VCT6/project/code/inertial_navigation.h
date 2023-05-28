@@ -75,6 +75,7 @@ extern float Global_Raw_Yaw;
 
 
 void gps_handler(gpsState pointStatus);
+void gpsConeHandler(void);
 void gpsTest(void);
 
 #endif /* INERTIAL_NAVIGATION_H_ */
