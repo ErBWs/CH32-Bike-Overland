@@ -55,7 +55,7 @@ void systemInit(void)
 #endif
     INS_init();
     EasyUITransitionAnim();
-    backSpdPid.target[NOW]=8;
+    backSpdPid.target[NOW]=6;
 //    motoDutySet(MOTOR_BACK_PIN,3000);
 //    motoDutySet(MOTOR_FLY_PIN,3000);
 //    while(1)

@@ -96,6 +96,7 @@ void EventMainLoop(EasyUIItem_t *item)
             gps_use.delta = RAD_TO_ANGLE(GlobalGraph.Stanley_controller->theta);
             if(GlobalGraph.is_finish)
             {
+                motoDutySet(SERVO_PIN,SERVO_MID);
                 myTimeStamp = 0;
                 functionIsRunning = false;
                 beepTime = 1500;
@@ -105,6 +106,7 @@ void EventMainLoop(EasyUIItem_t *item)
         }
         if (opnExit)
         {
+            motoDutySet(SERVO_PIN,SERVO_MID);
             Bike_Start = 0;
             opnExit = false;
             functionIsRunning = false;
