@@ -218,7 +218,7 @@ void FlyWheelControl(void)
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//½ÇËÙ¶È»·PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>17)
+    if(abs(imu_data.rol)>40)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);
