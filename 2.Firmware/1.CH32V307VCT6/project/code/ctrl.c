@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=0.92f;
+paramType ANGLE_STATIC_BIAS=1.2f;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -91,7 +91,7 @@ void ServoControl(void)
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//纯P
 
-    dynamic_zero = (input_duty- SERVO_MID)*0.008;
+    dynamic_zero = (float)(input_duty- SERVO_MID)*0.008f;
 
     uint16 duty_temp=GetServoDuty(dirPid.pos_out);
     if(abs(duty_temp-input_duty)> GetServoDuty(2))
@@ -143,7 +143,7 @@ void BackMotoControl(void)
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
-    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],(float)-back_wheel_encode);//速度环PID
+    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],-(float)back_wheel_encode);//速度环PID
 //    switch (beg_state) {
 //        case 0:
 //            if(back_maintain_flag==1)
@@ -183,7 +183,7 @@ void BackMotoControl(void)
             }
             break;
     }
-    motoDutySet(MOTOR_BACK_PIN,(int32)backSpdPid.pos_out);
+    motoDutySet(MOTOR_BACK_PIN,-(int32)backSpdPid.pos_out);
 }
 uint8 stagger_flag=1;
 float temp_x;

@@ -310,17 +310,19 @@ void gpsConeHandler(void)
     DY = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - gps_data_array[cone_index[index]].longitude) * dy_lon;
     if(sqrtf(DX*DX+DY*DY)<1&&index<2)
     {
+        beepTime = 800;
         if(index==0)
         {
             backSpdPid.target[NOW]=7;
         }
         else if (index==1)
         {
-            backSpdPid.target[NOW]=10;
+            backSpdPid.target[NOW]=15;
         }
-
         index++;
+
     }
+    if(index >=2)index=0;
 }
 void gpsPileHandler(void)
 {
