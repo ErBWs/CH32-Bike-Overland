@@ -79,7 +79,7 @@ void EventMainLoop(EasyUIItem_t *item)
 ////            vofaData[2] = Global_current_node.X;
 ////            vofaData[3] = Global_current_node.Y;
 ////            VofaLittleEndianSendFrame();
-            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
+//            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
             temp = 4000;
         }
         if(!stagger_flag)

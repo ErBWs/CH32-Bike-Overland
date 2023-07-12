@@ -144,11 +144,18 @@ void pidAllInit(void)
   */
 
 #define SERVO_MAX_ANGLE 10.0
-	PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,0,-0.65f,0,0);//舵机PD
-    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,0,0.3f,0,0);//飞轮速度环纯P
-    PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-10,0,10.5f,0,0);//飞轮角度环PD
-    PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-10,PWM_DUTY_MAX-2,45,0.7f,0);//飞轮角速度环PI
-    PID_Init(&backSpdPid,POSITION_PID,PWM_DUTY_MAX-10,9000,60,4,0);//后轮速度环纯P
+
+    PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,PWM_DUTY_MAX-5,-0.65f,0,0);//舵机PD
+    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,PWM_DUTY_MAX-10,-0.7f,0,0);//飞轮速度环纯P
+    PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-10,0,10.0f,0,0);//飞轮角度环PD
+    PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-10,PWM_DUTY_MAX-5,-45,-0.8f,0);//飞轮角速度环PI-0.8
+    PID_Init(&backSpdPid,POSITION_PID,PWM_DUTY_MAX-10,9000,70,3,0);//后轮速度环纯P
+
+//	PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,0,-0.65f,0,0);//舵机PD
+//    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,0,0.3f,0,0);//飞轮速度环纯P
+//    PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-10,0,10.5f,0,0);//飞轮角度环PD
+//    PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-10,PWM_DUTY_MAX-2,45,0.7f,0);//飞轮角速度环PI
+//    PID_Init(&backSpdPid,POSITION_PID,PWM_DUTY_MAX-10,9000,70,3,0);//后轮速度环纯P
 
 //    PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,0,-0.65f,0,0);//舵机PD
 //    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,0,0.25f,0,0);//飞轮速度环纯P

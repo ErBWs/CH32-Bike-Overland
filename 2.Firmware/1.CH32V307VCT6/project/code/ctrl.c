@@ -1,7 +1,7 @@
 #include "ctrl.h"
 #include "easy_ui.h"
 
-paramType ANGLE_STATIC_BIAS=1.2f;
+paramType ANGLE_STATIC_BIAS=-1.1f;
 
 
 #define MAIN_PIT           TIM1_PIT
@@ -87,11 +87,11 @@ void ServoControl(void)
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
 
-    if(stagger_flag==1)return;
+    if(stagger_flag==1 || Bike_Start!=1 || servo_forbid==1)return;
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//纯P
 
-    dynamic_zero = (float)(input_duty- SERVO_MID)*0.008f;
+//    dynamic_zero = (float)(input_duty- SERVO_MID)*0.008f;
 
     uint16 duty_temp=GetServoDuty(dirPid.pos_out);
     if(abs(duty_temp-input_duty)> GetServoDuty(2))
@@ -125,7 +125,7 @@ void ServoControl(void)
 uint32_t back_inter_distance=0;
 uint8 back_maintain_flag=1;
 int16_t back_wheel_encode=0;
-
+uint8 servo_forbid=0;
 void BackMotoControl(void)
 {
     static uint8 beg_state=0,pitch_state=0;
@@ -143,7 +143,7 @@ void BackMotoControl(void)
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
-    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],-(float)back_wheel_encode);//速度环PID
+    PID_Calculate(&backSpdPid,backSpdPid.target[NOW],(float)back_wheel_encode);//速度环PID
 //    switch (beg_state) {
 //        case 0:
 //            if(back_maintain_flag==1)
@@ -164,26 +164,37 @@ void BackMotoControl(void)
 //    }
     switch (pitch_state) {
         case 0:
-            if(imu_data.pit>15)
+            if(imu_data.pit>8)
             {
-//                backSpdPid.target[NOW]=7;
-                pitch_state=1;
+                servo_forbid = 1;
+                pwm_set_duty(SERVO_PIN,SERVO_MID);
+                backSpdPid.target[NOW]=100;
+                backSpdPid.Ki = 0;
+
                 beepTime = 400;
+                pitch_state=1;
             }
             break;
         case 1:
             if(imu_data.pit<1)
             {
-//                backSpdPid.target[NOW]=7;
-
-                backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
-                backSpdPid.iout = 0;
+                backSpdPid.target[NOW]=8;
+//                backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
+//                backSpdPid.iout = 0;
+                backSpdPid.Ki = 3;
+                back_inter_distance=0;
+                beepTime = 400;
+                pitch_state=2;
+            }
+            break;
+        case 2:
+            if(back_inter_distance>700){
+                servo_forbid = 0;
                 beepTime = 400;
                 pitch_state=0;
             }
-            break;
     }
-    motoDutySet(MOTOR_BACK_PIN,-(int32)backSpdPid.pos_out);
+    motoDutySet(MOTOR_BACK_PIN,(int32)backSpdPid.pos_out);
 }
 uint8 stagger_flag=1;
 float temp_x;
@@ -202,9 +213,12 @@ void FlyWheelControl(void)
     temp_x = LPButterworth(sensor.Gyro_deg.x,&Butter_Buffer,&Butter_10HZ_Parameter_Acce);
     if(counts%3 == 0)//16
     {
-        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
+        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//BlueToothPrintf("%d\n",fly_wheel_encode);
+        dynamic_zero += -0.0018f * (float)fly_wheel_encode;
+        dynamic_zero = Limitation(dynamic_zero,-1,1);
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
+
         counts=0;
     }
     if(counts%2 == 0)//4
@@ -215,10 +229,11 @@ void FlyWheelControl(void)
 //            ANGLE_STATIC_BIAS = ANGLE_STATIC_BIAS<0?-6:6;
 //        }
         PID_Calculate(&flyAnglePid, (flySpdPid.pos_out<0?-sqrtf(-flySpdPid.pos_out):sqrtf(flySpdPid.pos_out))+ANGLE_STATIC_BIAS+dynamic_zero,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
+        BlueToothPrintf("%f\n",dynamic_zero);
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>40)
+    if(abs(imu_data.rol)>50)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);
