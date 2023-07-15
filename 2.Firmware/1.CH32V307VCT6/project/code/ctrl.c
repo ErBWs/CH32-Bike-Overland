@@ -79,7 +79,7 @@ void IMUGetCalFun(void)
 #define USE_BLUE_TOOTH 0
 void ServoControl(void)
 {
-    static uint16 input_duty = 0;
+    static uint16 input_duty = SERVO_MID;
     static uint8 counts=0;
     static bool turn_flag=false;
     counts++;
@@ -176,7 +176,7 @@ void BackMotoControl(void)
             break;
         case 1:
             if (imu_data.pit < 1) {
-                backSpdPid.target[NOW] = 14;
+                backSpdPid.target[NOW] = 8;
                 backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
                 backSpdPid.iout = 0;
                 backSpdPid.Ki = 3;
