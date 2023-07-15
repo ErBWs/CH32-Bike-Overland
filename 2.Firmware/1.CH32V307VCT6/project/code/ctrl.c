@@ -13,7 +13,7 @@ uint16 imu_update_counts=0;
 float dynamic_zero = 0;
 extern double X0,Y0;
 gps_report_t gpsReport;
-
+bool servo_forbid = false;
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
@@ -87,7 +87,7 @@ void ServoControl(void)
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
 
-    if(stagger_flag==1)return;
+    if(stagger_flag==1||servo_forbid==true||Bike_Start!=1)return;
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//纯P
 
@@ -164,24 +164,33 @@ void BackMotoControl(void)
 //    }
     switch (pitch_state) {
         case 0:
-            if(imu_data.pit>15)
-            {
-//                backSpdPid.target[NOW]=7;
-                pitch_state=1;
+            if (imu_data.pit > 8) {
+                servo_forbid = true;
+                pwm_set_duty(SERVO_PIN, SERVO_MID);
+                backSpdPid.target[NOW] = 100;
+                backSpdPid.Ki = 0;
+
                 beepTime = 400;
+                pitch_state = 1;
             }
             break;
         case 1:
-            if(imu_data.pit<1)
-            {
-//                backSpdPid.target[NOW]=7;
-
+            if (imu_data.pit < 1) {
+                backSpdPid.target[NOW] = 14;
                 backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
                 backSpdPid.iout = 0;
+                backSpdPid.Ki = 3;
+                back_inter_distance = 0;
                 beepTime = 400;
-                pitch_state=0;
+                pitch_state = 2;
             }
             break;
+        case 2:
+            if (back_inter_distance > 100) {
+                servo_forbid = false;
+                beepTime = 400;
+                pitch_state = 0;
+            }
     }
     motoDutySet(MOTOR_BACK_PIN,(int32)-backSpdPid.pos_out);
 }
