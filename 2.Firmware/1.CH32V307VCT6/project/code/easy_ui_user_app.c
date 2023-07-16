@@ -30,8 +30,8 @@ void EventMainLoop(EasyUIItem_t *item)
     if(Bike_Start ==0||Bike_Start==3)
     {
         pidClear(&backSpdPid);
-        backSpdPid.target[NOW]=fast_velocity;
-        dirPid.Kp = -0.05f;
+        backSpdPid.target[NOW]=slow_velocity;
+        dirPid.Kp = -0.65f;
         motoDutySet(SERVO_PIN,SERVO_MID);
         if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
         {

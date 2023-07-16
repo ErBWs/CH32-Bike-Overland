@@ -14,7 +14,7 @@ float dynamic_zero = 0;
 extern double X0,Y0;
 gps_report_t gpsReport;
 bool servo_forbid = false;
-float dynamic_gain = 0.07f;
+float dynamic_gain = 0.08f;
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
@@ -95,11 +95,11 @@ void ServoControl(void)
     dynamic_zero = (input_duty- SERVO_MID)*dynamic_gain;
 
     uint16 duty_temp=GetServoDuty(dirPid.pos_out);
-    if(abs(duty_temp-input_duty)> fabs(GetServoDuty(2)-SERVO_MID))
+    if(abs(duty_temp-input_duty)> GetServoDuty(2))
         turn_flag = true;
     if(turn_flag ==true)
     {
-        if(abs(duty_temp-input_duty)> fabs(GetServoDuty(2)-SERVO_MID) && counts%3==0)
+        if(abs(duty_temp-input_duty)> GetServoDuty(2) && counts%3==0)
         {
             if(duty_temp>input_duty)
                 input_duty++;
@@ -113,6 +113,7 @@ void ServoControl(void)
     {
         input_duty = duty_temp;
     }
+//    input_duty = LIMIT(input_duty,0, GetServoDuty(10));
 
 
 //    if(servo_sport_update_flag==0)
@@ -218,16 +219,13 @@ void FlyWheelControl(void)
     }
     if(counts%2 == 0)//4
     {
-//        ANGLE_STATIC_BIAS -= fly_wheel_encode * 0.00001f;
-//        if (my_abs(ANGLE_STATIC_BIAS)>6)
-//        {
-//            ANGLE_STATIC_BIAS = ANGLE_STATIC_BIAS<0?-6:6;
-//        }
+//        dynamic_zero += -0.0003f * (float) fly_wheel_encode;
+//        dynamic_zero = Limitation(dynamic_zero,-5,5);
         PID_Calculate(&flyAnglePid, (flySpdPid.pos_out<0?-sqrtf(-flySpdPid.pos_out):sqrtf(flySpdPid.pos_out))+ANGLE_STATIC_BIAS+dynamic_zero,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>30)
+    if(abs(imu_data.rol)>31)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);

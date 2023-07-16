@@ -142,31 +142,29 @@ void gpsConeHandler(void)
     latlonTodxdy(gps_data_array[cone_index[index]].latitude, &dx_lat, &dy_lon);
     DX =ANGLE_TO_RAD(gpsReport.lat * 1e-7 - gps_data_array[cone_index[index]].latitude) * dx_lat;
     DY = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - gps_data_array[cone_index[index]].longitude) * dy_lon;
-    if(sqrtf(DX*DX+DY*DY)<1.3&&index<9&&cone_index[0]!=0)
+    if(sqrtf(DX*DX+DY*DY)<1&&index<9&&cone_index[0]!=0)
     {
         switch (index) {
             case 0:{
                 beepTime=800;
-                dynamic_gain = 0.11f;
+                backSpdPid.target[NOW]=slow_velocity;
                 break;
             }
             case 1:{
-                beepTime=800;
-                dynamic_gain = 0.06f;
-                backSpdPid.target[NOW]=slow_velocity;
-                dirPid.Kp = -0.55f;
+                dirPid.Kp = -0.65f;
                 break;
             }
             case 2:{
-                beepTime=800;
-                backSpdPid.target[NOW]=fast_velocity;
-                dirPid.Kp = -0.05f;
                 break;
             }
             case 3:{
                 beepTime=800;
-                backSpdPid.target[NOW]=slow_velocity;
+                backSpdPid.target[NOW]=fast_velocity;
+                dirPid.Kp = -0.05f;
                 break;
+//                beepTime=800;
+//                backSpdPid.target[NOW]=slow_velocity;
+//                break;
             }
             case 4:{
                 beepTime=800;
@@ -199,7 +197,7 @@ void gpsConeHandler(void)
         }
         index++;
     }
-    if(index==9){
+    if(index==2){
         index = 0;
     }
 }
