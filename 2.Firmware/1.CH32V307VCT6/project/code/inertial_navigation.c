@@ -196,8 +196,9 @@ void gpsConeHandler(void)
             default:;
         }
         index++;
+
     }
-    if(index==2){
+    if(index==9){
         index = 0;
     }
 }

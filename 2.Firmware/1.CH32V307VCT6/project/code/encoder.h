@@ -11,5 +11,4 @@
 #define ENCODER_BACK_WHEEL_TIM          TIM10_ENCOEDER                   // Timer of encoder
 
 void encoderInit(void);
-void GetDistance();
 #endif

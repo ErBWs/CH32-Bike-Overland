@@ -382,13 +382,3 @@ uint8_t Stanley_Control(nodeGraph_typedef *graph)
     }
     return 0;
 }
-
-
-
-
-
-
-
-
-
-

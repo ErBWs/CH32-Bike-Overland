@@ -43,7 +43,7 @@ extern uint8_t opnEnter, opnExit, opnUp, opnDown;
 #define ROTARY          0
 
 #define BATTERY_ADC_PIN         ADC2_IN2_A2
-#define LOWEST_BATTERY_VOLTAGE  11.1f
+#define LOWEST_BATTERY_VOLTAGE  0.0f
 
 #define SCREEN_WIDTH            160
 #define SCREEN_HEIGHT           80

@@ -4,6 +4,7 @@
 paramType ANGLE_STATIC_BIAS=-0.07f;
 
 
+
 #define MAIN_PIT           TIM1_PIT
 #define BEEP_AND_KEY_PIT   TIM3_PIT
 
@@ -127,7 +128,6 @@ void ServoControl(void)
 uint32_t back_inter_distance=0;
 uint8 back_maintain_flag=1;
 int16_t back_wheel_encode=0;
-
 void BackMotoControl(void)
 {
     static uint8 beg_state=0,pitch_state=0;
@@ -212,9 +212,12 @@ void FlyWheelControl(void)
     temp_x = LPButterworth(sensor.Gyro_deg.x,&Butter_Buffer,&Butter_10HZ_Parameter_Acce);
     if(counts%3 == 0)//16
     {
-        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
+        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//BlueToothPrintf("%d\n",fly_wheel_encode);
+        dynamic_zero += -0.0018f * (float)fly_wheel_encode;
+        dynamic_zero = Limitation(dynamic_zero,-1,1);
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid,0,fly_wheel_encode);//速度环P
+
         counts=0;
     }
     if(counts%2 == 0)//4
@@ -222,9 +225,10 @@ void FlyWheelControl(void)
 //        dynamic_zero += -0.0003f * (float) fly_wheel_encode;
 //        dynamic_zero = Limitation(dynamic_zero,-5,5);
         PID_Calculate(&flyAnglePid, (flySpdPid.pos_out<0?-sqrtf(-flySpdPid.pos_out):sqrtf(flySpdPid.pos_out))+ANGLE_STATIC_BIAS+dynamic_zero,imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
+        BlueToothPrintf("%f\n",dynamic_zero);
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
-
+        
     if(abs(imu_data.rol)>31)
     {
         stagger_flag=1;

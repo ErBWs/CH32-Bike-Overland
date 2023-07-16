@@ -21,7 +21,7 @@ void motoDutySet(pwm_channel_enum pin,int32_t duty)
         if(duty<0)
         {
             duty =-duty;
-            gpio_set_level(MOTOR_BACK_DIR_PIN,GPIO_HIGH);
+            gpio_set_level(MOTOR_BACK_DIR_PIN,GPIO_LOW);
         }
         else if(duty>0)
 		gpio_set_level(MOTOR_BACK_DIR_PIN,GPIO_LOW);
@@ -32,7 +32,7 @@ void motoDutySet(pwm_channel_enum pin,int32_t duty)
         if(duty<0)
         {
             duty =-duty;
-            gpio_set_level(MOTOR_FLY_DIR_PIN,GPIO_HIGH);
+            gpio_set_level(MOTOR_FLY_DIR_PIN,GPIO_LOW);
         }
         else if(duty>0)
         gpio_set_level(MOTOR_FLY_DIR_PIN,GPIO_LOW);
