@@ -66,7 +66,8 @@ extern bool cone_print_dir;
 extern float cone_total_counts;
 extern float cone_total_distance;
 extern float cone_horizon_distance;
-
+extern float slow_velocity;
+extern float fast_velocity;
 //==========Pile==========
 extern bool pile_print_dir;
 extern float pile_radius;

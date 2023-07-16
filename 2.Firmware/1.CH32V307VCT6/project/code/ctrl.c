@@ -14,6 +14,7 @@ float dynamic_zero = 0;
 extern double X0,Y0;
 gps_report_t gpsReport;
 bool servo_forbid = false;
+float dynamic_gain = 0.07f;
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
@@ -91,14 +92,14 @@ void ServoControl(void)
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid,0,(float)gps_use.delta);//纯P
 
-    dynamic_zero = (input_duty- SERVO_MID)*0.008;
+    dynamic_zero = (input_duty- SERVO_MID)*dynamic_gain;
 
     uint16 duty_temp=GetServoDuty(dirPid.pos_out);
-    if(abs(duty_temp-input_duty)> GetServoDuty(2))
+    if(abs(duty_temp-input_duty)> fabs(GetServoDuty(2)-SERVO_MID))
         turn_flag = true;
     if(turn_flag ==true)
     {
-        if(abs(duty_temp-input_duty)> GetServoDuty(2) && counts%3==0)
+        if(abs(duty_temp-input_duty)> fabs(GetServoDuty(2)-SERVO_MID) && counts%3==0)
         {
             if(duty_temp>input_duty)
                 input_duty++;
@@ -169,25 +170,24 @@ void BackMotoControl(void)
                 pwm_set_duty(SERVO_PIN, SERVO_MID);
                 backSpdPid.target[NOW] = 100;
                 backSpdPid.Ki = 0;
-
                 beepTime = 400;
                 pitch_state = 1;
             }
             break;
         case 1:
             if (imu_data.pit < 1) {
-                backSpdPid.target[NOW] = 8;
-                backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
+                backSpdPid.target[NOW] = fast_velocity;
+//                backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
                 backSpdPid.iout = 0;
-                backSpdPid.Ki = 3;
                 back_inter_distance = 0;
                 beepTime = 400;
                 pitch_state = 2;
             }
             break;
         case 2:
-            if (back_inter_distance > 100) {
+            if (back_inter_distance > 250) {
                 servo_forbid = false;
+                backSpdPid.Ki = 3;
                 beepTime = 400;
                 pitch_state = 0;
             }
@@ -227,7 +227,7 @@ void FlyWheelControl(void)
     }
         PID_Calculate(&flyAngleSpdPid,flyAnglePid.pos_out,temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if(abs(imu_data.rol)>17)
+    if(abs(imu_data.rol)>30)
     {
         stagger_flag=1;
         motoDutySet(MOTOR_FLY_PIN,0);

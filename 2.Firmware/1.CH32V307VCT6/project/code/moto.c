@@ -25,7 +25,7 @@ void motoDutySet(pwm_channel_enum pin,int32_t duty)
         }
         else if(duty>0)
 		gpio_set_level(MOTOR_BACK_DIR_PIN,GPIO_LOW);
-        pwm_set_duty(MOTOR_BACK_PIN,duty>PWM_DUTY_MAX?PWM_DUTY_MAX:duty);
+        pwm_set_duty(MOTOR_BACK_PIN,duty>PWM_DUTY_MAX-20?PWM_DUTY_MAX-20:duty);
     }
     else if(pin==MOTOR_FLY_PIN)
     {
@@ -36,7 +36,7 @@ void motoDutySet(pwm_channel_enum pin,int32_t duty)
         }
         else if(duty>0)
         gpio_set_level(MOTOR_FLY_DIR_PIN,GPIO_LOW);
-        pwm_set_duty(MOTOR_FLY_PIN,duty>PWM_DUTY_MAX?PWM_DUTY_MAX:duty);
+        pwm_set_duty(MOTOR_FLY_PIN,duty>PWM_DUTY_MAX-20?PWM_DUTY_MAX-20:duty);
     }
 }
 static uint16_t duty_target=0;
