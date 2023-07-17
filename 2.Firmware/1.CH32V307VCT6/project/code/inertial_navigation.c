@@ -26,7 +26,7 @@ float cone_total_counts = 5;
 float cone_total_distance = 8;
 float cone_horizon_distance = 0.3f;
 float slow_velocity = 8.0f;
-float fast_velocity = 14.0f;
+float fast_velocity = 15.0f;
 uint8 cone_index[9] = {0};
 uint8 cone_count = 0;
 
@@ -142,62 +142,60 @@ void gpsConeHandler(void)
     latlonTodxdy(gps_data_array[cone_index[index]].latitude, &dx_lat, &dy_lon);
     DX =ANGLE_TO_RAD(gpsReport.lat * 1e-7 - gps_data_array[cone_index[index]].latitude) * dx_lat;
     DY = ANGLE_TO_RAD(gpsReport.lon * 1e-7 - gps_data_array[cone_index[index]].longitude) * dy_lon;
-    if(sqrtf(DX*DX+DY*DY)<1&&index<9&&cone_index[0]!=0)
+    if(sqrtf(DX*DX+DY*DY)<1.5&&cone_index[0]!=0)
     {
         switch (index) {
             case 0:{
-                beepTime=800;
-                backSpdPid.target[NOW]=slow_velocity;
+                beepTime=1200;
+                dynamic_gain=0.06f;
+//                backSpdPid.target[NOW]=slow_velocity;
                 break;
             }
             case 1:{
-                dirPid.Kp = -0.65f;
+                beepTime=1200;
+                dynamic_gain=0.008f;
                 break;
             }
             case 2:{
+                static bool flag=false;
+                if(!flag)
+                {
+                    beepTime=1200;
+                    backSpdPid.target[NOW]=slow_velocity;
+                    back_inter_distance = 0;
+                    flag = true;
+                }
+                else if(back_inter_distance>300){
+                    beepTime = 1200;
+                    dirPid.Kp = -0.4f;
+                    flag = false;
+                }
                 break;
             }
             case 3:{
-                beepTime=800;
+                beepTime=1200;
                 backSpdPid.target[NOW]=fast_velocity;
                 dirPid.Kp = -0.05f;
                 break;
-//                beepTime=800;
-//                backSpdPid.target[NOW]=slow_velocity;
-//                break;
             }
             case 4:{
-                beepTime=800;
+                beepTime=1200;
+                backSpdPid.target[NOW]=slow_velocity;
                 dirPid.Kp = -0.65f;
                 break;
             }
             case 5:{
-                beepTime=800;
-                dirPid.Kp = -0.05f;
+                beepTime=1200;
                 backSpdPid.target[NOW]=fast_velocity;
-                break;
-            }
-            case 6:{
-                beepTime=800;
-                backSpdPid.target[NOW]=slow_velocity;
-                break;
-            }
-            case 7:{
-                beepTime=800;
-                dirPid.Kp = -0.65f;
-                break;
-            }
-            case 8:{
-                beepTime=800;
                 dirPid.Kp = -0.05f;
-                backSpdPid.target[NOW]=fast_velocity;
                 break;
             }
             default:;
         }
-        index++;
+        if(index!=2)
+            index++;
     }
-    if(index==2){
+    if(index==6){
         index = 0;
     }
 }

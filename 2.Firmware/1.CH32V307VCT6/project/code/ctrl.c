@@ -14,7 +14,7 @@ float dynamic_zero = 0;
 extern double X0,Y0;
 gps_report_t gpsReport;
 bool servo_forbid = false;
-float dynamic_gain = 0.08f;
+float dynamic_gain = 0.008f;
 void taskTimAllInit(void)
 {
     pit_ms_init(MAIN_PIT, 2);
@@ -99,7 +99,7 @@ void ServoControl(void)
         turn_flag = true;
     if(turn_flag ==true)
     {
-        if(abs(duty_temp-input_duty)> GetServoDuty(2) && counts%3==0)
+        if(abs(duty_temp-input_duty)> GetServoDuty(2))
         {
             if(duty_temp>input_duty)
                 input_duty++;
