@@ -29,9 +29,9 @@ void EventMainLoop(EasyUIItem_t *item)
     uint8_t status=0;
     if(Bike_Start ==0||Bike_Start==3)
     {
-        pidClear(&backSpdPid);
-        backSpdPid.target[NOW]=fast_velocity;
-        dirPid.Kp = -0.05f;
+        cone_handler_index=0;
+        cone_handler_flag = false;
+        dirPid.Kp = -0.045f;
         motoDutySet(SERVO_PIN,SERVO_MID);
         if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
         {
@@ -73,6 +73,8 @@ void EventMainLoop(EasyUIItem_t *item)
         opnEnter = false;
         Bike_Start = 1;
     }
+    pidClear(&backSpdPid);
+    backSpdPid.target[NOW]=fast_velocity;
     while(1)
     {
         static uint16 temp=4000;
