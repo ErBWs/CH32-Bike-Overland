@@ -18,6 +18,12 @@
 //    }ComInfo;
 //    float data;
 //}D_data;
+
+/*==============代办==================
+ * 1.动量轮角速度环动态积分限幅参数 ->慢速限幅大，快速限幅小
+ * 2.死区
+ * 3.缓打角加强
+===================================*/
 extern gps_report_t gpsReport;
 void systemInit();
 extern int16_t back_wheel_encode;

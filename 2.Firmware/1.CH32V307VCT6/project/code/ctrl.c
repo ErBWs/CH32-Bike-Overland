@@ -4,6 +4,7 @@
 paramType ANGLE_STATIC_BIAS = 0.0f;
 
 
+
 #define MAIN_PIT           TIM1_PIT
 #define BEEP_AND_KEY_PIT   TIM3_PIT
 
@@ -206,7 +207,9 @@ void FlyWheelControl(void) {
     temp_x = LPButterworth(sensor.Gyro_deg.x, &Butter_Buffer, &Butter_10HZ_Parameter_Acce);
     if (counts % 3 == 0)//16
     {
-        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
+        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//BlueToothPrintf("%d\n",fly_wheel_encode);
+        dynamic_zero += -0.0018f * (float)fly_wheel_encode;
+        dynamic_zero = Limitation(dynamic_zero,-1,1);
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid, 0, fly_wheel_encode);//ËÙ¶È»·P
         counts = 0;

@@ -80,7 +80,7 @@ void EventMainLoop(EasyUIItem_t *item)
         static uint16 temp=4000;
         if(--temp==0)
         {
-            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
+//            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
             temp = 4000;
         }
         if(!stagger_flag)

@@ -153,6 +153,7 @@ void pidAllInit(void)
     PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-20,PWM_DUTY_MAX-20,46.0f,0.8f,0);//飞轮角速度环PI
 
     PID_Init(&backSpdPid,POSITION_PID,PWM_DUTY_MAX-10,5000,60,2.5f,0.0f);//后轮速度环纯P
+
 //    PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,0,-1.0f,0,0);//舵机PD
 //    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-10,8000,0.8f,0.005f,-0.0f);//飞轮速度环纯P
 //    PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-10,0,23,0,0);//飞轮角度环PD
