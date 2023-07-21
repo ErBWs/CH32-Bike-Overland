@@ -145,8 +145,8 @@ void gpsConeHandler(void) {
             case 0: {
                 if (sqrtf(DX * DX + DY * DY) < 1.7) {
                     beepTime = 1200;
-                    dirPid.Kp = -0.05f;
-                    dynamic_gain = 0.05f;
+                    dirPid.Kp = -0.055f;
+                    dynamic_gain = 0.045f;
                     backSpdPid.target[NOW] = 12;
                     cone_handler_index = 1;
                 }
@@ -171,7 +171,7 @@ void gpsConeHandler(void) {
                         cone_handler_flag = true;
                     }
                 }
-                else if(back_inter_distance > 600) {
+                else if(back_inter_distance > 650) {
                     beepTime = 1200;
                     dirPid.Kp = slow_servo_kp;
                     cone_handler_flag = false;

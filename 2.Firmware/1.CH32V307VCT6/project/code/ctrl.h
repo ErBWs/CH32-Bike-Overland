@@ -10,6 +10,7 @@ extern uint32_t back_inter_distance;
 extern uint8 stagger_flag;
 extern float dynamic_gain;
 extern bool servo_forbid;
+extern uint16 servo_input_duty;
 extern paramType ANGLE_STATIC_BIAS;
 extern float temp_x;
 extern int16_t fly_wheel_encode;

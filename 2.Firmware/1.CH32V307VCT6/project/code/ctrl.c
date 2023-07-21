@@ -74,9 +74,8 @@ void IMUGetCalFun(void) {
 }
 
 #define USE_BLUE_TOOTH 0
-
+uint16 servo_input_duty = SERVO_MID;
 void ServoControl(void) {
-    static uint16 input_duty = SERVO_MID;
     static uint8 counts = 0;
     static bool turn_flag = false;
     counts++;
@@ -88,33 +87,33 @@ void ServoControl(void) {
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid, 0, (float) gps_use.delta);//纯P
 
-    dynamic_zero = (float) (input_duty - SERVO_MID) * dynamic_gain;
+    dynamic_zero = (float) (servo_input_duty - SERVO_MID) * dynamic_gain;
 
     uint16 duty_temp = GetServoDuty(dirPid.pos_out);
-    if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2) - SERVO_MID))
+    if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID))
         turn_flag = true;
     if (turn_flag == true) {
         if (counts % 3 == 0) {
-            if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2) - SERVO_MID)) {
-                if (duty_temp > input_duty)
-                    input_duty++;
-                else if (duty_temp < input_duty)
-                    input_duty--;
+            if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID)) {
+                if (duty_temp > servo_input_duty)
+                    servo_input_duty++;
+                else if (duty_temp < servo_input_duty)
+                    servo_input_duty--;
             } else
                 turn_flag = false;
         }
     } else {
-        input_duty = duty_temp;
+        servo_input_duty = duty_temp;
     }
-//    input_duty = LIMIT(input_duty,GetServoDuty(-10), GetServoDuty(10));
+    servo_input_duty = LIMIT(servo_input_duty,GetServoDuty(-10), GetServoDuty(10));
 
 
 //    if(servo_sport_update_flag==0)
 //    {
-//        servo_current_duty = input_duty;//记得在缓动不起效果时更新当前duty值
+//        servo_current_duty = servo_input_duty;//记得在缓动不起效果时更新当前duty值
 //    }
-//    ServoSportHandler(&input_duty);
-    pwm_set_duty(SERVO_PIN, input_duty);
+//    ServoSportHandler(&servo_input_duty);
+    pwm_set_duty(SERVO_PIN, servo_input_duty);
 #endif
 }
 
@@ -200,7 +199,7 @@ void FlyWheelControl(void) {
     }
     PID_Calculate(&flyAngleSpdPid, flyAnglePid.pos_out, temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if (abs(imu_data.rol) > 31) {
+    if (abs(imu_data.rol) > 35) {
         stagger_flag = 1;
         motoDutySet(MOTOR_FLY_PIN, 0);
         return;
