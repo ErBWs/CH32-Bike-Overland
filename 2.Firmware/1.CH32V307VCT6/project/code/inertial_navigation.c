@@ -28,7 +28,7 @@ float cone_horizon_distance = 0.3f;
 float slow_velocity = 8.0f;
 float fast_velocity = 18.0f;
 float slow_servo_kp = -0.65f;
-float fast_servo_kp = -0.047f;
+float fast_servo_kp = -0.045f;
 
 uint8 cone_index[9] = {0};
 uint8 cone_count = 0;
@@ -145,8 +145,8 @@ void gpsConeHandler(void) {
             case 0: {
                 if (sqrtf(DX * DX + DY * DY) < 1.7) {
                     beepTime = 1200;
-                    dirPid.Kp = -0.053f;
-                    dynamic_gain = 0.11f;
+                    dirPid.Kp = -0.05f;
+                    dynamic_gain = 0.05f;
                     backSpdPid.target[NOW] = 12;
                     cone_handler_index = 1;
                 }

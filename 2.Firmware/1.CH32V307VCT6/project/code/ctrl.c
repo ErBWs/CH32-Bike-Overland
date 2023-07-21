@@ -103,11 +103,10 @@ void ServoControl(void) {
             } else
                 turn_flag = false;
         }
-
     } else {
         input_duty = duty_temp;
     }
-    input_duty = LIMIT(input_duty,0, GetServoDuty(10));
+//    input_duty = LIMIT(input_duty,GetServoDuty(-10), GetServoDuty(10));
 
 
 //    if(servo_sport_update_flag==0)

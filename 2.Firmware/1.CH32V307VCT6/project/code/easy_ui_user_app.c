@@ -31,7 +31,7 @@ void EventMainLoop(EasyUIItem_t *item)
     {
         cone_handler_index=0;
         cone_handler_flag = false;
-        dirPid.Kp = -0.045f;
+        dirPid.Kp = fast_servo_kp;
         motoDutySet(SERVO_PIN,SERVO_MID);
         if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
         {
