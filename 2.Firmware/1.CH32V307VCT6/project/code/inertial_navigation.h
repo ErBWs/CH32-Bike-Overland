@@ -68,6 +68,9 @@ extern float cone_total_distance;
 extern float cone_horizon_distance;
 extern float slow_velocity;
 extern float fast_velocity;
+extern float slow_servo_kp;
+extern float fast_servo_kp;
+
 extern uint8 cone_handler_index;
 extern bool cone_handler_flag;
 //==========Pile==========

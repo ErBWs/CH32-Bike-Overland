@@ -95,7 +95,7 @@ void ServoControl(void) {
     if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2)-SERVO_MID))
         turn_flag = true;
     if (turn_flag == true) {
-        if (counts % 2 == 0) {
+        if (counts % 3 == 0) {
             if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2)-SERVO_MID)) {
                 if (duty_temp > input_duty)
                     input_duty++;
@@ -160,7 +160,7 @@ void BackMotoControl(void) {
 //    }
     switch (pitch_state) {
         case 0:
-            if (imu_data.pit > 8) {
+            if (imu_data.pit > 9) {
                 servo_forbid = true;
                 pwm_set_duty(SERVO_PIN, SERVO_MID);
                 backSpdPid.target[NOW] = 100;
