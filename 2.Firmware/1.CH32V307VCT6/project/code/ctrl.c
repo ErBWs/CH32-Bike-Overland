@@ -4,7 +4,6 @@
 paramType ANGLE_STATIC_BIAS = 0.0f;
 
 
-
 #define MAIN_PIT           TIM1_PIT
 #define BEEP_AND_KEY_PIT   TIM3_PIT
 
@@ -92,11 +91,11 @@ void ServoControl(void) {
     dynamic_zero = (float) (input_duty - SERVO_MID) * dynamic_gain;
 
     uint16 duty_temp = GetServoDuty(dirPid.pos_out);
-    if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2)-SERVO_MID))
+    if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2) - SERVO_MID))
         turn_flag = true;
     if (turn_flag == true) {
         if (counts % 3 == 0) {
-            if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2)-SERVO_MID)) {
+            if (abs(duty_temp - input_duty) > fabs(GetServoDuty(2) - SERVO_MID)) {
                 if (duty_temp > input_duty)
                     input_duty++;
                 else if (duty_temp < input_duty)
@@ -108,7 +107,7 @@ void ServoControl(void) {
     } else {
         input_duty = duty_temp;
     }
-//    input_duty = LIMIT(input_duty,0, GetServoDuty(10));
+    input_duty = LIMIT(input_duty,0, GetServoDuty(10));
 
 
 //    if(servo_sport_update_flag==0)
@@ -140,24 +139,6 @@ void BackMotoControl(void) {
     back_inter_distance += myABS(back_wheel_encode);
 
     PID_Calculate(&backSpdPid, backSpdPid.target[NOW], (float) back_wheel_encode);//速度环PID
-//    switch (beg_state) {
-//        case 0:
-//            if(back_maintain_flag==1)
-//            {
-//                back_inter_distance=0;
-//                beg_state=1;
-//            }
-//        break;
-//        case 1:
-//            backSpdPid.pos_out=2000;
-//            if(back_inter_distance>100)
-//            {
-//                pidClear(&backSpdPid);
-//                back_maintain_flag=0;
-//                beg_state=0;
-//            }
-//        break;
-//    }
     switch (pitch_state) {
         case 0:
             if (imu_data.pit > 9) {
@@ -196,7 +177,6 @@ int16_t fly_wheel_encode = 0;
 
 void FlyWheelControl(void) {
     extern Butter_Parameter Butter_10HZ_Parameter_Acce;
-//    extern Butter_Parameter Butter_80HZ_Parameter_Acce;
     extern Butter_BufferData Butter_Buffer;
 
     static uint8 counts = 0;
@@ -208,19 +188,15 @@ void FlyWheelControl(void) {
     if (counts % 3 == 0)//16
     {
         fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//BlueToothPrintf("%d\n",fly_wheel_encode);
-        dynamic_zero += -0.0018f * (float)fly_wheel_encode;
-        dynamic_zero = Limitation(dynamic_zero,-1,1);
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid, 0, fly_wheel_encode);//速度环P
         counts = 0;
     }
     if (counts % 2 == 0)//4
     {
-//        dynamic_zero += -0.0003f * (float) fly_wheel_encode;
-//        dynamic_zero = Limitation(dynamic_zero,-5,5);
         PID_Calculate(&flyAnglePid, (flySpdPid.pos_out < 0 ? -sqrtf(-flySpdPid.pos_out) : sqrtf(flySpdPid.pos_out)) +
-                                    ANGLE_STATIC_BIAS + dynamic_zero,
-                      imu_data.rol);//角度环PD    printf("A%f\r\n",imu_data.rol);
+                                    ANGLE_STATIC_BIAS + dynamic_zero, imu_data.rol);//角度环PD
+        // printf("A%f\r\n",imu_data.rol);
 //        BlueToothPrintf("%f\r\n",imu_data.rol);
     }
     PID_Calculate(&flyAngleSpdPid, flyAnglePid.pos_out, temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
