@@ -13,7 +13,7 @@ extern gps_report_t gpsReport;
 EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout, pageVoltage, pageGenerateCone,pageGeneratePile;
 
 // Items
-EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemSlowVel, itemFastVel, itemSlowServo, itemFastServo, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle,itemSetting,itemGenCone,itemGenPile;
+EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemSlowVel, itemFastVel, itemTurnVel, itemSlowServo, itemFastServo, itemTurnServo, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle,itemSetting,itemGenCone,itemGenPile;
 EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemEGFN,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
@@ -81,7 +81,7 @@ void EventMainLoop(EasyUIItem_t *item)
         static uint16 temp=4000;
         if(--temp==0)
         {
-//            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
+            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
             temp = 4000;
         }
         if(!stagger_flag)
@@ -518,8 +518,10 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &itemBackMotor, "BackMotor PID", ITEM_JUMP_PAGE, pageBackMotorPID.id);
     EasyUIAddItem(&pageMain, &itemSlowVel, "Set Slow Velocity", ITEM_CHANGE_VALUE, &slow_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemFastVel, "Set Fast Velocity", ITEM_CHANGE_VALUE, &fast_velocity, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemTurnVel, "Set Turn Velocity", ITEM_CHANGE_VALUE, &turn_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSlowServo, "Set Slow Servo", ITEM_CHANGE_VALUE, &slow_servo_kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemFastServo, "Set Fast Servo", ITEM_CHANGE_VALUE, &fast_servo_kp, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemTurnServo, "Set Turn Servo", ITEM_CHANGE_VALUE, &turn_servo_kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSetting, "Settings", ITEM_JUMP_PAGE, pageSetting.id);
 
     // Page GPS points
