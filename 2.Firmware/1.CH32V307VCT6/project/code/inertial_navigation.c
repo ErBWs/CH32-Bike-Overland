@@ -30,7 +30,7 @@ float fast_velocity = 18.0f;
 float turn_velocity = 12.0f;
 float slow_servo_kp = -0.65f;
 float fast_servo_kp = -0.045f;
-float turn_servo_kp = -0.08f;
+float turn_servo_kp = -0.055f;
 uint8 cone_index[9] = {0};
 uint8 cone_count = 0;
 uint8 cone_handler_index = 0;
@@ -158,7 +158,7 @@ void gpsConeHandler(void) {
                     beepTime = 1200;
                     dirPid.Kp = fast_servo_kp;
                     dynamic_gain = 0.008f;
-                    backSpdPid.target[NOW] = fast_velocity - 2;
+                    backSpdPid.target[NOW] = fast_velocity-2;
                     cone_handler_index = 2;
                 }
                 break;
@@ -171,7 +171,8 @@ void gpsConeHandler(void) {
                         back_inter_distance = 0;
                         cone_handler_flag = true;
                     }
-                } else if (back_inter_distance > 650) {
+                }
+                else if(back_inter_distance > 650) {
                     beepTime = 1200;
                     dirPid.Kp = slow_servo_kp;
                     cone_handler_flag = false;
@@ -180,16 +181,10 @@ void gpsConeHandler(void) {
                 break;
             }
             case 3: {
-                if (sqrtf(DX * DX + DY * DY) < 1.7 && cone_handler_flag == false) {
+                if (sqrtf(DX * DX + DY * DY) < 1.7) {
                     beepTime = 1200;
-                    cone_handler_flag = true;
-                    back_inter_distance = 0;
                     backSpdPid.target[NOW] = fast_velocity;
-                } else if ((servo_input_duty > GetServoDuty(-2) && servo_input_duty < GetServoDuty(2)) ||
-                           back_inter_distance > 1400) {
-                    beepTime = 1200;
                     dirPid.Kp = fast_servo_kp;
-                    cone_handler_flag = false;
                     cone_handler_index = 4;
                 }
                 break;

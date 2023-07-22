@@ -81,7 +81,7 @@ void EventMainLoop(EasyUIItem_t *item)
         static uint16 temp=4000;
         if(--temp==0)
         {
-            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
+//            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
             temp = 4000;
         }
         if(!stagger_flag)
@@ -231,7 +231,7 @@ void EventPathGenerate(EasyUIItem_t  *item)
             uint32 temp = now_tick;
             while(now_tick-temp<15);
         }
-        BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+//        BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
     }
 //    BlueToothPrintf("#");
     EasyUIDrawMsgBox("Finish!");
