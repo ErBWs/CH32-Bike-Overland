@@ -16,9 +16,9 @@ extern float temp_x;
 extern int16_t fly_wheel_encode;
 extern uint32_t myTimeStamp;
 void IMUGetCalFun(void);
-void ServoControl(void);
+void ServoControl(int16 encode_val);
 void taskTimAllInit(void);
-void BackMotoControl(void);
+int16 BackMotoControl(void);
 void FlyWheelControl(void);
 void UpdateControl(void);
 #endif

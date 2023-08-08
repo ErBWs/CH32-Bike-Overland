@@ -278,9 +278,10 @@ void TIM1_UP_IRQHandler(void)
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
         IMUGetCalFun();
         UpdateControl();
-        ServoControl();
+        int16 encode_val = BackMotoControl();
+        ServoControl(encode_val);
         FlyWheelControl();
-        BackMotoControl();
+
     }
 }
 

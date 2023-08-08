@@ -75,7 +75,7 @@ void IMUGetCalFun(void) {
 
 #define USE_BLUE_TOOTH 0
 uint16 servo_input_duty = SERVO_MID;
-void ServoControl(void) {
+void ServoControl(int16 encode_val) {
     static uint8 counts = 0;
     static bool turn_flag = false;
     counts++;
@@ -87,7 +87,9 @@ void ServoControl(void) {
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid, 0, (float) gps_use.delta);//´¿P
 
-    dynamic_zero = (float) (servo_input_duty - SERVO_MID) * dynamic_gain;
+    dynamic_zero = (float) (servo_input_duty - SERVO_MID)*(float)abs(encode_val) * dynamic_gain;
+    dynamic_zero = LIMIT(dynamic_zero,-10,10);
+
 
     uint16 duty_temp = GetServoDuty(dirPid.pos_out);
     if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID))
@@ -121,18 +123,19 @@ uint32_t back_inter_distance = 0;
 uint8 back_maintain_flag = 1;
 int16_t back_wheel_encode = 0;
 
-void BackMotoControl(void) {
+int16 BackMotoControl(void) {
     static uint8 beg_state = 0, pitch_state = 0;
     static uint8 counts = 0;
-    if (++counts < 20)return;
+    static uint16 last_encode_val = 0;
+    if (++counts < 20)return last_encode_val;
     counts = 0;
     if (stagger_flag == 1 || Bike_Start != 1) {
         pidClear(&backSpdPid);
         motoDutySet(MOTOR_BACK_PIN, 0);
-        return;
+        return 0;
     }
 
-    back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
+    last_encode_val = back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
@@ -167,6 +170,7 @@ void BackMotoControl(void) {
             }
     }
     motoDutySet(MOTOR_BACK_PIN, (int32) -backSpdPid.pos_out);
+    return last_encode_val;
 }
 
 uint8 stagger_flag = 1;
