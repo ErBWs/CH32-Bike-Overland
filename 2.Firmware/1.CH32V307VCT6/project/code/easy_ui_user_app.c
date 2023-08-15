@@ -10,17 +10,17 @@
 
 extern gps_report_t gpsReport;
 // Pages
-EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout,pageGenerateCone,pageGeneratePile;
+EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout, pageVoltage, pageGenerateCone,pageGeneratePile;
 
 // Items
-EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle,itemSetting,itemGenCone,itemGenPile;
+EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemSlowVel, itemFastVel, itemTurnVel, itemSlowServo, itemFastServo, itemTurnServo, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle,itemSetting,itemGenCone,itemGenPile;
 EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemEGFN,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
 EasyUIItem_t titleBackMotorPID, itemBackMotorKp, itemBackMotorKi, itemBackMotorKd, itemBackMotorInMax, itemBackMotorErrMax, itemBackMotorErrMin;
 EasyUIItem_t itemExp, itemTh;
 EasyUIItem_t titleEle, itemLoop, itemCross, itemLeftR, itemRightR, itemBreak, itemObstacle, itemGarage;
-EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout;
+EasyUIItem_t titleSetting, itemColor, itemListLoop, itemBuzzer, itemSave, itemReset, itemAbout, itemVoltage;
 
 double X0,Y0;
 void EventMainLoop(EasyUIItem_t *item)
@@ -29,7 +29,11 @@ void EventMainLoop(EasyUIItem_t *item)
     uint8_t status=0;
     if(Bike_Start ==0||Bike_Start==3)
     {
+        cone_handler_index=0;
+        cone_handler_flag = false;
+        dirPid.Kp = fast_servo_kp;
         motoDutySet(SERVO_PIN,SERVO_MID);
+        servo_input_duty = SERVO_MID;
         if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
         {
             functionIsRunning = false;
@@ -70,22 +74,20 @@ void EventMainLoop(EasyUIItem_t *item)
         opnEnter = false;
         Bike_Start = 1;
     }
+    pidClear(&backSpdPid);
+    backSpdPid.target[NOW]=fast_velocity;
     while(1)
     {
         static uint16 temp=4000;
         if(--temp==0)
         {
-//            BlueToothPrintf("%f,%f\n",moveArray.offsetX,moveArray.offsetY);
-////            vofaData[2] = Global_current_node.X;
-////            vofaData[3] = Global_current_node.Y;
-////            VofaLittleEndianSendFrame();
 //            BlueToothPrintf("%f,%f\n",Global_current_node.X,Global_current_node.Y);
             temp = 4000;
         }
         if(!stagger_flag)
         {
             status |= Stanley_Control(&GlobalGraph);
-//            gpsConeHandler();
+            gpsConeHandler();
             if(status)
             {
                 functionIsRunning = false;
@@ -229,7 +231,7 @@ void EventPathGenerate(EasyUIItem_t  *item)
             uint32 temp = now_tick;
             while(now_tick-temp<15);
         }
-        BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
+//        BlueToothPrintf("%f,%f\n",GlobalGraph.nodeBuff[i].X,GlobalGraph.nodeBuff[i].Y);
     }
 //    BlueToothPrintf("#");
     EasyUIDrawMsgBox("Finish!");
@@ -275,29 +277,29 @@ void EventChangeBuzzerVolume(EasyUIItem_t *item)
 void PageWelcome(EasyUIPage_t *page)
 {
     static uint8_t count = 50;
-    static float voltage = 0.0;
+    static float voltage = 0.0f;
     if (count++ >= 50)
     {
-        voltage = EasyUIGetBatteryVoltage();
+        voltage = GetBatteryVoltage();
         count = 0;
     }
-    IPS096_ShowStr(143, 106, "Battery Voltage:");
-    IPS096_ShowFloat(209, 121, voltage, 1, 2);
-    IPS096_ShowStr(233, 121, "V");
+    IPS096_ShowStr(0, 2, "Battery Voltage:");
+    IPS096_ShowFloat(60, 40, voltage, 2, 2);
+    IPS096_ShowStr(95, 40, "V");
 
-    IPS096_ShowStr(7, 9, page->itemHead->title);
-    uint8_t len = strlen(page->itemHead->title);
-    IPS096_SetDrawColor(XOR);
-    IPS096_DrawRBox(5, 5, len * FONT_WIDTH + 5, ITEM_HEIGHT, IPS096_penColor, 1);
-    IPS096_SetDrawColor(NORMAL);
-    IPS096_ShowStr(7, 25, "*1.Press <Center> to run");
-    IPS096_ShowStr(7, 41, " 2.Hold <Center> to enter settings");
+//    IPS096_ShowStr(7, 9, page->itemHead->title);
+//    uint8_t len = strlen(page->itemHead->title);
+//    IPS096_SetDrawColor(XOR);
+//    IPS096_DrawRBox(5, 5, len * FONT_WIDTH + 5, ITEM_HEIGHT, IPS096_penColor, 1);
+//    IPS096_SetDrawColor(NORMAL);
+//    IPS096_ShowStr(7, 25, "*1.Press <Center> to run");
+//    IPS096_ShowStr(7, 41, " 2.Hold <Center> to enter settings");
 
-    if (opnEnter)
-    {
-        functionIsRunning = true;
-        EasyUIDrawMsgBox(page->itemHead->msg);
-    }
+//    if (opnEnter)
+//    {
+//        functionIsRunning = true;
+//        EasyUIDrawMsgBox(page->itemHead->msg);
+//    }
 }
 
 
@@ -502,17 +504,24 @@ void MenuInit()
     EasyUIAddPage(&pagePilePoints, PAGE_CUSTOM, PagePilePoints);
     EasyUIAddPage(&pageSetting, PAGE_LIST);
     EasyUIAddPage(&pageAbout, PAGE_CUSTOM, PageAbout);
+    EasyUIAddPage(&pageVoltage, PAGE_CUSTOM, PageWelcome);
 
     // Page Main
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageMain, &itemRun, "Run", ITEM_MESSAGE, "Running...", EventMainLoop);
     EasyUIAddItem(&pageMain, &itemGPS, "GPS Points", ITEM_JUMP_PAGE, pagePoints.id);
     EasyUIAddItem(&pageMain, &itemSetKgain, "Set K-gain", ITEM_CHANGE_VALUE, &Global_stanleyController.k_gain, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pageMain, &itemSetYawBias, "Set Yaw-Bias", ITEM_CHANGE_VALUE, &yaw_angle_bias, EasyUIEventChangeFloatForYaw);
+//    EasyUIAddItem(&pageMain, &itemSetYawBias, "Set Yaw-Bias", ITEM_CHANGE_VALUE, &yaw_angle_bias, EasyUIEventChangeFloatForYaw);
     EasyUIAddItem(&pageMain, &itemSetStaticAngle, "Set Static-Angle", ITEM_CHANGE_VALUE, &ANGLE_STATIC_BIAS, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSpdPID, "Fly-Wheel PID", ITEM_JUMP_PAGE, pageFlyWheelPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);
     EasyUIAddItem(&pageMain, &itemBackMotor, "BackMotor PID", ITEM_JUMP_PAGE, pageBackMotorPID.id);
+    EasyUIAddItem(&pageMain, &itemSlowVel, "Set Slow Velocity", ITEM_CHANGE_VALUE, &slow_velocity, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemFastVel, "Set Fast Velocity", ITEM_CHANGE_VALUE, &fast_velocity, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemTurnVel, "Set Turn Velocity", ITEM_CHANGE_VALUE, &turn_velocity, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemSlowServo, "Set Slow Servo", ITEM_CHANGE_VALUE, &slow_servo_kp, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemFastServo, "Set Fast Servo", ITEM_CHANGE_VALUE, &fast_servo_kp, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemTurnServo, "Set Turn Servo", ITEM_CHANGE_VALUE, &turn_servo_kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSetting, "Settings", ITEM_JUMP_PAGE, pageSetting.id);
 
     // Page GPS points
@@ -522,18 +531,18 @@ void MenuInit()
 
     EasyUIAddItem(&pagePoints, &itemConePoints, "Cone Points", ITEM_JUMP_PAGE, pageConePoints.id);
     EasyUIAddItem(&pagePoints, &itemPilePoints, "Pile Points", ITEM_JUMP_PAGE, pagePilePoints.id);
-    EasyUIAddItem(&pagePoints, &itemSSD, "Set Step Distance", ITEM_CHANGE_VALUE, &distance_step, EasyUIEventChangeFloat);
-    EasyUIAddItem(&pagePoints, &itemCNX, "Det X", ITEM_CHANGE_VALUE, &normalXArray[0], EasyUIEventChangeFloat);
-    EasyUIAddItem(&pagePoints, &itemCNY, "Det Y", ITEM_CHANGE_VALUE, &normalYArray[0], EasyUIEventChangeFloat);
-
-    EasyUIAddItem(&pagePoints, &itemSMC, "Set MulCounts", ITEM_CHANGE_VALUE, &multiple_counts, EasyUIEventChangeUint);
-    EasyUIAddItem(&pagePoints, &itemCYF, "Enable Const Angle", ITEM_SWITCH, &constant_angle_flag);
-    EasyUIAddItem(&pagePoints, &itemEGFN, "Enable GPS Normal", ITEM_SWITCH, &normal_gps_enable);
-    EasyUIAddItem(&pagePoints, &itemSCY, "Set Constant Angle", ITEM_CHANGE_VALUE, &constant_angle, EasyUIEventChangeFloatForYaw);
-    EasyUIAddItem(&pagePoints, &itemSRY, "Set Ref Angle", ITEM_CHANGE_VALUE, &ref_angle, EasyUIEventChangeFloatForYaw);
-
-    EasyUIAddItem(&pagePoints, &itemGenCone, "ConeGenerate Setting", ITEM_JUMP_PAGE, pageGenerateCone.id);
-    EasyUIAddItem(&pagePoints, &itemGenPile, "PileGenerate Setting", ITEM_JUMP_PAGE, pageGeneratePile.id);
+//    EasyUIAddItem(&pagePoints, &itemSSD, "Set Step Distance", ITEM_CHANGE_VALUE, &distance_step, EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pagePoints, &itemCNX, "Det X", ITEM_CHANGE_VALUE, &normalXArray[0], EasyUIEventChangeFloat);
+//    EasyUIAddItem(&pagePoints, &itemCNY, "Det Y", ITEM_CHANGE_VALUE, &normalYArray[0], EasyUIEventChangeFloat);
+//
+//    EasyUIAddItem(&pagePoints, &itemSMC, "Set MulCounts", ITEM_CHANGE_VALUE, &multiple_counts, EasyUIEventChangeUint);
+//    EasyUIAddItem(&pagePoints, &itemCYF, "Enable Const Angle", ITEM_SWITCH, &constant_angle_flag);
+//    EasyUIAddItem(&pagePoints, &itemEGFN, "Enable GPS Normal", ITEM_SWITCH, &normal_gps_enable);
+//    EasyUIAddItem(&pagePoints, &itemSCY, "Set Constant Angle", ITEM_CHANGE_VALUE, &constant_angle, EasyUIEventChangeFloatForYaw);
+//    EasyUIAddItem(&pagePoints, &itemSRY, "Set Ref Angle", ITEM_CHANGE_VALUE, &ref_angle, EasyUIEventChangeFloatForYaw);
+//
+//    EasyUIAddItem(&pagePoints, &itemGenCone, "ConeGenerate Setting", ITEM_JUMP_PAGE, pageGenerateCone.id);
+//    EasyUIAddItem(&pagePoints, &itemGenPile, "PileGenerate Setting", ITEM_JUMP_PAGE, pageGeneratePile.id);
 
     EasyUIAddItem(&pagePoints, &itemSetIndex, "Set Index", ITEM_CHANGE_VALUE, &points_index, EasyUIEventChangeUint);
     EasyUIAddItem(&pagePoints, &itemPathGenerate, "Path Generate", ITEM_MESSAGE, "Generating...", EventPathGenerate);
@@ -582,6 +591,7 @@ void MenuInit()
 
     // Page setting
     EasyUIAddItem(&pageSetting, &titleSetting, "[Settings]", ITEM_PAGE_DESCRIPTION);
+    EasyUIAddItem(&pageSetting, &itemVoltage, "Show Voltage", ITEM_JUMP_PAGE, pageVoltage.id);
     EasyUIAddItem(&pageSetting, &itemColor, "Reversed Color", ITEM_SWITCH, &reversedColor);
     EasyUIAddItem(&pageSetting, &itemListLoop, "List Loop", ITEM_SWITCH, &listLoop);
     
@@ -589,4 +599,5 @@ void MenuInit()
     EasyUIAddItem(&pageSetting, &itemSave, "Save Settings", ITEM_MESSAGE, "Saving...", EasyUIEventSaveSettings);
     EasyUIAddItem(&pageSetting, &itemReset, "Reset Settings", ITEM_MESSAGE, "Resetting...", EasyUIEventResetSettings);
     EasyUIAddItem(&pageSetting, &itemAbout, "<About>", ITEM_JUMP_PAGE, pageAbout.id);
+
 }
