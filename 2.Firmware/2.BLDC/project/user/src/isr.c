@@ -121,13 +121,13 @@ void TIM3_IRQHandler(void)
 
         // 捕获到新的霍尔值
         motor_commutation_finished_callback(
-                &motor2_hall,
-                &motor2_control,
-                &motor2_pwm_input_value,
-                &motor2_pwm_output,
-                &motor2_closed_loop,
-                &motor2_enable_switch,
-                &motor2_speed_filter
+                &motor1_hall,
+                &motor1_control,
+                &motor1_pwm_input_value,
+                &motor1_pwm_output,
+                &motor1_closed_loop,
+                &motor1_enable_switch,
+                &motor1_speed_filter
         );
     }
 
@@ -142,7 +142,7 @@ void TIM3_IRQHandler(void)
     {
         TIM_ClearFlag(TIM3, TIM_FLAG_CC3);
         // 换相超时
-        motor_commutation_timeout_callback(&motor2_control, &motor2_speed_filter);
+        motor_commutation_timeout_callback(&motor1_control, &motor1_speed_filter);
 
     }
 }
@@ -156,13 +156,13 @@ void TIM4_IRQHandler(void)
         TIM_ClearFlag(TIM4, TIM_FLAG_CC1);
         // 捕获到新的霍尔值
         motor_commutation_finished_callback(
-                &motor1_hall,
-                &motor1_control,
-                &motor1_pwm_input_value,
-                &motor1_pwm_output,
-                &motor1_closed_loop,
-                &motor1_enable_switch,
-                &motor1_speed_filter
+                &motor2_hall,
+                &motor2_control,
+                &motor2_pwm_input_value,
+                &motor2_pwm_output,
+                &motor2_closed_loop,
+                &motor2_enable_switch,
+                &motor2_speed_filter
         );
     }
 
@@ -177,7 +177,7 @@ void TIM4_IRQHandler(void)
     {
         TIM_ClearFlag(TIM4, TIM_FLAG_CC3);
         // 换相超时
-        motor_commutation_timeout_callback(&motor1_control, &motor1_speed_filter);
+        motor_commutation_timeout_callback(&motor2_control, &motor2_speed_filter);
     }
 }
 

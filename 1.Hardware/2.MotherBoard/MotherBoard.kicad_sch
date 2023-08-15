@@ -6400,8 +6400,8 @@
     (pin "7" (uuid 10aed8bc-a874-491c-9f2c-c7fbc03b05eb))
     (pin "8" (uuid 27984689-811d-40a2-80b6-7fc5d5f2e2dc))
     (pin "9" (uuid 5b6999a7-81b3-4eab-af20-85ef965a7f77))
-    (pin "MP" (uuid 64584a03-4cd9-4639-b9c0-3643853e090f))
-    (pin "MP" (uuid 64584a03-4cd9-4639-b9c0-3643853e090f))
+    (pin "MP" (uuid 64584a03-4cd9-4639-b9c0-3643853e0910))
+    (pin "MP" (uuid 64584a03-4cd9-4639-b9c0-3643853e0910))
     (instances
       (project "MotherBoard"
         (path "/9bf74166-fa0b-45a3-b1a9-21dd6c95e555"

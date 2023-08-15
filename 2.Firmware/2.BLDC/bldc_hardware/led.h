@@ -7,10 +7,9 @@
 
 #include "zf_common_typedef.h"
 #include "bldc_config.h"
-
+#include "vofa.h"
 #include "motor.h"
 #include "pwm_output.h"
-#include "vofa.h"
 
 
 typedef enum
@@ -26,6 +25,9 @@ typedef struct
     uint16 en_pin;
     uint16 run_pin;
     uint16 err_pin;
+    uint16 en_vofa_pin;
+    uint16 run_vofa_pin;
+    uint16 err_vofa_pin;
 }led_struct;
 
 extern led_struct motor1_led;

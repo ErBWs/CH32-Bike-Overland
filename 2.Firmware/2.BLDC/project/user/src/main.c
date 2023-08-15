@@ -33,8 +33,7 @@
 * 2023-03-31        大W            first version
 ********************************************************************************************************************/
 #include "zf_common_headfile.h"
-#include "user_header.h"
-
+#include "vofa.h"
 #include "hall.h"
 #include "pwm_output.h"
 #include "pwm_input.h"
@@ -141,7 +140,7 @@ int main (void)
     motor_init(MOTOR_2, &motor2_control);
 
     // 设置电机2为N车飞轮电机
-    motor_set_type(&motor2_control, BLDC_MOTOR_MOMENTUM);
+    motor_set_type(&motor2_control, BLDC_MOTOR_TRAVELING);
 
     // N车飞轮极对数为7
     motor_set_polepairs(&motor2_control, 7);
@@ -153,16 +152,17 @@ int main (void)
     pwm_complementary_init(MOTOR_2, &motor2_pwm_output);
     //------------------------电机2初始化-------------------------//
 
-//    // 初始化adc通道，adc用于采集电源电压
+    // 初始化adc通道，adc用于采集电源电压
 //    battery_adc_init();
 
     // 初始化定时器6，用于PI闭环计算
     pit_ms_init(TIM6_PIT, 1);
 
+
     while(1)
     {
 
-//        // 发送数据到虚拟示波器 虚拟示波器下载链接 https://pan.baidu.com/s/198CMXTZsbI3HAEqNXDngBw
+        // 发送数据到虚拟示波器 虚拟示波器下载链接 https://pan.baidu.com/s/198CMXTZsbI3HAEqNXDngBw
 //        virtual_oscilloscope_data_conversion(motor1_control.speed_now/10, motor1_pwm_input_value.cycle*1000,
 //                                             motor2_control.speed_now/10, motor2_pwm_input_value.cycle*1000);
 //        uart_write_buffer(DEBUG_UART_INDEX, virtual_oscilloscope_data, sizeof(virtual_oscilloscope_data));
@@ -179,3 +179,4 @@ int main (void)
         VofaLittleEndianSendFrame();
     }
 }
+
