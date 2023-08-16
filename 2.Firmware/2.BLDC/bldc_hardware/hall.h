@@ -4,10 +4,9 @@
 
 
 
-
+#include "vofa.h"
 #include "zf_common_typedef.h"
 #include "bldc_config.h"
-#include "vofa.h"
 
 
 typedef struct

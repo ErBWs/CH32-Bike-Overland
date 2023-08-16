@@ -478,7 +478,7 @@ void motor_pit_control_callback(
     motor->adc_bus_filter = adc_convert(motor->adc_pin);
 
     // 通过公式转换成电流值，单位ma
-    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 50 * 1000;
+    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 10 * 1000;
 
     // 检查使能开关状态
     motor->enable_status = (MOTOR_EN_STATUS_enum)switch_check(enable_switch);
