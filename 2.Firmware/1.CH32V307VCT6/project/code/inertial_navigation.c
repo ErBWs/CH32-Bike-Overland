@@ -25,12 +25,12 @@ bool cone_print_dir = false;    //false:left, true:right.
 float cone_total_counts = 5;
 float cone_total_distance = 8;
 float cone_horizon_distance = 0.3f;
-float slow_velocity = 8.0f;
-float fast_velocity = 18.0f;
-float turn_velocity = 12.0f;
-float slow_servo_kp = -0.65f;
-float fast_servo_kp = -0.045f;
-float turn_servo_kp = -0.055f;
+float slow_velocity = 12.0f;
+float fast_velocity = 26.0f;
+float turn_velocity = 18.0f;
+float slow_servo_kp = -0.1f;
+float fast_servo_kp = -0.02f;//-0.045f;
+float turn_servo_kp = -0.1f;
 uint8 cone_index[9] = {0};
 uint8 cone_count = 0;
 uint8 cone_handler_index = 0;
@@ -48,6 +48,7 @@ float Dx_zero = 0, Dy_zero = 0;
 float points_index = 0;
 float yaw_angle_bias = 0;
 float Global_Raw_Yaw = 0;
+float Global_k_gain = 0.25f;
 
 uint8 Bike_Start = 0;
 bool generate_update_flag = true;
@@ -144,28 +145,30 @@ void gpsConeHandler(void) {
     if (cone_index[0] != 0) {
         switch (cone_handler_index) {
             case 0: {
-                if (sqrtf(DX * DX + DY * DY) < 1.7) {
+                if (sqrtf(DX * DX + DY * DY) < 1.8) {
                     beepTime = 1200;
-                    dirPid.Kp = turn_servo_kp;
-                    dynamic_gain = 0.045f;
+                    setSmoothKp(&dirPid,turn_servo_kp,800);
+//                    dirPid.Kp = turn_servo_kp;
+                    dynamic_gain = turn_dynamic_gain;
                     backSpdPid.target[NOW] = turn_velocity;
                     cone_handler_index = 1;
                 }
                 break;
             }
             case 1: {
-                if (sqrtf(DX * DX + DY * DY) < 2.2) {
+                if (sqrtf(DX * DX + DY * DY) < 2) {
                     beepTime = 1200;
-                    dirPid.Kp = fast_servo_kp;
-                    dynamic_gain = 0.008f;
-                    backSpdPid.target[NOW] = fast_velocity-2;
+                    setSmoothKp(&dirPid,fast_servo_kp,2000);
+//                    dirPid.Kp = fast_servo_kp;
+                    dynamic_gain = normal_dynamic_gain;
+                    backSpdPid.target[NOW] = fast_velocity-1;
                     cone_handler_index = 2;
                 }
                 break;
             }
             case 2: {
                 if (cone_handler_flag == false) {
-                    if (sqrtf(DX * DX + DY * DY) < 1.7) {
+                    if (sqrtf(DX * DX + DY * DY) < 1.8) {
                         beepTime = 1200;
                         backSpdPid.target[NOW] = slow_velocity;
                         back_inter_distance = 0;
@@ -175,22 +178,24 @@ void gpsConeHandler(void) {
                 else if(back_inter_distance > 650) {
                     beepTime = 1200;
                     dirPid.Kp = slow_servo_kp;
+                    dynamic_gain = turn_dynamic_gain;
                     cone_handler_flag = false;
                     cone_handler_index = 3;
                 }
                 break;
             }
             case 3: {
-                if (sqrtf(DX * DX + DY * DY) < 1.7) {
+                if (sqrtf(DX * DX + DY * DY) < 1.8) {
                     beepTime = 1200;
                     backSpdPid.target[NOW] = fast_velocity;
+                    dynamic_gain = normal_dynamic_gain;
                     dirPid.Kp = fast_servo_kp;
                     cone_handler_index = 4;
                 }
                 break;
             }
             case 4: {
-                if (sqrtf(DX * DX + DY * DY) < 1.7) {
+                if (sqrtf(DX * DX + DY * DY) < 1.8) {
                     beepTime = 1200;
                     backSpdPid.target[NOW] = slow_velocity;
                     dirPid.Kp = slow_servo_kp;
@@ -199,7 +204,7 @@ void gpsConeHandler(void) {
                 break;
             }
             case 5: {
-                if (sqrtf(DX * DX + DY * DY) < 1.7) {
+                if (sqrtf(DX * DX + DY * DY) < 1.8) {
                     beepTime = 1200;
                     backSpdPid.target[NOW] = fast_velocity;
                     dirPid.Kp = fast_servo_kp;
@@ -210,10 +215,6 @@ void gpsConeHandler(void) {
             default:;
         }
     }
-}
-
-void gpsPileHandler(void) {
-
 }
 
 void gpsTest(void) {

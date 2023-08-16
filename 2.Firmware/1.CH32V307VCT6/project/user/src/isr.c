@@ -305,6 +305,7 @@ void TIM3_IRQHandler(void)
         EasyKeyScanKeyState();
         EasyKeyUserApp();
         EasyUIKeyActionMonitor();
+        dynamicKpHandler(&dirPid);
     }
 }
 

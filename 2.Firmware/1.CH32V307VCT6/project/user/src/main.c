@@ -33,13 +33,13 @@ int main (void)
     clock_init(SYSTEM_CLOCK_144M);                                              // 初始化芯片时钟 工作频率为 120MHz
     debug_init();                                                               // 初始化默认 Debug UART
     systemInit();
-//    motoDutySet(MOTOR_FLY_PIN,-3000);
+//    motoDutySet(MOTOR_BACK_PIN,-2000);
     while(1)
     {
 //        fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);
 //        encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
 //        BlueToothPrintf("%d\r\n",fly_wheel_encode);
-        system_delay_ms(25);
+        system_delay_ms(30);
 //        BlueToothPrintf("%d\n",back_wheel_encode);
 //        BlueToothPrintf("%f\n",backSpdPid.pos_out);
         EasyUI(20);

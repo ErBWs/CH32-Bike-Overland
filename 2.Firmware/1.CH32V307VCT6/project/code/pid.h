@@ -6,8 +6,10 @@
 #define ABS(x)		(((x)>0)? (x): -(x))
 #define pi 3.14159265358979
 
-#define Limitation(x, low, high) ((x) < (low) ? (low) : ((x) > (high) ? (high) : (x)))
+#define SERVO_MAX_ANGLE 40.0
 
+#define Limitation(x, low, high) ((x) < (low) ? (low) : ((x) > (high) ? (high) : (x)))
+#define SMOOTH_KP_PER_TICK_MS       10
 
 enum {
     LLAST	= 0,
@@ -46,6 +48,10 @@ typedef struct _PID_Typedef
     uint32_t pid_mode;
     float MaxOutput;				//输出限幅
     float IntegralLimit;		    //积分限幅
+
+    float smoothTargetKp;
+    float sport_kp_step;
+    bool is_sporting;
 } PID_TypeDef;
 
 // PID struct define
@@ -70,6 +76,8 @@ void PID_Reset(PID_TypeDef	*pid, float kp, float ki, float kd);
 float PID_Calculate(PID_TypeDef *pid, float target, float feedback);
 void pidAllInit(void);
 void pidClear(PID_TypeDef *pid);
+void setSmoothKp(PID_TypeDef *pid, float targetKp ,float ms);
+void dynamicKpHandler(PID_TypeDef *pid);
 #endif
 
 
