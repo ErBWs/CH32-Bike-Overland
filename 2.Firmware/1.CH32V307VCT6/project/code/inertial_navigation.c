@@ -27,7 +27,7 @@ float cone_total_distance = 8;
 float cone_horizon_distance = 0.3f;
 float slow_velocity = 12.0f;
 float fast_velocity = 30.0f;
-float turn_velocity = 18.0f;
+float turn_velocity = 14.0f;
 float ramp_velocity = 22.0f;
 float slow_servo_kp = -0.13f;
 float fast_servo_kp = -0.026f;//-0.045f;
@@ -146,7 +146,7 @@ void gpsConeHandler(void) {
     if (cone_index[0] != 0) {
         switch (cone_handler_index) {
             case 0 :{
-                if (sqrtf(DX * DX + DY * DY) < 1.5) {
+                if (sqrtf(DX * DX + DY * DY) < 1.7) {
                     beepTime = 1200;
                     backSpdPid.target[NOW] = ramp_velocity;
                     cone_handler_index = 1;
@@ -154,7 +154,7 @@ void gpsConeHandler(void) {
                 break;
             }
             case 1 :{
-                if (sqrtf(DX * DX + DY * DY) < 1.5) {
+                if (sqrtf(DX * DX + DY * DY) < 1.7) {
                     beepTime = 1200;
                     backSpdPid.target[NOW] = fast_velocity;
                     cone_handler_index = 2;
@@ -163,7 +163,7 @@ void gpsConeHandler(void) {
             }
             case 2: {
                 if (cone_handler_flag == false) {
-                    if (sqrtf(DX * DX + DY * DY) < 1.8) {
+                    if (sqrtf(DX * DX + DY * DY) < 2) {
                         beepTime = 1200;
                         backSpdPid.target[NOW] = turn_velocity;
                         back_inter_distance = 0;
@@ -180,7 +180,7 @@ void gpsConeHandler(void) {
                 break;
             }
             case 3: {
-                if (sqrtf(DX * DX + DY * DY) < 1.8) {
+                if (sqrtf(DX * DX + DY * DY) < 2) {
                     beepTime = 1200;
                     setSmoothKp(&dirPid,fast_servo_kp,2000);
 //                    dirPid.Kp = fast_servo_kp;
@@ -193,7 +193,7 @@ void gpsConeHandler(void) {
             }
             case 4: {
                 if (cone_handler_flag == false) {
-                    if (sqrtf(DX * DX + DY * DY) < 1.8) {
+                    if (sqrtf(DX * DX + DY * DY) < 2) {
                         beepTime = 1200;
                         backSpdPid.target[NOW] = slow_velocity;
                         back_inter_distance = 0;
@@ -210,7 +210,7 @@ void gpsConeHandler(void) {
                 break;
             }
             case 5: {
-                if (sqrtf(DX * DX + DY * DY) < 1.8) {
+                if (sqrtf(DX * DX + DY * DY) < 2) {
                     beepTime = 1200;
                     backSpdPid.target[NOW] = fast_velocity;
                     dynamic_gain = normal_dynamic_gain;
@@ -221,7 +221,7 @@ void gpsConeHandler(void) {
                 break;
             }
             case 6: {
-                if (sqrtf(DX * DX + DY * DY) < 1.8) {
+                if (sqrtf(DX * DX + DY * DY) < 2) {
                     beepTime = 1200;
                     backSpdPid.target[NOW] = slow_velocity;
                     dirPid.Kp = slow_servo_kp;

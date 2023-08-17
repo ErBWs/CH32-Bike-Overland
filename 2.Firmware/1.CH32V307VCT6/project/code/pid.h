@@ -6,7 +6,7 @@
 #define ABS(x)		(((x)>0)? (x): -(x))
 #define pi 3.14159265358979
 
-#define SERVO_MAX_ANGLE 40.0
+#define SERVO_MAX_ANGLE 25.0
 
 #define Limitation(x, low, high) ((x) < (low) ? (low) : ((x) > (high) ? (high) : (x)))
 #define SMOOTH_KP_PER_TICK_MS       10
