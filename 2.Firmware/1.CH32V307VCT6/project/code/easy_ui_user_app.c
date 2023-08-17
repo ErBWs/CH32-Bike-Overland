@@ -13,7 +13,7 @@ extern gps_report_t gpsReport;
 EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout, pageVoltage, pageGenerateCone,pageGeneratePile;
 
 // Items
-EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemNorDynaGain, itemTurnDynaGain,itemSlowVel, itemFastVel, itemTurnVel, itemSlowServo, itemFastServo, itemTurnServo, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle,itemSetting,itemGenCone,itemGenPile;
+EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemNorDynaGain, itemTurnDynaGain,itemSlowVel, itemFastVel, itemTurnVel, itemRampVel, itemSlowServo, itemFastServo, itemTurnServo, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle, itemSetServoCalibration, itemSetServoDitherFactor, itemSetting,itemGenCone,itemGenPile;
 EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemEGFN,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
@@ -77,6 +77,7 @@ void EventMainLoop(EasyUIItem_t *item)
     }
     pidClear(&backSpdPid);
     backSpdPid.target[NOW]=fast_velocity;
+    anti_dither_flag = true;
     while(1)
     {
         static uint16 temp=4000;
@@ -104,12 +105,14 @@ void EventMainLoop(EasyUIItem_t *item)
                 functionIsRunning = false;
                 beepTime = 1500;
                 Bike_Start = 0;
+                anti_dither_flag = false;
                 break;
             }
         }
         if (opnExit)
         {
             motoDutySet(SERVO_PIN,SERVO_MID);
+            anti_dither_flag = false;
             Bike_Start = 0;
             opnExit = false;
             functionIsRunning = false;
@@ -514,6 +517,8 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &itemSetKgain, "Set K-gain", ITEM_CHANGE_VALUE, &Global_k_gain, EasyUIEventChangeFloat);
 //    EasyUIAddItem(&pageMain, &itemSetYawBias, "Set Yaw-Bias", ITEM_CHANGE_VALUE, &yaw_angle_bias, EasyUIEventChangeFloatForYaw);
     EasyUIAddItem(&pageMain, &itemSetStaticAngle, "Set Static-Angle", ITEM_CHANGE_VALUE, &ANGLE_STATIC_BIAS, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemSetServoCalibration, "Set Servo-Cali", ITEM_CHANGE_VALUE, &global_servo_calibration, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemSetServoDitherFactor, "Set Dither-Factor", ITEM_CHANGE_VALUE, &servo_dither_factor, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSpdPID, "Fly-Wheel PID", ITEM_JUMP_PAGE, pageFlyWheelPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);
     EasyUIAddItem(&pageMain, &itemBackMotor, "BackMotor PID", ITEM_JUMP_PAGE, pageBackMotorPID.id);
@@ -523,6 +528,7 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &itemSlowVel, "Set Slow Velocity", ITEM_CHANGE_VALUE, &slow_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemFastVel, "Set Fast Velocity", ITEM_CHANGE_VALUE, &fast_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemTurnVel, "Set Turn Velocity", ITEM_CHANGE_VALUE, &turn_velocity, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemRampVel, "Set Ramp Velocity", ITEM_CHANGE_VALUE, &ramp_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSlowServo, "Set Slow Servo", ITEM_CHANGE_VALUE, &slow_servo_kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemFastServo, "Set Fast Servo", ITEM_CHANGE_VALUE, &fast_servo_kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemTurnServo, "Set Turn Servo", ITEM_CHANGE_VALUE, &turn_servo_kp, EasyUIEventChangeFloat);

@@ -281,7 +281,6 @@ void TIM1_UP_IRQHandler(void)
         int16 encode_val = BackMotoControl();
         ServoControl(encode_val);
         FlyWheelControl();
-
     }
 }
 

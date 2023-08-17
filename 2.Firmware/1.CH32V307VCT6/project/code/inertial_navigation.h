@@ -69,6 +69,7 @@ extern float cone_horizon_distance;
 extern float slow_velocity;
 extern float fast_velocity;
 extern float turn_velocity;
+extern float ramp_velocity;
 extern float slow_servo_kp;
 extern float fast_servo_kp;
 extern float turn_servo_kp;

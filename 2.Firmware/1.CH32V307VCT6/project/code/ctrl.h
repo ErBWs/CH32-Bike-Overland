@@ -13,6 +13,8 @@ extern float normal_dynamic_gain;
 extern float turn_dynamic_gain;
 extern bool servo_forbid;
 extern uint16 servo_input_duty;
+extern bool anti_dither_flag;
+extern float servo_dither_factor;
 extern paramType ANGLE_STATIC_BIAS;
 extern float temp_x;
 extern int16_t fly_wheel_encode;

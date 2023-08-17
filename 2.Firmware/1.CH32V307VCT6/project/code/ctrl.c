@@ -16,13 +16,14 @@ gps_report_t gpsReport;
 bool servo_forbid = false;
 float dynamic_gain = 0.05f;
 float normal_dynamic_gain = 0.03f;
-float turn_dynamic_gain = 0.5f;
+float turn_dynamic_gain = 0.55f;
 
 void taskTimAllInit(void) {
     pit_ms_init(MAIN_PIT, 2);
     pit_ms_init(BEEP_AND_KEY_PIT, 10);
     interrupt_set_priority(TIM1_UP_IRQn, (1 << 5) | 1);
     interrupt_set_priority(TIM3_IRQn, (2 << 5) | 2);
+    servo_input_duty = SERVO_MID;
 }
 
 void IMUGetCalFun(void) {
@@ -76,7 +77,9 @@ void IMUGetCalFun(void) {
 }
 
 #define USE_BLUE_TOOTH 0
-uint16 servo_input_duty = SERVO_MID;
+uint16 servo_input_duty;
+float servo_dither_factor = -0.4f;
+bool anti_dither_flag = false;
 void ServoControl(int16 encode_val) {
     static uint8 counts = 0;
     static bool turn_flag = false;
@@ -85,19 +88,21 @@ void ServoControl(int16 encode_val) {
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
 
-    if (stagger_flag == 1 || servo_forbid == true || Bike_Start != 1)return;
+//    if (stagger_flag == 1 || servo_forbid == true || Bike_Start != 1)return;
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid, 0, (float) gps_use.delta);//´¿P
 
     dynamic_zero = (float) (servo_input_duty - SERVO_MID)*(float)abs(encode_val) * dynamic_gain/100;
-    dynamic_zero = LIMIT(dynamic_zero,-6,6);
+    dynamic_zero = LIMIT(dynamic_zero,-8,8);
     if(fabsf(dynamic_zero)<0.7)dynamic_zero=0;
 //    BlueToothPrintf("%f\r\n",dynamic_zero);
 
-
+    if(anti_dither_flag){
+        dirPid.pos_out += ((float)imu660ra_gyro_z/100 * servo_dither_factor);
+    }
     uint16 duty_temp = GetServoDuty(dirPid.pos_out);
-    if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID))
-        turn_flag = true;
+    if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID));
+//        turn_flag = true;
     if (turn_flag == true) {
         if (counts % 3 == 0) {
             if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID)) {
