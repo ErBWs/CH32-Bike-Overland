@@ -84,6 +84,8 @@ extern float Global_Raw_Yaw;
 
 //==========Other=========
 extern float Global_k_gain;
+extern float Global_encode1;
+extern float Global_encode2;
 void gps_handler(gpsState pointStatus);
 void gpsConeHandler(void);
 void gpsTest(void);

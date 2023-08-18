@@ -51,6 +51,10 @@ float yaw_angle_bias = 0;
 float Global_Raw_Yaw = 0;
 float Global_k_gain = 0.25f;
 
+float Global_encode1 = 800;
+float Global_encode2 = 650;
+
+
 uint8 Bike_Start = 0;
 bool generate_update_flag = true;
 extern EasyUIItem_t itemCNX, itemCNY;
@@ -170,11 +174,12 @@ void gpsConeHandler(void) {
                         cone_handler_flag = true;
                     }
                 }
-                else if(back_inter_distance > 800) {
+                else if(back_inter_distance > Global_encode1) {
                     beepTime = 1200;
                     setSmoothKp(&dirPid,turn_servo_kp,800);
                     dynamic_gain = turn_dynamic_gain;
                     anti_dither_flag = false;
+                    cone_handler_flag = false;
                     cone_handler_index = 3;
                 }
                 break;
@@ -200,7 +205,7 @@ void gpsConeHandler(void) {
                         cone_handler_flag = true;
                     }
                 }
-                else if(back_inter_distance > 650) {
+                else if(back_inter_distance > Global_encode2) {
                     beepTime = 1200;
                     dirPid.Kp = slow_servo_kp;
                     dynamic_gain = turn_dynamic_gain;
