@@ -225,9 +225,9 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, ui
         return 1;
     }
     nodeLink_typedef refNodeList;
-    gpsData_typedef base_gps_data;
+//    gpsData_typedef base_gps_data;
     refNodeList = graph->B_constructor->refNodeList;
-    base_gps_data = *graph->base_gps_data;
+//    base_gps_data = *graph->base_gps_data;
 //    double dx_lat,dy_lon;
 //    latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
 //    refNodeList[0].X = ANGLE_TO_RAD(gps_set[0].latitude - base_gps_data.latitude)*dx_lat;
@@ -277,7 +277,7 @@ uint8_t GraphPathGenerate(nodeGraph_typedef *graph)
         u = k * step;
         for(int i=0;i<constructor->B_n+1;i++)
         {
-            if(u>=i*step&&u<i+constructor->B_p+1)//avoid meaningless iterations
+            if(u>=i*step&&u<(i+constructor->B_p+1)*step)//avoid meaningless iterations
                 constructor->NipFactorVector[i] = BaseIterateFunc(i,constructor->B_p,u,constructor->NodeVector);
             else
                 constructor->NipFactorVector[i] = 0;
