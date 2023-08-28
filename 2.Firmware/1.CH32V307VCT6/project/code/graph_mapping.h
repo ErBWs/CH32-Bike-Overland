@@ -32,8 +32,8 @@
 
 typedef struct
 {
-    double      latitude;                                                       // µ±Ç°Ä¿±êµã¾­¶È
-    double      longitude;                                                      // µ±Ç°Ä¿±êµãÎ³¶È
+    double      latitude;                                                       // ï¿½ï¿½Ç°Ä¿ï¿½ï¿½ã¾­ï¿½ï¿½
+    double      longitude;                                                      // ï¿½ï¿½Ç°Ä¿ï¿½ï¿½ï¿½Î³ï¿½ï¿½
 }gpsData_typedef,*gpsDataLink_typedef;
 
 typedef struct
@@ -50,7 +50,6 @@ typedef struct
     uint8_t  is_link : 1;
     uint8_t  is_interpolated : 1;
     double *NodeVector;
-    double *NipFactorVector;
     nodeLink_typedef refNodeList;
 }B_Constructor_typedef,*B_Constructor_Link_typedef;
 typedef struct {
@@ -99,7 +98,7 @@ extern stanleyController_typedef    Global_stanleyController;
 void latlonTodxdy(double lat, double *dx_dlat, double *dy_dlon);
 void WGS_84_ConvertToXY(double base_latitude, double base_longitude, gpsDataLink_typedef gpsDATA, nodeLink_typedef nodesDATA, uint16_t counts);
 uint8_t B_ConstructorInit(B_Constructor_typedef *constructor,uint8_t ref_counts,uint8_t order);
-uint8_t B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVector, double *NipFactorVector, nodeLink_typedef refNodeList);
+uint8_t B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVector, nodeLink_typedef refNodeList);
 uint8_t B_GraphRegister(nodeGraph_typedef *graph, B_Constructor_typedef *constructor);
 void stanleyControllerInit(stanleyController_typedef *controller, float k_gain, float L, float *yaw, float *v_now,node_typedef *current_node);
 uint8_t stanleyBuffLink(stanleyController_typedef *controller, float *pd_array,float *pdd_array,uint16_t point_total);

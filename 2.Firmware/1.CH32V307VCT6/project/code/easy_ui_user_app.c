@@ -194,7 +194,7 @@ void EventPathGenerate(EasyUIItem_t  *item)
     {
         GraphInit(&GlobalGraph, GlobalGraph_NodeBuffer, &GlobalBase_GPS_data, PATH_TOTAL_COUNTS);
         status|=B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
-        status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
+        status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalRefNodeList);
         status|=B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
         uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, uint16_t counts);
         GraphReferNodeConvertInput(&GlobalGraph,gps_data_array,gps_use.point_count);
