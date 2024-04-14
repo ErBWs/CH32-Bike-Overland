@@ -13,7 +13,7 @@ extern gps_report_t gpsReport;
 EasyUIPage_t pageWelcome, pageMain, pagePreset, pageFlyWheelPID, pageDirPID, pageBackMotorPID, pageThreshold, pageCam, pagePoints, pageNormalPoints, pagePathGenerate,pageBasePoints,pageConePoints,pagePilePoints,pageSetting, pageAbout, pageVoltage, pageGenerateCone,pageGeneratePile;
 
 // Items
-EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemSlowVel, itemFastVel, itemTurnVel, itemSlowServo, itemFastServo, itemTurnServo, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle,itemSetting,itemGenCone,itemGenPile;
+EasyUIItem_t titleMain, itemRun, itemPreset, itemSpdPID, itemDirPID, itemBackMotor, itemNorDynaGain, itemTurnDynaGain,itemSlowVel, itemFastVel, itemTurnVel, itemRampVel, itemSlowServo, itemFastServo, itemTurnServo, itemEncode1, itemEncode2, itemThreshold, itemCam, itemGPS,itemSetKgain,itemSetYawBias,itemSetStaticAngle, itemSetServoCalibration, itemSetServoDitherFactor, itemSetting,itemGenCone,itemGenPile;
 EasyUIItem_t titleGPS, itemBasePoints,itemNormalPoints,itemConePoints,itemPilePoints,itemPathGenerate, itemSavePoints, itemReadPoints,itemCNX,itemCNY,itemSSD,itemCYF,itemEGFN,itemSCY,itemSMC,itemSetIndex,itemSRY,itemSetConeCounts,itemSetConeTotalDis,itemSetConeHorizonDis,itemSetConeDir,itemSetPileRadius,itemSetPileDir;
 EasyUIItem_t titleSpdPID, itemSpdKp, itemSpdKi, itemSpdKd, itemAngKp, itemAngKi, itemAngKd, itemAngSpdKp, itemAngSpdKi, itemAngSpdKd, KpitemSpdTarget, itemSpdInMax, itemSpdErrMax, itemSpdErrMin;
 EasyUIItem_t titleDirPID, itemDirKp, itemDirKi, itemDirKd, itemDirInMax, itemDirErrMax, itemDirErrMin;
@@ -32,6 +32,7 @@ void EventMainLoop(EasyUIItem_t *item)
         cone_handler_index=0;
         cone_handler_flag = false;
         dirPid.Kp = fast_servo_kp;
+        dynamic_gain = normal_dynamic_gain;
         motoDutySet(SERVO_PIN,SERVO_MID);
         servo_input_duty = SERVO_MID;
         if(!GlobalGraph.is_init ||!GlobalGraph.B_constructor->is_interpolated)
@@ -41,7 +42,7 @@ void EventMainLoop(EasyUIItem_t *item)
             EasyUIBackgroundBlur();
             return;
         }
-        stanleyControllerInit(&Global_stanleyController,(float)0.3,(float)0.05,&Global_yaw,&Global_v_now,&Global_current_node);
+        stanleyControllerInit(&Global_stanleyController,(float)Global_k_gain,(float)0.05,&Global_yaw,&Global_v_now,&Global_current_node);
         status|=stanleyBuffLink(&Global_stanleyController,Global_pd_array,NULL,GlobalGraph.total);
         status|=stanley_GraphRegister(&GlobalGraph,&Global_stanleyController);
         status|=GraphNode_Diff(&GlobalGraph);
@@ -76,6 +77,7 @@ void EventMainLoop(EasyUIItem_t *item)
     }
     pidClear(&backSpdPid);
     backSpdPid.target[NOW]=fast_velocity;
+    anti_dither_flag = true;
     while(1)
     {
         static uint16 temp=4000;
@@ -103,12 +105,14 @@ void EventMainLoop(EasyUIItem_t *item)
                 functionIsRunning = false;
                 beepTime = 1500;
                 Bike_Start = 0;
+                anti_dither_flag = false;
                 break;
             }
         }
         if (opnExit)
         {
             motoDutySet(SERVO_PIN,SERVO_MID);
+            anti_dither_flag = false;
             Bike_Start = 0;
             opnExit = false;
             functionIsRunning = false;
@@ -190,7 +194,7 @@ void EventPathGenerate(EasyUIItem_t  *item)
     {
         GraphInit(&GlobalGraph, GlobalGraph_NodeBuffer, &GlobalBase_GPS_data, PATH_TOTAL_COUNTS);
         status|=B_ConstructorInit(&Global_B_Constructor, gps_use.point_count, B_ORDER);
-        status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalNipFactorVector, GlobalRefNodeList);
+        status|=B_ConstructorBuffLink(&Global_B_Constructor, GlobalNodeVector, GlobalRefNodeList);
         status|=B_GraphRegister(&GlobalGraph, &Global_B_Constructor);
         uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, uint16_t counts);
         GraphReferNodeConvertInput(&GlobalGraph,gps_data_array,gps_use.point_count);
@@ -510,18 +514,26 @@ void MenuInit()
     EasyUIAddItem(&pageMain, &titleMain, "[Main]", ITEM_PAGE_DESCRIPTION);
     EasyUIAddItem(&pageMain, &itemRun, "Run", ITEM_MESSAGE, "Running...", EventMainLoop);
     EasyUIAddItem(&pageMain, &itemGPS, "GPS Points", ITEM_JUMP_PAGE, pagePoints.id);
-    EasyUIAddItem(&pageMain, &itemSetKgain, "Set K-gain", ITEM_CHANGE_VALUE, &Global_stanleyController.k_gain, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemSetKgain, "Set K-gain", ITEM_CHANGE_VALUE, &Global_k_gain, EasyUIEventChangeFloat);
 //    EasyUIAddItem(&pageMain, &itemSetYawBias, "Set Yaw-Bias", ITEM_CHANGE_VALUE, &yaw_angle_bias, EasyUIEventChangeFloatForYaw);
     EasyUIAddItem(&pageMain, &itemSetStaticAngle, "Set Static-Angle", ITEM_CHANGE_VALUE, &ANGLE_STATIC_BIAS, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemSetServoCalibration, "Set Servo-Cali", ITEM_CHANGE_VALUE, &global_servo_calibration, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemSetServoDitherFactor, "Set Dither-Factor", ITEM_CHANGE_VALUE, &servo_dither_factor, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSpdPID, "Fly-Wheel PID", ITEM_JUMP_PAGE, pageFlyWheelPID.id);
     EasyUIAddItem(&pageMain, &itemDirPID, "Direction PID", ITEM_JUMP_PAGE, pageDirPID.id);
     EasyUIAddItem(&pageMain, &itemBackMotor, "BackMotor PID", ITEM_JUMP_PAGE, pageBackMotorPID.id);
+    EasyUIAddItem(&pageMain, &itemNorDynaGain, "Normal Dynamic Gain", ITEM_CHANGE_VALUE, &normal_dynamic_gain, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemTurnDynaGain, "Turn Dynamic Gain", ITEM_CHANGE_VALUE, &turn_dynamic_gain, EasyUIEventChangeFloat);
+
     EasyUIAddItem(&pageMain, &itemSlowVel, "Set Slow Velocity", ITEM_CHANGE_VALUE, &slow_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemFastVel, "Set Fast Velocity", ITEM_CHANGE_VALUE, &fast_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemTurnVel, "Set Turn Velocity", ITEM_CHANGE_VALUE, &turn_velocity, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemRampVel, "Set Ramp Velocity", ITEM_CHANGE_VALUE, &ramp_velocity, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSlowServo, "Set Slow Servo", ITEM_CHANGE_VALUE, &slow_servo_kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemFastServo, "Set Fast Servo", ITEM_CHANGE_VALUE, &fast_servo_kp, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemTurnServo, "Set Turn Servo", ITEM_CHANGE_VALUE, &turn_servo_kp, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemEncode1, "Set Encode-1", ITEM_CHANGE_VALUE, &Global_encode1, EasyUIEventChangeFloat);
+    EasyUIAddItem(&pageMain, &itemEncode2, "Set Encode-2", ITEM_CHANGE_VALUE, &Global_encode2, EasyUIEventChangeFloat);
     EasyUIAddItem(&pageMain, &itemSetting, "Settings", ITEM_JUMP_PAGE, pageSetting.id);
 
     // Page GPS points

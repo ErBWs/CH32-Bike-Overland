@@ -128,6 +128,25 @@ void pidClear(PID_TypeDef *pid)
     pid->last_pos_out = 0;
     pid->pos_out = 0;
 }
+void setSmoothKp(PID_TypeDef *pid, float targetKp ,float ms){
+    pid->smoothTargetKp = targetKp;
+    pid->sport_kp_step = (targetKp - pid->Kp) / ((float) ms / SMOOTH_KP_PER_TICK_MS);
+    pid->is_sporting = true;
+}
+void dynamicKpHandler(PID_TypeDef *pid){
+    if(pid->is_sporting==false)return;
+    float kp_target, y_target;
+    kp_target = pid->smoothTargetKp;
+    if ((pid->sport_kp_step > 0 && pid->Kp < pid->smoothTargetKp) ||
+        (pid->sport_kp_step < 0 && pid->Kp > pid->smoothTargetKp))
+        kp_target = pid->Kp + pid->sport_kp_step;
+    if ((pid->sport_kp_step > 0 && pid->Kp >= pid->smoothTargetKp) ||(pid->sport_kp_step < 0 && pid->Kp <= pid->smoothTargetKp) ||
+        pid->sport_kp_step == 0) {
+        kp_target = pid->smoothTargetKp;
+        pid->is_sporting = false;
+    }
+    pid->Kp = kp_target;
+}
 void pidAllInit(void)
 {
 	/**
@@ -143,14 +162,13 @@ void pidAllInit(void)
   * @retval None
   */
 
-#define SERVO_MAX_ANGLE 10.0
 	PID_Init(&dirPid,POSITION_PID,SERVO_MAX_ANGLE,0,-0.045f,0,0);//舵机PD
 //    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-20,0,-0.4f,0,0);//飞轮速度环纯P
 //    PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-20,0,11.0f,0,0);//飞轮角度环PD
 //    PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-20,PWM_DUTY_MAX-20,45.0f,0.8f,0);//飞轮角速度环PI
-    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-20,0,-0.4f,0,0);//飞轮速度环纯P
+    PID_Init(&flySpdPid,POSITION_PID,PWM_DUTY_MAX-20,0,-0.35f,0,0);//飞轮速度环纯P
     PID_Init(&flyAnglePid,POSITION_PID,PWM_DUTY_MAX-20,0,10.5f,0,0);//飞轮角度环PD
-    PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-20,PWM_DUTY_MAX-20,46.0f,0.8f,0);//飞轮角速度环PI
+    PID_Init(&flyAngleSpdPid,POSITION_PID,PWM_DUTY_MAX-20,PWM_DUTY_MAX-20,45.0f,0.6f,0);//飞轮角速度环PI
 
     PID_Init(&backSpdPid,POSITION_PID,PWM_DUTY_MAX-10,5000,60,2.5f,0.0f);//后轮速度环纯P
 

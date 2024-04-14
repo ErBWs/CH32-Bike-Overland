@@ -2,13 +2,14 @@
 #include "inc_all.h"
 // PID parameter array: *Param[5] = {kp, ki, kd, target_value, limitation}
 
-
+float global_servo_calibration = 1.61f;
 void motoInit(void) {
     pwm_init(SERVO_PIN, SERVO_FREQ, SERVO_MID);
     pwm_init(MOTOR_FLY_PIN, 1000, 0);
     gpio_init(MOTOR_FLY_DIR_PIN, GPO, GPIO_LOW, GPO_PUSH_PULL);
     pwm_init(MOTOR_BACK_PIN, 1000, 0);
     gpio_init(MOTOR_BACK_DIR_PIN, GPO, GPIO_LOW, GPO_PUSH_PULL);
+    servo_current_duty = GetServoDuty(0);
 }
 
 
@@ -34,7 +35,7 @@ static uint16_t duty_target = 0;
 static int32_t servo_step_duty;
 static int32_t duty_err;
 uint8 servo_sport_update_flag = 0;//若该标志位置1，则外部不能有强行修改servo_current_duty的行为；
-uint16 servo_current_duty = GetServoDuty(0);
+uint16 servo_current_duty;
 
 void ServoSportSet(uint16_t duty_value, int32_t ticks) {
     duty_target = duty_value;
@@ -44,6 +45,9 @@ void ServoSportSet(uint16_t duty_value, int32_t ticks) {
     servo_sport_update_flag = 1;
 }
 
+uint16 GetServoDuty(float X){
+    return (uint16)((float)(PWM_DUTY_MAX * (global_servo_calibration + (float)X / 90.0)) / (1000.0 / (float)SERVO_FREQ));
+}
 void ServoSportHandler(uint16 *duty_input) {
     static uint32 last_ticks = 1LL << 31;
     uint16 input_pwm_duty = servo_current_duty;//(TIM2->CH1CVR*PWM_DUTY_MAX)/TIM2->ATRLR;

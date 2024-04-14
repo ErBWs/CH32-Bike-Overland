@@ -25,22 +25,22 @@ typedef enum
 
 typedef struct
 {
-    double      latitude;                                                       // µ±Ç°Ä¿±êµã¾­¶È
-    double      longitude;                                                      // µ±Ç°Ä¿±êµãÎ³¶È
+    double      latitude;                                                       // ï¿½ï¿½Ç°Ä¿ï¿½ï¿½ã¾­ï¿½ï¿½
+    double      longitude;                                                      // ï¿½ï¿½Ç°Ä¿ï¿½ï¿½ï¿½Î³ï¿½ï¿½
 }gps_st;
 
 typedef struct
 {
-    uint8       point_count;                                                   //²ÉµãÊý
-    uint8       use_point_count;                                                //ÒÑÓÃµãÊý
-    float       z_angle;                                                        //zÖáÍÓÂÝÒÇ»ý·Ö
+    uint8       point_count;                                                   //ï¿½Éµï¿½ï¿½ï¿½
+    uint8       use_point_count;                                                //ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½
+    float       z_angle;                                                        //zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½
     float       delta;
 }gps_use_st;
 
 typedef struct
 {
-    double      points_azimuth ;                                               //Á½¸öµãÖ®¼äµÄ·½Î»½Ç
-    double      points_distance;                                               //Á½µãÖ®¼äµÄ¾àÀë
+    double      points_azimuth ;                                               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä·ï¿½Î»ï¿½ï¿½
+    double      points_distance;                                               //ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
 }gps_two_point_st;
 
 
@@ -69,6 +69,7 @@ extern float cone_horizon_distance;
 extern float slow_velocity;
 extern float fast_velocity;
 extern float turn_velocity;
+extern float ramp_velocity;
 extern float slow_servo_kp;
 extern float fast_servo_kp;
 extern float turn_servo_kp;
@@ -81,7 +82,10 @@ extern float pile_radius;
 extern float yaw_angle_bias;
 extern float Global_Raw_Yaw;
 
-
+//==========Other=========
+extern float Global_k_gain;
+extern float Global_encode1;
+extern float Global_encode2;
 void gps_handler(gpsState pointStatus);
 void gpsConeHandler(void);
 void gpsTest(void);

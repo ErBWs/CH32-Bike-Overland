@@ -14,13 +14,16 @@ float dynamic_zero = 0;
 extern double X0, Y0;
 gps_report_t gpsReport;
 bool servo_forbid = false;
-float dynamic_gain = 0.008f;
+float dynamic_gain = 0.05f;
+float normal_dynamic_gain = 0.03f;
+float turn_dynamic_gain = 0.55f;
 
 void taskTimAllInit(void) {
     pit_ms_init(MAIN_PIT, 2);
     pit_ms_init(BEEP_AND_KEY_PIT, 10);
     interrupt_set_priority(TIM1_UP_IRQn, (1 << 5) | 1);
     interrupt_set_priority(TIM3_IRQn, (2 << 5) | 2);
+    servo_input_duty = SERVO_MID;
 }
 
 void IMUGetCalFun(void) {
@@ -74,8 +77,10 @@ void IMUGetCalFun(void) {
 }
 
 #define USE_BLUE_TOOTH 0
-uint16 servo_input_duty = SERVO_MID;
-void ServoControl(void) {
+uint16 servo_input_duty;
+float servo_dither_factor = -0.4f;
+bool anti_dither_flag = false;
+void ServoControl(int16 encode_val) {
     static uint8 counts = 0;
     static bool turn_flag = false;
     counts++;
@@ -83,15 +88,21 @@ void ServoControl(void) {
     pwm_set_duty(SERVO_PIN,GetServoDuty(dirPid.target[NOW]));
 #else
 
-    if (stagger_flag == 1 || servo_forbid == true || Bike_Start != 1)return;
+//    if (stagger_flag == 1 || servo_forbid == true || Bike_Start != 1)return;
 //    gps_use.delta = gps_use.delta * 0.3 + last_angle * 0.7;
     PID_Calculate(&dirPid, 0, (float) gps_use.delta);//纯P
 
-    dynamic_zero = (float) (servo_input_duty - SERVO_MID) * dynamic_gain;
+    dynamic_zero = (float) (servo_input_duty - SERVO_MID)*(float)abs(encode_val) * dynamic_gain/100;
+    dynamic_zero = LIMIT(dynamic_zero,-8,8);
+    if(fabsf(dynamic_zero)<0.7)dynamic_zero=0;
+//    BlueToothPrintf("%f\r\n",dynamic_zero);
 
+    if(anti_dither_flag){
+        dirPid.pos_out += ((float)imu660ra_gyro_z/100 * servo_dither_factor);
+    }
     uint16 duty_temp = GetServoDuty(dirPid.pos_out);
-    if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID))
-        turn_flag = true;
+    if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID));
+//        turn_flag = true;
     if (turn_flag == true) {
         if (counts % 3 == 0) {
             if (abs(duty_temp - servo_input_duty) > fabs(GetServoDuty(2) - SERVO_MID)) {
@@ -105,7 +116,7 @@ void ServoControl(void) {
     } else {
         servo_input_duty = duty_temp;
     }
-    servo_input_duty = LIMIT(servo_input_duty,GetServoDuty(-10), GetServoDuty(10));
+    servo_input_duty = LIMIT(servo_input_duty,GetServoDuty(-SERVO_MAX_ANGLE), GetServoDuty(SERVO_MAX_ANGLE));
 
 
 //    if(servo_sport_update_flag==0)
@@ -121,52 +132,54 @@ uint32_t back_inter_distance = 0;
 uint8 back_maintain_flag = 1;
 int16_t back_wheel_encode = 0;
 
-void BackMotoControl(void) {
+int16 BackMotoControl(void) {
     static uint8 beg_state = 0, pitch_state = 0;
     static uint8 counts = 0;
-    if (++counts < 20)return;
-    counts = 0;
+    static int16 last_encode_val = 0;
     if (stagger_flag == 1 || Bike_Start != 1) {
         pidClear(&backSpdPid);
         motoDutySet(MOTOR_BACK_PIN, 0);
-        return;
+        return last_encode_val;
     }
+    if (++counts < 20)return last_encode_val;
+    counts = 0;
 
-    back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
+    last_encode_val = back_wheel_encode = encoder_get_count(ENCODER_BACK_WHEEL_TIM);
     encoder_clear_count(ENCODER_BACK_WHEEL_TIM);
     back_inter_distance += myABS(back_wheel_encode);
 
     PID_Calculate(&backSpdPid, backSpdPid.target[NOW], (float) back_wheel_encode);//速度环PID
-    switch (pitch_state) {
-        case 0:
-            if (imu_data.pit > 9) {
-                servo_forbid = true;
-                pwm_set_duty(SERVO_PIN, SERVO_MID);
-                backSpdPid.target[NOW] = 100;
-                backSpdPid.Ki = 0;
-                beepTime = 400;
-                pitch_state = 1;
-            }
-            break;
-        case 1:
-            if (imu_data.pit < 1) {
-                backSpdPid.target[NOW] = fast_velocity;
-//                backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
-                backSpdPid.iout = 0;
-                back_inter_distance = 0;
-                beepTime = 400;
-                pitch_state = 2;
-            }
-            break;
-        case 2:
-            if (back_inter_distance > 250) {
-                servo_forbid = false;
-                backSpdPid.Ki = 3;
-                beepTime = 400;
-                pitch_state = 0;
-            }
-    }
+//    switch (pitch_state) {
+//        case 0:
+//            if (imu_data.pit > 9) {
+//                servo_forbid = true;
+//                pwm_set_duty(SERVO_PIN, SERVO_MID);
+//                backSpdPid.target[NOW] = 100;
+//                backSpdPid.Ki = 0;
+//                beepTime = 400;
+//                pitch_state = 1;
+//            }
+//            break;
+//        case 1:
+//            if (imu_data.pit < 1) {
+//                backSpdPid.target[NOW] = fast_velocity;
+////                backSpdPid.pos_out -= backSpdPid.iout;//消除积分作用
+//                backSpdPid.iout = 0;
+//                back_inter_distance = 0;
+//                beepTime = 400;
+//                pitch_state = 2;
+//            }
+//            break;
+//        case 2:
+//            if (back_inter_distance > 250) {
+//                servo_forbid = false;
+//                backSpdPid.Ki = 3;
+//                beepTime = 400;
+//                pitch_state = 0;
+//            }
+//    }
     motoDutySet(MOTOR_BACK_PIN, (int32) -backSpdPid.pos_out);
+    return last_encode_val;
 }
 
 uint8 stagger_flag = 1;
@@ -194,14 +207,13 @@ void FlyWheelControl(void) {
     }
     if (counts % 2 == 0)//4
     {
-        PID_Calculate(&flyAnglePid, (flySpdPid.pos_out < 0 ? -sqrtf(-flySpdPid.pos_out) : sqrtf(flySpdPid.pos_out)) +
-                                    ANGLE_STATIC_BIAS + dynamic_zero, imu_data.rol);//角度环PD
+        PID_Calculate(&flyAnglePid, flySpdPid.pos_out + ANGLE_STATIC_BIAS + dynamic_zero, imu_data.rol);//角度环PD
         // printf("A%f\r\n",imu_data.rol);
 //        BlueToothPrintf("%f\r\n",imu_data.rol);
     }
     PID_Calculate(&flyAngleSpdPid, flyAnglePid.pos_out, temp_x);//角速度环PI//    printf("B%f\r\n",temp_x);
 
-    if (abs(imu_data.rol) > 35) {
+    if (abs(imu_data.rol) > 30) {
         stagger_flag = 1;
         motoDutySet(MOTOR_FLY_PIN, 0);
         return;

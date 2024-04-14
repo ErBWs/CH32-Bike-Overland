@@ -25,20 +25,20 @@ extern "C"
 #include <math.h>
 extern uint16_t time;
 
-#define IPS096_SPI_SPEED                (72 * 1000 * 1000)                      // Ó²¼þ SPI ËÙÂÊ ÕâÀïÉèÖÃÎªÏµÍ³Ê±ÖÓ¶þ·ÖÆµ
-#define IPS096_SPI                      (SPI_2)                                 // Ó²¼þ SPI ºÅ
-#define IPS096_SCL_PIN                  (SPI2_MAP0_SCK_B13)                           // Ó²¼þ SPI SCK Òý½Å
-#define IPS096_SDA_PIN                  (SPI2_MAP0_MOSI_B15)                          // Ó²¼þ SPI MOSI Òý½Å
+#define IPS096_SPI_SPEED                (72 * 1000 * 1000)                      // Ó²ï¿½ï¿½ SPI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÏµÍ³Ê±ï¿½Ó¶ï¿½ï¿½ï¿½Æµ
+#define IPS096_SPI                      (SPI_2)                                 // Ó²ï¿½ï¿½ SPI ï¿½ï¿½
+#define IPS096_SCL_PIN                  (SPI2_MAP0_SCK_B13)                           // Ó²ï¿½ï¿½ SPI SCK ï¿½ï¿½ï¿½ï¿½
+#define IPS096_SDA_PIN                  (SPI2_MAP0_MOSI_B15)                          // Ó²ï¿½ï¿½ SPI MOSI ï¿½ï¿½ï¿½ï¿½
 
-#define IPS096_RST_PIN                  (B7 )                                   // Òº¾§¸´Î»Òý½Å¶¨Òå
-#define IPS096_DC_PIN                   (D7 )                                   // Òº¾§ÃüÁîÎ»Òý½Å¶¨Òå
-#define IPS096_CS_PIN                   (D4 )                                   // CS Æ¬Ñ¡Òý½Å
-#define IPS096_BLK_PIN                  (D0 )                                   // Òº¾§±³¹âÒý½Å¶¨Òå
+#define IPS096_RST_PIN                  (B7 )                                   // Òºï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½
+#define IPS096_DC_PIN                   (D7 )                                   // Òºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½
+#define IPS096_CS_PIN                   (D4 )                                   // CS Æ¬Ñ¡ï¿½ï¿½ï¿½ï¿½
+#define IPS096_BLK_PIN                  (D0 )                                   // Òºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½
 
-#define IPS096_DEFAULT_DISPLAY_DIR      (IPS096_CROSSWISE_180)                  // Ä¬ÈÏµÄÏÔÊ¾·½Ïò
-#define IPS096_DEFAULT_PENCOLOR         (RGB565_WHITE)                            // Ä¬ÈÏµÄ»­±ÊÑÕÉ«
-#define IPS096_DEFAULT_BGCOLOR          (RGB565_BLACK)                          // Ä¬ÈÏµÄ±³¾°ÑÕÉ«
-#define IPS096_DEFAULT_DISPLAY_FONT     (IPS096_6X8_FONT)                      // Ä¬ÈÏµÄ×ÖÌåÄ£Ê½
+#define IPS096_DEFAULT_DISPLAY_DIR      (IPS096_CROSSWISE_180)                  // Ä¬ï¿½Ïµï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+#define IPS096_DEFAULT_PENCOLOR         (RGB565_WHITE)                            // Ä¬ï¿½ÏµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½É«
+#define IPS096_DEFAULT_BGCOLOR          (RGB565_BLACK)                          // Ä¬ï¿½ÏµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½É«
+#define IPS096_DEFAULT_DISPLAY_FONT     (IPS096_6X8_FONT)                      // Ä¬ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 
 #define IPS096_DC(x)                    ((x) ? (gpio_high(IPS096_DC_PIN)) : (gpio_low(IPS096_DC_PIN)))
 #define IPS096_RST(x)                   ((x) ? (gpio_high(IPS096_RST_PIN)) : (gpio_low(IPS096_RST_PIN)))
@@ -62,17 +62,17 @@ typedef enum
 
 typedef enum
 {
-    IPS096_PORTAIT                      = 0,                                    // ÊúÆÁÄ£Ê½
-    IPS096_PORTAIT_180                  = 1,                                    // ÊúÆÁÄ£Ê½  Ðý×ª180
-    IPS096_CROSSWISE                    = 2,                                    // ºáÆÁÄ£Ê½
-    IPS096_CROSSWISE_180                = 3,                                    // ºáÆÁÄ£Ê½  Ðý×ª180
+    IPS096_PORTAIT                      = 0,                                    // ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+    IPS096_PORTAIT_180                  = 1,                                    // ï¿½ï¿½ï¿½ï¿½Ä£Ê½  ï¿½ï¿½×ª180
+    IPS096_CROSSWISE                    = 2,                                    // ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+    IPS096_CROSSWISE_180                = 3,                                    // ï¿½ï¿½ï¿½ï¿½Ä£Ê½  ï¿½ï¿½×ª180
 }ips096_dir_enum;
 
 typedef enum
 {
-    IPS096_6X8_FONT                     = 0,                                    // 6x8      ×ÖÌå
-    IPS096_8X16_FONT                    = 1,                                    // 8x16     ×ÖÌå
-    IPS096_16X16_FONT                   = 2,                                    // 16x16    ×ÖÌå Ä¿Ç°²»Ö§³Ö
+    IPS096_6X8_FONT                     = 0,                                    // 6x8      ï¿½ï¿½ï¿½ï¿½
+    IPS096_8X16_FONT                    = 1,                                    // 8x16     ï¿½ï¿½ï¿½ï¿½
+    IPS096_16X16_FONT                   = 2,                                    // 16x16    ï¿½ï¿½ï¿½ï¿½ Ä¿Ç°ï¿½ï¿½Ö§ï¿½ï¿½
 }ips096_font_size_enum;
 
 void IPS096_SendBuffer();

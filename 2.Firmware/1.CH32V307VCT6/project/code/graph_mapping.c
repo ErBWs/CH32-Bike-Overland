@@ -78,7 +78,7 @@ uint8_t B_ConstructorInit(B_Constructor_typedef *constructor,uint8_t ref_counts,
     constructor->is_init = 1;
     return 0;
 }
-uint8_t B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVector, double *NipFactorVector, nodeLink_typedef refNodeList)
+uint8_t B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVector, nodeLink_typedef refNodeList)
 {
     if(!constructor->is_init)
     {
@@ -86,10 +86,8 @@ uint8_t B_ConstructorBuffLink(B_Constructor_typedef *constructor, double *NodeVe
         return 1;
     }
     memset(NodeVector,0, sizeof(double)*(constructor->B_m + 1));
-    memset(NipFactorVector,0,sizeof(double)*(constructor->B_n + 1));
     memset(refNodeList,0, sizeof(node_typedef)*(constructor->B_n + 1));
     constructor->NodeVector = NodeVector;
-    constructor->NipFactorVector = NipFactorVector;
     constructor->refNodeList = refNodeList;
     constructor->is_link = 1;
     return 0;
@@ -225,9 +223,9 @@ uint8_t GraphReferNodeConvertInput(nodeGraph_typedef *graph, gps_st *gps_set, ui
         return 1;
     }
     nodeLink_typedef refNodeList;
-    gpsData_typedef base_gps_data;
+//    gpsData_typedef base_gps_data;
     refNodeList = graph->B_constructor->refNodeList;
-    base_gps_data = *graph->base_gps_data;
+//    base_gps_data = *graph->base_gps_data;
 //    double dx_lat,dy_lon;
 //    latlonTodxdy(base_gps_data.latitude,&dx_lat,&dy_lon);
 //    refNodeList[0].X = ANGLE_TO_RAD(gps_set[0].latitude - base_gps_data.latitude)*dx_lat;
@@ -266,7 +264,7 @@ uint8_t GraphPathGenerate(nodeGraph_typedef *graph)
         printf("graph may not be initialized or has no B_constructor!");
         return 1;
     }
-    double step,u;
+    double step,u,NipFactor;
     B_Constructor_typedef *constructor;
     step = (double)(1.0/(graph->total-1));
     constructor = graph->B_constructor;
@@ -277,12 +275,12 @@ uint8_t GraphPathGenerate(nodeGraph_typedef *graph)
         u = k * step;
         for(int i=0;i<constructor->B_n+1;i++)
         {
-            if(u>=i*step&&u<i+constructor->B_p+1)//avoid meaningless iterations
-                constructor->NipFactorVector[i] = BaseIterateFunc(i,constructor->B_p,u,constructor->NodeVector);
+            if(u>=i*step&&u<(i+constructor->B_p+1)*step)//avoid meaningless iterations
+                NipFactor = BaseIterateFunc(i,constructor->B_p,u,constructor->NodeVector);
             else
-                constructor->NipFactorVector[i] = 0;
-            graph->nodeBuff[k].X += constructor->NipFactorVector[i] * constructor->refNodeList[i].X;
-            graph->nodeBuff[k].Y += constructor->NipFactorVector[i] * constructor->refNodeList[i].Y;
+                NipFactor = 0;
+            graph->nodeBuff[k].X += NipFactor * constructor->refNodeList[i].X;
+            graph->nodeBuff[k].Y += NipFactor * constructor->refNodeList[i].Y;
         }
     }
     constructor->is_interpolated = 1;

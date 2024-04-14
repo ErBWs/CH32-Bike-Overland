@@ -21,8 +21,8 @@
  *              1000 / freq
  * 
  */
-#define GetServoDuty(x)    ((float)(PWM_DUTY_MAX * (1.59 + (float)x / 90.0)) / (1000.0 / (float)SERVO_FREQ))
-
+//#define GetServoDuty(x)    ((float)(PWM_DUTY_MAX * ((global_servo_calibration) + (float)x / 90.0)) / (1000.0 / (float)SERVO_FREQ))
+uint16 GetServoDuty(float X);
 
 #define SERVO_MID           GetServoDuty(0)                     // Middle duty of servo motor
 #define SERVO_DUTY_MAX      (GetServoDuty(14) - SERVO_MID)      // Maximum turning angle of servo motor
@@ -37,6 +37,7 @@
 
 extern uint8 servo_sport_update_flag;
 extern uint16 servo_current_duty;
+extern float global_servo_calibration;
 void motoInit(void);
 void motoDutySet(pwm_channel_enum pin,int32_t duty);
 void ServoSportSet(uint16_t duty_value,int32_t ticks);
