@@ -1,3 +1,0 @@
-F:/bike/CH32-Bike-Overland/cmake-build-debug/CMakeFiles/CH32_Bike_Overland.dir
-F:/bike/CH32-Bike-Overland/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/bike/CH32-Bike-Overland/cmake-build-debug/CMakeFiles/rebuild_cache.dir
