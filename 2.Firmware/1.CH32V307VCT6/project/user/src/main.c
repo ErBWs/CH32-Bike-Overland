@@ -43,6 +43,7 @@ int main (void)
 //        BlueToothPrintf("%d\n",back_wheel_encode);
 //        BlueToothPrintf("%f\n",backSpdPid.pos_out);
         EasyUI(20);
+        VofaLittleEndianSendFrame();
     }
 }
 
@@ -60,8 +61,8 @@ void systemInit(void)
     imuinit(IMU_ALL);
     Butterworth_Parameter_Init();
 #if USE_GPS
-    gps_ubx_init();
-    IST8310Init();
+//    gps_ubx_init();
+//    IST8310Init();
 #endif
     INS_init();
     EasyUITransitionAnim();

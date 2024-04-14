@@ -186,6 +186,8 @@ void FlyWheelControl(void) {
     if (counts % 3 == 0)//16
     {
         fly_wheel_encode = encoder_get_count(ENCODER_FLY_WHEEL_TIM);//BlueToothPrintf("%d\n",fly_wheel_encode);
+
+        vofaData[0] = fly_wheel_encode;
         encoder_clear_count(ENCODER_FLY_WHEEL_TIM);
         PID_Calculate(&flySpdPid, 0, fly_wheel_encode);//ËÙ¶È»·P
         counts = 0;

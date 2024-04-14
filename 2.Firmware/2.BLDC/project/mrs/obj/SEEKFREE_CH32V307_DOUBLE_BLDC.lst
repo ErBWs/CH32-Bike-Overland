@@ -11127,7 +11127,7 @@ motor_pit_control_callback():
 /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/bldc_software/motor.c:481
 
     // 通过公式转换成电流值，单位ma
-    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 50 * 1000;
+    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 10 * 1000;
     361a:	0000b737          	lui	a4,0xb
     361e:	84072707          	flw	fa4,-1984(a4) # a840 <MyUSBQUADescHD+0x68>
     3622:	d01577d3          	fcvt.s.wu	fa5,a0
@@ -11138,7 +11138,7 @@ motor_pit_control_callback():
     motor->enable_status = (MOTOR_EN_STATUS_enum)switch_check(enable_switch);
     362a:	47a2                	lw	a5,8(sp)
 /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/bldc_software/motor.c:481
-    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 50 * 1000;
+    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 10 * 1000;
     362c:	18e7f7d3          	fdiv.s	fa5,fa5,fa4
     3630:	84472707          	flw	fa4,-1980(a4) # a844 <MyUSBQUADescHD+0x6c>
     3634:	0000b737          	lui	a4,0xb
@@ -11149,7 +11149,7 @@ motor_pit_control_callback():
     motor->enable_status = (MOTOR_EN_STATUS_enum)switch_check(enable_switch);
     363c:	853e                	mv	a0,a5
 /Users/baohan/ErBW_s/Projects/CH32-Bike-Overland/2.Firmware/2.BLDC/bldc_software/motor.c:481
-    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 50 * 1000;
+    motor->voltage_bus_filter = (float)motor->adc_bus_filter / 4095 * 3300 / 5.7 / 10 * 1000;
     363e:	10e7f7d3          	fmul.s	fa5,fa5,fa4
     3642:	84872707          	flw	fa4,-1976(a4) # a848 <MyUSBQUADescHD+0x70>
     3646:	0000b737          	lui	a4,0xb
@@ -23644,7 +23644,7 @@ _sbrk():
     a818:	7469 5479 7079 2065 203d 6425 0000 0000     ityType = %d....
     a828:	345c 0000 3460 0000 3464 0000 3468 0000     \4..`4..d4..h4..
     a838:	346c 0000 3470 0000 f000 457f 4000 454e     l4..p4.....E.@NE
-    a848:	6666 40b6 0000 4248 9ba6 3b44 126f 3a83     ff.@..HB..D;o..:
+    a848:	6666 40b6 0000 4120 9ba6 3b44 126f 3a83     ff.@.. A..D;o..:
     a858:	552f 6573 7372 622f 6f61 6168 2f6e 7245     /Users/baohan/Er
     a868:	5742 735f 502f 6f72 656a 7463 2f73 4843     BW_s/Projects/CH
     a878:	3233 422d 6b69 2d65 764f 7265 616c 646e     32-Bike-Overland
